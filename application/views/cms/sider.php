@@ -14,9 +14,9 @@
 			</a>
 			<ul class="nav <?php echo array_key_exists('baseInfo',$sider)?'':'hide';?>">
 				<li><a href="/cms/myInfo" class="<?php echo array_key_exists('myInfo',$sider)?'active':'';?>">我的信息</a></li>
-				<li><a href="/account/info" class="">我的等级&分数</a></li>
+				<li><a href="/cms/grade" class="<?php echo array_key_exists('grade',$sider)?'active':'';?>">我的等级&分数</a></li>
 				<li><a href="/cms/shopBaseInfo" class="<?php echo array_key_exists('shop',$sider)?'active':'';?>">卖家店铺</a></li>
-				<li><a href="/account/message" class="">我的卖家权限</a></li>
+				<li><a href="/cms/permission" class="<?php echo array_key_exists('permission',$sider)?'active':'';?>">我的卖家权限</a></li>
 			</ul>
 		</li>
 		<li class="has-sub">

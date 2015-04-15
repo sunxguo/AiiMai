@@ -48,7 +48,7 @@ class Cms extends CI_Controller {
 		unset($_SESSION["username"]);
 		unset($_SESSION["userid"]);
 		unset($_SESSION["usertype"]);
-		$this->load->view('redirect',array("url"=>"/cms/login"));
+		$this->load->view('redirect',array("url"=>"/home/login"));
 	}
 	public function cmsBaseHandler($title,$sider,$view,$data){
 		$this->checkMerchantLogin();
@@ -70,6 +70,12 @@ class Cms extends CI_Controller {
 	}
 	public function myInfo(){
 		$this->cmsBaseHandler('我的信息',array('baseInfo'=>true,'myInfo'=>true),'myInfo',array());
+	}
+	public function grade(){
+		$this->cmsBaseHandler('grade',array('baseInfo'=>true,'grade'=>true),'grade',array());
+	}
+	public function permission(){
+		$this->cmsBaseHandler('permission',array('baseInfo'=>true,'permission'=>true),'waitingforonline',array());
 	}
 	public function shopBaseInfo(){
 		$this->cmsBaseHandler('卖家店铺',array('baseInfo'=>true,'shop'=>true,'shopBaseInfo'=>true),'shopBaseInfo',array());
