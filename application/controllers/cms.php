@@ -75,7 +75,13 @@ class Cms extends CI_Controller {
 		$this->cmsBaseHandler('grade',array('baseInfo'=>true,'grade'=>true),'grade',array());
 	}
 	public function permission(){
-		$this->cmsBaseHandler('permission',array('baseInfo'=>true,'permission'=>true),'waitingforonline',array());
+		$this->cmsBaseHandler('permission',array('baseInfo'=>true,'sellerPermission'=>true,'permission'=>true),'permission',array());
+	}
+	public function sharePermission(){
+		$this->cmsBaseHandler('share Permission',array('baseInfo'=>true,'sellerPermission'=>true,'sharePermission'=>true),'sharePermission',array());
+	}
+	public function vendor(){
+		$this->cmsBaseHandler('vendor',array('baseInfo'=>true,'sellerPermission'=>true,'vendor'=>true),'vendor',array());
 	}
 	public function shopBaseInfo(){
 		$this->cmsBaseHandler('卖家店铺',array('baseInfo'=>true,'shop'=>true,'shopBaseInfo'=>true),'shopBaseInfo',array());

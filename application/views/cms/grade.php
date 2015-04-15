@@ -180,10 +180,9 @@
 							<option value="">== 小分类选择 ==</option>
 						</select>
 						<select style="height: 30px;">
-							<option value="1">商品号码</option>
-							<option value="2">商品名</option>
-							<option value="3">卖家代码</option>
-							<option value="5">全球商品号码</option>
+							<option value="">商品代码/商品名</option>
+							<option value="gd_no">商品代码</option>
+							<option value="gd_nm">商品名</option>
 						</select>
 						<input type="text" class="km-form-control" id="customer_view_fax_areacode" style="width: 50%;height: 30px;padding: 0 5px;display: inline-block;">
 					</td>
