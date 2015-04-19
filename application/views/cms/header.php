@@ -18,6 +18,11 @@
             <img src="/assets/images/cms/aiimai-cms-new-logo.png" alt="网站logo" class="logo-asm"/>
 		</a>
         <ul class="menu-cms">
+			<li class="language">
+				<a href="javascript:language('zh_cn')" class="<?php echo (!isset($_SESSION['language']) || $_SESSION['language']=="zh_cn")?"active":""?>" title="切换简体中文版">简中</a> <span>|</span>
+				<a href="javascript:language('tw_cn')" class="<?php echo ($_SESSION['language']=="tw_cn")?"active":""?>" title="切換繁體中文版">繁中</a> <span>|</span>
+				<a href="javascript:language('english')" class="<?php echo ($_SESSION['language']=="english")?"active":""?>" title="Switch to the English version">English</a>
+			</li>
             <li class="name">
                 <img id="userPhoto" src="/assets/images/cms/defaulthead.png" width="35" height="35">
 				<span id="userShowName"><?php echo $_SESSION['username'];?></span>
@@ -30,7 +35,7 @@
 				<span id="unreadMesNumber"></span>
 			</li>
 			<li class="logout">
-				<a href="/cms/logout" title="退出">退出</a>
+				<a href="/cms/logout" title="<?php echo lang('cms_common_Logout');?>"><?php echo lang('cms_common_Logout');?></a>
 			</li>
         </ul>
     </div>

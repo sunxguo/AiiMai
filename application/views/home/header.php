@@ -36,7 +36,7 @@
 		<div class="header-top">
 			<div class="logo fl">
 				<a href="/">
-					<img src="/assets/images/home/<?php echo $_SESSION['language'];?>/aiimai_logo.png">
+					<img src="/assets/images/home/<?php echo $_SESSION['language'];?>/aiimai-logo.png">
 				</a>
 			</div>
 			<div class="search fr">

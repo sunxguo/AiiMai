@@ -5,6 +5,7 @@ class Cms extends CI_Controller {
 		parent::__construct();
 		$this->load->helper("base");
 		$this->load->library('CommonGetData');
+		$this->commongetdata->language('cms');
 		$this->load->model("dbHandler");
 	}
 	public function checkMerchantLogin(){

@@ -105,6 +105,16 @@ function uploadImage(beforeUpload,successHandler){
 	});
 	return false;
 }
+function language(language){
+	$.post(
+	"/common/setLanguage",
+	{
+		'language':language
+	},
+	function(data){
+		location.reload();
+	});
+}
 /*
 //搜索
 function search(){
@@ -189,13 +199,3 @@ function uploadImg(formId,handlerCase){
 	});
 	return false;
 }*/
-function language(language){
-	$.post(
-	"/cms/index/set_language",
-	{
-		'language':language
-	},
-	function(data){
-		location.reload();
-	});
-}

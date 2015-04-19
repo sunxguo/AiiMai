@@ -26,20 +26,20 @@ class CommonGetData{
 			return $newArray;
 		}
 	}
-	public function language(){
+	public function language($type='home'){
 		$this->CI->load->helper('language');
 		if(isset($_SESSION['language'])){
 			if($_SESSION['language']=="english"){
 				$this->CI->config->set_item('language', 'english');
-				$this->CI->load->language('home','english');
+				$this->CI->load->language($type,'english');
 				return true;
 			}elseif($_SESSION['language']=="tw_cn"){
 				$this->CI->config->set_item('language', 'tw_cn');
-				$this->CI->load->language('home','tw_cn');
+				$this->CI->load->language($type,'tw_cn');
 				return true;
 			}else{
 				$this->CI->config->set_item('language', 'zh_cn');
-				$this->CI->load->language('home','zh_cn');
+				$this->CI->load->language($type,'zh_cn');
 				return true;
 			}
 		}
@@ -52,21 +52,21 @@ class CommonGetData{
 		if (preg_match("/en/i", $lang)){ 
 			$this->CI->config->set_item('language', 'english');
 			// 根据设置的语言类型加载语言包
-			$this->CI->load->language('home','english');
+			$this->CI->load->language($type,'english');
 			$_SESSION['language']='english';
 		}
 		elseif (preg_match("/zh-c/i", $lang)){
 			$this->CI->config->set_item('language', 'zh_cn');
-			$this->CI->load->language('home','zh_cn');
+			$this->CI->load->language($type,'zh_cn');
 			$_SESSION['language']='zh_cn';
 		}
 		elseif (preg_match("/zh/i", $lang)){ 
 			$this->CI->config->set_item('language', 'tw_cn');
-			$this->CI->load->language('home','tw_cn');
+			$this->CI->load->language($type,'tw_cn');
 			$_SESSION['language']='tw_cn';
 		}else{
 			$this->CI->config->set_item('language', 'zh_cn');
-			$this->CI->load->language('home','zh_cn');
+			$this->CI->load->language($type,'zh_cn');
 			$_SESSION['language']='zh_cn';
 		}
 /*		// 根据浏览器类型设置语言

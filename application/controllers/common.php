@@ -97,6 +97,9 @@ class Common extends CI_Controller {
 	public function set_language(){
 		$_SESSION['language']=$_POST['language'];
 	}
+	public function setLanguage(){
+		$_SESSION['language']=$_POST['language'];
+	}
 	public function createVeriCode(){
 		veri_code();
 	}
