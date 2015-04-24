@@ -1,70 +1,70 @@
 <div class="" style="padding-left:30px;">
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
-		<div class="km-panel-heading">我的等级&分数</div>
+		<div class="km-panel-heading"><?php echo lang('cms_grade_MyGradeAndPoint');?></div>
 		<div class="km-panel-body" style="padding:0px;">
 			<table class="km-table">
 				<tbody>
 				  <tr>
 					<td class="field width10p tac br">
-						卖家等级
+						<?php echo lang('cms_grade_SellerGrade');?>
 					</td>
 					<td class="field tac br" colspan="5">
-						交易件数及金额
+						<?php echo lang('cms_grade_Ordercountandamount');?>
 					</td>
 					<td class="field tac br" colspan="3">
-						服务积分
+						<?php echo lang('cms_grade_Servicepoint');?>
 					</td>
 					<td class="field tac" colspan="3">
-						运送分数
+						<?php echo lang('cms_grade_Shippingpoint');?>
 					</td>
 				  </tr>
 				  <tr>
 					<td class="value width10p tac br" rowspan="3">
-						普通卖家
+						<?php echo lang('cms_grade_StandardSeller');?>
 					</td>
 					<td class="field tac br" colspan="2">
-						本月 <br>(4.1 ~ 4.14)
+						<?php echo lang('cms_grade_Thismonth');?> <br>(4.1 ~ 4.14)
 					</td>
 					<td class="field tac br" colspan="2">
-						最近12个月间积累 <br>('14.5.1 ~ '15.4.14)
+						<?php echo lang('cms_grade_Oneyear');?> <br>('14.5.1 ~ '15.4.14)
 					</td>
 					<td class="field tac br">
-						上月 <br>(3.1 ~ 3.31)
+						<?php echo lang('cms_grade_Lastmonth');?> <br>(3.1 ~ 3.31)
 					</td>
 					<td class="field tac br">
-						本月 <br>(4.1 ~ 4.14)
+						<?php echo lang('cms_grade_Thismonth');?> <br>(4.1 ~ 4.14)
 					</td>
 					<td class="field tac br">
-						近30日 <br>(3.16 ~ 4.14)
+						<?php echo lang('cms_grade_Last30days');?> <br>(3.16 ~ 4.14)
 					</td>
 					<td class="field tac br">
-						上月 <br>(3.1 ~ 3.31)
+						<?php echo lang('cms_grade_Lastmonth');?> <br>(3.1 ~ 3.31)
 					</td>
 					<td class="field tac br">
-						本月 <br>(4.1 ~ 4.14)
+						<?php echo lang('cms_grade_Thismonth');?> <br>(4.1 ~ 4.14)
 					</td>
 					<td class="field tac br">
-						近30日 <br>(3.16 ~ 4.14)
+						<?php echo lang('cms_grade_Last30days');?> <br>(3.16 ~ 4.14)
 					</td>
 					<td class="field tac">
-						上月 <br>(3.1 ~ 3.31)
+						<?php echo lang('cms_grade_Lastmonth');?> <br>(3.1 ~ 3.31)
 					</td>
 				  </tr>
 				  <tr>
 					<td class="value width10p tac br">
-						0 件
+						0 <?php echo lang('cms_grade_orders');?>
 					</td>
 					<td class="value tac br">
-						与上个月比较 0%
+						<?php echo lang('cms_grade_MoM');?> 0%
 					</td>
 					<td class="value tac br">
-						0 件
+						0 <?php echo lang('cms_grade_orders');?>
 					</td>
 					<td class="value tac br">
 						YoY 0%
 					</td>
 					<td class="value tac br">
-						0 件
+						0 <?php echo lang('cms_grade_orders');?>
 					</td>
 					<td class="value tac br">
 						0
@@ -90,7 +90,7 @@
 						S$0.00
 					</td>
 					<td class="value tac br">
-						与上个月比较 0%
+						<?php echo lang('cms_grade_MoM');?> 0%
 					</td>
 					<td class="value tac br">
 						S$0.00
@@ -110,17 +110,17 @@
 		</div>
 	</div>
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
-		<div class="km-panel-heading">本月商品积分 * 如果商品已设置了商品准备日以及上市日，即使运送积分符合条件(+)也将按照0分计算。</div>
+		<div class="km-panel-heading"><?php echo lang('cms_grade_ItemPointofthismonth').'-'.lang('cms_grade_ItemPointofthismonthTip');?></div>
 		<div class="km-panel-body" style="padding:0px;">
 			<table class="km-table">
 				<tbody>
 				  <tr>
 					<td class="field width10p tal br">
-						分类
+						<?php echo lang('cms_grade_Category');?>
 					</td>
 					<td class="value tal" colspan="3">
 						<select style="height: 30px;">
-							<option value="">== 商品总分类 ==</option>
+							<option value="">== <?php echo lang('cms_common_MainCategory');?> ==</option>
 							<optgroup label="女装&amp;时尚">
 							<option value="100000001">Women’s Clothing</option>
 							<option value="100000042">Underwear &amp; Socks</option>
@@ -174,26 +174,26 @@
 							</optgroup>
 						</select>
 						<select style="height: 30px;">
-							<option value="">== 中分类选择 ==</option>
+							<option value="">== <?php echo lang('cms_common_1stSubCategory');?> ==</option>
 						</select>
 						<select style="height: 30px;">
-							<option value="">== 小分类选择 ==</option>
+							<option value="">== <?php echo lang('cms_common_2ndSubCategory');?> ==</option>
 						</select>
 						<select style="height: 30px;">
-							<option value="">商品代码/商品名</option>
-							<option value="gd_no">商品代码</option>
-							<option value="gd_nm">商品名</option>
+							<option value=""><?php echo lang('cms_common_ItemCodeOrItemName');?></option>
+							<option value="gd_no"><?php echo lang('cms_common_Itemcode');?></option>
+							<option value="gd_nm"><?php echo lang('cms_common_Itemname');?></option>
 						</select>
 						<input type="text" class="km-form-control" id="customer_view_fax_areacode" style="width: 50%;height: 30px;padding: 0 5px;display: inline-block;">
 					</td>
 					<td class="field width10p tal br">
-						查询
+						<?php echo lang('cms_common_SearchDate');?>
 					</td>
 					<td class="value tal br">
 						<input type="date" value="<?php echo date("Y-m-d");?>" class="km-form-control" style="width: 60%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;"> ~ <input type="date" value="<?php echo date("Y-m-d");?>" class="km-form-control" style="width: 60%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 					</td>
 					<td class="value tar">
-						<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">查询</button>
+						<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;"><?php echo lang('cms_common_Search');?></button>
 					</td>
 				  </tr>
 				</tbody>
@@ -203,18 +203,18 @@
 			<table class="km-table" style="overflow:scroll;width:300%;border-top:2px solid #ddd;border-bottom:2px solid #ddd;">
 				<tbody>
 				  <tr style="border-bottom:2px solid #ddd;">
-					<td class="field tac br" rowspan="2">商品号码</td>
-					<td class="field tac br" rowspan="2">商品图片</td>
-					<td class="field tac br" rowspan="2">商品名</td>
-					<td class="field tac br" rowspan="2">交易件数</td>
-					<td class="field tac br" rowspan="2">交易金额</td>
-					<td class="field tac br" rowspan="2">总服务分数</td>
-					<td class="field tac br" colspan="15">运送分数</td>
-					<td class="field tac br" colspan="3">索赔分数</td>
-					<td class="field tac br" colspan="4">反馈分数</td>
-					<td class="field tac br" rowspan="2">大商品分类</td>
-					<td class="field tac br" rowspan="2">中分类</td>
-					<td class="field tac br" rowspan="2">小分类</td>
+					<td class="field tac br" rowspan="2"><?php echo lang('cms_common_Itemcode');?></td>
+					<td class="field tac br" rowspan="2"><?php echo lang('cms_common_Itemimage');?></td>
+					<td class="field tac br" rowspan="2"><?php echo lang('cms_common_Itemname');?></td>
+					<td class="field tac br" rowspan="2"><?php echo lang('cms_common_Ordercount');?></td>
+					<td class="field tac br" rowspan="2"><?php echo lang('cms_common_Ordervalue');?></td>
+					<td class="field tac br" rowspan="2"><?php echo lang('cms_common_Totalservice');?></td>
+					<td class="field tac br" colspan="15"><?php echo lang('cms_common_Shippingpoint');?></td>
+					<td class="field tac br" colspan="3"><?php echo lang('cms_common_Claimpoint');?></td>
+					<td class="field tac br" colspan="4"><?php echo lang('cms_common_Feedbackpoint');?></td>
+					<td class="field tac br" rowspan="2"><?php echo lang('cms_common_MainCategory');?></td>
+					<td class="field tac br" rowspan="2"><?php echo lang('cms_common_1stSubCategory');?></td>
+					<td class="field tac br" rowspan="2"><?php echo lang('cms_common_2ndSubCategory');?></td>
 				  </tr>
 				  <tr>
 					<td class="field br">Local+2</td>
@@ -231,14 +231,14 @@
 					<td class="field br">Oversea-1</td>
 					<td class="field br">Oversea-2</td>
 					<td class="field br">Oversea(auto complete)-0.2</td>
-					<td class="field br">总运送积分</td>
-					<td class="field br">取消/退货-3</td>
-					<td class="field br">未收取申告-2</td>
-					<td class="field br">所有投诉积分</td>
-					<td class="field br">强烈推荐+1</td>
-					<td class="field br">推荐0</td>
-					<td class="field br">非推荐-1</td>
-					<td class="field br">总积分</td>
+					<td class="field br"><?php echo lang('cms_common_Totalshippingpoint');?></td>
+					<td class="field br"><?php echo lang('cms_common_CancelOrReturned');?>-3</td>
+					<td class="field br"><?php echo lang('cms_common_Nonreceiptreport');?>-2</td>
+					<td class="field br"><?php echo lang('cms_common_Totalclaimpoint');?></td>
+					<td class="field br"><?php echo lang('cms_common_highlyrecommend');?>+1</td>
+					<td class="field br"><?php echo lang('cms_common_recommend');?>0</td>
+					<td class="field br"><?php echo lang('cms_common_Notrecommend');?>-1</td>
+					<td class="field br"><?php echo lang('cms_common_Total');?></td>
 				  </tr>
 				  <tr>
 					<td class="value br"></td>

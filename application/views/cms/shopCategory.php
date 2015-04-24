@@ -5,40 +5,40 @@
 </style>
 <div class="" style="padding-left:30px;">
 	<ul class="km-nav km-nav-tabs clearfix">
-	  <li><a href="/cms/shopBaseInfo">基本信息</a></li>
-	  <li><a href="/cms/shopHomePage">卖家主页</a></li>
-	  <li><a href="/cms/shopDiscount">卖家打折特价管理</a></li>
-	  <li class="active"><a href="#no">商品分类</a></li>
-	  <li><a href="/cms/shopInfo">店铺信息</a></li>
+	  <li><a href="/cms/shopBaseInfo"><?php echo lang('cms_grade_shop_BasicInfo');?></a></li>
+	  <li><a href="/cms/shopHomePage"><?php echo lang('cms_grade_shop_Main');?></a></li>
+	  <li><a href="/cms/shopDiscount"><?php echo lang('cms_grade_shop_FeaturedEvent');?></a></li>
+	  <li class="active"><a href="#no"><?php echo lang('cms_grade_shop_Category');?></a></li>
+	  <li><a href="/cms/shopInfo"><?php echo lang('cms_grade_shop_ShopInformation');?></a></li>
 	</ul>
 	<div id="baseInfo">
 		<div class="km-panel km-panel-primary mt10" style="width: 98%;">
-			<div class="km-panel-heading">A．分类构成选项</div>
+			<div class="km-panel-heading">A．<?php echo lang('cms_baseInfo_shop_shopCategory_SelectCategoryFormat');?></div>
 			<div class="km-panel-body" style="padding:10px;">
-				<input type="radio" name="category" style="vertical-align: middle;margin-right: 5px;" checked> AiiMai商品分类
+				<input type="radio" name="category" style="vertical-align: middle;margin-right: 5px;" checked> <?php echo lang('cms_baseInfo_shop_shopCategory_AiiMaiCategory');?>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="radio" name="category" style="vertical-align: middle;margin-right: 5px;"> 编辑分类
-				<button onclick=";" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;">保存</button>
+				<input type="radio" name="category" style="vertical-align: middle;margin-right: 5px;"> <?php echo lang('cms_baseInfo_shop_shopCategory_CustomizedCategory');?>
+				<button onclick=";" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_common_save');?></button>
 			</div>
 		</div>
 		<div class="km-panel km-panel-primary mt10" style="width: 98%;">
-			<div class="km-panel-heading">B. 类别结构选项</div>
+			<div class="km-panel-heading">B. <?php echo lang('cms_baseInfo_shop_shopCategory_SelectCategoryTarget');?></div>
 			<div class="km-panel-body" style="padding:10px;">
 				<select style="height: 30px;">
-					<option value="main">总分类 – 大分类</option>
-					<option value="sub">总分类 – 中分类</option>
+					<option value="main"><?php echo lang('cms_baseInfo_shop_shopCategory_CategoryGroup');?> – <?php echo lang('cms_baseInfo_shop_shopCategory_MainCategory');?></option>
+					<option value="sub"><?php echo lang('cms_baseInfo_shop_shopCategory_CategoryGroup');?> – <?php echo lang('cms_baseInfo_shop_shopCategory_SubCategory');?></option>
 				</select>
-				若更改总分类，将应用于总分类 – 大分类和总分类 – 中分类的结构。
+				<?php echo lang('cms_baseInfo_shop_shopCategory_SelectCategoryTargetTip');?>
 				<button onclick=";" type="button" class="km-btn km-btn-primary fr" style="height: 28px;font-size: 12px;padding: 5px 10px;">保存</button>
 			</div>
 		</div>
 		
 		<div class="km-panel km-panel-primary mt10 clearfix" style="width: 98%;">
-			<div class="km-panel-heading">C. 编辑分类</div>
+			<div class="km-panel-heading">C. <?php echo lang('cms_baseInfo_shop_shopCategory_CustomizeCategories');?></div>
 			<div class="km-panel-body" style="padding:10px;">
 				<div>
 					<div class="fl width40p">
-						<h3 style="line-height:20px;">总分类</h3>
+						<h3 style="line-height:20px;"><?php echo lang('cms_baseInfo_shop_shopCategory_CategoryGroup');?></h3>
 						<div>
 							<img src="/assets/images/cms/icon-up.png" width="22" class="icon-order">
 							<img src="/assets/images/cms/icon-down.png" width="22" class="icon-order">
@@ -60,7 +60,7 @@
 						<img src="/assets/images/cms/icon-to.png">
 					</div>
 					<div class="fl width40p">
-						<h3 style="line-height:20px;">大分类</h3>
+						<h3 style="line-height:20px;"><?php echo lang('cms_baseInfo_shop_shopCategory_MainCategory');?></h3>
 						<div>
 							<img src="/assets/images/cms/icon-up.png" width="22" class="icon-order">
 							<img src="/assets/images/cms/icon-down.png" width="22" class="icon-order">

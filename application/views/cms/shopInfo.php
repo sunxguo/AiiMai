@@ -5,14 +5,14 @@
 </style>
 <div class="" style="padding-left:30px;">
 	<ul class="km-nav km-nav-tabs clearfix">
-	  <li><a href="/cms/shopBaseInfo">基本信息</a></li>
-	  <li><a href="/cms/shopHomePage">卖家主页</a></li>
-	  <li><a href="/cms/shopDiscount">卖家打折特价管理</a></li>
-	  <li><a href="/cms/shopCategory">商品分类</a></li>
-	  <li class="active"><a href="#no">店铺信息</a></li>
+	  <li><a href="/cms/shopBaseInfo"><?php echo lang('cms_grade_shop_BasicInfo');?></a></li>
+	  <li><a href="/cms/shopHomePage"><?php echo lang('cms_grade_shop_Main');?></a></li>
+	  <li><a href="/cms/shopDiscount"><?php echo lang('cms_grade_shop_FeaturedEvent');?></a></li>
+	  <li><a href="/cms/shopCategory"><?php echo lang('cms_grade_shop_Category');?></a></li>
+	  <li class="active"><a href="#no"><?php echo lang('cms_grade_shop_ShopInformation');?></a></li>
 	</ul>
 	<div class="km-panel km-panel-primary mt10 clearfix" style="width: 98%;">
-		<div class="km-panel-heading">卖家店铺信息网页设定</div>
+		<div class="km-panel-heading"><?php echo lang('cms_baseInfo_shop_shopInfo_SetShopInfo ');?></div>
 		<div class="km-panel-body" style="padding:10px;">
 			<textarea id="shopInfoEditor">
 				<p>&nbsp;</p>
