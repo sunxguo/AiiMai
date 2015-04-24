@@ -61,12 +61,12 @@
 			<table class="km-table" style="overflow:scroll;width:100%;">
 				<tbody>
 				  <tr style="border-top:2px solid #ddd;border-bottom:2px solid #ddd;">
-					<td class="field width6p br"><?php echo lang('cms_baseInfo_permission_RequestNo');?>申请号码</td>
-					<td class="field width6p br"><?php echo lang('cms_baseInfo_permission_RequestType');?>权限种类</td>
-					<td class="field width6p br"><?php echo lang('cms_baseInfo_permission_RequestType');?>申请状态</td>
-					<td class="field width6p br"><?php echo lang('cms_baseInfo_permission_RequestType');?>备注</td>
-					<td class="field width6p br"><?php echo lang('cms_baseInfo_permission_RequestType');?>登录日</td>
-					<td class="field width6p"><?php echo lang('cms_baseInfo_permission_RequestType');?>更改日</td>
+					<td class="field width6p br"><?php echo lang('cms_baseInfo_permission_RequestNo');?></td>
+					<td class="field width6p br"><?php echo lang('cms_baseInfo_permission_RequestType');?></td>
+					<td class="field width6p br"><?php echo lang('cms_baseInfo_permission_RequestStatus');?></td>
+					<td class="field width6p br"><?php echo lang('cms_baseInfo_permission_Note');?></td>
+					<td class="field width6p br"><?php echo lang('cms_baseInfo_permission_RegisteredDate');?></td>
+					<td class="field width6p"><?php echo lang('cms_baseInfo_permission_EditedDate');?></td>
 				  </tr>
 				  <tr>
 					<td class="value br"></td>
@@ -81,59 +81,59 @@
 		</div>
 	</div>
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
-		<div class="km-panel-heading">权限管理</div>
+		<div class="km-panel-heading"><?php echo lang('cms_baseInfo_permission_AuthorityManagement');?></div>
 		<div class="km-panel-body" style="padding:0px;">
 			<table class="km-table">
 				<tbody>
 				  <tr>
 					<td class="field width10p tal br">
-						权限种类
+						<?php echo lang('cms_baseInfo_permission_RequestType');?>
 					</td>
 					<td class="value tal">
 						<select style="height: 30px;">
 							<option value=""> --select--</option>
-							<option value="992">添加发货地址</option>
-							<option value="1098">取消连动API</option>
-							<option value="1113">大量数据管理</option>
-							<option value="1139">购买话说展览</option>
-							<option value="1160">Flier Item Mng</option>
-							<option value="1094">問議連動API</option>
-							<option value="1137">幸运最低价权限</option>
-							<option value="1001">订购API权限</option>
-							<option value="1096">商品准备日设定</option>
-							<option value="1151">结算价设定</option>
-							<option value="883">订货API权限</option>
-							<option value="885">取消验证权限</option>
-							<option value="884">现场领取使用</option>
+							<option value="992"><?php echo lang('cms_baseInfo_permission_RequestType_Shipment');?></option>
+							<option value="1098"><?php echo lang('cms_baseInfo_permission_RequestType_CancelNotificationAPI');?></option>
+							<option value="1113"><?php echo lang('cms_baseInfo_permission_RequestType_BulkData');?></option>
+							<option value="1139"><?php echo lang('cms_baseInfo_permission_RequestType_StoreTalk');?></option>
+							<option value="1160"><?php echo lang('cms_baseInfo_permission_RequestType_FlierItemMng');?></option>
+							<option value="1094"><?php echo lang('cms_baseInfo_permission_RequestType_InquiryNotificationAPI');?></option>
+							<option value="1137"><?php echo lang('cms_baseInfo_permission_RequestType_LuckyPriceReg');?></option>
+							<option value="1001"><?php echo lang('cms_baseInfo_permission_RequestType_OrderNotifyCallback');?></option>
+							<option value="1096"><?php echo lang('cms_baseInfo_permission_RequestType_Setavailabledate');?></option>
+							<option value="1151"><?php echo lang('cms_baseInfo_permission_RequestType_SetSettleAmount');?></option>
+							<option value="883"><?php echo lang('cms_baseInfo_permission_RequestType_ShippingNotifyCallback');?></option>
+							<option value="885"><?php echo lang('cms_baseInfo_permission_RequestType_SuspendCancellation');?></option>
+							<option value="884"><?php echo lang('cms_baseInfo_permission_RequestType_UseStorePickup');?></option>
 						</select>
 					</td>
 					<td class="field width10p tal br">
-						申请状态
+						<?php echo lang('cms_baseInfo_permission_RequestStatus');?>
 					</td>
 					<td class="value tal">
 						<select style="height: 30px;">
-							<option value="">申请可行</option>
-							<option value="S1">申请中</option>
-							<option value="S2">验证</option>
-							<option value="S3">拒绝</option>
+							<option value=""><?php echo lang('cms_baseInfo_permission_Possibletorequest');?></option>
+							<option value="S1"><?php echo lang('cms_baseInfo_permission_Onrequest');?></option>
+							<option value="S2"><?php echo lang('cms_baseInfo_permission_Approval');?></option>
+							<option value="S3"><?php echo lang('cms_baseInfo_permission_Refusal');?></option>
 						</select>
 					</td>
 				  </tr>
 				  <tr>
 					<td class="field width10p tal br">
-						申请日
+						<?php echo lang('cms_baseInfo_permission_RequestDate');?>
 					</td>
 					<td class="value tal">
 					</td>
 					<td class="field width10p tal br">
-						修改日
+						<?php echo lang('cms_baseInfo_permission_EditDate');?>
 					</td>
 					<td class="value tal">
 					</td>
 				  </tr>
 				  <tr>
 					<td class="field width10p tal br">
-						备注
+						<?php echo lang('cms_baseInfo_permission_Note');?>
 					</td>
 					<td class="value tal" colspan="3">
 						<input type="text" class="km-form-control" id="customer_view_fax_areacode" style="width: 80%;height: 30px;padding: 0 5px;display: inline-block;">
@@ -141,8 +141,8 @@
 				  </tr>
 				  <tr>
 					<td class="value tar" colspan="4">
-						<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">修改</button>
-						<button onclick=";" type="button" class="km-btn km-btn-info" style="height: 28px;font-size: 12px;padding: 5px 20px;">申请</button>
+						<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;"><?php echo lang('cms_common_Edit');?></button>
+						<button onclick=";" type="button" class="km-btn km-btn-info" style="height: 28px;font-size: 12px;padding: 5px 20px;"><?php echo lang('cms_baseInfo_permission_Apply');?></button>
 					</td>
 				  </tr>
 				</tbody>

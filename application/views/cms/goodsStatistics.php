@@ -5,7 +5,7 @@
 </style>
 <div class="" style="padding-left:30px;">
 	<ul class="km-nav km-nav-tabs clearfix">
-	  <li class="active"><a href="/cms/goodsStatistics">销售商品简要信息统计</a></li>
+	  <li class="active"><a href="/cms/goodsStatistics"><?php echo lang('cms_baseInfo_permission_Item List Summary');?>销售商品简要信息统计</a></li>
 	  <li><a href="/cms/goodsAdd">登录新商品</a></li>
 	  <li><a href="/cms/goodsCopy">复制商品登录</a></li>
 	  <li><a href="/cms/goodsEdit">编辑商品信息</a></li>
