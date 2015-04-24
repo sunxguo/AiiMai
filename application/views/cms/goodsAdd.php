@@ -5,23 +5,23 @@
 </style>
 <div class="" style="padding-left:30px;">
 	<ul class="km-nav km-nav-tabs clearfix">
-	  <li><a href="/cms/goodsStatistics">销售商品简要信息统计</a></li>
-	  <li class="active"><a href="/cms/goodsAdd">登录新商品</a></li>
-	  <li><a href="/cms/goodsCopy">复制商品登录</a></li>
-	  <li><a href="/cms/goodsEdit">编辑商品信息</a></li>
+	  <li><a href="/cms/goodsStatistics"><?php echo lang('cms_baseInfo_goodsStatistics_ItemListSummary');?></a></li>
+	  <li class="active"><a href="/cms/goodsAdd"><?php echo lang('cms_baseInfo_goodsStatistics_NewItemListing');?></a></li>
+	  <li><a href="/cms/goodsCopy"><?php echo lang('cms_baseInfo_goodsStatistics_CopyListing');?></a></li>
+	  <li><a href="/cms/goodsEdit"><?php echo lang('cms_baseInfo_goodsStatistics_ChangeItemInfo');?></a></li>
 	</ul>
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
-		<div class="km-panel-heading">分类与商品种类</div>
+		<div class="km-panel-heading"><?php echo lang('cms_baseInfo_goodsStatistics_CategoryandSellFormat');?></div>
 		<div class="km-panel-body" style="padding:0px;">
 			<table class="km-table">
 				<tbody>
 				  <tr>
 					<td class="field width10p tal br">
-						分类
+						<?php echo lang('cms_common_Category');?>
 					</td>
 					<td class="value tal">
 						<select style="height: 30px;">
-							<option value="">== 商品总分类 ==</option>
+							<option value="">== <?php echo lang('cms_common_MainCategory');?> ==</option>
 							<optgroup label="女装&amp;时尚">
 							<option value="100000001">Women’s Clothing</option>
 							<option value="100000042">Underwear &amp; Socks</option>
@@ -75,44 +75,38 @@
 							</optgroup>
 						</select>
 						<select style="height: 30px;">
-							<option value="">== 中分类选择 ==</option>
+							<option value="">== <?php echo lang('cms_common_1stSubCategory');?> ==</option>
 						</select>
 						<select style="height: 30px;">
-							<option value="">== 小分类选择 ==</option>
+							<option value="">== <?php echo lang('cms_common_2ndSubCategory');?> ==</option>
 						</select>
-						<input type="text" placeholder="商品目录代码" class="km-form-control" style="width: 30%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
+						<input type="text" placeholder="<?php echo lang('cms_baseInfo_goodsStatistics_Categorycode');?>" class="km-form-control" style="width: 30%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 					</td>
 				  </tr>
 				  <tr>
 					<td class="field width10p tal br">
-						销售方式
+						<?php echo lang('cms_baseInfo_goodsStatistics_SellFormat');?>
 					</td>
 					<td class="value tal">
-						<input type="radio" name="salesMode" id="salesMode1" style="vertical-align: middle;margin-right: 5px;" checked><label for="salesMode1">立刻购买商品登录（可添加竞卖商品）</label>
-						<input type="radio" name="salesMode" id="salesMode2" style="vertical-align: middle;margin-right: 5px;"><label for="salesMode2">拍卖&幸运最低价</label>
-						<input type="radio" name="salesMode" id="salesMode3" style="vertical-align: middle;margin-right: 5px;"><label for="salesMode3">自由格式</label>
+						<input type="radio" name="salesMode" id="salesMode1" style="vertical-align: middle;margin-right: 5px;" checked><label for="salesMode1"><?php echo lang('cms_baseInfo_goodsStatistics_SellFormat_Buynow');?></label>
+						<input type="radio" name="salesMode" id="salesMode2" style="vertical-align: middle;margin-right: 5px;"><label for="salesMode2"><?php echo lang('cms_baseInfo_goodsStatistics_SellFormat_AuctionAndLuckyPrice');?></label>
+						<input type="radio" name="salesMode" id="salesMode3" style="vertical-align: middle;margin-right: 5px;"><label for="salesMode3"><?php echo lang('cms_baseInfo_goodsStatistics_SellFormat_FreeFormat');?></label>
 					</td>
 				  </tr>
 				  <tr>
 					<td class="field width10p tal br">
-						船舶类型
+						<?php echo lang('cms_baseInfo_goodsStatistics_DeliveryType');?>
 					</td>
 					<td class="value tal">
-						<input type="radio" name="shipType" id="shipType1" style="vertical-align: middle;margin-right: 5px;" checked><label for="shipType1">一般运送（运送需要）</label>
-						<input type="radio" name="shipType" id="shipType2" style="vertical-align: middle;margin-right: 5px;"><label for="shipType2">e-Ticket</label>
+						<input type="radio" name="shipType" id="shipType1" style="vertical-align: middle;margin-right: 5px;" checked><label for="shipType1"><?php echo lang('cms_baseInfo_goodsStatistics_Delivery');?></label>
+						<input type="radio" name="shipType" id="shipType2" style="vertical-align: middle;margin-right: 5px;"><label for="shipType2"><?php echo lang('cms_baseInfo_goodsStatistics_eTicket');?></label>
 						<div class="km-popover-wrapper">
 							<img onclick="$(this).next().toggle(10)" src="/assets/images/cms/questionMark.png" width="14px" style="cursor:pointer;">
 							<div class="km-popover km-bottom" style="top: 25px;left: -146px;width: 300px; max-width:656px;">
 							  <div class="km-arrow"></div>
 							  <h3 class="km-popover-title">e-Ticket</h3>
 							  <div class="km-popover-content">
-								<p>
-									1. e-Ticket 商品是指?<br>
-									- 一般运送不可进行销售的服务(ex. 餐饮,咖啡等)可进行网上销售的销售方式<br>
-									- 客户在购买 e-Ticket之后，进入不在线的店铺时，卖家进行简单的认证程序后提供服务即可<br>
-									2. e-Ticket 商品的优点<br>
-									- 为了使客户访问<br>
-								</p>
+								<p><?php echo lang('cms_baseInfo_goodsStatistics_eTicketTip');?></p>
 							  </div>
 							</div>
 						</div>
@@ -120,16 +114,16 @@
 				  </tr>
 				  <tr>
 					<td class="field width10p tal br">
-						商品状态
+						<?php echo lang('cms_baseInfo_goodsStatistics_ItemCondition');?>
 					</td>
 					<td class="value tal">
-						<input type="radio" name="goodsStatus" id="goodsStatus1" style="vertical-align: middle;margin-right: 5px;" checked><label for="goodsStatus1">新商品</label>
-						<input type="radio" name="goodsStatus" id="goodsStatus2" style="vertical-align: middle;margin-right: 5px;"><label for="goodsStatus2">二手商品</label>
+						<input type="radio" name="goodsStatus" id="goodsStatus1" style="vertical-align: middle;margin-right: 5px;" checked><label for="goodsStatus1"><?php echo lang('cms_baseInfo_goodsStatistics_NewItem');?></label>
+						<input type="radio" name="goodsStatus" id="goodsStatus2" style="vertical-align: middle;margin-right: 5px;"><label for="goodsStatus2"><?php echo lang('cms_baseInfo_goodsStatistics_UsedItem');?></label>
 					</td>
 				  </tr>
 				  <tr>
 					<td class="field width10p tal br">
-						商品名
+						<?php echo lang('cms_baseInfo_goodsStatistics_ItemTitle');?>
 					</td>
 					<td class="value tal">
 						<span class="km-label km-label-default"> English </span><input type="text" placeholder="Please enter the correct trade name (up to 200 words)" class="km-form-control" style="width: 80%;height: 30px;margin-left:10px;padding: 0px 5px;display: inline-block;font-size:12px;"><br><br>
@@ -139,24 +133,24 @@
 				  </tr>
 				  <tr>
 					<td class="field width10p tal br">
-						缩短商品名
+						<?php echo lang('cms_baseInfo_goodsStatistics_ShortTitle');?>
 					</td>
 					<td class="value tal">
-						<input type="text" placeholder="SMS和手机专用商品名（20字以内）" class="km-form-control" style="width: 80%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
+						<input type="text" placeholder="<?php echo lang('cms_baseInfo_goodsStatistics_ShortTitleTip');?>" class="km-form-control" style="width: 80%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 					</td>
 				  </tr>
 				  <tr>
 					<td class="field width10p tal br">
-						卖家代码
+						<?php echo lang('cms_baseInfo_goodsStatistics_SellerCode');?>
 					</td>
 					<td class="value tal">
 						<input type="text" class="km-form-control" style="width: 20%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
-						(卖家代码名简称便于识别）
+						<?php echo lang('cms_baseInfo_goodsStatistics_SellerCodeTip');?>
 					</td>
 				  </tr>
 				  <tr>
 					<td class="field width10p tal br">
-						商品图片/图片类型
+						<?php echo lang('cms_baseInfo_goodsStatistics_ItemImageOrType');?>
 					</td>
 					<td class="value tal">
 						
@@ -164,25 +158,25 @@
 				  </tr>
 				  <tr>
 					<td class="field width10p tal br">
-						原产地
+						<?php echo lang('cms_baseInfo_goodsStatistics_ProductionPlace');?>
 					</td>
 					<td class="value tal">
 						<select style="height: 30px;">
-							<option value="" selected="selected">====选择=====</option>
-							<option value="K">国内</option>
-							<option value="F">海外</option>
-							<option value="U">其它</option>
+							<option value="" selected="selected">====<?php echo lang('cms_baseInfo_goodsStatistics_select');?>=====</option>
+							<option value="K"><?php echo lang('cms_baseInfo_goodsStatistics_Domestic');?></option>
+							<option value="F"><?php echo lang('cms_baseInfo_goodsStatistics_Overseas');?></option>
+							<option value="U"><?php echo lang('cms_baseInfo_goodsStatistics_Others');?></option>
 						</select>
 						<input type="text" class="km-form-control" style="width: 20%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 					</td>
 				  </tr>
 				  <tr>
 					<td class="field width10p tal br">
-						成人商品？
+						<?php echo lang('cms_goodsAdd_AdultItem');?>？
 					</td>
 					<td class="value tal">
-						<input type="radio" name="adult" id="adult1" style="vertical-align: middle;margin-right: 5px;" checked><label for="adult1">否</label>
-						<input type="radio" name="adult" id="adult2" style="vertical-align: middle;margin-right: 5px;"><label for="adult2">是(例：成人电影，酒类等)</label>
+						<input type="radio" name="adult" id="adult1" style="vertical-align: middle;margin-right: 5px;" checked><label for="adult1"><?php echo lang('cms_goodsAdd_No');?></label>
+						<input type="radio" name="adult" id="adult2" style="vertical-align: middle;margin-right: 5px;"><label for="adult2"><?php echo lang('cms_goodsAdd_Yes');?><?php echo lang('cms_goodsAdd_YesExample');?></label>
 					</td>
 				  </tr>
 				</tbody>
@@ -190,30 +184,30 @@
 		</div>
 	</div>
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
-		<div class="km-panel-heading">输入价格数量</div>
+		<div class="km-panel-heading"><?php echo lang('cms_goodsAdd_PricingandQuantity');?></div>
 		<div class="km-panel-body" style="padding:0px;">
 			<table class="km-table">
 				<tbody>
 				  <tr>
 					<td class="field width15p tal br">
-						销售价 (S$)
+						<?php echo lang('cms_goodsAdd_SellPrice');?> (S$)
 					</td>
 					<td class="value tal">
-						<input type="text" class="km-form-control" style="width: 20%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;"> (结算价: <span class="km-label km-label-danger">90.00</span>)
+						<input type="text" class="km-form-control" style="width: 20%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;"> (<?php echo lang('cms_goodsAdd_SettlePrice');?>: <span class="km-label km-label-danger">90.00</span>)
 						<div class="km-popover-wrapper">
 							<img onclick="$(this).next().toggle(10)" src="/assets/images/cms/questionMark.png" width="14px" style="cursor:pointer;">
 							<div class="km-popover km-bottom" style="top: 25px;left:-496px; max-width:1000px;width:1000px;">
 							  <div class="km-arrow"></div>
-							  <h3 class="km-popover-title">手续费</h3>
+							  <h3 class="km-popover-title"><?php echo lang('cms_goodsAdd_ServiceFee');?></h3>
 
 							  <div class="km-popover-content">
-								详情
+								<?php echo lang('cms_goodsAdd_Detail');?>
 							  </div>
 							</div>
 						</div>
 					</td>
 					<td class="field width10p tal br">
-						商品数量
+						<?php echo lang('cms_goodsAdd_Quantity');?>
 					</td>
 					<td class="value tal">
 						<input type="text" class="km-form-control" style="width: 50%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
@@ -221,7 +215,7 @@
 				  </tr>
 				  <tr>
 					<td class="field tal br">
-						有效期间
+						<?php echo lang('cms_goodsAdd_AvailablePeriod');?>
 					</td>
 					<td class="value tal">
 						<select style="height: 30px;">
@@ -240,7 +234,7 @@
 						</select>
 					</td>
 					<td class="field width10p tal br">
-						参考价格 (S$)
+						<?php echo lang('cms_goodsAdd_ReferencePrice');?> (S$)
 					</td>
 					<td class="value tal">
 						<input type="text" class="km-form-control" style="width: 50%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
@@ -248,21 +242,21 @@
 				  </tr>
 				  <tr>
 					<td class="field tal br">
-						显示剩余有效期
+						<?php echo lang('cms_goodsAdd_Displayleftavailableperiod');?>
 					</td>
 					<td class="value tal" colspan="3">
 						<select style="height: 30px;">
-							<option value="1">1 日</option>
-							<option value="2">2 日</option>
-							<option value="3">3 日</option>
+							<option value="1">1 <?php echo lang('cms_goodsAdd_days');?></option>
+							<option value="2">2 <?php echo lang('cms_goodsAdd_days');?></option>
+							<option value="3">3 <?php echo lang('cms_goodsAdd_days');?></option>
 							<option value="0" selected="selected">Not use</option>
 						</select>
-						当接近商品到期日时，您可以显示剩余有效期。
+						<?php echo lang('cms_goodsAdd_DisplayleftavailableperiodTip');?>
 					</td>
 				  </tr>
 				  <tr>
 					<td class="field tal br">
-						A库存管理
+						<?php echo lang('cms_goodsAdd_AInventory');?>
 					</td>
 					<td class="value tal" colspan="3">
 						
@@ -273,27 +267,27 @@
 		</div>
 	</div>
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
-		<div class="km-panel-heading">运送信息登录</div>
+		<div class="km-panel-heading"><?php echo lang('cms_goodsAdd_ShippingInformation');?></div>
 		<div class="km-panel-body" style="padding:0px;">
 			<table class="km-table">
 				<tbody>
 				  <tr>
 					<td class="field width15p tal br">
-						发货地址
+						<?php echo lang('cms_goodsAdd_ShippingAddress');?>
 					</td>
 					<td class="value tal">
 						521168  168A SIMEI LANE168A Simei Lane Singapore 521168 <br>
-						※发送商品国是指可运送商品的国家. 注意：请输入正确的地址.(不向买家显示发送商品地址)
+						<?php echo lang('cms_goodsAdd_ShippingAddressTip');?>
 					</td>
 				  </tr>
 				  <tr>
 					<td class="field width15p tal br">
-						运送费 (S$)
+						<?php echo lang('cms_goodsAdd_ShippingRate');?> (S$)
 						<div class="km-popover-wrapper">
 							<img onclick="$(this).next().toggle(10)" src="/assets/images/cms/questionMark.png" width="14px" style="cursor:pointer;">
 							<div class="km-popover km-right" style="top: -443px;left: 26px; max-width:900px;width:900px;height:900px;">
 							  <div class="km-arrow"></div>
-							  <h3 class="km-popover-title">运送费</h3>
+							  <h3 class="km-popover-title"><?php echo lang('cms_goodsAdd_ShippingRate');?></h3>
 
 							  <div class="km-popover-content" style="overflow:scroll;height: 851px;">
 								运费计算详情...
@@ -307,7 +301,7 @@
 				  </tr>
 				  <tr>
 					<td class="field width15p tal br">
-						选项运费
+						<?php echo lang('cms_goodsAdd_ShippingRateOption');?>
 					</td>
 					<td class="value tal">
 						
@@ -318,7 +312,7 @@
 		</div>
 	</div>
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
-		<div class="km-panel-heading">商品详情</div>
+		<div class="km-panel-heading"><?php echo lang('cms_goodsAdd_ItemDescription');?></div>
 		<div class="km-panel-body" style="padding:0px;">
 			<textarea id="goodsInfoEditor" style="600px">
 			</textarea>
