@@ -58,8 +58,8 @@
 				<li><a href="/cms/sellersCooperationProjects" class="<?php echo array_key_exists('sellersCooperationProjects',$sider)?'active':'';?>"><?php echo lang('cms_sider_CuratorAffiliateProgram');?></a></li>
 				<li class="nav-sub"><?php echo lang('cms_sider_FellowAndPromotion');?></li>
 				<li><a href="/cms/fellow" class="<?php echo array_key_exists('fellowBean',$sider)?'active':'';?>"><?php echo lang('cms_sider_FellowSummary');?></a></li>
-				<li><a href="/cms/sdk" class=""><?php echo lang('cms_sider_FellowEvent');?></a></li>
-				<li><a href="/cms/sdk" class=""><?php echo lang('cms_sider_PushPromotion');?></a></li>
+				<li><a href="/cms/privilege" class=""><?php echo lang('cms_sider_FellowEvent');?></a></li>
+				<li><a href="/cms/feedback" class=""><?php echo lang('cms_sider_PushPromotion');?></a></li>
 			</ul>
 		</li>
 		<li class="has-sub">

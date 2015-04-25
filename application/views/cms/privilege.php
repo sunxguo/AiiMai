@@ -1,16 +1,16 @@
 <div class="" style="padding-left:30px;">
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
-		<div class="km-panel-heading">商品/服务信息</div>
+		<div class="km-panel-heading">Item/Service Info.</div>
 		<div class="km-panel-body" style="padding:0px;">
 			<table class="km-table">
 				<tbody>
 				  <tr>
 					<td class="field width10p tal br">
-						分类
+						Category
 					</td>
 					<td class="value tal">
 						<select style="height: 30px;">	
-							<option value="">== 商品总分类 ==</option>
+							<option value="">== Main Category ==</option>
 							<optgroup label="女装&amp;时尚">
 							<option value="100000001">Women’s Clothing</option>
 							<option value="100000042">Underwear &amp; Socks</option>
@@ -64,48 +64,48 @@
 							</optgroup>
 						</select>
 						<select style="height: 30px;">
-							<option value="">== 中分类选择 ==</option>
+							<option value="">== 1st Sub Category ==</option>
 						</select>	
 						<select style="height: 30px;">
-							<option value="">== 小分类选择 ==</option>
+							<option value="">== 2nd Sub Category ==</option>
 						</select>
 					</td>
 					<td class="field width6p tal br">
-						服务种类
+						Service Type
 					</td>
 					<td class="value tal br">
 						<select style="height: 30px;">			 
-							<option value="A" selected="selected">所有</option>
-							<option value="P">高级展示</option>
-							<option value="D">打折</option>
-							<option value="G">Q邮票</option>
-							<option value="M">Q积分</option>
+							<option value="A" selected="selected">All</option>
+							<option value="P">Premium List</option>
+							<option value="D">Discount</option>
+							<option value="G">Q·stamp</option>
+							<option value="M">Qpoint</option>
 						</select>
 					</td>
 				  </tr>
 				  <tr>
 					<td class="field width6p tal br">
-						登录日
+						Listed Date
 					</td>
 					<td class="value tal br">
 						<input type="date" value="<?php echo date("Y-m-d");?>" class="km-form-control" style="width: 40%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;"> ~ <input type="date" value="<?php echo date("Y-m-d");?>" class="km-form-control" style="width: 40%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 					</td>
 					<td class="field width10p tal br">
 						<select style="height: 30px;">
-							<option value="NO" selected="selected">商品号码</option>
-							<option value="NM">商品名</option>
-							<option value="CD">卖家代码</option>
+							<option value="NO" selected="selected">Itemcode</option>
+							<option value="NM">Item Title</option>
+							<option value="CD">SellerCode</option>
 						</select>
 					</td>
 					<td class="value tal">
 						<input type="text" class="km-form-control" style="width: 50%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
-						<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">多个代码</button>
+						<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">Multi Code</button>
 					</td>
 				  </tr>
 				  <tr>
 					<td class="value tar" colspan="4">
-						<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">查询</button>
-						<button onclick=";" type="button" class="km-btn km-btn-success" style="height: 28px;font-size: 12px;padding: 5px 10px;">导出Excel</button>
+						<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">Search</button>
+						<button onclick=";" type="button" class="km-btn km-btn-success" style="height: 28px;font-size: 12px;padding: 5px 10px;">Excel</button>
 					</td>
 				  </tr>
 				</tbody>
@@ -116,19 +116,19 @@
 				<tbody>
 				  <tr style="border-top:2px solid #ddd;border-bottom:2px solid #ddd;">
 					<td class="field width1p br"><input type="checkbox" style="vertical-align: middle;margin-right: 5px;"></td>
-					<td class="field width6p br">商品号码</td>
-					<td class="field width6p br">商品名</td>
-					<td class="field width6p br">卖家代码</td>
-					<td class="field width6p br">价格</td>
-					<td class="field width6p br">数量</td>
-					<td class="field width6p br">高级展示</td>
-					<td class="field width6p br">高级展示结束</td>
-					<td class="field width6p br">打折</td>
-					<td class="field width6p br">打折结束日</td>
-					<td class="field width6p br">邮票</td>
-					<td class="field width6p br">邮票结束日期</td>
-					<td class="field width6p br">A 积分</td>
-					<td class="field width6p">A 积分结束日</td>
+					<td class="field width6p br">Itemcode</td>
+					<td class="field width6p br">Item Title</td>
+					<td class="field width6p br">SellerCode</td>
+					<td class="field width6p br">Price</td>
+					<td class="field width6p br">Qty</td>
+					<td class="field width6p br">Premium List</td>
+					<td class="field width6p br">Premium End Date</td>
+					<td class="field width6p br">Discount</td>
+					<td class="field width6p br">Discount End Date</td>
+					<td class="field width6p br">Stamp</td>
+					<td class="field width6p br">Stamp End Date</td>
+					<td class="field width6p br">A point</td>
+					<td class="field width6p">A point End Date</td>
 				  </tr>
 				  <tr>
 					<td class="value br"></td>
