@@ -3,40 +3,40 @@
 		<div class="km-panel-heading">analytics</div>
 		<div class="km-panel-body" style="padding:0px;">
 			<p style="padding:10px;">
-				实际更新数据大约需要1~2小时.关于断货/到期/所删除的商品在一月之内可查询到该相关商品的信息.
+				* There may be 1-2 hours difference between the actual data. [Sold/Expired/Deleted]: sold/expired/deleted items' within 1 month.
 			</p>
 			<table class="km-table">
 				<tbody>
 				  <tr class="bt2">
 					<td class="field width10p tal br">
-						商品
+						Item Status
 					</td>
 					<td class="value tal br" colspan="3">
 						<input type="radio" name="goods" id="goods1" style="vertical-align: middle;margin-right: 5px;" checked>
-						<label for="goods1">所有</label> 
+						<label for="goods1">All</label> 
 						<input type="radio" name="goods" id="goods2" style="vertical-align: middle;margin-right: 5px;" checked>
-						<label for="goods2">销售中</label> 
+						<label for="goods2">On Sale</label> 
 						<input type="radio" name="goods" id="goods3" style="vertical-align: middle;margin-right: 5px;" checked>
-						<label for="goods3">即将到期</label> 
+						<label for="goods3">Expire Soon</label> 
 						<input type="radio" name="goods" id="goods4" style="vertical-align: middle;margin-right: 5px;" checked>
-						<label for="goods4">暂时缺货 & 过期 & 删除 </label>
+						<label for="goods4"> Sold Out & Expired & Deleted </label>
 						(
 						<input type="checkbox" id="goods41" style="vertical-align: middle;margin-right: 5px;">
-						<label for="goods41">暂时缺货</label>
+						<label for="goods41">Sold Out</label>
 						<input type="checkbox" id="goods42" style="vertical-align: middle;margin-right: 5px;">
-						<label for="goods42">过期</label>
+						<label for="goods42">Expired</label>
 						<input type="checkbox" id="goods43" style="vertical-align: middle;margin-right: 5px;">
-						<label for="goods43">删除</label>
+						<label for="goods43">Deleted</label>
 						)
 					</td>
 				  </tr>
 				  <tr>
 					<td class="field width10p tal br">
-						分类
+						Category
 					</td>
 					<td class="value tal">
 						<select style="height: 30px;">	
-							<option value="">== 商品总分类 ==</option>
+							<option value="">== Main Category ==</option>
 							<optgroup label="女装&amp;时尚">
 							<option value="100000001">Women’s Clothing</option>
 							<option value="100000042">Underwear &amp; Socks</option>
@@ -90,14 +90,14 @@
 							</optgroup>
 						</select>
 						<select style="height: 30px;">
-							<option value="">== 中分类选择 ==</option>
+							<option value="">== 1st Sub Category ==</option>
 						</select>	
 						<select style="height: 30px;">
-							<option value="">== 小分类选择 ==</option>
+							<option value="">== 2nd Sub Category ==</option>
 						</select>
 					</td>
 					<td class="field width6p tal br">
-						登录日
+						Listed Date
 					</td>
 					<td class="value tal br">
 						<input type="date" value="<?php echo date("Y-m-d");?>" class="km-form-control" style="width: 40%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;"> ~ <input type="date" value="<?php echo date("Y-m-d");?>" class="km-form-control" style="width: 40%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
@@ -105,11 +105,11 @@
 				  </tr>
 				  <tr>
 					<td class="field width10p tal br">
-						关键词
+						Keyword
 					</td>
 					<td class="value tal" colspan="3">
 						<input type="text" class="km-form-control" style="width: 50%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
-						<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">查询</button>
+						<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">Search</button>
 					</td>
 				  </tr>
 				</tbody>
@@ -119,14 +119,14 @@
 			<table class="km-table" style="overflow:scroll;width:100%;">
 				<tbody>
 				  <tr style="border-top:2px solid #ddd;border-bottom:2px solid #ddd;">
-					<td class="field width6p br">商品代码</td>
-					<td class="field width6p br">商品</td>
-					<td class="field width6p br">价格</td>
-					<td class="field width6p br">运送费</td>
-					<td class="field width6p br">优惠</td>
-					<td class="field width6p br">销售</td>
-					<td class="field width6p br">浏览量</td>
-					<td class="field width6p">评价</td>
+					<td class="field width6p br">GDcode</td>
+					<td class="field width6p br">Item</td>
+					<td class="field width6p br">Price</td>
+					<td class="field width6p br">Shipping</td>
+					<td class="field width6p br">Benefit</td>
+					<td class="field width6p br">Sales</td>
+					<td class="field width6p br">Page view</td>
+					<td class="field width6p">Rating</td>
 				  </tr>
 				  <tr>
 					<td class="value br"></td>

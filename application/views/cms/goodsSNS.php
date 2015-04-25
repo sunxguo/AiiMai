@@ -1,16 +1,16 @@
 <div class="" style="padding-left:30px;">
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
-		<div class="km-panel-heading">商品/SNS联动信息</div>
+		<div class="km-panel-heading">Item/SNS Link Information</div>
 		<div class="km-panel-body" style="padding:0px;">
 			<table class="km-table">
 				<tbody>
 				  <tr>
 					<td class="field width10p tal br">
-						分类
+						Category
 					</td>
 					<td class="value tal">
 						<select style="height: 30px;">	
-							<option value="">== 商品总分类 ==</option>
+							<option value="">== Main Category ==</option>
 							<optgroup label="女装&amp;时尚">
 							<option value="100000001">Women’s Clothing</option>
 							<option value="100000042">Underwear &amp; Socks</option>
@@ -64,50 +64,50 @@
 							</optgroup>
 						</select>
 						<select style="height: 30px;">
-							<option value="">== 中分类选择 ==</option>
+							<option value="">== 1st Sub Category ==</option>
 						</select>	
 						<select style="height: 30px;">
-							<option value="">== 小分类选择 ==</option>
+							<option value="">== 2nd Sub Category ==</option>
 						</select>
 					</td>
 					<td class="field width6p tal br">
-						SNS类型
+						SNS Type
 					</td>
 					<td class="value tal br">
 						<select style="height: 30px;">
-							<option value="F" selected="selected">Facebook 网页</option>
-							<option value="W">Facebook 涂鸦墙</option>
+							<option value="F" selected="selected">Facebook Page</option>
+							<option value="W">Facebook wall</option>
 							<option value="T">Twitter</option>
 						</select>
 						<select style="height: 30px;">
-							<option value="Y" selected="selected">登录完成 </option>
-							<option value="N">未登录</option>
+							<option value="Y" selected="selected">Linked  </option>
+							<option value="N">unlinked</option>
 						</select>
 					</td>
 				  </tr>
 				  <tr>
 					<td class="field width6p tal br">
-						登录日
+						Listed Date
 					</td>
 					<td class="value tal br">
 						<input type="date" value="<?php echo date("Y-m-d");?>" class="km-form-control" style="width: 40%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;"> ~ <input type="date" value="<?php echo date("Y-m-d");?>" class="km-form-control" style="width: 40%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 					</td>
 					<td class="field width10p tal br">
 						<select style="height: 30px;">
-							<option value="NO" selected="selected">商品号码</option>
-							<option value="NM">商品名</option>
-							<option value="CD">卖家代码</option>
+							<option value="NO" selected="selected">Item Code</option>
+							<option value="NM">Item Name</option>
+							<option value="CD">Seller Code</option>
 						</select>
 					</td>
 					<td class="value tal">
 						<input type="text" class="km-form-control" style="width: 50%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
-						<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">多个代码</button>
+						<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">Multi Code</button>
 					</td>
 				  </tr>
 				  <tr>
 					<td class="value tar" colspan="4">
-						<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">查询</button>
-						<button onclick=";" type="button" class="km-btn km-btn-success" style="height: 28px;font-size: 12px;padding: 5px 10px;">导出Excel</button>
+						<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">Search</button>
+						<button onclick=";" type="button" class="km-btn km-btn-success" style="height: 28px;font-size: 12px;padding: 5px 10px;">Excel</button>
 					</td>
 				  </tr>
 				</tbody>
@@ -117,14 +117,14 @@
 			<table class="km-table" style="overflow:scroll;width:100%;">
 				<tbody>
 				  <tr style="border-top:2px solid #ddd;border-bottom:2px solid #ddd;">
-					<td class="field width6p br">商品代码</td>
-					<td class="field width6p br">商品名</td>
-					<td class="field width6p br">卖家代码</td>
-					<td class="field width6p br">价格</td>
-					<td class="field width6p br">购买数量</td>
-					<td class="field width6p br">SNS类型</td>
+					<td class="field width6p br">Item Code</td>
+					<td class="field width6p br">Item Title</td>
+					<td class="field width6p br">Seller Code</td>
+					<td class="field width6p br">Price</td>
+					<td class="field width6p br">Qty</td>
+					<td class="field width6p br">SNS Type</td>
 					<td class="field width6p br">SNS URL</td>
-					<td class="field width6p">登录日</td>
+					<td class="field width6p">List Date</td>
 				  </tr>
 				  <tr>
 					<td class="value br"></td>

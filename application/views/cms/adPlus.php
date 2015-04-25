@@ -5,33 +5,33 @@
 </style>
 <div class="" style="padding-left:30px;">
 	<ul class="km-nav km-nav-tabs clearfix">
-	  <li class="active"><a href="/cms/goodsStatistics">Q-推荐</a></li>
-	  <li><a href="/cms/goodsAdd">分类推荐</a></li>
+	  <li class="active"><a href="/cms/goodsStatistics">Deal Plus</a></li>
+	  <li><a href="/cms/goodsAdd">Category Plus</a></li>
 	  <li><a href="/cms/goodsCopy">Q-Special Plus</a></li>
-	  <li><a href="/cms/goodsEdit">关键词推荐</a></li>
-	  <li><a href="/cms/goodsEdit">修改/取消投标</a></li>
-	  <li><a href="/cms/goodsEdit">投标历史记录</a></li>
-	  <li><a href="/cms/goodsEdit">中标详情记录</a></li>
+	  <li><a href="/cms/goodsEdit">Keyword Plus</a></li>
+	  <li><a href="/cms/goodsEdit">Bid Edit / Cancel</a></li>
+	  <li><a href="/cms/goodsEdit">Bid History</a></li>
+	  <li><a href="/cms/goodsEdit">Winning History</a></li>
 	</ul>
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
-		<div class="km-panel-heading">什么是Deal Plus？</div>
+		<div class="km-panel-heading">What is Deal Plus?</div>
 		<div class="km-panel-body" style="padding:10px;">
-			Deal Plus这部分商品将显示在各商品目录网页，主页，Deal Plus网页，团购网页等主要网页中，是商品显示频率最高，范围最广的一种广告模式
+			It is displayed on each group category pages, main and sub categories, the main page, Deal Plus page, Group buy page and it will be exposed to many customers.
 		</div>
 	</div>
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
-		<div class="km-panel-heading">Q-推荐投标</div>
+		<div class="km-panel-heading">Deal Plus</div>
 		<div class="km-panel-body" style="padding:10px;">
-			每组中按照投标价格由高至低的顺序显示前10位.
+			Max 10 items with the highest bid are exposed on each group category.
 			<input type="radio" name="recommendBidding" id="recommendBidding1" style="vertical-align: middle;margin-right: 5px;" checked>
-			<label for="recommendBidding1">Q-推荐投标</label>
+			<label for="recommendBidding1">Deal Plus</label>
 			<div class="km-popover-wrapper">
 				<img onclick="$(this).next().toggle(10)" src="/assets/images/cms/questionMark.png" width="14px" style="cursor:pointer;">
 				<div class="km-popover km-bottom" style="top: 25px;left: -145px;width: 300px; max-width:656px;">
 				  <div class="km-arrow"></div>
-				  <h3 class="km-popover-title">什么是Deal Plus？</h3>
+				  <h3 class="km-popover-title">What is Deal Plus?</h3>
 				  <div class="km-popover-content">
-					<p>是指特定商品显示在各商品目录网页，大，中分类网页，主页，Deal Plus网页的一种广告宣传。</p>
+					<p>It is displayed on each group category pages, main and sub categories, the main page, Deal Plus page, Group buy page and it will be exposed to many customers.。</p>
 				  </div>
 				</div>
 			</div>
@@ -41,14 +41,14 @@
 				<img onclick="$(this).next().toggle(10)" src="/assets/images/cms/questionMark.png" width="14px" style="cursor:pointer;">
 				<div class="km-popover km-bottom" style="top: 25px;left: -145px;width: 300px; max-width:656px;">
 				  <div class="km-arrow"></div>
-				  <h3 class="km-popover-title">什么是Category Plus？</h3>
+				  <h3 class="km-popover-title">What is Category Plus?</h3>
 				  <div class="km-popover-content">
-					<p>是指特定团购商品显示在各商品目录网页，大，中分类网页，主页，团购网页的一种广告宣传。</p>
+					<p>Product of Group Buy setted is displayed on main page and at the top of the Group Buy page.</p>
 				  </div>
 				</div>
 			</div>
 			<div class="bt1" style="margin-top:6px;">
-				<span class="km-num">1</span><h3 style="display:inline-block;line-height:20px;">请选择分类</h3>
+				<span class="km-num">1</span><h3 style="display:inline-block;line-height:20px;">Select a category</h3>
 				<div class="step-body clearfix">
 					<div class="fl br" style="padding-right:20px;height: 200px;overflow: auto;">
 						<ul>
@@ -82,34 +82,34 @@
 						</ul>
 					</div>
 					<div class="fl" style="width: 200px;margin-left:20px;padding-right:20px;border-right:1px dashed #ddd;height: 200px;overflow: auto;">
-						<h4 style="line-height:20px;">投标信息</h4>  
+						<h4 style="line-height:20px;">Bid information</h4>  
 						<table class="km-table" style="border:1px solid #ddd;">
 							<tbody>
 								<tr>
-									<td class="field width60p br tac">每日浏览</td>
+									<td class="field width60p br tac">Daily Page View</td>
 									<td class="value width40p">1,135</td>
 								</tr>
 								<tr>
-									<td class="field br tac">投标次数</td>
+									<td class="field br tac">Numbers of bids</td>
 									<td class="value">3</td>
 								</tr>
 								<tr>
-									<td class="field br tac">现在投标列表</td>
+									<td class="field br tac">My bids</td>
 									<td class="value">0</td>
 								</tr>
 								<tr>
-									<td class="field br tac">投标起价</td>
+									<td class="field br tac">Starting Bid</td>
 									<td class="value">500</td>
 								</tr>
 								<tr>
-									<td class="field br tac">投标单位</td>
+									<td class="field br tac">Bid unit</td>
 									<td class="value">50</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 					<div class="fl" style="margin-left:20px;padding-right:20px;border-right:1px dashed #ddd;height: 200px;overflow: auto;">
-						<h4 style="line-height:20px;">现在投标列表</h4>剩余时间: 18 : 12 : 23
+						<h4 style="line-height:20px;">Bidding List</h4>剩余时间: 18 : 12 : 23
 						<table class="km-table" style="border:1px solid #ddd;">
 							<tbody>
 								<tr>
@@ -156,7 +156,7 @@
 						</table>
 					</div>
 					<div class="fl" style="margin-left:20px;padding-right:20px;height: 200px;overflow: auto;">
-						<h4 style="line-height:20px;">现在中标列表</h4>中标: 2015-04-13
+						<h4 style="line-height:20px;">Winner list</h4>Win date: 2015-04-13
 						<table class="km-table" style="border:1px solid #ddd;">
 							<tbody>
 								<tr>
@@ -186,8 +186,8 @@
 			</div>
 			<div class="bt1" style="margin-top:6px;">
 				<span class="km-num">2</span>
-				<h3 style="display:inline-block;line-height:20px;">请选择商品</h3>
-				对应分类中的商品列表
+				<h3 style="display:inline-block;line-height:20px;">Select the item to be exposed</h3>
+				Item list that matches the category
 				<div class="step-body clearfix">
 					<div class="km-panel-body" style="padding:0px;">
 						<table class="km-table bt2">
@@ -195,7 +195,7 @@
 							  <tr>
 								<td class="value br">
 									<select style="height: 30px;">
-										<option value="">== 组的分类 ==</option>
+										<option value="">== Group Category ==</option>
 										<option value="1">女装&amp;时尚</option>
 										<option value="2">美容&amp;减肥</option>
 										<option value="3">男装&amp;运动</option>
@@ -205,7 +205,7 @@
 										<option value="10">休闲</option>
 									</select>
 									<select style="height: 30px;">	
-										<option value="">== 商品总分类 ==</option>
+										<option value="">== Main Category ==</option>
 										<optgroup label="女装&amp;时尚">
 										<option value="100000001">Women’s Clothing</option>
 										<option value="100000042">Underwear &amp; Socks</option>
@@ -259,23 +259,23 @@
 										</optgroup>
 									</select>
 									<select style="height: 30px;">
-										<option value="">== 中分类选择 ==</option>
+										<option value="">== 1st Sub Category ==</option>
 									</select>	
 									<select style="height: 30px;">
-										<option value="">== 小分类选择 ==</option>
+										<option value="">== 2nd Sub Category ==</option>
 									</select>
 								</td>
 								<td class="field br">
 									<select style="height: 30px;">
-										<option value="1">商品代码</option>
-										<option value="2">商品名</option>
+										<option value="1">Item Code</option>
+										<option value="2">Item Title</option>
 									</select>	
 								</td>
 								<td class="value">
 									<input type="text" class="km-form-control" style="width: 80%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 								</td>
 								<td class="value tar">
-									<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">查询</button>
+									<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">Search</button>
 								</td>
 							  </tr>
 							</tbody>
@@ -286,13 +286,13 @@
 							<tbody>
 							  <tr style="border-top:2px solid #ddd;border-bottom:2px solid #ddd;">
 								<td class="field width1p br"><input type="checkbox" style="vertical-align: middle;margin-right: 5px;"></td>
-								<td class="field width6p br">商品代码</td>
-								<td class="field width6p br">分类</td>
-								<td class="field width6p br">一级子分类</td>
-								<td class="field width6p br">二级子分类</td>
-								<td class="field width6p br">商品名</td>
-								<td class="field width6p br">价格</td>
-								<td class="field width6p">评论数</td>
+								<td class="field width6p br">Item Code</td>
+								<td class="field width6p br">Main Category</td>
+								<td class="field width6p br">1st sub Category</td>
+								<td class="field width6p br">2nd sub Category</td>
+								<td class="field width6p br">Item Title</td>
+								<td class="field width6p br">Price</td>
+								<td class="field width6p">Review#</td>
 							  </tr>
 							  <tr>
 								<td class="value br"></td>
@@ -311,16 +311,16 @@
 							<tbody>
 							  <tr>
 								<td class="field br">
-									商品信息
+									Item Info.
 								</td>
 								<td class="value br tal">
-									商品代码<br>
-									商品名<br>
-									商品价格<br>
-									交易状态<br>
+									Item Code<br>
+									Item Title<br>
+									Item Price<br>
+									Status<br>
 								</td>
-								<td class="value br">商品图片</td>
-								<td class="value">输入商品信息(03/14~)</td>
+								<td class="value br">Item Image</td>
+								<td class="value">Item bid history(03/14~)</td>
 							  </tr>
 							</tbody>
 						</table>
@@ -330,23 +330,24 @@
 		</div>
 	</div>
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
-		<div class="km-panel-heading">投标说明及注意事项</div>
+		<div class="km-panel-heading">Bidding Information and Notices</div>
 		<div class="km-panel-body" style="padding:10px;line-height: 25px;">
-			投标方式更改提示（重要）<br>
-			- *2013年3月19日9点（AM）AD Plus投标系统有所更改,3月19日18:00起登载的广告将适用于新的系统，更改后请投标.<br>
-			之前中标的情况（每日18:00）扣除Q现金.<br>
-			(更改）投标时扣除Q现金，未中标时将返还所扣除的Q现金.<br>
-			- 投标时所保留的Q现金不足时，无法投标.<br>
-			- 中标时间（每日18:00）投标的商品未中标时，将返还扣除的Q现金.Q现金详情记录在我的购物信息》Q账户》Q现金中确认即可.<br>
-			- 取消投标，将返还扣除的Q现金.投标期间设定为复数时中标部分（投标价格x中标次数）被扣除后剩余取消部分（投标价格x剩余时间）退换.<br>
-			- 修改投标，之前投标时所使用的Q现金将返还，按照修改的投标期间和投标价格重新投标即可.<br>
-			- 因断货等其它原因无法进行正常销售的商品,有可能无法中标或展示.<br>
-			- 成人商品,侵犯著作权等被禁止销售的商品,无事先通知,将被取消中标.此情况下,使用的Q现金将不予退还.<br>
-			- 由于网络黑客,网页浏览数急剧增加或地区网络等原因可能出现未经事先通知,商品无法显示的情况.Qoo10将对相关的内容负责并给予相应赔偿.<br>
-			- 在设定自动投标的期间,将按照设定好的价格每日自动进行投标.<br>
-			<font color="red">- 每日17:50~19:00之间不能进行投标, 并且不能修改、 取消投标.</font><br>
-			- 每日18:00,中标的商品将被公布及展示.<br>
-			- 在同一分类组/分类/关键词中最多投标商品数为4件.(对同一商品不可进行重复投标)<br>
+			- [Important] Change in bidding process<br>
+			- AD Plus bidding system will be updated on March 19th 2013 at 9(AM). All bids made prior to the update will be canceled. All new ads displayed from March 19th 6PM will adopt the new bidding system. Please start bidding after the update.<br>
+			(Before)When a bid is won (daily 6pm), Qcash is deducted<br>
+			(After)Qcash is deducted when a bid is made, but a refund will be made when the bid does not win.<br>
+			-Bidding will not be allowed if Qcash balance is insufficient.<br>
+			- If item is not displayed after the bid closing time (6 PM), Qcash will be refunded. Qcash history can be viewed in My Qoo10 > Qaccount > Qcash<br>
+			- If a bid is canceled, Qcash deducted will be returned. If multiple biddings overlaps in display period, bid cancel amount (bid x time left) will be subtracted by bid won (bidding price x no. of bids)<br>
+			- If you edit a bid, original bid is canceled and refunded. The edited bid is identical to a new bidding using new bid price and period.<br>
+			- Item with having difficulty to sell like out of stock may not be exposed.<br>
+			- Prohibited items like adult item or copyright infringement item can be cancelled the successful bid without any notification and in this case, Q-Cash will not be refund.<br>
+			- Depending on Cyber​​-terrorism, sudden increase or regional Internet access service, item may not be exposed without any notification. Qoo10 will give a refund proportionally<br>
+			to exposed time to such accidents caused by Qoo10.<br>
+			- During the automatic bidding period, the bid is automatically made based on the price set.<br>
+			<font color="red">- Bidding cannot be made, modified, or cancelled during 17:50~19:00.</font><br>
+			- Successfully bid item will be exposed at 18:00everyday. (Applying time may differ according to the site traffic and etc.)<br>
+			- Can bid for max. 4 items on the same Group category/Category/Keyword (Duplication bidding on the same item is not allowed)
 		</div>
 	</div>
 </div>

@@ -1,50 +1,50 @@
 <div class="" style="padding-left:30px;">
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
-		<div class="km-panel-heading">特殊折扣管理</div>
+		<div class="km-panel-heading">Special Discount</div>
 		<div class="km-panel-body" style="padding:0px;">
 			<table class="km-table">
 				<tbody>
 				  <tr>
 					<td class="field width10p tal br">
-						优惠日期
+						Discount Date
 					</td>
 					<td class="value tal br">
 						<input type="date" value="<?php echo date("Y-m-d");?>" class="km-form-control" style="width: 40%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;"> ~ <input type="date" value="<?php echo date("Y-m-d");?>" class="km-form-control" style="width: 40%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 					</td>
 					<td class="field width10p tal br">
-						优惠类型
+						Discount Type
 					</td>
 					<td class="value tal br">
 						<select style="height: 30px;">
-							<option value="" selected="selected">所有</option>
-							<option value="TD">限時優惠</option>
-							<option value="PD">今日促銷優惠</option>
-							<option value="FW">店铺位粉丝打折</option>
-							<option value="MQ">Q豆机会</option>
+							<option value="" selected="selected">All</option>
+							<option value="TD">Time Sale</option>
+							<option value="PD">Promotion Discount</option>
+							<option value="FW">Shop Fellow Discount</option>
+							<option value="MQ">MameQ·chance</option>
 						</select>
 					</td>
 					<td class="value" rowspan="2">
-						<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">搜索</button>
+						<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">Search</button>
 					</td>
 				  </tr>
 				  <tr>
 					<td class="field width10p tal br">
-						状态
+						Status
 					</td>
 					<td class="value tal br">
 						<select style="height: 30px;">
-							<option value="S2">有效</option>
-							<option value="S3">結束</option>
+							<option value="S2">Available</option>
+							<option value="S3">Finished</option>
 						</select>
 					</td>
 					<td class="field width10p tal br">
-						搜索
+						Search
 					</td>
 					<td class="value width30p tal br">
 						<select style="height: 30px;" id="stock">
-							<option value="">選擇</option>
-							<option value="GD_NO">商品代碼</option>
-							<option value="GD_NM">商品名</option>
+							<option value="">Select</option>
+							<option value="GD_NO">Item Code</option>
+							<option value="GD_NM">Item Title</option>
 						</select>
 						<input type="text" class="km-form-control" id="customer_view_fax_areacode" style="width: 50%;height: 30px;padding: 0 5px;display: inline-block;">
 					</td>
@@ -56,15 +56,15 @@
 			<table class="km-table" style="overflow:scroll;width:100%;">
 				<tbody>
 				  <tr style="border-top:2px solid #ddd;border-bottom:2px solid #ddd;">
-					<td class="field width6p br">类型</td>
-					<td class="field width6p br">商品号码</td>
-					<td class="field width15p tac br">商品名</td>
-					<td class="field width6p br">个</td>
-					<td class="field width6p br">价格</td>
-					<td class="field width6p br">优惠价格</td>
-					<td class="field width6p br">购买数量限制</td>
-					<td class="field width6p br">优惠日期</td>
-					<td class="field width6p">时间区域</td>
+					<td class="field width6p br">Type</td>
+					<td class="field width6p br">Item No</td>
+					<td class="field width15p tac br">Item Title</td>
+					<td class="field width6p br">Qty</td>
+					<td class="field width6p br">Price</td>
+					<td class="field width6p br">Discounted Price</td>
+					<td class="field width6p br">Discount Limit</td>
+					<td class="field width6p br">Discount Date</td>
+					<td class="field width6p">Time Zone</td>
 				  </tr>
 				  <tr>
 					<td class="value br"></td>
