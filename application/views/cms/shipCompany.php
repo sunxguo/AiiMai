@@ -5,13 +5,13 @@
 </style>
 <div class="clearfix" style="padding-left:30px;">
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
-		<div class="km-panel-heading">订购国家选择</div>
+		<div class="km-panel-heading">Nation</div>
 		<div class="km-panel-body" style="padding:0px;">
 			<table class="km-table">
 				<tbody>
 				  <tr>
 					<td class="field width10p tal br">
-						运送状态
+						Nation
 					</td>
 					<td class="value tal">
 						<select style="height: 30px;">
@@ -26,11 +26,10 @@
 						</select>
 					</td>
 					<td class="value tal">
-						* 选择‘所有’时, 以GMT+9小时(东京/首尔)为基准所查询的时间,<br>
-						与订购商品所在国家的时间相比会有所不同.
+						* Select 'CSV format' and download the CSV file without having an apostrophe.
 					</td>
 					<td class="value tar">
-						<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">基本查询设定</button>
+						<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">Search</button>
 					</td>
 				  </tr>
 				</tbody>
