@@ -5,44 +5,44 @@
 </style>
 <div class="" style="padding-left:30px;">
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
-		<div class="km-panel-heading">库存管理</div>
+		<div class="km-panel-heading">Q-Inventory Management</div>
 		<div class="km-panel-body" style="padding:0px;">
 			<table class="km-table">
 				<tbody>
 				  <tr>
 					<td class="field width10p tal br">
-						登录日
+						Register Date
 					</td>
 					<td class="value width30p tal">
 						<input type="date" value="<?php echo date("Y-m-d");?>" class="km-form-control" style="width: 40%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;"> ~ <input type="date" value="<?php echo date("Y-m-d");?>" class="km-form-control" style="width: 40%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 					</td>
 					<td class="field width10p tal br">
-						查询条件
+						Search Condition
 					</td>
 					<td class="value width30p tal">
 						<select style="height: 30px;">
-							<option value="">所有</option>
-							<option value="T">Q库存号码</option>
-							<option value="C">最高组名</option>
-							<option value="G">商品代码</option>
+							<option value="">All</option>
+							<option value="T">Q-Inventory Code</option>
+							<option value="C">Master Title</option>
+							<option value="G">Item Code</option>
 						</select>
 						<input type="text" class="km-form-control" style="width: 60%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 					</td>
 					<td class="field width10p tal br">
-						开关
+						ON/OFF
 					</td>
 					<td class="value width10p tal">
 						<select style="height: 30px;">
-							<option value="">所有</option>
-							<option value="01001" selected="selected">使用</option>
-							<option value="01002">不使用</option>
+							<option value="">All</option>
+							<option value="01001" selected="selected">Use</option>
+							<option value="01002">No Use</option>
 						</select>
 					</td>
 				  </tr>
 				  <tr>
 					<td class="value tar" colspan="6">
-						<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">查询</button>
-						<button onclick=";" type="button" class="km-btn km-btn-success" style="height: 28px;font-size: 12px;padding: 5px 10px;">导出Excel</button>
+						<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">Search</button>
+						<button onclick=";" type="button" class="km-btn km-btn-success" style="height: 28px;font-size: 12px;padding: 5px 10px;">Excel</button>
 					</td>
 				  </tr>
 				</tbody>
@@ -52,14 +52,14 @@
 			<table class="km-table" style="overflow:scroll;width:150%;">
 				<tbody>
 				  <tr style="border-top:2px solid #ddd;border-bottom:2px solid #ddd;">
-					<td class="field width6p br">卖家代码</td>
-					<td class="field width6p br">库存号码</td>
-					<td class="field width6p br">库存名</td>
-					<td class="field width6p br">商品类目选项数</td>
-					<td class="field width6p br">总数量</td>
-					<td class="field width6p br">使用地点</td>
+					<td class="field width6p br">Seller Code</td>
+					<td class="field width6p br">Q-Inventory Code</td>
+					<td class="field width6p br">Q-Inventory Title</td>
+					<td class="field width6p br">No. of Inventory</td>
+					<td class="field width6p br">Total Qty</td>
+					<td class="field width6p br">Use Branch</td>
 					<td class="field width6p br">BDM_Title</td>
-					<td class="field width6p">登录日</td>
+					<td class="field width6p">Register Date</td>
 				  </tr>
 				  <tr>
 					<td class="value br"></td>
@@ -78,19 +78,19 @@
 			<tbody>
 			  <tr style="border-top:2px solid #ddd;">
 				<td class="field width20p tac br">
-					库存详情号码
+					Q-Inventory Code
 				</td>
 				<td class="field width20p tac br">
-					卖家代码
+					Seller Code
 				</td>
 				<td class="field width20p tac br">
-					参考商品代码
+					Reference Item Code
 				</td>
 				<td class="field width20p tac br">
-					庫存名
+					Q-Inventory Title
 				</td>
 				<td class="field width20p tac br">
-					另一支库存管理可用性
+					Use Branch
 				</td>
 			  </tr>
 			  <tr style="border-top:1px solid #ddd;">
@@ -108,39 +108,39 @@
 				</td>
 				<td class="value">
 					<select style="height: 30px;">
-						<option value="Y">是</option>
-						<option value="N" selected="selected">不</option>
+						<option value="Y">Yes</option>
+						<option value="N" selected="selected">No</option>
 					</select>
 				</td>
 			  </tr>
 			  <tr class="bt1">
 				<td class="field width20p tac br">
-					参考商品代码
+					Authorized Seller
 				</td>
 				<td class="value tal" colspan="4">
-					<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">选择</button>
+					<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">Select</button>
 					<input type="text" class="km-form-control" style="width: 60%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 				</td>
 			  </tr>
 			  <tr>
 				<td class="value tar" colspan="5">
-					<button onclick=";" type="button" class="km-btn km-btn-success" style="height: 28px;font-size: 12px;padding: 5px 20px;">添加</button>
-					<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">修改</button>
-					<button onclick=";" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 20px;">删除</button>
+					<button onclick=";" type="button" class="km-btn km-btn-success" style="height: 28px;font-size: 12px;padding: 5px 20px;">Register</button>
+					<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">EDIT</button>
+					<button onclick=";" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 20px;">DELETE</button>
 				</td>
 			  </tr>
 			</tbody>
 		</table>
 	</div>
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
-		<div class="km-panel-heading">商品选项输入/管理(*输入想要变更的库存数量/价格数字，点击按键即可)</div>
+		<div class="km-panel-heading">Manage Inventory Option Info.(*Please press Enter Key after modifying Qty/Price in the cell.)</div>
 		<div class="km-panel-body" style="padding:0px;">
 			<table class="km-table">
 				<tbody>
 				  <tr>
 					<td class="value tar">
-						<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">查询</button>
-						<button onclick=";" type="button" class="km-btn km-btn-success" style="height: 28px;font-size: 12px;padding: 5px 10px;">导出Excel</button>
+						<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">Search</button>
+						<button onclick=";" type="button" class="km-btn km-btn-success" style="height: 28px;font-size: 12px;padding: 5px 10px;">Excel</button>
 					</td>
 				  </tr>
 				</tbody>
@@ -151,14 +151,14 @@
 				<tbody>
 				  <tr style="border-top:2px solid #ddd;border-bottom:2px solid #ddd;">
 					<td class="field width1p br"><input type="checkbox" style="vertical-align: middle;margin-right: 5px;"></td>
-					<td class="field width6p br">卖家Sku代码</td>
-					<td class="field width6p br">库存号码</td>
-					<td class="field width6p br">库存名</td>
-					<td class="field width6p br">库存数量</td>
-					<td class="field width6p br">价格</td>
-					<td class="field width6p br">货币</td>
-					<td class="field width6p br">链接商品数</td>
-					<td class="field width6p">地点数量</td>
+					<td class="field width6p br">Seller Sku Code</td>
+					<td class="field width6p br">Q-Inventory Code</td>
+					<td class="field width6p br">Q-Inventory Sub Code</td>
+					<td class="field width6p br">Qty</td>
+					<td class="field width6p br">Price</td>
+					<td class="field width6p br">Currency</td>
+					<td class="field width6p br">No. of Linked Items</td>
+					<td class="field width6p">Branch Qty</td>
 				  </tr>
 				  <tr>
 					<td class="value br"></td>
@@ -177,16 +177,16 @@
 			<tbody>
 			  <tr style="border-top:2px solid #ddd;">
 				<td class="field width20p tac br">
-					库存数量
+					Qty
 				</td>
 				<td class="field width20p tac br">
-					价格
+					Price
 				</td>
 				<td class="field width20p tac br">
-					基准货币
+					Currency
 				</td>
 				<td class="field width20p tac br">
-					卖家Sku代码
+					Seller Sku Code
 				</td>
 			  </tr>
 			  <tr style="border-top:1px solid #ddd;">
@@ -213,10 +213,10 @@
 			  </tr>
 			  <tr>
 				<td class="value tar" colspan="5">
-					<button onclick=";" type="button" class="km-btn km-btn-success" style="height: 28px;font-size: 12px;padding: 5px 20px;">添加</button>
-					<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">修改</button>
-					<button onclick=";" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 20px;">删除</button>
-					<button onclick=";" type="button" class="km-btn km-btn-info" style="height: 28px;font-size: 12px;padding: 5px 20px;">链接商品</button>
+					<button onclick=";" type="button" class="km-btn km-btn-success" style="height: 28px;font-size: 12px;padding: 5px 20px;">ADD</button>
+					<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">EDIT</button>
+					<button onclick=";" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 20px;">DELETE</button>
+					<button onclick=";" type="button" class="km-btn km-btn-info" style="height: 28px;font-size: 12px;padding: 5px 20px;">Linked Items</button>
 				</td>
 			  </tr>
 			</tbody>

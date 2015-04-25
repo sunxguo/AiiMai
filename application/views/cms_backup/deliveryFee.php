@@ -294,29 +294,29 @@
 					</td>
 					<td class="value width30p tal br">
 						<select style="height: 30px;">
-							<option value="">ALL</option>
-							<optgroup label="<Shipping rate group>----------------------------------------------------"></optgroup>
+							<option value="">所有</option>
+							<optgroup label="<运送费组>----------------------------------------------------"></optgroup>
 							<option value="X,415926">Free</option>
-							<optgroup label="<Shipping rate per each item>----------------------------------------------------"></optgroup>
-							<option value="F">Charge for single item</option>
-							<option value="D">charge on delivery for single item</option>
-							<option value="R">charge on delivery for single (pre-pay)</option>
-							<option value="M">Free on condition for single item</option>
+							<optgroup label="<各单一商品运送费단일상품별 배송비>----------------------------------------------------"></optgroup>
+							<option value="F">单品收费</option>
+							<option value="D">单品货到付款</option>
+							<option value="R">单品货到付款（也可先付）</option>
+							<option value="M">单品免费（有条件）</option>
 						</select>
 					</td>
 					<td class="value width15p br">
 						<select style="height: 30px;">
-							<option value="NO" selected="selected">Item code</option>
-							<option value="CD">SellerNo</option>
-							<option value="NM">Item</option>
+							<option value="NO" selected="selected">商品号码</option>
+							<option value="CD">卖家代码</option>
+							<option value="NM">商品名</option>
 						</select>
 					</td>
 					<td class="value width20p br">
 						<input type="text" class="km-form-control" style="width: 80%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 					</td>
 					<td class="value tar">
-						<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">Search</button>
-						<button onclick=";" type="button" class="km-btn km-btn-success" style="height: 28px;font-size: 12px;padding: 5px 10px;">Excel</button>
+						<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">查询</button>
+						<button onclick=";" type="button" class="km-btn km-btn-success" style="height: 28px;font-size: 12px;padding: 5px 10px;">导出Excel</button>
 					</td>
 				  </tr>
 				</tbody>
@@ -327,17 +327,17 @@
 				<tbody>
 				  <tr style="border-top:2px solid #ddd;border-bottom:2px solid #ddd;">
 					<td class="field width1p br"><input type="checkbox" style="vertical-align: middle;margin-right: 5px;"></td>
-					<td class="field width6p br">Itemcode</td>
-					<td class="field width6p br">Item Title</td>
-					<td class="field width6p br">SR Type</td>
-					<td class="field width6p br">Charging Method</td>
-					<td class="field width6p br">Shipping Rate Title</td>
-					<td class="field width6p br">Shipping Method</td>
-					<td class="field width6p br">Shipping Rate</td>
-					<td class="field width6p br">Free Condition</td>
-					<td class="field width6p br">Surcharge (Region)</td>
-					<td class="field width6p br">Surcharge (Qty)</td>
-					<td class="field width6p">Oversea Surcharge</td>
+					<td class="field width6p br">商品号码</td>
+					<td class="field width6p br">商品名</td>
+					<td class="field width6p br">运送费类型</td>
+					<td class="field width6p br">付款方式</td>
+					<td class="field width6p br">运送费名</td>
+					<td class="field width6p br">运送方式</td>
+					<td class="field width6p br">基本运送费</td>
+					<td class="field width6p br">免费条件</td>
+					<td class="field width6p br">地域附加运送费</td>
+					<td class="field width6p br">根据数量确定附加运送费</td>
+					<td class="field width6p">国外添加运送费</td>
 				  </tr>
 				  <tr>
 					<td class="value br"></td>
@@ -358,7 +358,7 @@
 		</div>
 		<div class="tar " style="margin:10px auto;">
 			<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">选择商品一起变更</button>
-			(up to 500 itemsAvailable to edit all selected items)
+			(最多可选择50个商品同时变更)
 		</div>
 	</div>
 </div>

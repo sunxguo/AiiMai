@@ -5,30 +5,30 @@
 </style>
 <div class="" style="padding-left:30px;">
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
-		<div class="km-panel-heading">Search item</div>
+		<div class="km-panel-heading">商品查询</div>
 		<div class="km-panel-body" style="padding:0px;">
 			<table class="km-table">
 				<tbody>
 				  <tr style="border-top:2px solid #ddd;">
 					<td class="field width10p tal br">
-						Sales Nation/Sales(Y/N)
+						销售国家/销售与否
 					</td>
 					<td class="value width20p tal">
 						<select style="height: 30px;">	
                         	<option value="US">Hub Site(Qoo10.com)</option>
 		                </select>
 						<select style="height: 30px;">			 
-							<option value="" selected="">all</option>
-							<option value="Y">Selling</option>
-							<option value="N">No-Selling</option>
+							<option value="" selected="">所有</option>
+							<option value="Y">销售中</option>
+							<option value="N">不销售</option>
 						</select>
 					</td>
 					<td class="field width10p tal br">
-						Category
+						分类
 					</td>
 					<td class="value width40p tal">
 						<select style="height: 30px;">	
-							<option value="">== Main Category ==</option>
+							<option value="">== 商品总分类 ==</option>
 							<optgroup label="女装&amp;时尚">
 							<option value="100000001">Women’s Clothing</option>
 							<option value="100000042">Underwear &amp; Socks</option>
@@ -82,54 +82,54 @@
 							</optgroup>
 						</select>
 						<select style="height: 30px;">
-							<option value="">== 1st Sub Category ==</option>
+							<option value="">== 中分类选择 ==</option>
 						</select>	
 						<select style="height: 30px;">
-							<option value="">== 2nd Sub Category ==</option>
+							<option value="">== 小分类选择 ==</option>
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<td class="field tal br">
-						Inventory
+						库存状态
 					</td>
 					<td class="value tal">
 						<select style="height: 30px;">
-							<option value="" selected="selected">all</option>
-							<option value="Y">In stock</option>
-							<option value="N">Out of stock</option>
+							<option value="" selected="selected">所有</option>
+							<option value="Y">有库存</option>
+							<option value="N">无库存</option>
 						</select>
 					</td>
 					<td class="field tal br">
-						Condition Search
+						条件查询
 					</td>
 					<td class="value tal">
 						<select style="height: 30px;">
-							<option value="1">Item Code</option>
-							<option value="2">GD Title</option>
-							<option value="3">Seller Code</option>
-							<option value="N">None</option>
+							<option value="1">商品代码</option>
+							<option value="2">商品名</option>
+							<option value="3">卖家代码</option>
+							<option value="N">无库存</option>
 						</select>
 						<input type="text" class="km-form-control" style="width: 50%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 					</td>
 				</tr>
 				<tr>
 					<td class="field tal br">
-						Status
+						交易状态
 					</td>
 					<td class="value tal">
 						<select style="height: 30px;">
-							<option value="S1">On queue</option>
-							<option value="S2" selected="selected">Available</option>
-							<option value="S3">Suspended</option>
-							<option value="S4">Deleted</option>
-							<option value="S5">Restricted</option>
+							<option value="S1">交易等待</option>
+							<option value="S2" selected="selected">交易可能</option>
+							<option value="S3">交易中止</option>
+							<option value="S4">交易删除</option>
+							<option value="S5">限制商品</option>
 						</select>
 					</td>
 					<td class="field tal br">
 						<select style="height: 30px;">
-							<option value="0" selected="selected">List Date</option>
-							<option value="1">Change Date</option>
+							<option value="0" selected="selected">登录日</option>
+							<option value="1">修改日</option>
 						</select>
 					</td>
 					<td class="value tal">
@@ -138,8 +138,8 @@
 				</tr>
 				<tr>
 					<td class="value tar" colspan="4">
-						<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">Search</button>
-						<button onclick=";" type="button" class="km-btn km-btn-success" style="height: 28px;font-size: 12px;padding: 5px 10px;">Excel</button>
+						<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">查询</button>
+						<button onclick=";" type="button" class="km-btn km-btn-success" style="height: 28px;font-size: 12px;padding: 5px 10px;">导出Excel</button>
 					</td>
 				</tr>
 				</tbody>
@@ -150,18 +150,18 @@
 				<tbody>
 				  <tr style="border-top:2px solid #ddd;border-bottom:2px solid #ddd;">
 					<td class="field width1p br"><input type="checkbox" style="vertical-align: middle;margin-right: 5px;"></td>
-					<td class="field width6p br">Item Code</td>
-					<td class="field width6p br">Seller Code</td>
-					<td class="field width6p br">GD Title</td>
-					<td class="field width6p br">Sales Nation</td>
-					<td class="field width6p br">Global Sales</td>
-					<td class="field width6p br">Link Availablity</td>
-					<td class="field width6p br">Status</td>
-					<td class="field width6p br">Sell Price</td>
-					<td class="field width6p br">Stock</td>
-					<td class="field width6p br">Main Cat</td>
-					<td class="field width6p br">1st sub Cat</td>
-					<td class="field width6p">2nd sub Cat</td>
+					<td class="field width6p br">商品号码</td>
+					<td class="field width6p br">卖家代码</td>
+					<td class="field width6p br">商品名</td>
+					<td class="field width6p br">销售国家</td>
+					<td class="field width6p br">全球销售</td>
+					<td class="field width6p br">链接可行</td>
+					<td class="field width6p br">状态</td>
+					<td class="field width6p br">销售价</td>
+					<td class="field width6p br">数量</td>
+					<td class="field width6p br">大商品分类</td>
+					<td class="field width6p br">中分类</td>
+					<td class="field width6p">小分类</td>
 				  </tr>
 				  <tr>
 					<td class="value br"><input type="checkbox" style="vertical-align: middle;margin-right: 5px;"></td>
@@ -183,13 +183,13 @@
 		</div>
 	</div>
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
-		<div class="km-panel-heading">Register Global Sales Item in bulk</div>
+		<div class="km-panel-heading">全球销售商品整体登录</div>
 		<div class="km-panel-body" style="padding:0px;">
 			<table class="km-table">
 				<tbody>
 				  <tr>
 					<td class="field width10p tal br">
-						Sales Nation
+						销售国家
 					</td>
 					<td class="value tal">
 						<input type="text" class="km-form-control km-input-disabled" id="customer_view_fax_areacode" style="width: 40%;height: 26px;padding: 0 5px;display: inline-block;vertical-align: bottom;" disabled="disabled">
@@ -197,12 +197,11 @@
 				  </tr>
 				  <tr>
 					<td class="field tal br">
-						Category
+						分类
 					</td>
 					<td class="value tal">
 						<select style="height: 30px;">
-							<option value="">== Main Category ==</option>
-							<optgroup label="女装&amp;时尚">
+							<option value="">== 商品总分类 ==</option><optgroup label="女装&amp;时尚">
 							<option value="100000001">Women’s Clothing</option>
 							<option value="100000042">Underwear &amp; Socks</option>
 							<option value="100000003">Bag &amp; Wallet</option>
@@ -254,52 +253,52 @@
 							<option value="100000052">Q-Flier</option>
 							</optgroup></select>
 						<select style="height: 30px;">
-							<option value="">== 1st Sub Category ==</option>
+							<option value="">== 中分类选择 ==</option>
 						</select>	
 						<select style="height: 30px;">
-							<option value="">== 2nd Sub Category ==</option>
+							<option value="">== 小分类选择 ==</option>
 						</select>
-						<input type="checkbox" style="vertical-align: middle;margin-right: 5px;">Automatic Category Matching
+						<input type="checkbox" style="vertical-align: middle;margin-right: 5px;">商品分类自动配对
 					</td>
 				  </tr>
 				  <tr>
 					<td class="field tal br">
-						Global Item Status
+						全球商品状态
 					</td>
 					<td class="value tal">
 						<input type="radio" name="globalGoodsStatus" id="globalGoodsStatus1" style="vertical-align: middle;margin-right: 5px;" checked>
-						<label for="globalGoodsStatus1">  Register as the status "Available"</label>
+						<label for="globalGoodsStatus1"> 交易可能 状态联动</label>
 						<input type="radio" name="globalGoodsStatus" id="globalGoodsStatus2" style="vertical-align: middle;margin-right: 5px;" checked>
-						<label for="globalGoodsStatus2"> Register as the status "On Queue"</label>
+						<label for="globalGoodsStatus2"> 交易等待 状态联动</label>
 					</td>
 				  </tr>
 				  <tr>
 					<td class="field tal br">
-						Price
+						价格
 					</td>
 					<td class="value tal">
-						Price is calculated by the Qoo10 exchange rate. Settlement currency is USD.( 1  SGD =<input value="1" type="text" class="km-form-control km-input-disabled" id="customer_view_fax_areacode" style="width: 20px;height: 16px;padding: 0 5px;display: inline-block;vertical-align: bottom;font-size: 10px;" disabled="disabled"> SGD )     Price Mutiplier  : <input value="1" type="text" class="km-form-control km-input-disabled" id="customer_view_fax_areacode" style="width: 20px;height: 16px;padding: 0 5px;display: inline-block;vertical-align: bottom;font-size: 10px;" disabled="disabled">
+						价格是以Qoo10中管理的比率而自动计算的( 1  SGD =<input value="1" type="text" class="km-form-control km-input-disabled" id="customer_view_fax_areacode" style="width: 20px;height: 16px;padding: 0 5px;display: inline-block;vertical-align: bottom;font-size: 10px;" disabled="disabled"> SGD )    价格乘数 : <input value="1" type="text" class="km-form-control km-input-disabled" id="customer_view_fax_areacode" style="width: 20px;height: 16px;padding: 0 5px;display: inline-block;vertical-align: bottom;font-size: 10px;" disabled="disabled">
 					</td>
 				  </tr>
 				  <tr>
 					<td class="field tal br">
-						Shipping Rate
+						基本运送费
 					</td>
 					<td class="value tal">
 						<select style="height: 30px;">
-							<option value="0"> ---- Select ---- </option>
+							<option value="0"> ---- 选择 ---- </option>
 						</select>
 					</td>
 				  </tr>
 				  <tr>
 					<td class="field tal br">
-						Auto Translate
+						自动翻译
 					</td>
 					<td class="value tal">
 						<input type="checkbox" id="basicDeliveryCosts" style="vertical-align: middle;margin-right: 5px;">
-						<label for="basicDeliveryCosts"> Translate item title, short title, production place, gift, and option.</label>
+						<label for="basicDeliveryCosts"> 翻译商品名称，商品简称，原产地，附赠品，属性</label>
 						<select style="height: 30px;">
-							<option value="">Source Language</option>
+							<option value="">源语言</option>
 							<option value="en">ENGLISH</option>
 							<option value="ja">JAPANESE</option>
 							<option value="ko">KOREAN</option>
@@ -308,7 +307,7 @@
 							<option value="ms">MALAY</option>
 						</select>>>
 						<select style="height: 30px;">
-							<option value="">Target Language</option>
+							<option value="">目标语</option>
 							<option value="en">ENGLISH</option>
 							<option value="ja">JAPANESE</option>
 							<option value="ko">KOREAN</option>
@@ -322,11 +321,11 @@
 				  <tr>
 					<td class="value tal" colspan="2">
 					    <p class="fl">
-							* Item Price will be [(Price)x(Price Mutiplier)].  (You can see the default exchage rate managed by Qoo10)<br>
-							* Selling Qty and Period will be followed to the original Nation.<br>
-							* Shipping Rate will be set "Free". you can set shipping rate at all once on the menu "QSM>>Price/Listing >> Shipping Rate Mgt."
-							<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">Register the Selected</button>
-							<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">Delete Global Items</button>
+							*商品价格为 [ (销售价)x(价格乘数) ].   (最初查询的汇率是在AiiMai中管理的汇率.)<br>
+							* 销售期间及数量的最初设定值根据原国家信息不同而不同<br>
+							* 运送费设定为免费时，运送费管理菜单中可整批处理。
+							<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">一起登录</button>
+							<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">全球联动解除</button>
 						</p>
 					</td>
 				  </tr>
