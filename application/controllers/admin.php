@@ -5,6 +5,7 @@ class Admin extends CI_Controller {
 		parent::__construct();
 		$this->load->helper("base");
 		$this->load->library('CommonGetData');
+		$this->commongetdata->language('admin');
 		$this->load->model("dbHandler");
 	}
 	public function checkAdminLogin(){
@@ -50,14 +51,17 @@ class Admin extends CI_Controller {
 		unset($_SESSION["usertype"]);
 		$this->load->view('redirect',array("url"=>"/admin/login"));
 	}
-	public function adminBaseHandler($title,$slider,$view,$data){
+	public function adminBaseHandler($title,$sider,$view,$data){
 		$this->checkAdminLogin();
-		$websiteName=$this->commongetdata->getWebsiteConfig("website_name");
+		$websiteConfig=$this->commongetdata->getWebsiteConfig("ALLINFO");
+		$websiteName=$websiteConfig['website_name_'.$_SESSION['language']];
+//		$websiteName=$this->commongetdata->getWebsiteConfig("website_name");
 		$this->load->view('admin/header',
 			array(
-				'title' => $websiteName."-",
+				'title' => $title."-".$websiteName,
 				'showSlider' => true,
-				$slider => true,
+				$sider[0] => true,
+				$sider[1] => true,
 				'websiteName'=>$websiteName
 			)
 		);
@@ -65,7 +69,67 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/footer');
 	}
 	public function index(){
-		$this->adminBaseHandler('后台管理系统','index','index',array());
+		$this->adminBaseHandler('后台管理系统',array('index','none'),'index',array());
+	}
+	public function items(){
+		$data=array(
+			"columns"=>$this->commongetdata->getColumns()
+		);
+		$this->adminBaseHandler('商品管理',array('data','items'),'items',$data);
+	}
+	public function merchants(){
+		$data=array(
+			"columns"=>$this->commongetdata->getColumns()
+		);
+		$this->adminBaseHandler('商户管理',array('data','merchants'),'merchants',$data);
+	}
+	public function users(){
+		$data=array(
+			"columns"=>$this->commongetdata->getColumns()
+		);
+		$this->adminBaseHandler('用户管理',array('data','users'),'users',$data);
+	}
+	public function orders(){
+		$data=array(
+			"columns"=>$this->commongetdata->getColumns()
+		);
+		$this->adminBaseHandler('订单管理',array('data','orders'),'orders',$data);
+	}
+	public function shipCompany(){
+		$data=array(
+			"columns"=>$this->commongetdata->getColumns()
+		);
+		$this->adminBaseHandler('运送公司管理',array('data','shipCompany'),'shipCompany',$data);
+	}
+	public function advertisements(){
+		$data=array(
+			"columns"=>$this->commongetdata->getColumns()
+		);
+		$this->adminBaseHandler('广告管理',array('data','advertisements'),'advertisements',$data);
+	}
+	public function comments(){
+		$data=array(
+			"columns"=>$this->commongetdata->getColumns()
+		);
+		$this->adminBaseHandler('评论管理',array('data','comments'),'comments',$data);
+	}
+	public function payment(){
+		$data=array(
+			"columns"=>$this->commongetdata->getColumns()
+		);
+		$this->adminBaseHandler('支付方式管理',array('data','payment'),'payment',$data);
+	}
+	public function reportsTurnover(){
+		$data=array(
+			"columns"=>$this->commongetdata->getColumns()
+		);
+		$this->adminBaseHandler('Reports-Turnover',array('data','reports'),'reportsTurnover',$data);
+	}
+	public function reportsProducts(){
+		$data=array(
+			"columns"=>$this->commongetdata->getColumns()
+		);
+		$this->adminBaseHandler('报表统计-商品',array('data','reports'),'reportsProducts',$data);
 	}
 	public function columnList(){
 		$data=array("columns"=>$this->commongetdata->getColumns());

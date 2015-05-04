@@ -740,3 +740,99 @@ a:hover {
 	cursor:pointer;
 	display:none;
 }
+.index .row{
+	
+}
+.index .span10 {
+	width: 970px;
+}
+.index .span5 {
+	width: 470px;
+	float:left;
+}
+.index .slate {
+	background: #FFF;
+	padding: 10px 20px;
+	border: 1px solid #EBEBEB;
+	margin-bottom: 20px;
+}
+.index .slate h2 {
+	font-weight: normal;
+	font-size: 18px;
+}
+.index .slate .page-header {
+	margin-top: 0;
+	padding-bottom: 10px;
+}
+.index .page-header {
+	padding-bottom: 17px;
+	margin: 18px 0;
+	border-bottom: 1px solid #eeeeee;
+}
+.index .stat-column {
+	width: 13%;
+	float: left;
+	text-align: center;
+	display: block;
+	color: #999;
+	margin: 0 4%;
+	padding: 12px 2%;
+}
+.index .stat-column:hover {
+	background: #FC6B0A;
+	color: #FFF;
+	text-decoration: none;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+}
+.index .stat-column span.number {
+	font-size: 32px;
+	font-weight: normal;
+	margin: 0;
+	margin: 14px 0 10px 0;
+}
+.index .stat-column span {
+	font-weight: normal;
+	font-size: 14px;
+	display: block;
+}
+.index .km-label{
+	padding: 0 5px;
+}
+.index .table {
+	width: 100%;
+	background-color: transparent;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+.index .table tbody tr:hover{
+	border: none;
+	background: #EEE;
+	color: #212121;
+}
+.index .table th,
+.index .table td {
+	padding: 8px;
+	line-height: 18px;
+	text-align: left;
+	vertical-align: top;
+	border:none;
+	border-top: 1px solid #dddddd;
+}
+.index .slate .table th,
+.index .slate .table td {
+	border-top: none;
+	border-bottom: 1px solid #EBEBEB;
+}
+.index .slate .table tbody tr:hover td,
+.index .slate .table tbody tr:hover th {
+	background-color: #EEE;
+}
+input,select{
+	height:30px !important;
+}
+input{
+	padding:0 5px !important;
+	font-size: 13px !important;
+}

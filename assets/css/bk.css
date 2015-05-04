@@ -13,7 +13,7 @@
 	text-decoration:none;
 }
 .header-cms .km-logo {
-	width: 338px;
+/*	width: 338px;*/
 	height: 50px;
 	float: left;
 }
@@ -21,6 +21,10 @@
 	width:120px;
 	height:50px;
 	margin-left:15px;
+}
+.header-cms .km-logo .logo-admin{
+	width: 53px;
+	margin-left: 10px;
 }
 .header-cms .menu-cms{
 	float: right;
@@ -1400,4 +1404,32 @@ element.style {
 #imgListDivs {
 	width: 345px;
 	padding-top: 20px;
+}
+.topTab .tabs-box {
+	height: 50px;
+	margin-top: -10px;
+}
+.topTab .tabs-box .tabs-top {
+	background: #F6F7F9;
+	height: 30px;
+	padding-top: 19px;
+	border-bottom: 1px solid #CCD3DC;
+	padding-left: 20px;
+}
+.topTab .tabs-box .tabs-top .current {
+	background: #294B6E;
+	color: #fff;
+	border: 1px solid #8FA1B3;
+	height: 29px;
+	padding: 0 24px;
+}
+.topTab .tabs-box .tabs-top a {
+	display: block;
+	float: left;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	padding: 0 25px;
+	font-size: 14px;
+	color: #405164;
 }

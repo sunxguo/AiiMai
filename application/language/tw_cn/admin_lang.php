@@ -1,0 +1,26 @@
+<?php
+//繁體中文-admin
+	$lang['admin_common_Logout']="退出";
+	$lang['admin_sider_Dashboard']="主頁";
+	$lang['admin_sider_Data']="數據管理";
+	$lang['admin_sider_Items']="商品管理";
+	$lang['admin_sider_Merchants']="商戶管理";
+	$lang['admin_sider_Users']="用戶管理";
+	$lang['admin_sider_Orders']="訂單管理";
+	$lang['admin_sider_ShipCompany']="運送公司管理";
+	$lang['admin_sider_Advertisements']="廣告管理";
+	$lang['admin_sider_Comments']="評論管理";
+	$lang['admin_sider_Payment']="支付方式管理";
+	$lang['admin_sider_Tools']="工具";
+	$lang['admin_sider_Reports']="報表統計";
+	$lang['admin_sider_Account']="賬號管理";
+	$lang['admin_sider_SearchStatistics']="搜索統計";
+	$lang['admin_sider_SendMessage']="發送消息";
+	$lang['admin_sider_SystemSettings']="系統設置";
+	$lang['admin_sider_BasicParameter']="基本參數";
+	$lang['admin_sider_Database']="數據庫管理";
+	$lang['admin_sider_SecurityCenter']="安全中心";
+	$lang['admin_sider_Template']="模板管理";
+	$lang['admin_sider_EmergencyContacts']="緊急聯繫";
+	$lang['admin_sider_Help']="幫助中心";
+?>

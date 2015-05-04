@@ -327,6 +327,12 @@ border-right: 0;
 	border-top-left-radius: 0;
 	border-bottom-left-radius: 0;
 }
+.km-dropdown-menu>li>a:focus, 
+.km-dropdown-menu>li>a:hover {
+	color: #262626;
+	text-decoration: none;
+	background-color: #f5f5f5;
+}
 .km-input-group-addon {
 	padding: 6px 12px;
 	font-size: 14px;
@@ -462,6 +468,9 @@ border-right: 0;
 }
 .km-label-danger {
 	background-color: #d9534f;
+}
+.km-label-inverse{
+	background-color: #333333;
 }
 .km-modal-open {
 	overflow: hidden;
@@ -839,4 +848,67 @@ a.km-list-group-item:hover {
 }
 .km-badge-danger {
 	background-color: #d9534f;
+}
+.km-pagination {
+	display: inline-block;
+	padding-left: 0;
+	margin: 20px 0;
+	border-radius: 4px;
+}
+.km-pagination>li {
+	display: inline;
+}
+.km-pagination>li:first-child>a, 
+.km-pagination>li:first-child>span {
+	margin-left: 0;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+.km-pagination>li:last-child>a, 
+.km-pagination>li:last-child>span {
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+.km-pagination>.disabled>a, 
+.km-pagination>.disabled>a:focus, 
+.km-pagination>.disabled>a:hover, 
+.km-pagination>.disabled>span, 
+.km-pagination>.disabled>span:focus, 
+.km-pagination>.disabled>span:hover {
+	color: #777;
+	cursor: not-allowed;
+	background-color: #fff;
+	border-color: #ddd;
+}
+.km-pagination>li>a,
+.km-pagination>li>span {
+	position: relative;
+	float: left;
+	padding: 6px 12px;
+	margin-left: -1px;
+	line-height: 1.42857143;
+	color: #337ab7;
+	text-decoration: none;
+	background-color: #fff;
+	border: 1px solid #ddd;
+}
+.km-pagination>.active>a, 
+.km-pagination>.active>a:focus, 
+.km-pagination>.active>a:hover, 
+.km-pagination>.active>span, 
+.km-pagination>.active>span:focus, 
+.km-pagination>.active>span:hover {
+	z-index: 2;
+	color: #fff;
+	cursor: default;
+	background-color: #337ab7;
+	border-color: #337ab7;
+}
+.km-pagination>li>a:focus, 
+.km-pagination>li>a:hover, 
+.km-pagination>li>span:focus, 
+.km-pagination>li>span:hover {
+	color: #23527c;
+	background-color: #eee;
+	border-color: #ddd;
 }

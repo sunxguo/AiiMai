@@ -1,8 +1,8 @@
-<div class="slider">
+<div class="slider" style="position: absolute;">
 <h3 <?php echo isset($index) && $index?'class="current"':'';?>>
 	<a href="/admin" id="menu_portal">
 		<span class="ico ico-sy"></span>
-		主页
+		<?php echo lang('admin_sider_Dashboard');?>
 	</a>
 </h3>
 <!--
@@ -13,39 +13,62 @@
 	</a>
 </h3>
 -->
-<h3 <?php echo isset($columnList) && $columnList?'class="current"':'';?>>
-	<a href="/admin/columnList" id="menu_manageApp">
+<h3 <?php echo isset($data) && $data?'class="current"':'';?>>
+	<a href="/admin/items" id="menu_manageApp">
 		<span class="ico ico-jbgl"></span>
-		栏目管理
+		<?php echo lang('admin_sider_Data');?>
 	</a>
 </h3>
-<h3 <?php echo isset($user) && $user?'class="current"':'';?>>
-	<a href="/admin/user" id="menu_portal">
+<ul style="display: block;">
+	<li><a href="/admin/items" <?php echo isset($items) && $items?'class="current"':'';?>><?php echo lang('admin_sider_Items');?></a></li>
+	<li><a href="/admin/merchants" <?php echo isset($merchants) && $merchants?'class="current"':'';?>><?php echo lang('admin_sider_Merchants');?></a></li>
+	<li><a href="/admin/users" <?php echo isset($users) && $users?'class="current"':'';?>><?php echo lang('admin_sider_Users');?></a></li>
+	<li><a href="/admin/orders" <?php echo isset($orders) && $orders?'class="current"':'';?>><?php echo lang('admin_sider_Orders');?></a></li>
+	<li><a href="/admin/shipCompany" <?php echo isset($shipCompany) && $shipCompany?'class="current"':'';?>><?php echo lang('admin_sider_ShipCompany');?></a></li>
+	<li><a href="/admin/advertisements" <?php echo isset($advertisements) && $advertisements?'class="current"':'';?>><?php echo lang('admin_sider_Advertisements');?></a></li>
+	<li><a href="/admin/comments" <?php echo isset($comments) && $comments?'class="current"':'';?>><?php echo lang('admin_sider_Comments');?></a></li>
+	<li><a href="/admin/payment" <?php echo isset($payment) && $payment?'class="current"':'';?>><?php echo lang('admin_sider_Payment');?></a></li>
+</ul>
+<h3 <?php echo isset($reports) && $reports?'class="current"':'';?>>
+	<a href="/admin/reports" id="menu_portal">
 		<span class="ico ico-shgl"></span>
-		用户管理
+		<?php echo lang('admin_sider_Tools');?>
 	</a>
 </h3>
+<!--
 <h3 <?php echo isset($content) && $content?'class="current"':'';?>>
 	<a href="/admin/contentList" id="menu_portal">
 		<span class="ico ico-tsxx"></span>
 		内容管理
 	</a>
 </h3>
+-->
 <ul style="display: block;">
-	<li><a href="/admin/addContent" <?php echo isset($addContent) && $addContent?'class="current"':'';?>>发布新内容</a></li>
-	<li><a href="/admin/contentList" <?php echo isset($contentList) && $contentList?'class="current"':'';?>>内容查询</a></li>
-	<li><a href="/admin/contentRecycleBin" <?php echo isset($contentRecycleBin) && $contentRecycleBin?'class="current"':'';?>>回收站</a></li>
+	<li><a href="/admin/reportsTurnover" <?php echo isset($reports) && $reports?'class="current"':'';?>><?php echo lang('admin_sider_Reports');?></a></li>
+	<li><a href="/admin/addContent" <?php echo isset($addContent) && $addContent?'class="current"':'';?>><?php echo lang('admin_sider_Account');?></a></li>
+	<li><a href="/admin/addContent" <?php echo isset($addContent) && $addContent?'class="current"':'';?>><?php echo lang('admin_sider_SearchStatistics');?></a></li>
+	<li><a href="/admin/addContent" <?php echo isset($addContent) && $addContent?'class="current"':'';?>><?php echo lang('admin_sider_SendMessage');?></a></li>
 </ul>
 <h3 <?php echo isset($setting) && $setting?'class="current"':'';?>>
 	<a href="/admin/setting">
 		<span class="ico ico-yygl"></span>
-		系统设置
+		<?php echo lang('admin_sider_SystemSettings');?>
 	</a>
 </h3>
+<ul style="display: block;">
+	<li><a href="/admin/addContent" <?php echo isset($addContent) && $addContent?'class="current"':'';?>><?php echo lang('admin_sider_BasicParameter');?></a></li>
+	<li><a href="/admin/addContent" <?php echo isset($addContent) && $addContent?'class="current"':'';?>><?php echo lang('admin_sider_Database');?></a></li>
+	<li><a href="/admin/addContent" <?php echo isset($addContent) && $addContent?'class="current"':'';?>><?php echo lang('admin_sider_SecurityCenter');?></a></li>
+	<li><a href="/admin/addContent" <?php echo isset($addContent) && $addContent?'class="current"':'';?>><?php echo lang('admin_sider_Template');?></a></li>
+	<li><a href="/admin/addContent" <?php echo isset($addContent) && $addContent?'class="current"':'';?>><?php echo lang('admin_sider_EmergencyContacts');?></a></li>
+	<li><a href="/admin/addContent" <?php echo isset($addContent) && $addContent?'class="current"':'';?>><?php echo lang('admin_sider_Help');?></a></li>
+</ul>
+<!--
 <h3 <?php echo isset($account) && $account?'class="current"':'';?>>
 	<a href="/admin/account" id="menu_accountInfo">
 		<span class="ico ico-zhxx"></span>
 		账户信息
 	</a>
 </h3>
+-->
 </div>
