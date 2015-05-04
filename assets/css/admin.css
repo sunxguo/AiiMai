@@ -829,10 +829,10 @@ a:hover {
 .index .slate .table tbody tr:hover th {
 	background-color: #EEE;
 }
-input,select{
+.index input,select{
 	height:30px !important;
 }
-input{
+.index input{
 	padding:0 5px !important;
 	font-size: 13px !important;
 }
