@@ -143,7 +143,7 @@
 	<div class="span10" style="margin:0 auto;margin-top:10px;">
 		<div class="slate">
 			<div class="page-header">
-				<div class="km-btn-group pull-right">
+				<div class="km-btn-group pull-right" style="float:right;">
 					<button class="btn dropdown-toggle km-btn-default" style="margin-top:0px;padding:0px;width: 100px;" onclick="$('#exportType').toggle();">
 						<i class="icon-download-alt"><img src="/assets/images/admin/download.png" width="15" height="10"></i> Export
 						<span class="caret"><img src="/assets/images/admin/bottom.png" width="8" height="8"></span>
@@ -154,7 +154,7 @@
 						<li><a href="">PDF</a></li>
 					</ul>
 				</div>
-				<h2>Report Data</h2>
+				<h2 style="display:inline-block;">Report Data</h2>
 			</div>
 			<table class="orders-table table">
 				<thead>

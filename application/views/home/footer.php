@@ -27,5 +27,10 @@
 	</div>
 	<div id="waitDiv"><img src="/assets/images/cms/loading.gif"></div>
 	<div id="bkDiv"></div>
+	<div id="messageAlert" class="km-alert km-alert-dismissible fade in width40p hide">
+      <button type="button" class="km-close" onclick="$('#messageAlert').hide();"><span>×</span></button>
+      <strong></strong>
+	  <span class="km-alert-msg"></span>
+    </div>
 </body>
 </html>

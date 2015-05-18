@@ -7,9 +7,9 @@
 	</div>
 	<div class="login-main-body">
 		<div class="login-main-info fl">
-		<form method="post" action="/cms/loginHandler" enctype="multipart/form-data">
+		<form method="post" action="/home/loginHandler" enctype="multipart/form-data">
 			<div class="login-field">
-				<label>Email</label>
+				<label>Username</label>
 				<div>
 					<input name="username" type="text" class="inp-txt width250">
 				</div>
@@ -25,7 +25,7 @@
 				<div class="veri-code">
 					<img id="validCodeImg" src="" onclick="refreshCode()"> 
                     <a href="javascript:refreshCode()">Refresh</a>
-                    <input type="text" placeholder="" class="inp-txt width100">
+                    <input name="validCode" type="text" class="inp-txt width100">
 				</div>
 			</div>
 			<div class="login-btn-div">

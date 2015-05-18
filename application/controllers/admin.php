@@ -123,13 +123,19 @@ class Admin extends CI_Controller {
 		$data=array(
 			"columns"=>$this->commongetdata->getColumns()
 		);
-		$this->adminBaseHandler('Reports-Turnover',array('data','reports'),'reportsTurnover',$data);
+		$this->adminBaseHandler('Reports-Turnover',array('tool','reports'),'reportsTurnover',$data);
 	}
 	public function reportsProducts(){
 		$data=array(
 			"columns"=>$this->commongetdata->getColumns()
 		);
-		$this->adminBaseHandler('报表统计-商品',array('data','reports'),'reportsProducts',$data);
+		$this->adminBaseHandler('报表统计-商品',array('tool','reports'),'reportsProducts',$data);
+	}
+	public function account(){
+		$data=array(
+			"columns"=>$this->commongetdata->getColumns()
+		);
+		$this->adminBaseHandler('账户管理',array('tool','reports'),'account',$data);
 	}
 	public function columnList(){
 		$data=array("columns"=>$this->commongetdata->getColumns());

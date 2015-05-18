@@ -45,7 +45,7 @@
 -->
 <ul style="display: block;">
 	<li><a href="/admin/reportsTurnover" <?php echo isset($reports) && $reports?'class="current"':'';?>><?php echo lang('admin_sider_Reports');?></a></li>
-	<li><a href="/admin/addContent" <?php echo isset($addContent) && $addContent?'class="current"':'';?>><?php echo lang('admin_sider_Account');?></a></li>
+	<li><a href="/admin/account" <?php echo isset($account) && $account?'class="current"':'';?>><?php echo lang('admin_sider_Account');?></a></li>
 	<li><a href="/admin/addContent" <?php echo isset($addContent) && $addContent?'class="current"':'';?>><?php echo lang('admin_sider_SearchStatistics');?></a></li>
 	<li><a href="/admin/addContent" <?php echo isset($addContent) && $addContent?'class="current"':'';?>><?php echo lang('admin_sider_SendMessage');?></a></li>
 </ul>

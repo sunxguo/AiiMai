@@ -21,25 +21,25 @@
 		<table>
 			<tr>
 				<td>Email</td>
-				<td><input type="text" placeholder="example:xxx@gmail.com" class="inp-txt width250"></td>
+				<td><input type="text" id="email" placeholder="example:xxx@gmail.com" class="inp-txt width250"></td>
 			</tr>
 			<tr>
 				<td>Name</td>
-				<td><input type="text" placeholder="" class="inp-txt width250"></td>
+				<td><input type="text" id="username" placeholder="" class="inp-txt width250"></td>
 			</tr>
 			<tr>
 				<td>Password</td>
-				<td><input type="password" placeholder="" class="inp-txt width250"></td>
+				<td><input type="password" id="password" placeholder="" class="inp-txt width250"></td>
 			</tr>
 			<tr>
 				<td>Re-enter Password</td>
-				<td><input type="password" placeholder="" class="inp-txt width250"></td>
+				<td><input type="password" id="repassword" placeholder="" class="inp-txt width250"></td>
 			</tr>
 			<tr>
 				<td>Gender</td>
 				<td>
-					<input type="radio" name="gender" value="male" checked>Male
-					<input type="radio" name="gender" value="female">Female
+					<input type="radio" name="gender" value="male" id="male" checked><label for="male">Male</label>
+					<input type="radio" name="gender" value="female" id="female"><label for="female">Female</label>
 				</td>
 			</tr>
 			<tr>
@@ -47,13 +47,13 @@
 				<td class="veri-code">
 					<img id="validCodeImg" src="" onclick="refreshCode()"> 
                     <a href="javascript:refreshCode()">Refresh</a>
-                    <input type="text" placeholder="" class="inp-txt width100">
+                    <input type="text" id="validCode" placeholder="" class="inp-txt width100">
 				</td>
 			</tr>
 			<tr>
 				<td>Country</td>
 				<td>
-					<select class="select">
+					<select class="select" id="country">
 						<option value="">Choose Country</option>
 						<option value="AU">Australia</option>
 						<option value="BR">Brazil</option>

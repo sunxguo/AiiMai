@@ -15,6 +15,9 @@ class Home extends CI_Controller {
 		}else return true;
 	}
 	public function loginHandler(){
+		if(!isset($_POST["validCode"]) || strcasecmp($_POST['validCode'],$_SESSION['authcode'])!=0){
+			$this->load->view('redirect',array("info"=>"Please enter the letters in the picture exactly!"));
+		}
 		if(isset($_POST["username"]) && isset($_POST["pwd"])){
 			$condition=array(
 				'table'=>'user',
@@ -32,14 +35,14 @@ class Home extends CI_Controller {
 					$this->load->view('redirect',array("url"=>"/home"));
 				}
 				else{
-					$this->load->view('redirect',array("info"=>"密码错误"));
+					$this->load->view('redirect',array("info"=>"Wrong password!"));
 				}
 			}
 			else{
-				$this->load->view('redirect',array("info"=>"用户名不存在"));
+				$this->load->view('redirect',array("info"=>"Username does not exist!"));
 			}
 		}else{
-			$this->load->view('redirect',array("info"=>"请输入用户名和密码"));
+			$this->load->view('redirect',array("info"=>"Please enter your username and password!"));
 		}
 	}
 	public function logout(){
@@ -79,8 +82,39 @@ class Home extends CI_Controller {
 		$this->homeBaseHandler('Category','category',$data);
 	}
 	public function item(){
-		$data=array();
+		$item=$this->commongetdata->getContent('product',$_GET['itemId']);
+		$merchant=$this->commongetdata->getContent('merchant',$item->product_merchant);
+		$data=array(
+			"categories"=>$this->commongetdata->getCategories(false),
+			"categoriesIndex"=>$this->commongetdata->getCategories(true),
+			"item"=>$item,
+			"merchant"=>$merchant
+		);
 		$this->homeBaseHandler('Item','item',$data);
+	}
+	public function shop(){
+		$data=array(
+			'merchant'=>$this->commongetdata->getContent('merchant',$_GET['shopId'])
+		);
+		$this->homeBaseHandler('Shop','shop',$data);
+	}
+	public function cart(){
+		$data=array(
+			'cart'=>$this->commongetdata->getCartListByMerchants()
+		);
+		$this->homeBaseHandler('Cart','cart',$data);
+	}
+	public function placeOrder(){
+		$data=array(
+			'cart'=>$this->commongetdata->getCartListByMerchants()
+		);
+		$this->homeBaseHandler('Place Order','placeOrder',$data);
+	}
+	public function mypanel(){
+		$data=array(
+			'cart'=>$this->commongetdata->getCartListByMerchants()
+		);
+		$this->homeBaseHandler('My Panel','panel',$data);
 	}
 	/*
 	public function contentList(){

@@ -70,7 +70,7 @@ class CommonGetData{
 			$_SESSION['language']='zh_cn';
 		}
 /*		// 根据浏览器类型设置语言
-		if( $default_lang == 'en-us' || $default_lang == 'en'){
+		if($default_lang == 'en-us' || $default_lang == 'en'){
 			$this->CI->config->set_item('language', 'english');
 			// 根据设置的语言类型加载语言包
 			$this->CI->load->language('cms','english');
@@ -117,6 +117,80 @@ class CommonGetData{
 			$columns=$indexColumn;
 		}
 		return $columns;
+	}
+	/**
+	 * 按格式获取分类信息
+	 * 指定某些类型的栏目$typeArray=array(),是否按id做索引 $index=false
+	 * return array
+	 */
+	public function getCategories($index=false){
+		$condition=array(
+			'table'=>'category',
+			'result'=>'data',
+			'where'=>array('category_fid'=>'0'),
+			'order_by'=>array('category_order'=>'ASC')
+		);
+		$categories=$this->CI->dbHandler->selectData($condition);
+		foreach($categories as $cat){
+			$condition=array(
+				'table'=>'category',
+				'result'=>'data',
+				'where'=>array('category_fid'=>$cat->category_id),
+				'order_by'=>array('category_order'=>'ASC')
+			);
+			$cat->subCats=$this->CI->dbHandler->selectData($condition);
+			foreach($cat->subCats as $subCat){
+				$condition=array(
+					'table'=>'category',
+					'result'=>'data',
+					'where'=>array('category_fid'=>$subCat->category_id),
+					'order_by'=>array('category_order'=>'ASC')
+				);
+				$subCat->subSubCats=$this->CI->dbHandler->selectData($condition);
+				foreach($subCat->subSubCats as $subSubCat){
+					$condition=array(
+						'table'=>'category',
+						'result'=>'data',
+						'where'=>array('category_fid'=>$subSubCat->category_id),
+						'order_by'=>array('category_order'=>'ASC')
+					);
+					$subSubCat->subSubSubCats=$this->CI->dbHandler->selectData($condition);
+				}
+			}
+		}
+		if($index){
+			$indexCategory=array();
+			foreach($categories as $cat){
+				$indexCategory[$cat->category_id]=$cat;
+				foreach($cat->subCats as $subCat){
+					$indexCategory[$subCat->category_id]=$subCat;
+					foreach($subCat->subSubCats as $subSubCats){
+						$indexCategory[$subSubCats->category_id]=$subSubCats;
+						foreach($subSubCats->subSubSubCats as $subSubSubCats){
+							$indexCategory[$subSubSubCats->category_id]=$subSubSubCats;
+						}
+					}
+				}
+			}
+			$categories=$indexCategory;
+		}
+		return $categories;
+	}
+	public function getSubCat($catId){
+		$condition=array(
+			'table'=>'category',
+			'result'=>'data',
+			'where'=>array('category_id'=>$catId)
+		);
+		$category=$this->getOneData($condition);
+		$condition=array(
+			'table'=>'category',
+			'result'=>'data',
+			'where'=>array('category_fid'=>$category->category_id),
+			'order_by'=>array('category_order'=>'ASC')
+		);
+		$category->subCats=$this->CI->dbHandler->selectData($condition);
+		return $category;
 	}
 	/**
 	 * 根据名称获取类型号
@@ -217,6 +291,94 @@ class CommonGetData{
 			'limit'=>array('offset'=>$amountPerPage*($currentPage-1),'limit'=>$amountPerPage)
 		);
 		return $page;
+	}
+	public function checkUnique($type,$value){
+		$result=false;
+		$condition=array(
+			'table'=>$type,
+			'result'=>'data',
+			'where'=>array($type.'_id'=>$value)
+		);
+		$data=$this->getData($condition);
+		if(sizeof($data)<1){
+			$result=true;
+		}
+		return $result;
+	}
+	/**
+	 *  商户id（$_SESSION['userid']），1级类别，2级类别，3级类别，状态，发布时间，最后修改时间，销售方式，商品标题
+	 **/
+	public function getProducts($merchantId,$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order){
+		$condition=array(
+			'table'=>'product',
+			'result'=>'data',
+			'order_by'=>array('product_modify_time'=>'DESC')
+		);
+		if($merchantId) $condition['where']['product_merchant']=$merchantId;
+		if($cat) $condition['where']['product_category']=$cat;
+		if($sCat) $condition['where']['product_sub_category']=$sCat;
+		if($ssCat) $condition['where']['product_sub_sub_category']=$ssCat;
+		if($status) $condition['where']['product_status']=$status;
+		if($sellFormat) $condition['where']['product_sell_format']=$sellFormat;
+		if($listedTime){
+			$condition['where']['product_time >=']=$listedTime['begin'].' 00:00:00';
+			$condition['where']['product_time <=']=$listedTime['end'].' 23:59:59';
+		}
+		if($modifyTime){
+			$condition['where']['product_modify_time >=']=$modifyTime['begin'].' 00:00:00';
+			$condition['where']['product_modify_time <=']=$modifyTime['end'].' 23:59:59';
+		}
+		if($title) $condition['like']['product_item_title_english']=$title;
+		if($order) $condition['order_by'][$order['field']]=$order['type'];
+		$products=$this->CI->dbHandler->selectData($condition);
+		return $products;
+	}
+	
+	function _ensureCartInSession() {
+		if(!isset($_SESSION['cart'])) {
+			$_SESSION['cart'] = array();
+		}
+	}
+	public function addToCart($product_id,$merchant_id,$amount){
+		$this->_ensureCartInSession();
+		$cart = $_SESSION['cart'];
+		if(!array_key_exists($product_id, $cart)){
+			$cart[$product_id] = array(
+				"merchant" => $merchant_id,
+				"amount" => 0
+			);
+		}
+		$cart[$product_id]["amount"] = intval($cart[$product_id]["amount"]) + $amount;
+
+		$_SESSION['cart'] =($cart);
+		return true;
+	}
+	/**
+	 * 获得购物车里面的商品列表，而且是根据商家组织好的
+	 * @return array return
+	 */
+	function getCartListByMerchants() {
+		$this->_ensureCartInSession();
+		$cart = ($_SESSION['cart']);
+		// var_dump($cart);
+		$result = array();
+		foreach($cart as $product_id => $item) {
+			$merchant_id = $item["merchant"];
+			$amount = intval($item["amount"]);
+			if(!array_key_exists($merchant_id, $result)) {
+				// getMerchantInfo
+				$merchant_info = $this->getContent('merchant',$merchant_id);
+				$result[$merchant_id] = array(
+					"merchant_info" => $merchant_info,
+					"products" => array(),
+				);
+			}
+			// getProductInfo
+			$product_info = $this->getContent('product',$product_id); //TODO
+			$product_info->amount = $amount;
+			$result[$merchant_id]["products"][$product_id] = $product_info;
+		}
+		return $result;
 	}
 }
 

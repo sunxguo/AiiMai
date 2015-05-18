@@ -20,65 +20,21 @@
 						<?php echo lang('cms_common_Category');?>
 					</td>
 					<td class="value tal">
-						<select style="height: 30px;">
-							<option value="">== <?php echo lang('cms_common_MainCategory');?> ==</option>
-							<optgroup label="女装&amp;时尚">
-							<option value="100000001">Women’s Clothing</option>
-							<option value="100000042">Underwear &amp; Socks</option>
-							<option value="100000003">Bag &amp; Wallet</option>
-							<option value="100000043">Shoes</option>
-							<option value="100000004">Watch &amp; Jewelry</option>
-							<option value="100000005">Fashion Accessories</option>
+						<select style="height: 30px;" onchange="mainCategoryChange()" id="MainCategory">
+							<option value="-1">== <?php echo lang('cms_common_MainCategory');?> ==</option>
+							<?php foreach($categories as $cat):?>
+							<optgroup label="<?php echo $cat->category_name;?>">
+								<?php foreach($cat->subCats as $subCat):?>
+									<option value="<?php echo $subCat->category_id;?>"><?php echo $subCat->category_name;?></option>
+								<?php endforeach;?>
 							</optgroup>
-							<optgroup label="美容&amp;减肥">
-							<option value="100000006">Cosmetics</option>
-							<option value="100000044">Perfume &amp; Luxury Beauty</option>
-							<option value="100000007">Hair, Body &amp; Nail</option>
-							<option value="100000045">Diet &amp; Tools</option>
-							</optgroup>
-							<optgroup label="男装&amp;运动">
-							<option value="100000002">Men’s Clothing</option>
-							<option value="100000046">Bags, Shoes &amp; Accessories</option>
-							<option value="100000008">Athletic &amp; Outdoor Clothing</option>
-							<option value="100000047">Sports Equipment</option>
-							</optgroup>
-							<optgroup label="家电&amp;移动电话">
-							<option value="100000014">Smartphone &amp; Tablet</option>
-							<option value="100000012">Home Electronics</option>
-							<option value="100000011">TV, Camera &amp; Audio</option>
-							<option value="100000010">Computer &amp; Game</option>
-							</optgroup>
-							<optgroup label="生活&amp;家居用品">
-							<option value="100000048">Kitchen &amp; Dining</option>
-							<option value="100000017">Furniture &amp; Deco</option>
-							<option value="100000018">Bedding &amp; Rugs &amp; Household</option>
-							<option value="100000040">Pet Supplies</option>
-							<option value="100000041">Stationery &amp; Supplies</option>
-							<option value="100000049">Tools &amp; Gardening</option>
-							<option value="100000009">Automotive &amp; Industry</option>
-							</optgroup>
-							<optgroup label="幼儿&amp;食品">
-							<option value="100000015">Baby &amp; Maternity</option>
-							<option value="100000016">Kids Fashion</option>
-							<option value="100000050">Toys</option>
-							<option value="100000020">Groceries</option>
-							<option value="100000021">Drinks &amp; Sweets</option>
-							<option value="100000023">Nutritious Items</option>
-							</optgroup>
-							<optgroup label="休闲">
-							<option value="100000035">Dining, Spa &amp; Services</option>
-							<option value="100000038">Leisure &amp; Travel</option>
-							<option value="100000024">Collectibles &amp; Books</option>
-							<option value="100000031">CD &amp; DVD</option>
-							<option value="100000036">Hotel</option>
-							<option value="100000052">Q-Flier</option>
-							</optgroup>
+							<?php endforeach;?>
 						</select>
-						<select style="height: 30px;">
-							<option value="">== <?php echo lang('cms_common_1stSubCategory');?> ==</option>
+						<select style="height: 30px;" onchange="stSubCategoryChange()" id="stSubCategory">
+							<option value="-1">== <?php echo lang('cms_common_1stSubCategory');?> ==</option>
 						</select>
-						<select style="height: 30px;">
-							<option value="">== <?php echo lang('cms_common_2ndSubCategory');?> ==</option>
+						<select style="height: 30px;"id="ndSubCategory">
+							<option value="-1">== <?php echo lang('cms_common_2ndSubCategory');?> ==</option>
 						</select>
 						<input type="text" placeholder="<?php echo lang('cms_baseInfo_goodsStatistics_Categorycode');?>" class="km-form-control" style="width: 30%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 					</td>
@@ -88,9 +44,9 @@
 						<?php echo lang('cms_baseInfo_goodsStatistics_SellFormat');?>
 					</td>
 					<td class="value tal">
-						<input type="radio" name="salesMode" id="salesMode1" style="vertical-align: middle;margin-right: 5px;" checked><label for="salesMode1"><?php echo lang('cms_baseInfo_goodsStatistics_SellFormat_Buynow');?></label>
-						<input type="radio" name="salesMode" id="salesMode2" style="vertical-align: middle;margin-right: 5px;"><label for="salesMode2"><?php echo lang('cms_baseInfo_goodsStatistics_SellFormat_AuctionAndLuckyPrice');?></label>
-						<input type="radio" name="salesMode" id="salesMode3" style="vertical-align: middle;margin-right: 5px;"><label for="salesMode3"><?php echo lang('cms_baseInfo_goodsStatistics_SellFormat_FreeFormat');?></label>
+						<input type="radio" name="salesMode" id="salesMode1" value="1" style="vertical-align: middle;margin-right: 5px;" checked><label for="salesMode1"><?php echo lang('cms_baseInfo_goodsStatistics_SellFormat_Buynow');?></label>
+						<input type="radio" name="salesMode" id="salesMode2" value="2" style="vertical-align: middle;margin-right: 5px;"><label for="salesMode2"><?php echo lang('cms_baseInfo_goodsStatistics_SellFormat_AuctionAndLuckyPrice');?></label>
+						<input type="radio" name="salesMode" id="salesMode3" value="3" style="vertical-align: middle;margin-right: 5px;"><label for="salesMode3"><?php echo lang('cms_baseInfo_goodsStatistics_SellFormat_FreeFormat');?></label>
 					</td>
 				  </tr>
 				  <tr>
@@ -98,8 +54,8 @@
 						<?php echo lang('cms_baseInfo_goodsStatistics_DeliveryType');?>
 					</td>
 					<td class="value tal">
-						<input type="radio" name="shipType" id="shipType1" style="vertical-align: middle;margin-right: 5px;" checked><label for="shipType1"><?php echo lang('cms_baseInfo_goodsStatistics_Delivery');?></label>
-						<input type="radio" name="shipType" id="shipType2" style="vertical-align: middle;margin-right: 5px;"><label for="shipType2"><?php echo lang('cms_baseInfo_goodsStatistics_eTicket');?></label>
+						<input type="radio" name="shipType" id="shipType1" value="1" style="vertical-align: middle;margin-right: 5px;" checked><label for="shipType1"><?php echo lang('cms_baseInfo_goodsStatistics_Delivery');?></label>
+						<input type="radio" name="shipType" id="shipType2" value="2" style="vertical-align: middle;margin-right: 5px;"><label for="shipType2"><?php echo lang('cms_baseInfo_goodsStatistics_eTicket');?></label>
 						<div class="km-popover-wrapper">
 							<img onclick="$(this).next().toggle(10)" src="/assets/images/cms/questionMark.png" width="14px" style="cursor:pointer;">
 							<div class="km-popover km-bottom" style="top: 25px;left: -146px;width: 300px; max-width:656px;">
@@ -117,8 +73,8 @@
 						<?php echo lang('cms_baseInfo_goodsStatistics_ItemCondition');?>
 					</td>
 					<td class="value tal">
-						<input type="radio" name="goodsStatus" id="goodsStatus1" style="vertical-align: middle;margin-right: 5px;" checked><label for="goodsStatus1"><?php echo lang('cms_baseInfo_goodsStatistics_NewItem');?></label>
-						<input type="radio" name="goodsStatus" id="goodsStatus2" style="vertical-align: middle;margin-right: 5px;"><label for="goodsStatus2"><?php echo lang('cms_baseInfo_goodsStatistics_UsedItem');?></label>
+						<input type="radio" name="goodsStatus" id="goodsStatus1" value="1" style="vertical-align: middle;margin-right: 5px;" checked><label for="goodsStatus1"><?php echo lang('cms_baseInfo_goodsStatistics_NewItem');?></label>
+						<input type="radio" name="goodsStatus" id="goodsStatus2" value="2" style="vertical-align: middle;margin-right: 5px;"><label for="goodsStatus2"><?php echo lang('cms_baseInfo_goodsStatistics_UsedItem');?></label>
 					</td>
 				  </tr>
 				  <tr>
@@ -126,9 +82,9 @@
 						<?php echo lang('cms_baseInfo_goodsStatistics_ItemTitle');?>
 					</td>
 					<td class="value tal">
-						<span class="km-label km-label-default"> English </span><input type="text" placeholder="Please enter the correct trade name (up to 200 words)" class="km-form-control" style="width: 80%;height: 30px;margin-left:10px;padding: 0px 5px;display: inline-block;font-size:12px;"><br><br>
-						<span class="km-label km-label-default">简体中文</span><input type="text" placeholder="请输入正确的型号名（最多200字）" class="km-form-control" style="width: 80%;height: 30px;margin-left:10px;padding: 0px 5px;display: inline-block;font-size:12px;"><br><br>
-						<span class="km-label km-label-default">繁體中文</span><input type="text" placeholder="請輸入正確的型號名（最多200字）" class="km-form-control" style="width: 80%;height: 30px;margin-left:10px;padding: 0px 5px;display: inline-block;font-size:12px;"><br>
+						<span class="km-label km-label-default"> English </span><input id="title_english" type="text" placeholder="Please enter the correct trade name (up to 200 words)" class="km-form-control" style="width: 80%;height: 30px;margin-left:10px;padding: 0px 5px;display: inline-block;font-size:12px;"><br><br>
+						<span class="km-label km-label-default">简体中文</span><input id="title_zh_cn" type="text" placeholder="请输入正确的型号名（最多200字）" class="km-form-control" style="width: 80%;height: 30px;margin-left:10px;padding: 0px 5px;display: inline-block;font-size:12px;"><br><br>
+						<span class="km-label km-label-default">繁體中文</span><input id="title_tw_cn" type="text" placeholder="請輸入正確的型號名（最多200字）" class="km-form-control" style="width: 80%;height: 30px;margin-left:10px;padding: 0px 5px;display: inline-block;font-size:12px;"><br>
 					</td>
 				  </tr>
 				  <tr>
@@ -136,7 +92,7 @@
 						<?php echo lang('cms_baseInfo_goodsStatistics_ShortTitle');?>
 					</td>
 					<td class="value tal">
-						<input type="text" placeholder="<?php echo lang('cms_baseInfo_goodsStatistics_ShortTitleTip');?>" class="km-form-control" style="width: 80%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
+						<input id="ShortTitle" type="text" placeholder="<?php echo lang('cms_baseInfo_goodsStatistics_ShortTitleTip');?>" class="km-form-control" style="width: 80%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 					</td>
 				  </tr>
 				  <tr>
@@ -144,7 +100,7 @@
 						<?php echo lang('cms_baseInfo_goodsStatistics_SellerCode');?>
 					</td>
 					<td class="value tal">
-						<input type="text" class="km-form-control" style="width: 20%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
+						<input id="SellerCode" type="text" class="km-form-control" style="width: 20%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 						<?php echo lang('cms_baseInfo_goodsStatistics_SellerCodeTip');?>
 					</td>
 				  </tr>
@@ -153,7 +109,13 @@
 						<?php echo lang('cms_baseInfo_goodsStatistics_ItemImageOrType');?>
 					</td>
 					<td class="value tal">
-						
+						<div class="km-upload-img" style="width: 400px;" onclick="$('#file').click();">
+							<img src="" width="400" height="400" id="productImg">
+							<p style="line-height: 400px;">Upload Image</p>
+						</div>
+						<form id="upload_image_form" method="post" enctype="multipart/form-data">
+							<input onchange="return uploadProductImage('#uploadImgThumb')" name="image" type="file" id="file" style="display:none;" accept="image/*">
+						</form>
 					</td>
 				  </tr>
 				  <tr>
@@ -161,13 +123,13 @@
 						<?php echo lang('cms_baseInfo_goodsStatistics_ProductionPlace');?>
 					</td>
 					<td class="value tal">
-						<select style="height: 30px;">
-							<option value="" selected="selected">====<?php echo lang('cms_baseInfo_goodsStatistics_select');?>=====</option>
-							<option value="K"><?php echo lang('cms_baseInfo_goodsStatistics_Domestic');?></option>
-							<option value="F"><?php echo lang('cms_baseInfo_goodsStatistics_Overseas');?></option>
-							<option value="U"><?php echo lang('cms_baseInfo_goodsStatistics_Others');?></option>
+						<select style="height: 30px;" id="ProductionPlaceCode">
+							<option value="-1" selected="selected">====<?php echo lang('cms_baseInfo_goodsStatistics_select');?>=====</option>
+							<option value="1"><?php echo lang('cms_baseInfo_goodsStatistics_Domestic');?></option>
+							<option value="2"><?php echo lang('cms_baseInfo_goodsStatistics_Overseas');?></option>
+							<option value="3"><?php echo lang('cms_baseInfo_goodsStatistics_Others');?></option>
 						</select>
-						<input type="text" class="km-form-control" style="width: 20%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
+						<input id="ProductionPlaceDetail" type="text" class="km-form-control" style="width: 20%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 					</td>
 				  </tr>
 				  <tr>
@@ -175,8 +137,8 @@
 						<?php echo lang('cms_goodsAdd_AdultItem');?>？
 					</td>
 					<td class="value tal">
-						<input type="radio" name="adult" id="adult1" style="vertical-align: middle;margin-right: 5px;" checked><label for="adult1"><?php echo lang('cms_goodsAdd_No');?></label>
-						<input type="radio" name="adult" id="adult2" style="vertical-align: middle;margin-right: 5px;"><label for="adult2"><?php echo lang('cms_goodsAdd_Yes');?><?php echo lang('cms_goodsAdd_YesExample');?></label>
+						<input type="radio" name="adult" id="adult1" value="0" style="vertical-align: middle;margin-right: 5px;" checked><label for="adult1"><?php echo lang('cms_goodsAdd_No');?></label>
+						<input type="radio" name="adult" id="adult2" value="1" style="vertical-align: middle;margin-right: 5px;"><label for="adult2"><?php echo lang('cms_goodsAdd_Yes');?><?php echo lang('cms_goodsAdd_YesExample');?></label>
 					</td>
 				  </tr>
 				</tbody>
@@ -193,7 +155,7 @@
 						<?php echo lang('cms_goodsAdd_SellPrice');?> (S$)
 					</td>
 					<td class="value tal">
-						<input type="text" class="km-form-control" style="width: 20%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;"> (<?php echo lang('cms_goodsAdd_SettlePrice');?>: <span class="km-label km-label-danger">90.00</span>)
+						<input id="SellPrice" type="text" class="km-form-control" style="width: 20%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;"> (<?php echo lang('cms_goodsAdd_SettlePrice');?>: <span class="km-label km-label-danger">90.00</span>)
 						<div class="km-popover-wrapper">
 							<img onclick="$(this).next().toggle(10)" src="/assets/images/cms/questionMark.png" width="14px" style="cursor:pointer;">
 							<div class="km-popover km-bottom" style="top: 25px;left:-496px; max-width:1000px;width:1000px;">
@@ -210,7 +172,7 @@
 						<?php echo lang('cms_goodsAdd_Quantity');?>
 					</td>
 					<td class="value tal">
-						<input type="text" class="km-form-control" style="width: 50%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
+						<input id="Quantity" type="text" class="km-form-control" style="width: 50%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 					</td>
 				  </tr>
 				  <tr>
@@ -218,7 +180,7 @@
 						<?php echo lang('cms_goodsAdd_AvailablePeriod');?>
 					</td>
 					<td class="value tal">
-						<select style="height: 30px;">
+						<select style="height: 30px;" id="AvailablePeriod">
 							<option value="">Select</option>  
 							<option value="1">1 day</option>  
 							<option value="3">3 days</option>  
@@ -237,7 +199,7 @@
 						<?php echo lang('cms_goodsAdd_ReferencePrice');?> (S$)
 					</td>
 					<td class="value tal">
-						<input type="text" class="km-form-control" style="width: 50%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
+						<input id="ReferencePrice" type="text" class="km-form-control" style="width: 50%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 					</td>
 				  </tr>
 				  <tr>
@@ -245,7 +207,7 @@
 						<?php echo lang('cms_goodsAdd_Displayleftavailableperiod');?>
 					</td>
 					<td class="value tal" colspan="3">
-						<select style="height: 30px;">
+						<select style="height: 30px;" id="Displayleftavailableperiod">
 							<option value="1">1 <?php echo lang('cms_goodsAdd_days');?></option>
 							<option value="2">2 <?php echo lang('cms_goodsAdd_days');?></option>
 							<option value="3">3 <?php echo lang('cms_goodsAdd_days');?></option>
@@ -318,6 +280,7 @@
 			</textarea>
 		</div>
 	</div>
+	<button onclick="productHandler('This product was listed successfully',true);" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">List Item</button>
 </div>
 <script src="/assets/js/cms-goods.js" type="text/javascript"></script>
 <link rel="stylesheet" href="/assets/kindEditor/themes/default/default.css" />

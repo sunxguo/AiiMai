@@ -1,31 +1,31 @@
 <div class="main-floor clearfix">
 	<div class="cat-detail">
 		<dl class="sub-categories fl">
-			<dt><a href="">New Arrivals</a></dt>
-			<dt><a href="">Shop The Look</a></dt>
-			<dt><a href="">Home & Living Hot Picks</a></dt>
-			<dt><a href="">Kitchen & Dining</a></dt>
-			<dd><a href="">Cookware</a></dd>
-			<dd><a href="">Cooking Knives</a></dd>
-			<dt><a href="">Bedding</a></dt>
-			<dt><a href="">Outdoor & Garden</a></dt>
-			<dt><a href="">Furniture</a></dt>
+			<dt><a href="/home/category">New Arrivals</a></dt>
+			<dt><a href="/home/category">Shop The Look</a></dt>
+			<dt><a href="/home/category">Home & Living Hot Picks</a></dt>
+			<dt><a href="/home/category">Kitchen & Dining</a></dt>
+			<dd><a href="/home/category">Cookware</a></dd>
+			<dd><a href="/home/category">Cooking Knives</a></dd>
+			<dt><a href="/home/category">Bedding</a></dt>
+			<dt><a href="/home/category">Outdoor & Garden</a></dt>
+			<dt><a href="/home/category">Furniture</a></dt>
 		</dl>
 		<div class="featured-products fl">
 			<div class="fp-left fl">
 				<div class="fp-left-top widget borderR borderB">
-					<a href="">
+					<a href="/home/item?itemId=1">
 						<img src="/assets/images/home/fp1.jpg">
 					</a>
 				</div>
 				<div class="fp-left-bottom">
 					<div class="fp-left-bottom-item widget borderR borderB fl">
-						<a href="">
+						<a href="/home/item?itemId=1">
 							<img src="/assets/images/home/fp2.jpg">
 						</a>
 					</div>
 					<div class="fp-left-bottom-item widget borderR borderB fl">
-						<a href="">
+						<a href="/home/item?itemId=1">
 							<img src="/assets/images/home/fp3.jpg">
 						</a>
 					</div>
@@ -33,17 +33,17 @@
 			</div>
 			<div class="fp-right fl">
 				<div class="fp-right-item widget borderR">
-					<a href="">
+					<a href="/home/item?itemId=1">
 						<img src="/assets/images/home/fp4.jpg">
 					</a>
 				</div>
 				<div class="fp-right-item widget borderR borderT">
-					<a href="">
+					<a href="/home/item?itemId=1">
 						<img src="/assets/images/home/fp5.jpg">
 					</a>
 				</div>
 				<div class="fp-right-item widget borderR borderB borderT">
-					<a href="">
+					<a href="/home/item?itemId=1">
 						<img src="/assets/images/home/fp6.jpg">
 					</a>
 				</div>
@@ -52,33 +52,33 @@
 	</div>
 	<div class="cat-detail">
 		<dl class="sub-categories fl">
-			<dt><a href="">Consumer Electronics</a></dt>
-			<dt><a href="">Audio Devices</a></dt>
-			<dt><a href="">Gaming</a></dt>
-			<dt><a href="">Smart Watches</a></dt>
-			<dd><a href="">Gadgets & Gizmos</a></dd>
-			<dd><a href="">Cooking Knives</a></dd>
-			<dt><a href="">Home</a></dt>
-			<dd><a href="">Televisions</a></dd>
-			<dd><a href="">Video Players</a></dd>
-			<dd><a href="">Video Streaming</a></dd>
-			<dt><a href="">Shop by Brand</a></dt>
+			<dt><a href="/home/category">Consumer Electronics</a></dt>
+			<dt><a href="/home/category">Audio Devices</a></dt>
+			<dt><a href="/home/category">Gaming</a></dt>
+			<dt><a href="/home/category">Smart Watches</a></dt>
+			<dd><a href="/home/category">Gadgets & Gizmos</a></dd>
+			<dd><a href="/home/category">Cooking Knives</a></dd>
+			<dt><a href="/home/category">Home</a></dt>
+			<dd><a href="/home/category">Televisions</a></dd>
+			<dd><a href="/home/category">Video Players</a></dd>
+			<dd><a href="/home/category">Video Streaming</a></dd>
+			<dt><a href="/home/category">Shop by Brand</a></dt>
 		</dl>
 		<div class="featured-products fl">
 			<div class="fp-left fl">
 				<div class="fp-left-top widget borderR borderB">
-					<a href="">
+					<a href="/home/item?itemId=1">
 						<img src="/assets/images/home/a1.jpg">
 					</a>
 				</div>
 				<div class="fp-left-bottom">
 					<div class="fp-left-bottom-item widget borderR borderB fl">
-						<a href="">
+						<a href="/home/item?itemId=1">
 							<img src="/assets/images/home/a2.jpg">
 						</a>
 					</div>
 					<div class="fp-left-bottom-item widget borderR borderB fl">
-						<a href="">
+						<a href="/home/item?itemId=1">
 							<img src="/assets/images/home/a3.jpg">
 						</a>
 					</div>
@@ -86,17 +86,17 @@
 			</div>
 			<div class="fp-right fl">
 				<div class="fp-right-item widget borderR">
-					<a href="">
+					<a href="/home/item?itemId=1">
 						<img src="/assets/images/home/a4.jpg">
 					</a>
 				</div>
 				<div class="fp-right-item widget borderR borderT">
-					<a href="">
+					<a href="/home/item?itemId=1">
 						<img src="/assets/images/home/a5.jpg">
 					</a>
 				</div>
 				<div class="fp-right-item widget borderR borderB borderT">
-					<a href="">
+					<a href="/home/item?itemId=1">
 						<img src="/assets/images/home/a6.jpg">
 					</a>
 				</div>
@@ -173,56 +173,56 @@
 	<div class="btn-next"><img src="/assets/images/home/next.png"></div>
 	<ul  id="topsale0" class="dont_display">
 		<li>
-			<a href="">
+			<a href="/home/item?itemId=1">
 				<img class="p-thumbnail" src="/assets/images/home/463987260.jpg">
 				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
 				<span class="p-price">US$19.00</span>
 			</a>
 		</li>
 		<li>
-			<a href="">
+			<a href="/home/item?itemId=1">
 				<img class="p-thumbnail" src="/assets/images/home/fp2.jpg">
 				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
 				<span class="p-price">US$19.00</span>
 			</a>
 		</li>
 		<li>
-			<a href="">
+			<a href="/home/item?itemId=1">
 				<img class="p-thumbnail" src="/assets/images/home/fp3.jpg">
 				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
 				<span class="p-price">US$19.00</span>
 			</a>
 		</li>
 		<li>
-			<a href="">
+			<a href="/home/item?itemId=1">
 				<img class="p-thumbnail" src="/assets/images/home/fp3.jpg">
 				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
 				<span class="p-price">US$19.00</span>
 			</a>
 		</li>
 		<li>
-			<a href="">
+			<a href="/home/item?itemId=1">
 				<img class="p-thumbnail" src="/assets/images/home/fp3.jpg">
 				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
 				<span class="p-price">US$19.00</span>
 			</a>
 		</li>
 		<li>
-			<a href="">
+			<a href="/home/item?itemId=1">
 				<img class="p-thumbnail" src="/assets/images/home/fp3.jpg">
 				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
 				<span class="p-price">US$19.00</span>
 			</a>
 		</li>
 		<li>
-			<a href="">
+			<a href="/home/item?itemId=1">
 				<img class="p-thumbnail" src="/assets/images/home/fp4.jpg">
 				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
 				<span class="p-price">US$19.00</span>
 			</a>
 		</li>
 		<li>
-			<a href="">
+			<a href="/home/item?itemId=1">
 				<img class="p-thumbnail" src="/assets/images/home/fp5.jpg">
 				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
 				<span class="p-price">US$19.00</span>
@@ -231,56 +231,56 @@
 	</ul>
 	<ul id="topsale1" class="dont_display">
 		<li>
-			<a href="">
+			<a href="/home/item?itemId=1">
 				<img class="p-thumbnail" src="/assets/images/home/fp5.jpg">
 				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
 				<span class="p-price">US$19.00</span>
 			</a>
 		</li>
 		<li>
-			<a href="">
+			<a href="/home/item?itemId=1">
 				<img class="p-thumbnail" src="/assets/images/home/fp4.jpg">
 				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
 				<span class="p-price">US$19.00</span>
 			</a>
 		</li>
 		<li>
-			<a href="">
+			<a href="/home/item?itemId=1">
 				<img class="p-thumbnail" src="/assets/images/home/fp3.jpg">
 				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
 				<span class="p-price">US$19.00</span>
 			</a>
 		</li>
 		<li>
-			<a href="">
+			<a href="/home/item?itemId=1">
 				<img class="p-thumbnail" src="/assets/images/home/fp2.jpg">
 				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
 				<span class="p-price">US$19.00</span>
 			</a>
 		</li>
 		<li>
-			<a href="">
+			<a href="/home/item?itemId=1">
 				<img class="p-thumbnail" src="/assets/images/home/fp5.jpg">
 				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
 				<span class="p-price">US$19.00</span>
 			</a>
 		</li>
 		<li>
-			<a href="">
+			<a href="/home/item?itemId=1">
 				<img class="p-thumbnail" src="/assets/images/home/fp3.jpg">
 				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
 				<span class="p-price">US$19.00</span>
 			</a>
 		</li>
 		<li>
-			<a href="">
+			<a href="/home/item?itemId=1">
 				<img class="p-thumbnail" src="/assets/images/home/fp4.jpg">
 				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
 				<span class="p-price">US$19.00</span>
 			</a>
 		</li>
 		<li>
-			<a href="">
+			<a href="/home/item?itemId=1">
 				<img class="p-thumbnail" src="/assets/images/home/fp2.jpg">
 				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
 				<span class="p-price">US$19.00</span>
@@ -311,7 +311,7 @@
 				<div class="p-num fl"><?php echo $i;?></div>
 				<div class="p-shipping fr"><span class="shipping-icon"></span>S$3.90</div>
 			</div>
-			<a href="">
+			<a href="/home/item?itemId=1">
 				<img class="p-thumbnail" src="/assets/images/home/fp<?php echo $i;?>.jpg">
 				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
 				<span class="p-price">US$19.00</span>
@@ -326,7 +326,7 @@
 				<div class="p-num fl"><?php echo $i;?></div>
 				<div class="p-shipping fr"><span class="shipping-icon"></span>S$3.90</div>
 			</div>
-			<a href="">
+			<a href="/home/item?itemId=1">
 				<img class="p-thumbnail" src="/assets/images/home/fp<?php echo $i;?>.jpg">
 				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
 				<span class="p-price">US$19.00</span>
@@ -356,7 +356,7 @@
 	<ul id="recommendedShops0" class="dont_display">
 		<?php for($i=10;$i>0;$i--):?>
 		<li>
-			<a href="">
+			<a href="/home/item?itemId=1">
 				<img class="p-thumbnail" src="/assets/images/home/fp<?php echo $i;?>.jpg">
 			</a>
 		</li>
@@ -365,7 +365,7 @@
 	<ul id="recommendedShops1" class="dont_display">
 		<?php for($i=1;$i<11;$i++):?>
 		<li>
-			<a href="">
+			<a href="/home/item?itemId=1">
 				<img class="p-thumbnail" src="/assets/images/home/fp<?php echo $i;?>.jpg">
 			</a>
 		</li>
@@ -379,7 +379,7 @@
 	<ul class="floor-body p-style4 clearfix">
 		<?php for($i=1;$i<17;$i++):?>
 		<li>
-			<a href="">
+			<a href="/home/item?itemId=1">
 				<img class="p-thumbnail" src="/assets/images/home/b<?php echo $i;?>.jpg">
 			</a>
 		</li>

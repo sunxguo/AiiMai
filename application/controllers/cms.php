@@ -15,7 +15,7 @@ class Cms extends CI_Controller {
 		}else return true;
 	}
 	public function login(){
-		$this->load->view('home/login',array('title'=>"商户登录"));
+		$this->load->view('cms/login',array('title'=>"商户登录"));
 	}
 	public function loginHandler(){
 		if(isset($_POST["username"]) && isset($_POST["pwd"])){
@@ -103,13 +103,27 @@ class Cms extends CI_Controller {
 		$this->cmsBaseHandler('商品登录/修改',array('goodsManagement'=>true,'goods'=>true,'goodsStatistics'=>true),'goodsStatistics',array());
 	}
 	public function goodsAdd(){
-		$this->cmsBaseHandler('商品登录/修改',array('goodsManagement'=>true,'goods'=>true,'goodsAdd'=>true),'goodsAdd',array());
+		$categories=$this->commongetdata->getCategories(false);
+		$this->cmsBaseHandler('商品登录/修改',array('goodsManagement'=>true,'goods'=>true,'goodsAdd'=>true),'goodsAdd',array('categories'=>$categories));
 	}
 	public function goodsCopy(){
 		$this->cmsBaseHandler('商品登录/修改',array('goodsManagement'=>true,'goods'=>true,'goodsCopy'=>true),'goodsCopy',array());
 	}
 	public function goodsEdit(){
-		$this->cmsBaseHandler('商品登录/修改',array('goodsManagement'=>true,'goods'=>true,'goodsEdit'=>true),'goodsEdit',array());
+		$data=array(
+			"categories"=>$this->commongetdata->getCategories(false)
+		);
+		$this->cmsBaseHandler('商品登录/修改',array('goodsManagement'=>true,'goods'=>true,'goodsEdit'=>true),'goodsEdit',$data);
+	}
+	public function modifyGoods(){
+		$item=$this->commongetdata->getContent('product',$_GET['itemId']);
+		$data=array(
+			"categories"=>$this->commongetdata->getCategories(false),
+			"item"=>$item,
+			"subCatList"=>$this->commongetdata->getSubCat($item->product_category),
+			"subSubCatList"=>$this->commongetdata->getSubCat($item->product_sub_category),
+		);
+		$this->load->view('cms/modifyGoods',$data);
 	}
 	public function auctionGoods(){
 		$this->cmsBaseHandler('拍卖管理',array('goodsManagement'=>true,'auction'=>true,'auctionGoods'=>true),'auctionGoods',array());

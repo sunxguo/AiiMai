@@ -5,7 +5,9 @@
     <title><?php echo $title;?></title>
 	<link rel="stylesheet" href="/assets/css/base.css" type="text/css"/>
 	<link rel="stylesheet" href="/assets/css/home.css" type="text/css"/>
+	<link rel="stylesheet" href="/assets/css/template.css" type="text/css"/>
     <script src="/assets/js/jquery.js" type="text/javascript"></script>
+	<script src="/assets/js/home-common.js" type="text/javascript"></script>
 	<script src="/assets/js/home.js" type="text/javascript"></script>
 </head>
 <body>
@@ -19,13 +21,18 @@
 			</div>
 			<div class="my-func fr">
 				<ul>
+					<?php if(!isset($_SESSION['username']) || $_SESSION['usertype']!='user'):?>
 					<li><a href="/home/login">Log In</a></li>
 					<li>|</li>
 					<li><a href="/home/register">Register</a></li>
 					<li>|</li>
-					<li><a href="">MyPanel</a></li>
+					<?php else:?>
+					<li><a href="/home/mypanel"><?php echo $_SESSION['username'];?></a></li>
 					<li>|</li>
-					<li><a href="">My Cart</a></li>
+					<?php endif;?>
+					<li><a href="/home/mypanel">MyPanel</a></li>
+					<li>|</li>
+					<li><a href="/home/cart">My Cart</a></li>
 					<li>|</li>
 					<li><a href="">Help</a></li>
 				</ul>
@@ -49,13 +56,13 @@
 		<div class="header-bottom categories clearfix clearboth">
 			<ul id="categoriesList" class="clearfix">
 				<li><a href="/"><img src="/assets/images/home/home.png"></a></li>
-				<li class="active"><a href="" class="active">Fashion</a></li>
-				<li><a href="">Electronics</a></li>
-				<li><a href="">Home & Living</a></li>
-				<li><a href="">Health & Beauty</a></li>
-				<li><a href="">Sports & Outdoor</a></li>
-				<li><a href="">Baby & Kids</a></li>
-				<li><a href="">Deals & Services</a></li>
+				<li class="active"><a href="/home/category" class="active">Fashion</a></li>
+				<li><a href="/home/category">Electronics</a></li>
+				<li><a href="/home/category">Home & Living</a></li>
+				<li><a href="/home/category">Health & Beauty</a></li>
+				<li><a href="/home/category">Sports & Outdoor</a></li>
+				<li><a href="/home/category">Baby & Kids</a></li>
+				<li><a href="/home/category">Deals & Services</a></li>
 			</ul>
 		</div>
 	</div>

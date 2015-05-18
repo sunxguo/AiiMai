@@ -71,7 +71,133 @@ $(document).ready(function(){
 		$(this).prev().animate({'margin-left':destMl+'px'});
 	});
 });
-
+function checkuserName(){
+	var length = $("#username").val().length;
+	if(length<3 || length>15){	//3-15个字符
+//		alert("账号长度为3~15个字符！");
+		showAlert('danger','Account',' must be 3 to 15 characters!');
+		return false;
+	}else{
+		
+		return true;
+	}
+}
+function checkPwd(){
+	var length = $("#password").val().length;
+	if(length<6 || length>25){	//3-15个字符
+//		alert("密码长度为6~25个字符！");
+		showAlert('danger','Password',' must be 6 to 25 characters!');
+		return false;
+	}else{
+		
+		return true;
+	}
+}
+function checkCfmPwd(){
+	var pwd = $("#password").val();
+	var confirmpwd = $("#repassword").val();
+	if(pwd!=confirmpwd){	//3-15个字符
+//		alert("两次密码不一致！");
+		showAlert('danger','The two passwords',' you entered are different!');
+		return false;
+	}else{
+		
+		return true;
+	}
+}
+function checkCode(){
+	var checkResult=false;
+	if($("#validCode").val().length==4){
+//		dataHandler(funcType,dataType,postDataObj,callBack,confirmMsg,cancelCallBack,successMsg,refresh)
+		$.ajax({
+		  type : "post",
+		  url : "/common/checkCode",
+		  data : 'code='+$("#validCode").val(),
+		  async : false,
+		  success : function(data){
+			var result=$.parseJSON(data);
+			if(result.result=="failed"){
+				showAlert('danger','','Please enter the letters in the picture exactly!');
+				checkResult=false;
+			}else{
+				checkResult=true;
+			}
+		  }
+		});
+	}else{
+		showAlert('danger','','Please enter the letters in the picture exactly!');
+	}
+	return checkResult;
+}
+function checkAll(){
+	if(checkuserName() && checkPwd() && checkCfmPwd() && checkCode()){
+		validation();
+		return true;
+	}else{
+		invalidation();
+		return false;
+	}
+}
+function invalidation(){
+	$('#btnRegister').attr("style","cursor:default;background:#687685")
+}
+function validation(){
+	$("#btnRegister").attr("style","");
+}
+function register(){
+	if(checkAll()){
+//		dataHandler('add','user',postDataObj,callBack,confirmMsg,cancelCallBack,successMsg,refresh);
+		var user = new Object();
+		user.email = $("#email").val();
+		user.username = $("#username").val();
+		user.gender = $('input[name="gender"]:checked').val();
+		user.password = $("#password").val();
+//		user.repassword = $('#repassword').val();
+		user.country = $('#country').val();
+		
+//		dataHandler('add',"user",user,null,null,null,successMsg,true);
+		$.post("/common/addInfo",
+		{
+			'info_type':'register',
+			'data':JSON.stringify(user)
+		},
+		function(data){
+			var result=$.parseJSON(data);
+			if(result.result=="success"){
+				showAlert('danger','Register success! ','Please Login');
+				location.href="/home/login";
+			}else if(result.result=="notunique"){
+				showAlert('danger','Not unique',result.message);
+			}else{
+				showAlert('danger','Sorry,',' registration failed! Please try again later!');
+			}
+		});
+	}
+}
 function refreshCode(){
 	$("#validCodeImg").attr("src","/common/createVeriCode");
+}
+function plusOrderCnt(){
+	$("#order_cnt").val(parseInt($("#order_cnt").val(),10)+1);
+}
+function minusOrderCnt(){
+	if(parseInt($("#order_cnt").val(),10)>1)
+	$("#order_cnt").val(parseInt($("#order_cnt").val(),10)-1);
+}
+function addToCart(product_id,merchant_id,amount){
+	$.post(
+	"/common/addToCart",
+	{
+		'product_id':product_id,
+		'merchant_id':merchant_id,
+		'amount':amount
+	},
+	function(data){
+		var result=$.parseJSON(data);
+		if(result.result=="success"){
+			alert('Success Add to cart!');
+		}else{
+			alert(result.message);
+		}
+	});
 }

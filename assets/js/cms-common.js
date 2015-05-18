@@ -100,7 +100,7 @@ function dataHandler(funcType,dataType,postDataObj,callBack,confirmMsg,cancelCal
 		var result=$.parseJSON(data);
 		if(result.result=="success"){
 			if(successMsg) showMsg(successMsg);
-			if(callBack) callBack();
+			if(callBack) callBack(result.message);
 			if(refresh) location.reload();
 		}else{
 			alert(result.message);
@@ -157,6 +157,33 @@ function language(language){
 	function(data){
 		location.reload();
 	});
+}
+function mainCategoryChange(){
+	var category = new Object(); 
+	category.id = $("#MainCategory").val();
+	dataHandler('get','subCat',category,updateSubCategory,null,null,null,false);
+	stSubCategoryChange();
+}
+function stSubCategoryChange(){
+	var category = new Object(); 
+	category.id = $("#stSubCategory").val();
+	dataHandler('get','subCat',category,updateSubSubCategory,null,null,null,false);
+}
+function updateSubCategory(category){
+	var subCategory=category.subCats;
+	var subCats='<option value="-1">== 1st Sub Category ==</option>';
+	for(var index in subCategory){ 
+        subCats+='<option value="'+subCategory[index].category_id+'">'+subCategory[index].category_name+'</option>';
+    }
+	$("#stSubCategory").html(subCats);
+}
+function updateSubSubCategory(subCategory){
+	var subSubCategory=subCategory.subCats;
+	var subCats='<option value="-1">== 2nd Sub Category ==</option>';
+	for(var index in subSubCategory){ 
+        subCats+='<option value="'+subSubCategory[index].category_id+'">'+subSubCategory[index].category_name+'</option>';
+    }
+	$("#ndSubCategory").html(subCats);
 }
 /*
 //搜索
