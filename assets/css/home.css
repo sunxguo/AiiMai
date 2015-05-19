@@ -3359,3 +3359,46 @@ line-height: 28px;
 font-size: 15px;
 color: #ed0a0a;
 }
+.titKeyType {
+position: relative;
+}
+.titKeyType p {
+position: absolute;
+top: 42px;
+left: 161px;
+font-size: 140%;
+font-weight: bold;
+color: #000;
+}
+.sllr_step ul {
+overflow: hidden;
+position: relative;
+margin: 14px 0;
+border: 1px solid #d9d9d9;
+border-radius: 6px;
+}
+.sllr_step li {
+float: left;
+position: relative;
+z-index: 0;
+display: block;
+padding: 0 45px 0 20px;
+height: 38px;
+line-height: 38px;
+font-weight: bold;
+font-size: 14px;
+color: #d0d0d0;
+background-color: #fff;
+background: url(/assets/images/home/bul_member.png) right -690px no-repeat;
+}
+.sllr_step li.on {
+z-index: -1;
+left: -20px;
+padding-left: 40px;
+color: #fff;
+background-color: #9bcdff !important;
+background-position: right -730px;
+}
+.sllr_step li.last-child, .sllr_step li:last-child {
+background: none;
+}

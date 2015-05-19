@@ -85,6 +85,21 @@ class Common extends CI_Controller {
 					"user_reg_time"=>date("Y-m-d H:i:s")
 				);
 			break;
+			case "merchant":
+				$table="merchant";
+				if(!$this->commongetdata->checkUnique("merchant",$data->username)){
+					echo json_encode(array("result"=>"notunique","message"=>"该用户名已经存在"));
+					return false;
+				}
+				$info=array(
+					"merchant_username"=>$data->username,
+					"merchant_pwd"=>MD5("MonkeyKing".$data->password),
+					"merchant_grade"=>1,
+					"merchant_gender"=>$data->gender,
+					"merchant_country"=>$data->country,
+					"merchant_reg_time"=>date("Y-m-d H:i:s")
+				);
+			break;
 		}
 		$result=$this->dbHandler->insertData($table,$info);
 		if($result==1) echo json_encode(array("result"=>"success","message"=>"信息写入成功"));

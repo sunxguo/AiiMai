@@ -29,6 +29,8 @@
 					<?php else:?>
 					<li><a href="/home/mypanel"><?php echo $_SESSION['username'];?></a></li>
 					<li>|</li>
+					<li><a href="/home/logout">Log Out</a></li>
+					<li>|</li>
 					<?php endif;?>
 					<li><a href="/home/mypanel">MyPanel</a></li>
 					<li>|</li>

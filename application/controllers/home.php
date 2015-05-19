@@ -49,7 +49,7 @@ class Home extends CI_Controller {
 		unset($_SESSION["username"]);
 		unset($_SESSION["userid"]);
 		unset($_SESSION["usertype"]);
-		$this->load->view('redirect',array("url"=>"/home"));
+		$this->load->view('redirect',array());
 	}
 	public function homeBaseHandler($title,$view,$data,$footerData=array()){
 		$websiteConfig=$this->commongetdata->getWebsiteConfig("ALLINFO");
@@ -111,6 +111,7 @@ class Home extends CI_Controller {
 		$this->homeBaseHandler('Place Order','placeOrder',$data);
 	}
 	public function mypanel(){
+		$this->checkUserLogin();
 		$data=array(
 			'cart'=>$this->commongetdata->getCartListByMerchants()
 		);

@@ -70,12 +70,15 @@ $(document).ready(function(){
 		var destMl=(ml==-976*(group-1))?0:(ml-976);
 		$(this).prev().animate({'margin-left':destMl+'px'});
 	});
+	$("input[name='checkAllCartButton']").click(function(){
+		$("input[name='cartItem']").attr("checked",$(this).attr("checked"));
+	});
 });
 function checkuserName(){
 	var length = $("#username").val().length;
 	if(length<3 || length>15){	//3-15个字符
 //		alert("账号长度为3~15个字符！");
-		showAlert('danger','Account',' must be 3 to 15 characters!');
+		showAlert('danger','Username',' must be 3 to 15 characters!');
 		return false;
 	}else{
 		
@@ -166,6 +169,37 @@ function register(){
 			if(result.result=="success"){
 				showAlert('danger','Register success! ','Please Login');
 				location.href="/home/login";
+			}else if(result.result=="notunique"){
+				showAlert('danger','Not unique',result.message);
+			}else{
+				showAlert('danger','Sorry,',' registration failed! Please try again later!');
+			}
+		});
+	}
+}
+function sellerRegister(){
+	if(checkAll()){
+//		dataHandler('add','user',postDataObj,callBack,confirmMsg,cancelCallBack,successMsg,refresh);
+		var merchant = new Object();
+		merchant.email = $("#email").val();
+		merchant.username = $("#username").val();
+		merchant.gender = $('input[name="gender"]:checked').val();
+		merchant.password = $("#password").val();
+//		user.repassword = $('#repassword').val();
+		merchant.country = $('#country').val();
+		
+//		dataHandler('add',"user",user,null,null,null,successMsg,true);
+		$.post("/common/addInfo",
+		{
+			'info_type':'merchant',
+			'data':JSON.stringify(merchant)
+		},
+		function(data){
+			var result=$.parseJSON(data);
+			if(result.result=="success"){
+				showAlert('danger','Register success! ','Please Login');
+				//Please fill in the details
+				location.href="/cms/login";
 			}else if(result.result=="notunique"){
 				showAlert('danger','Not unique',result.message);
 			}else{

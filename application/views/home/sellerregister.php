@@ -1,27 +1,27 @@
 <div class="main-floor no-border">
-	<div class="register-header">
-		<h2>Register</h2>
-		<span class="reg-tip">
-			- $2 Cart Coupon for New Member <br>
-			- 100 Apoint reward for Mobile App Download Member
-		</span>
+	<div class="titKeyType">
+		<img src="/assets/images/home/sellerregistertop.png">
+		<p>You want to be a seller?</p>
 	</div>
+	<div class="sllr_step">
+        <ul>
+            <li class="on">01. Create Account</li>
+            <li class="">02. Member Confirmation</li>
+            <li class="">03. Seller Information</li>
+            <li class="last-child">04. Complete Registration</li>
+        </ul>
+    </div>
 	<div class="register-main-top">
 		<h3>Tell us about yourself</h3>
-		<p class="reg-sns">
-			<a href="javascript:;" class="icon_fb">Facebook Login</a>
-			<span class="txt">Register with your facebook account</span>
-		</p>
-		<div class="reg-seller fr">
-			<strong>※ Do you want to sell items? </strong>
-			<a href="/cms/register">Seller Register</a>
-		</div>
 	</div>
 	<div class="register-main-body">
 		<table>
 			<tr>
 				<td>Email</td>
-				<td><input type="text" id="email" placeholder="example:xxx@gmail.com" class="inp-txt width250"></td>
+				<td>
+					<input type="text" id="email" placeholder="example:xxx@gmail.com" class="inp-txt width250">
+					
+				</td>
 			</tr>
 			<tr>
 				<td>Name</td>
@@ -108,9 +108,10 @@
 			</p>
 		</div>
 		<div class="reg-btn">
-			<input type="button" class="btn-big" id="btnRegister" onclick="register()" value="Create Account">
+			<input type="button" class="btn-big" id="btnRegister" onclick="sellerRegister()" value="Create Account & Next Step">
 		</div>
 	</div>
+	<!--
 	<div class="register-main-bottom clearfix">
 		<div class="clearSelf">
 			<p class="fl">※ Already registered and want to sell? </p>
@@ -118,6 +119,7 @@
 			<br><p class="fl">※ If you are not a member of AiiMai yet, please create an account first, then you can register as a seller.</p>
 		</div>
 	</div>
+	-->
 </div>
 <script>
 	refreshCode();
