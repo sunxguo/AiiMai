@@ -46,7 +46,7 @@
 		<ul class="cart-header">
 			<li style="width:6%;"><input onclick="checkAllCart()" type="checkbox" name="checkAllCartButton" checked> all</li>
 			<li style="width:94%;">
-				<button onclick=";" type="button" class="km-btn km-btn-danger" style="height: 22px;font-size: 12px;padding: 2px 20px;">Delete from Cart</button>
+				<button onclick="removeFromCart();" type="button" class="km-btn km-btn-danger" style="height: 22px;font-size: 12px;padding: 2px 20px;">Delete from Cart</button>
 			</li>
 		</ul>
 	</div>

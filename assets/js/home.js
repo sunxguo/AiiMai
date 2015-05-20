@@ -232,6 +232,34 @@ function addToCart(product_id,merchant_id,amount){
 		}
 	});
 }
+function removeFromCart(){
+	var productIdArray=getCheckValue();
+	if(productIdArray.length==0){
+		alert('You have not selected any content!');
+		return false;
+	}
+	$.post(
+	"/common/removeFromCart",
+	{
+		'productIdArray':JSON.stringify(productIdArray)
+	},
+	function(data){
+		var result=$.parseJSON(data);
+		if(result.result=="success"){
+			alert('Success remove from cart!');
+			location.reload();
+		}else{
+			alert(result.message);
+		}
+	});
+}
+function getCheckValue(){
+	var productIdArray =[]; 
+	$('input[name="cartItem"]:checked').each(function(){ 
+		productIdArray.push($(this).val()); 
+	});
+	return productIdArray;
+}
 var isCheck=true;
 function checkAllCart(){
 	isCheck=!isCheck;

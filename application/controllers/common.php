@@ -277,6 +277,13 @@ class Common extends CI_Controller {
 		$this->commongetdata->addToCart($_POST['product_id'],$_POST['merchant_id'],$_POST['amount']);
 		echo json_encode(array("result"=>"success","message"=>''));
 	}
+	public function removeFromCart(){
+		$produts=json_decode($_POST['productIdArray']);
+		foreach($produts as $p){
+			$this->commongetdata->removeFromCart($p);
+		}
+		echo json_encode(array("result"=>"success","message"=>''));
+	}
 	public function uploadImage(){
 		$result=upload("image");
 		echo json_encode($result);

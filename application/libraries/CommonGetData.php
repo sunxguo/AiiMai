@@ -353,6 +353,18 @@ class CommonGetData{
 		$_SESSION['cart'] =($cart);
 		return true;
 	}
+	
+	/**
+	 * 从购物车中删除商品
+	 * @param string $product_id
+	 * @return bool success
+	 */
+	function removeFromCart($product_id){
+		$this->_ensureCartInSession();
+
+		unset($_SESSION["cart"][$product_id]);
+		return true;
+	}
 	/**
 	 * 获得购物车里面的商品列表，而且是根据商家组织好的
 	 * @return array return
