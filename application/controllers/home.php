@@ -10,7 +10,7 @@ class Home extends CI_Controller {
 	}
 	public function checkUserLogin(){
 		if (!checkLogin() || strcmp($_SESSION["usertype"], "user")) {
-			$this->load->view('redirect',array("url"=>"/home/login","info"=>"请先登录账号"));
+			$this->load->view('redirect',array("url"=>"/home/login","info"=>"Please login!"));
 			return false;
 		}else return true;
 	}

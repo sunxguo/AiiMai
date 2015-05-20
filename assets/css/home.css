@@ -3402,3 +3402,6 @@ background-position: right -730px;
 .sllr_step li.last-child, .sllr_step li:last-child {
 background: none;
 }
+.panelIndex .arrowTd{
+	background:url(/assets/images/home/status_arrow.png) right 50% no-repeat;
+}
