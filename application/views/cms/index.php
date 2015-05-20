@@ -72,24 +72,24 @@
         <tbody>
 			<tr>
 				<td><?php echo lang('cms_index_General');?></td>
-				<td><a href="" target="_blank">关于中国-广州Qxpress 集散中心采取施行等级制度的通知</a></td>
+				<td><a href="" target="_blank">Changes to policy of requesting DailyDeal Premium</a></td>
 				<td>2015-04-07</td>
 			</tr>
 			<tr>
 				<td><?php echo lang('cms_index_General');?></td>
-				<td><a href="" target="_blank">关于中国-广州Qxpress 集散中心采取施行等级制度的通知</a></td>
+				<td><a href="" target="_blank">Changes to policy of requesting DailyDeal Premium</a></td>
 				<td>2015-04-07</td>
 			</tr>
 			<tr>
 				<td><?php echo lang('cms_index_General');?></td>
-				<td><a href="" target="_blank">关于中国-广州Qxpress 集散中心采取施行等级制度的通知</a></td>
+				<td><a href="" target="_blank">Changes to policy of requesting DailyDeal Premium</a></td>
 				<td>2015-04-07</td>
 			</tr>
 			<tr>
 				<td><?php echo lang('cms_index_General');?></td>
-				<td><a href="" target="_blank">关于中国-广州Qxpress 集散中心采取施行等级制度的通知</a></td>
+				<td><a href="" target="_blank">Changes to policy of requesting DailyDeal Premium</a></td>
 				<td>2015-04-07</td>
 			</tr>
 	</table>
-	<div class="qsm-ad"><a href="" target="_blank"><img src="/assets/temp/cms-ad.jpg"></a></div>
+	<div class="qsm-ad"><a href="" target="_blank"><img src="/assets/temp/cms-ad-english.jpg"></a></div>
 </div>

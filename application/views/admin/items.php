@@ -1,7 +1,7 @@
 <div class="padding10 contentlist column-list">
 	<div class="titA tit-bot pb5" style="">
 		<div style="float: right;margin-left:10px;">
-			<a href="/admin/addColumn" class="msg-btn">添加栏目</a>
+			<a href="/admin/addColumn" class="msg-btn">Search</a>
 		</div>
 		<div class="clear">
 		</div>
@@ -9,12 +9,11 @@
 	<table>
 		<thead>
 			<tr class="table-head">
-				<th style="width:100px;">商品缩略图</th>
-				<th style="width:400px;">商品名称</th>
-				<th style="width:150px;">价格</th>
-				<th style="width:150px;">是否上架</th>
-				<th style="width:150px;">排序</th>
-				<th style="width:280px;">操作</th>
+				<th style="width:100px;">Thumbnail</th>
+				<th style="width:400px;">Name</th>
+				<th style="width:150px;">Price</th>
+				<th style="width:150px;">Shelf</th>
+				<th style="width:280px;">Operation</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -24,11 +23,10 @@
 				<td class="column-name"><?php echo $col->column_name;?></td>
 				<td><?php echo $col->column_display;?></td>
 				<td><?php echo $col->column_type;?></td>
-				<td><?php echo $col->column_ordernum;?></td>
 				<td>
-					<a href="/admin/contentList?column=<?php echo $col->column_id;?>">内容</a>
-					<a href="/admin/editColumn?column=<?php echo $col->column_id;?>">编辑</a>
-					<a href="javascript:delColumn('<?php echo $col->column_id;?>','确定删除<<?php echo $col->column_name;?>>？','成功删除 <?php echo $col->column_name;?>')">删除</a>
+					<a href="/admin/contentList?column=<?php echo $col->column_id;?>">Preview</a>
+					<a href="/admin/editColumn?column=<?php echo $col->column_id;?>">Edit</a>
+					<a href="javascript:delColumn('<?php echo $col->column_id;?>','确定删除<<?php echo $col->column_name;?>>？','成功删除 <?php echo $col->column_name;?>')">Delete</a>
 				</td>
 			</tr>
 			<?php endforeach;?>

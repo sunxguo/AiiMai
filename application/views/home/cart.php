@@ -15,7 +15,7 @@
 	<div class="clearfix">
 		<h3 class="cart-title">Shopping List</h3>
 		<ul class="cart-header">
-			<li style="width:10%;"><input type="checkbox" name="checkAllCartButton" checked> all</li>
+			<li style="width:10%;"><input onclick="checkAllCart()" type="checkbox" name="checkAllCartButton" checked> all</li>
 			<li style="width:40%;">Item</li>
 			<li style="width:10%;">Benefit</li>
 			<li style="width:10%;">Qty.</li>
@@ -27,7 +27,7 @@
 			<?php foreach($cart as $merchant):?>
 			<?php foreach($merchant['products'] as $product):?>
 			<ul class="clearfix">
-				<li style="width:10%;"><input type="checkbox" name="cartItem"></li>
+				<li style="width:10%;"><input value="<?php echo $product->product_id;?>" type="checkbox" name="cartItem" checked></li>
 				<li style="width:40%;">
 					<a href="/home/item?itemId=<?php echo $product->product_id;?>" target="_blank">
 						<img src="<?php echo $product->product_image;?>" width="82" height="82">
@@ -44,7 +44,7 @@
 			<?php endforeach;?>
 		</div>
 		<ul class="cart-header">
-			<li style="width:6%;"><input type="checkbox" name="checkAllCartButton"> all</li>
+			<li style="width:6%;"><input onclick="checkAllCart()" type="checkbox" name="checkAllCartButton" checked> all</li>
 			<li style="width:94%;">
 				<button onclick=";" type="button" class="km-btn km-btn-danger" style="height: 22px;font-size: 12px;padding: 2px 20px;">Delete from Cart</button>
 			</li>

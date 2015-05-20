@@ -70,9 +70,6 @@ $(document).ready(function(){
 		var destMl=(ml==-976*(group-1))?0:(ml-976);
 		$(this).prev().animate({'margin-left':destMl+'px'});
 	});
-	$("input[name='checkAllCartButton']").click(function(){
-		$("input[name='cartItem']").attr("checked",$(this).attr("checked"));
-	});
 });
 function checkuserName(){
 	var length = $("#username").val().length;
@@ -234,4 +231,10 @@ function addToCart(product_id,merchant_id,amount){
 			alert(result.message);
 		}
 	});
+}
+var isCheck=true;
+function checkAllCart(){
+	isCheck=!isCheck;
+	$("input[name='cartItem']").attr("checked",isCheck);
+	$("input[name='checkAllCartButton']").attr("checked",isCheck);
 }
