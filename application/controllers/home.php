@@ -97,6 +97,7 @@ class Home extends CI_Controller {
 			'loginUrl'=>$user?'':$loginUrl
 		);
 		print_r($data);
+		print_r($_SESSION);
 		$this->homeBaseHandler('Register','register',$data);
 	}
 	public function confirmEmail(){
