@@ -70,7 +70,32 @@ class Home extends CI_Controller {
 		$this->homeBaseHandler('Home','index',$data,array("showFooter"=>false));
 	}
 	public function register(){
-		$data=array();
+		$this->load->library('Facebook',array(
+		  'appId'  => '705101599598980',
+		  'secret' => '344d05ab622eeb60e9c72aa03c3bb7dd',
+		));
+		$user=$this->facebook->getUser();
+		if ($user) {
+		  try {
+			// Proceed knowing you have a logged in user who's authenticated.
+			$user_profile = $this->facebook->api('/me');
+		  } catch (FacebookApiException $e) {
+			error_log($e);
+			$user = null;
+		  }
+		}
+		// Login or logout url will be needed depending on current user state.
+		if ($user) {
+		  $logoutUrl = $this->facebook->getLogoutUrl();
+		} else {
+		  $loginUrl = $this->facebook->getLoginUrl();
+		}
+		$data=array(
+			'user'=>$user,
+			'profile'=>$user?$user_profile:array(),
+			'logoutUrl'=>$user?$logoutUrl:'',
+			'loginUrl'=>$user?'':$loginUrl
+		);
 		$this->homeBaseHandler('Register','register',$data);
 	}
 	public function confirmEmail(){
@@ -127,6 +152,13 @@ class Home extends CI_Controller {
 			'cart'=>$this->commongetdata->getCartListByMerchants()
 		);
 		$this->homeBaseHandler('Recent Orders','recentOrders',$data);
+	}
+	public function cancelRefund(){
+		$this->checkUserLogin();
+		$data=array(
+			'cart'=>$this->commongetdata->getCartListByMerchants()
+		);
+		$this->homeBaseHandler('Cancel Refund','cancelRefund',$data);
 	}
 	/*
 	public function contentList(){

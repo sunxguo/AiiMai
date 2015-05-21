@@ -9,7 +9,7 @@
 	<div class="register-main-top">
 		<h3>Tell us about yourself</h3>
 		<p class="reg-sns">
-			<a href="javascript:;" class="icon_fb">Facebook Login</a>
+			<a href="<?php echo $loginUrl;?>" class="icon_fb">Facebook Login</a>
 			<span class="txt">Register with your facebook account</span>
 		</p>
 		<div class="reg-seller fr">
