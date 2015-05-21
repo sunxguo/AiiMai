@@ -121,6 +121,13 @@ class Home extends CI_Controller {
 		);
 		$this->homeBaseHandler('My Panel','panel',$data);
 	}
+	public function recentOrders(){
+		$this->checkUserLogin();
+		$data=array(
+			'cart'=>$this->commongetdata->getCartListByMerchants()
+		);
+		$this->homeBaseHandler('Recent Orders','recentOrders',$data);
+	}
 	/*
 	public function contentList(){
 		$type=isset($_GET['type'])?$_GET['type']:"essay";//默认为文章
