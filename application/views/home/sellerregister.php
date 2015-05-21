@@ -24,7 +24,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>Name</td>
+				<td>Username</td>
 				<td><input type="text" id="username" placeholder="" class="inp-txt width250"></td>
 			</tr>
 			<tr>
@@ -55,6 +55,7 @@
 				<td>
 					<select class="select" id="country">
 						<option value="">Choose Country</option>
+						<option value="SG">Singapore</option>
 						<option value="AU">Australia</option>
 						<option value="BR">Brazil</option>
 						<option value="BN">Brunei Darussalam</option>

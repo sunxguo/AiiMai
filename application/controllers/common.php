@@ -81,9 +81,11 @@ class Common extends CI_Controller {
 					"user_pwd"=>MD5("MonkeyKing".$data->password),
 					"user_grade"=>1,
 					"user_gender"=>$data->gender,
+					"user_email"=>$data->email,
 					"user_country"=>$data->country,
 					"user_reg_time"=>date("Y-m-d H:i:s")
 				);
+				$_SESSION['userEmail']=$data->email;
 			break;
 			case "merchant":
 				$table="merchant";
@@ -303,6 +305,34 @@ class Common extends CI_Controller {
 		}else{
 			echo json_encode(array("result"=>"failed","message"=>"验证码输入错误！"));
 		}
+	}
+	public function checkEmail(){
+		if(!$this->commongetdata->checkUniqueAdvance("user","user_email",$_POST['email'])){
+			echo json_encode(array("result"=>"notunique","message"=>"该用户名已经存在"));
+			return false;
+		}else{
+			echo json_encode(array("result"=>"failed","message"=>"验证码输入错误！"));
+		}
+	}
+	public function confirmEmail(){
+		!$this->commongetdata->checkUniqueAdvance("user","user_email",$_GET['email']);
+		$condition['table']="user";
+		$condition['where']=array("user_email"=>$_GET['email']);
+		$condition['data']=array(
+			"user_confirm_email"=>1
+		);
+		$result=$this->dbHandler->updateData($condition);
+		if($result==1) echo json_encode(array("result"=>"success","message"=>"success"));
+		else echo json_encode(array("result"=>"failed","message"=>"failed"));
+	}
+	public function sendEmail(){
+		$this->commongetdata->email($_SESSION['userEmail'],'Successfully Registered. | Confirm E-mail!','<a href="aiimai.coolkeji.com/common/confirmEmail?email='.$_SESSION['userEmail'].'">Confirm</a>');
+		echo json_encode(array("result"=>"success","message"=>"验证码输入正确！"));
+		/*		if(){
+			echo json_encode(array("result"=>"success","message"=>"验证码输入正确！"));
+		}else{
+			echo json_encode(array("result"=>"failed","message"=>"验证码输入错误！"));
+		}*/
 	}
 	/*
 	public function getSubCat(){

@@ -21,10 +21,13 @@
 		<table>
 			<tr>
 				<td>Email</td>
-				<td><input type="text" id="email" placeholder="example:xxx@gmail.com" class="inp-txt width250"></td>
+				<td>
+					<input type="text" id="email" placeholder="example:xxx@gmail.com" class="inp-txt width250">
+					<button onclick="checkUserEmail();" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 10px;padding: 5px 10px;">Validation Check</button>
+				</td>
 			</tr>
 			<tr>
-				<td>Name</td>
+				<td>Username</td>
 				<td><input type="text" id="username" placeholder="" class="inp-txt width250"></td>
 			</tr>
 			<tr>
@@ -55,6 +58,7 @@
 				<td>
 					<select class="select" id="country">
 						<option value="">Choose Country</option>
+						<option value="SG">Singapore</option>
 						<option value="AU">Australia</option>
 						<option value="BR">Brazil</option>
 						<option value="BN">Brunei Darussalam</option>

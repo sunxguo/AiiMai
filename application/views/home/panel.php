@@ -115,4 +115,43 @@
 			</tr>
 		</table>
 	</div>
+	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
+		<div class="km-panel-heading">Recent Orders (Last 10 orders)</div>
+		<div class="km-panel-body" style="padding:0px;">
+			<table class="km-table">
+				<tbody>
+				  
+				</tbody>
+			</table>
+		</div>
+		<div style="overflow:auto;">
+			<table class="km-table" style="overflow:scroll;width:100%;">
+				<tbody>
+				  <tr style="border-top:2px solid #ddd;border-bottom:2px solid #ddd;">
+					<td class="field width6p br">Cart no.(Date)</td>
+					<td class="field width6p br">Item</td>
+					<td class="field width6p br">Qty</td>
+					<td class="field width6p br">Payment</td>
+					<td class="field width6p br">Shipping</td>
+					<td class="field width6p br">Status</td>
+					<td class="field width6p">Remarks</td>
+				  </tr>
+				  <!--
+				  <tr>
+					<td class="value br"></td>
+					<td class="value br"></td>
+					<td class="value br"></td>
+					<td class="value br"></td>
+					<td class="value br"></td>
+					<td class="value br"></td>
+					<td class="value"></td>
+				  </tr>
+				  -->
+				  <tr>
+					<td class="value br" colspan="7">There is no shopping list for 3 months.</td>
+				  </tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </div>

@@ -305,6 +305,19 @@ class CommonGetData{
 		}
 		return $result;
 	}
+	public function checkUniqueAdvance($type,$field,$value){
+		$result=false;
+		$condition=array(
+			'table'=>$type,
+			'result'=>'data',
+			'where'=>array($field=>$value)
+		);
+		$data=$this->getData($condition);
+		if(sizeof($data)<1){
+			$result=true;
+		}
+		return $result;
+	}
 	/**
 	 *  商户id（$_SESSION['userid']），1级类别，2级类别，3级类别，状态，发布时间，最后修改时间，销售方式，商品标题
 	 **/
@@ -391,6 +404,31 @@ class CommonGetData{
 			$result[$merchant_id]["products"][$product_id] = $product_info;
 		}
 		return $result;
+	}
+	public function email($to,$subject,$message){
+		$this->CI->load->library('email');
+		//以下设置Email参数
+		$config['protocol'] = 'smtp';
+		$config['smtp_host'] = 'smtp.163.com';
+		$config['smtp_user'] = 'sunxguo@163.com';
+		$config['smtp_pass'] = '19910910Mk1024';
+		$config['smtp_port'] = '25';
+		$config['charset'] = 'utf-8';
+		$config['wordwrap'] = TRUE;
+		$config['mailtype'] = 'html';
+		$this->CI->email->initialize($config);
+		//以下设置Email内容
+		$this->CI->email->from('sunxguo@163.com', 'AiiMai');
+		$this->CI->email->to($to); 
+	//			$this->email->cc('another@another-example.com'); 
+	//			$this->email->bcc('them@their-example.com'); 
+
+		$this->CI->email->subject($subject);
+		$this->CI->email->message($message); 
+
+		$this->CI->email->send();
+
+	//			echo $this->email->print_debugger();
 	}
 }
 

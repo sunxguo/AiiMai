@@ -73,6 +73,10 @@ class Home extends CI_Controller {
 		$data=array();
 		$this->homeBaseHandler('Register','register',$data);
 	}
+	public function confirmEmail(){
+		$data=array();
+		$this->homeBaseHandler('Confirm E-mail!','confirmEmail',$data);
+	}
 	public function login(){
 		$data=array();
 		$this->homeBaseHandler('Login','login',$data);

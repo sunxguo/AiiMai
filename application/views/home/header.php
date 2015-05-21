@@ -36,6 +36,8 @@
 					<li>|</li>
 					<li><a href="/home/cart">My Cart</a></li>
 					<li>|</li>
+					<li><a href="/cms/login">ASM</a></li>
+					<li>|</li>
 					<li><a href="">Help</a></li>
 				</ul>
 			</div>

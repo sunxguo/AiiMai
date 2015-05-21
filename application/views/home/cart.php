@@ -37,8 +37,8 @@
 				<li style="width:10%;">XX</li>
 				<li style="width:10%;"><input class="inp-txt" style="width:25px;" value="<?php echo $product->amount;?>"></li>
 				<li style="width:10%;">S$<?php echo $product->product_sell_price;?></li>
-				<li style="width:10%;">-S$4.00</li>
-				<li style="width:10%;">S$14.00</li>
+				<li style="width:10%;">-S$0.00</li>
+				<li style="width:10%;">S$0.00</li>
 			</ul>
 			<?php endforeach;?>
 			<?php endforeach;?>
@@ -53,8 +53,8 @@
 	<div class="order_inf">
 		<div class="pay_inf">
 			<dl>
-				<dt>Item Price(1)</dt>
-				<dd><span id="">S$14.00</span></dd>
+				<dt>Item Price(0)</dt>
+				<dd><span id="">S$0.00</span></dd>
 			</dl>
 			<dl>
 				<dt>Shop/Cart Coupon(0) <a href="javascript:goMyCartCoupon();" class="btn_mycp">Use My Coupons</a></dt>
@@ -62,12 +62,12 @@
 			</dl>
 			<dl>
 				<dt>Shipping rate <a href="javascript:openShippingDetail()" class="icon_dtl">see detail</a></dt>
-				<dd><span id="">S$3.99</span></dd>
+				<dd><span id="">S$0.00</span></dd>
 			</dl>
 			<dl class="total">
 				<dt>total price</dt>
 				<dd>
-					<span id="" class="exchange">S$17.99</span> <strong class="exchange"></strong>
+					<span id="" class="exchange">S$0.00</span> <strong class="exchange"></strong>
 				</dd>
 			</dl>
 		</div>
