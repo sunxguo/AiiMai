@@ -3146,6 +3146,9 @@ min-height: 21px;
 line-height: 18px;
 background: url(/assets/images/home/cm_addr.png) -260px -520px no-repeat;
 }
+.gsm_mail {
+background-position: -260px -625px;
+}
 .order_tb.shp_inf td .gsm_phone {
 display: inline-block;
 zoom: 1;

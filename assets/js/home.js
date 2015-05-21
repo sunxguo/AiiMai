@@ -175,6 +175,22 @@ function sendEmail(){
 	  }
 	});
 }
+function sendMerchantEmail(){
+	$.ajax({
+	  type : "post",
+	  url : "/common/sendMerchantEmail",
+	  data : 'email=ok',
+	  async : false,
+	  success : function(data){
+		var result=$.parseJSON(data);
+		if(result.result=="success"){
+			showAlert('success','Email ','sent successfully!');
+		}else{
+			showAlert('danger','Failed!','Please send e-mail again!');
+		}
+	  }
+	});
+}
 function checkAll(){
 	if(checkuserName() && checkPwd() && checkCfmPwd() && checkCode()){
 		validation();
@@ -240,9 +256,9 @@ function sellerRegister(){
 		function(data){
 			var result=$.parseJSON(data);
 			if(result.result=="success"){
-				showAlert('danger','Register success! ','Please Login');
+				showAlert('danger','Register success! ','Please fill in the details');
 				//Please fill in the details
-				location.href="/cms/login";
+				location.href="/cms/registerInformation";
 			}else if(result.result=="notunique"){
 				showAlert('danger','Not unique',result.message);
 			}else{
@@ -311,4 +327,29 @@ function checkAllCart(){
 	isCheck=!isCheck;
 	$("input[name='cartItem']").attr("checked",isCheck);
 	$("input[name='checkAllCartButton']").attr("checked",isCheck);
+}
+function checkID(){
+	if ($("#ID").val() == "") {
+		showAlert('danger','ID Login',' can not be empty!');
+		$("#ID").focus(); 
+		return false; 
+	}
+	var checkResult=false;
+	$.ajax({
+	  type : "post",
+	  url : "/common/checkID",
+	  data : 'ID='+$("#ID").val(),
+	  async : false,
+	  success : function(data){
+		var result=$.parseJSON(data);
+		if(result.result=="notunique"){
+			showAlert('danger','['+$("#ID").val()+']','already exists!');
+			checkResult=false;
+		}else{
+			showAlert('success','Congratulation!','Available!');
+			checkResult=true;
+		}
+	  }
+	});
+	return checkResult; 
 }

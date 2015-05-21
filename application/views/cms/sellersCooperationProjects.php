@@ -6,7 +6,7 @@
 <div class="" style="padding-left:30px;">
 	<ul class="km-nav km-nav-tabs clearfix">
 	  <li class="active"><a href="/cms/sellersCooperationProjects">ShoppingTalk Affiliate Reward Program</a></li>
-	  <li><a href="/cms/affiliate">Affiliate结算</a></li>
+	  <li><a href="/cms/affiliate">Share Affiliate Settlement<!--Affiliate结算--></a></li>
 	</ul>
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
 		<div class="km-panel-heading">Shop Standard Affiliate Program</div>

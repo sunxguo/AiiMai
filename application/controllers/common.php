@@ -98,9 +98,11 @@ class Common extends CI_Controller {
 					"merchant_pwd"=>MD5("MonkeyKing".$data->password),
 					"merchant_grade"=>1,
 					"merchant_gender"=>$data->gender,
+					"merchant_email"=>$data->email,
 					"merchant_country"=>$data->country,
 					"merchant_reg_time"=>date("Y-m-d H:i:s")
 				);
+				$_SESSION['merchantEmail']=$data->email;
 			break;
 		}
 		$result=$this->dbHandler->insertData($table,$info);
@@ -314,12 +316,31 @@ class Common extends CI_Controller {
 			echo json_encode(array("result"=>"failed","message"=>"验证码输入错误！"));
 		}
 	}
+	public function checkID(){
+		if(!$this->commongetdata->checkUniqueAdvance("merchant","merchant_login_ID",$_POST['ID'])){
+			echo json_encode(array("result"=>"notunique","message"=>"该用户名已经存在"));
+			return false;
+		}else{
+			echo json_encode(array("result"=>"failed","message"=>"验证码输入错误！"));
+		}
+	}
 	public function confirmEmail(){
 		!$this->commongetdata->checkUniqueAdvance("user","user_email",$_GET['email']);
 		$condition['table']="user";
 		$condition['where']=array("user_email"=>$_GET['email']);
 		$condition['data']=array(
 			"user_confirm_email"=>1
+		);
+		$result=$this->dbHandler->updateData($condition);
+		if($result==1) echo json_encode(array("result"=>"success","message"=>"success"));
+		else echo json_encode(array("result"=>"failed","message"=>"failed"));
+	}
+	public function confirmMerchantEmail(){
+		!$this->commongetdata->checkUniqueAdvance("merchant","merchant_email",$_GET['email']);
+		$condition['table']="merchant";
+		$condition['where']=array("merchant_email"=>$_GET['email']);
+		$condition['data']=array(
+			"merchant_confirm_email"=>1
 		);
 		$result=$this->dbHandler->updateData($condition);
 		if($result==1) echo json_encode(array("result"=>"success","message"=>"success"));
@@ -333,6 +354,10 @@ class Common extends CI_Controller {
 		}else{
 			echo json_encode(array("result"=>"failed","message"=>"验证码输入错误！"));
 		}*/
+	}
+	public function sendMerchantEmail(){
+		$this->commongetdata->email($_SESSION['merchantEmail'],'Successfully Registered. | Confirm E-mail!','<a href="aiimai.coolkeji.com/common/confirmMerchantEmail?email='.$_SESSION['merchantEmail'].'">Confirm</a>');
+		echo json_encode(array("result"=>"success","message"=>"验证码输入正确！"));
 	}
 	/*
 	public function getSubCat(){

@@ -495,7 +495,8 @@
 				width : '100%',
 				height:'300px',
 				resizeType:0,
-				imageTabIndex:1
+				imageTabIndex:1,
+				langType : '<?php echo $_SESSION['language']=="english"?'en':'zh_CN';?>'
 			});
 		});
 	});

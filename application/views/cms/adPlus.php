@@ -109,20 +109,20 @@
 						</table>
 					</div>
 					<div class="fl" style="margin-left:20px;padding-right:20px;border-right:1px dashed #ddd;height: 200px;overflow: auto;">
-						<h4 style="line-height:20px;">Bidding List</h4>剩余时间: 18 : 12 : 23
+						<h4 style="line-height:20px;">Bidding List</h4>Time left<!--剩余时间-->: 18 : 12 : 23
 						<table class="km-table" style="border:1px solid #ddd;">
 							<tbody>
 								<tr>
 									<td class="field width20p br tac">1</td>
-									<td class="value width50p">4,000 Q货币</td>
+									<td class="value width50p">4,000 A currency</td>
 								</tr>
 								<tr>
 									<td class="field width20p br tac">2</td>
-									<td class="value width50p">2,500 Q货币</td>
+									<td class="value width50p">2,500 A currency</td>
 								</tr>
 								<tr>
 									<td class="field width20p br tac">3</td>
-									<td class="value width50p">800 Q货币</td>
+									<td class="value width50p">800 A currency</td>
 								</tr>
 								<tr>
 									<td class="field width20p br tac">4</td>
@@ -161,15 +161,15 @@
 							<tbody>
 								<tr>
 									<td class="field width20p br tac">1</td>
-									<td class="value width50p">4,000 Q货币</td>
+									<td class="value width50p">4,000 A currency</td>
 								</tr>
 								<tr>
 									<td class="field width20p br tac">2</td>
-									<td class="value width50p">2,500 Q货币</td>
+									<td class="value width50p">2,500 A currency</td>
 								</tr>
 								<tr>
 									<td class="field width20p br tac">3</td>
-									<td class="value width50p">800 Q货币</td>
+									<td class="value width50p">800 A currency</td>
 								</tr>
 								<tr>
 									<td class="field width20p br tac">4</td>

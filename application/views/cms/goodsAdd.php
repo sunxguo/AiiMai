@@ -285,7 +285,7 @@
 <script src="/assets/js/cms-goods.js" type="text/javascript"></script>
 <link rel="stylesheet" href="/assets/kindEditor/themes/default/default.css" />
 <script charset="utf-8" src="/assets/kindEditor/kindeditor-min.js"></script>
-<script charset="utf-8" src="/assets/kindEditor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="/assets/kindEditor/lang/<?php echo $_SESSION['language'];?>.js"></script>
 <script>
 	var goodsInfoEditor;
 	$(document).ready(function(){
@@ -297,7 +297,8 @@
 				width : '100%',
 				height:'600px',
 				resizeType:0,
-				imageTabIndex:1
+				imageTabIndex:1,
+				langType : '<?php echo $_SESSION['language']=="english"?'en':'zh_CN';?>'
 			});
 		});
 	});

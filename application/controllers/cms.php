@@ -77,6 +77,17 @@ class Cms extends CI_Controller {
 		$this->load->view('home/sellerregister',$data);
 		$this->load->view('home/footer',array());
 	}
+	public function registerInformation(){
+		$data=array();
+		$this->load->view('home/header',
+			array(
+				'title' => "Seller Information-AiiMai",
+				'websiteName'=>"AiiMai"
+			)
+		);
+		$this->load->view('home/sellerInformation',$data);
+		$this->load->view('home/footer',array());
+	}
 	public function index(){
 		$this->cmsBaseHandler('ASM管理系统',array('index'=>true),'index',array());
 	}
