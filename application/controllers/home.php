@@ -180,6 +180,20 @@ class Home extends CI_Controller {
 		);
 		$this->homeBaseHandler('Recent Orders','recentOrders',$data);
 	}
+	public function auction(){
+		$this->checkUserLogin();
+		$data=array(
+			'cart'=>$this->commongetdata->getCartListByMerchants()
+		);
+		$this->homeBaseHandler('auction','auction',$data);
+	}
+	public function viewAll(){
+		$this->checkUserLogin();
+		$data=array(
+			'cart'=>$this->commongetdata->getCartListByMerchants()
+		);
+		$this->homeBaseHandler('viewAll','viewAll',$data);
+	}
 	public function cancelRefund(){
 		$this->checkUserLogin();
 		$data=array(

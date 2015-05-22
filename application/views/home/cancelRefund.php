@@ -21,6 +21,7 @@
 				<li><a href="/home/viewAll">ViewAll</a></li>
 			  </ul>
 			</li>
+			<!--
 			<li class="dropdown" onmouseover="$('#aAccount').show();" onmouseout="$('#aAccount').hide();">
 			  <a href="#" class="dropdown-toggle">A·account <span class="caret"></span></a>
 			  <ul class="dropdown-menu" id="aAccount">
@@ -38,7 +39,9 @@
 				<li><a href="#">Wi-Fi Ticket</a></li>
 			  </ul>
 			</li>
+			-->
 		  </ul>
+		  <!--
 		  <ul class="nav navbar-nav navbar-right">
 			<li class="dropdown" onmouseover="$('#aList').show();" onmouseout="$('#aList').hide();">
 			  <a href="#" class="dropdown-toggle">A-List <span class="caret"></span></a>
@@ -62,12 +65,12 @@
 				<li><a href="#">Manage Themes</a></li>
 			  </ul>
 			</li>
-		  </ul>
+		  </ul>-->
 		</div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
-		<div class="km-panel-heading">Recent Orders (Last 10 orders)</div>
+		<div class="km-panel-heading">Cancel/Refund</div>
 		<div class="km-panel-body" style="padding:0px;">
 			<table class="km-table" style="border:1px solid #ddd;">
 				<tbody>
@@ -135,14 +138,9 @@
 		</div>
 	</div>
 	<div style="border:2px solid #CCC;border-radius:5px;padding:10px;">
-		Shipping Guide<br>
-		· Order details : If you click cart number, you can view shipping information as well as payment details.<br>
-		· Cancel : If you want to cancel order, please access Cancel/Refund. (Your credit points may be deducted when you request cancel.)<br>
-		· Confirm Delivery : If you click 'Confirm Delivery' button after you receive, you will earn up to 10 Qpoint.<br>
-		· Order/Shipping Status<br>
-		- Shipping requested : Payment is completed & Order info is transferred to the seller.<br>
-		- Shipping scheduled : Seller confirmed order & preparing the item (Cancellation is not allowed)<br>
-		- Shipping on delivery : Seller sent out item & it is on the way to you.<br>
-		- Shipping delivered: Item has been delivered.
+		Cancel / Refund / Exchange<br>
+		1. Please select cart no. and item that you want to request Cancel or Return and input all informations required to proceed. (You cannot cancel your order made by credit card within 20 minutes.)<br>
+		2. Refund/non-receipt claims are only accepted within 7days after delivered.<br>
+		3. All benefits you earned such as Qpoint and Q·stamp are returned after Cancel or Return.
 	</div>
 </div>

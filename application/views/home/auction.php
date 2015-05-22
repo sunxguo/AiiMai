@@ -12,13 +12,13 @@
 			<!--
 			<li class="active"><a href="#"> <span class="sr-only">(current)</span></a></li>
 			-->
-			<li class="dropdown" onmouseover="$('#ShoppingList').show();" onmouseout="$('#ShoppingList').hide();">
+			<li class="dropdown active" onmouseover="$('#ShoppingList').show();" onmouseout="$('#ShoppingList').hide();">
 			  <a href="#" class="dropdown-toggle">Shopping List <span class="caret"></span></a>
 			  <ul class="dropdown-menu" id="ShoppingList">
-				<li><a href="/home/recentOrders">Recent Orders</a></li>
-				<li><a href="#">Cancel/Refund</a></li>
-				<li><a href="#">Auction</a></li>
-				<li><a href="#">ViewAll</a></li>
+				<li class="active"><a href="/home/recentOrders">Recent Orders</a></li>
+				<li><a href="/home/cancelRefund">Cancel/Refund</a></li>
+				<li><a href="/home/auction">Auction</a></li>
+				<li><a href="/home/viewAll">ViewAll</a></li>
 			  </ul>
 			</li>
 			<!--
@@ -69,61 +69,41 @@
 		</div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
-	<div class="panelIndex">
-		<table class="km-table b1" style="width: 100%;">
-			<tr>
-				<td class="field" width="20%">Order/Shipping</td>
-				<td class="value tac arrowTd" width="16%">
-					Payment Pending<br>
-					0
-				</td>
-				<td class="value tac arrowTd" width="16%">
-					Shipping requested<br>
-					0
-				</td>
-				<td class="value tac arrowTd" width="16%">
-					Shipping scheduled<br>
-					0
-				</td>
-				<td class="value tac arrowTd" width="16%">
-					Shipping on delivery<br>
-					0
-				</td>
-				<td class="value tac" width="16%">
-					Shipping delivered<br>
-					0
-				</td>
-			</tr>
-			<tr>
-				<td class="field" width="20%">Cancel/Refund</td>
-				<td class="value tac" width="16%">
-					Cancelling<br>
-					0
-				</td>
-				<td class="value tac" width="16%">
-					Returning<br>
-					0
-				</td>
-				<td class="value tac" width="16%">
-					Refund hold<br>
-					0
-				</td>
-				<td class="value tac" width="16%">
-					Refunded<br>
-					0
-				</td>
-				<td class="value tac" width="16%">
-					
-				</td>
-			</tr>
-		</table>
-	</div>
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
-		<div class="km-panel-heading">Recent Orders (Last 10 orders)</div>
+		<div class="km-panel-heading">Won Item</div>
 		<div class="km-panel-body" style="padding:0px;">
-			<table class="km-table">
+			<table class="km-table" style="border:1px solid #ddd;">
 				<tbody>
-				  
+					<tr>
+						<td class="field width10p br tac">
+							<select id="" name="" style="width:115px;height:25px;">
+								<option selected="selected" value="gd_nm">Item Title</option>
+								<option value="pack_no">Cart no.</option>
+							</select>
+						</td>
+						<td class="value width40p br">
+							<input type="text" id="" class="inp-txt" style="height: 15px;">
+							<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 24px;font-size: 12px;padding: 3px 20px;">Search</button>
+						</td>
+						<td class="field width10p br tac">Status</td>
+						<td class="value width40p">
+							<select name="" id="" onchange="" style="height:25px;">
+								<option value="">All</option>
+								<option value="D1">Payment Pending</option>
+								<option value="D2">Order Processing</option>
+								<option value="DY">Order Confirmed</option>
+								<option value="D3">Delivering</option>
+								<option value="D4">Delivered</option>
+								<option value="CD">Unconfirmed</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="field br tac">Select Date</td>
+						<td class="value" colspan="3">
+							<input type="date" value="<?php echo date("Y-m-d");?>" class="km-form-control" style="width: 150px;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;"> ~ <input type="date" value="<?php echo date("Y-m-d");?>" class="km-form-control" style="width: 150px;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
+						</td>
+					</tr>
 				</tbody>
 			</table>
 		</div>

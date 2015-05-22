@@ -21,6 +21,7 @@
 				<li><a href="/home/viewAll">ViewAll</a></li>
 			  </ul>
 			</li>
+			<!--
 			<li class="dropdown" onmouseover="$('#aAccount').show();" onmouseout="$('#aAccount').hide();">
 			  <a href="#" class="dropdown-toggle">A·account <span class="caret"></span></a>
 			  <ul class="dropdown-menu" id="aAccount">
@@ -38,7 +39,9 @@
 				<li><a href="#">Wi-Fi Ticket</a></li>
 			  </ul>
 			</li>
+			-->
 		  </ul>
+		  <!--
 		  <ul class="nav navbar-nav navbar-right">
 			<li class="dropdown" onmouseover="$('#aList').show();" onmouseout="$('#aList').hide();">
 			  <a href="#" class="dropdown-toggle">A-List <span class="caret"></span></a>
@@ -62,7 +65,7 @@
 				<li><a href="#">Manage Themes</a></li>
 			  </ul>
 			</li>
-		  </ul>
+		  </ul>-->
 		</div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
