@@ -10,12 +10,12 @@ class Admin extends CI_Controller {
 	}
 	public function checkAdminLogin(){
 		if (!checkLogin() || strcmp($_SESSION["usertype"], "admin")) {
-			$this->load->view('redirect',array("url"=>"/admin/login","info"=>"请先登录管理员账号"));
+			$this->load->view('redirect',array("url"=>"/admin/login","info"=>"Please login administrator account!"));
 			return false;
 		}else return true;
 	}
 	public function login(){
-		$this->load->view('admin/login',array('title'=>"管理员登录"));
+		$this->load->view('admin/login',array('title'=>"Login Administrator"));
 	}
 	public function login_handler(){
 		if(isset($_POST["username"]) && isset($_POST["pwd"])){
@@ -35,14 +35,14 @@ class Admin extends CI_Controller {
 					$this->load->view('redirect',array("url"=>"/admin/index"));
 				}
 				else{
-					$this->load->view('redirect',array("info"=>"密码错误"));
+					$this->load->view('redirect',array("info"=>"Wrong Password!"));
 				}
 			}
 			else{
-				$this->load->view('redirect',array("info"=>"用户名不存在"));
+				$this->load->view('redirect',array("info"=>"Username does not exist!"));
 			}
 		}else{
-			$this->load->view('redirect',array("info"=>"请输入用户名和密码"));
+			$this->load->view('redirect',array("info"=>"Please enter your username and password!"));
 		}
 	}
 	public function logout(){
@@ -69,55 +69,55 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/footer');
 	}
 	public function index(){
-		$this->adminBaseHandler('后台管理系统',array('index','none'),'index',array());
+		$this->adminBaseHandler('Backend Panel',array('index','none'),'index',array());
 	}
 	public function items(){
 		$data=array(
 			"columns"=>$this->commongetdata->getColumns()
 		);
-		$this->adminBaseHandler('商品管理',array('data','items'),'items',$data);
+		$this->adminBaseHandler('Items',array('data','items'),'items',$data);
 	}
 	public function merchants(){
 		$data=array(
 			"columns"=>$this->commongetdata->getColumns()
 		);
-		$this->adminBaseHandler('商户管理',array('data','merchants'),'merchants',$data);
+		$this->adminBaseHandler('merchants',array('data','merchants'),'merchants',$data);
 	}
 	public function users(){
 		$data=array(
 			"columns"=>$this->commongetdata->getColumns()
 		);
-		$this->adminBaseHandler('用户管理',array('data','users'),'users',$data);
+		$this->adminBaseHandler('users',array('data','users'),'users',$data);
 	}
 	public function orders(){
 		$data=array(
 			"columns"=>$this->commongetdata->getColumns()
 		);
-		$this->adminBaseHandler('订单管理',array('data','orders'),'orders',$data);
+		$this->adminBaseHandler('orders',array('data','orders'),'orders',$data);
 	}
 	public function shipCompany(){
 		$data=array(
 			"columns"=>$this->commongetdata->getColumns()
 		);
-		$this->adminBaseHandler('运送公司管理',array('data','shipCompany'),'shipCompany',$data);
+		$this->adminBaseHandler('shipCompany',array('data','shipCompany'),'shipCompany',$data);
 	}
 	public function advertisements(){
 		$data=array(
 			"columns"=>$this->commongetdata->getColumns()
 		);
-		$this->adminBaseHandler('广告管理',array('data','advertisements'),'advertisements',$data);
+		$this->adminBaseHandler('advertisements',array('data','advertisements'),'advertisements',$data);
 	}
 	public function comments(){
 		$data=array(
 			"columns"=>$this->commongetdata->getColumns()
 		);
-		$this->adminBaseHandler('评论管理',array('data','comments'),'comments',$data);
+		$this->adminBaseHandler('comments',array('data','comments'),'comments',$data);
 	}
 	public function payment(){
 		$data=array(
 			"columns"=>$this->commongetdata->getColumns()
 		);
-		$this->adminBaseHandler('支付方式管理',array('data','payment'),'payment',$data);
+		$this->adminBaseHandler('payment',array('data','payment'),'payment',$data);
 	}
 	public function reportsTurnover(){
 		$data=array(
@@ -129,17 +129,65 @@ class Admin extends CI_Controller {
 		$data=array(
 			"columns"=>$this->commongetdata->getColumns()
 		);
-		$this->adminBaseHandler('报表统计-商品',array('tool','reports'),'reportsProducts',$data);
+		$this->adminBaseHandler('reportsProducts',array('tool','reports'),'reportsProducts',$data);
 	}
 	public function account(){
 		$data=array(
 			"columns"=>$this->commongetdata->getColumns()
 		);
-		$this->adminBaseHandler('账户管理',array('tool','reports'),'account',$data);
+		$this->adminBaseHandler('account',array('tool','account'),'account',$data);
+	}
+	public function sendMessage(){
+		$data=array(
+			"columns"=>$this->commongetdata->getColumns()
+		);
+		$this->adminBaseHandler('send Message',array('tool','sendMessage'),'sendmsg',$data);
+	}
+	public function searchStatistics(){
+		$data=array(
+			"columns"=>$this->commongetdata->getColumns()
+		);
+		$this->adminBaseHandler('search Statistics',array('tool','searchStatistics'),'searchStatistics',$data);
+	}
+	public function accountSetting(){
+		$data=array(
+			"columns"=>$this->commongetdata->getColumns()
+		);
+		$this->adminBaseHandler('account',array('tool','account'),'accountconfig',$data);
+	}
+	public function basicParameter(){
+		$data=array(
+			"columns"=>$this->commongetdata->getColumns()
+		);
+		$this->adminBaseHandler('basic Parameter',array('setting','basicParameter'),'basicParameter',$data);
+	}
+	public function database(){
+		$data=array(
+			"columns"=>$this->commongetdata->getColumns()
+		);
+		$this->adminBaseHandler('database',array('setting','database'),'database',$data);
+	}
+	public function securityCenter(){
+		$data=array(
+			"columns"=>$this->commongetdata->getColumns()
+		);
+		$this->adminBaseHandler('security Center',array('setting','securityCenter'),'securityCenter',$data);
+	}
+	public function template(){
+		$data=array(
+			"columns"=>$this->commongetdata->getColumns()
+		);
+		$this->adminBaseHandler('template',array('setting','template'),'template',$data);
+	}
+	public function emergencyContacts(){
+		$data=array(
+			"columns"=>$this->commongetdata->getColumns()
+		);
+		$this->adminBaseHandler('emergency Contacts',array('setting','emergencyContacts'),'emergencyContacts',$data);
 	}
 	public function columnList(){
 		$data=array("columns"=>$this->commongetdata->getColumns());
-		$this->adminBaseHandler('栏目管理','columnList','columnList',$data);
+		$this->adminBaseHandler('columnList','columnList','columnList',$data);
 	}
 	public function addColumn(){
 		$data=array("columns"=>$this->commongetdata->getColumns());
@@ -150,7 +198,7 @@ class Admin extends CI_Controller {
 			"columns"=>$this->commongetdata->getColumns(),
 			"currentColumn"=>$this->commongetdata->getColumn($_GET['column']),
 			);
-		$this->adminBaseHandler('编辑栏目','columnList','editColumn',$data);
+		$this->adminBaseHandler('editColumn','columnList','editColumn',$data);
 	}
 	public function contentList(){
 		$type=isset($_GET['type'])?$_GET['type']:"essay";//默认为文章

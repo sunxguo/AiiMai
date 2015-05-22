@@ -42,7 +42,7 @@
 				<li><a href="">Guide for Problem</a></li>
 				<li>
 					<p class="reg-sns">
-						<a href="javascript:fb_login();" class="icon_fb">Facebook Login</a>
+						<a href="<?php echo $loginUrl;?>" class="icon_fb">Facebook Login</a>
 						<span class="txt">Sign in with your facebook account</span>
 					</p>
 				</li>

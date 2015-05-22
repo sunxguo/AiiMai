@@ -46,8 +46,8 @@
 <ul style="display: block;">
 	<li><a href="/admin/reportsTurnover" <?php echo isset($reports) && $reports?'class="current"':'';?>><?php echo lang('admin_sider_Reports');?></a></li>
 	<li><a href="/admin/account" <?php echo isset($account) && $account?'class="current"':'';?>><?php echo lang('admin_sider_Account');?></a></li>
-	<li><a href="/admin/addContent" <?php echo isset($addContent) && $addContent?'class="current"':'';?>><?php echo lang('admin_sider_SearchStatistics');?></a></li>
-	<li><a href="/admin/addContent" <?php echo isset($addContent) && $addContent?'class="current"':'';?>><?php echo lang('admin_sider_SendMessage');?></a></li>
+	<li><a href="/admin/searchStatistics" <?php echo isset($searchStatistics) && $searchStatistics?'class="current"':'';?>><?php echo lang('admin_sider_SearchStatistics');?></a></li>
+	<li><a href="/admin/sendMessage" <?php echo isset($sendMessage) && $sendMessage?'class="current"':'';?>><?php echo lang('admin_sider_SendMessage');?></a></li>
 </ul>
 <h3 <?php echo isset($setting) && $setting?'class="current"':'';?>>
 	<a href="/admin/setting">
@@ -56,12 +56,12 @@
 	</a>
 </h3>
 <ul style="display: block;">
-	<li><a href="/admin/addContent" <?php echo isset($addContent) && $addContent?'class="current"':'';?>><?php echo lang('admin_sider_BasicParameter');?></a></li>
-	<li><a href="/admin/addContent" <?php echo isset($addContent) && $addContent?'class="current"':'';?>><?php echo lang('admin_sider_Database');?></a></li>
-	<li><a href="/admin/addContent" <?php echo isset($addContent) && $addContent?'class="current"':'';?>><?php echo lang('admin_sider_SecurityCenter');?></a></li>
-	<li><a href="/admin/addContent" <?php echo isset($addContent) && $addContent?'class="current"':'';?>><?php echo lang('admin_sider_Template');?></a></li>
-	<li><a href="/admin/addContent" <?php echo isset($addContent) && $addContent?'class="current"':'';?>><?php echo lang('admin_sider_EmergencyContacts');?></a></li>
-	<li><a href="/admin/addContent" <?php echo isset($addContent) && $addContent?'class="current"':'';?>><?php echo lang('admin_sider_Help');?></a></li>
+	<li><a href="/admin/basicParameter" <?php echo isset($basicParameter) && $basicParameter?'class="current"':'';?>><?php echo lang('admin_sider_BasicParameter');?></a></li>
+	<li><a href="/admin/database" <?php echo isset($database) && $database?'class="current"':'';?>><?php echo lang('admin_sider_Database');?></a></li>
+	<li><a href="/admin/securityCenter" <?php echo isset($securityCenter) && $securityCenter?'class="current"':'';?>><?php echo lang('admin_sider_SecurityCenter');?></a></li>
+	<li><a href="/admin/template" <?php echo isset($template) && $template?'class="current"':'';?>><?php echo lang('admin_sider_Template');?></a></li>
+	<li><a href="/admin/emergencyContacts" <?php echo isset($emergencyContacts) && $emergencyContacts?'class="current"':'';?>><?php echo lang('admin_sider_EmergencyContacts');?></a></li>
+	<li><a href="/admin/help" <?php echo isset($help) && $help?'class="current"':'';?>><?php echo lang('admin_sider_Help');?></a></li>
 </ul>
 <!--
 <h3 <?php echo isset($account) && $account?'class="current"':'';?>>

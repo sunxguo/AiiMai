@@ -10,12 +10,12 @@ class Cms extends CI_Controller {
 	}
 	public function checkMerchantLogin(){
 		if (!checkLogin() || strcmp($_SESSION["usertype"], "merchant")) {
-			$this->load->view('redirect',array("url"=>"/home/login","info"=>"请先登录商户账号"));
+			$this->load->view('redirect',array("url"=>"/cms/login","info"=>"Please login merchant account!"));
 			return false;
 		}else return true;
 	}
 	public function login(){
-		$this->load->view('cms/login',array('title'=>"商户登录"));
+		$this->load->view('cms/login',array('title'=>"Login ASM"));
 	}
 	public function loginHandler(){
 		if(isset($_POST["username"]) && isset($_POST["pwd"])){
@@ -35,21 +35,21 @@ class Cms extends CI_Controller {
 					$this->load->view('redirect',array("url"=>"/cms/index"));
 				}
 				else{
-					$this->load->view('redirect',array("info"=>"密码错误"));
+					$this->load->view('redirect',array("info"=>"Wrong Password!"));
 				}
 			}
 			else{
-				$this->load->view('redirect',array("info"=>"用户名不存在"));
+				$this->load->view('redirect',array("info"=>"Username does not exist!"));
 			}
 		}else{
-			$this->load->view('redirect',array("info"=>"请输入用户名和密码"));
+			$this->load->view('redirect',array("info"=>"Please enter your username and password!"));
 		}
 	}
 	public function logout(){
 		unset($_SESSION["username"]);
 		unset($_SESSION["userid"]);
 		unset($_SESSION["usertype"]);
-		$this->load->view('redirect',array("url"=>"/home/login"));
+		$this->load->view('redirect',array("url"=>"/cms/login"));
 	}
 	public function cmsBaseHandler($title,$sider,$view,$data){
 		$this->checkMerchantLogin();
@@ -89,16 +89,16 @@ class Cms extends CI_Controller {
 		$this->load->view('home/footer',array());
 	}
 	public function index(){
-		$this->cmsBaseHandler('ASM管理系统',array('index'=>true),'index',array());
+		$this->cmsBaseHandler('ASM Management',array('index'=>true),'index',array());
 	}
 	public function myInfo(){
-		$this->cmsBaseHandler('我的信息',array('baseInfo'=>true,'myInfo'=>true),'myInfo',array());
+		$this->cmsBaseHandler('My Info',array('baseInfo'=>true,'myInfo'=>true),'myInfo',array());
 	}
 	public function grade(){
-		$this->cmsBaseHandler('grade',array('baseInfo'=>true,'grade'=>true),'grade',array());
+		$this->cmsBaseHandler('Grade',array('baseInfo'=>true,'grade'=>true),'grade',array());
 	}
 	public function permission(){
-		$this->cmsBaseHandler('permission',array('baseInfo'=>true,'sellerPermission'=>true,'permission'=>true),'permission',array());
+		$this->cmsBaseHandler('Permission',array('baseInfo'=>true,'sellerPermission'=>true,'permission'=>true),'permission',array());
 	}
 	public function sharePermission(){
 		$this->cmsBaseHandler('share Permission',array('baseInfo'=>true,'sellerPermission'=>true,'sharePermission'=>true),'sharePermission',array());
@@ -107,35 +107,35 @@ class Cms extends CI_Controller {
 		$this->cmsBaseHandler('vendor',array('baseInfo'=>true,'sellerPermission'=>true,'vendor'=>true),'vendor',array());
 	}
 	public function shopBaseInfo(){
-		$this->cmsBaseHandler('卖家店铺',array('baseInfo'=>true,'shop'=>true,'shopBaseInfo'=>true),'shopBaseInfo',array());
+		$this->cmsBaseHandler('Shop',array('baseInfo'=>true,'shop'=>true,'shopBaseInfo'=>true),'shopBaseInfo',array());
 	}
 	public function shopHomePage(){
-		$this->cmsBaseHandler('卖家店铺',array('baseInfo'=>true,'shop'=>true,'shopHomePage'=>true),'shopHomePage',array());
+		$this->cmsBaseHandler('Shop',array('baseInfo'=>true,'shop'=>true,'shopHomePage'=>true),'shopHomePage',array());
 	}
 	public function shopDiscount(){
-		$this->cmsBaseHandler('卖家店铺',array('baseInfo'=>true,'shop'=>true,'shopDiscount'=>true),'shopDiscount',array());
+		$this->cmsBaseHandler('Shop',array('baseInfo'=>true,'shop'=>true,'shopDiscount'=>true),'shopDiscount',array());
 	}
 	public function shopCategory(){
-		$this->cmsBaseHandler('卖家店铺',array('baseInfo'=>true,'shop'=>true,'shopCategory'=>true),'shopCategory',array());
+		$this->cmsBaseHandler('Shop',array('baseInfo'=>true,'shop'=>true,'shopCategory'=>true),'shopCategory',array());
 	}
 	public function shopInfo(){
-		$this->cmsBaseHandler('卖家店铺',array('baseInfo'=>true,'shop'=>true,'shopInfo'=>true),'shopInfo',array());
+		$this->cmsBaseHandler('Shop',array('baseInfo'=>true,'shop'=>true,'shopInfo'=>true),'shopInfo',array());
 	}
 	public function goodsStatistics(){
-		$this->cmsBaseHandler('商品登录/修改',array('goodsManagement'=>true,'goods'=>true,'goodsStatistics'=>true),'goodsStatistics',array());
+		$this->cmsBaseHandler('Item List/Edit',array('goodsManagement'=>true,'goods'=>true,'goodsStatistics'=>true),'goodsStatistics',array());
 	}
 	public function goodsAdd(){
 		$categories=$this->commongetdata->getCategories(false);
-		$this->cmsBaseHandler('商品登录/修改',array('goodsManagement'=>true,'goods'=>true,'goodsAdd'=>true),'goodsAdd',array('categories'=>$categories));
+		$this->cmsBaseHandler('Item List/Edit',array('goodsManagement'=>true,'goods'=>true,'goodsAdd'=>true),'goodsAdd',array('categories'=>$categories));
 	}
 	public function goodsCopy(){
-		$this->cmsBaseHandler('商品登录/修改',array('goodsManagement'=>true,'goods'=>true,'goodsCopy'=>true),'goodsCopy',array());
+		$this->cmsBaseHandler('Item List/Edit',array('goodsManagement'=>true,'goods'=>true,'goodsCopy'=>true),'goodsCopy',array());
 	}
 	public function goodsEdit(){
 		$data=array(
 			"categories"=>$this->commongetdata->getCategories(false)
 		);
-		$this->cmsBaseHandler('商品登录/修改',array('goodsManagement'=>true,'goods'=>true,'goodsEdit'=>true),'goodsEdit',$data);
+		$this->cmsBaseHandler('Item List/Edit',array('goodsManagement'=>true,'goods'=>true,'goodsEdit'=>true),'goodsEdit',$data);
 	}
 	public function modifyGoods(){
 		$item=$this->commongetdata->getContent('product',$_GET['itemId']);
@@ -148,13 +148,13 @@ class Cms extends CI_Controller {
 		$this->load->view('cms/modifyGoods',$data);
 	}
 	public function auctionGoods(){
-		$this->cmsBaseHandler('拍卖管理',array('goodsManagement'=>true,'auction'=>true,'auctionGoods'=>true),'auctionGoods',array());
+		$this->cmsBaseHandler('auction',array('goodsManagement'=>true,'auction'=>true,'auctionGoods'=>true),'auctionGoods',array());
 	}
 	public function auctionBid(){
-		$this->cmsBaseHandler('拍卖管理',array('goodsManagement'=>true,'auction'=>true,'auctionBid'=>true),'auctionBid',array());
+		$this->cmsBaseHandler('auction',array('goodsManagement'=>true,'auction'=>true,'auctionBid'=>true),'auctionBid',array());
 	}
 	public function groupBuy(){
-		$this->cmsBaseHandler('团购',array('goodsManagement'=>true,'groupBuy'=>true),'groupBuy',array());
+		$this->cmsBaseHandler('groupBuy',array('goodsManagement'=>true,'groupBuy'=>true),'groupBuy',array());
 	}
 	public function price(){
 		$this->cmsBaseHandler('Price',array('goodsManagement'=>true,'price'=>true),'price',array());
