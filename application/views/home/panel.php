@@ -16,9 +16,9 @@
 			  <a href="#" class="dropdown-toggle">Shopping List <span class="caret"></span></a>
 			  <ul class="dropdown-menu" id="ShoppingList">
 				<li><a href="/home/recentOrders">Recent Orders</a></li>
-				<li><a href="#">Cancel/Refund</a></li>
-				<li><a href="#">Auction</a></li>
-				<li><a href="#">ViewAll</a></li>
+				<li><a href="/home/cancelRefund">Cancel/Refund</a></li>
+				<li><a href="/home/auction">Auction</a></li>
+				<li><a href="/home/viewAll">ViewAll</a></li>
 			  </ul>
 			</li>
 			<!--
