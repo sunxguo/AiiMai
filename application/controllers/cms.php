@@ -235,13 +235,13 @@ class Cms extends CI_Controller {
 		$this->cmsBaseHandler('Branch Assign',array('deliveryManagement'=>true,'branchAssign'=>true),'branchAssign',array());
 	}
 	public function sellingReport(){
-		$this->cmsBaseHandler('selling Report',array('settlement'=>true,'sellingReport'=>true),'waitingforonline',array());
+		$this->cmsBaseHandler('selling Report',array('settlement'=>true,'sellingReport'=>true),'sellingReport',array());
 	}
 	public function sellerGBank(){
-		$this->cmsBaseHandler('sellerGBank',array('settlement'=>true,'sellerGBank'=>true),'waitingforonline',array());
+		$this->cmsBaseHandler('sellerGBank',array('settlement'=>true,'sellerGBank'=>true),'sellerGBank',array());
 	}
 	public function receiptDPC(){
-		$this->cmsBaseHandler('receipt DPC',array('settlement'=>true,'receiptDPC'=>true),'waitingforonline',array());
+		$this->cmsBaseHandler('receipt DPC',array('settlement'=>true,'receiptDPC'=>true),'receiptDPC',array());
 	}
 	public function receiptACurrency(){
 		$this->cmsBaseHandler('receipt A Currency',array('settlement'=>true,'receiptACurrency'=>true),'waitingforonline',array());
@@ -250,19 +250,19 @@ class Cms extends CI_Controller {
 		$this->cmsBaseHandler('receipt Qexpress',array('settlement'=>true,'receiptQexpress'=>true),'waitingforonline',array());
 	}
 	public function message(){
-		$this->cmsBaseHandler('message',array('callCenter'=>true,'message'=>true),'waitingforonline',array());
+		$this->cmsBaseHandler('message',array('callCenter'=>true,'message'=>true),'message',array());
 	}
 	public function Qtalk(){
-		$this->cmsBaseHandler('Qtalk',array('callCenter'=>true,'Qtalk'=>true),'waitingforonline',array());
+		$this->cmsBaseHandler('Qtalk',array('callCenter'=>true,'Qtalk'=>true),'qtalk',array());
 	}
 	public function bulletin(){
-		$this->cmsBaseHandler('bulletin',array('callCenter'=>true,'bulletin'=>true),'waitingforonline',array());
+		$this->cmsBaseHandler('bulletin',array('callCenter'=>true,'bulletin'=>true),'bulletin',array());
 	}
 	public function comment(){
-		$this->cmsBaseHandler('comment',array('callCenter'=>true,'comment'=>true),'waitingforonline',array());
+		$this->cmsBaseHandler('comment',array('callCenter'=>true,'comment'=>true),'comment',array());
 	}
 	public function eticket(){
-		$this->cmsBaseHandler('e-ticket',array('EticketMgt'=>true,'eticket'=>true),'waitingforonline',array());
+		$this->cmsBaseHandler('e-ticket',array('EticketMgt'=>true,'eticket'=>true),'eticket',array());
 	}
 /*
 	public function contentList(){
