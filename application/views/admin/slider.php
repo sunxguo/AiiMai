@@ -30,7 +30,7 @@
 	<li><a href="/admin/payment" <?php echo isset($payment) && $payment?'class="current"':'';?>><?php echo lang('admin_sider_Payment');?></a></li>
 </ul>
 <h3 <?php echo isset($reports) && $reports?'class="current"':'';?>>
-	<a href="/admin/reports" id="menu_portal">
+	<a href="/admin/reportsTurnover" id="menu_portal">
 		<span class="ico ico-shgl"></span>
 		<?php echo lang('admin_sider_Tools');?>
 	</a>
@@ -50,7 +50,7 @@
 	<li><a href="/admin/sendMessage" <?php echo isset($sendMessage) && $sendMessage?'class="current"':'';?>><?php echo lang('admin_sider_SendMessage');?></a></li>
 </ul>
 <h3 <?php echo isset($setting) && $setting?'class="current"':'';?>>
-	<a href="/admin/setting">
+	<a href="/admin/basicParameter">
 		<span class="ico ico-yygl"></span>
 		<?php echo lang('admin_sider_SystemSettings');?>
 	</a>
@@ -59,9 +59,9 @@
 	<li><a href="/admin/basicParameter" <?php echo isset($basicParameter) && $basicParameter?'class="current"':'';?>><?php echo lang('admin_sider_BasicParameter');?></a></li>
 	<li><a href="/admin/database" <?php echo isset($database) && $database?'class="current"':'';?>><?php echo lang('admin_sider_Database');?></a></li>
 	<li><a href="/admin/securityCenter" <?php echo isset($securityCenter) && $securityCenter?'class="current"':'';?>><?php echo lang('admin_sider_SecurityCenter');?></a></li>
-	<li><a href="/admin/template" <?php echo isset($template) && $template?'class="current"':'';?>><?php echo lang('admin_sider_Template');?></a></li>
-	<li><a href="/admin/emergencyContacts" <?php echo isset($emergencyContacts) && $emergencyContacts?'class="current"':'';?>><?php echo lang('admin_sider_EmergencyContacts');?></a></li>
-	<li><a href="/admin/help" <?php echo isset($help) && $help?'class="current"':'';?>><?php echo lang('admin_sider_Help');?></a></li>
+<!--	<li><a href="/admin/template" <?php echo isset($template) && $template?'class="current"':'';?>><?php echo lang('admin_sider_Template');?></a></li>
+	<li><a href="/admin/emergencyContacts" <?php echo isset($emergencyContacts) && $emergencyContacts?'class="current"':'';?>><?php echo lang('admin_sider_EmergencyContacts');?></a></li>-->
+	<li><a href="/admin/websiteInfo" <?php echo isset($websiteInfo) && $websiteInfo?'class="current"':'';?>>websiteInfo</a></li>
 </ul>
 <!--
 <h3 <?php echo isset($account) && $account?'class="current"':'';?>>

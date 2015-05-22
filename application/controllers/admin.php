@@ -185,6 +185,18 @@ class Admin extends CI_Controller {
 		);
 		$this->adminBaseHandler('emergency Contacts',array('setting','emergencyContacts'),'emergencyContacts',$data);
 	}
+	public function websiteInfo(){
+		$data=array(
+			"columns"=>$this->commongetdata->getColumns()
+		);
+		$this->adminBaseHandler('websiteInfo',array('setting','websiteInfo'),'websiteInfo',$data);
+	}
+	public function userAgreement(){
+		$data=array(
+			"columns"=>$this->commongetdata->getColumns()
+		);
+		$this->adminBaseHandler('userAgreement',array('setting','websiteInfo'),'userAgreement',$data);
+	}
 	public function columnList(){
 		$data=array("columns"=>$this->commongetdata->getColumns());
 		$this->adminBaseHandler('columnList','columnList','columnList',$data);

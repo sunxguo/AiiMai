@@ -38,7 +38,7 @@
 			require("slider.php");
 		}
 	?>
-	<div id="msgBox" class="msg-box" style="display:block;">
+	<div id="msgBox" class="msg-box" style="display:none;">
 		<a href="javascript:closeMsg()" class="close" title="关闭">Close</a>
 		<div class="msg-in">
 			<ul>
