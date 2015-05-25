@@ -32,6 +32,10 @@ class Home extends CI_Controller {
 					$_SESSION['username']=$info[0]->user_username;
 					$_SESSION['userid']=$info[0]->user_id;
 					$_SESSION['usertype']="user";
+					if($info[0]->user_confirm_email==0){
+						$_SESSION['userEmail']=$info[0]->user_email;
+						$this->load->view('redirect',array("url"=>"/home/confirmEmail","info"=>"Please confirm your E-mail!"));
+					}
 					$this->load->view('redirect',array("url"=>"/home"));
 				}
 				else{
