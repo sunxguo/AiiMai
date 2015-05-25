@@ -36,8 +36,10 @@
 					<li>|</li>
 					<li><a href="/home/cart">My Cart</a></li>
 					<li>|</li>
+					<?php if($_SESSION['usertype']=="merchant"):?>
 					<li><a href="/cms/login">ASM</a></li>
 					<li>|</li>
+					<?php endif;?>
 					<li><a href="">Help</a></li>
 				</ul>
 			</div>
