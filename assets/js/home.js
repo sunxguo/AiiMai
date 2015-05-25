@@ -159,6 +159,36 @@ function checkUserEmail(){
 	});
 	return checkResult; 
 }
+function checkMerchantEmail(){
+	if ($("#email").val() == "") {
+		showAlert('danger','E-mail',' can not be empty!');
+		$("#email").focus(); 
+		return false; 
+	}
+	if (!$("#email").val().match(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/)) { 
+		showAlert('danger','E-mail format ','is incorrect!');
+		$("#email").focus();
+		return false; 
+	}
+	var checkResult=false;
+	$.ajax({
+	  type : "post",
+	  url : "/common/checkMerchantEmail",
+	  data : 'email='+$("#email").val(),
+	  async : false,
+	  success : function(data){
+		var result=$.parseJSON(data);
+		if(result.result=="notunique"){
+			showAlert('danger','[Error]','With this email, an account is already created!');
+			checkResult=false;
+		}else{
+			showAlert('success','Congratulation!','Available!');
+			checkResult=true;
+		}
+	  }
+	});
+	return checkResult; 
+}
 function sendEmail(){
 	$.ajax({
 	  type : "post",

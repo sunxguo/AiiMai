@@ -316,6 +316,14 @@ class Common extends CI_Controller {
 			echo json_encode(array("result"=>"failed","message"=>"验证码输入错误！"));
 		}
 	}
+	public function checkMerchantEmail(){
+		if(!$this->commongetdata->checkUniqueAdvance("merchant","merchant_email",$_POST['email'])){
+			echo json_encode(array("result"=>"notunique","message"=>"该用户名已经存在"));
+			return false;
+		}else{
+			echo json_encode(array("result"=>"failed","message"=>"验证码输入错误！"));
+		}
+	}
 	public function checkID(){
 		if(!$this->commongetdata->checkUniqueAdvance("merchant","merchant_login_ID",$_POST['ID'])){
 			echo json_encode(array("result"=>"notunique","message"=>"该用户名已经存在"));
