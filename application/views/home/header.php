@@ -36,7 +36,7 @@
 					<li>|</li>
 					<li><a href="/home/cart">My Cart</a></li>
 					<li>|</li>
-					<?php if($_SESSION['usertype']=="merchant"):?>
+					<?php if(isset($_SESSION['usertype']) && $_SESSION['usertype']=="merchant"):?>
 					<li><a href="/cms/login">ASM</a></li>
 					<li>|</li>
 					<?php endif;?>
