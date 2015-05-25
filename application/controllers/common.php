@@ -72,8 +72,8 @@ class Common extends CI_Controller {
 			break;
 			case "register":
 				$table="user";
-				if(!$this->commongetdata->checkUnique("user",$data->username)){
-					echo json_encode(array("result"=>"notunique","message"=>"该用户名已经存在"));
+				if(!$this->commongetdata->checkUniqueAdvance("user","user_username",$data->username)){
+					echo json_encode(array("result"=>"notunique","message"=>"This username already exists!"));
 					return false;
 				}
 				$info=array(
@@ -89,8 +89,8 @@ class Common extends CI_Controller {
 			break;
 			case "merchant":
 				$table="merchant";
-				if(!$this->commongetdata->checkUnique("merchant",$data->username)){
-					echo json_encode(array("result"=>"notunique","message"=>"该用户名已经存在"));
+				if(!$this->commongetdata->checkUniqueAdvance("merchant","merchant_username",$data->username)){
+					echo json_encode(array("result"=>"notunique","message"=>"This username already exists!"));
 					return false;
 				}
 				$info=array(
