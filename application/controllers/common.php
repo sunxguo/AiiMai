@@ -332,8 +332,12 @@ class Common extends CI_Controller {
 			"user_confirm_email"=>1
 		);
 		$result=$this->dbHandler->updateData($condition);
-		if($result==1) echo json_encode(array("result"=>"success","message"=>"success"));
-		else echo json_encode(array("result"=>"failed","message"=>"failed"));
+		if($result==1) {
+			$this->load->view('redirect',array("url"=>"/home/login","info"=>"Success!"));
+		}
+		else{
+			$this->load->view('redirect',array("info"=>"failed!"));
+		}
 	}
 	public function confirmMerchantEmail(){
 		!$this->commongetdata->checkUniqueAdvance("merchant","merchant_email",$_GET['email']);
