@@ -206,7 +206,7 @@ You can edit your address and change the display setting on ‘ASM > Setting > M
 						<option value="ID">Indonesia</option>
 						<option value="JP">Japan</option><option value="KR">South Korea</option><option value="MY">Malaysia</option><option value="PH">Philippines</option><option value="SG" selected>Singapore</option><option value="TH">Thailand</option><option value="TW">Taiwan</option><option value="US">United States</option><option value="VN">Vietnam</option>
 					</select>
-					<input type="password" id="repassword" placeholder="" class="inp-txt width250"><br>
+					<input type="text" id="repassword" placeholder="" class="inp-txt width250"><br>
 					<font color="red">*Please check the recipient name and address carefully for exact delivery. Letters and numbers only.</font>
 				</td>
 				
