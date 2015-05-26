@@ -297,6 +297,9 @@ function sellerRegister(){
 		});
 	}
 }
+function sellerInformation(){
+	
+}
 function refreshCode(){
 	$("#validCodeImg").attr("src","/common/createVeriCode");
 }

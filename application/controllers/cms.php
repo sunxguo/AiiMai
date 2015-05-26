@@ -32,7 +32,22 @@ class Cms extends CI_Controller {
 					$_SESSION['username']=$info[0]->merchant_username;
 					$_SESSION['userid']=$info[0]->merchant_id;
 					$_SESSION['usertype']="merchant";
-					$this->load->view('redirect',array("url"=>"/cms/index"));
+					$_SESSION['merchantEmail']=$info[0]->merchant_email;
+					//状态：0：注册完成但没有完善信息 1：完善信息等待审核 2：审核通过 3：审核不通过
+					switch($info[0]->merchant_status){
+						case 0:
+							$this->load->view('redirect',array("url"=>"/cms/registerInformation"));
+						break;
+						case 1:
+							$this->load->view('redirect',array("url"=>"/cms/waitConfirm"));
+						break;
+						case 2:
+							$this->load->view('redirect',array("url"=>"/cms/index"));
+						break;
+						case 3:
+							$this->load->view('redirect',array("url"=>"/cms/confirmFailed"));
+						break;
+					}
 				}
 				else{
 					$this->load->view('redirect',array("info"=>"Wrong Password!"));

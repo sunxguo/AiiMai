@@ -226,7 +226,7 @@ You can edit your address and change the display setting on ‘ASM > Setting > M
 			</p>
 		</div>
 		<div class="reg-btn">
-			<input type="button" class="btn-big" id="btnRegister" onclick="sellerRegister()" value="Submit">
+			<input type="button" class="btn-big" id="btnRegister" onclick="sellerInformation()" value="Submit">
 		</div>
 	</div>
 	<!--

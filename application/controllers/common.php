@@ -100,6 +100,8 @@ class Common extends CI_Controller {
 					"merchant_gender"=>$data->gender,
 					"merchant_email"=>$data->email,
 					"merchant_country"=>$data->country,
+					"merchant_confirm_email"=>0,
+					"merchant_status"=>0,
 					"merchant_reg_time"=>date("Y-m-d H:i:s")
 				);
 				$_SESSION['merchantEmail']=$data->email;
