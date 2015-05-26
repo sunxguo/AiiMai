@@ -17,16 +17,16 @@
 			</tr>
 		</thead>
 		<tbody>
-			<?php foreach($columns as $col):?>
+			<?php foreach($items as $item):?>
 			<tr class="list1">
-				<td><img src="" width="60" height="60"></td>
-				<td class="column-name"><?php echo $col->column_name;?></td>
-				<td><?php echo $col->column_display;?></td>
-				<td><?php echo $col->column_type;?></td>
+				<td><img src="<?php echo $item->product_image;?>" width="60" height="60"></td>
+				<td class="column-name"><?php echo $item->product_item_title_english;?></td>
+				<td><?php echo $item->product_sell_price;?></td>
+				<td><?php echo $item->product_status;?></td>
 				<td>
-					<a href="/admin/contentList?column=<?php echo $col->column_id;?>">Preview</a>
-					<a href="/admin/editColumn?column=<?php echo $col->column_id;?>">Edit</a>
-					<a href="javascript:delColumn('<?php echo $col->column_id;?>','确定删除<<?php echo $col->column_name;?>>？','成功删除 <?php echo $col->column_name;?>')">Delete</a>
+					<a href="/admin/contentList?column=<?php echo $item->product_id;?>">Preview</a>
+					<a href="/admin/editColumn?column=<?php echo $item->product_id;?>">Edit</a>
+					<a href="javascript:delColumn('<?php echo $item->product_id;?>','确定删除<<?php echo $item->column_name;?>>？','成功删除 <?php echo $item->column_name;?>')">Delete</a>
 				</td>
 			</tr>
 			<?php endforeach;?>

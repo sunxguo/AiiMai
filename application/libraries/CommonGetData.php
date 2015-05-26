@@ -280,7 +280,7 @@ class CommonGetData{
 		$pageAmount=ceil($amount/$amountPerPage);
 		$page=array(
 			'firstPage'=>($currentPage!=1)?$baseUrl.'&page=1':'no',
-			'lastPage'=>($currentPage!=$pageAmount)?$baseUrl.'&page='.$pageAmount:'no',
+			'lastPage'=>($currentPage!=$pageAmount && $pageAmount!=0)?$baseUrl.'&page='.$pageAmount:'no',
 			'prevPage'=>($currentPage>1)?$baseUrl.'&page='.($currentPage-1):'no',
 			'nextPage'=>($currentPage<$pageAmount)?$baseUrl.'&page='.($currentPage+1):'no',
 			'jumpPage'=>$baseUrl.'&page=',

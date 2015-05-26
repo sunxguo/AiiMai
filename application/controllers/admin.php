@@ -69,12 +69,54 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/footer');
 	}
 	public function index(){
-		$this->adminBaseHandler('Backend Panel',array('index','none'),'index',array());
-	}
-	public function items(){
 		$data=array(
 			"columns"=>$this->commongetdata->getColumns()
 		);
+		$this->adminBaseHandler('Backend Panel',array('index','none'),'index',$data);
+	}
+	public function items(){
+		if(isset($_GET['page'])&& is_numeric($_GET['page'])) $page=$_GET['page'];
+		else $page=1;
+		$amountPerPage=20;
+		$condition['table']='product';
+		$baseUrl=$selectUrl='/admin/items';
+		if(isset($_GET['status'])&& is_numeric($_GET['status'])){
+			$condition['where']=array('product_status'=>$_GET['status']);
+			$baseUrl.='?status='.$_GET['status'];
+		}else{
+			$baseUrl.='?status=0';
+		}
+		if(isset($_GET['adult'])&& is_numeric($_GET['adult'])){
+			$condition['where']=array('product_adult'=>$_GET['adult']);
+			$baseUrl.='&adult='.$_GET['adult'];
+		}
+		if(isset($_GET['category'])&& is_numeric($_GET['category'])){
+			$condition['where']=array('product_category'=>$_GET['category']);
+			$baseUrl.='&category='.$_GET['category'];
+		}
+		if(isset($_GET['subCategory'])&& is_numeric($_GET['subCategory'])){
+			$condition['where']=array('product_sub_category'=>$_GET['subCategory']);
+			$baseUrl.='&subCategory='.$_GET['subCategory'];
+		}
+		if(isset($_GET['subSubCategory'])&& is_numeric($_GET['subSubCategory'])){
+			$condition['where']=array('product_sub_sub_category'=>$_GET['subSubCategory']);
+			$baseUrl.='&subSubCategory='.$_GET['subSubCategory'];
+		}
+		if(isset($_GET['search'])){
+			$condition['like']=array('product_item_title_english'=>$_GET['search']);
+			$baseUrl.='&search='.$_GET['search'];
+		}
+		$condition['result']="count";
+		$amount=$this->commongetdata->getData($condition);
+		$condition['result']="data";
+		$condition['order_by']=array('product_modify_time'=>'DESC');
+		$pageInfo=$this->commongetdata->getPageLink($baseUrl,$selectUrl,$page,$amountPerPage,$amount);
+		$condition['limit']=$pageInfo['limit'];
+		$data=array(
+			"columns"=>$this->commongetdata->getColumns(),
+			"items"=>$this->commongetdata->getData($condition)
+		);
+		$data=array_merge($data,$pageInfo);
 		$this->adminBaseHandler('Items',array('data','items'),'items',$data);
 	}
 	public function merchants(){
@@ -144,9 +186,27 @@ class Admin extends CI_Controller {
 		$this->adminBaseHandler('users',array('data','users'),'users',$data);
 	}
 	public function orders(){
+		if(isset($_GET['page'])&& is_numeric($_GET['page'])) $page=$_GET['page'];
+		else $page=1;
+		$amountPerPage=20;
+		$condition['table']='order';
+		$baseUrl=$selectUrl='/admin/orders';
+		if(isset($_GET['status'])&& is_numeric($_GET['status'])){
+			$condition['where']=array('order_status'=>$_GET['status']);
+			$baseUrl.='?status='.$_GET['status'];
+		}else{
+			$baseUrl.='?status=0';
+		}
+		$condition['result']="count";
+		$amount=$this->commongetdata->getData($condition);
+		$condition['result']="data";
+		$condition['order_by']=array('order_time'=>'DESC');
+		$pageInfo=$this->commongetdata->getPageLink($baseUrl,$selectUrl,$page,$amountPerPage,$amount);
+		$condition['limit']=$pageInfo['limit'];
 		$data=array(
-			"columns"=>$this->commongetdata->getColumns()
+			"orders"=>$this->commongetdata->getData($condition)
 		);
+		$data=array_merge($data,$pageInfo);
 		$this->adminBaseHandler('orders',array('data','orders'),'orders',$data);
 	}
 	public function shipCompany(){
