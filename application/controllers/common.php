@@ -181,6 +181,25 @@ class Common extends CI_Controller {
 					"product_modify_time"=>date("Y-m-d H:i:s")
 				);
 			break;
+			case "merchantInfo":
+				$condition['table']="merchant";
+				$condition['where']=array("merchant_email"=>$_SESSION['merchantEmail']);
+				$condition['data']=array(
+					"merchant_type"=>$data->merchantType,
+					"merchant_name"=>$data->name,
+					"merchant_login_ID"=>$data->ID,
+					"merchant_phone1"=>$data->phone1,
+					"merchant_phone2"=>$data->phone2,
+					"merchant_phone3"=>$data->phone3,
+					"merchant_homephone1"=>$data->homephone1,
+					"merchant_homephone2"=>$data->homephone2,
+					"merchant_homephone3"=>$data->homephone3,
+					"merchant_address1"=>$data->address1,
+					"merchant_address2"=>$data->address2,
+					"merchant_salesStaff"=>$data->salesStaff,
+					"merchant_status"=>1
+				);
+			break;
 		}
 		$result=$this->dbHandler->updateData($condition);
 		if($result==1) echo json_encode(array("result"=>"success","message"=>"信息修改成功"));
@@ -371,7 +390,19 @@ class Common extends CI_Controller {
 	}
 	public function sendMerchantEmail(){
 		$this->commongetdata->email($_SESSION['merchantEmail'],'Successfully Registered. | Confirm E-mail!','<a href="aiimai.coolkeji.com/common/confirmMerchantEmail?email='.$_SESSION['merchantEmail'].'">Confirm</a>');
-		echo json_encode(array("result"=>"success","message"=>"验证码输入正确！"));
+		echo json_encode(array("result"=>"success","message"=>"success"));
+	}
+	public function reloadEmail(){
+		$condition=array(
+			'table'=>'merchant',
+			'result'=>'data',
+			'where'=>array('merchant_email'=>$_SESSION['merchantEmail'])
+		);
+		$merchant=$this->commongetdata->getOneData($condition);
+		if($merchant->merchant_confirm_email==1)
+			echo json_encode(array("result"=>"success","message"=>"Successfully Confirmed E-mail!"));
+		else
+			echo json_encode(array("result"=>"failed","message"=>"Failed Confirmed E-mail!"));
 	}
 	/*
 	public function getSubCat(){

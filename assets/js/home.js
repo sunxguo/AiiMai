@@ -297,8 +297,111 @@ function sellerRegister(){
 		});
 	}
 }
+function checkName(){
+	var length = $("#name").val().length;
+	if(length<1){	
+		showAlert('danger','Name ','cannot be empty!');
+		return false;
+	}else{
+		
+		return true;
+	}
+}
+function checkContactInfo(){
+	var lengthPhone2 = $("#phone2").val().length;
+	var lengthPhone3 = $("#phone3").val().length;
+	var lengthHomePhone2 = $("#homephone2").val().length;
+	var lengthHomePhone3 = $("#homephone3").val().length;
+	if(lengthPhone2<1 || lengthPhone3<1 || lengthHomePhone2<1 || lengthHomePhone3<1){
+		showAlert('danger','Phone Or Home ','cannot be empty!');
+		return false;
+	}else{
+		
+		return true;
+	}
+}
+function checkAddress(){
+	var length = $("#address2").val().length;
+	if(length<1){
+		showAlert('danger','Address ','cannot be empty!');
+		return false;
+	}else{
+		
+		return true;
+	}
+}
+function checkSalesStaffName(){
+	var length = $("#salesStaff").val().length;
+	if(length<1){
+		showAlert('danger','Sales Staff Name ','cannot be empty!');
+		return false;
+	}else{
+		
+		return true;
+	}
+}
+function checkAllInfo(){
+	if(checkName() && checkContactInfo() && checkAddress() && checkSalesStaffName()){
+		validation();
+		return true;
+	}else{
+		invalidation();
+		return false;
+	}
+}
 function sellerInformation(){
-	
+	if(checkAllInfo()){
+		var merchantInfo = new Object();
+		var merchantType=$('input[name="merchantType"]:checked').val();
+		merchantInfo.merchantType = merchantType;
+		merchantInfo.name = $("#name").val();
+		merchantInfo.ID = $("#ID").val();
+		merchantInfo.phone1 = $("#phone1").val();
+		merchantInfo.phone2 = $("#phone2").val();
+		merchantInfo.phone3 = $('#phone3').val();
+		merchantInfo.homephone1 = $('#homephone1').val();
+		merchantInfo.homephone2 = $('#homephone2').val();
+		merchantInfo.homephone3 = $('#homephone3').val();
+		merchantInfo.address1 = $('#address1').val();
+		merchantInfo.address2 = $('#address2').val();
+		merchantInfo.salesStaff = $('#salesStaff').val();
+		
+		$.post("/common/modifyInfo",
+		{
+			'info_type':'merchantInfo',
+			'data':JSON.stringify(merchantInfo)
+		},
+		function(data){
+			var result=$.parseJSON(data);
+			if(result.result=="success"){
+				showAlert('danger','Success!','Please wait for confirmation!');
+				//Please fill in the details
+				location.href="/cms/waitConfirm";
+			}else if(result.result=="notunique"){
+				showAlert('danger','Not unique',result.message);
+			}else{
+				showAlert('danger','Sorry,',' Failed! Please try again later!');
+			}
+		});
+	}
+}
+function reloadEmail(){
+	$.ajax({
+	  type : "post",
+	  url : "/common/reloadEmail",
+	  data : 'email=ok',
+	  async : false,
+	  success : function(data){
+		var result=$.parseJSON(data);
+		if(result.result=="success"){
+			showAlert('success','Successfully ','Confirmed E-mail!');
+			$("#gsm_mail_wrapper").hide();
+			$("#confirmEmail").show();
+		}else{
+			showAlert('danger','Failed!','Please reload again!');
+		}
+	  }
+	});
 }
 function refreshCode(){
 	$("#validCodeImg").attr("src","/common/createVeriCode");

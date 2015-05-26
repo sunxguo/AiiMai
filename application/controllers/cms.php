@@ -103,6 +103,17 @@ class Cms extends CI_Controller {
 		$this->load->view('home/sellerInformation',$data);
 		$this->load->view('home/footer',array());
 	}
+	public function waitConfirm(){
+		$data=array();
+		$this->load->view('home/header',
+			array(
+				'title' => "wait Confirmation-AiiMai",
+				'websiteName'=>"AiiMai"
+			)
+		);
+		$this->load->view('home/waitConfirm',$data);
+		$this->load->view('home/footer',array());
+	}
 	public function index(){
 		$this->cmsBaseHandler('ASM Management',array('index'=>true),'index',array());
 	}

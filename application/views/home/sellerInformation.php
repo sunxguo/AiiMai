@@ -58,85 +58,25 @@
 			<tr>
 				<td><font color="red">*</font>Contact Information</td>
 				<td>
-					<div class="gsm_mail" style="background-position: -260px -625px;">
+					<div id="gsm_mail_wrapper" class="gsm_mail" style="background-position: -260px -625px;">
 						<input type="text" id="email" class="inp-txt" style="width:190px;" readonly="" value="<?php echo $_SESSION['merchantEmail'];?>">
 						<button onclick="sendMerchantEmail();" type="button" class="km-btn km-btn-primary" style="height: 24px;font-size: 10px;padding: 3px 5px;">Send Confirmation Email</button>	
 						<p>
 							(*) After you confirmed email address successfully, click reload button 
-							<button onclick="checkUserEmail();" type="button" class="km-btn km-btn-primary" style="height: 24px;font-size: 10px;padding: 3px 5px;">Reload</button>	
+							<button onclick="reloadEmail();" type="button" class="km-btn km-btn-primary" style="height: 24px;font-size: 10px;padding: 3px 5px;">Reload</button>	
 						</p>
+					</div>
+					<div id="confirmEmail" class="gsm_mail" style="display:none;">
+						<h3><?php echo $_SESSION['merchantEmail'];?></h3>
 					</div>
 					<div class="gsm_phone">
 						<div id="hp_no0_code" class="gsm_select" style="display: none;">
 							<p><a href="javascript:showCallingCode('hp_no0_code','hp_no0_major_code');"><img src="http://static.image-gmkt.com/qoo10/front/cm/qsm/image/@sg.gif" width="29" height="19" alt=""></a></p>
 						</div>
-						<select id="hp_no0_major_code" name="hp_no0_major_code" style="width: 110px;" onchange="if (this.options[this.selectedIndex].text=='show all') showCallingCode('hp_no0_major_code','hp_no0_nation_calling_code');changeCallingCode_hp_no0(this);">
-							<option value="" selected="">== select ==</option>
-							<option value="61">Australia</option>
-							<option value="1">Canada</option>
-							<option value="86">China</option>
-							<option value="44">United Kingdom</option>
-							<option value="852">Hong Kong</option>
-							<option value="62">Indonesia</option>
-							<option value="81">Japan</option>
-							<option value="82">South Korea</option>
-							<option value="60">Malaysia</option>
-							<option value="64">New Zealand</option>
-							<option value="63">Philippines</option>
-							<option value="7">Russia</option>
-							<option value="65">Singapore</option>
-							<option value="66">Thailand</option>
-							<option value="886">Taiwan</option>
-							<option value="1">United States</option>
-							<option value="84">Vietnam</option>	
-							<option style="color:#aaa" value="" onclick="showCallingCode('hp_no0_major_code','hp_no0_nation_calling_code');">show all</option>
-						</select>
-						<select id="hp_no0_nation_calling_code" name="hp_no0_nation_calling_code" style="width: 110px; display: none;" onchange="changeCallingCode_hp_no0(this);">
-							<option value="" selected="">== select ==</option>
+						<select id="phone1" style="width: 110px;">
 							<option value="62">Indonesia</option>
 							<option value="60">Malaysia</option>
-							<option value="65">Singapore</option>
-							<option value="81">Japan</option>
-							<option value="82">South Korea</option>
-							<option value="852">Hong Kong</option>
-							<option value="853">Macau</option>
-							<option value="86">China</option>
-							<option value="91">India</option>
-							<option value="61">Australia</option>
-							<option value="673">Brunei Darussalam</option><option value="55">Brazil</option><option value="1">Canada</option><option value="41">Switzerland</option><option value="86">China</option><option value="49">Germany</option><option value="45">Denmark</option><option value="20">Egypt</option><option value="34">Spain</option><option value="358">Finland</option><option value="33">France</option><option value="44">United Kingdom</option><option value="30">Greece</option><option value="852">Hong Kong</option><option value="36">Hungary</option><option value="62">Indonesia</option><option value="972">Israel</option><option value="91">India</option><option value="39">Italy</option><option value="81">Japan</option><option value="82">South Korea</option><option value="965">Kuwait</option><option value="95">Myanma</option><option value="853">Macau</option><option value="52">Mexico</option><option value="60">Malaysia</option><option value="31">Netherland</option><option value="47">Norway</option><option value="64">New Zealand</option><option value="63">Philippines</option><option value="48">Poland</option><option value="351">Portugal</option><option value="7">Russia</option><option value="46">Sweden</option><option value="65">Singapore</option><option value="66">Thailand</option><option value="90">Turkey</option><option value="886">Taiwan</option><option value="1">United States</option><option value="84">Vietnam</option></select>
-							<input type="text" id="hp_no2" name="hp_no2" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" maxlength="4" value="" title="ex) 1234"> - 
-							<input type="text" id="hp_no3" name="hp_no3" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" maxlength="4" value="" title="ex) 5678">
-					</div>
-					<div class="gsm_home">
-						<div id="" class="gsm_select" style="display: none;">
-							<p><a href=""><img src="http://static.image-gmkt.com/qoo10/front/cm/qsm/image/@sg.gif" width="29" height="19" alt=""></a></p>
-						</div>
-						<select id="" name="" style="width: 110px;">
-							<option value="" selected="">== select ==</option>
-							<option value="61">Australia</option>
-							<option value="1">Canada</option>
-							<option value="86">China</option>
-							<option value="44">United Kingdom</option>
-							<option value="852">Hong Kong</option>
-							<option value="62">Indonesia</option>
-							<option value="81">Japan</option>
-							<option value="82">South Korea</option>
-							<option value="60">Malaysia</option>
-							<option value="64">New Zealand</option>
-							<option value="63">Philippines</option>
-							<option value="7">Russia</option>
-							<option value="65">Singapore</option>
-							<option value="66">Thailand</option>
-							<option value="886">Taiwan</option>
-							<option value="1">United States</option>
-							<option value="84">Vietnam</option>
-							<option style="color:#aaa" value="" onclick="showCallingCode('tel_no0_major_code','tel_no0_nation_calling_code');">show all</option>
-						</select>
-						<select id="" name="" style="width: 110px; display: none;" onchange="">
-							<option value="" selected="">== select ==</option>
-							<option value="62">Indonesia</option>
-							<option value="60">Malaysia</option>
-							<option value="65">Singapore</option>
+							<option value="65" selected>Singapore</option>
 							<option value="81">Japan</option>
 							<option value="82">South Korea</option>
 							<option value="852">Hong Kong</option>
@@ -185,8 +125,67 @@
 							<option value="1">United States</option>
 							<option value="84">Vietnam</option>
 						</select>
-						<input type="text" id="tel_no2" name="tel_no2" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" maxlength="4" value="" title="ex) 1234"> - 
-						<input type="text" id="tel_no3" name="tel_no3" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" maxlength="4" value="" title="ex) 5678">
+						<input type="text" id="phone2" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" maxlength="4" value="" title="ex) 1234"> - 
+						<input type="text" id="phone3" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" maxlength="4" value="" title="ex) 5678">
+					</div>
+					<div class="gsm_home">
+						<div id="" class="gsm_select" style="display: none;">
+							<p><a href=""><img src="http://static.image-gmkt.com/qoo10/front/cm/qsm/image/@sg.gif" width="29" height="19" alt=""></a></p>
+						</div>
+						<select id="homephone1" name="" style="width: 110px;">
+							<option value="62">Indonesia</option>
+							<option value="60">Malaysia</option>
+							<option value="65" selected>Singapore</option>
+							<option value="81">Japan</option>
+							<option value="82">South Korea</option>
+							<option value="852">Hong Kong</option>
+							<option value="853">Macau</option>
+							<option value="86">China</option>
+							<option value="91">India</option>
+							<option value="61">Australia</option>
+							<option value="673">Brunei Darussalam</option>
+							<option value="55">Brazil</option>
+							<option value="1">Canada</option>
+							<option value="41">Switzerland</option>
+							<option value="86">China</option>
+							<option value="49">Germany</option>
+							<option value="45">Denmark</option>
+							<option value="20">Egypt</option>
+							<option value="34">Spain</option>
+							<option value="358">Finland</option>
+							<option value="33">France</option>
+							<option value="44">United Kingdom</option>
+							<option value="30">Greece</option>
+							<option value="852">Hong Kong</option>
+							<option value="36">Hungary</option>
+							<option value="62">Indonesia</option>
+							<option value="972">Israel</option>
+							<option value="91">India</option>
+							<option value="39">Italy</option>
+							<option value="81">Japan</option>
+							<option value="82">South Korea</option>
+							<option value="965">Kuwait</option>
+							<option value="95">Myanma</option>
+							<option value="853">Macau</option>
+							<option value="52">Mexico</option>
+							<option value="60">Malaysia</option>
+							<option value="31">Netherland</option>
+							<option value="47">Norway</option>
+							<option value="64">New Zealand</option>
+							<option value="63">Philippines</option>
+							<option value="48">Poland</option>
+							<option value="351">Portugal</option>
+							<option value="7">Russia</option>
+							<option value="46">Sweden</option>
+							<option value="65">Singapore</option>
+							<option value="66">Thailand</option>
+							<option value="90">Turkey</option>
+							<option value="886">Taiwan</option>
+							<option value="1">United States</option>
+							<option value="84">Vietnam</option>
+						</select>
+						<input type="text" id="homephone2" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" maxlength="4" value="" title="ex) 1234"> - 
+						<input type="text" id="homephone3" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" maxlength="4" value="" title="ex) 5678">
 					</div>
 				</td>
 			</tr>
@@ -196,7 +195,7 @@
 					<p style="color:blue;">※ Entered address here will be registered as 5 types of address; [Representative], [Information], [Ship-from], [Item Return] and [Receipt]. 
 It will be displayed in public on item page. Please, type in your local language and Roman alphabet. 
 You can edit your address and change the display setting on ‘ASM > Setting > My Information > Seller's information displayed to customer.’</p>
-					<select id="" name="" style="height: 25px;">
+					<select id="address1" name="" style="height: 25px;">
 						<option value="AU">Australia</option>
 						<option value="BN">Brunei Darussalam</option>
 						<option value="CA">Canada</option>
@@ -204,9 +203,17 @@ You can edit your address and change the display setting on ‘ASM > Setting > M
 						<option value="GB">United Kingdom</option>
 						<option value="HK">Hong Kong</option>
 						<option value="ID">Indonesia</option>
-						<option value="JP">Japan</option><option value="KR">South Korea</option><option value="MY">Malaysia</option><option value="PH">Philippines</option><option value="SG" selected>Singapore</option><option value="TH">Thailand</option><option value="TW">Taiwan</option><option value="US">United States</option><option value="VN">Vietnam</option>
+						<option value="JP">Japan</option>
+						<option value="KR">South Korea</option>
+						<option value="MY">Malaysia</option>
+						<option value="PH">Philippines</option>
+						<option value="SG" selected>Singapore</option>
+						<option value="TH">Thailand</option>
+						<option value="TW">Taiwan</option>
+						<option value="US">United States</option>
+						<option value="VN">Vietnam</option>
 					</select>
-					<input type="text" id="repassword" placeholder="" class="inp-txt width250"><br>
+					<input type="text" id="address2" placeholder="" class="inp-txt width250"><br>
 					<font color="red">*Please check the recipient name and address carefully for exact delivery. Letters and numbers only.</font>
 				</td>
 				
@@ -214,7 +221,7 @@ You can edit your address and change the display setting on ‘ASM > Setting > M
 			<tr>
 				<td><font color="red">*</font>Sales staff name</td>
 				<td>
-					<input type="text" class="inp-txt width150">
+					<input id="salesStaff" type="text" class="inp-txt width150">
 					 Sales staff name will be displayed at the shop information section of Item page.
 				</td>
 			</tr>
