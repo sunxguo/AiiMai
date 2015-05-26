@@ -26,7 +26,7 @@
 				<td>
 					<a href="/admin/contentList?column=<?php echo $item->product_id;?>">Preview</a>
 					<a href="/admin/editColumn?column=<?php echo $item->product_id;?>">Edit</a>
-					<a href="javascript:delColumn('<?php echo $item->product_id;?>','确定删除<<?php echo $item->column_name;?>>？','成功删除 <?php echo $item->column_name;?>')">Delete</a>
+					<a href="javascript:delColumn('<?php echo $item->product_id;?>','确定删除<<?php echo $item->product_item_title_english;?>>？','成功删除 <?php echo $item->product_item_title_english;?>')">Delete</a>
 				</td>
 			</tr>
 			<?php endforeach;?>
