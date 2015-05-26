@@ -2,19 +2,19 @@
 	<ul class="summary-card row-fluid clearfix">
 		<li class="span3 text-center">
 			<h2><?php echo lang('cms_index_todaysturnover');?></h2>
-			<p class="summary-today-income">S$0.000</p>
+			<p class="summary-today-income">S$<?php echo $turnover[1];?></p>
 		</li>
 		<li class="span3 text-center">
 			<h2><?php echo lang('cms_index_yesterdaysturnover');?></h2>
-			<p class="summary-yesterday-income">S$1.200</p>
+			<p class="summary-yesterday-income">S$<?php echo $turnover[0];?></p>
 		</li>
 		<li class="span3 text-center">
 			<h2><?php echo lang('cms_index_totalturnover');?></h2>
-			<p class="summary-total-income">S$188.575</p>
+			<p class="summary-total-income">S$<?php echo $totalTurnover;?></p>
 		</li>
 		<li class="span3 text-center">
 			<h2><?php echo lang('cms_index_inventoryofemergency');?></h2>
-			<p class="summary-balance">88</p>
+			<p class="summary-balance">0</p>
 		</li>
 	</ul>
 	<div class="clearfix">

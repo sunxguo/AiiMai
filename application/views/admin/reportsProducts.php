@@ -1,7 +1,7 @@
 <div class="index reports topTab clearfix" style="">
 <div class="tabs-box">
 	<div class="tabs-top">
-		<a href="/admin/reportsProducts">Turnover</a>
+		<a href="/admin/reportsTurnover">Turnover</a>
 		<a href="#" class="current">Products</a>
 	</div>
 </div>

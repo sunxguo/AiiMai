@@ -210,38 +210,149 @@ class Admin extends CI_Controller {
 		$this->adminBaseHandler('orders',array('data','orders'),'orders',$data);
 	}
 	public function shipCompany(){
+		if(isset($_GET['page'])&& is_numeric($_GET['page'])) $page=$_GET['page'];
+		else $page=1;
+		$amountPerPage=20;
+		$condition['table']='shipcompany';
+		$baseUrl=$selectUrl='/admin/shipCompany';
+		if(isset($_GET['status'])&& is_numeric($_GET['status'])){
+			$condition['where']=array('shipcompany_status'=>$_GET['status']);
+			$baseUrl.='?status='.$_GET['status'];
+		}else{
+			$baseUrl.='?status=0';
+		}
+		if(isset($_GET['search'])){
+			$condition['like']=array('shipcompany_name'=>$_GET['search']);
+			$baseUrl.='&search='.$_GET['search'];
+		}
+		$condition['result']="count";
+		$amount=$this->commongetdata->getData($condition);
+		$condition['result']="data";
+		$condition['order_by']=array('shipcompany_time'=>'DESC');
+		$pageInfo=$this->commongetdata->getPageLink($baseUrl,$selectUrl,$page,$amountPerPage,$amount);
+		$condition['limit']=$pageInfo['limit'];
 		$data=array(
-			"columns"=>$this->commongetdata->getColumns()
+			"columns"=>$this->commongetdata->getColumns(),
+			"shipCompanys"=>$this->commongetdata->getData($condition)
 		);
+		$data=array_merge($data,$pageInfo);
 		$this->adminBaseHandler('shipCompany',array('data','shipCompany'),'shipCompany',$data);
 	}
 	public function advertisements(){
+		if(isset($_GET['page'])&& is_numeric($_GET['page'])) $page=$_GET['page'];
+		else $page=1;
+		$amountPerPage=20;
+		$condition['table']='advertisement';
+		$baseUrl=$selectUrl='/admin/advertisements';
+		if(isset($_GET['status'])&& is_numeric($_GET['status'])){
+			$condition['where']=array('advertisement_status'=>$_GET['status']);
+			$baseUrl.='?status='.$_GET['status'];
+		}else{
+			$baseUrl.='?status=0';
+		}
+		if(isset($_GET['search'])){
+			$condition['like']=array('advertisement_description'=>$_GET['search']);
+			$baseUrl.='&search='.$_GET['search'];
+		}
+		$condition['result']="count";
+		$amount=$this->commongetdata->getData($condition);
+		$condition['result']="data";
+		$condition['order_by']=array('advertisement_time'=>'DESC');
+		$pageInfo=$this->commongetdata->getPageLink($baseUrl,$selectUrl,$page,$amountPerPage,$amount);
+		$condition['limit']=$pageInfo['limit'];
 		$data=array(
-			"columns"=>$this->commongetdata->getColumns()
+			"columns"=>$this->commongetdata->getColumns(),
+			"advertisements"=>$this->commongetdata->getData($condition)
 		);
+		$data=array_merge($data,$pageInfo);
 		$this->adminBaseHandler('advertisements',array('data','advertisements'),'advertisements',$data);
 	}
 	public function comments(){
+		if(isset($_GET['page'])&& is_numeric($_GET['page'])) $page=$_GET['page'];
+		else $page=1;
+		$amountPerPage=20;
+		$condition['table']='comment';
+		$baseUrl=$selectUrl='/admin/comments';
+		if(isset($_GET['status'])&& is_numeric($_GET['status'])){
+			$condition['where']=array('comment_status'=>$_GET['status']);
+			$baseUrl.='?status='.$_GET['status'];
+		}else{
+			$baseUrl.='?status=0';
+		}
+		if(isset($_GET['search'])){
+			$condition['like']=array('comment_title'=>$_GET['search']);
+			$baseUrl.='&search='.$_GET['search'];
+		}
+		$condition['result']="count";
+		$amount=$this->commongetdata->getData($condition);
+		$condition['result']="data";
+		$condition['order_by']=array('comment_time'=>'DESC');
+		$pageInfo=$this->commongetdata->getPageLink($baseUrl,$selectUrl,$page,$amountPerPage,$amount);
+		$condition['limit']=$pageInfo['limit'];
 		$data=array(
-			"columns"=>$this->commongetdata->getColumns()
+			"columns"=>$this->commongetdata->getColumns(),
+			"comments"=>$this->commongetdata->getData($condition)
 		);
+		$data=array_merge($data,$pageInfo);
 		$this->adminBaseHandler('comments',array('data','comments'),'comments',$data);
 	}
 	public function payment(){
+		if(isset($_GET['page'])&& is_numeric($_GET['page'])) $page=$_GET['page'];
+		else $page=1;
+		$amountPerPage=20;
+		$condition['table']='payment';
+		$baseUrl=$selectUrl='/admin/payment';
+		if(isset($_GET['status'])&& is_numeric($_GET['status'])){
+			$condition['where']=array('payment_status'=>$_GET['status']);
+			$baseUrl.='?status='.$_GET['status'];
+		}else{
+			$baseUrl.='?status=0';
+		}
+		if(isset($_GET['search'])){
+			$condition['like']=array('payment_name'=>$_GET['search']);
+			$baseUrl.='&search='.$_GET['search'];
+		}
+		$condition['result']="count";
+		$amount=$this->commongetdata->getData($condition);
+		$condition['result']="data";
+		$condition['order_by']=array('payment_id'=>'DESC');
+		$pageInfo=$this->commongetdata->getPageLink($baseUrl,$selectUrl,$page,$amountPerPage,$amount);
+		$condition['limit']=$pageInfo['limit'];
 		$data=array(
-			"columns"=>$this->commongetdata->getColumns()
+			"columns"=>$this->commongetdata->getColumns(),
+			"payments"=>$this->commongetdata->getData($condition)
 		);
+		$data=array_merge($data,$pageInfo);
 		$this->adminBaseHandler('payment',array('data','payment'),'payment',$data);
 	}
 	public function reportsTurnover(){
+//		date("Y-m-d",strtotime('-11 day'));
+		$startDate=isset($_POST['startDate'])?$_POST['startDate']:date("Y-m-d",strtotime('-11 day'));
+		$endDate=isset($_POST['endDate'])?$_POST['endDate']:date("Y-m-d");
+		$Date_List_start=explode("-",$startDate);
+		$Date_List_end=explode("-",$endDate);
+		$d1=mktime(0,0,0,$Date_List_start[1],$Date_List_start[2],$Date_List_start[0]);
+		$d2=mktime(0,0,0,$Date_List_end[1],$Date_List_end[2],$Date_List_end[0]);
+		$Days=round(($d2-$d1)/3600/24);
 		$data=array(
-			"columns"=>$this->commongetdata->getColumns()
+			"columns"=>$this->commongetdata->getColumns(),
+			"categories"=>$this->commongetdata->getCategories(false),
+			"data"=>$this->commongetdata->getOrdersByDay($startDate,$Days+1)
 		);
 		$this->adminBaseHandler('Reports-Turnover',array('tool','reports'),'reportsTurnover',$data);
 	}
 	public function reportsProducts(){
+		$startDate=isset($_POST['startDate'])?$_POST['startDate']:date("Y-m-d",strtotime('-11 day'));
+		$endDate=isset($_POST['endDate'])?$_POST['endDate']:date("Y-m-d");
+		$Date_List_start=explode("-",$startDate);
+		$Date_List_end=explode("-",$endDate);
+		$d1=mktime(0,0,0,$Date_List_start[1],$Date_List_start[2],$Date_List_start[0]);
+		$d2=mktime(0,0,0,$Date_List_end[1],$Date_List_end[2],$Date_List_end[0]);
+		$Days=round(($d2-$d1)/3600/24);
 		$data=array(
-			"columns"=>$this->commongetdata->getColumns()
+			"columns"=>$this->commongetdata->getColumns(),
+			"categories"=>$this->commongetdata->getCategories(false),
+			"data"=>$this->commongetdata->getOrdersByDay($startDate,$Days+1)
 		);
 		$this->adminBaseHandler('reportsProducts',array('tool','reports'),'reportsProducts',$data);
 	}

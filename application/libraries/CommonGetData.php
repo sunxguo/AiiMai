@@ -292,6 +292,43 @@ class CommonGetData{
 		);
 		return $page;
 	}
+	public function getOrdersByDay($startDate,$offset,$merchant=false){
+		$data=array();
+		for($i=0;$i<$offset;$i++){
+			$condition=array(
+				'table'=>'order',
+				'result'=>'data',
+				'where'=>array(
+					'order_time >='=>date("Y-m-d",strtotime($startDate." +".$i." day")).' 00:00:00',
+					'order_time <='=>date("Y-m-d",strtotime($startDate." +".$i." day")).' 23:59:59'
+				)
+			);
+			if($merchant){
+				$condition['where']['order_merchant']=$_SESSION['userid'];
+			}
+			$orders=$this->getData($condition);
+			$data[$i]=0;
+			foreach($orders as $o){
+				$data[$i]+=$o->order_total;
+			}
+		}
+		return $data;
+	}
+	public function getTotalTurnover($merchant=false){
+		$condition=array(
+			'table'=>'order',
+			'result'=>'data'
+		);
+		if($merchant){
+			$condition['where']['order_merchant']=$merchant;
+		}
+		$orders=$this->getData($condition);
+		$total=0;
+		foreach($orders as $o){
+			$total+=$o->order_total;
+		}
+		return $total;
+	}
 	public function checkUnique($type,$value){
 		$result=false;
 		$condition=array(

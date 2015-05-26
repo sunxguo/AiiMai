@@ -115,7 +115,11 @@ class Cms extends CI_Controller {
 		$this->load->view('home/footer',array());
 	}
 	public function index(){
-		$this->cmsBaseHandler('ASM Management',array('index'=>true),'index',array());
+		$data=array(
+			"turnover"=>$this->commongetdata->getOrdersByDay(date("Y-m-d",strtotime('-1 day')),2,true),
+			"totalTurnover"=>$this->commongetdata->getTotalTurnover($_SESSION['userid'])
+		);
+		$this->cmsBaseHandler('ASM Management',array('index'=>true),'index',$data);
 	}
 	public function myInfo(){
 		$this->cmsBaseHandler('My Info',array('baseInfo'=>true,'myInfo'=>true),'myInfo',array());

@@ -1,18 +1,19 @@
 <div class="padding10 contentlist column-list">
+<!--
 	<div class="titA tit-bot pb5" style="">
 		<div style="float: right;margin-left:10px;">
 			<a href="/admin/addColumn" class="msg-btn">Search</a>
 		</div>
 		<div class="clear">
 		</div>
-	</div>
+	</div>-->
 	<table>
 		<thead>
 			<tr class="table-head">
 				<th style="width:100px;">Thumbnail</th>
 				<th style="width:400px;">Name</th>
 				<th style="width:150px;">Price</th>
-				<th style="width:150px;">Shelf</th>
+				<th style="width:150px;">Status</th>
 				<th style="width:280px;">Operation</th>
 			</tr>
 		</thead>
@@ -20,40 +21,31 @@
 			<?php foreach($items as $item):?>
 			<tr class="list1">
 				<td><img src="<?php echo $item->product_image;?>" width="60" height="60"></td>
-				<td class="column-name"><?php echo $item->product_item_title_english;?></td>
+				<td class="column-name"><a href="/home/item?itemId=<?php echo $item->product_id;?>" target="_blank"><?php echo $item->product_item_title_english;?></a></td>
 				<td><?php echo $item->product_sell_price;?></td>
 				<td><?php echo $item->product_status;?></td>
 				<td>
-					<a href="/admin/contentList?column=<?php echo $item->product_id;?>">Preview</a>
-					<a href="/admin/editColumn?column=<?php echo $item->product_id;?>">Edit</a>
-					<a href="javascript:delColumn('<?php echo $item->product_id;?>','确定删除<<?php echo $item->product_item_title_english;?>>？','成功删除 <?php echo $item->product_item_title_english;?>')">Delete</a>
+					<a href="/home/item?itemId=<?php echo $item->product_id;?>" target="_blank">Preview</a>
+					<a href="#">Edit</a>
+					<a href="javascript:delColumn('<?php echo $item->product_id;?>','Sure to delete <<?php echo $item->product_item_title_english;?>>？','Successfully deleted <?php echo $item->product_item_title_english;?>')">Delete</a>
 				</td>
 			</tr>
 			<?php endforeach;?>
 		</tbody>
 	</table>
 	<nav>
+	  Total <?php echo $amount;?>
 	  <ul class="km-pagination">
-		<li class="disabled">
-			<a href="#"><span>«</span></a>
+		<li <?php if($firstPage=="no"):?>class="disabled"<?php endif;?>>
+			<a href="<?php echo $firstPage=="no"?"#":$firstPage;?>"><span>«</span></a>
 		</li>
-		<li class="active">
-			<a href="#">1</a>
+		<?php for($i=1;$i<=$pageAmount;$i++):?>
+		<li <?php if($currentPage==$i):?>class="active"<?php endif;?>>
+			<a href="<?php echo $jumpPage.$i;?>"><?php echo $i;?></a>
 		</li>
-		<li>
-			<a href="#">2</a>
-		</li>
-		<li>
-			<a href="#">3</a>
-		</li>
-		<li>
-			<a href="#">4</a>
-		</li>
-		<li>
-			<a href="#">5</a>
-		</li>
-		<li>
-			<a href="#"><span>»</span></a>
+		<?php endfor;?>
+		<li <?php if($lastPage=="no"):?>class="disabled"<?php endif;?>>
+			<a href="<?php echo $lastPage=="no"?"#":$lastPage;?>"><span>»</span></a>
 		</li>
 	  </ul>
 	</nav>

@@ -8,17 +8,24 @@
 <div class="row">
 	<div class="span10" style="margin:0 auto;margin-top:10px;">
 		<div class="slate">
-			<form class="form-inline">
+			<form action="/admin/reportsTurnover" class="form-inline" method="post" enctype="multipart/form-data">
+				<input type="date" name="startDate" value="<?php echo date("Y-m-d",strtotime('-11 day'));?>" class="km-form-control" style="width: 130px;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
+				~
+				<input type="date" name="endDate" value="<?php echo date("Y-m-d");?>" class="km-form-control" style="width: 130px;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
+				<!--
 				<select class="span2">
 					<option value=""> - From Date - </option>
 				</select>
 				<select class="span2">
 					<option value=""> - To Date - </option>
-				</select>
+				</select>-->
 				<select class="span2">
 					<option value=""> - Category - </option>
+					<?php foreach($categories as $cat):?>
+					<option value="<?php echo $cat->category_id;?>"><?php echo $cat->category_name;?></option>
+					<?php endforeach;?>
 				</select>
-				<input type="text" class="input_text" placeholder="Keyword...">
+				<input type="text" name="search" class="input_text" placeholder="Keyword...">
 				<button type="submit" class="btn km-btn-primary" style="margin-top:0px;padding:0px;">Filter Report</button>
 			</form>
 		</div>
@@ -37,7 +44,11 @@
 					var data = [
 								{
 									name : 'A产品',
-									value:[2680,2200,1014,2590,2800,3200,2184,3456,2693,2064,2414,2044],
+									value:[
+									<?php foreach($data as $d):?>
+									<?php echo $d.',';?>
+									<?php endforeach;?>],
+									//2680,2200,1014,2590,2800,3200,2184,3456,2693,2064,2414,2044
 									color:'#01acb6',
 									line_width:2
 								}
@@ -60,7 +71,8 @@
 								}
 							},
 							subtitle:{
-								text:'Unit: ten thousand',//利用副标题设置单位信息  单位:万件
+//								text:'Unit: ten thousand',//利用副标题设置单位信息  单位:万件
+								text:'Unit: ',
 								fontsize:14,
 								color:'#eff4f8',
 								textAlign:'left',
@@ -90,7 +102,7 @@
 								listeners:{
 									 //tip:提示框对象、name:数据名称、value:数据值、text:当前文本、i:数据点的索引
 									parseText:function(tip,name,value,text,i){
-										return labels[i]+"订单数:<span style='color:red'>"+value+"</span>万件";
+										return labels[i]+"Orders:<span style='color:red'>"+value+"</span>";
 									}
 								}
 							},
@@ -166,32 +178,18 @@
 				<tbody>
 					<tr>
 						<td>Today</td>
-						<td class="value">$124.00</td>
+						<td class="value">$<?php echo $data[sizeof($data)-1];?></td>
 					</tr>
 					<tr>
 						<td>Yesterday</td>
-						<td class="value">$124.00</td>
+						<td class="value">$<?php echo $data[sizeof($data)-2];?></td>
 					</tr>
+					<?php for($i=sizeof($data)-2;$i>0;$i--):?>
 					<tr>
-						<td>5th June 2014</td>
-						<td class="value">$124.00</td>
+						<td><?php echo date("Y-m-d",strtotime('-'.(sizeof($data)-$i).' day'));;?></td>
+						<td class="value">$<?php echo $data[$i];?></td>
 					</tr>
-					<tr>
-						<td>4th June 2014</td>
-						<td class="value">$124.00</td>
-					</tr>
-					<tr>
-						<td>3rd June 2014</td>
-						<td class="value">$124.00</td>
-					</tr>
-					<tr>
-						<td>2nd June 2014</td>
-						<td class="value">$124.00</td>
-					</tr>
-					<tr>
-						<td>1st June 2014</td>
-						<td class="value">$124.00</td>
-					</tr>
+					<?php endfor;?>
 				</tbody>
 			</table>
 		</div>

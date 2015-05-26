@@ -1,60 +1,53 @@
 <div class="padding10 contentlist column-list">
+<!--
 	<div class="titA tit-bot pb5" style="">
 		<div style="float: right;margin-left:10px;">
 			<a href="/admin/addColumn" class="msg-btn">添加栏目</a>
 		</div>
 		<div class="clear">
 		</div>
-	</div>
+	</div>-->
 	<table>
 		<thead>
 			<tr class="table-head">
 				<th style="width:100px;">Logo</th>
 				<th style="width:400px;">Company</th>
 				<th style="width:150px;">Address</th>
-				<th style="width:150px;">Vip</th>
+				<th style="width:150px;">Status</th>
+				<th style="width:150px;">Time</th>
 				<th style="width:280px;">Operation</th>
 			</tr>
 		</thead>
 		<tbody>
-			<?php foreach($columns as $col):?>
+			<?php foreach($shipCompanys as $shipCompany):?>
 			<tr class="list1">
-				<td><img src="" width="54" height="43"></td>
-				<td class="column-name"><a href="" target="_blank"><?php echo $col->column_name;?></a></td>
-				<td><?php echo $col->column_display;?></td>
-				<td><?php echo $col->column_type;?></td>
+				<td><img src="<?php echo $shipCompany->shipcompany_logo;?>" width="54" height="43"></td>
+				<td class="column-name"><a href="" target="_blank"><?php echo $shipCompany->shipcompany_name;?></a></td>
+				<td><?php echo $shipCompany->shipcompany_address;?></td>
+				<td><?php echo $shipCompany->shipcompany_status;?></td>
 				<td>
-					<a href="/admin/contentList?column=<?php echo $col->column_id;?>">Details</a>&nbsp;&nbsp;&nbsp;
-					<a href="/admin/editColumn?column=<?php echo $col->column_id;?>">Edit</a>&nbsp;&nbsp;&nbsp;
-					<a href="javascript:delColumn('<?php echo $col->column_id;?>','Sure to freeze it?<<?php echo $col->column_name;?>>？','成功删除 <?php echo $col->column_name;?>')">Freeze</a>&nbsp;&nbsp;&nbsp;
-					<a href="javascript:delColumn('<?php echo $col->column_id;?>','Sure to delete it?<<?php echo $col->column_name;?>>？','成功删除 <?php echo $col->column_name;?>')">Delete</a>
+					<a href="/admin/contentList?column=<?php echo $shipCompany->shipcompany_id;?>">Details</a>&nbsp;&nbsp;&nbsp;
+					<a href="/admin/editColumn?column=<?php echo $shipCompany->shipcompany_id;?>">Edit</a>&nbsp;&nbsp;&nbsp;
+					<a href="javascript:delColumn('<?php echo $shipCompany->shipcompany_id;?>','Sure to freeze it?<<?php echo $shipCompany->shipcompany_name;?>>？','成功删除 <?php echo $shipCompany->shipcompany_name;?>')">Freeze</a>&nbsp;&nbsp;&nbsp;
+					<a href="javascript:delColumn('<?php echo $shipCompany->shipcompany_id;?>','Sure to delete it?<<?php echo $shipCompany->shipcompany_name;?>>？','成功删除 <?php echo $shipCompany->shipcompany_name;?>')">Delete</a>
 				</td>
 			</tr>
 			<?php endforeach;?>
 		</tbody>
 	</table>
 	<nav>
+	  Total <?php echo $amount;?>
 	  <ul class="km-pagination">
-		<li class="disabled">
-			<a href="#"><span>«</span></a>
+		<li <?php if($firstPage=="no"):?>class="disabled"<?php endif;?>>
+			<a href="<?php echo $firstPage=="no"?"#":$firstPage;?>"><span>«</span></a>
 		</li>
-		<li class="active">
-			<a href="#">1</a>
+		<?php for($i=1;$i<=$pageAmount;$i++):?>
+		<li <?php if($currentPage==$i):?>class="active"<?php endif;?>>
+			<a href="<?php echo $jumpPage.$i;?>"><?php echo $i;?></a>
 		</li>
-		<li>
-			<a href="#">2</a>
-		</li>
-		<li>
-			<a href="#">3</a>
-		</li>
-		<li>
-			<a href="#">4</a>
-		</li>
-		<li>
-			<a href="#">5</a>
-		</li>
-		<li>
-			<a href="#"><span>»</span></a>
+		<?php endfor;?>
+		<li <?php if($lastPage=="no"):?>class="disabled"<?php endif;?>>
+			<a href="<?php echo $lastPage=="no"?"#":$lastPage;?>"><span>»</span></a>
 		</li>
 	  </ul>
 	</nav>
