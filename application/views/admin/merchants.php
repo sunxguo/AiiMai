@@ -11,50 +11,43 @@
 			<tr class="table-head">
 				<th style="width:100px;">Logo</th>
 				<th style="width:400px;">Seller Shop Title</th>
-				<th style="width:150px;">Category</th>
-				<th style="width:150px;">Recommend</th>
+				<th style="width:200px;">Username</th>
+				<th style="width:150px;">Vip</th>
+				<th style="width:150px;">Last Login Time</th>
 				<th style="width:280px;">Operation</th>
 			</tr>
 		</thead>
 		<tbody>
-			<?php foreach($columns as $col):?>
+			<?php foreach($merchants as $merchant):?>
 			<tr class="list1">
-				<td><img src="" width="54" height="43"></td>
-				<td class="column-name"><a href="" target="_blank"><?php echo $col->column_name;?></a></td>
-				<td><?php echo $col->column_display;?></td>
-				<td><?php echo $col->column_type;?></td>
+				<td><img src="<?php echo $merchant->merchant_avatar;?>" width="54" height="43"></td>
+				<td class="column-name"><a href="/home/shop?shopId=<?php echo $merchant->merchant_id;?>" target="_blank"><?php echo $merchant->merchant_shop_name;?></a></td>
+				<td><?php echo $merchant->merchant_username;?></td>
+				<td><?php echo $merchant->merchant_vip_grade;?></td>
+				<td><?php echo $merchant->merchant_lastlogin_time;?></td>
 				<td>
-					<a href="/admin/contentList?column=<?php echo $col->column_id;?>">Go</a>&nbsp;&nbsp;&nbsp;
-					<a href="/admin/editColumn?column=<?php echo $col->column_id;?>">Edit</a>&nbsp;&nbsp;&nbsp;
-					<a href="javascript:delColumn('<?php echo $col->column_id;?>','Sure to freeze it?<<?php echo $col->column_name;?>>？','成功删除 <?php echo $col->column_name;?>')">Freeze</a>&nbsp;&nbsp;&nbsp;
-					<a href="javascript:delColumn('<?php echo $col->column_id;?>','Sure to delete it?<<?php echo $col->column_name;?>>？','成功删除 <?php echo $col->column_name;?>')">Delete</a>
+					<a href="/admin/contentList?column=<?php echo $merchant->merchant_id;?>">Go</a>&nbsp;&nbsp;&nbsp;
+					<a href="/admin/editColumn?column=<?php echo $merchant->merchant_id;?>">Edit</a>&nbsp;&nbsp;&nbsp;
+					<a href="javascript:delColumn('<?php echo $merchant->merchant_id;?>','Sure to freeze it?<<?php echo $merchant->merchant_username;?>>？','成功删除 <?php echo $merchant->merchant_username;?>')">Freeze</a>&nbsp;&nbsp;&nbsp;
+					<a href="javascript:delColumn('<?php echo $merchant->merchant_id;?>','Sure to delete it?<<?php echo $merchant->merchant_username;?>>？','成功删除 <?php echo $merchant->merchant_username;?>')">Delete</a>
 				</td>
 			</tr>
 			<?php endforeach;?>
 		</tbody>
 	</table>
 	<nav>
+	   Total <?php echo $amount;?>
 	  <ul class="km-pagination">
-		<li class="disabled">
-			<a href="#"><span>«</span></a>
+		<li <?php if($firstPage=="no"):?>class="disabled"<?php endif;?>>
+			<a href="<?php echo $firstPage=="no"?"#":$firstPage;?>"><span>«</span></a>
 		</li>
-		<li class="active">
-			<a href="#">1</a>
+		<?php for($i=1;$i<=$pageAmount;$i++):?>
+		<li <?php if($currentPage==$i):?>class="active"<?php endif;?>>
+			<a href="<?php echo $jumpPage.$i;?>"><?php echo $i;?></a>
 		</li>
-		<li>
-			<a href="#">2</a>
-		</li>
-		<li>
-			<a href="#">3</a>
-		</li>
-		<li>
-			<a href="#">4</a>
-		</li>
-		<li>
-			<a href="#">5</a>
-		</li>
-		<li>
-			<a href="#"><span>»</span></a>
+		<?php endfor;?>
+		<li <?php if($lastPage=="no"):?>class="disabled"<?php endif;?>>
+			<a href="<?php echo $lastPage=="no"?"#":$lastPage;?>"><span>»</span></a>
 		</li>
 	  </ul>
 	</nav>
