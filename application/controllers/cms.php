@@ -115,8 +115,10 @@ class Cms extends CI_Controller {
 		$this->load->view('home/footer',array());
 	}
 	public function index(){
+		$startDate=isset($_POST['startDate'])?$_POST['startDate']:date("Y-m-d",strtotime('-11 day'));
+		$days=isset($_POST['days'])?$_POST['days']:7;
 		$data=array(
-			"turnover"=>$this->commongetdata->getOrdersByDay(date("Y-m-d",strtotime('-1 day')),2,true),
+			"turnover"=>$this->commongetdata->getOrdersByDay($startDate,$days,true),
 			"totalTurnover"=>$this->commongetdata->getTotalTurnover($_SESSION['userid'])
 		);
 		$this->cmsBaseHandler('ASM Management',array('index'=>true),'index',$data);

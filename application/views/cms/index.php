@@ -2,11 +2,11 @@
 	<ul class="summary-card row-fluid clearfix">
 		<li class="span3 text-center">
 			<h2><?php echo lang('cms_index_todaysturnover');?></h2>
-			<p class="summary-today-income">S$<?php echo $turnover[1];?></p>
+			<p class="summary-today-income">S$<?php echo $turnover[sizeof($turnover)-1];?></p>
 		</li>
 		<li class="span3 text-center">
 			<h2><?php echo lang('cms_index_yesterdaysturnover');?></h2>
-			<p class="summary-yesterday-income">S$<?php echo $turnover[0];?></p>
+			<p class="summary-yesterday-income">S$<?php echo $turnover[sizeof($turnover)-1];?></p>
 		</li>
 		<li class="span3 text-center">
 			<h2><?php echo lang('cms_index_totalturnover');?></h2>
@@ -93,3 +93,5 @@
 	</table>
 	<div class="qsm-ad"><a href="" target="_blank"><img src="/assets/temp/cms-ad-english.jpg"></a></div>
 </div>
+<script>
+</script>

@@ -236,6 +236,12 @@ class Common extends CI_Controller {
 				$order=array("field"=>"product_modify_time","type"=>'DESC');
 				$result=$this->commongetdata->getProducts($_SESSION['userid'],$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order);
 			break;
+			case 'turnover':
+				$startDate=$data->startDate;
+				$days=$data->days;
+				$merchant=isset($data->merchant)?$data->merchant:false;
+				$result=$this->commongetdata->getOrdersByDay($startDate,$days,$merchant);
+			break;
 		}
 		echo json_encode(array("result"=>"success","message"=>$result));
 	}

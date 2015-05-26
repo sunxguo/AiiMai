@@ -194,7 +194,7 @@ var LineChart = function( options ) {
 
 var chart = new LineChart({ data: [],width:1100,height:500,yAxisLabel:true });
 
-reset();
+reset(7);
 
 chart.start();
 
@@ -208,20 +208,36 @@ function restart() {
   chart.restart();
 }
 
-function reset() {
-  chart.populate([
-    { label: 'One', value: 0 },
-    { label: 'Two', value: 100 },
-    { label: 'Three', value: 200 },
-    { label: 'Four', value: 840 },
-    { label: 'Five', value: 620 },
-    { label: 'Six', value: 500 },
-    { label: 'Seven', value: 600 },
-    { label: 'Eight', value: 1100 },
-    { label: 'Nine', value: 800 },
-    { label: 'Ten', value: 900 },
-    { label: 'Eleven', value: 1200, future: true },
-    { label: 'Twelve', value: 1400, future: true }
-  ]);
+function reset(days) {
+	var turnover = new Object();
+	turnover.startDate = "2015-5-21";
+	turnover.days = "7";
+	$.post(
+	"/common/getInfo",
+	{
+		'info_type':'merchantInfo',
+		'data':JSON.stringify(turnover)
+	},
+	function(data){
+		var result=$.parseJSON(data);
+		if(result.result=="success"){
+			chart.populate([
+				{ label: 'One', value: 0 },
+				{ label: 'Two', value: 0 },
+				{ label: 'Three', value: 0 },
+				{ label: 'Four', value: 0 },
+				{ label: 'Five', value: 0 },
+				{ label: 'Six', value: 0 },
+				{ label: 'Seven', value: 0 },
+				{ label: 'Eight', value: 0 },
+				{ label: 'Nine', value: 0 },
+				{ label: 'Ten', value: 0 },
+				{ label: 'Eleven', value: 1, future: true },
+				{ label: 'Twelve', value: 1, future: true }
+			  ]);
+		}else{
+			showAlert('danger','Failed!','');
+		}
+	});
 }
 

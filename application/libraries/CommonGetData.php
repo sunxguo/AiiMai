@@ -304,7 +304,7 @@ class CommonGetData{
 				)
 			);
 			if($merchant){
-				$condition['where']['order_merchant']=$_SESSION['userid'];
+				$condition['where']['order_merchant']=$merchant;
 			}
 			$orders=$this->getData($condition);
 			$data[$i]=0;
