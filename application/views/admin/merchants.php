@@ -26,7 +26,7 @@
 				<td><?php echo $merchant->merchant_vip_grade;?></td>
 				<td><?php echo $merchant->merchant_lastlogin_time;?></td>
 				<td>
-					<a href="/admin/contentList?column=<?php echo $merchant->merchant_id;?>">Go</a>&nbsp;&nbsp;&nbsp;
+					<a href="/home/shop?shopId=<?php echo $merchant->merchant_id;?>" target="_blank">Go</a>&nbsp;&nbsp;&nbsp;
 					<a href="/admin/editColumn?column=<?php echo $merchant->merchant_id;?>">Edit</a>&nbsp;&nbsp;&nbsp;
 					<a href="javascript:delColumn('<?php echo $merchant->merchant_id;?>','Sure to freeze it?<<?php echo $merchant->merchant_username;?>>？','成功删除 <?php echo $merchant->merchant_username;?>')">Freeze</a>&nbsp;&nbsp;&nbsp;
 					<a href="javascript:delColumn('<?php echo $merchant->merchant_id;?>','Sure to delete it?<<?php echo $merchant->merchant_username;?>>？','成功删除 <?php echo $merchant->merchant_username;?>')">Delete</a>
