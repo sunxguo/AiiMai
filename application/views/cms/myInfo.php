@@ -6,17 +6,17 @@
 				<tbody>
 				  <tr>
 					<td class="field width15p"><?php echo lang('cms_sider_UserID');?></td>
-					<td class="value width17p">kcheongn</td>
+					<td class="value width17p"><?php echo $merchant->merchant_login_ID;?></td>
 					<td class="field width15p"><?php echo lang('cms_sider_Seller');?></td>
-					<td class="value width17p">XXXX</td>
+					<td class="value width17p"><?php echo $merchant->merchant_username;?></td>
 					<td class="field width15p"><?php echo lang('cms_sider_RegisterDate');?></td>
-					<td class="value ">2015-01-29 11:22:56</td>
+					<td class="value "><?php echo $merchant->merchant_reg_time;?></td>
 				  </tr>
 				  <tr>
 					<td class="field"><?php echo lang('cms_sider_Sellertype');?></td>
-					<td class="value"><?php echo lang('cms_sider_Person');?></td>
+					<td class="value"><?php echo $merchant->merchant_type=='1'?lang('cms_sider_Person'):'Company';?></td>
 					<td class="field"><?php echo lang('cms_sider_Sellerlevel');?></td>
-					<td class="value"><?php echo lang('cms_sider_StandardSeller');?></td>
+					<td class="value"><?php echo $merchant->merchant_grade;?><?php //echo lang('cms_sider_StandardSeller');?></td>
 					<td class="field"><?php echo lang('cms_sider_Password');?></td>
 					<td class="value" style="padding: 2px 0;">
 						<button onclick="modifySellerBaseInfoPwd();" type="button" class="km-btn km-btn-primary" style="height: 30px;font-size: 12px;"><?php echo lang('cms_sider_Editpassword');?></button>

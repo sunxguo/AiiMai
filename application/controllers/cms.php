@@ -124,7 +124,10 @@ class Cms extends CI_Controller {
 		$this->cmsBaseHandler('ASM Management',array('index'=>true),'index',$data);
 	}
 	public function myInfo(){
-		$this->cmsBaseHandler('My Info',array('baseInfo'=>true,'myInfo'=>true),'myInfo',array());
+		$data=array(
+			"merchant"=>$this->commongetdata->getContent('merchant',$_SESSION['userid'])
+		);
+		$this->cmsBaseHandler('My Info',array('baseInfo'=>true,'myInfo'=>true),'myInfo',$data);
 	}
 	public function grade(){
 		$this->cmsBaseHandler('Grade',array('baseInfo'=>true,'grade'=>true),'grade',array());
