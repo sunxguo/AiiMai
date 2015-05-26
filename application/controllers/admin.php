@@ -84,9 +84,35 @@ class Admin extends CI_Controller {
 		$this->adminBaseHandler('merchants',array('data','merchants'),'merchants',$data);
 	}
 	public function users(){
+		if(isset($_GET['page'])&& is_numeric($_GET['page'])) $page=$_GET['page'];
+		else $page=1;
+		$amountPerPage=20;
+		$condition['table']='user';
+		$baseUrl=$selectUrl='/admin/users';
+		if(isset($_GET['status'])&& is_numeric($_GET['status'])){
+			$condition['where']=array('user_state'=>$_GET['status']);
+			$baseUrl.='?status='.$_GET['status'];
+		}else{
+			$baseUrl.='?status=0';
+		}
+		if(isset($_GET['gender'])&& is_numeric($_GET['gender'])){
+			$condition['where']=array('user_gender'=>$_GET['gender']);
+			$baseUrl.='&gender='.$_GET['gender'];
+		}
+		if(isset($_GET['search'])){
+			$condition['like']=array('user_username'=>$_GET['search']);
+			$baseUrl.='&search='.$_GET['search'];
+		}
+		$condition['result']="count";
+		$amount=$this->commongetdata->getData($condition);
+		$condition['result']="data";
+		$condition['order_by']=array('user_reg_time'=>'DESC');
+		$pageInfo=$this->commongetdata->getPageLink($baseUrl,$selectUrl,$page,$amountPerPage,$amount);
 		$data=array(
-			"columns"=>$this->commongetdata->getColumns()
+			"columns"=>$this->commongetdata->getColumns(),
+			"users"=>$this->commongetdata->getData($condition)
 		);
+		$data=array_merge($data,$pageInfo);
 		$this->adminBaseHandler('users',array('data','users'),'users',$data);
 	}
 	public function orders(){
