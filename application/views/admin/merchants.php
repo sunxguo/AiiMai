@@ -1,4 +1,5 @@
 <div class="padding10 contentlist column-list">
+<!--
 	<div class="titA tit-bot pb5" style="">
 		<div style="float: right;margin-left:10px;">
 			<a href="/admin/addColumn" class="msg-btn">添加栏目</a>
@@ -6,6 +7,7 @@
 		<div class="clear">
 		</div>
 	</div>
+	-->
 	<table>
 		<thead>
 			<tr class="table-head">
