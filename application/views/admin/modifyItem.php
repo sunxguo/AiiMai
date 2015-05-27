@@ -50,7 +50,8 @@
 								<option value="<?php echo $subSubCat->category_id;?>" <?php if($subSubCat->category_id==$item->product_sub_sub_category):?>selected<?php endif;?>><?php echo $subSubCat->category_name;?></option>
 							<?php endforeach;?>
 						</select>
-						<input type="text" placeholder="<?php echo lang('cms_baseInfo_goodsStatistics_Categorycode');?>" class="km-form-control" style="width: 30%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
+						<!--
+						<input type="text" placeholder="<?php echo lang('cms_baseInfo_goodsStatistics_Categorycode');?>" class="km-form-control" style="width: 30%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">-->
 					</td>
 				  </tr>
 				  <tr>
@@ -58,8 +59,8 @@
 						<?php echo lang('cms_baseInfo_goodsStatistics_SellFormat');?>
 					</td>
 					<td class="value tal">
-						<input type="radio" name="salesMode" id="salesMode1" value="1" style="vertical-align: middle;margin-right: 5px;" <?php if($item->product_sell_format==1):?>checked<?php endif;?>><label for="salesMode1"><?php echo lang('cms_baseInfo_goodsStatistics_SellFormat_Buynow');?></label>
-						<input type="radio" name="salesMode" id="salesMode2" value="2" style="vertical-align: middle;margin-right: 5px;" <?php if($item->product_sell_format==2):?>checked<?php endif;?>><label for="salesMode2"><?php echo lang('cms_baseInfo_goodsStatistics_SellFormat_AuctionAndLuckyPrice');?></label>
+						<input type="radio" name="salesMode" id="salesMode1" value="1" style="vertical-align: middle;margin-right: 5px;" <?php if($item->product_sell_format==1):?>checked<?php endif;?>><label for="salesMode1"><?php echo lang('cms_baseInfo_goodsStatistics_SellFormat_Buynow');?></label><br>
+						<input type="radio" name="salesMode" id="salesMode2" value="2" style="vertical-align: middle;margin-right: 5px;" <?php if($item->product_sell_format==2):?>checked<?php endif;?>><label for="salesMode2"><?php echo lang('cms_baseInfo_goodsStatistics_SellFormat_AuctionAndLuckyPrice');?></label><br>
 						<input type="radio" name="salesMode" id="salesMode3" value="3" style="vertical-align: middle;margin-right: 5px;" <?php if($item->product_sell_format==3):?>checked<?php endif;?>><label for="salesMode3"><?php echo lang('cms_baseInfo_goodsStatistics_SellFormat_FreeFormat');?></label>
 					</td>
 				  </tr>
@@ -151,7 +152,7 @@
 						<?php echo lang('cms_goodsAdd_AdultItem');?>？
 					</td>
 					<td class="value tal">
-						<input type="radio" name="adult" id="adult1" value="0" style="vertical-align: middle;margin-right: 5px;" <?php if($item->product_adult==0):?>checked<?php endif;?>><label for="adult1"><?php echo lang('cms_goodsAdd_No');?></label>
+						<input type="radio" name="adult" id="adult1" value="0" style="vertical-align: middle;margin-right: 5px;" <?php if($item->product_adult==0):?>checked<?php endif;?>><label for="adult1"><?php echo lang('cms_goodsAdd_No');?></label><br>
 						<input type="radio" name="adult" id="adult2" value="1" style="vertical-align: middle;margin-right: 5px;" <?php if($item->product_adult==1):?>checked<?php endif;?>><label for="adult2"><?php echo lang('cms_goodsAdd_Yes');?><?php echo lang('cms_goodsAdd_YesExample');?></label>
 					</td>
 				  </tr>
@@ -252,7 +253,7 @@
 						<?php echo lang('cms_goodsAdd_ShippingAddress');?>
 					</td>
 					<td class="value tal">
-						521168  168A SIMEI LANE168A Simei Lane Singapore 521168 <br>
+						<input id="shippingAddress" value="<?php echo $item->product_shipping_address;?>" type="text" class="km-form-control" style="width: 80%;height: 25px;padding: 0px 5px;display: inline-block;font-size:12px;"><br>
 						<?php echo lang('cms_goodsAdd_ShippingAddressTip');?>
 					</td>
 				  </tr>
@@ -266,7 +267,7 @@
 							  <h3 class="km-popover-title"><?php echo lang('cms_goodsAdd_ShippingRate');?></h3>
 
 							  <div class="km-popover-content" style="overflow:scroll;height: 851px;">
-								运费计算详情...
+								Detail...
 							  </div>
 							</div>
 						</div>

@@ -36,7 +36,8 @@
 						<select style="height: 30px;"id="ndSubCategory">
 							<option value="-1">== <?php echo lang('cms_common_2ndSubCategory');?> ==</option>
 						</select>
-						<input type="text" placeholder="<?php echo lang('cms_baseInfo_goodsStatistics_Categorycode');?>" class="km-form-control" style="width: 30%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
+						<!--
+						<input type="text" placeholder="<?php echo lang('cms_baseInfo_goodsStatistics_Categorycode');?>" class="km-form-control" style="width: 30%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">-->
 					</td>
 				  </tr>
 				  <tr>
@@ -44,8 +45,8 @@
 						<?php echo lang('cms_baseInfo_goodsStatistics_SellFormat');?>
 					</td>
 					<td class="value tal">
-						<input type="radio" name="salesMode" id="salesMode1" value="1" style="vertical-align: middle;margin-right: 5px;" checked><label for="salesMode1"><?php echo lang('cms_baseInfo_goodsStatistics_SellFormat_Buynow');?></label>
-						<input type="radio" name="salesMode" id="salesMode2" value="2" style="vertical-align: middle;margin-right: 5px;"><label for="salesMode2"><?php echo lang('cms_baseInfo_goodsStatistics_SellFormat_AuctionAndLuckyPrice');?></label>
+						<input type="radio" name="salesMode" id="salesMode1" value="1" style="vertical-align: middle;margin-right: 5px;" checked><label for="salesMode1"><?php echo lang('cms_baseInfo_goodsStatistics_SellFormat_Buynow');?></label><br>
+						<input type="radio" name="salesMode" id="salesMode2" value="2" style="vertical-align: middle;margin-right: 5px;"><label for="salesMode2"><?php echo lang('cms_baseInfo_goodsStatistics_SellFormat_AuctionAndLuckyPrice');?></label><br>
 						<input type="radio" name="salesMode" id="salesMode3" value="3" style="vertical-align: middle;margin-right: 5px;"><label for="salesMode3"><?php echo lang('cms_baseInfo_goodsStatistics_SellFormat_FreeFormat');?></label>
 					</td>
 				  </tr>
@@ -137,7 +138,7 @@
 						<?php echo lang('cms_goodsAdd_AdultItem');?>？
 					</td>
 					<td class="value tal">
-						<input type="radio" name="adult" id="adult1" value="0" style="vertical-align: middle;margin-right: 5px;" checked><label for="adult1"><?php echo lang('cms_goodsAdd_No');?></label>
+						<input type="radio" name="adult" id="adult1" value="0" style="vertical-align: middle;margin-right: 5px;" checked><label for="adult1"><?php echo lang('cms_goodsAdd_No');?></label><br>
 						<input type="radio" name="adult" id="adult2" value="1" style="vertical-align: middle;margin-right: 5px;"><label for="adult2"><?php echo lang('cms_goodsAdd_Yes');?><?php echo lang('cms_goodsAdd_YesExample');?></label>
 					</td>
 				  </tr>
@@ -238,7 +239,7 @@
 						<?php echo lang('cms_goodsAdd_ShippingAddress');?>
 					</td>
 					<td class="value tal">
-						521168  168A SIMEI LANE168A Simei Lane Singapore 521168 <br>
+						<input id="shippingAddress" value="" type="text" class="km-form-control" style="width: 80%;height: 25px;padding: 0px 5px;display: inline-block;font-size:12px;"><br>
 						<?php echo lang('cms_goodsAdd_ShippingAddressTip');?>
 					</td>
 				  </tr>

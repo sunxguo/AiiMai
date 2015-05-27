@@ -80,31 +80,29 @@ class Admin extends CI_Controller {
 		else $page=1;
 		$amountPerPage=20;
 		$condition['table']='product';
-		$baseUrl=$selectUrl='/admin/items';
+		$baseUrl=$selectUrl='/admin/items?placeholder=yes';
 		if(isset($_GET['status'])&& is_numeric($_GET['status'])){
-			$condition['where']=array('product_status'=>$_GET['status']);
-			$baseUrl.='?status='.$_GET['status'];
-		}else{
-			$baseUrl.='?status=0';
+			$condition['where']['product_status']=$_GET['status'];
+			$baseUrl.='&status='.$_GET['status'];
 		}
 		if(isset($_GET['adult'])&& is_numeric($_GET['adult'])){
-			$condition['where']=array('product_adult'=>$_GET['adult']);
+			$condition['where']['product_adult']=$_GET['adult'];
 			$baseUrl.='&adult='.$_GET['adult'];
 		}
 		if(isset($_GET['category'])&& is_numeric($_GET['category'])){
-			$condition['where']=array('product_category'=>$_GET['category']);
+			$condition['where']['product_category']=$_GET['category'];
 			$baseUrl.='&category='.$_GET['category'];
 		}
 		if(isset($_GET['subCategory'])&& is_numeric($_GET['subCategory'])){
-			$condition['where']=array('product_sub_category'=>$_GET['subCategory']);
+			$condition['where']['product_sub_category']=$_GET['subCategory'];
 			$baseUrl.='&subCategory='.$_GET['subCategory'];
 		}
 		if(isset($_GET['subSubCategory'])&& is_numeric($_GET['subSubCategory'])){
-			$condition['where']=array('product_sub_sub_category'=>$_GET['subSubCategory']);
+			$condition['where']['product_sub_sub_category']=$_GET['subSubCategory'];
 			$baseUrl.='&subSubCategory='.$_GET['subSubCategory'];
 		}
 		if(isset($_GET['search'])){
-			$condition['like']=array('product_item_title_english'=>$_GET['search']);
+			$condition['like']['product_item_title_english']=$_GET['search'];
 			$baseUrl.='&search='.$_GET['search'];
 		}
 		$condition['result']="count";
@@ -115,7 +113,9 @@ class Admin extends CI_Controller {
 		$condition['limit']=$pageInfo['limit'];
 		$data=array(
 			"columns"=>$this->commongetdata->getColumns(),
-			"items"=>$this->commongetdata->getData($condition)
+			"items"=>$this->commongetdata->getData($condition),
+			"status"=>$this->commongetdata->getProductStatus(),
+			"categories"=>$this->commongetdata->getCategories(false)
 		);
 		$data=array_merge($data,$pageInfo);
 		$this->adminBaseHandler('Items',array('data','items'),'items',$data);
@@ -139,6 +139,13 @@ class Admin extends CI_Controller {
 //			"subSubCatList"=>$this->commongetdata->getSubCat($merchant->product_sub_category),
 		);
 		$this->load->view('admin/modifyMerchant',$data);
+	}
+	public function modifyUser(){
+		$user=$this->commongetdata->getContent('user',$_GET['userId']);
+		$data=array(
+			"user"=>$user,
+		);
+		$this->load->view('admin/modifyUser',$data);
 	}
 	public function merchants(){
 		if(isset($_GET['page'])&& is_numeric($_GET['page'])) $page=$_GET['page'];

@@ -12,20 +12,28 @@
 		<thead>
 			<tr class="table-head">
 				<th style="width:100px;">Logo</th>
-				<th style="width:400px;">Seller Shop Title</th>
+				<th style="width:200px;">Seller Shop Title</th>
+				<th style="width:100px;">Avatar</th>
 				<th style="width:200px;">Username</th>
+				<th style="width:200px;">Email</th>
+				<th style="width:100px;">Gender</th>
 				<th style="width:150px;">Vip</th>
-				<th style="width:150px;">Last Login Time</th>
+				<th style="width:100px;">Status</th>
+				<th style="width:200px;">Last Login Time</th>
 				<th style="width:280px;">Operation</th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php foreach($merchants as $merchant):?>
 			<tr class="list1">
-				<td><img src="<?php echo $merchant->merchant_avatar;?>" width="54" height="43"></td>
+				<td><img src="<?php echo $merchant->merchant_shop_icon;?>" width="54" height="43"></td>
 				<td class="column-name"><a href="/home/shop?shopId=<?php echo $merchant->merchant_id;?>" target="_blank"><?php echo $merchant->merchant_shop_name;?></a></td>
+				<td><img src="<?php echo $merchant->merchant_avatar;?>" width="54" height="43"></td>
 				<td><?php echo $merchant->merchant_username;?></td>
+				<td><?php echo $merchant->merchant_email;?></td>
+				<td><?php echo $merchant->merchant_gender==0?'Male':'Female';//0:male 1:female 2:unknown?></td>
 				<td><?php echo $merchant->merchant_vip_grade;?></td>
+				<td><?php echo $merchant->merchant_status;//状态：0：注册完成但没有完善信息 1：完善信息等待审核 2：审核通过 3：审核不通过 4:冻结?></td>
 				<td><?php echo $merchant->merchant_lastlogin_time;?></td>
 				<td>
 					<a href="/home/shop?shopId=<?php echo $merchant->merchant_id;?>" target="_blank">Go</a>&nbsp;&nbsp;&nbsp;

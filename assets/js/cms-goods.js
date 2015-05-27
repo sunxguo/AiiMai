@@ -120,6 +120,7 @@ function productHandler(successMsg,isNew){
 	product.Quantity = $("#Quantity").val();
 	product.AvailablePeriod = $("#AvailablePeriod").val();
 	product.ReferencePrice = $("#ReferencePrice").val();
+	product.shippingAddress = $("#shippingAddress").val();
 	product.Displayleftavailableperiod = $("#Displayleftavailableperiod").val();
 	product.description = goodsInfoEditor.html();
 //	product.thumbnail = getThumb("#imgListDivs .imagelist");

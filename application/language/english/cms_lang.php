@@ -351,7 +351,7 @@
 	$lang['cms_baseInfo_goodsStatistics_Categorycode']="Category code";
 	$lang['cms_baseInfo_goodsStatistics_SellFormat']="Sell Format";
 	$lang['cms_baseInfo_goodsStatistics_SellFormat_Buynow']="Buy now(adding auction option available)";
-	$lang['cms_baseInfo_goodsStatistics_SellFormat_AuctionAndLuckyPrice']="Auction & Lucky PriceFree Format";
+	$lang['cms_baseInfo_goodsStatistics_SellFormat_AuctionAndLuckyPrice']="Auction & Lucky Price";
 	$lang['cms_baseInfo_goodsStatistics_SellFormat_FreeFormat']="Free Format";
 	$lang['cms_baseInfo_goodsStatistics_DeliveryType']="Delivery Type";
 	$lang['cms_baseInfo_goodsStatistics_Delivery']="Delivery";

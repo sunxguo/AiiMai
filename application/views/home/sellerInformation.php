@@ -5,10 +5,9 @@
 	</div>
 	<div class="sllr_step">
         <ul>
-            <li class="">01. Create Account</li>
-            <li class="">02. Member Confirmation</li>
-            <li class="on">03. Seller Information</li>
-            <li class="last-child">04. Complete Registration</li>
+            <li class="">01. Account Information</li>
+            <li class="on">02. Seller’s Information</li>
+            <li class="last-child">03. Complete Registration</li>
         </ul>
     </div>
 	<div class="">
@@ -45,7 +44,7 @@
 				</td>
 				<td style="padding-right:0px;">
 					<input type="text" id="name" placeholder="" class="inp-txt width150">* Please type your real full name on NRIC or business name as it shown in the license.
-					<p style="color:red;">note) You will not be approved as a seller if you do not type your real name/business name on the required document.</p>
+					<!--<p style="color:red;">note) You will not be approved as a seller if you do not type your real name/business name on the required document.</p>-->
 				</td>
 			</tr>
 			<tr>
@@ -192,9 +191,10 @@
 			<tr>
 				<td><font color="red">*</font>Address</td>
 				<td>
+				<!--
 					<p style="color:blue;">※ Entered address here will be registered as 5 types of address; [Representative], [Information], [Ship-from], [Item Return] and [Receipt]. 
 It will be displayed in public on item page. Please, type in your local language and Roman alphabet. 
-You can edit your address and change the display setting on ‘ASM > Setting > My Information > Seller's information displayed to customer.’</p>
+You can edit your address and change the display setting on ‘ASM > Setting > My Information > Seller's information displayed to customer.’</p>-->
 					<select id="address1" name="" style="height: 25px;">
 						<option value="AU">Australia</option>
 						<option value="BN">Brunei Darussalam</option>
@@ -212,9 +212,11 @@ You can edit your address and change the display setting on ‘ASM > Setting > M
 						<option value="TW">Taiwan</option>
 						<option value="US">United States</option>
 						<option value="VN">Vietnam</option>
-					</select>
-					<input type="text" id="address2" placeholder="" class="inp-txt width250"><br>
-					<font color="red">*Please check the recipient name and address carefully for exact delivery. Letters and numbers only.</font>
+					</select><br>
+<!--					<input type="text" id="address2" placeholder="" class="inp-txt width400"><br>-->
+					<textarea id="address2" class="width400" style="height:50px;margin-top:10px;"></textarea>
+					<!--<font color="red">*Please check the recipient name and address carefully for exact delivery. Letters and numbers only.</font>-->
+					<p style="font-weight:600;">*Please enter your real address as per registered in your business license / NRIC.</p>
 				</td>
 				
 			</tr>

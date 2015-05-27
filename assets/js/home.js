@@ -398,7 +398,7 @@ function reloadEmail(){
 			$("#gsm_mail_wrapper").hide();
 			$("#confirmEmail").show();
 		}else{
-			showAlert('danger','Failed!','Please reload again!');
+			showAlert('danger','Failed! Please confirm on the email, and reload again!','');
 		}
 	  }
 	});

@@ -12,7 +12,13 @@
 		<thead>
 			<tr class="table-head">
 				<th style="width:100px;">Avatar</th>
-				<th style="width:400px;">Username</th>
+				<th style="width:100px;">Username</th>
+				<th style="width:100px;">Email</th>
+				<th style="width:100px;">Phone</th>
+				<th style="width:100px;">Gender</th>
+				<th style="width:100px;">State</th>
+				<th style="width:100px;">Grade</th>
+				<th style="width:100px;">Country</th>
 				<th style="width:150px;">Birthday</th>
 				<th style="width:150px;">Vip</th>
 				<th style="width:280px;">Operation</th>
@@ -23,10 +29,16 @@
 			<tr class="list1">
 				<td><img src="<?php echo $user->user_avatar;?>" width="54"></td>
 				<td class="column-name"><a href="" target="_blank"><?php echo $user->user_username;?></a></td>
+				<td><?php echo $user->user_email;?></td>
+				<td><?php echo $user->user_phone;?></td>
+				<td><?php echo $user->user_gender==0?'Male':'Female';?></td>
+				<td><?php echo $user->user_state;?></td>
+				<td><?php echo $user->user_grade;?></td>
+				<td><?php echo $user->user_country;?></td>
 				<td><?php echo $user->user_birthday;?></td>
 				<td><?php echo $user->user_vip_grade;?></td>
 				<td>
-					<a href="/admin/contentList?column=<?php echo $user->user_id;?>">Details</a>&nbsp;&nbsp;&nbsp;
+					<a href="javascript:window.open('/admin/modifyUser?userId=<?php echo $user->user_id;?>','Edit User','height=700,width=900,toolbar=no,menubar=no')">Edit</a>&nbsp;&nbsp;&nbsp;
 <!--					<a href="/admin/editColumn?column=<?php echo $user->user_id;?>">Edit</a>&nbsp;&nbsp;&nbsp;-->
 					<?php if($user->user_state==0):?>
 					<a href="javascript:freezeUser('<?php echo $user->user_id;?>','Sure to freeze <<?php echo $user->user_username;?>>？','Successfully froze <?php echo $user->user_username;?>')">Freeze</a>&nbsp;&nbsp;&nbsp;

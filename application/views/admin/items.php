@@ -1,18 +1,47 @@
 <div class="padding10 contentlist column-list">
-<!--
-	<div class="titA tit-bot pb5" style="">
+	<div id="appDiv" class="titA tit-bot pb5" style="">
 		<div style="float: right;margin-left:10px;">
-			<a href="/admin/addColumn" class="msg-btn">Search</a>
+			<input type="text" id="keyword" class="inp-txt width200" value="<?php echo isset($_GET["search"])?$_GET["search"]:"";?>">
+			<a href="javascript:selectItem('<?php echo $selectPage;?>')" class="btn80">Search</a>
+		</div>
+		<div style="float: right;">
+			<span class="font12">Status:</span>
+			<select id="status" onchange="selectItem('<?php echo $selectPage;?>')" class="select w100">
+                <option value="-1">All</option>
+				<?php foreach($status as $key=>$s):?>
+                <option value="<?php echo $key;?>" <?php echo isset($_GET["status"]) && $_GET["status"]==$key?'selected = "selected"':'';?>>
+					<?php echo $s;?>
+				</option>
+				<?php endforeach;?>
+            </select>
+		</div>
+		<div style="float: right;margin-right:10px;">
+			<span class="font12">Main Category:</span>
+			<select id="category" onchange="selectItem('<?php echo $selectPage;?>')" class="select w100">
+                <option value="-1">All</option>
+				<?php foreach($categories as $cat):?>
+				<optgroup label="<?php echo $cat->category_name;?>">
+					<?php foreach($cat->subCats as $subCat):?>
+						<option value="<?php echo $subCat->category_id;?>" <?php if(isset($_GET["category"]) && $_GET["category"]==$subCat->category_id):?>selected<?php endif;?>><?php echo $subCat->category_name;?></option>
+					<?php endforeach;?>
+				</optgroup>
+				<?php endforeach;?>
+            </select>
 		</div>
 		<div class="clear">
 		</div>
-	</div>-->
+	</div>
 	<table>
 		<thead>
 			<tr class="table-head">
 				<th style="width:100px;">Thumbnail</th>
-				<th style="width:400px;">Name</th>
+				<th style="width:300px;">Name</th>
 				<th style="width:150px;">Price</th>
+				<th style="width:150px;">Reference Price</th>
+				<th style="width:150px;">Main Category</th>
+				<th style="width:220px;">1st Sub Category</th>
+				<th style="width:220px;">2nd Sub Category</th>
+				<th style="width:150px;">Time</th>
 				<th style="width:150px;">Status</th>
 				<th style="width:280px;">Operation</th>
 			</tr>
@@ -23,6 +52,11 @@
 				<td><img src="<?php echo $item->product_image;?>" width="60" height="60"></td>
 				<td class="column-name"><a href="/home/item?itemId=<?php echo $item->product_id;?>" target="_blank"><?php echo $item->product_item_title_english;?></a></td>
 				<td><?php echo $item->product_sell_price;?></td>
+				<td><?php echo $item->product_reference_price;?></td>
+				<td><?php echo $item->product_category;?></td>
+				<td><?php echo $item->product_sub_category;?></td>
+				<td><?php echo $item->product_sub_sub_category;?></td>
+				<td><?php echo $item->product_time;?></td>
 				<td><?php echo $item->product_status;?></td>
 				<td>
 					<a href="/home/item?itemId=<?php echo $item->product_id;?>" target="_blank">Preview</a>

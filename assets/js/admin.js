@@ -206,6 +206,13 @@ function saveBasicParameter(successMsg){
 	websiteInfo.value =$("#websiteCopyright").val();
 	dataHandler("modify","websiteInfo",websiteInfo,null,null,closeWait(),successMsg,true);
 }
+function selectItem(baseUrl){
+	var extUrl="";
+	if($("#category").val()!=-1) extUrl+="&category="+$("#category").val();
+	if($("#status").val()!=-1) extUrl+="&status="+$("#status").val();
+	if($("#keyword").val()!="") extUrl+="&search="+$("#keyword").val();
+	location.href=baseUrl+extUrl;
+}
 /*Example:
 $(".slider-item").mouseout(function(){
 	$(this).find('.oper').hide();

@@ -5,10 +5,9 @@
 	</div>
 	<div class="sllr_step">
         <ul>
-            <li class="on">01. Create Account</li>
-            <li class="">02. Member Confirmation</li>
-            <li class="">03. Seller Information</li>
-            <li class="last-child">04. Complete Registration</li>
+            <li class="on">01. Account Information</li>
+            <li class="">02. Seller’s Information</li>
+            <li class="last-child">03. Complete Registration</li>
         </ul>
     </div>
 	<div class="register-main-top">

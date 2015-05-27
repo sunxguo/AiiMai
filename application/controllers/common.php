@@ -76,6 +76,7 @@ class Common extends CI_Controller {
 					"product_display_left"=>$data->Displayleftavailableperiod,
 					"product_shipping_rate"=>1,
 					"product_description"=>$data->description,
+					"product_shipping_address"=>$data->shippingAddress,
 					"product_merchant"=>$_SESSION['userid'],
 					"product_time"=>date("Y-m-d H:i:s"),
 					"product_modify_time"=>date("Y-m-d H:i:s")
@@ -209,6 +210,7 @@ class Common extends CI_Controller {
 					"product_display_left"=>$data->Displayleftavailableperiod,
 					"product_shipping_rate"=>1,
 					"product_description"=>$data->description,
+					"product_shipping_address"=>$data->shippingAddress,
 					"product_modify_time"=>date("Y-m-d H:i:s")
 				);
 			break;

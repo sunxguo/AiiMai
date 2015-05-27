@@ -257,6 +257,19 @@ class CommonGetData{
 		);
 		return $this->getOneData($condition);
 	}
+	//1.未经确认 2.交易等待 3.交易可能 4.交易删除 5.交易中止 6.限制商品
+	//1.Under Review 2.On queue 3.Available 4.Deleted 5.Suspended 6.Restricted
+	public function getProductStatus(){
+		$status=array(
+			'1'=>'Under Review',
+			'2'=>'On queue',
+			'3'=>'Available',
+			'4'=>'Deleted',
+			'5'=>'Suspended',
+			'6'=>'Restricted'
+		);
+		return $status;
+	}
 	public function getContent($type,$contentId){
 		$condition=array(
 			'table'=>$type,
