@@ -54,5 +54,11 @@ function addBankbookBeforeUpload(){
 function addBankbookAfterUpload(imageSrc){
 	//update database
 	$("#loadingBankbook").hide();
-	showAlert('success','修改成功!',imageSrc+'正在刷新...');
+	var merchantBankbook = new Object(); 
+	merchantBankbook.src = imageSrc;
+	merchantBankbook.Msg = $("#BankbookMsg").val();
+	dataHandler("modify","merchantBankbook",merchantBankbook,successBankbook,null,null,null,true);
+}
+function successBankbook(){
+	showAlert('success','Successfully "Uploaded!','Refreshing...');
 }

@@ -85,11 +85,11 @@
 					<td class="value" colspan="5">
 						<div class="km-input-group fl">
 						  <span class="km-input-group-addon" style="font-size: 12px;"><?php echo lang('cms_sider_causeofchanging');?></span>
-						  <input type="text" class="km-form-control" placeholder="ASM Seller Confirm" style="height:20px;font-size: 12px;">
+						  <input id="BankbookMsg" type="text" class="km-form-control" placeholder="ASM Seller Confirm" style="height:20px;font-size: 12px;">
 						</div>
 						<button type="button" onclick="$('#fileBankbook').click();" class="km-btn km-btn-primary" style="height: 32px;font-size: 12px; margin-left:-220px;"><?php echo lang('cms_sider_Upload');?></button>
 						<img src="/assets/images/cms/loading.gif" id="loadingBankbook" class="hide">
-						<a href=""><?php echo lang('cms_sider_Viewimage');?></a>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo lang('cms_sider_ViewimageTip');?>
+						<a href="<?php echo $merchant->merchant_bank_account_msg;?>" target="_blank"><?php echo lang('cms_sider_Viewimage');?></a>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo lang('cms_sider_ViewimageTip');?>
 						<form id="upload_bankbook_form" method="post" enctype="multipart/form-data">
 							<input onchange="return uploadBankbook()" name="image" type="file" id="fileBankbook" style="display:none;" accept="image/*">
 						</form>

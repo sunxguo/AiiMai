@@ -221,6 +221,14 @@ class Common extends CI_Controller {
 					"merchant_business_license_msg"=>$data->Msg,
 				);
 			break;
+			case 'merchantBankbook':
+				$condition['table']="merchant";
+				$condition['where']=array("merchant_id"=>$_SESSION['userid']);
+				$condition['data']=array(
+					"merchant_bank_account"=>$data->src,
+					"merchant_bank_account_msg"=>$data->Msg,
+				);
+			break;
 		}
 		$result=$this->dbHandler->updateData($condition);
 		if($result==1) echo json_encode(array("result"=>"success","message"=>"信息修改成功"));
