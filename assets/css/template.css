@@ -594,7 +594,7 @@ label {
 	margin-bottom: 20px;
 	border: 1px solid transparent;
 	border-radius: 4px;
-	z-index:10001;
+	z-index:11001;
 }
 .km-fade {
 	opacity: 0;

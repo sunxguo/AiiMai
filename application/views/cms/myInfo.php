@@ -36,7 +36,7 @@
 								</div>
 								<div class="km-modal-footer">
 									<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_sider_Close');?></button>
-									<button type="button" class="km-btn km-btn-primary"><?php echo lang('cms_sider_Savechanges');?></button>
+									<button type="button" class="km-btn km-btn-primary" onclick="saveSellerBaseInfoPwd('Successfully saved!');"><?php echo lang('cms_sider_Savechanges');?></button>
 								</div>
 							</div><!-- /.modal-content -->
 						</div><!-- /.modal-dialog -->
@@ -57,7 +57,7 @@
 					<td class="field width15p"><?php echo lang('cms_sider_SettlementCurrency');?></td>
 					<td class="value width17p">SGD</td>
 					<td class="field width15p"><?php echo lang('cms_sider_Tax');?></td>
-					<td class="value ">税</td>
+					<td class="value "><!--税--></td>
 				  </tr>
 				  <tr>
 					<td class="field"><?php echo lang('cms_sider_Bank');?></td>

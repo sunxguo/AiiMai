@@ -200,6 +200,19 @@ class Common extends CI_Controller {
 					"merchant_status"=>1
 				);
 			break;
+			case 'merchantpwd':
+				$condition['table']="merchant";
+				$condition['where']=array("merchant_id"=>$_SESSION['userid']);
+				$condition['result']="data";
+				$merchantInfo=$this->commongetdata->getOneData($condition);
+				if($merchantInfo->merchant_pwd!=MD5("MonkeyKing".$data->oldpwd)){
+					echo json_encode(array("result"=>"failed","message"=>"Wrong password！"));
+					return false;
+				}
+				$condition['data']=array(
+					"merchant_pwd"=>MD5("MonkeyKing".$data->newpwd)
+				);
+			break;
 		}
 		$result=$this->dbHandler->updateData($condition);
 		if($result==1) echo json_encode(array("result"=>"success","message"=>"信息修改成功"));

@@ -7,6 +7,24 @@ function modifyMyInfoCustomerViewEmail(){
 function modifySellerBaseInfoPwd(){
 	setDivCenter('#sellerBaseInfoPwd',true);
 }
+function saveSellerBaseInfoPwd(successMsg){
+	if($("#seller_baseinfo_oldpwd").val()==""){
+		alert('Old password can not be empty!');
+		return false;
+	}
+	if($("#seller_baseinfo_newpwd").val()==""){
+		alert('New password can not be empty!');
+		return false;
+	}
+	if($("#seller_baseinfo_newpwd").val()!=$("#seller_baseinfo_confirmpwd").val()){
+		alert('The two password don`t match!');
+		return false;
+	}
+	var pwd = new Object(); 
+	pwd.oldpwd = $("#seller_baseinfo_oldpwd").val();
+	pwd.newpwd = $("#seller_baseinfo_newpwd").val();
+	dataHandler("modify","merchantpwd",pwd,null,null,null,successMsg,true);
+}
 function modifyAAccountPwd(){
 	setDivCenter('#AAccountPwd',true);
 }
