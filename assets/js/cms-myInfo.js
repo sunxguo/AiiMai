@@ -43,7 +43,7 @@ function addBusinessLicenseAfterUpload(imageSrc){
 	dataHandler("modify","merchantBusinessLicense",merchantBusinessLicense,successBusinessLicense,null,null,null,true);
 }
 function successBusinessLicense(){
-	showAlert('success','Successfully "Uploaded!','Refreshing...');
+	showAlert('success','Successfully Uploaded!','Refreshing...');
 }
 function uploadBankbook(){
 	uploadImageAdvance("#upload_bankbook_form",addBankbookBeforeUpload,addBankbookAfterUpload)
@@ -60,5 +60,8 @@ function addBankbookAfterUpload(imageSrc){
 	dataHandler("modify","merchantBankbook",merchantBankbook,successBankbook,null,null,null,true);
 }
 function successBankbook(){
-	showAlert('success','Successfully "Uploaded!','Refreshing...');
+	showAlert('success','Successfully Uploaded!','Refreshing...');
+}
+function requestForSettleInfo(){
+	showAlert('success','Successfully Requested!','Please Wait...');
 }

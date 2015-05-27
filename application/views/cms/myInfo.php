@@ -89,7 +89,7 @@
 						</div>
 						<button type="button" onclick="$('#fileBankbook').click();" class="km-btn km-btn-primary" style="height: 32px;font-size: 12px; margin-left:-220px;"><?php echo lang('cms_sider_Upload');?></button>
 						<img src="/assets/images/cms/loading.gif" id="loadingBankbook" class="hide">
-						<a href="<?php echo $merchant->merchant_bank_account_msg;?>" target="_blank"><?php echo lang('cms_sider_Viewimage');?></a>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo lang('cms_sider_ViewimageTip');?>
+						<a href="<?php echo $merchant->merchant_bank_account;?>" target="_blank"><?php echo lang('cms_sider_Viewimage');?></a>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo lang('cms_sider_ViewimageTip');?>
 						<form id="upload_bankbook_form" method="post" enctype="multipart/form-data">
 							<input onchange="return uploadBankbook()" name="image" type="file" id="fileBankbook" style="display:none;" accept="image/*">
 						</form>
@@ -98,7 +98,7 @@
 				  <tr>
 					<td class="field"><?php echo lang('cms_sider_Requestforapproval');?></td>
 					<td class="value">
-						<button type="button" class="km-btn km-btn-primary" style="height: 32px;font-size: 12px;"><?php echo lang('cms_sider_Request');?></button>
+						<button onclick="requestForSettleInfo()" type="button" class="km-btn km-btn-primary" style="height: 32px;font-size: 12px;"><?php echo lang('cms_sider_Request');?></button>
 					</td>
 					<td class="field"><?php echo lang('cms_sider_Processingstatus');?></td>
 					<td class="value" colspan="3">
