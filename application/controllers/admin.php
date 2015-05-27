@@ -6,6 +6,7 @@ class Admin extends CI_Controller {
 		$this->load->helper("base");
 		$this->load->library('CommonGetData');
 		$this->commongetdata->language('admin');
+		$this->commongetdata->language('cms');
 		$this->load->model("dbHandler");
 	}
 	public function checkAdminLogin(){
@@ -118,6 +119,26 @@ class Admin extends CI_Controller {
 		);
 		$data=array_merge($data,$pageInfo);
 		$this->adminBaseHandler('Items',array('data','items'),'items',$data);
+	}
+	public function modifyItem(){
+		$item=$this->commongetdata->getContent('product',$_GET['itemId']);
+		$data=array(
+			"categories"=>$this->commongetdata->getCategories(false),
+			"item"=>$item,
+			"subCatList"=>$this->commongetdata->getSubCat($item->product_category),
+			"subSubCatList"=>$this->commongetdata->getSubCat($item->product_sub_category),
+		);
+		$this->load->view('admin/modifyItem',$data);
+	}
+	public function modifyMerchant(){
+		$merchant=$this->commongetdata->getContent('merchant',$_GET['merchantId']);
+		$data=array(
+//			"categories"=>$this->commongetdata->getCategories(false),
+			"merchant"=>$merchant,
+//			"subCatList"=>$this->commongetdata->getSubCat($merchant->product_category),
+//			"subSubCatList"=>$this->commongetdata->getSubCat($merchant->product_sub_category),
+		);
+		$this->load->view('admin/modifyMerchant',$data);
 	}
 	public function merchants(){
 		if(isset($_GET['page'])&& is_numeric($_GET['page'])) $page=$_GET['page'];
@@ -412,13 +433,13 @@ class Admin extends CI_Controller {
 	}
 	public function websiteInfo(){
 		$data=array(
-			"columns"=>$this->commongetdata->getColumns()
+			"about"=>$this->commongetdata->getWebsiteConfig('website_about_aiimai')
 		);
 		$this->adminBaseHandler('websiteInfo',array('setting','websiteInfo'),'websiteInfo',$data);
 	}
 	public function userAgreement(){
 		$data=array(
-			"columns"=>$this->commongetdata->getColumns()
+			"userAgreement"=>$this->commongetdata->getWebsiteConfig('website_user_agreement')
 		);
 		$this->adminBaseHandler('userAgreement',array('setting','websiteInfo'),'userAgreement',$data);
 	}

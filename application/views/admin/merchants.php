@@ -29,9 +29,13 @@
 				<td><?php echo $merchant->merchant_lastlogin_time;?></td>
 				<td>
 					<a href="/home/shop?shopId=<?php echo $merchant->merchant_id;?>" target="_blank">Go</a>&nbsp;&nbsp;&nbsp;
-					<a href="/admin/editColumn?column=<?php echo $merchant->merchant_id;?>">Edit</a>&nbsp;&nbsp;&nbsp;
-					<a href="javascript:delColumn('<?php echo $merchant->merchant_id;?>','Sure to freeze it?<<?php echo $merchant->merchant_username;?>>？','成功删除 <?php echo $merchant->merchant_username;?>')">Freeze</a>&nbsp;&nbsp;&nbsp;
-					<a href="javascript:delColumn('<?php echo $merchant->merchant_id;?>','Sure to delete it?<<?php echo $merchant->merchant_username;?>>？','成功删除 <?php echo $merchant->merchant_username;?>')">Delete</a>
+					<a href="javascript:window.open('/admin/modifyMerchant?merchantId=1','Edit Merchant','height=700,width=900,toolbar=no,menubar=no');">Edit</a>&nbsp;&nbsp;&nbsp;
+					<?php if($merchant->merchant_status!=2):?>
+					<a href="javascript:confirmMerchant('<?php echo $merchant->merchant_id;?>','Sure to confirm <<?php echo $merchant->merchant_username;?>>？','Successfully Confirmed <?php echo $merchant->merchant_username;?>')">Confirm</a>&nbsp;&nbsp;&nbsp;
+					<?php else:?>
+					<a href="javascript:doNotConfirmMerchant('<?php echo $merchant->merchant_id;?>','Do not confirm <<?php echo $merchant->merchant_username;?>>？','Successfully did not confirm <?php echo $merchant->merchant_username;?>')">Do Not Confirm</a>&nbsp;&nbsp;&nbsp;
+					<?php endif;?>
+					<a href="javascript:delMerchant('<?php echo $merchant->merchant_id;?>','Sure to delete <<?php echo $merchant->merchant_username;?>>？','Successfully Deleted <?php echo $merchant->merchant_username;?>')">Delete</a>
 				</td>
 			</tr>
 			<?php endforeach;?>

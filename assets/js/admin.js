@@ -60,12 +60,38 @@ function delUser(currentId,confirmMsg,successMsg){
 	user.id = currentId;
 	dataHandler("del","user",user,null,confirmMsg,closeWait(),successMsg,true);
 }
+function delItem(currentId,confirmMsg,successMsg){
+	showWait();
+	var item = new Object();
+	item.id = currentId;
+	dataHandler("del","item",item,null,confirmMsg,closeWait(),successMsg,true);
+}
+function delMerchant(currentId,confirmMsg,successMsg){
+	showWait();
+	var merchant = new Object();
+	merchant.id = currentId;
+	dataHandler("del","merchant",merchant,null,confirmMsg,closeWait(),successMsg,true);
+}
 function freezeUser(currentId,confirmMsg,successMsg){
 	showWait();
 	var user = new Object();
 	user.id = currentId;
 	user.status = 1;
 	dataHandler("modify","userStatus",user,null,confirmMsg,closeWait(),successMsg,true);
+}
+function confirmMerchant(currentId,confirmMsg,successMsg){
+	showWait();
+	var merchant = new Object();
+	merchant.id = currentId;
+	merchant.status = 2;
+	dataHandler("modify","merchantStatus",merchant,null,confirmMsg,closeWait(),successMsg,true);
+}
+function doNotConfirmMerchant(currentId,confirmMsg,successMsg){
+	showWait();
+	var merchant = new Object();
+	merchant.id = currentId;
+	merchant.status = 3;
+	dataHandler("modify","merchantStatus",merchant,null,confirmMsg,closeWait(),successMsg,true);
 }
 function unfreeze(currentId,confirmMsg,successMsg){
 	showWait();
@@ -102,6 +128,13 @@ function essayHandler(draft,successMsg,newEssay){
 		handlerType='modify';
 	}
 	dataHandler(handlerType,'essay',essay,null,null,null,successMsg,true);
+}
+function websiteInfoSave(key,successMsg){
+	showWait();
+	var websiteInfo = new Object();
+	websiteInfo.key = key;
+	websiteInfo.value = infoEditor.html();
+	dataHandler("modify","websiteInfo",websiteInfo,null,null,closeWait(),successMsg,true);
 }
 /*Example:
 $(".slider-item").mouseout(function(){

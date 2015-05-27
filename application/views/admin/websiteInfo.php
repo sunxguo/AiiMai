@@ -1,7 +1,7 @@
 <div class="padding10 formList clearfix">
 	<div id="appDiv" class="titA tit-bot pb5" style="">
 		<div class="tabDiv">
-			<div onclick="location.href='/admin/aboutAiiMai'" class="left active" style="width:150px;">
+			<div onclick="location.href='/admin/websiteInfo'" class="left active" style="width:150px;">
 				About AiiMai
 			</div>
 			<div onclick="location.href='/admin/userAgreement'" class="right" style="width:150px;">
@@ -13,11 +13,11 @@
 	</div>
 	<div class="partContent clearboth content">
 		<div class="title" onclick="shows(2)">Content</div>
-		<textarea id="infoEditor" name="description"><?php //echo $content->essay_content;?></textarea>
+		<textarea id="infoEditor" name="description"><?php echo $about;?></textarea>
 	</div>
 	<input type="hidden" value="<?php //echo $content->essay_id;?>" id="essayId">
 	<div class="btn-center">
-		<a href="javascript:essayHandler(0,'发布成功！正在刷新...',false)" class="btnfa120">Save</a>
+		<a href="javascript:websiteInfoSave('website_about_aiimai','Successfully Saved！Refreshing...')" class="btnfa120">Save</a>
 	</div>
 </div>
 <link rel="stylesheet" href="/assets/kindEditor/themes/custom/custom.css" />

@@ -119,6 +119,10 @@ class Common extends CI_Controller {
 				$condition['table']="column";
 				$condition['where']=array("column_id"=>$data->id);
 			break;
+			case 'item':
+				$condition['table']="product";
+				$condition['where']=array("product_id"=>$data->id);
+			break;
 			case 'user':
 				$condition['table']="user";
 				$condition['where']=array("user_id"=>$data->id);
@@ -259,6 +263,20 @@ class Common extends CI_Controller {
 				$condition['where']=array("user_id"=>$data->id);
 				$condition['data']=array(
 					"user_state"=>$data->status
+				);
+			break;
+			case 'merchantStatus':
+				$condition['table']="merchant";
+				$condition['where']=array("merchant_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_status"=>$data->status
+				);
+			break;
+			case 'websiteInfo':
+				$condition['table']="websiteconfig";
+				$condition['where']=array("key_websiteconfig"=>$data->key);
+				$condition['data']=array(
+					"value_websiteconfig"=>$data->value
 				);
 			break;
 		}
