@@ -123,6 +123,18 @@ class Common extends CI_Controller {
 				$condition['table']="user";
 				$condition['where']=array("user_id"=>$data->id);
 			break;
+			case 'merchant':
+				$condition['table']="merchant";
+				$condition['where']=array("merchant_id"=>$data->id);
+			break;
+			case 'order':
+				$condition['table']="order";
+				$condition['where']=array("order_id"=>$data->id);
+			break;
+			case 'comment':
+				$condition['table']="comment";
+				$condition['where']=array("comment_id"=>$data->id);
+			break;
 		}
 		$result=$this->dbHandler->deleteData($condition);
 		if($result==1) echo json_encode(array("result"=>"success","message"=>"信息删除成功"));
@@ -240,6 +252,13 @@ class Common extends CI_Controller {
 					"merchant_gst_name"=>$data->gstName,
 					"merchant_gst_number"=>$data->gstNumber,
 					"merchant_gst_address"=>$data->gstAddress
+				);
+			break;
+			case 'userStatus':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"user_state"=>$data->status
 				);
 			break;
 		}
