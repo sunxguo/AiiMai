@@ -229,6 +229,15 @@ class Common extends CI_Controller {
 					"merchant_bank_account_msg"=>$data->Msg,
 				);
 			break;
+			case 'GstInfo':
+				$condition['table']="merchant";
+				$condition['where']=array("merchant_id"=>$_SESSION['userid']);
+				$condition['data']=array(
+					"merchant_gst_name"=>$data->gstName,
+					"merchant_gst_number"=>$data->gstNumber,
+					"merchant_gst_address"=>$data->gstAddress
+				);
+			break;
 		}
 		$result=$this->dbHandler->updateData($condition);
 		if($result==1) echo json_encode(array("result"=>"success","message"=>"信息修改成功"));

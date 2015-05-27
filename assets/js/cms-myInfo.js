@@ -65,3 +65,13 @@ function successBankbook(){
 function requestForSettleInfo(){
 	showAlert('success','Successfully Requested!','Please Wait...');
 }
+function saveGstInfo(){
+	var GST = new Object(); 
+	GST.gstName = $("#gstName").val();
+	GST.gstNumber = $("#gstNumber").val();
+	GST.gstAddress = $("#gstAddress").val();
+	dataHandler("modify","GstInfo",GST,successGstInfo,null,null,null,true);
+}
+function successGstInfo(){
+	showAlert('success','Successfully Saved!','Refreshing...');
+}

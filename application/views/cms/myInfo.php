@@ -142,15 +142,15 @@
 				<tbody>
 				  <tr>
 					<td class="field width15p">Name</td>
-					<td class="value width17p"><input type="text" class="km-form-control" placeholder="" style="height:20px;width:90%;"></td>
+					<td class="value width17p"><input id="gstName" value="<?php echo $merchant->merchant_gst_name;?>" type="text" class="km-form-control" placeholder="" style="height:20px;width:90%;"></td>
 					<td class="field width15p">GST Registration No.</td>
-					<td class="value width17p"><input type="text" class="km-form-control" placeholder="" style="height:20px;width:90%;"></td>
+					<td class="value width17p"><input id="gstNumber" value="<?php echo $merchant->merchant_gst_number;?>" type="text" class="km-form-control" placeholder="" style="height:20px;width:90%;"></td>
 				  </tr>
 				  <tr>
 					<td class="field">Address</td>
 					<td class="value" colspan="3">
-						<input type="text" class="km-form-control fl" placeholder="" style="height:20px;width:80%;">
-						<button type="button" class="km-btn km-btn-primary fr" style="height: 32px;line-height:20px;font-size: 12px;">Request</button>
+						<input id="gstAddress" value="<?php echo $merchant->merchant_gst_address;?>" type="text" class="km-form-control fl" placeholder="" style="height:20px;width:80%;">
+						<button onclick="saveGstInfo();" type="button" class="km-btn km-btn-primary fr" style="height: 32px;line-height:20px;font-size: 12px;">Request</button>
 					</td>
 				  </tr>
 				</tbody>
