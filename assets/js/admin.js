@@ -53,6 +53,13 @@ function delclick(obj){
 	$("#file").val("");
 	$("#addImgList").show();
 }
+
+function delUser(currentId,confirmMsg,successMsg){
+	showWait();
+	var user = new Object();
+	user.id = currentId;
+	dataHandler("del","user",user,null,confirmMsg,closeWait(),successMsg,true);
+}
 function essayHandler(draft,successMsg,newEssay){
 	if($("#column").val()==-1){
 		alert("请选择发布到的栏目！");

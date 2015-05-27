@@ -119,6 +119,10 @@ class Common extends CI_Controller {
 				$condition['table']="column";
 				$condition['where']=array("column_id"=>$data->id);
 			break;
+			case 'user':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+			break;
 		}
 		$result=$this->dbHandler->deleteData($condition);
 		if($result==1) echo json_encode(array("result"=>"success","message"=>"信息删除成功"));
