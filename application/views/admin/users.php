@@ -28,7 +28,11 @@
 				<td>
 					<a href="/admin/contentList?column=<?php echo $user->user_id;?>">Details</a>&nbsp;&nbsp;&nbsp;
 <!--					<a href="/admin/editColumn?column=<?php echo $user->user_id;?>">Edit</a>&nbsp;&nbsp;&nbsp;-->
+					<?php if($user->user_state==0):?>
 					<a href="javascript:freezeUser('<?php echo $user->user_id;?>','Sure to freeze <<?php echo $user->user_username;?>>？','Successfully froze <?php echo $user->user_username;?>')">Freeze</a>&nbsp;&nbsp;&nbsp;
+					<?php else:?>
+					<a href="javascript:unfreeze('<?php echo $user->user_id;?>','Sure to unfreeze <<?php echo $user->user_username;?>>？','Successfully unfroze <?php echo $user->user_username;?>')">unfreeze</a>&nbsp;&nbsp;&nbsp;
+					<?php endif;?>
 					<a href="javascript:delUser('<?php echo $user->user_id;?>','Sure to delete <<?php echo $user->user_username;?>>？','Successfully deleted <?php echo $user->user_username;?>')">Delete</a>
 				</td>
 			</tr>

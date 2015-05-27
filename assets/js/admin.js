@@ -71,7 +71,7 @@ function unfreeze(currentId,confirmMsg,successMsg){
 	showWait();
 	var user = new Object();
 	user.id = currentId;
-	user.status = 1;
+	user.status = 0;
 	dataHandler("modify","userStatus",user,null,confirmMsg,closeWait(),successMsg,true);
 }
 function essayHandler(draft,successMsg,newEssay){
