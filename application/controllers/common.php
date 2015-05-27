@@ -213,6 +213,14 @@ class Common extends CI_Controller {
 					"merchant_pwd"=>MD5("MonkeyKing".$data->newpwd)
 				);
 			break;
+			case 'merchantBusinessLicense':
+				$condition['table']="merchant";
+				$condition['where']=array("merchant_id"=>$_SESSION['userid']);
+				$condition['data']=array(
+					"merchant_business_license"=>$data->src,
+					"merchant_business_license_msg"=>$data->Msg,
+				);
+			break;
 		}
 		$result=$this->dbHandler->updateData($condition);
 		if($result==1) echo json_encode(array("result"=>"success","message"=>"信息修改成功"));

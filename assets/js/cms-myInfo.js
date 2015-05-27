@@ -37,7 +37,13 @@ function addBusinessLicenseBeforeUpload(){
 function addBusinessLicenseAfterUpload(imageSrc){
 	//update database
 	$("#loadingBusinessLicense").hide();
-	showAlert('success','修改成功!',imageSrc+'正在刷新...');
+	var merchantBusinessLicense = new Object(); 
+	merchantBusinessLicense.src = imageSrc;
+	merchantBusinessLicense.Msg = $("#BusinessLicenseMsg").val();
+	dataHandler("modify","merchantBusinessLicense",merchantBusinessLicense,successBusinessLicense,null,null,null,true);
+}
+function successBusinessLicense(){
+	showAlert('success','Successfully "Uploaded!','Refreshing...');
 }
 function uploadBankbook(){
 	uploadImageAdvance("#upload_bankbook_form",addBankbookBeforeUpload,addBankbookAfterUpload)
