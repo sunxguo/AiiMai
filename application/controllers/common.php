@@ -40,6 +40,17 @@ class Common extends CI_Controller {
 					"essay_lastmodify_time"=>date("Y-m-d H:i:s")
 				);
 			break;
+			case "message":
+				$table="message";
+				$info=array(
+					"message_type"=>$data->type,
+					"message_from"=>$_SESSION['userid'],
+					"message_to"=>0,
+					"message_title"=>$data->title,
+					"message_content"=>$data->content,
+					"message_time"=>date("Y-m-d H:i:s")
+				);
+			break;
 			case "product":
 				$table="product";
 				$info=array(
@@ -279,10 +290,23 @@ class Common extends CI_Controller {
 					"value_websiteconfig"=>$data->value
 				);
 			break;
+			case 'adminPwd':
+				$condition['table']="mkadmin";
+				$condition['where']=array("mkadmin_id"=>$_SESSION['userid']);
+				$condition['result']="data";
+				$adminInfo=$this->commongetdata->getOneData($condition);
+				if($adminInfo->mkadmin_pwd!=MD5("MonkeyKing".$data->oldpwd)){
+					echo json_encode(array("result"=>"failed","message"=>"Wrong password！"));
+					return false;
+				}
+				$condition['data']=array(
+					"mkadmin_pwd"=>MD5("MonkeyKing".$data->newpwd)
+				);
+			break;
 		}
 		$result=$this->dbHandler->updateData($condition);
-		if($result==1) echo json_encode(array("result"=>"success","message"=>"信息修改成功"));
-		else echo json_encode(array("result"=>"failed","message"=>"信息修改失败"));
+		if($result==1) echo json_encode(array("result"=>"success","message"=>"Successfully Modify!"));
+		else echo json_encode(array("result"=>"failed","message"=>"Failed Modify"));
 	}
 	public function getInfo(){
 		$condition=array();

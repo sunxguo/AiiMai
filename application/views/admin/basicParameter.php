@@ -9,13 +9,13 @@
 						Website Name
 					</td>
 					<td class="value width30p tal">
-						<input type="text" value="AiiMai" class="km-form-control" style="width: 80%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
+						<input id="websiteName" type="text" value="<?php echo $websiteConfig['website_name_english'];?>" class="km-form-control" style="width: 80%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 					</td>
 					<td class="field width20p tal br">
 						Website Url
 					</td>
 					<td class="value width30p tal">
-						<input type="text" value="http://aiimai.coolkeji.com" class="km-form-control" style="width: 80%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
+						<input id="websiteUrl" type="text" value="<?php echo $websiteConfig['website_url'];?>" class="km-form-control" style="width: 80%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 					</td>
 				  </tr>
 				  <tr>
@@ -23,18 +23,18 @@
 						Website Logo
 					</td>
 					<td class="value width30p tal">
-						<img src="/assets/images/cms/aiimailogo.png" width="60">
+						<img src="<?php echo $websiteConfig['website_logo_en_cn'];?>" width="60">
 					</td>
 					<td class="field width20p tal br">
 						Copyright
 					</td>
 					<td class="value width30p tal">
-						<input type="text" value="Copyright ©2015 AiiMai. All Rights Reserved." class="km-form-control" style="width: 80%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
+						<input id="websiteCopyright" type="text" value="<?php echo $websiteConfig['website_copyright'];?>" class="km-form-control" style="width: 80%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 					</td>
 				  </tr>
 				  <tr>
 					<td class="value tar" colspan="4">
-						<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">Save</button>
+						<button onclick="saveBasicParameter('Successfully Saved!');" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">Save</button>
 					</td>
 				  </tr>
 				</tbody>

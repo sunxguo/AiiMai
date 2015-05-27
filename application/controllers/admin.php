@@ -403,7 +403,7 @@ class Admin extends CI_Controller {
 	}
 	public function basicParameter(){
 		$data=array(
-			"columns"=>$this->commongetdata->getColumns()
+			"websiteConfig"=>$this->commongetdata->getWebsiteConfig("ALLINFO")
 		);
 		$this->adminBaseHandler('basic Parameter',array('setting','basicParameter'),'basicParameter',$data);
 	}

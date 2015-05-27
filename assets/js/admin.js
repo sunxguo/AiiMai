@@ -136,6 +136,76 @@ function websiteInfoSave(key,successMsg){
 	websiteInfo.value = infoEditor.html();
 	dataHandler("modify","websiteInfo",websiteInfo,null,null,closeWait(),successMsg,true);
 }
+function adminPwd(successMsg){
+	var username=$("#username").val();
+	var oldpwd=$("#oldpwd").val();
+	var newpwd=$("#newpwd").val();
+	var renewpwd=$("#renewpwd").val();
+	if(username==""||oldpwd==""||newpwd==""||renewpwd==""){
+		$("#errorInfo").show();
+		$("#errorInfo").text("Please fill out complete！");
+	}
+	else if(newpwd!=renewpwd){
+		$("#errorInfo").show();
+		$("#errorInfo").text("The two new password are different!");
+	}
+	else{
+		var adminPwd = new Object();
+		adminPwd.oldpwd = oldpwd;
+		adminPwd.newpwd = newpwd;
+		$("#errorInfo").hide();
+		dataHandler("modify","adminPwd",adminPwd,null,null,closeWait(),successMsg,true);
+	}
+}
+function sendMsg(successMsg){
+	if($("#type").val()==-1){
+		alert("Please select type!");
+		return false;
+	}
+	if($("#title").val()==""){
+		alert("Please input title！");
+		return false;
+	}
+	if($("#msg_content").val()==""){
+		alert("Please input content！");
+		return false;
+	}
+	showWait();
+	var message = new Object();
+	message.type = $("#type").val();
+	message.title = $("#title").val();
+	message.content = $("#msg_content").val();
+	dataHandler("add","message",message,null,null,closeWait(),successMsg,true);
+}
+function saveBasicParameter(successMsg){
+	if($("#websiteName").val()==""){
+		alert("Please select Name!");
+		return false;
+	}
+	if($("#websiteUrl").val()==""){
+		alert("Please input Url");
+		return false;
+	}
+	if($("#websiteCopyright").val()==""){
+		alert("Please input Copyright");
+		return false;
+	}
+	showWait();
+	var websiteInfo = new Object();
+	websiteInfo.key = 'website_name_english';
+	websiteInfo.value =$("#websiteName").val();
+	dataHandler("modify","websiteInfo",websiteInfo,null,null,closeWait(),successMsg,true);
+	
+	var websiteInfo = new Object();
+	websiteInfo.key = 'website_url';
+	websiteInfo.value =$("#websiteUrl").val();
+	dataHandler("modify","websiteInfo",websiteInfo,null,null,closeWait(),successMsg,true);
+	
+	var websiteInfo = new Object();
+	websiteInfo.key = 'website_copyright';
+	websiteInfo.value =$("#websiteCopyright").val();
+	dataHandler("modify","websiteInfo",websiteInfo,null,null,closeWait(),successMsg,true);
+}
 /*Example:
 $(".slider-item").mouseout(function(){
 	$(this).find('.oper').hide();

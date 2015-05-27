@@ -6,10 +6,10 @@
 		<div id="Div1">
 			<div class="item" style="margin-top: 10px;">
 				<span class="label">Receiver</span>
-				<select class="select" id="type" style="width: 125px;" onclick="receive_type()">
+				<select class="select" id="type" style="width: 125px;">
 					<option value="-1">--Select Receiver--</option>
-					<option value="2">User</option>
-					<option value="3">Merchant</option>
+					<option value="1">User</option>
+					<option value="2">Merchant</option>
 				</select>
 				<span style="color: red;">*</span>
 			</div>
@@ -48,7 +48,7 @@
 		<textarea id="msg_content" name="description" style="width: 90%;height: 70px;margin: 10px 0 10px 23px;"></textarea>
 	</div>
 	<div class="btn-center">
-		<a href="javascript:push_msg()" class="btnfa120">Send</a>
+		<a href="javascript:sendMsg('Successfully Sent!')" class="btnfa120">Send</a>
 	</div>
 </div>
 <script src="/assets/js/cms.js" type="text/javascript"></script>

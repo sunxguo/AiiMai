@@ -25,7 +25,7 @@
 			<span style="color:red;">*</span>
 		</div>
 		<div class="btn-center bor-top">
-			<a href="javascript:void(0)" class="btn120" onclick="modify('adminpwd')">Save</a>
+			<a href="javascript:void(0)" class="btn120" onclick="adminPwd('Successfully Saved!')">Save</a>
 		</div>
 	</form>
 </div>
