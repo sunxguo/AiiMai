@@ -13,7 +13,7 @@
 			<p class="summary-total-income">S$<?php echo $totalTurnover;?></p>
 		</li>
 		<li class="span3 text-center">
-			<h2><?php echo lang('cms_index_inventoryofemergency');?></h2>
+			<h2>Products Sold</h2>
 			<p class="summary-balance">0</p>
 		</li>
 	</ul>

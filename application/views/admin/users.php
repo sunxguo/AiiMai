@@ -1,13 +1,36 @@
 <div class="padding10 contentlist column-list">
-<!--
-	<div class="titA tit-bot pb5" style="">
+	<div id="appDiv" class="titA tit-bot pb5" style="">
 		<div style="float: right;margin-left:10px;">
-			<a href="/admin/addColumn" class="msg-btn">添加栏目</a>
+			<input type="text" id="keyword" class="inp-txt width200" value="<?php echo isset($_GET["search"])?$_GET["search"]:"";?>">
+			<a href="javascript:selectUser('<?php echo $selectPage;?>')" class="btn80">Search</a>
+		</div>
+		<div style="float: right;">
+			<span class="font12">Status:</span>
+			<select id="status" onchange="selectUser('<?php echo $selectPage;?>')" class="select w100">
+                <option value="-1">All</option>
+                <option value="0" <?php echo isset($_GET["status"]) && $_GET["status"]==0?'selected = "selected"':'';?>>
+					Normal
+				</option>
+                <option value="1" <?php echo isset($_GET["status"]) && $_GET["status"]==1?'selected = "selected"':'';?>>
+					Frozen
+				</option>
+            </select>
+		</div>
+		<div style="float: right;margin-right:10px;">
+			<span class="font12">Gender:</span>
+			<select id="gender" onchange="selectUser('<?php echo $selectPage;?>')" class="select w100">
+                <option value="-1">All</option>
+                <option value="0" <?php echo isset($_GET["gender"]) && $_GET["gender"]==0?'selected = "selected"':'';?>>
+					Male
+				</option>
+                <option value="1" <?php echo isset($_GET["gender"]) && $_GET["gender"]==1?'selected = "selected"':'';?>>
+					Female
+				</option>
+            </select>
 		</div>
 		<div class="clear">
 		</div>
 	</div>
-	-->
 	<table>
 		<thead>
 			<tr class="table-head">

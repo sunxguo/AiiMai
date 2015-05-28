@@ -33,8 +33,9 @@
 					<td class="value"><?php echo $merchant->merchant_grade;?><?php //echo lang('cms_sider_StandardSeller');?></td>
 					<td class="field"><?php echo lang('cms_sider_Password');?></td>
 					<td class="value" style="padding: 2px 0;">
+					<!--
 						<button onclick="modifySellerBaseInfoPwd();" type="button" class="km-btn km-btn-primary" style="height: 30px;font-size: 12px;"><?php echo lang('cms_sider_Editpassword');?></button>
-						<div class="km-modal-dialog width40p" id="sellerBaseInfoPwd">
+					-->	<div class="km-modal-dialog width40p" id="sellerBaseInfoPwd">
 							<div class="km-modal-content">
 								<div class="km-modal-header">
 									<button type="button" class="km-close"><span>&times;</span></button>
@@ -54,6 +55,7 @@
 								</div>
 							</div><!-- /.modal-content -->
 						</div><!-- /.modal-dialog -->
+					
 					</td>
 				  </tr>
 				</tbody>
@@ -86,7 +88,7 @@
 						  <span class="km-input-group-addon" style="font-size: 12px;"><?php echo lang('cms_sider_causeofchanging');?></span>
 						  <input id="BusinessLicenseMsg" type="text" class="km-form-control" placeholder="ASM Seller Confirm" style="height:20px;font-size: 12px;">
 						</div>
-						<button onclick="$('#fileBusinessLicense').click();" type="button" class="km-btn km-btn-primary" style="height: 32px;font-size: 12px; margin-left:-220px;"><?php echo lang('cms_sider_Upload');?></button>
+						<button onclick="$('#fileBusinessLicense').click();" type="button" class="km-btn km-btn-primary" style="height: 32px;font-size: 12px;"><?php echo lang('cms_sider_Upload');?></button>
 						<img src="/assets/images/cms/loading.gif" id="loadingBusinessLicense" class="hide">
 						<a href="<?php echo $merchant->merchant_business_license;?>" target="_blank"><?php echo lang('cms_sider_Viewimage');?></a>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo lang('cms_sider_ViewimageTip');?>
 						<form id="upload_BusinessLicense_form" method="post" enctype="multipart/form-data">
@@ -101,7 +103,7 @@
 						  <span class="km-input-group-addon" style="font-size: 12px;"><?php echo lang('cms_sider_causeofchanging');?></span>
 						  <input id="BankbookMsg" type="text" class="km-form-control" placeholder="ASM Seller Confirm" style="height:20px;font-size: 12px;">
 						</div>
-						<button type="button" onclick="$('#fileBankbook').click();" class="km-btn km-btn-primary" style="height: 32px;font-size: 12px; margin-left:-220px;"><?php echo lang('cms_sider_Upload');?></button>
+						<button type="button" onclick="$('#fileBankbook').click();" class="km-btn km-btn-primary" style="height: 32px;font-size: 12px; "><?php echo lang('cms_sider_Upload');?></button>
 						<img src="/assets/images/cms/loading.gif" id="loadingBankbook" class="hide">
 						<a href="<?php echo $merchant->merchant_bank_account;?>" target="_blank"><?php echo lang('cms_sider_Viewimage');?></a>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo lang('cms_sider_ViewimageTip');?>
 						<form id="upload_bankbook_form" method="post" enctype="multipart/form-data">

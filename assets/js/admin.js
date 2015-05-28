@@ -213,6 +213,13 @@ function selectItem(baseUrl){
 	if($("#keyword").val()!="") extUrl+="&search="+$("#keyword").val();
 	location.href=baseUrl+extUrl;
 }
+function selectUser(baseUrl){
+	var extUrl="";
+	if($("#gender").val()!=-1) extUrl+="&gender="+$("#gender").val();
+	if($("#status").val()!=-1) extUrl+="&status="+$("#status").val();
+	if($("#keyword").val()!="") extUrl+="&search="+$("#keyword").val();
+	location.href=baseUrl+extUrl;
+}
 function uploadAvatarImage(){
 	uploadImage(addImageBeforeUpload,addImageAfterUpload);
 }

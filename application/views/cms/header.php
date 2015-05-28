@@ -28,9 +28,9 @@
 				<span id="userShowName"><?php echo $_SESSION['username'];?></span>
 			</li>
 			<li class="message">
-				<a href="/cms/message" title="消息" id="js-openmsg">
+				<a href="/cms/message" title="Messages" id="js-openmsg">
 					<img src="/assets/images/cms/ico_mail.png" width="24" height="24">
-					<span class="message-num">6</span>
+					<span class="message-num">0</span>
 				</a>
 				<span id="unreadMesNumber"></span>
 			</li>
@@ -46,7 +46,7 @@
 		}
 	?>
 	<div id="msgBox" class="msg-box">
-		<a href="javascript:closeMsg()" class="close" title="关闭">关闭</a>
+		<a href="javascript:closeMsg()" class="close" title="Close">Close</a>
 		<div class="msg-in">
 			<ul>
 				<li>
