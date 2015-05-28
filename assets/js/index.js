@@ -192,7 +192,7 @@ var LineChart = function( options ) {
 
 };
 
-var chart = new LineChart({ data: [],width:1100,height:500,yAxisLabel:true });
+var chart = new LineChart({ data: [],width:1100,height:500,yAxisLabel:100});
 
 reset(7);
 
@@ -211,7 +211,7 @@ function restart() {
 function reset(days) {
 	var turnover = new Object();
 	turnover.startDate = "2015-5-21";
-	turnover.days = "7";
+	turnover.days = days;
 	$.post(
 	"/common/getInfo",
 	{
@@ -222,18 +222,17 @@ function reset(days) {
 		var result=$.parseJSON(data);
 		if(result.result=="success"){
 			chart.populate([
-				{ label: 'One', value: 0 },
-				{ label: 'Two', value: 0 },
-				{ label: 'Three', value: 0 },
-				{ label: 'Four', value: 0 },
-				{ label: 'Five', value: 0 },
-				{ label: 'Six', value: 0 },
-				{ label: 'Seven', value: 0 },
-				{ label: 'Eight', value: 0 },
-				{ label: 'Nine', value: 0 },
-				{ label: 'Ten', value: 0 },
-				{ label: 'Eleven', value: 1, future: true },
-				{ label: 'Twelve', value: 1, future: true }
+				{ label: '2015-5-19', value: 0 },
+				{ label: '2015-5-20', value: 0 },
+				{ label: '2015-5-21', value: 0 },
+				{ label: '2015-5-22', value: 0 },
+				{ label: '2015-5-23', value: 0 },
+				{ label: '2015-5-24', value: 0 },
+				{ label: '2015-5-25', value: 0 },
+				{ label: '2015-5-26', value: 0 },
+				{ label: 'Yesterday', value: 0 },
+				{ label: 'Today', value: 0 },
+				{ label: 'Tomorrow', value: 1, future: true }
 			  ]);
 		}else{
 			showAlert('danger','Failed!','');

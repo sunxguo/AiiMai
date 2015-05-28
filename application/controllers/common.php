@@ -347,6 +347,12 @@ class Common extends CI_Controller {
 				$merchant=isset($data->merchant)?$data->merchant:false;
 				$result=$this->commongetdata->getOrdersByDay($startDate,$days,$merchant);
 			break;
+			case 'merchantTurnover':
+				$days=$data->days;
+				$startDate=date("Y-m-d",strtotime(date("Y-m-d")." -".$days." day"));
+				$merchant=isset($data->merchant)?$data->merchant:$_SESSION['userid'];
+				$result=$this->commongetdata->getOrdersByDay($startDate,$days,$merchant,true);
+			break;
 		}
 		echo json_encode(array("result"=>"success","message"=>$result));
 	}

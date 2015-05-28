@@ -305,24 +305,32 @@ class CommonGetData{
 		);
 		return $page;
 	}
-	public function getOrdersByDay($startDate,$offset,$merchant=false){
+	public function getOrdersByDay($startDate,$offset,$merchant=false,$withLabel=false){
 		$data=array();
 		for($i=0;$i<$offset;$i++){
+			$date=date("Y-m-d",strtotime($startDate." +".$i." day"));
 			$condition=array(
 				'table'=>'order',
 				'result'=>'data',
 				'where'=>array(
-					'order_time >='=>date("Y-m-d",strtotime($startDate." +".$i." day")).' 00:00:00',
-					'order_time <='=>date("Y-m-d",strtotime($startDate." +".$i." day")).' 23:59:59'
+					'order_time >='=>$date.' 00:00:00',
+					'order_time <='=>$date.' 23:59:59'
 				)
 			);
 			if($merchant){
 				$condition['where']['order_merchant']=$merchant;
 			}
 			$orders=$this->getData($condition);
-			$data[$i]=0;
-			foreach($orders as $o){
-				$data[$i]+=$o->order_total;
+			if($withLabel){
+				$data[$date]=0;
+				foreach($orders as $o){
+					$data[$date]+=$o->order_total;
+				}
+			}else{
+				$data[$i]=0;
+				foreach($orders as $o){
+					$data[$i]+=$o->order_total;
+				}
 			}
 		}
 		return $data;

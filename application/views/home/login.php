@@ -31,6 +31,9 @@
 			<div class="login-btn-div">
 				<input type="submit" class="login-btn" id="btnRegister" onclick="" value="Log In">
 			</div>
+			<div class="login-field" style="padding-left: 40px;">
+				<a href="/home/fotgotPassword" target="_blank">Forgot Your Password?</a>
+			</div>
 		</form>
 		</div>
 		<div class="login-other-func fr">
