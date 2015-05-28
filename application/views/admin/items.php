@@ -57,7 +57,17 @@
 				<td><?php echo $item->product_sub_category;?></td>
 				<td><?php echo $item->product_sub_sub_category;?></td>
 				<td><?php echo $item->product_time;?></td>
-				<td><?php echo $item->product_status;?></td>
+				<td>
+					<span class="km-label 
+						<?php if($item->product_status==1):?>km-label-primary<?php endif;?>
+						<?php if($item->product_status==2):?>km-label-info<?php endif;?>
+						<?php if($item->product_status==3):?>km-label-success<?php endif;?>
+						<?php if($item->product_status==4):?>km-label-danger<?php endif;?>
+						<?php if($item->product_status==5):?>km-label-warning<?php endif;?>
+						<?php if($item->product_status==6):?>km-label-default<?php endif;?>
+						"><?php echo $status[$item->product_status];?>
+					</span>
+				</td>
 				<td>
 					<a href="/home/item?itemId=<?php echo $item->product_id;?>" target="_blank">Preview</a>
 					<a href="javascript:window.open('/admin/modifyItem?itemId=1','Edit Item','height=700,width=900,toolbar=no,menubar=no');">Edit</a>

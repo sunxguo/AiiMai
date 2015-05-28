@@ -32,7 +32,7 @@
 				<td><?php echo $user->user_email;?></td>
 				<td><?php echo $user->user_phone;?></td>
 				<td><?php echo $user->user_gender==0?'Male':'Female';?></td>
-				<td><?php echo $user->user_state;?></td>
+				<td><?php echo $user->user_state==0?'Normal':'Frozen';?></td>
 				<td><?php echo $user->user_grade;?></td>
 				<td><?php echo $user->user_country;?></td>
 				<td><?php echo $user->user_birthday;?></td>
