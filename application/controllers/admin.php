@@ -152,19 +152,17 @@ class Admin extends CI_Controller {
 		else $page=1;
 		$amountPerPage=20;
 		$condition['table']='merchant';
-		$baseUrl=$selectUrl='/admin/merchants';
+		$baseUrl=$selectUrl='/admin/merchants?placeholder=yes';
 		if(isset($_GET['status'])&& is_numeric($_GET['status'])){
-			$condition['where']=array('merchant_status'=>$_GET['status']);
-			$baseUrl.='?status='.$_GET['status'];
-		}else{
-			$baseUrl.='?status=0';
+			$condition['where']['merchant_status']=$_GET['status'];
+			$baseUrl.='&status='.$_GET['status'];
 		}
 		if(isset($_GET['gender'])&& is_numeric($_GET['gender'])){
-			$condition['where']=array('merchant_gender'=>$_GET['gender']);
+			$condition['where']['merchant_gender']=$_GET['gender'];
 			$baseUrl.='&gender='.$_GET['gender'];
 		}
 		if(isset($_GET['search'])){
-			$condition['like']=array('merchant_username'=>$_GET['search']);
+			$condition['like']['merchant_username']=$_GET['search'];
 			$baseUrl.='&search='.$_GET['search'];
 		}
 		$condition['result']="count";
