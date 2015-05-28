@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title><?php echo $title;?></title>
+    <title>Merchant Modification</title>
 	<link rel="stylesheet" href="/assets/css/base.css" type="text/css"/>
 	<link rel="stylesheet" href="/assets/css/cms.css" type="text/css"/>
 	<link rel="stylesheet" href="/assets/css/template.css" type="text/css"/>

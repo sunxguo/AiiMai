@@ -37,7 +37,7 @@
 				<td><?php echo $merchant->merchant_lastlogin_time;?></td>
 				<td>
 					<a href="/home/shop?shopId=<?php echo $merchant->merchant_id;?>" target="_blank">Go</a>&nbsp;&nbsp;&nbsp;
-					<a href="javascript:window.open('/admin/modifyMerchant?merchantId=1','Edit Merchant','height=700,width=900,toolbar=no,menubar=no');">Edit</a>&nbsp;&nbsp;&nbsp;
+					<a href="javascript:window.open('/admin/modifyMerchant?merchantId=<?php echo $merchant->merchant_id;?>','Edit Merchant','height=700,width=900,toolbar=no,menubar=no');">Edit</a>&nbsp;&nbsp;&nbsp;
 					<?php if($merchant->merchant_status!=2):?>
 					<a href="javascript:confirmMerchant('<?php echo $merchant->merchant_id;?>','Sure to confirm <<?php echo $merchant->merchant_username;?>>？','Successfully Confirmed <?php echo $merchant->merchant_username;?>')">Confirm</a>&nbsp;&nbsp;&nbsp;
 					<?php else:?>

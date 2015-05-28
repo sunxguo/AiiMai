@@ -213,6 +213,74 @@ function selectItem(baseUrl){
 	if($("#keyword").val()!="") extUrl+="&search="+$("#keyword").val();
 	location.href=baseUrl+extUrl;
 }
+function uploadAvatarImage(){
+	uploadImage(addImageBeforeUpload,addImageAfterUpload);
+}
+function addImageBeforeUpload(){
+	$("#avatar").attr("src","/assets/images/cms/loading.gif");
+}
+function addImageAfterUpload(imageSrc){
+	$("#avatar").attr("src",imageSrc);
+}
+function userHandler(successMsg,isNew){
+	if($("#MainCategory").val()==-1 || $("#stSubCategory").val()==-1 || $("#ndSubCategory").val()==-1){
+		showAlert('danger','',"Please select category!");
+		return false;
+	}
+	if($("#title_english").val()=="" && $("#title_zh_cn").val()=="" && $("#title_tw_cn").val()==""){
+		showAlert('danger','',"Please enter a product name!");
+		return false;
+	}
+	if($("#productImg").attr('src')==""){
+		showAlert('danger','',"Please upload a Picture!");
+		return false;
+	}
+	if($("#ProductionPlaceCode").val()==-1){
+		showAlert('danger','',"Please select Production Place!");
+		return false;
+	}
+	if($("#SellPrice").val()=='' || isNaN($("#SellPrice").val())){
+		showAlert('danger','',"Please enter the correct price!");
+		return false;
+	}
+	if($("#Quantity").val()=='' || isNaN($("#Quantity").val())){
+		showAlert('danger','',"Please enter the correct Quantity!");
+		return false;
+	}
+	var product = new Object();
+	product.MainCategory = $("#MainCategory").val();
+	product.stSubCategory = $("#stSubCategory").val();
+	product.ndSubCategory = $("#ndSubCategory").val();
+	product.SellFormat = $('input[name="salesMode"]:checked').val();
+	product.DeliveryType = $('input[name="shipType"]:checked').val();
+	product.ItemCondition = $('input[name="goodsStatus"]:checked').val();
+//	product.ItemCondition = $('input[name="goodsStatus"]:checked').val();
+	product.title_english = $("#title_english").val();
+	product.title_zh_cn = $("#title_zh_cn").val();
+	product.title_tw_cn = $("#title_tw_cn").val();
+	product.ShortTitle = $("#ShortTitle").val();
+	product.SellerCode = $("#SellerCode").val();
+	product.productImg = $("#productImg").attr('src');
+	product.ProductionPlaceCode = $("#ProductionPlaceCode").val();
+	product.ProductionPlaceDetail = $("#ProductionPlaceDetail").val();
+	product.AdultItem = $('input[name="adult"]:checked').val();
+	product.SellPrice = $("#SellPrice").val();
+	product.Quantity = $("#Quantity").val();
+	product.AvailablePeriod = $("#AvailablePeriod").val();
+	product.ReferencePrice = $("#ReferencePrice").val();
+	product.shippingAddress = $("#shippingAddress").val();
+	product.Displayleftavailableperiod = $("#Displayleftavailableperiod").val();
+	product.description = goodsInfoEditor.html();
+//	product.thumbnail = getThumb("#imgListDivs .imagelist");
+	var handlerType='';
+	if(isNew){
+		handlerType='add';
+	}else{
+		product.id = $("#productId").val();
+		handlerType='modify';
+	}
+	dataHandler(handlerType,'product',product,null,null,null,successMsg,true);
+}
 /*Example:
 $(".slider-item").mouseout(function(){
 	$(this).find('.oper').hide();
