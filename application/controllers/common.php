@@ -323,6 +323,22 @@ class Common extends CI_Controller {
 					"merchant_phone3"=>$data->merchant_phone3,
 				);
 			break;
+			case 'myInfoPhonenumber':
+				$condition['table']="merchant";
+				$condition['where']=array("merchant_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_homephone1"=>$data->merchant_homephone1,
+					"merchant_homephone2"=>$data->merchant_homephone2,
+					"merchant_homephone3"=>$data->merchant_homephone3,
+				);
+			break;
+			case 'myInfoEmail':
+				$condition['table']="merchant";
+				$condition['where']=array("merchant_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_email"=>$data->merchant_email
+				);
+			break;
 		}
 		$result=$this->dbHandler->updateData($condition);
 		if($result==1) echo json_encode(array("result"=>"success","message"=>"Successfully Modify!"));

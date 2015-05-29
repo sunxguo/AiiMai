@@ -81,8 +81,22 @@ function saveMyInfoMobilephoneNo(){
 	myInfoMobilephoneNo.merchant_phone1 = $("#merchant_phone1").val();
 	myInfoMobilephoneNo.merchant_phone2 = $("#merchant_phone2").val();
 	myInfoMobilephoneNo.merchant_phone3 = $("#merchant_phone3").val();
-	dataHandler("modify","myInfoMobilephoneNo",myInfoMobilephoneNo,successMyInfoMobilephoneNo,null,null,null,true);
+	dataHandler("modify","myInfoMobilephoneNo",myInfoMobilephoneNo,successRefresh,null,null,null,true);
 }
-function successMyInfoMobilephoneNo(){
+function successRefresh(){
 	showAlert('success','Success!','Refreshing...');
+}
+function saveMyInfoPhonenumber(){
+	var myInfoPhonenumber = new Object();
+	myInfoPhonenumber.id=$("#merchantId").val();
+	myInfoPhonenumber.merchant_homephone1 = $("#merchant_homephone1").val();
+	myInfoPhonenumber.merchant_homephone2 = $("#merchant_homephone2").val();
+	myInfoPhonenumber.merchant_homephone3 = $("#merchant_homephone3").val();
+	dataHandler("modify","myInfoPhonenumber",myInfoPhonenumber,successRefresh,null,null,null,true);
+}
+function saveMyInfoEmail(){
+	var myInfoEmail = new Object();
+	myInfoEmail.id=$("#merchantId").val();
+	myInfoEmail.merchant_email = $("#merchant_email").val();
+	dataHandler("modify","myInfoEmail",myInfoEmail,successRefresh,null,null,null,true);
 }
