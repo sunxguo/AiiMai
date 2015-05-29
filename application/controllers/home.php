@@ -70,6 +70,7 @@ class Home extends CI_Controller {
 	public function index(){
 		$data=array(
 		//	"columns"=>$this->commongetdata->getColumns()
+			"topSalesProducts"=>$this->commongetdata->getProducts(false,false,false,false,false,false,false,false,false,array("field"=>'product_modify_time',"type"=>'DESC'))
 		);
 		$this->homeBaseHandler('Home','index',$data,array("showFooter"=>false));
 	}

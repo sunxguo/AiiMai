@@ -172,62 +172,15 @@
 	</ul>
 	<div class="btn-next"><img src="/assets/images/home/next.png"></div>
 	<ul  id="topsale0" class="dont_display">
+		<?php foreach($topSalesProducts as $product):?>
 		<li>
-			<a href="/home/item?itemId=1">
-				<img class="p-thumbnail" src="/assets/images/home/463987260.jpg">
-				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
-				<span class="p-price">US$19.00</span>
+			<a href="/home/item?itemId=<?php echo $product->product_id;?>">
+				<img class="p-thumbnail" src="<?php echo $product->product_image;?>">
+				<p class="p-title"><?php echo $product->product_item_title_english;?></p>
+				<span class="p-price">S$ <?php echo $product->product_sell_price;?></span>
 			</a>
 		</li>
-		<li>
-			<a href="/home/item?itemId=1">
-				<img class="p-thumbnail" src="/assets/images/home/fp2.jpg">
-				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
-				<span class="p-price">US$19.00</span>
-			</a>
-		</li>
-		<li>
-			<a href="/home/item?itemId=1">
-				<img class="p-thumbnail" src="/assets/images/home/fp3.jpg">
-				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
-				<span class="p-price">US$19.00</span>
-			</a>
-		</li>
-		<li>
-			<a href="/home/item?itemId=1">
-				<img class="p-thumbnail" src="/assets/images/home/fp3.jpg">
-				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
-				<span class="p-price">US$19.00</span>
-			</a>
-		</li>
-		<li>
-			<a href="/home/item?itemId=1">
-				<img class="p-thumbnail" src="/assets/images/home/fp3.jpg">
-				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
-				<span class="p-price">US$19.00</span>
-			</a>
-		</li>
-		<li>
-			<a href="/home/item?itemId=1">
-				<img class="p-thumbnail" src="/assets/images/home/fp3.jpg">
-				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
-				<span class="p-price">US$19.00</span>
-			</a>
-		</li>
-		<li>
-			<a href="/home/item?itemId=1">
-				<img class="p-thumbnail" src="/assets/images/home/fp4.jpg">
-				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
-				<span class="p-price">US$19.00</span>
-			</a>
-		</li>
-		<li>
-			<a href="/home/item?itemId=1">
-				<img class="p-thumbnail" src="/assets/images/home/fp5.jpg">
-				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
-				<span class="p-price">US$19.00</span>
-			</a>
-		</li>
+		<?php endforeach;?>
 	</ul>
 	<ul id="topsale1" class="dont_display">
 		<li>
