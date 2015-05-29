@@ -61,7 +61,8 @@ class Home extends CI_Controller {
 		$this->load->view('home/header',
 			array(
 				'title' => $title."-".$websiteName,
-				'websiteName'=>$websiteName
+				'websiteName'=>$websiteName,
+				'categories'=>$this->commongetdata->getCategories(false)
 			)
 		);
 		$this->load->view('home/'.$view,$data);
@@ -177,6 +178,13 @@ class Home extends CI_Controller {
 			'cart'=>$this->commongetdata->getCartListByMerchants()
 		);
 		$this->homeBaseHandler('My Panel','panel',$data);
+	}
+	public function personalInfo(){
+		$this->checkUserLogin();
+		$data=array(
+			'user'=>$this->commongetdata->getContent('user',$_SESSION['userid'])
+		);
+		$this->homeBaseHandler('Personal Info','personalInfo',$data);
 	}
 	public function recentOrders(){
 		$this->checkUserLogin();

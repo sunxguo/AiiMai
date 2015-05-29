@@ -21,6 +21,12 @@
 				<li><a href="/home/viewAll">ViewAll</a></li>
 			  </ul>
 			</li>
+			<li class="dropdown" onmouseover="$('#Myinfo').show();" onmouseout="$('#Myinfo').hide();">
+			  <a href="#" class="dropdown-toggle">My info<span class="caret"></span></a>
+			  <ul class="dropdown-menu" id="Myinfo">
+				<li><a href="/home/personalInfo">Personal Info</a></li>
+			  </ul>
+			</li>
 			<!--
 			<li class="dropdown" onmouseover="$('#aAccount').show();" onmouseout="$('#aAccount').hide();">
 			  <a href="#" class="dropdown-toggle">A·account <span class="caret"></span></a>
@@ -56,13 +62,6 @@
 				<li><a href="#">My Review</a></li>
 				<li><a href="#">My Charity</a></li>
 				<li><a href="#">My Inquiry & Report</a></li>
-			  </ul>
-			</li>
-			<li class="dropdown" onmouseover="$('#Myinfo').show();" onmouseout="$('#Myinfo').hide();">
-			  <a href="#" class="dropdown-toggle">My info<span class="caret"></span></a>
-			  <ul class="dropdown-menu" id="Myinfo">
-				<li><a href="#">Personal Info</a></li>
-				<li><a href="#">Manage Themes</a></li>
 			  </ul>
 			</li>
 		  </ul>-->
