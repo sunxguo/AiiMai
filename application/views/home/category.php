@@ -589,7 +589,7 @@
 	<h3 class="h_ctlst">AiiMai Best 10</h3>
 	<div class="bd_glr6 clearfix">
 		<ul class="col5 best">
-			<?php for($i=1;$i<11;$i++):?>
+			<?php for($i=1;$i<1;$i++):?>
 			<li class="">
 				<div name="clicked" class="state" style="display: none;">
 					<div>Clicked<br>Item</div>
@@ -650,7 +650,7 @@
 	<h3 class="h_ctlst">Best Value 10</h3>
 	<div class="bd_glr6 clearfix">
 		<ul class="col5 best">
-			<?php for($i=1;$i<11;$i++):?>
+			<?php for($i=1;$i<1;$i++):?>
 			<li class="">
 				<div name="clicked" class="state" style="display: none;">
 					<div>Clicked<br>Item</div>
@@ -711,7 +711,7 @@
 	<h3 class="h_ctlst">More Best Items</h3>
 	<div class="bd_glr6 clearfix">
 		<ul class="col5 best">
-			<?php for($i=11;$i<101;$i++):?>
+			<?php for($i=11;$i<1;$i++):?>
 			<li class="">
 				<div name="clicked" class="state" style="display: none;">
 					<div>Clicked<br>Item</div>
