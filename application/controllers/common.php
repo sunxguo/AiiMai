@@ -305,6 +305,15 @@ class Common extends CI_Controller {
 					"mkadmin_pwd"=>MD5("MonkeyKing".$data->newpwd)
 				);
 			break;
+			case 'userNewPwd':
+				$condition['table']="user";
+				$condition['where']=array("user_email"=>$_SESSION['userEmail']);
+				$condition['result']="data";
+				$merchantInfo=$this->commongetdata->getOneData($condition);
+				$condition['data']=array(
+					"user_pwd"=>MD5("MonkeyKing".$data->newpwd)
+				);
+			break;
 		}
 		$result=$this->dbHandler->updateData($condition);
 		if($result==1) echo json_encode(array("result"=>"success","message"=>"Successfully Modify!"));

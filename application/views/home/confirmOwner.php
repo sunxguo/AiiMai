@@ -14,7 +14,7 @@
 			</tr>
 		</table>
 		<div class="reg-btn">
-			<input type="button" class="btn-big" id="btnRegister" onclick="findPasswordConfirm()" value="Go to Sign-in">
+			<input type="button" class="btn-big" id="btnRegister" onclick="location.href='/home/login'" value="Go to Sign-in">
 		</div>
 	</div>
 </div>

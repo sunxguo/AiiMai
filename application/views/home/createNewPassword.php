@@ -6,18 +6,24 @@
 	<div class="register-main-body">
 		<table>
 			<tr>
+				<td style=" padding: 0px 10px;">
+					Create New Password
+				</td>
 				<td>
-					<input type="radio" checked><span id="email"><?php echo $_GET['email'];?></span>
-					<button onclick="sendConfirmEmail();" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">Get Password-Reset Email</button>
-					Email has been sent successfully!
+					<input id="newpwd" type="password" class="inp-txt width250">
+				</td>
+			</tr>
+			<tr>
+				<td style=" padding: 0px 10px;">
+					Re-enter New Password
+				</td>
+				<td>
+					<input id="renewpwd" type="password" class="inp-txt width250">
 				</td>
 			</tr>
 		</table>
 		<div class="reg-btn">
-			<input type="button" class="btn-big" id="btnRegister" onclick="findPasswordConfirm()" value="Go to Sign-in">
+			<input type="button" class="btn-big" id="btnRegister" onclick="saveNewPassword();" value="Save">
 		</div>
 	</div>
 </div>
-<script>
-	sendConfirmEmail();
-</script>

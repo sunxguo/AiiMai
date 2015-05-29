@@ -527,3 +527,34 @@ function sendConfirmEmail(){
 	  }
 	});
 }
+function saveNewPassword(){
+	var newpwd=$("#newpwd").val();
+	var renewpwd=$("#renewpwd").val();
+	if(newpwd==""||renewpwd==""){
+		showAlert('danger','Failed!','Password can not be empty！');
+		return false;
+	}
+	if(newpwd!=renewpwd){
+		showAlert('danger','Failed!','The two new password are different!');
+		return false;
+	}
+	var userNewPwd = new Object();
+	userNewPwd.newpwd = newpwd;
+//	dataHandler("modify","userNewPwd",userNewPwd,newPwdSuccess,null,closeWait(),'Success!',true);	
+	
+	$.post(
+	"/common/modifyInfo",
+	{
+		'info_type':'userNewPwd',
+		'data':JSON.stringify(userNewPwd)
+	},
+	function(data){
+		var result=$.parseJSON(data);
+		if(result.result=="success"){
+			alert('Success!');
+			location.href="/home/login";
+		}else{
+			alert(result.message);
+		}
+	});
+}

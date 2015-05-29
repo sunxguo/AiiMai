@@ -72,7 +72,7 @@
 						  <span class="km-input-group-addon" style="font-size: 12px;"><?php echo lang('cms_sider_causeofchanging');?></span>
 						  <input id="BusinessLicenseMsg" type="text" class="km-form-control" placeholder="ASM Seller Confirm" style="height:20px;font-size: 12px;">
 						</div>
-						<button onclick="$('#fileBusinessLicense').click();" type="button" class="km-btn km-btn-primary" style="height: 32px;font-size: 12px; margin-left:-220px;"><?php echo lang('cms_sider_Upload');?></button>
+						<button onclick="$('#fileBusinessLicense').click();" type="button" class="km-btn km-btn-primary" style="height: 32px;font-size: 12px;"><?php echo lang('cms_sider_Upload');?></button>
 						<img src="/assets/images/cms/loading.gif" id="loadingBusinessLicense" class="hide">
 						<a href="<?php echo $merchant->merchant_business_license;?>" target="_blank"><?php echo lang('cms_sider_Viewimage');?></a>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo lang('cms_sider_ViewimageTip');?>
 						<form id="upload_BusinessLicense_form" method="post" enctype="multipart/form-data">
@@ -87,7 +87,7 @@
 						  <span class="km-input-group-addon" style="font-size: 12px;"><?php echo lang('cms_sider_causeofchanging');?></span>
 						  <input id="BankbookMsg" type="text" class="km-form-control" placeholder="ASM Seller Confirm" style="height:20px;font-size: 12px;">
 						</div>
-						<button type="button" onclick="$('#fileBankbook').click();" class="km-btn km-btn-primary" style="height: 32px;font-size: 12px; margin-left:-220px;"><?php echo lang('cms_sider_Upload');?></button>
+						<button type="button" onclick="$('#fileBankbook').click();" class="km-btn km-btn-primary" style="height: 32px;font-size: 12px;"><?php echo lang('cms_sider_Upload');?></button>
 						<img src="/assets/images/cms/loading.gif" id="loadingBankbook" class="hide">
 						<a href="<?php echo $merchant->merchant_bank_account;?>" target="_blank"><?php echo lang('cms_sider_Viewimage');?></a>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo lang('cms_sider_ViewimageTip');?>
 						<form id="upload_bankbook_form" method="post" enctype="multipart/form-data">
@@ -255,8 +255,10 @@
 								</div>
 								<div class="km-modal-body">
 									<label for="seller_baseinfo_oldpwd" class="km-control-label">Address:</label>
+									<input id="baseInfoAddress" type="checkbox"><label for="baseInfoAddress">Display</label>
 									<input value="(521168) 168A SIMEI LANE 168A Simei Lane Singapore 521168" type="text" class="km-form-control" id="customer_view_address" style="width: 95%;padding: 0 5px;height: 30px;">
 									<label for="customer_view_email" class="km-control-label">Phone:</label>
+									<input id="baseInfoPhone" type="checkbox"><label for="baseInfoPhone">Display</label>
 									<select id="customer_view_fax_countrycode" style="display:block;height: 30px;"><?php require('countryPhoneNO.php');?></select><br>
 									<input type="text" class="km-form-control" id="customer_view_address_areacode" value="9685" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;">-
 									<input type="text" class="km-form-control" id="customer_view_address_number" value="1921" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;">

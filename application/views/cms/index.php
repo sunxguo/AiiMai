@@ -40,6 +40,29 @@
         <caption class="clearfix">
             <h2 class="pull-left list-income" style="width: 250px;text-align: left;">
 				<i class="icon-list-1"><img src="/assets/images/cms/icon/icon-list.png"></i>
+				Summary
+			</h2>
+        </caption>
+        <thead>
+            <tr>
+                <th>Requested Order Cancellation / Return / Refund</th>
+                <th>Unanswered Inquiries</th>
+                <th>Low Stock Products (> 3 pieces)</th>
+                <th>Orders Pending Delivery Confirmation</th>
+            </tr>
+        </thead>
+        <tbody>
+			<tr>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+			</tr>
+	</table>
+	<table id="summary_table" class="app-list table ymtable table-striped">
+        <caption class="clearfix">
+            <h2 class="pull-left list-income" style="width: 250px;text-align: left;">
+				<i class="icon-list-1"><img src="/assets/images/cms/icon/icon-list.png"></i>
 				<?php echo lang('cms_index_turnoverlistindetail');?>
 			</h2>
         </caption>
@@ -53,7 +76,7 @@
         <tbody>
 			<tr>
 				<td>2015-04-07</td>
-				<td>￥110.00</td>
+				<td>S$110.00</td>
 				<td>88</td>
 			</tr>
 	</table>
