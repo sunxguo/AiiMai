@@ -314,6 +314,15 @@ class Common extends CI_Controller {
 					"user_pwd"=>MD5("MonkeyKing".$data->newpwd)
 				);
 			break;
+			case 'myInfoMobilephoneNo':
+				$condition['table']="merchant";
+				$condition['where']=array("merchant_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_phone1"=>$data->merchant_phone1,
+					"merchant_phone2"=>$data->merchant_phone2,
+					"merchant_phone3"=>$data->merchant_phone3,
+				);
+			break;
 		}
 		$result=$this->dbHandler->updateData($condition);
 		if($result==1) echo json_encode(array("result"=>"success","message"=>"Successfully Modify!"));

@@ -105,6 +105,7 @@
 						<?php echo lang('cms_sider_ProcessingstatusTip1');?>
 					</td>
 				  </tr>
+				  <?php /*?>
 				  <tr>
 					<td class="field"><?php echo lang('cms_sider_AaccountPassword');?></td>
 					<td class="value" colspan="5">
@@ -131,6 +132,7 @@
 						</div><!-- /.modal-dialog -->
 					</td>
 				  </tr>
+				  <?php */?>
 				</tbody>
 			</table>
 		</div>
@@ -165,7 +167,7 @@
 				  <tr>
 					<td class="field width10p" rowspan="2"><?php echo lang('cms_myInfo_ContactNo');?></td>
 					<td class="value width17p">
-						<span class="km-label km-label-default fl"><?php echo lang('cms_myInfo_MobilephoneNo');?></span>  Singapore 9685-1921 
+						<span class="km-label km-label-default fl"><?php echo lang('cms_myInfo_MobilephoneNo');?></span>  <?php echo $merchant->merchant_phone1;?> <?php echo $merchant->merchant_phone2;?>-<?php echo $merchant->merchant_phone3;?> 
 						<button onclick="setDivCenter('#baseInfoMobilePhoneNumber',true);" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
 						<div class="km-modal-dialog width40p" id="baseInfoMobilePhoneNumber">
 							<div class="km-modal-content">
@@ -175,13 +177,56 @@
 								</div>
 								<div class="km-modal-body">
 									<label for="customer_view_email" class="km-control-label"><?php echo lang('cms_myInfo_MobilephoneNo');?>:</label>
-									<select id="customer_view_fax_countrycode" style="display:block;height: 30px;"><?php require('countryPhoneNO.php');?></select><br>
-									<input type="text" class="km-form-control" id="customer_view_fax_areacode" value="9685" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;">-
-									<input type="text" class="km-form-control" id="customer_view_fax_number" value="1921" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;">
+									<select id="merchant_phone1" style="display:block;height: 30px;">
+										<option value="">Choose Country</option>
+										<option value="AU">Australia</option>
+										<option value="BR">Brazil</option>
+										<option value="BN">Brunei Darussalam</option>
+										<option value="CA">Canada</option>
+										<option value="CN">China</option>
+										<option value="DK">Denmark</option>
+										<option value="EG">Egypt</option>
+										<option value="FI">Finland</option>
+										<option value="FR">France</option>
+										<option value="DE">Germany</option>
+										<option value="GR">Greece</option>
+										<option value="HK">Hong Kong</option>
+										<option value="HU">Hungary</option>
+										<option value="IN">India</option>
+										<option value="ID">Indonesia</option>
+										<option value="IL">Israel</option>
+										<option value="IT">Italy</option>
+										<option value="JP">Japan</option>
+										<option value="KW">Kuwait</option>
+										<option value="MO">Macau</option>
+										<option value="MY">Malaysia</option>
+										<option value="MX">Mexico</option>
+										<option value="MM">Myanma</option>
+										<option value="NL">Netherlands</option>
+										<option value="NZ">New Zealand</option>
+										<option value="NO">Norway</option>
+										<option value="PH">Philippines</option>
+										<option value="PL">Poland</option>
+										<option value="PT">Portugal</option>
+										<option value="RU">Russia</option>
+										<option value="SG" selected>Singapore</option>
+										<option value="KR">South Korea</option>
+										<option value="ES">Spain</option>
+										<option value="SE">Sweden</option>
+										<option value="CH">Switzerland</option>
+										<option value="TW">Taiwan</option>
+										<option value="TH">Thailand</option>
+										<option value="TR">Turkey</option>
+										<option value="GB">United Kingdom</option>
+										<option value="US">United States</option>
+										<option value="VN">Vietnam</option>
+									</select><br>
+									<input type="text" class="km-form-control" id="merchant_phone2" value="<?php echo $merchant->merchant_phone2;?>" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;">-
+									<input type="text" class="km-form-control" id="merchant_phone3" value="<?php echo $merchant->merchant_phone3;?>" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;">
 								</div>
 								<div class="km-modal-footer">
 									<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_myInfo_Close');?></button>
-									<button type="button" class="km-btn km-btn-primary"><?php echo lang('cms_myInfo_Savechanges');?></button>
+									<button type="button" class="km-btn km-btn-primary" onclick="saveMyInfoMobilephoneNo();"><?php echo lang('cms_myInfo_Savechanges');?></button>
 								</div>
 							</div><!-- /.modal-content -->
 						</div><!-- /.modal-dialog -->

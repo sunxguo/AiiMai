@@ -38,9 +38,10 @@
 				<a href="/cms/logout" title="<?php echo lang('cms_common_Logout');?>"><?php echo lang('cms_common_Logout');?></a>
 			</li>
         </ul>
+		<input id="merchantId" type="hidden" value="<?php echo $_SESSION['userid'];?>">
     </div>
 	<div class="cms-main">
-	<?php 
+	<?php
 		if(isset($showSider) && $showSider && $_SESSION['usertype']=="merchant"){
 			require("sider.php");
 		}

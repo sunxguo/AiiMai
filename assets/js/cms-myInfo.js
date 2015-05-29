@@ -66,7 +66,7 @@ function requestForSettleInfo(){
 	showAlert('success','Successfully Requested!','Please Wait...');
 }
 function saveGstInfo(){
-	var GST = new Object(); 
+	var GST = new Object();
 	GST.gstName = $("#gstName").val();
 	GST.gstNumber = $("#gstNumber").val();
 	GST.gstAddress = $("#gstAddress").val();
@@ -74,4 +74,15 @@ function saveGstInfo(){
 }
 function successGstInfo(){
 	showAlert('success','Successfully Saved!','Refreshing...');
+}
+function saveMyInfoMobilephoneNo(){
+	var myInfoMobilephoneNo = new Object();
+	myInfoMobilephoneNo.id=$("#merchantId").val();
+	myInfoMobilephoneNo.merchant_phone1 = $("#merchant_phone1").val();
+	myInfoMobilephoneNo.merchant_phone2 = $("#merchant_phone2").val();
+	myInfoMobilephoneNo.merchant_phone3 = $("#merchant_phone3").val();
+	dataHandler("modify","myInfoMobilephoneNo",myInfoMobilephoneNo,successMyInfoMobilephoneNo,null,null,null,true);
+}
+function successMyInfoMobilephoneNo(){
+	showAlert('success','Success!','Refreshing...');
 }
