@@ -12,7 +12,14 @@ class Home extends CI_Controller {
 		if (!checkLogin() || strcmp($_SESSION["usertype"], "user")) {
 			$this->load->view('redirect',array("url"=>"/home/login","info"=>"Please login!"));
 			return false;
-		}else return true;
+		}
+		$user=$this->commongetdata->getContent('user',$_SESSION['userid']);
+		if($user->user_confirm_email==0){
+			$_SESSION['userEmail']=$user->user_email;
+			$this->load->view('redirect',array("url"=>"/home/confirmEmail","info"=>"Please confirm your E-mail!"));
+			return false;
+		}
+		return true;
 	}
 	public function loginHandler(){
 		if(!isset($_POST["validCode"]) || strcasecmp($_POST['validCode'],$_SESSION['authcode'])!=0){
@@ -32,10 +39,7 @@ class Home extends CI_Controller {
 					$_SESSION['username']=$info[0]->user_username;
 					$_SESSION['userid']=$info[0]->user_id;
 					$_SESSION['usertype']="user";
-					if($info[0]->user_confirm_email==0){
-						$_SESSION['userEmail']=$info[0]->user_email;
-						$this->load->view('redirect',array("url"=>"/home/confirmEmail","info"=>"Please confirm your E-mail!"));
-					}
+					$this->checkUserLogin();
 					$this->load->view('redirect',array("url"=>"/home"));
 				}
 				else{
