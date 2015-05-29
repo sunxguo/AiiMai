@@ -62,7 +62,6 @@
 		<div class="header-bottom categories clearfix clearboth">
 			<ul id="categoriesList" class="clearfix">
 				<li><a href="/"><img src="/assets/images/home/home.png"></a></li>
-				
 				<?php foreach($categories as $key=>$cat):?>
 				<li <?php if((isset($_GET['cat']) && $_GET['cat']==$cat->category_id) || (!isset($_GET['cat']) && $key==0)):?>class="active"<?php endif;?>>
 					<a href="/home/category" <?php if((isset($_GET['cat']) && $_GET['cat']==$cat->category_id) || (!isset($_GET['cat']) && $key==0)):?>class="active"<?php endif;?>><?php echo $cat->category_name;?></a>

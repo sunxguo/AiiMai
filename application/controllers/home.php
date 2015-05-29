@@ -73,9 +73,14 @@ class Home extends CI_Controller {
 		$this->load->view('home/footer',$footerData);
 	}
 	public function index(){
+		$categories=$this->commongetdata->getCategories(false);
+		foreach($categories as $cat){
+			$cat->featuredProducts=$this->commongetdata->getProducts(false,8,false,false,false,false,false,false,false,array("field"=>'product_modify_time',"type"=>'DESC'));
+		}
 		$data=array(
 		//	"columns"=>$this->commongetdata->getColumns()
-			"topSalesProducts"=>$this->commongetdata->getProducts(false,false,false,false,false,false,false,false,false,array("field"=>'product_modify_time',"type"=>'DESC'))
+			"topSalesProducts"=>$this->commongetdata->getProducts(false,false,false,false,false,false,false,false,false,array("field"=>'product_modify_time',"type"=>'DESC')),
+			'categories'=>$categories
 		);
 		$this->homeBaseHandler('Home','index',$data,array("showFooter"=>false));
 	}
@@ -144,7 +149,11 @@ class Home extends CI_Controller {
 		$this->homeBaseHandler('Login','login',$data);
 	}
 	public function category(){
-		$data=array();
+		$catId=isset($_GET['cat'])?$_GET['cat']:1;
+		$data=array(
+			"catId"=>$catId,
+			"categories"=>$this->commongetdata->getCategories(true),
+		);
 		$this->homeBaseHandler('Category','category',$data);
 	}
 	public function item(){

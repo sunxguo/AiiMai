@@ -3,6 +3,10 @@
 		<div class="list">
 			<h2><span>Women's Fashion</span></h2>
 			<ul class="sublist">
+				<?php foreach($categories[$catId]->subCats as $subCat):?>
+				<li><a href=""><?php echo $subCat->category_name;?></a></li>
+				<?php endforeach;?>
+				<!--
 				<li>
 					<a href="">Women’s Clothing</a>
 					<ul class="sub-sub-cate-list dont_display">
@@ -27,6 +31,7 @@
 				<li><a href="">Shoes</a></li>
 				<li><a href="">Watch & Jewelry</a></li>
 				<li><a href="">Fashion Accessories</a></li>
+				-->
 			</ul>
 		</div>
 		<div class="hot-trend">

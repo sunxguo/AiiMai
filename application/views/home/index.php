@@ -1,108 +1,68 @@
 <div class="main-floor clearfix">
+	<?php foreach($categories as $cat):?>
 	<div class="cat-detail">
 		<dl class="sub-categories fl">
-			<dt><a href="/home/category">New Arrivals</a></dt>
-			<dt><a href="/home/category">Shop The Look</a></dt>
-			<dt><a href="/home/category">Home & Living Hot Picks</a></dt>
-			<dt><a href="/home/category">Kitchen & Dining</a></dt>
-			<dd><a href="/home/category">Cookware</a></dd>
-			<dd><a href="/home/category">Cooking Knives</a></dd>
-			<dt><a href="/home/category">Bedding</a></dt>
-			<dt><a href="/home/category">Outdoor & Garden</a></dt>
-			<dt><a href="/home/category">Furniture</a></dt>
+			<?php foreach($cat->subCats as $subCats):?>
+			<dt><a href="/home/category?cat=<?php echo $cat->category_id;?>"><?php echo $subCats->category_name;?></a></dt>
+				<?php foreach($subCats->subSubCats as $subSubCats):?>
+				<dd><a href="/home/category?cat=<?php echo $cat->category_id;?>"><?php echo $subSubCats->category_name;?></a></dd>
+				<?php endforeach;?>
+			<?php endforeach;?>
 		</dl>
+		<?php $featuredProducts=$cat->featuredProducts;?>
 		<div class="featured-products fl">
 			<div class="fp-left fl">
 				<div class="fp-left-top widget borderR borderB">
-					<a href="/home/item?itemId=1">
-						<img src="/assets/images/home/fp1.jpg">
+					<?php if(isset($featuredProducts[0])):?>
+					<a href="/home/item?itemId=<?php echo $featuredProducts[0]->product_id;?>">
+						<img src="<?php echo $featuredProducts[0]->product_image;?>">
 					</a>
+					<?php endif;?>
 				</div>
 				<div class="fp-left-bottom">
 					<div class="fp-left-bottom-item widget borderR borderB fl">
-						<a href="/home/item?itemId=1">
-							<img src="/assets/images/home/fp2.jpg">
+						<?php if(isset($featuredProducts[1])):?>
+						<a href="/home/item?itemId=<?php echo $featuredProducts[1]->product_id;?>">
+							<img src="<?php echo $featuredProducts[1]->product_image;?>">
 						</a>
+						<?php endif;?>
 					</div>
 					<div class="fp-left-bottom-item widget borderR borderB fl">
-						<a href="/home/item?itemId=1">
-							<img src="/assets/images/home/fp3.jpg">
+						<?php if(isset($featuredProducts[2])):?>
+						<a href="/home/item?itemId=<?php echo $featuredProducts[2]->product_id;?>">
+							<img src="<?php echo $featuredProducts[2]->product_image;?>">
 						</a>
+						<?php endif;?>
 					</div>
 				</div>
 			</div>
 			<div class="fp-right fl">
 				<div class="fp-right-item widget borderR">
-					<a href="/home/item?itemId=1">
-						<img src="/assets/images/home/fp4.jpg">
+					<?php if(isset($featuredProducts[3])):?>
+					<a href="/home/item?itemId=<?php echo $featuredProducts[3]->product_id;?>">
+						<img src="<?php echo $featuredProducts[3]->product_image;?>">
 					</a>
+					<?php endif;?>
 				</div>
 				<div class="fp-right-item widget borderR borderT">
-					<a href="/home/item?itemId=1">
-						<img src="/assets/images/home/fp5.jpg">
+					<?php if(isset($featuredProducts[4])):?>
+					<a href="/home/item?itemId=<?php echo $featuredProducts[4]->product_id;?>">
+						<img src="<?php echo $featuredProducts[4]->product_image;?>">
 					</a>
+					<?php endif;?>
 				</div>
 				<div class="fp-right-item widget borderR borderB borderT">
-					<a href="/home/item?itemId=1">
-						<img src="/assets/images/home/fp6.jpg">
+					<?php if(isset($featuredProducts[5])):?>
+					<a href="/home/item?itemId=<?php echo $featuredProducts[5]->product_id;?>">
+						<img src="<?php echo $featuredProducts[5]->product_image;?>">
 					</a>
+					<?php endif;?>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="cat-detail">
-		<dl class="sub-categories fl">
-			<dt><a href="/home/category">Consumer Electronics</a></dt>
-			<dt><a href="/home/category">Audio Devices</a></dt>
-			<dt><a href="/home/category">Gaming</a></dt>
-			<dt><a href="/home/category">Smart Watches</a></dt>
-			<dd><a href="/home/category">Gadgets & Gizmos</a></dd>
-			<dd><a href="/home/category">Cooking Knives</a></dd>
-			<dt><a href="/home/category">Home</a></dt>
-			<dd><a href="/home/category">Televisions</a></dd>
-			<dd><a href="/home/category">Video Players</a></dd>
-			<dd><a href="/home/category">Video Streaming</a></dd>
-			<dt><a href="/home/category">Shop by Brand</a></dt>
-		</dl>
-		<div class="featured-products fl">
-			<div class="fp-left fl">
-				<div class="fp-left-top widget borderR borderB">
-					<a href="/home/item?itemId=1">
-						<img src="/assets/images/home/a1.jpg">
-					</a>
-				</div>
-				<div class="fp-left-bottom">
-					<div class="fp-left-bottom-item widget borderR borderB fl">
-						<a href="/home/item?itemId=1">
-							<img src="/assets/images/home/a2.jpg">
-						</a>
-					</div>
-					<div class="fp-left-bottom-item widget borderR borderB fl">
-						<a href="/home/item?itemId=1">
-							<img src="/assets/images/home/a3.jpg">
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="fp-right fl">
-				<div class="fp-right-item widget borderR">
-					<a href="/home/item?itemId=1">
-						<img src="/assets/images/home/a4.jpg">
-					</a>
-				</div>
-				<div class="fp-right-item widget borderR borderT">
-					<a href="/home/item?itemId=1">
-						<img src="/assets/images/home/a5.jpg">
-					</a>
-				</div>
-				<div class="fp-right-item widget borderR borderB borderT">
-					<a href="/home/item?itemId=1">
-						<img src="/assets/images/home/a6.jpg">
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
+	<?php endforeach;?>
+	
 	<div class="groupbuy fr">
 		<div class="group-title">
 			<img src="/assets/images/home/groupbuy.png">
@@ -110,6 +70,7 @@
 			<a href="" class="fr" target="_blank">more</a>
 		</div>
 		<ul>
+			<!--
 			<li class="clearfix">
 				<div class="thumbnail fl">
 					<img src="/assets/images/home/461225039.jpg">
@@ -150,6 +111,7 @@
 					<div class="group-buy-num"><div class="current-num fl" style="width:<?php $percent=(4/10)*100;echo $percent>100?100:$percent;?>%;"></div><span class="num fr">4/10</span></div>
 				</div>
 			</li>
+			-->
 		</ul>
 	</div>
 </div>
