@@ -183,62 +183,15 @@
 		<?php endforeach;?>
 	</ul>
 	<ul id="topsale1" class="dont_display">
+		<?php foreach($topSalesProducts as $product):?>
 		<li>
-			<a href="/home/item?itemId=1">
-				<img class="p-thumbnail" src="/assets/images/home/fp5.jpg">
-				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
-				<span class="p-price">US$19.00</span>
+			<a href="/home/item?itemId=<?php echo $product->product_id;?>">
+				<img class="p-thumbnail" src="<?php echo $product->product_image;?>">
+				<p class="p-title"><?php echo $product->product_item_title_english;?></p>
+				<span class="p-price">S$ <?php echo $product->product_sell_price;?></span>
 			</a>
 		</li>
-		<li>
-			<a href="/home/item?itemId=1">
-				<img class="p-thumbnail" src="/assets/images/home/fp4.jpg">
-				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
-				<span class="p-price">US$19.00</span>
-			</a>
-		</li>
-		<li>
-			<a href="/home/item?itemId=1">
-				<img class="p-thumbnail" src="/assets/images/home/fp3.jpg">
-				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
-				<span class="p-price">US$19.00</span>
-			</a>
-		</li>
-		<li>
-			<a href="/home/item?itemId=1">
-				<img class="p-thumbnail" src="/assets/images/home/fp2.jpg">
-				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
-				<span class="p-price">US$19.00</span>
-			</a>
-		</li>
-		<li>
-			<a href="/home/item?itemId=1">
-				<img class="p-thumbnail" src="/assets/images/home/fp5.jpg">
-				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
-				<span class="p-price">US$19.00</span>
-			</a>
-		</li>
-		<li>
-			<a href="/home/item?itemId=1">
-				<img class="p-thumbnail" src="/assets/images/home/fp3.jpg">
-				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
-				<span class="p-price">US$19.00</span>
-			</a>
-		</li>
-		<li>
-			<a href="/home/item?itemId=1">
-				<img class="p-thumbnail" src="/assets/images/home/fp4.jpg">
-				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
-				<span class="p-price">US$19.00</span>
-			</a>
-		</li>
-		<li>
-			<a href="/home/item?itemId=1">
-				<img class="p-thumbnail" src="/assets/images/home/fp2.jpg">
-				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
-				<span class="p-price">US$19.00</span>
-			</a>
-		</li>
+		<?php endforeach;?>
 	</ul>
 </div>
 <div class="main-floor">
@@ -258,19 +211,19 @@
 	<ul class="floor-body p-style2 clearfix" id="bestDiscounts">
 	</ul>
 	<ul  id="bestDiscounts0" class="dont_display">
-		<?php for($i=1;$i<11;$i++):?>
+		<?php foreach($topSalesProducts as $key=>$product):?>
 		<li>
 			<div class="p-header">
-				<div class="p-num fl"><?php echo $i;?></div>
-				<div class="p-shipping fr"><span class="shipping-icon"></span>S$3.90</div>
+				<div class="p-num fl"><?php echo ($key+1);?></div>
+				<div class="p-shipping fr"><span class="shipping-icon"></span>S$ <?php echo $product->product_shipping_fee;?></div>
 			</div>
-			<a href="/home/item?itemId=1">
-				<img class="p-thumbnail" src="/assets/images/home/fp<?php echo $i;?>.jpg">
-				<p class="p-title">[Free Shipping] Made in Japan MTG ReFa CARAT PEC-L1706</p>
-				<span class="p-price">US$19.00</span>
+			<a href="/home/item?itemId=<?php echo $product->product_id;?>">
+				<img class="p-thumbnail" src="<?php echo $product->product_image;?>">
+				<p class="p-title"><?php echo $product->product_item_title_english;?></p>
+				<span class="p-price">S$ <?php echo $product->product_sell_price;?></span>
 			</a>
 		</li>
-		<?php endfor;?>
+		<?php endforeach;?>
 	</ul>
 	<ul  id="bestDiscounts1" class="dont_display">
 		<?php for($i=10;$i>0;$i--):?>
