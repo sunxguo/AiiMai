@@ -256,7 +256,7 @@ function register(){
 		function(data){
 			var result=$.parseJSON(data);
 			if(result.result=="success"){
-				showAlert('danger','Register success! ','Please Login');
+				showAlert('success','Register success! ','Please Login');
 				location.href="/home/confirmEmail";
 			}else if(result.result=="notunique"){
 				showAlert('danger','Not unique',result.message);
@@ -286,7 +286,7 @@ function sellerRegister(){
 		function(data){
 			var result=$.parseJSON(data);
 			if(result.result=="success"){
-				showAlert('danger','Register success! ','Please fill in the details');
+				showAlert('success','Register success! ','Please fill in the details');
 				//Please fill in the details
 				location.href="/cms/registerInformation";
 			}else if(result.result=="notunique"){
@@ -374,7 +374,7 @@ function sellerInformation(){
 		function(data){
 			var result=$.parseJSON(data);
 			if(result.result=="success"){
-				showAlert('danger','Success!','Please wait for confirmation!');
+				showAlert('success','Success!','Please wait for confirmation!');
 				//Please fill in the details
 				location.href="/cms/waitConfirm";
 			}else if(result.result=="notunique"){
@@ -488,4 +488,42 @@ function checkID(){
 	  }
 	});
 	return checkResult; 
+}
+function findPasswordConfirm(){
+	if (!$("#email").val().match(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/)) { 
+		showAlert('danger','E-mail format ','is incorrect!');
+		$("#email").focus();
+		return false; 
+	}
+	if(!checkCode()) return false;
+	$.ajax({
+	  type : "post",
+	  url : "/common/checkEmail",
+	  data : 'email='+$("#email").val(),
+	  async : false,
+	  success : function(data){
+		var result=$.parseJSON(data);
+		if(result.result=="notunique"){
+			location.href="/home/confirmOwner?email="+$("#email").val();
+		}else{
+			showAlert('danger','Email',' does not exist!');
+		}
+	  }
+	});
+}
+function sendConfirmEmail(){
+	$.ajax({
+	  type : "post",
+	  url : "/common/sendConfirmEmail",
+	  data : 'userEmail='+$("#email").text(),
+	  async : false,
+	  success : function(data){
+		var result=$.parseJSON(data);
+		if(result.result=="success"){
+			showAlert('success','Email ','sent successfully!');
+		}else{
+			showAlert('danger','Failed!','Please send e-mail again!');
+		}
+	  }
+	});
 }

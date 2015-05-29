@@ -205,6 +205,24 @@ class Home extends CI_Controller {
 		);
 		$this->homeBaseHandler('Cancel Refund','cancelRefund',$data);
 	}
+	public function forgotPassword(){
+		$data=array(
+			'cart'=>$this->commongetdata->getCartListByMerchants()
+		);
+		$this->homeBaseHandler('Forgot Your Password','forgotPassword',$data);
+	}
+	public function confirmOwner(){
+		$data=array(
+			
+		);
+		$this->homeBaseHandler('Confirm Owner','confirmOwner',$data);
+	}
+	public function createNewPassword(){
+		$data=array(
+			
+		);
+		$this->homeBaseHandler('Create New Password','createNewPassword',$data);
+	}
 	/*
 	public function contentList(){
 		$type=isset($_GET['type'])?$_GET['type']:"essay";//默认为文章

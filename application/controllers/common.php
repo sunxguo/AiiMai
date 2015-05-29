@@ -505,6 +505,11 @@ class Common extends CI_Controller {
 			echo json_encode(array("result"=>"failed","message"=>"验证码输入错误！"));
 		}*/
 	}
+	public function sendConfirmEmail(){
+		$this->commongetdata->email($_POST['userEmail'],'How to reset your AiiMai password!','To get back to your AiiMai account, you will need to create a new password.Click the link below to open a secure browser and set a new password.<a href="aiimai.coolkeji.com/home/createNewPassword?email='.$_POST['userEmail'].'">Confirm</a>');
+		$_SESSION['userEmail']=$_POST['userEmail'];
+		echo json_encode(array("result"=>"success","message"=>"验证码输入正确！"));
+	}
 	public function sendMerchantEmail(){
 		$this->commongetdata->email($_SESSION['merchantEmail'],'Successfully Registered. | Confirm E-mail!','<a href="aiimai.coolkeji.com/common/confirmMerchantEmail?email='.$_SESSION['merchantEmail'].'">Confirm</a>');
 		echo json_encode(array("result"=>"success","message"=>"success"));
