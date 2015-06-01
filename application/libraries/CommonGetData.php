@@ -438,6 +438,17 @@ class CommonGetData{
 		$hotItems=$this->getData($condition);
 		return $hotItems;
 	}
+	public function getCategoryFeaturedItems($catId){
+		$condition=array(
+			'table'=>'product',
+			'result'=>'data',
+			'where'=>array(
+				'product_category_featured'=>$catId
+			)
+		);
+		$hotItems=$this->getData($condition);
+		return $hotItems;
+	}
 	public function getFollow($merchantId,$userId){
 		$condition=array(
 			'table'=>'follow',

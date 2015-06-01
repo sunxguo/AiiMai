@@ -17,25 +17,6 @@
 			<p class="summary-balance">0</p>
 		</li>
 	</ul>
-	<div class="clearfix">
-		<h2 class="pull-left list-caption list-income list-report" style="width: 250px;">
-			<i class="icon-stats"><img src="/assets/images/cms/icon/icon-income.png"></i>
-			<?php echo lang('cms_index_totalturnovertrend');?>
-		</h2>
-		<!--
-		<div class="pull-right wrap-more-detail">
-			<a class="more-detail dib" href="/data/summary"><?php echo lang('cms_index_moredetails');?></a>
-		</div>
-		-->
-		<div class="clearfix pull-right wrap-query">
-			<ul id="day" class="pull-right nav nav-tabs ymnav btn-group ym-btn-group align-middle">
-				<li id="day7" class="text-center day-btn" onclick="getTurnover(7);"><a href="javascript:void();"><?php echo lang('cms_index_within7days');?></a></li>
-				<li id="day30" class="text-center day-btn" onclick="getTurnover(30);"><a href="javascript:void();"><?php echo lang('cms_index_within30days');?></a></li>
-				<li id="day60" class="text-center day-btn" onclick="getTurnover(60);"><a href="javascript:void();"><?php echo lang('cms_index_within60days');?></a></li>
-			</ul>
-		</div>
-	</div>
-	<div id='canvasDiv'></div>
 	<table id="summary_table" class="app-list table ymtable table-striped">
         <caption class="clearfix">
             <h2 class="pull-left list-income" style="width: 250px;text-align: left;">
@@ -59,6 +40,25 @@
 				<td>0</td>
 			</tr>
 	</table>
+	<div class="clearfix">
+		<h2 class="pull-left list-caption list-income list-report" style="width: 250px;">
+			<i class="icon-stats"><img src="/assets/images/cms/icon/icon-income.png"></i>
+			<?php echo lang('cms_index_totalturnovertrend');?>
+		</h2>
+		<!--
+		<div class="pull-right wrap-more-detail">
+			<a class="more-detail dib" href="/data/summary"><?php echo lang('cms_index_moredetails');?></a>
+		</div>
+		-->
+		<div class="clearfix pull-right wrap-query">
+			<ul id="day" class="pull-right nav nav-tabs ymnav btn-group ym-btn-group align-middle">
+				<li id="day7" class="text-center day-btn" onclick="getTurnover(7);"><a href="javascript:void();"><?php echo lang('cms_index_within7days');?></a></li>
+				<li id="day30" class="text-center day-btn" onclick="getTurnover(30);"><a href="javascript:void();"><?php echo lang('cms_index_within30days');?></a></li>
+				<li id="day60" class="text-center day-btn" onclick="getTurnover(60);"><a href="javascript:void();"><?php echo lang('cms_index_within60days');?></a></li>
+			</ul>
+		</div>
+	</div>
+	<div id='canvasDiv'></div>
 	<table id="summary_table" class="app-list table ymtable table-striped">
         <caption class="clearfix">
             <h2 class="pull-left list-income" style="width: 250px;text-align: left;">
@@ -179,7 +179,7 @@ function drawChart(flow,labels){
 				height:20
 			},
 			footnote : 'Source: Website database',
-			width : 143*(labels.length),
+			width : 1000,
 			height : 600,
 			sub_option:{
 				smooth : true,//平滑曲线
@@ -197,8 +197,8 @@ function drawChart(flow,labels){
 				line_color:'#ffb600'
 			},
 			coordinate:{
-				width:114*(labels.length),
-				valid_width:100*(labels.length),
+				width:800,
+				valid_width:700,
 				height:460,
 				axis:{
 					color:'#9f9f9f',
