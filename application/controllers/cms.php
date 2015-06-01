@@ -86,7 +86,8 @@ class Cms extends CI_Controller {
 		$this->load->view('home/header',
 			array(
 				'title' => "Seller Register-AiiMai",
-				'websiteName'=>"AiiMai"
+				'websiteName'=>"AiiMai",
+				'categories'=>$this->commongetdata->getCategories(false)
 			)
 		);
 		$this->load->view('home/sellerregister',$data);
@@ -97,7 +98,8 @@ class Cms extends CI_Controller {
 		$this->load->view('home/header',
 			array(
 				'title' => "Seller Information-AiiMai",
-				'websiteName'=>"AiiMai"
+				'websiteName'=>"AiiMai",
+				'categories'=>$this->commongetdata->getCategories(false)
 			)
 		);
 		$this->load->view('home/sellerInformation',$data);
@@ -108,7 +110,8 @@ class Cms extends CI_Controller {
 		$this->load->view('home/header',
 			array(
 				'title' => "wait Confirmation-AiiMai",
-				'websiteName'=>"AiiMai"
+				'websiteName'=>"AiiMai",
+				'categories'=>$this->commongetdata->getCategories(false)
 			)
 		);
 		$this->load->view('home/waitConfirm',$data);
@@ -145,7 +148,10 @@ class Cms extends CI_Controller {
 		$this->cmsBaseHandler('Shop',array('baseInfo'=>true,'shop'=>true,'shopBaseInfo'=>true),'shopBaseInfo',array());
 	}
 	public function shopHomePage(){
-		$this->cmsBaseHandler('Shop',array('baseInfo'=>true,'shop'=>true,'shopHomePage'=>true),'shopHomePage',array());
+		$data=array(
+			'merchant'=>$this->commongetdata->getContent('merchant',$_SESSION['userid'])
+		);
+		$this->cmsBaseHandler('Shop',array('baseInfo'=>true,'shop'=>true,'shopHomePage'=>true),'shopHomePage',$data);
 	}
 	public function shopDiscount(){
 		$this->cmsBaseHandler('Shop',array('baseInfo'=>true,'shop'=>true,'shopDiscount'=>true),'shopDiscount',array());
@@ -154,7 +160,10 @@ class Cms extends CI_Controller {
 		$this->cmsBaseHandler('Shop',array('baseInfo'=>true,'shop'=>true,'shopCategory'=>true),'shopCategory',array());
 	}
 	public function shopInfo(){
-		$this->cmsBaseHandler('Shop',array('baseInfo'=>true,'shop'=>true,'shopInfo'=>true),'shopInfo',array());
+		$data=array(
+			'merchant'=>$this->commongetdata->getContent('merchant',$_SESSION['userid'])
+		);
+		$this->cmsBaseHandler('Shop',array('baseInfo'=>true,'shop'=>true,'shopInfo'=>true),'shopInfo',$data);
 	}
 	public function goodsStatistics(){
 		$this->cmsBaseHandler('Item List/Edit',array('goodsManagement'=>true,'goods'=>true,'goodsStatistics'=>true),'goodsStatistics',array());

@@ -1954,6 +1954,11 @@ background-color: #fbfbfb;
 border: 1px solid #d8d8d8;
 border-radius: 2px;
 }
+.mshop_bar .menu li.on a{
+  background-color: #26a3f4;
+  border-color: #26a3f4;
+  color:white;
+}
 .mshop_bar .vwd_items {
 position: absolute;
 top: 5px;
@@ -3274,6 +3279,11 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endCo
 .shop .items .product{
 	width:306px;
 	height:400px;
+	float:left;
+	margin-right: 30px;
+}
+.shop .itemsList .product:nth-child(3n){
+	margin-right:0px;
 }
 .shop .items .product a:hover{
 }
@@ -3385,7 +3395,7 @@ float: left;
 position: relative;
 z-index: 0;
 display: block;
-padding: 0 45px 0 20px;
+  padding: 0 95px 0 60px;
 height: 38px;
 line-height: 38px;
 font-weight: bold;

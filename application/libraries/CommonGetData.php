@@ -404,25 +404,132 @@ class CommonGetData{
 		$products=$this->CI->dbHandler->selectData($condition);
 		return $products;
 	}
-	
+	/**
+	 *  商户id（$_SESSION['userid']），1级类别，2级类别，3级类别，状态，发布时间，最后修改时间，销售方式，商品标题
+	 **/
+	public function getProductsAdvance($parameters){
+		//,$merchantId,$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order
+		$condition=array('table'=>'product');
+		if(isset($parameters['result'])) $condition['result']=$parameters['result'];
+		if(isset($parameters['merchantId'])) $condition['where']['product_merchant']=$parameters['merchant'];
+		if(isset($parameters['category'])) $condition['where']['product_category']=$parameters['category'];
+		if(isset($parameters['subCategory'])) $condition['where']['product_sub_category']=$parameters['subCategory'];
+		if(isset($parameters['subSubCategory'])) $condition['where']['product_sub_sub_category']=$parameters['subSubCategory'];
+		if(isset($parameters['status'])) $condition['where']['product_status']=$parameters['status'];
+		if(isset($parameters['sellFormat'])) $condition['where']['product_sell_format']=$parameters['sellFormat'];
+		if(isset($parameters['listedTimeBegin']))$condition['where']['product_time >=']=$parameters['listedTimeBegin'].' 00:00:00';
+		if(isset($parameters['listedTimeEnd']))$condition['where']['product_time <=']=$parameters['listedTimeEnd'].' 23:59:59';
+		if(isset($parameters['modifyTimeBegin']))$condition['where']['product_modify_time >=']=$parameters['modifyTimeBegin'].' 00:00:00';
+		if(isset($parameters['modifyTimeEnd']))$condition['where']['product_modify_time <=']=$parameters['modifyTimeEnd'].' 23:59:59';
+		if(isset($parameters['like'])) $condition['like']=$parameters['like'];
+		if(isset($parameters['orderBy'])) $condition['order_by']=$parameters['orderBy'];
+		$products=$this->CI->dbHandler->selectData($condition);
+		return $products;
+	}
+	public function getHotItems($merchantId){
+		$condition=array(
+			'table'=>'product',
+			'result'=>'data',
+			'where'=>array(
+				'product_merchant'=>$merchantId,
+				'product_shop_hot'=>1
+			)
+		);
+		$hotItems=$this->getData($condition);
+		return $hotItems;
+	}
+	public function getFollow($merchantId,$userId){
+		$condition=array(
+			'table'=>'follow',
+			'result'=>'data',
+			'where'=>array(
+				'follow_merchant_id'=>$merchantId,
+				'follow_user_id'=>$userId
+			)
+		);
+		$hotItems=$this->getData($condition);
+		return sizeof($hotItems)>0?true:false;
+	}
+	public function getFollowNo($merchantId){
+		$condition=array(
+			'table'=>'follow',
+			'result'=>'data',
+			'where'=>array(
+				'follow_merchant_id'=>$merchantId
+			)
+		);
+		$hotItems=$this->getData($condition);
+		return sizeof($hotItems);
+	}
+	public function getStock($itemId,$op1,$op2,$op3){
+		if($op1 && $op1!=''){
+			$condition=array(
+				'table'=>'product_option',
+				'where'=>array(
+					'product_option_product_id'=>$itemId,
+					'product_option_1'=>$op1
+				)
+			);
+			if($op2 && $op2!='') $condition['where']['product_option_2']=$op2;
+			if($op3 && $op3!='') $condition['where']['product_option_3']=$op3;
+			$condition['result']='data';
+			$option=$this->getOneData($condition);
+			return $option->product_option_stock;
+		}
+		$condition=array(
+			'table'=>'product',
+			'result'=>'data',
+			'where'=>array(
+				'product_id'=>$itemId
+			)
+		);
+		$product=$this->getOneData($condition);
+		return $product->product_quantity;
+		
+	}
+	public function getComments($itemId){
+		$condition=array(
+			'table'=>'comment',
+			'where'=>array('comment_product_id'=>$itemId)
+		);
+		$condition['result']='count';
+		$count=$this->getData($condition);
+		$condition['result']='data';
+		$condition['order_by']=array('comment_time'=>'DESC');
+		$comments=$this->getData($condition);
+		return array('count'=>$count,'data'=>$comments);
+	}
+	public function getOptionData($itemId,$result){
+		$condition=array(
+			'table'=>'product_option',
+			'where'=>array('product_option_product_id'=>$itemId),
+			'result'=>$result
+		);
+		$optionData=$this->CI->dbHandler->selectData($condition);
+		return $optionData;
+	}
 	function _ensureCartInSession() {
 		if(!isset($_SESSION['cart'])) {
 			$_SESSION['cart'] = array();
 		}
 	}
-	public function addToCart($product_id,$merchant_id,$amount){
+	public function addToCart($product,$merchant_id,$amount){
 		$this->_ensureCartInSession();
 		$cart = $_SESSION['cart'];
+		$product_id=$product['productId'];
 		if(!array_key_exists($product_id, $cart)){
 			$cart[$product_id] = array(
 				"merchant" => $merchant_id,
 				"amount" => 0
 			);
 		}
-		$cart[$product_id]["amount"] = intval($cart[$product_id]["amount"]) + $amount;
-
-		$_SESSION['cart'] =($cart);
-		return true;
+		$futureAmount=intval($cart[$product_id]["amount"]) + $amount;
+		$stock=$this->getStock($product_id,$product['op1'],$product['op2'],$product['op3']);
+		if($stock>=$futureAmount){
+			$cart[$product_id]["amount"] = $futureAmount;
+			$_SESSION['cart'] =($cart);
+			return true;
+		}else return false;
 	}
 	
 	/**

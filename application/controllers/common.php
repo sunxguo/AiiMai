@@ -81,6 +81,9 @@ class Common extends CI_Controller {
 					"product_time"=>date("Y-m-d H:i:s"),
 					"product_modify_time"=>date("Y-m-d H:i:s")
 				);
+				foreach($data->optionTypes as $key=>$optionType){
+					$info['product_option'.($key+1)]=$optionType;
+				}
 			break;
 			case "register":
 				$table="user";
@@ -105,6 +108,11 @@ class Common extends CI_Controller {
 					echo json_encode(array("result"=>"notunique","message"=>"This username already exists!"));
 					return false;
 				}
+				if(!$this->commongetdata->checkUniqueAdvance("user","user_username",$data->username)){
+					echo json_encode(array("result"=>"notunique","message"=>"This username already exists!"));
+					return false;
+				}
+				$time=date("Y-m-d H:i:s");
 				$info=array(
 					"merchant_username"=>$data->username,
 					"merchant_pwd"=>MD5("MonkeyKing".$data->password),
@@ -114,13 +122,52 @@ class Common extends CI_Controller {
 					"merchant_country"=>$data->country,
 					"merchant_confirm_email"=>0,
 					"merchant_status"=>0,
-					"merchant_reg_time"=>date("Y-m-d H:i:s")
+					"merchant_reg_time"=>$time
 				);
 				$_SESSION['merchantEmail']=$data->email;
+				$userInfo=array(
+					"user_username"=>$data->username,
+					"user_pwd"=>MD5("MonkeyKing".$data->password),
+					"user_grade"=>1,
+					"user_gender"=>$data->gender,
+					"user_email"=>$data->email,
+					"user_country"=>$data->country,
+					"user_reg_time"=>$time
+				);
+				$userResult=$this->dbHandler->insertData('user',$userInfo);
+				$_SESSION['userEmail']=$data->email;
+			break;
+			case 'follow':
+				if(!isset($_SESSION['userid'])){
+					echo json_encode(array("result"=>"failed","message"=>"Not Login!"));
+					return false;
+				}
+				$table="follow";
+				$info=array(
+					"follow_merchant_id"=>$data->merchantId,
+					"follow_user_id"=>$_SESSION['userid'],
+					"follow_time"=>date("Y-m-d H:i:s")
+				);
 			break;
 		}
+		if($_POST['info_type']=="product"){
+			$productId=$this->dbHandler->insertDataReturnId($table,$info);
+			foreach($data->optionsData as $optionData){
+				$this->dbHandler->insertData('product_option',array(
+					"product_option_product_id"=>$productId,
+					"product_option_1"=>$optionData->op1,
+					"product_option_2"=>isset($optionData->op2)?$optionData->op2:'',
+					"product_option_3"=>isset($optionData->op3)?$optionData->op3:'',
+					"product_option_price"=>$optionData->price,
+					"product_option_stock"=>$optionData->stock
+				));
+			}
+			if($productId!='') echo json_encode(array("result"=>"success","message"=>"信息写入成功"));
+			else echo json_encode(array("result"=>"failed","message"=>"信息写入失败"));
+			return true;
+		}
 		$result=$this->dbHandler->insertData($table,$info);
-		if($result==1) echo json_encode(array("result"=>"success","message"=>"信息写入成功"));
+		if($result==1)echo json_encode(array("result"=>"success","message"=>"信息写入成功"));
 		else echo json_encode(array("result"=>"failed","message"=>"信息写入失败"));
 	}
 	public function delInfo(){
@@ -230,6 +277,7 @@ class Common extends CI_Controller {
 					"merchant_address1"=>$data->address1,
 					"merchant_address2"=>$data->address2,
 					"merchant_salesStaff"=>$data->salesStaff,
+					"merchant_doc"=>$data->doc,
 					"merchant_status"=>1
 				);
 			break;
@@ -337,6 +385,20 @@ class Common extends CI_Controller {
 				$condition['where']=array("merchant_id"=>$data->id);
 				$condition['data']=array(
 					"merchant_email"=>$data->merchant_email
+				);
+			break;
+			case 'shopImg':
+				$condition['table']="merchant";
+				$condition['where']=array("merchant_id"=>$_SESSION['userid']);
+				$condition['data']=array(
+					"merchant_shop_".$data->position."img"=>$data->image
+				);
+			break;
+			case 'shopInfo':
+				$condition['table']="merchant";
+				$condition['where']=array("merchant_id"=>$_SESSION['userid']);
+				$condition['data']=array(
+					"merchant_shop_info"=>$data->info
 				);
 			break;
 		}
@@ -450,8 +512,16 @@ class Common extends CI_Controller {
 		echo json_encode(array("result"=>"success","message"=>$url));
 	}
 	public function addToCart(){
-		$this->commongetdata->addToCart($_POST['product_id'],$_POST['merchant_id'],$_POST['amount']);
-		echo json_encode(array("result"=>"success","message"=>''));
+		$result=$this->commongetdata->addToCart(array(
+			"productId"=>$_POST['product_id'],
+			"op1"=>isset($_POST['op1'])?$_POST['op1']:'',
+			"op2"=>isset($_POST['op2'])?$_POST['op2']:'',
+			"op3"=>isset($_POST['op3'])?$_POST['op3']:''
+		),$_POST['merchant_id'],$_POST['amount']);
+		if($result)
+			echo json_encode(array("result"=>"success","message"=>''));
+		else
+			echo json_encode(array("result"=>"failed","message"=>'Stocks do not have so many goods!'));
 	}
 	public function removeFromCart(){
 		$produts=json_decode($_POST['productIdArray']);
@@ -505,14 +575,15 @@ class Common extends CI_Controller {
 		}
 	}
 	public function confirmEmail(){
-		!$this->commongetdata->checkUniqueAdvance("user","user_email",$_GET['email']);
+//		!$this->commongetdata->checkUniqueAdvance("user","user_email",$_GET['email']);
 		$condition['table']="user";
 		$condition['where']=array("user_email"=>$_GET['email']);
 		$condition['data']=array(
 			"user_confirm_email"=>1
 		);
 		$result=$this->dbHandler->updateData($condition);
-		if($result==1) {
+		if($result==1){
+			$this->commongetdata->email($_GET['email'],$this->commongetdata->getWebsiteConfig("website_user_register_success_email_subject"),$this->commongetdata->getWebsiteConfig("website_user_register_success_email_message"));
 			$this->load->view('redirect',array("url"=>"/home/login","info"=>"Success!"));
 		}
 		else{
@@ -520,7 +591,7 @@ class Common extends CI_Controller {
 		}
 	}
 	public function confirmMerchantEmail(){
-		!$this->commongetdata->checkUniqueAdvance("merchant","merchant_email",$_GET['email']);
+//		!$this->commongetdata->checkUniqueAdvance("merchant","merchant_email",$_GET['email']);
 		$condition['table']="merchant";
 		$condition['where']=array("merchant_email"=>$_GET['email']);
 		$condition['data']=array(

@@ -340,8 +340,18 @@ function checkSalesStaffName(){
 		return true;
 	}
 }
+function checkFile(){
+	var length = $('#fileSrc').val().length;
+	if(length<1){
+		showAlert('danger','You must upload a document with datails!','');
+		return false;
+	}else{
+		
+		return true;
+	}
+}
 function checkAllInfo(){
-	if(checkName() && checkContactInfo() && checkAddress() && checkSalesStaffName()){
+	if(checkName() && checkContactInfo() && checkAddress() && checkSalesStaffName() && checkFile()){
 		validation();
 		return true;
 	}else{
@@ -365,6 +375,7 @@ function sellerInformation(){
 		merchantInfo.address1 = $('#address1').val();
 		merchantInfo.address2 = $('#address2').val();
 		merchantInfo.salesStaff = $('#salesStaff').val();
+		merchantInfo.doc = $('#fileSrc').val();
 		
 		$.post("/common/modifyInfo",
 		{
@@ -413,13 +424,19 @@ function minusOrderCnt(){
 	if(parseInt($("#order_cnt").val(),10)>1)
 	$("#order_cnt").val(parseInt($("#order_cnt").val(),10)-1);
 }
-function addToCart(product_id,merchant_id,amount){
+function addToCart(product_id,merchant_id){
+	var op1=$("#op1").length>0?$("#op1").val():'';
+	var op2=$("#op2").length>0?$("#op2").val():'';
+	var op3=$("#op3").length>0?$("#op3").val():'';
 	$.post(
 	"/common/addToCart",
 	{
 		'product_id':product_id,
 		'merchant_id':merchant_id,
-		'amount':amount
+		'amount':$("#order_cnt").val(),
+		'op1':op1,
+		'op2':op2,
+		'op3':op3
 	},
 	function(data){
 		var result=$.parseJSON(data);
@@ -554,7 +571,43 @@ function saveNewPassword(){
 			alert('Success!');
 			location.href="/home/login";
 		}else{
+			alert('Failed. You cannot re-use an old password');
+		}
+	});
+}
+function follow(merchantId){
+	var follow = new Object();
+	follow.merchantId = merchantId;
+	$("#a_follow").hide();
+	$("#a_following").show();
+	$.post(
+	"/common/addInfo",
+	{
+		'info_type':'follow',
+		'data':JSON.stringify(follow)
+	},
+	function(data){
+		var result=$.parseJSON(data);
+		if(result.result=="success"){
+			alert('Success!');
+			location.reload();
+		}else{
+			$("#a_follow").show();
+			$("#a_following").hide();
 			alert(result.message);
 		}
 	});
+}
+function report(){
+	showAlert('danger','The two passwords',' you entered are different!');
+}
+function uploadFile(){
+	uploadImage(addFileBeforeUpload,addFileAfterUpload);
+}
+function addFileBeforeUpload(){
+	$("#loading").show();
+}
+function addFileAfterUpload(src){
+	$("#loading").hide();
+	$("#fileSrc").val(src);
 }

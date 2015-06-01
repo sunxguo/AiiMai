@@ -3,10 +3,10 @@
 	<div class="cat-detail">
 		<dl class="sub-categories fl">
 			<?php foreach($cat->subCats as $subCats):?>
-			<dt><a href="/home/category?cat=<?php echo $cat->category_id;?>"><?php echo $subCats->category_name;?></a></dt>
-				<?php foreach($subCats->subSubCats as $subSubCats):?>
+				<dt><a href="/home/category?cat=<?php echo $cat->category_id;?>"><?php echo $subCats->category_name;?></a></dt>
+				<?php /*foreach($subCats->subSubCats as $subSubCats):?>
 				<dd><a href="/home/category?cat=<?php echo $cat->category_id;?>"><?php echo $subSubCats->category_name;?></a></dd>
-				<?php endforeach;?>
+				<?php endforeach;*/?>
 			<?php endforeach;?>
 		</dl>
 		<?php $featuredProducts=$cat->featuredProducts;?>

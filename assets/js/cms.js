@@ -87,3 +87,44 @@ function essayHandler(draft,successMsg,newEssay){
 	}
 	dataHandler(handlerType,'essay',essay,null,null,null,successMsg,true);
 }
+function modifyShopImg(position,imageSrc){
+	var shopImg = new Object();
+	shopImg.position = position;
+	shopImg.image = imageSrc;
+	dataHandler('modify','shopImg',shopImg,null,null,null,'Success',true);
+}
+function uploadShopTopImage(){
+	uploadImageAdvance('#upload_top_image_form',addShopTopImageBeforeUpload,addShopTopImageAfterUpload);
+}
+function addShopTopImageBeforeUpload(){
+	$("#shopTopImage").attr("src","/assets/images/cms/loading.gif");
+}
+function addShopTopImageAfterUpload(imageSrc){
+	$("#shopTopImage").attr("src",imageSrc);
+	modifyShopImg('top',imageSrc);
+}
+function uploadShopMiddleImage(){
+	uploadImageAdvance('#upload_middle_image_form',addShopMiddleImageBeforeUpload,addShopMiddleImageAfterUpload);
+}
+function addShopMiddleImageBeforeUpload(){
+	$("#shopMiddleImage").attr("src","/assets/images/cms/loading.gif");
+}
+function addShopMiddleImageAfterUpload(imageSrc){
+	$("#shopMiddleImage").attr("src",imageSrc);
+	modifyShopImg('middle',imageSrc);
+}
+function uploadShopBottomImage(){
+	uploadImageAdvance('#upload_bottom_image_form',addShopBottomImageBeforeUpload,addShopBottomImageAfterUpload);
+}
+function addShopBottomImageBeforeUpload(){
+	$("#shopBottomImage").attr("src","/assets/images/cms/loading.gif");
+}
+function addShopBottomImageAfterUpload(imageSrc){
+	$("#shopBottomImage").attr("src",imageSrc);
+	modifyShopImg('bottom',imageSrc);
+}
+function saveShopInfo(){
+	var shopInfo = new Object();
+	shopInfo.info = shopInfoEditor.html();
+	dataHandler('modify','shopInfo',shopInfo,null,null,null,'Success',true);
+}

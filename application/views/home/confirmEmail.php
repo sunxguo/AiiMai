@@ -9,5 +9,5 @@
 	
 </div>
 <script>
-	sendEmail();
+	<?php if(!isset($_SESSION['username'])):?>sendEmail();<?php endif;?>
 </script>
