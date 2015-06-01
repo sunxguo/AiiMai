@@ -77,10 +77,15 @@ class Admin extends CI_Controller {
 	}
 	public function websiteLayout(){
 		$data=array(
-			"columns"=>$this->commongetdata->getColumns(),
-			""=>
+			"columns"=>$this->commongetdata->getColumns()
 		);
 		$this->adminBaseHandler('Website Layout',array('data','websiteLayout'),'websiteLayout',$data);
+	}
+	public function websiteCategory(){
+		$data=array(
+			"columns"=>$this->commongetdata->getColumns()
+		);
+		$this->adminBaseHandler('Categories',array('data','websiteLayout'),'websiteCategory',$data);
 	}
 	public function items(){
 		if(isset($_GET['page'])&& is_numeric($_GET['page'])) $page=$_GET['page'];
