@@ -10,6 +10,7 @@
 		<li <?php echo $currentCat==$cat->category_id?'class="active"':'';?>><a href=""><?php echo $cat->category_name;?></a></li>
 		<?php endforeach;?>
 	</ul>
+	
 	<div class="featured-products fl">
 			<div class="fp-left fl">
 				<div class="fp-left-top widget borderR borderB">

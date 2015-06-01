@@ -171,9 +171,10 @@ function goUrl(url){
 	location.href=url;
 }
 function loadProductsData(data){
-	var products='';
+	$(".productItem").remove();
+	var product='';
 	for(var index in data){ 
-        products+='<td class="value br"><a href="javascript:window.open(\'/cms/modifyGoods?itemId='+data[index].product_id+'\',\'Edit Item\',\'height=700,width=900,toolbar=no,menubar=no\');">Edit</a></td>'+
+        product='<tr class="productItem"><td class="value br"><a href="javascript:window.open(\'/cms/modifyGoods?itemId='+data[index].product_id+'\',\'Edit Item\',\'height=700,width=900,toolbar=no,menubar=no\');">Edit</a></td>'+
 		'<td class="value br">'+data[index].product_id+'</td>'+
 		'<td class="value br">'+''+'</td>'+
 		'<td class="value br">'+data[index].product_item_title_english+'</td>'+
@@ -190,9 +191,9 @@ function loadProductsData(data){
 		'<td class="value br">'+''+'</td>'+
 		'<td class="value br">'+''+'</td>'+
 		'<td class="value br">'+''+'</td>'+
-		'<td class="value br">'+data[index].product_time+'</td>';
+		'<td class="value br">'+data[index].product_time+'</td></tr>';
+		$("#productsData").append(product);
     }
-	$("#productsData").html(products);
 }
 function addOption(){
 	if($("#optionWrapper .optionItem").size()<3){

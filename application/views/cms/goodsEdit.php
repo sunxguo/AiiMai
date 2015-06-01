@@ -102,7 +102,7 @@
 		</div>
 		<div style="overflow:auto;">
 			<table class="km-table" style="overflow:scroll;width:150%;">
-				<tbody>
+				<tbody id="productsData">
 				  <tr style="border-top:2px solid #ddd;border-bottom:2px solid #ddd;">
 					<td class="field width6p br">Operation</td>
 					<td class="field width6p br"><?php echo lang('cms_goodsCopy_Itemcode');?></td>
@@ -122,26 +122,6 @@
 					<td class="field width6p br"><?php echo lang('cms_goodsCopy_SalesFormat');?></td>
 					<td class="field width6p br"><?php echo lang('cms_goodsCopy_InventoryCode');?></td>
 					<td class="field width6p"><?php echo lang('cms_goodsCopy_ListedDate');?></td>
-				  </tr>
-				  <tr id="productsData">
-					<td class="value br">Edit</td>
-					<td class="value br"></td>
-					<td class="value br"></td>
-					<td class="value br"></td>
-					<td class="value br"></td>
-					<td class="value br"></td>
-					<td class="value br"></td>
-					<td class="value br"></td>
-					<td class="value br"></td>
-					<td class="value br"></td>
-					<td class="value br"></td>
-					<td class="value br"></td>
-					<td class="value br"></td>
-					<td class="value br"></td>
-					<td class="value br"></td>
-					<td class="value br"></td>
-					<td class="value br"></td>
-					<td class="value"></td>
 				  </tr>
 				</tbody>
 			</table>
