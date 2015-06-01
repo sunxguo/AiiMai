@@ -76,11 +76,21 @@ class Admin extends CI_Controller {
 		$this->adminBaseHandler('Backend Panel',array('index','none'),'index',$data);
 	}
 	public function websiteLayout(){
+		$categories=$this->commongetdata->getCategories(false);
+		$currentCat=isset($_GET['cat'])?$_GET['cat']:$categories[0]->category_id;
 		$data=array(
 			"columns"=>$this->commongetdata->getColumns(),
-			""=>
+			"categories"=>$this->commongetdata->getCategories(false),
+			"currentCat"=>$currentCat,
+			"featuredProducts"=>$this->commongetdata->getProducts(false,$currentCat,false,false,false,false,false,false,false,array("field"=>'product_modify_time',"type"=>'DESC'))
 		);
 		$this->adminBaseHandler('Website Layout',array('data','websiteLayout'),'websiteLayout',$data);
+	}
+	public function websiteCategory(){
+		$data=array(
+			"columns"=>$this->commongetdata->getColumns()
+		);
+		$this->adminBaseHandler('Categories',array('data','websiteLayout'),'websiteCategory',$data);
 	}
 	public function items(){
 		if(isset($_GET['page'])&& is_numeric($_GET['page'])) $page=$_GET['page'];

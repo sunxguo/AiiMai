@@ -1,15 +1,12 @@
 <div class="modify_main">
 	<div class="tabs-box">
 		<div class="tabs-top">
-			<a href="/admin/websiteLayout" class="current">Homepage</a>
-			<a href="/admin/websiteCategory">Category</a>
+			<a href="/admin/websiteLayout">Homepage</a>
+			<a href="/admin/websiteCategory" class="current">Category</a>
 		</div>
 	</div>
-	<ul class="km-nav km-nav-tabs clearfix" style="margin-top:20px;margin-left:20px;">
-		<?php foreach($categories as $cat):?>
-		<li <?php echo $currentCat==$cat->category_id?'class="active"':'';?>><a href=""><?php echo $cat->category_name;?></a></li>
-		<?php endforeach;?>
-	</ul>
+	<!--
+	<div class="titA">Modify Password</div>-->
 	<div class="featured-products fl">
 			<div class="fp-left fl">
 				<div class="fp-left-top widget borderR borderB">
