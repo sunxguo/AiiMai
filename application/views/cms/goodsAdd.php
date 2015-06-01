@@ -156,7 +156,8 @@
 						<?php echo lang('cms_goodsAdd_SellPrice');?> (S$)
 					</td>
 					<td class="value tal">
-						<input id="SellPrice" type="text" class="km-form-control" style="width: 20%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;"> (<?php echo lang('cms_goodsAdd_SettlePrice');?>: <span class="km-label km-label-danger">90.00</span>)
+						<input id="SellPrice" type="text" class="km-form-control" style="width: 20%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;"> 
+						(<?php echo lang('cms_goodsAdd_SettlePrice');?>: <span class="km-label km-label-danger" id="SettlePrice">S$</span>)
 						<div class="km-popover-wrapper">
 							<img onclick="$(this).next().toggle(10)" src="/assets/images/cms/questionMark.png" width="14px" style="cursor:pointer;">
 							<div class="km-popover km-bottom" style="top: 25px;left:-496px; max-width:1000px;width:1000px;">
@@ -217,6 +218,7 @@
 						<?php echo lang('cms_goodsAdd_DisplayleftavailableperiodTip');?>
 					</td>
 				  </tr>
+				  <!--
 				  <tr>
 					<td class="field tal br">
 						<?php echo lang('cms_goodsAdd_AInventory');?>
@@ -225,8 +227,52 @@
 						
 					</td>
 				  </tr>
+				  -->
 				</tbody>
 			</table>
+		</div>
+	</div>
+	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
+		<div class="km-panel-heading">
+			Option Type
+			<img onclick="addOption()" src="/assets/images/cms/icon-plus-white.png" width="14px" style="cursor:pointer;margin-left:10px;border:2px solid #FFF;border-radius:2px;">
+		</div>
+		<div class="km-panel-body" style="padding:0px;">
+			<table class="km-table">
+				<tbody id="optionWrapper">
+				  <tr>
+					<th class="field br">
+						Option Name
+					</th>
+					<th class="field">
+						Option Detail  (You can set up price and quantity on Edit Options section after finish your setting for option name and detail.)
+					</th>
+				  </tr>
+				</tbody>
+			</table>
+			<table class="km-table bt1">
+				<tr>
+					<td colspan="2">
+						<button onclick="applyOption()" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">Apply</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div id="applyOptionWrapper" class="km-panel km-panel-primary mt10" style="width: 98%;display:none;">
+		<div class="km-panel-heading">Edit options</div>
+		<div class="km-panel-body" style="padding:0px;">
+			<div style="overflow:auto;">
+				<table class="km-table" style="overflow:scroll;width:100%;">
+					<tbody id="applyOptionData">
+					  <tr style="border-top:2px solid #ddd;border-bottom:2px solid #ddd;">
+						<td class="field br tac">Operation</td>
+						<td id="optionPricePos" class="field br tac" style="">Price</td>
+						<td class="field tac">Stock</td>
+					  </tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
@@ -253,7 +299,7 @@
 							  <h3 class="km-popover-title"><?php echo lang('cms_goodsAdd_ShippingRate');?></h3>
 
 							  <div class="km-popover-content" style="overflow:scroll;height: 851px;">
-								运费计算详情...
+								<!--运费计算详情...-->Detail...
 							  </div>
 							</div>
 						</div>
@@ -302,5 +348,32 @@
 				langType : '<?php echo $_SESSION['language']=="english"?'en':'zh_CN';?>'
 			});
 		});
+		$("#SellPrice").on('input',function(e){
+			if(!$.isNumeric($("#SellPrice").val())){
+				showAlert('danger','Error!','Price must be a number!');
+				$("#SellPrice").val('');
+				$("#SettlePrice").text('S$');
+				return false;
+			}
+		    $("#SettlePrice").text('S$'+$("#SellPrice").val());
+		});
+		$("#ReferencePrice").on('input',function(e){
+			if(!$.isNumeric($("#ReferencePrice").val())){
+				showAlert('danger','Error!','Reference Price must be a number!');
+				$("#ReferencePrice").val('');
+				return false;
+			}
+		});
+		$("#Quantity").on('input',function(e){
+			if(!$.isNumeric($("#Quantity").val())){
+				showAlert('danger','Error!','Quantity must be a number!');
+				$("#Quantity").val('');
+				return false;
+			}
+		});
+		/*
+		$('#SellPrice').bind('input propertychange', function() {
+			alert('ff');
+		});*/
 	});
 </script>

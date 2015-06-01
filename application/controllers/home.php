@@ -9,7 +9,7 @@ class Home extends CI_Controller {
 		$this->load->model("dbHandler");
 	}
 	public function checkUserLogin(){
-		if (!checkLogin() || strcmp($_SESSION["usertype"], "user")) {
+		if (!checkLogin() || !strcmp($_SESSION["usertype"], "admin")) {
 			$this->load->view('redirect',array("url"=>"/home/login","info"=>"Please login!"));
 			return false;
 		}
@@ -86,8 +86,8 @@ class Home extends CI_Controller {
 	}
 	public function register(){
 		$this->load->library('Facebook',array(
-		  'appId'  => '705101599598980',
-		  'secret' => '344d05ab622eeb60e9c72aa03c3bb7dd',
+		  'appId'  => '835653329821020',
+		  'secret' => 'db8ff82c09c285d593dde540b7e50f08',
 		));
 		$user=$this->facebook->getUser();
 		if ($user) {
@@ -121,8 +121,8 @@ class Home extends CI_Controller {
 	}
 	public function login(){
 		$this->load->library('Facebook',array(
-		  'appId'  => '705101599598980',
-		  'secret' => '344d05ab622eeb60e9c72aa03c3bb7dd',
+		  'appId'  => '835653329821020',
+		  'secret' => 'db8ff82c09c285d593dde540b7e50f08',
 		));
 		$user=$this->facebook->getUser();
 		if ($user) {
@@ -159,19 +159,88 @@ class Home extends CI_Controller {
 	public function item(){
 		$item=$this->commongetdata->getContent('product',$_GET['itemId']);
 		$merchant=$this->commongetdata->getContent('merchant',$item->product_merchant);
+		$optionData=$this->commongetdata->getOptionData($_GET['itemId'],'data');
+		$optionArray=array();
+		foreach($optionData as $option){
+			if($option->product_option_1!='' && (!isset($optionArray[0]) || !in_array($option->product_option_1,$optionArray[0])))
+				$optionArray[0][]=$option->product_option_1;
+			if($option->product_option_2!='' && (!isset($optionArray[1]) || !in_array($option->product_option_2,$optionArray[1])))
+				$optionArray[1][]=$option->product_option_2;
+			if($option->product_option_3!='' && (!isset($optionArray[2]) || !in_array($option->product_option_3,$optionArray[2])))
+				$optionArray[2][]=$option->product_option_3;
+		}
 		$data=array(
 			"categories"=>$this->commongetdata->getCategories(false),
 			"categoriesIndex"=>$this->commongetdata->getCategories(true),
 			"item"=>$item,
-			"merchant"=>$merchant
+			"itemOptionData"=>$optionData,
+			"optionType"=>$optionArray,
+			"merchant"=>$merchant,
+			"merchantProductsAmount"=>$this->commongetdata->getProductsAdvance(array(
+				"result"=>'count',
+				"merchant"=>$item->product_merchant,
+				"status"=>3
+			)),
+			"comments"=>$this->commongetdata->getComments($_GET['itemId']),
+			"hotItems"=>$this->commongetdata->getHotItems($item->product_merchant),
+			"follow"=>isset($_SESSION['userid'])?$this->commongetdata->getFollow($item->product_merchant,$_SESSION['userid']):false,
+			"followNo"=>$this->commongetdata->getFollowNo($item->product_merchant)
 		);
 		$this->homeBaseHandler('Item','item',$data);
 	}
 	public function shop(){
+		if(!isset($_GET['shopId']) || !is_numeric($_GET['shopId'])){
+			$this->load->view('redirect',array("info"=>"Wrong url!",'url'=>'/home'));
+		}
 		$data=array(
-			'merchant'=>$this->commongetdata->getContent('merchant',$_GET['shopId'])
+			'merchant'=>$this->commongetdata->getContent('merchant',$_GET['shopId']),
+			"merchantProductsAmount"=>$this->commongetdata->getProductsAdvance(array(
+				"result"=>'count',
+				"merchant"=>$_GET['shopId'],
+				"status"=>3
+			)),
+			"hotItems"=>$this->commongetdata->getHotItems($_GET['shopId']),
+			"follow"=>isset($_SESSION['userid'])?$this->commongetdata->getFollow($_GET['shopId'],$_SESSION['userid']):false,
+			"followNo"=>$this->commongetdata->getFollowNo($_GET['shopId'])
 		);
 		$this->homeBaseHandler('Shop','shop',$data);
+	}
+	public function allItems(){
+		if(!isset($_GET['shopId']) || !is_numeric($_GET['shopId'])){
+			$this->load->view('redirect',array("info"=>"Wrong url!",'url'=>'/home'));
+		}
+		$data=array(
+			'merchant'=>$this->commongetdata->getContent('merchant',$_GET['shopId']),
+			"merchantProductsAmount"=>$this->commongetdata->getProductsAdvance(array(
+				"result"=>'count',
+				"merchant"=>$_GET['shopId'],
+				"status"=>3
+			)),
+			"merchantProducts"=>$this->commongetdata->getProductsAdvance(array(
+				"result"=>'data',
+				"merchant"=>$_GET['shopId'],
+				"status"=>3
+			)),
+			"follow"=>isset($_SESSION['userid'])?$this->commongetdata->getFollow($_GET['shopId'],$_SESSION['userid']):false,
+			"followNo"=>$this->commongetdata->getFollowNo($_GET['shopId'])
+		);
+		$this->homeBaseHandler('All Items','allItems',$data);
+	}
+	public function shopInfo(){
+		if(!isset($_GET['shopId']) || !is_numeric($_GET['shopId'])){
+			$this->load->view('redirect',array("info"=>"Wrong url!",'url'=>'/home'));
+		}
+		$data=array(
+			'merchant'=>$this->commongetdata->getContent('merchant',$_GET['shopId']),
+			"merchantProductsAmount"=>$this->commongetdata->getProductsAdvance(array(
+				"result"=>'count',
+				"merchant"=>$_GET['shopId'],
+				"status"=>3
+			)),
+			"follow"=>isset($_SESSION['userid'])?$this->commongetdata->getFollow($_GET['shopId'],$_SESSION['userid']):false,
+			"followNo"=>$this->commongetdata->getFollowNo($_GET['shopId'])
+		);
+		$this->homeBaseHandler('Shop Info','shopInfo',$data);
 	}
 	public function cart(){
 		$data=array(

@@ -227,6 +227,17 @@ You can edit your address and change the display setting on ‘ASM > Setting > M
 					 Sales staff name will be displayed at the shop information section of Item page.
 				</td>
 			</tr>
+			<tr>
+				<td><font color="red">*</font>More Datails</td>
+				<td>
+					<img id="loading" src="/assets/images/cms/loading.gif" style="display:none;">
+					<button onclick="$('#file').click();" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">Upload</button>
+					<form id="upload_image_form" method="post" enctype="multipart/form-data">
+						<input onchange="return uploadFile()" name="image" type="file" id="file" style="display:none;">
+					</form>
+					<input id="fileSrc" type="hidden">
+				</td>
+			</tr>
 		</table>
 		<div class="memberAgree clearfix">
 			<input type="checkbox" id="agreement" name="agreement" value="Y" checked="checked"> 
@@ -248,6 +259,7 @@ You can edit your address and change the display setting on ‘ASM > Setting > M
 	</div>
 	-->
 </div>
+<script src="/assets/js/jquery.form.js" type="text/javascript"></script>
 <script>
 	refreshCode();
 </script>

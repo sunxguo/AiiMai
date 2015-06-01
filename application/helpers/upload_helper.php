@@ -86,9 +86,10 @@ function upload($upload_file_name="files"){
 		$file_ext = trim($file_ext);
 		$file_ext = strtolower($file_ext);
 		//检查扩展名
+		/*
 		if (in_array($file_ext, $ext_arr[$dir_name]) === false) {
-			return array("code"=>false,"message"=>"上传文件扩展名是不允许的扩展名。\n只允许" . implode(",", $ext_arr[$dir_name]) . "格式。");
-		}
+			return array("code"=>false,"message"=>"The extension of upload file are not allowed! \n Only allow" . implode(",", $ext_arr[$dir_name]) . "");
+		}*/
 		//创建文件夹
 		if ($dir_name !== '') {
 			$save_path .= $dir_name . "/";
@@ -112,7 +113,7 @@ function upload($upload_file_name="files"){
 		}
 		@chmod($file_path, 0644);
 		$file_url = $save_url . $new_file_name;
-		resizeImage($file_path,500,500,$file_path,$file_ext);
+//		resizeImage($file_path,500,500,$file_path,$file_ext);
 		return array("code"=>true,"message"=>$file_url);
 	}
 }

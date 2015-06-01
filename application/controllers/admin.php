@@ -75,6 +75,13 @@ class Admin extends CI_Controller {
 		);
 		$this->adminBaseHandler('Backend Panel',array('index','none'),'index',$data);
 	}
+	public function websiteLayout(){
+		$data=array(
+			"columns"=>$this->commongetdata->getColumns(),
+			""=>
+		);
+		$this->adminBaseHandler('Website Layout',array('data','websiteLayout'),'websiteLayout',$data);
+	}
 	public function items(){
 		if(isset($_GET['page'])&& is_numeric($_GET['page'])) $page=$_GET['page'];
 		else $page=1;

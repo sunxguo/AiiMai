@@ -20,6 +20,7 @@
 	</a>
 </h3>
 <ul style="display: block;">
+	<li><a href="/admin/websiteLayout" <?php echo isset($websiteLayout) && $websiteLayout?'class="current"':'';?>>Website Layout</a></li>
 	<li><a href="/admin/items" <?php echo isset($items) && $items?'class="current"':'';?>><?php echo lang('admin_sider_Items');?></a></li>
 	<li><a href="/admin/merchants" <?php echo isset($merchants) && $merchants?'class="current"':'';?>><?php echo lang('admin_sider_Merchants');?></a></li>
 	<li><a href="/admin/users" <?php echo isset($users) && $users?'class="current"':'';?>><?php echo lang('admin_sider_Users');?></a></li>

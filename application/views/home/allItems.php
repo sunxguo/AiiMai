@@ -25,7 +25,7 @@
 			<div class="vwd_items">
 				<div class="menu">
 					<ul>
-						<li><a href="/home/allItems?shopId=<?php echo $_GET['shopId'];?>" class="" target="_blank"><span>All Items</span></a></li>
+						<li class="on"><a href="/home/allItems?shopId=<?php echo $_GET['shopId'];?>" class="" target="_blank"><span>All Items</span></a></li>
 <!--						<li><a href="/home/shopSpecial?shopId=<?php echo $_GET['shopId'];?>" target="_blank"><span>Shop Specials</span></a></li>-->
 						<li><a href="/home/shopFaq?shopId=<?php echo $_GET['shopId'];?>" target="_blank"><span>Q&amp;A·FAQ</span></a></li>
 						<li><a href="/home/shopInfo?shopId=<?php echo $_GET['shopId'];?>" target="_blank"><span>Shop Info</span></a></li>
@@ -34,15 +34,11 @@
 			</div>
 		</div>
 	</div>
-	<div class="">
-		<img src="<?php echo $merchant->merchant_shop_middleimg;?>">
-		<img src="<?php echo $merchant->merchant_shop_bottomimg;?>">
-	</div>
 	<div class="items">
-		<h3>Hot Items</h3>
-		<ul>
-			<?php foreach($hotItems as $item):?>
-			<li class="product bd_glr3">
+		<h3>All Items</h3>
+		<ul class="itemsList clearfix">
+			<?php foreach($merchantProducts as $item):?>
+			<li class="product bd_glr3" style="float:left;">
 				<a href="/home/item?itemId=<?php echo $item->product_id;?>">
 					<img src="<?php echo $item->product_image;?>" width="306" height="306">
 					<p><?php echo $item->product_item_title_english;?></p>

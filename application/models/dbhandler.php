@@ -9,6 +9,10 @@ class DbHandler extends CI_Model{
 		$this->db->insert($table, $data);
 		return $this->db->affected_rows();
 	}
+	public function insertDataReturnId($table,$data){
+		$this->db->insert($table, $data);
+		return $this->db->insert_id();
+	}
 	public function deleteData($condition){
 		if(isset($condition['where'])){
 			foreach($condition['where'] as $key=>$value){
