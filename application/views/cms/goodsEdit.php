@@ -59,7 +59,7 @@
 						</select>
 					</td>
 					<td class="value tal">
-						<input id="beginDate" type="date" value="<?php echo date("Y-m-d");?>" class="km-form-control" style="width: 40%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;"> ~ <input id="endDate" type="date" value="<?php echo date("Y-m-d");?>" class="km-form-control" style="width: 40%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
+						<input id="beginDate" type="date" value="<?php echo date("Y-m-d",strtotime(date("Y-m-d")." -30 day"));?>" class="km-form-control" style="width: 40%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;"> ~ <input id="endDate" type="date" value="<?php echo date("Y-m-d");?>" class="km-form-control" style="width: 40%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 					</td>
 					<td class="field width10p tal br">
 						<?php echo lang('cms_goodsCopy_SellFormat');?>
@@ -149,3 +149,8 @@
 	</div>
 </div>
 <script src="/assets/js/cms-goods.js" type="text/javascript"></script>
+<script>
+$(document).ready(function(){
+	productQuery(false);
+});
+</script>

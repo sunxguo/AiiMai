@@ -23,7 +23,7 @@ class Home extends CI_Controller {
 	}
 	public function loginHandler(){
 		if(!isset($_POST["validCode"]) || strcasecmp($_POST['validCode'],$_SESSION['authcode'])!=0){
-			$this->load->view('redirect',array("info"=>"Please enter the letters in the picture exactly!"));
+			$this->load->view('redirect',array("info"=>"Please enter the letters in the picture exactly!",'url'=>'/home/login'));
 		}
 		if(isset($_POST["username"]) && isset($_POST["pwd"])){
 			$condition=array(
@@ -43,14 +43,14 @@ class Home extends CI_Controller {
 					$this->load->view('redirect',array("url"=>"/home"));
 				}
 				else{
-					$this->load->view('redirect',array("info"=>"Wrong password!"));
+					$this->load->view('redirect',array("info"=>"Wrong password!",'url'=>'/home/login'));
 				}
 			}
 			else{
-				$this->load->view('redirect',array("info"=>"Username does not exist!"));
+				$this->load->view('redirect',array("info"=>"Username does not exist!",'url'=>'/home/login'));
 			}
 		}else{
-			$this->load->view('redirect',array("info"=>"Please enter your username and password!"));
+			$this->load->view('redirect',array("info"=>"Please enter your username and password!",'url'=>'/home/login'));
 		}
 	}
 	public function logout(){

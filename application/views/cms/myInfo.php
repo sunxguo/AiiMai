@@ -340,8 +340,8 @@
 				  <tr>
 					<td class="field width10p"><?php echo lang('cms_myInfo_Address');?></td>
 					<td class="value width17p tal" colspan="3">
-						<span class="km-label km-label-success" style="padding:0 0.6em"><?php echo lang('cms_myInfo_Display');?></span> (521168) 168A SIMEI LANE 168A Simei Lane Singapore 521168	<br>
-						<span class="km-label km-label-danger" style="padding:0 0.6em"><?php echo lang('cms_myInfo_Hide');?></span> Singapore 9685-1921
+						<input id="baseInfoAddress" type="checkbox" style="vertical-align: middle;" checked><label for="baseInfoAddress" style="margin-right:10px;">Display</label><span class="km-label km-label-success" style="padding:0 0.6em"><?php echo lang('cms_myInfo_Display');?></span> (521168) 168A SIMEI LANE 168A Simei Lane Singapore 521168	<br>
+						<input id="baseInfoPhone" type="checkbox" style="vertical-align: middle;"><label for="baseInfoPhone" style="margin-right:10px;">Display</label><span class="km-label km-label-danger" style="padding:0 0.6em"><?php echo lang('cms_myInfo_Hide');?></span> Singapore 9685-1921
 						<button onclick="setDivCenter('#MyInfoCustomerViewAddress',true);" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
 						<div class="km-modal-dialog width40p" id="MyInfoCustomerViewAddress">
 							<div class="km-modal-content">
@@ -351,10 +351,8 @@
 								</div>
 								<div class="km-modal-body">
 									<label for="seller_baseinfo_oldpwd" class="km-control-label">Address:</label>
-									<input id="baseInfoAddress" type="checkbox"><label for="baseInfoAddress">Display</label>
 									<input value="(521168) 168A SIMEI LANE 168A Simei Lane Singapore 521168" type="text" class="km-form-control" id="customer_view_address" style="width: 95%;padding: 0 5px;height: 30px;">
 									<label for="customer_view_email" class="km-control-label">Phone:</label>
-									<input id="baseInfoPhone" type="checkbox"><label for="baseInfoPhone">Display</label>
 									<select id="customer_view_fax_countrycode" style="display:block;height: 30px;"><?php require('countryPhoneNO.php');?></select><br>
 									<input type="text" class="km-form-control" id="customer_view_address_areacode" value="9685" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;">-
 									<input type="text" class="km-form-control" id="customer_view_address_number" value="1921" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;">
