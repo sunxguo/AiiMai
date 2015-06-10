@@ -621,6 +621,7 @@ class Common extends CI_Controller {
 				}
 				$url=$this->exportExcel('products','subject','description',$field,$dataArray);
 			break;
+			/*
 			case 'merchant':
 				$categories=$this->commongetdata->getCategories(true);
 				$field=array('Logo','Seller Shop Title','Avatar','Username','Email','Gender','Vip','Status','Last Login Time');
@@ -653,7 +654,7 @@ class Common extends CI_Controller {
 					);
 				}
 				$url=$this->exportExcel('products','subject','description',$field,$dataArray);
-			break;
+			break;*/
 		}
 		echo json_encode(array("result"=>"success","message"=>$url));
 	}

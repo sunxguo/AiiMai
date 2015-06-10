@@ -39,6 +39,7 @@ class Home extends CI_Controller {
 					$_SESSION['username']=$info[0]->user_username;
 					$_SESSION['userid']=$info[0]->user_id;
 					$_SESSION['usertype']="user";
+					$_SESSION['userEmail']=$info[0]->user_email;
 					$this->checkUserLogin();
 					$this->load->view('redirect',array("url"=>"/home"));
 				}
