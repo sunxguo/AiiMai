@@ -87,7 +87,7 @@
 								listeners:{
 									 //tip:提示框对象、name:数据名称、value:数据值、text:当前文本、i:数据点的索引
 									parseText:function(tip,name,value,text,i){
-										return labels[i]+"订单数:<span style='color:red'>"+value+"</span>万件";
+										return labels[i]+"Orders:<span style='color:red'>"+value+"</span>";
 									}
 								}
 							},
