@@ -1,11 +1,11 @@
 <div class="mshop_bar">
 	<div class="info">
 		<div class="thumb">
-			<a href="/home/shop?shopId=<?php echo $merchant->merchant_id;?>" target="_blank">
+			<a href="/home/shop?shopId=<?php echo $merchant->user_id;?>" target="_blank">
 				<img src="<?php echo $merchant->merchant_shop_icon;?>">
 			</a>
 		</div>
-		<div class="name"><a href="/home/shop?shopId=<?php echo $merchant->merchant_id;?>" target="_blank"><?php echo $merchant->merchant_shop_name;?></a></div>	
+		<div class="name"><a href="/home/shop?shopId=<?php echo $merchant->user_id;?>" target="_blank"><?php echo $merchant->merchant_shop_name;?></a></div>	
 		<div class="etc">
 			<span class="mshop_rate"><dfn style="width:80%;">MINISHOP RATE 80%</dfn></span>
 			<input id="input_EncryptSellerCustNo" type="hidden" value="qdbK5Jo397f1rG/8u8LpPA==">
@@ -14,7 +14,7 @@
 			<a id="a_following" class="btn_follow ing" style="<?php echo $follow?'':'display:none';?>"><span>Following</span></a>
 		</div>
 		<div class="num">
-			<a href="/home/shop?shopId=<?php echo $merchant->merchant_id;?>" target="_blank">
+			<a href="/home/shop?shopId=<?php echo $merchant->user_id;?>" target="_blank">
 				<em><?php echo $merchantProductsAmount;?></em> items on sale/&nbsp;<em><?php echo $followNo;?></em> Fellow
 			</a>
 		</div>

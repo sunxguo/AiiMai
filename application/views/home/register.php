@@ -23,7 +23,7 @@
 				<td>Email</td>
 				<td>
 					<input type="text" id="email" placeholder="example:xxx@gmail.com" class="inp-txt width250">
-					<button onclick="checkUserEmail();" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 10px;padding: 5px 10px;">Validation Check</button>
+					<button onclick="checkUserEmail(true);" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 10px;padding: 5px 10px;">Validation Check</button>
 				</td>
 			</tr>
 			<tr>

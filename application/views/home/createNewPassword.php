@@ -3,6 +3,14 @@
 		<h2>Find Password (Member Only)</h2>
 		<p style="float:right;">Input some info > Confirm Owner > <strong>Create New Password</strong> > Completed</p>
 	</div>
+	<?php if(isset($_GET['verify'])):?>
+	<input id="verify" type="hidden" value="<?php echo $_GET['verify'];?>">
+	<?php else:?>
+	<script>
+		alert('This link is error!');
+		location.href='/home/login';
+	</script>
+	<?php endif;?>
 	<div class="register-main-body">
 		<table>
 			<tr>

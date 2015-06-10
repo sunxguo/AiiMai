@@ -7,6 +7,26 @@
 		<div class="clear">
 		</div>
 	</div>-->
+	<div id="appDiv" class="titA tit-bot pb5" style="">
+		<div style="float: right;margin-left:10px;">
+			<input type="text" id="keyword" class="inp-txt width200" value="<?php echo isset($_GET["search"])?$_GET["search"]:"";?>" placeholder="Company Name">
+			<a href="javascript:selectShipCompany('<?php echo $selectPage;?>')" class="btn80">Search</a>
+		</div>
+		<div style="float: right;">
+			<span class="font12">Status:</span>
+			<select id="status" onchange="selectShipCompany('<?php echo $selectPage;?>')" class="select w100">
+                <option value="-1">All</option>
+                <option value="1" <?php echo isset($_GET["status"]) && $_GET["status"]==1?'selected = "selected"':'';?>>
+					ON
+				</option>
+                <option value="0" <?php echo isset($_GET["status"]) && $_GET["status"]==0?'selected = "selected"':'';?>>
+					OFF
+				</option>
+            </select>
+		</div>
+		<div class="clear">
+		</div>
+	</div>
 	<table>
 		<thead>
 			<tr class="table-head">

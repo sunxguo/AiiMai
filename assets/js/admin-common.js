@@ -62,7 +62,7 @@ function dataHandler(funcType,dataType,postDataObj,callBack,confirmMsg,cancelCal
 		var result=$.parseJSON(data);
 		if(result.result=="success"){
 			if(successMsg) showMsg(successMsg);
-			if(callBack) callBack();
+			if(callBack) callBack(result.message);
 			if(refresh) location.reload();
 		}else{
 			alert(result.message);

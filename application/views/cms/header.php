@@ -42,7 +42,7 @@
     </div>
 	<div class="cms-main">
 	<?php
-		if(isset($showSider) && $showSider && $_SESSION['usertype']=="merchant"){
+		if(isset($showSider) && $showSider){
 			require("sider.php");
 		}
 	?>

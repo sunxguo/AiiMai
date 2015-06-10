@@ -1,5 +1,8 @@
 $(document).ready(function(){
 });
+function refreshCode(){
+	$("#validCodeImg").attr("src","/common/createVeriCode");
+}
 function column(handleType,nameNullMsg,successMsg){
 	if($("#name").val()==""){
 		alert(nameNullMsg);
@@ -213,6 +216,22 @@ function selectItem(baseUrl){
 	if($("#keyword").val()!="") extUrl+="&search="+$("#keyword").val();
 	location.href=baseUrl+extUrl;
 }
+function productQuery(excel){
+	var product = new Object();
+	product.MainCategory = $("#category").val();
+//	product.stSubCategory = false;
+//	product.ndSubCategory = false;
+	product.status = $("#status").val();
+//	product.dateType = $("#dateType").val();
+//	product.beginDate = $("#beginDate").val();
+//	product.endDate = $("#endDate").val();
+//	product.SellFormat = $("#SellFormat").val();
+	product.title = $("#keyword").val();
+	dataHandler('excel','productSimple',product,goUrl,null,null,null,false);
+}
+function goUrl(url){
+	location.href=url;
+}
 function selectUser(baseUrl){
 	var extUrl="";
 	if($("#gender").val()!=-1) extUrl+="&gender="+$("#gender").val();
@@ -223,6 +242,36 @@ function selectUser(baseUrl){
 function selectMerchant(baseUrl){
 	var extUrl="";
 	if($("#gender").val()!=-1) extUrl+="&gender="+$("#gender").val();
+	if($("#status").val()!=-1) extUrl+="&status="+$("#status").val();
+	if($("#keyword").val()!="") extUrl+="&search="+$("#keyword").val();
+	location.href=baseUrl+extUrl;
+}
+function selectOrder(baseUrl){
+	var extUrl="";
+	if($("#status").val()!=-1) extUrl+="&status="+$("#status").val();
+	if($("#keyword").val()!="") extUrl+="&search="+$("#keyword").val();
+	location.href=baseUrl+extUrl;
+}
+function selectShipCompany(baseUrl){
+	var extUrl="";
+	if($("#status").val()!=-1) extUrl+="&status="+$("#status").val();
+	if($("#keyword").val()!="") extUrl+="&search="+$("#keyword").val();
+	location.href=baseUrl+extUrl;
+}
+function selectAD(baseUrl){
+	var extUrl="";
+	if($("#status").val()!=-1) extUrl+="&status="+$("#status").val();
+	if($("#keyword").val()!="") extUrl+="&search="+$("#keyword").val();
+	location.href=baseUrl+extUrl;
+}
+function selectComment(baseUrl){
+	var extUrl="";
+	if($("#status").val()!=-1) extUrl+="&status="+$("#status").val();
+	if($("#keyword").val()!="") extUrl+="&search="+$("#keyword").val();
+	location.href=baseUrl+extUrl;
+}
+function selectPayment(baseUrl){
+	var extUrl="";
 	if($("#status").val()!=-1) extUrl+="&status="+$("#status").val();
 	if($("#keyword").val()!="") extUrl+="&search="+$("#keyword").val();
 	location.href=baseUrl+extUrl;

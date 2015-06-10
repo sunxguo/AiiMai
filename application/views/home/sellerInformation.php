@@ -57,16 +57,18 @@
 			<tr>
 				<td><font color="red">*</font>Contact Information</td>
 				<td>
+					<?php if($user->user_confirm_email==0):?>
 					<div id="gsm_mail_wrapper" class="gsm_mail" style="background-position: -260px -625px;">
-						<input type="text" id="email" class="inp-txt" style="width:190px;" readonly="" value="<?php echo $_SESSION['merchantEmail'];?>">
+						<input type="text" id="email" class="inp-txt" style="width:190px;" readonly="" value="<?php echo $_SESSION['userEmail'];?>">
 						<button onclick="sendMerchantEmail();" type="button" class="km-btn km-btn-primary" style="height: 24px;font-size: 10px;padding: 3px 5px;">Send Confirmation Email</button>	
 						<p>
 							(*) After you confirmed email address successfully, click reload button 
 							<button onclick="reloadEmail();" type="button" class="km-btn km-btn-primary" style="height: 24px;font-size: 10px;padding: 3px 5px;">Reload</button>	
 						</p>
 					</div>
-					<div id="confirmEmail" class="gsm_mail" style="display:none;">
-						<h3><?php echo $_SESSION['merchantEmail'];?></h3>
+					<?php endif;?>
+					<div id="confirmEmail" class="gsm_mail" <?php if($user->user_confirm_email==0):?>style="display:none;"<?php endif;?>>
+						<h3><?php echo $_SESSION['userEmail'];?></h3>
 					</div>
 					<div class="gsm_phone">
 						<div id="hp_no0_code" class="gsm_select" style="display: none;">

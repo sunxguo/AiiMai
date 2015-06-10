@@ -19,6 +19,10 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/login',array('title'=>"Login Administrator"));
 	}
 	public function login_handler(){
+		if(!isset($_POST['securitycode']) || strcasecmp($_POST['securitycode'],$_SESSION['authcode'])!=0){
+			$this->load->view('redirect',array("info"=>"Wrong Security Code!","url"=>"/admin/login?username=".$_POST["username"]));
+			return false;
+		}
 		if(isset($_POST["username"]) && isset($_POST["pwd"])){
 			$condition=array(
 				'table'=>'mkadmin',
@@ -36,14 +40,14 @@ class Admin extends CI_Controller {
 					$this->load->view('redirect',array("url"=>"/admin/index"));
 				}
 				else{
-					$this->load->view('redirect',array("info"=>"Wrong Password!"));
+					$this->load->view('redirect',array("info"=>"Wrong Password!","url"=>"/admin/login?username=".$_POST["username"]));
 				}
 			}
 			else{
-				$this->load->view('redirect',array("info"=>"Username does not exist!"));
+				$this->load->view('redirect',array("info"=>"Username does not exist!","url"=>"/admin/login"));
 			}
 		}else{
-			$this->load->view('redirect',array("info"=>"Please enter your username and password!"));
+			$this->load->view('redirect',array("info"=>"Please enter your username and password!","url"=>"/admin/login"));
 		}
 	}
 	public function logout(){
@@ -168,24 +172,25 @@ class Admin extends CI_Controller {
 		if(isset($_GET['page'])&& is_numeric($_GET['page'])) $page=$_GET['page'];
 		else $page=1;
 		$amountPerPage=20;
-		$condition['table']='merchant';
+		$condition['table']='user';
 		$baseUrl=$selectUrl='/admin/merchants?placeholder=yes';
+		$condition['where']['user_is_merchant']=1;
 		if(isset($_GET['status'])&& is_numeric($_GET['status'])){
 			$condition['where']['merchant_status']=$_GET['status'];
 			$baseUrl.='&status='.$_GET['status'];
 		}
 		if(isset($_GET['gender'])&& is_numeric($_GET['gender'])){
-			$condition['where']['merchant_gender']=$_GET['gender'];
+			$condition['where']['user_gender']=$_GET['gender'];
 			$baseUrl.='&gender='.$_GET['gender'];
 		}
 		if(isset($_GET['search'])){
-			$condition['like']['merchant_username']=$_GET['search'];
+			$condition['like']['user_username']=$_GET['search'];
 			$baseUrl.='&search='.$_GET['search'];
 		}
 		$condition['result']="count";
 		$amount=$this->commongetdata->getData($condition);
 		$condition['result']="data";
-		$condition['order_by']=array('merchant_reg_time'=>'DESC');
+		$condition['order_by']=array('user_reg_time'=>'DESC');
 		$pageInfo=$this->commongetdata->getPageLink($baseUrl,$selectUrl,$page,$amountPerPage,$amount);
 		$condition['limit']=$pageInfo['limit'];
 		$data=array(
@@ -201,6 +206,7 @@ class Admin extends CI_Controller {
 		$amountPerPage=20;
 		$condition['table']='user';
 		$baseUrl=$selectUrl='/admin/users?placeholder=yes';
+		$condition['where']['user_is_merchant']=0;
 		if(isset($_GET['status'])&& is_numeric($_GET['status'])){
 			$condition['where']['user_state']=$_GET['status'];
 			$baseUrl.='&status='.$_GET['status'];
@@ -231,9 +237,10 @@ class Admin extends CI_Controller {
 		else $page=1;
 		$amountPerPage=20;
 		$condition['table']='order';
-		$baseUrl=$selectUrl='/admin/orders';
+		$baseUrl=$selectUrl='/admin/orders?placeholder=yes';
+		$condition['where']['order_merchant']=$_SESSION['userid'];
 		if(isset($_GET['status'])&& is_numeric($_GET['status'])){
-			$condition['where']=array('order_status'=>$_GET['status']);
+			$condition['where']['order_status']=$_GET['status'];
 			$baseUrl.='?status='.$_GET['status'];
 		}else{
 			$baseUrl.='?status=0';
@@ -255,7 +262,7 @@ class Admin extends CI_Controller {
 		else $page=1;
 		$amountPerPage=20;
 		$condition['table']='shipcompany';
-		$baseUrl=$selectUrl='/admin/shipCompany';
+		$baseUrl=$selectUrl='/admin/shipCompany?placeholder=yes';
 		if(isset($_GET['status'])&& is_numeric($_GET['status'])){
 			$condition['where']=array('shipcompany_status'=>$_GET['status']);
 			$baseUrl.='?status='.$_GET['status'];
@@ -284,7 +291,7 @@ class Admin extends CI_Controller {
 		else $page=1;
 		$amountPerPage=20;
 		$condition['table']='advertisement';
-		$baseUrl=$selectUrl='/admin/advertisements';
+		$baseUrl=$selectUrl='/admin/advertisements?placeholder=yes';
 		if(isset($_GET['status'])&& is_numeric($_GET['status'])){
 			$condition['where']=array('advertisement_status'=>$_GET['status']);
 			$baseUrl.='?status='.$_GET['status'];
@@ -313,7 +320,7 @@ class Admin extends CI_Controller {
 		else $page=1;
 		$amountPerPage=20;
 		$condition['table']='comment';
-		$baseUrl=$selectUrl='/admin/comments';
+		$baseUrl=$selectUrl='/admin/comments?placeholder=yes';
 		if(isset($_GET['status'])&& is_numeric($_GET['status'])){
 			$condition['where']=array('comment_status'=>$_GET['status']);
 			$baseUrl.='?status='.$_GET['status'];
@@ -342,7 +349,7 @@ class Admin extends CI_Controller {
 		else $page=1;
 		$amountPerPage=20;
 		$condition['table']='payment';
-		$baseUrl=$selectUrl='/admin/payment';
+		$baseUrl=$selectUrl='/admin/payment?placeholder=yes';
 		if(isset($_GET['status'])&& is_numeric($_GET['status'])){
 			$condition['where']=array('payment_status'=>$_GET['status']);
 			$baseUrl.='?status='.$_GET['status'];
