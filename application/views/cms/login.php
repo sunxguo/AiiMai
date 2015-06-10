@@ -24,7 +24,7 @@
 			<div class="login-field">
 				<label>Username</label>
 				<div>
-					<input name="username" type="text" class="inp-txt width250">
+					<input name="username" type="text" class="inp-txt width250" value="<?php echo isset($_GET['username'])?$_GET['username']:'';?>">
 				</div>
 			</div>
 			<div class="login-field">

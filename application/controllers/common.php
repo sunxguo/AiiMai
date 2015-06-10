@@ -87,7 +87,7 @@ class Common extends CI_Controller {
 			break;
 			case "register":
 				$table="user";
-				if(!$this->commongetdata->checkUniqueAdvance("user","user_username",$data->username)){
+				if(!$this->commongetdata->checkUniqueAdvance("user",array("user_username"=>$data->username))){
 					echo json_encode(array("result"=>"notunique","message"=>"This username already exists!"));
 					return false;
 				}
@@ -98,43 +98,29 @@ class Common extends CI_Controller {
 					"user_gender"=>$data->gender,
 					"user_email"=>$data->email,
 					"user_country"=>$data->country,
+					"user_is_merchant"=>0,
 					"user_reg_time"=>date("Y-m-d H:i:s")
 				);
 				$_SESSION['userEmail']=$data->email;
 			break;
 			case "merchant":
-				$table="merchant";
-				if(!$this->commongetdata->checkUniqueAdvance("merchant","merchant_username",$data->username)){
-					echo json_encode(array("result"=>"notunique","message"=>"This username already exists!"));
-					return false;
-				}
-				if(!$this->commongetdata->checkUniqueAdvance("user","user_username",$data->username)){
+				$table="user";
+				if(!$this->commongetdata->checkUniqueAdvance("user",array("user_username"=>$data->username))){
 					echo json_encode(array("result"=>"notunique","message"=>"This username already exists!"));
 					return false;
 				}
 				$time=date("Y-m-d H:i:s");
 				$info=array(
-					"merchant_username"=>$data->username,
-					"merchant_pwd"=>MD5("MonkeyKing".$data->password),
-					"merchant_grade"=>1,
-					"merchant_gender"=>$data->gender,
-					"merchant_email"=>$data->email,
-					"merchant_country"=>$data->country,
-					"merchant_confirm_email"=>0,
-					"merchant_status"=>0,
-					"merchant_reg_time"=>$time
-				);
-				$_SESSION['merchantEmail']=$data->email;
-				$userInfo=array(
 					"user_username"=>$data->username,
 					"user_pwd"=>MD5("MonkeyKing".$data->password),
 					"user_grade"=>1,
 					"user_gender"=>$data->gender,
 					"user_email"=>$data->email,
 					"user_country"=>$data->country,
+					"user_confirm_email"=>0,
+					"merchant_status"=>0,
 					"user_reg_time"=>$time
 				);
-				$userResult=$this->dbHandler->insertData('user',$userInfo);
 				$_SESSION['userEmail']=$data->email;
 			break;
 			case 'follow':
@@ -262,8 +248,8 @@ class Common extends CI_Controller {
 				);
 			break;
 			case "merchantInfo":
-				$condition['table']="merchant";
-				$condition['where']=array("merchant_email"=>$_SESSION['merchantEmail']);
+				$condition['table']="user";
+				$condition['where']=array("user_email"=>$_SESSION['userEmail']);
 				$condition['data']=array(
 					"merchant_type"=>$data->merchantType,
 					"merchant_name"=>$data->name,
@@ -278,25 +264,30 @@ class Common extends CI_Controller {
 					"merchant_address2"=>$data->address2,
 					"merchant_salesStaff"=>$data->salesStaff,
 					"merchant_doc"=>$data->doc,
+					"user_is_merchant"=>1,
 					"merchant_status"=>1
 				);
 			break;
 			case 'merchantpwd':
-				$condition['table']="merchant";
-				$condition['where']=array("merchant_id"=>$_SESSION['userid']);
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$_SESSION['userid']);
 				$condition['result']="data";
 				$merchantInfo=$this->commongetdata->getOneData($condition);
-				if($merchantInfo->merchant_pwd!=MD5("MonkeyKing".$data->oldpwd)){
+				if($merchantInfo->user_pwd!=MD5("MonkeyKing".$data->oldpwd)){
 					echo json_encode(array("result"=>"failed","message"=>"Wrong password！"));
 					return false;
 				}
+				if($merchantInfo->user_pwd==MD5("MonkeyKing".$data->newpwd)){
+					echo json_encode(array("result"=>"failed","message"=>"Failed. You cannot re-use an old password！"));
+					return false;
+				}
 				$condition['data']=array(
-					"merchant_pwd"=>MD5("MonkeyKing".$data->newpwd)
+					"user_pwd"=>MD5("MonkeyKing".$data->newpwd)
 				);
 			break;
 			case 'merchantBusinessLicense':
-				$condition['table']="merchant";
-				$condition['where']=array("merchant_id"=>$_SESSION['userid']);
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$_SESSION['userid']);
 				$condition['data']=array(
 					"merchant_business_license"=>$data->src,
 					"merchant_business_license_msg"=>$data->Msg,
@@ -304,7 +295,7 @@ class Common extends CI_Controller {
 			break;
 			case 'merchantBankbook':
 				$condition['table']="merchant";
-				$condition['where']=array("merchant_id"=>$_SESSION['userid']);
+				$condition['where']=array("user_id"=>$_SESSION['userid']);
 				$condition['data']=array(
 					"merchant_bank_account"=>$data->src,
 					"merchant_bank_account_msg"=>$data->Msg,
@@ -312,7 +303,7 @@ class Common extends CI_Controller {
 			break;
 			case 'GstInfo':
 				$condition['table']="merchant";
-				$condition['where']=array("merchant_id"=>$_SESSION['userid']);
+				$condition['where']=array("user_id"=>$_SESSION['userid']);
 				$condition['data']=array(
 					"merchant_gst_name"=>$data->gstName,
 					"merchant_gst_number"=>$data->gstNumber,
@@ -328,7 +319,7 @@ class Common extends CI_Controller {
 			break;
 			case 'merchantStatus':
 				$condition['table']="merchant";
-				$condition['where']=array("merchant_id"=>$data->id);
+				$condition['where']=array("user_id"=>$data->id);
 				$condition['data']=array(
 					"merchant_status"=>$data->status
 				);
@@ -354,6 +345,41 @@ class Common extends CI_Controller {
 				);
 			break;
 			case 'userNewPwd':
+				$condition=array(
+					'table'=>'user',
+					'result'=>'data',
+					'where'=>array(
+						'token'=>$data->verify
+					)
+				);
+				$user=$this->commongetdata->getData($condition);
+				if(sizeof($user)<1){
+//					$this->load->view('redirect',array("url"=>"/home/login","info"=>"This token is error!"));
+					echo json_encode(array("result"=>"failed","message"=>"This token is error!"));
+					return false;
+				}
+				$user=$user[0];
+				if(time()>$user->token_exptime){ //24hour 
+					$msg = 'You activate the validity period is over, please login your account to resend the activation email.';
+					echo json_encode(array("result"=>"failed","message"=>$msg));
+					return false;
+				}
+				$condition['table']="user";
+				$condition['where']=array("token"=>$data->verify);
+				$condition['data']=array(
+					"user_pwd"=>MD5("MonkeyKing".$data->newpwd),
+					"user_confirm_email"=>1
+				);
+				$result=$this->dbHandler->updateData($condition);
+				if($result==1){
+					$this->commongetdata->email($user->user_email,$this->commongetdata->getWebsiteConfig("website_reset_password_success_subject"),$this->commongetdata->getWebsiteConfig("website_reset_password_success_content"));
+//					$this->load->view('redirect',array("url"=>"/home/login","info"=>"Success!"));
+					echo json_encode(array("result"=>"success","message"=>'Password is changed successfully!'));
+				}
+				else{
+					echo json_encode(array("result"=>"failed","message"=>'Failed. You cannot re-use an old password'));
+				}
+				/*
 				$condition['table']="user";
 				$condition['where']=array("user_email"=>$_SESSION['userEmail']);
 				$condition['result']="data";
@@ -361,10 +387,11 @@ class Common extends CI_Controller {
 				$condition['data']=array(
 					"user_pwd"=>MD5("MonkeyKing".$data->newpwd)
 				);
+				*/
 			break;
 			case 'myInfoMobilephoneNo':
-				$condition['table']="merchant";
-				$condition['where']=array("merchant_id"=>$data->id);
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
 				$condition['data']=array(
 					"merchant_phone1"=>$data->merchant_phone1,
 					"merchant_phone2"=>$data->merchant_phone2,
@@ -372,8 +399,8 @@ class Common extends CI_Controller {
 				);
 			break;
 			case 'myInfoPhonenumber':
-				$condition['table']="merchant";
-				$condition['where']=array("merchant_id"=>$data->id);
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
 				$condition['data']=array(
 					"merchant_homephone1"=>$data->merchant_homephone1,
 					"merchant_homephone2"=>$data->merchant_homephone2,
@@ -381,30 +408,79 @@ class Common extends CI_Controller {
 				);
 			break;
 			case 'myInfoEmail':
-				$condition['table']="merchant";
-				$condition['where']=array("merchant_id"=>$data->id);
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
 				$condition['data']=array(
-					"merchant_email"=>$data->merchant_email
+					"user_email"=>$data->merchant_email
 				);
 			break;
 			case 'shopImg':
-				$condition['table']="merchant";
-				$condition['where']=array("merchant_id"=>$_SESSION['userid']);
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$_SESSION['userid']);
 				$condition['data']=array(
 					"merchant_shop_".$data->position."img"=>$data->image
 				);
 			break;
 			case 'shopInfo':
-				$condition['table']="merchant";
-				$condition['where']=array("merchant_id"=>$_SESSION['userid']);
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$_SESSION['userid']);
 				$condition['data']=array(
 					"merchant_shop_info"=>$data->info
 				);
 			break;
+			case 'baseInfoAddressDisplay':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_displayed_address_address_display"=>$data->display
+				);
+			break;
+			case 'baseInfoPhoneDisplay':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_displayed_address_phone_display"=>$data->display
+				);
+			break;
+			case 'baseInfo':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_displayed_address_address_content"=>$data->address,
+					"merchant_displayed_address_phone_content1"=>$data->phone1,
+					"merchant_displayed_address_phone_content2"=>$data->phone2,
+					"merchant_displayed_address_phone_content3"=>$data->phone3,
+				);
+			break;
+			case 'baseInfoFaxnumber':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_displayed_faxnumber1"=>$data->phone1,
+					"merchant_displayed_faxnumber2"=>$data->phone2,
+					"merchant_displayed_faxnumber3"=>$data->phone3,
+				);
+			break;
+			case 'businessHours':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_displayed_workinghour"=>$data->businessHours
+				);
+			break;
+			case 'displayedInfoEmail':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_displayed_email"=>$data->email
+				);
+			break;
 		}
-		$result=$this->dbHandler->updateData($condition);
-		if($result==1) echo json_encode(array("result"=>"success","message"=>"Successfully Modify!"));
-		else echo json_encode(array("result"=>"failed","message"=>"Failed Modify"));
+		if($_POST['info_type']!='userNewPwd'){
+			$result=$this->dbHandler->updateData($condition);
+			if($result==1) echo json_encode(array("result"=>"success","message"=>"Successfully Modify!"));
+			else echo json_encode(array("result"=>"failed","message"=>"Failed to modify"));
+		}
 	}
 	public function getInfo(){
 		$condition=array();
@@ -508,6 +584,76 @@ class Common extends CI_Controller {
 				}
 				$url=$this->exportExcel('products','subject','description',$field,$dataArray);
 			break;
+			case 'productSimple':
+				$categories=$this->commongetdata->getCategories(true);
+				$field=array('Item code','Seller Code','Item Title','Price','Settle Price','Qty','Premium List','Status','Global Sales','Delivery Type','Main Cat','1st subCat','2nd subCat','Pay on delivery Y/N','Sales Format','Inventory Code','Listed Date');
+				$cat=$data->MainCategory==-1?false:$data->MainCategory;
+				$sCat=false;
+				$ssCat=false;
+				$title=$data->title==''?false:$data->title;
+				$status=$data->status==-1?false:$data->status;
+				$modifyTime=false;
+				$listedTime=false;
+				$sellFormat=false;
+				$order=array("field"=>"product_modify_time","type"=>'DESC');
+				$result=$this->commongetdata->getProducts(false,$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order);
+				$dataArray=array();
+				foreach($result as $value){
+					$dataArray[]=array(
+						$value->product_id,
+						'',
+						$value->product_item_title_english,
+						$value->product_reference_price,
+						$value->product_sell_price,
+						$value->product_quantity,
+						'',
+						$value->product_status,
+						'',
+						$value->product_sell_format,
+						$categories[$value->product_category]->category_name,
+						$categories[$value->product_sub_category]->category_name,
+						$categories[$value->product_sub_sub_category]->category_name,
+						'',
+						'',
+						'',
+						$value->product_time
+					);
+				}
+				$url=$this->exportExcel('products','subject','description',$field,$dataArray);
+			break;
+			case 'merchant':
+				$categories=$this->commongetdata->getCategories(true);
+				$field=array('Logo','Seller Shop Title','Avatar','Username','Email','Gender','Vip','Status','Last Login Time');
+				$parameters=array(
+					'result'=>'data',
+					''=>
+				);
+				
+				$result=$this->commongetdata->getMerchantsAdvance($parameters);
+				$dataArray=array();
+				foreach($result as $value){
+					$dataArray[]=array(
+						$value->product_id,
+						'',
+						$value->product_item_title_english,
+						$value->product_reference_price,
+						$value->product_sell_price,
+						$value->product_quantity,
+						'',
+						$value->product_status,
+						'',
+						$value->product_sell_format,
+						$categories[$value->product_category]->category_name,
+						$categories[$value->product_sub_category]->category_name,
+						$categories[$value->product_sub_sub_category]->category_name,
+						'',
+						'',
+						'',
+						$value->product_time
+					);
+				}
+				$url=$this->exportExcel('products','subject','description',$field,$dataArray);
+			break;
 		}
 		echo json_encode(array("result"=>"success","message"=>$url));
 	}
@@ -545,30 +691,39 @@ class Common extends CI_Controller {
 	}
 	public function checkCode(){
 		if(isset($_POST['code']) && strcasecmp($_POST['code'],$_SESSION['authcode'])==0){
-			echo json_encode(array("result"=>"success","message"=>"验证码输入正确！"));
+			echo json_encode(array("result"=>"success","message"=>"Right Security code!"));
 		}else{
-			echo json_encode(array("result"=>"failed","message"=>"验证码输入错误！"));
+			echo json_encode(array("result"=>"failed","message"=>"Wrong Security code!"));
 		}
 	}
 	public function checkEmail(){
-		if(!$this->commongetdata->checkUniqueAdvance("user","user_email",$_POST['email'])){
-			echo json_encode(array("result"=>"notunique","message"=>"该用户名已经存在"));
+		if(!$this->commongetdata->checkUniqueAdvance("user",array("user_email"=>$_POST['email'],"user_confirm_email"=>1))){
+			echo json_encode(array("result"=>"notunique","message"=>"The email already exists!"));
 			return false;
 		}else{
 			echo json_encode(array("result"=>"failed","message"=>"验证码输入错误！"));
 		}
 	}
+	public function checkEmailExist(){
+		if(!$this->commongetdata->checkUniqueAdvance("user",array("user_email"=>$_POST['email']))){
+			echo json_encode(array("result"=>"notunique","message"=>"The email already exists!"));
+			return false;
+		}else{
+			echo json_encode(array("result"=>"failed","message"=>"验证码输入错误！"));
+		}
+	}
+	/*
 	public function checkMerchantEmail(){
-		if(!$this->commongetdata->checkUniqueAdvance("merchant","merchant_email",$_POST['email'])){
+		if(!$this->commongetdata->checkUniqueAdvance("merchant",array("merchant_email"=>$_POST['email']))){
 			echo json_encode(array("result"=>"notunique","message"=>"该用户名已经存在"));
 			return false;
 		}else{
 			echo json_encode(array("result"=>"failed","message"=>"验证码输入错误！"));
 		}
-	}
+	}*/
 	public function checkID(){
-		if(!$this->commongetdata->checkUniqueAdvance("merchant","merchant_login_ID",$_POST['ID'])){
-			echo json_encode(array("result"=>"notunique","message"=>"该用户名已经存在"));
+		if(!$this->commongetdata->checkUniqueAdvance("user",array("merchant_login_ID"=>$_POST['ID']))){
+			echo json_encode(array("result"=>"notunique","message"=>"The user name already exists!"));
 			return false;
 		}else{
 			echo json_encode(array("result"=>"failed","message"=>"验证码输入错误！"));
@@ -590,6 +745,42 @@ class Common extends CI_Controller {
 			$this->load->view('redirect',array("info"=>"failed!"));
 		}
 	}
+	public function active(){
+//		!$this->commongetdata->checkUniqueAdvance("user","user_email",$_GET['email']);
+		$condition=array(
+			'table'=>'user',
+			'result'=>'data',
+			'where'=>array(
+				'token'=>$_GET['verify'],
+				'user_confirm_email'=>0
+			)
+		);
+		$user=$this->commongetdata->getData($condition);
+		if(sizeof($user)<1){
+			$this->load->view('redirect',array("url"=>"/home/login","info"=>"This token is error or this email has been verified!"));
+			return false;
+		}
+		$user=$user[0];
+		if(time()>$user->token_exptime){ //24hour 
+			$msg = 'You activate the validity period is over, please login your account to resend the activation email.'; 
+//			echo json_encode(array("result"=>"failed","message"=>$msg));
+			$this->load->view('redirect',array("url"=>"/home/login","info"=>$msg));
+			return false;
+		}
+		$condition['table']="user";
+		$condition['where']=array("token"=>$_GET['verify']);
+		$condition['data']=array(
+			"user_confirm_email"=>1
+		);
+		$result=$this->dbHandler->updateData($condition);
+		if($result==1){
+			$this->commongetdata->email($user->user_email,$this->commongetdata->getWebsiteConfig("website_user_register_success_email_subject"),$this->commongetdata->getWebsiteConfig("website_user_register_success_email_message"));
+			$this->load->view('redirect',array("url"=>"/home/login","info"=>"Success!"));
+		}
+		else{
+			$this->load->view('redirect',array("info"=>"failed!"));
+		}
+	}
 	public function confirmMerchantEmail(){
 //		!$this->commongetdata->checkUniqueAdvance("merchant","merchant_email",$_GET['email']);
 		$condition['table']="merchant";
@@ -602,7 +793,34 @@ class Common extends CI_Controller {
 		else echo json_encode(array("result"=>"failed","message"=>"failed"));
 	}
 	public function sendEmail(){
-		$this->commongetdata->email($_SESSION['userEmail'],'Successfully Registered. | Confirm E-mail!','<a href="aiimai.coolkeji.com/common/confirmEmail?email='.$_SESSION['userEmail'].'">Confirm</a>');
+		$condition=array(
+			'table'=>'user',
+			'result'=>'data',
+			'where'=>array(
+				'user_email'=>$_SESSION['userEmail'],
+				'user_confirm_email'=>0
+			)
+		);
+		$user=$this->commongetdata->getData($condition);
+		if(sizeof($user)<1){
+			echo json_encode(array("result"=>"failed","message"=>"This email doesn't exist or has been verified!"));
+			return false;
+		}
+		$user=$user[0];
+		$token=md5(($user->user_username).($user->user_pwd).time()); //创建用于激活识别码 
+		$token_exptime = time()+60*60*24;//过期时间为24小时后
+		$condition['table']="user";
+		$condition['where']=array(
+			"user_email"=>$_SESSION['userEmail']
+		);
+		$condition['data']=array(
+			"token"=>$token,
+			"token_exptime"=>$token_exptime
+		);
+		$result=$this->dbHandler->updateData($condition);
+		$emailTitle=$this->commongetdata->getWebsiteConfig('website_confirm_email_title');
+		$emailContent=$this->commongetdata->getWebsiteConfig('website_confirm_email_content');
+		$this->commongetdata->email($_SESSION['userEmail'],$emailTitle,$emailContent.'<a href="aiimai.coolkeji.com/common/active?verify='.$token.'">Confirm</a>');
 		echo json_encode(array("result"=>"success","message"=>"验证码输入正确！"));
 		/*		if(){
 			echo json_encode(array("result"=>"success","message"=>"验证码输入正确！"));
@@ -611,8 +829,37 @@ class Common extends CI_Controller {
 		}*/
 	}
 	public function sendConfirmEmail(){
-		$this->commongetdata->email($_POST['userEmail'],'How to reset your AiiMai password!','To get back to your AiiMai account, you will need to create a new password.Click the link below to open a secure browser and set a new password.<a href="aiimai.coolkeji.com/home/createNewPassword?email='.$_POST['userEmail'].'">Confirm</a>');
-		$_SESSION['userEmail']=$_POST['userEmail'];
+//		$this->commongetdata->email($_POST['userEmail'],,);
+//		$_SESSION['userEmail']=$_POST['userEmail'];
+//		echo json_encode(array("result"=>"success","message"=>"验证码输入正确！"));
+		
+		$condition=array(
+			'table'=>'user',
+			'result'=>'data',
+			'where'=>array(
+				'user_email'=>$_POST['userEmail']
+			)
+		);
+		$user=$this->commongetdata->getData($condition);
+		if(sizeof($user)<1){
+			echo json_encode(array("result"=>"failed","message"=>"This email doesn't exist!"));
+			return false;
+		}
+		$user=$user[0];
+		$token=md5(($user->user_username).($user->user_pwd).time()); //创建用于激活识别码 
+		$token_exptime = time()+60*60*24;//过期时间为24小时后
+		$condition['table']="user";
+		$condition['where']=array(
+			"user_email"=>$_POST['userEmail']
+		);
+		$condition['data']=array(
+			"token"=>$token,
+			"token_exptime"=>$token_exptime
+		);
+		$result=$this->dbHandler->updateData($condition);
+		$emailTitle=$this->commongetdata->getWebsiteConfig('website_reset_password_title');
+		$emailContent=$this->commongetdata->getWebsiteConfig('website_reset_password_content');
+		$this->commongetdata->email($_POST['userEmail'],$emailTitle,$emailContent.'<br><a href="aiimai.coolkeji.com/home/createNewPassword?verify='.$token.'">Confirm</a>');
 		echo json_encode(array("result"=>"success","message"=>"验证码输入正确！"));
 	}
 	public function sendMerchantEmail(){
@@ -621,12 +868,12 @@ class Common extends CI_Controller {
 	}
 	public function reloadEmail(){
 		$condition=array(
-			'table'=>'merchant',
+			'table'=>'user',
 			'result'=>'data',
-			'where'=>array('merchant_email'=>$_SESSION['merchantEmail'])
+			'where'=>array('user_email'=>$_SESSION['merchantEmail'])
 		);
 		$merchant=$this->commongetdata->getOneData($condition);
-		if($merchant->merchant_confirm_email==1)
+		if($merchant->user_confirm_email==1)
 			echo json_encode(array("result"=>"success","message"=>"Successfully Confirmed E-mail!"));
 		else
 			echo json_encode(array("result"=>"failed","message"=>"Failed Confirmed E-mail!"));

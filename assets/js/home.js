@@ -129,7 +129,7 @@ function checkCode(){
 	}
 	return checkResult;
 }
-function checkUserEmail(){
+function checkUserEmail(ifShowAlert){
 	if ($("#email").val() == "") {
 		showAlert('danger','E-mail',' can not be empty!');
 		$("#email").focus(); 
@@ -152,13 +152,14 @@ function checkUserEmail(){
 			showAlert('danger','[Error]','With this email, an account is already created!');
 			checkResult=false;
 		}else{
-			showAlert('success','Congratulation!','Available!');
+			if(ifShowAlert) showAlert('success','Congratulation!','Available!');
 			checkResult=true;
 		}
 	  }
 	});
 	return checkResult; 
 }
+/*
 function checkMerchantEmail(){
 	if ($("#email").val() == "") {
 		showAlert('danger','E-mail',' can not be empty!');
@@ -188,8 +189,24 @@ function checkMerchantEmail(){
 	  }
 	});
 	return checkResult; 
-}
+}*/
 function sendEmail(){
+	$.ajax({
+	  type : "post",
+	  url : "/common/sendEmail",
+	  data : 'email=ok',
+	  async : false,
+	  success : function(data){
+		var result=$.parseJSON(data);
+		if(result.result=="success"){
+			showAlert('success','Email ','sent successfully!');
+		}else{
+			showAlert('danger','Failed!',result.message);
+		}
+	  }
+	});
+}
+function sendMerchantEmail(){
 	$.ajax({
 	  type : "post",
 	  url : "/common/sendEmail",
@@ -205,24 +222,8 @@ function sendEmail(){
 	  }
 	});
 }
-function sendMerchantEmail(){
-	$.ajax({
-	  type : "post",
-	  url : "/common/sendMerchantEmail",
-	  data : 'email=ok',
-	  async : false,
-	  success : function(data){
-		var result=$.parseJSON(data);
-		if(result.result=="success"){
-			showAlert('success','Email ','sent successfully!');
-		}else{
-			showAlert('danger','Failed!','Please send e-mail again!');
-		}
-	  }
-	});
-}
 function checkAll(){
-	if(checkuserName() && checkPwd() && checkCfmPwd() && checkCode()){
+	if(checkuserName() && checkPwd() && checkCfmPwd() && checkCode() && checkUserEmail(false)){
 		validation();
 		return true;
 	}else{
@@ -515,7 +516,7 @@ function findPasswordConfirm(){
 	if(!checkCode()) return false;
 	$.ajax({
 	  type : "post",
-	  url : "/common/checkEmail",
+	  url : "/common/checkEmailExist",
 	  data : 'email='+$("#email").val(),
 	  async : false,
 	  success : function(data){
@@ -557,6 +558,7 @@ function saveNewPassword(){
 	}
 	var userNewPwd = new Object();
 	userNewPwd.newpwd = newpwd;
+	userNewPwd.verify = $("#verify").val();
 //	dataHandler("modify","userNewPwd",userNewPwd,newPwdSuccess,null,closeWait(),'Success!',true);	
 	
 	$.post(
@@ -571,7 +573,7 @@ function saveNewPassword(){
 			alert('Success!');
 			location.href="/home/login";
 		}else{
-			alert('Failed. You cannot re-use an old password');
+			alert(result.message);
 		}
 	});
 }

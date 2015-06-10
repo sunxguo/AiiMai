@@ -23,7 +23,7 @@ class Home extends CI_Controller {
 	}
 	public function loginHandler(){
 		if(!isset($_POST["validCode"]) || strcasecmp($_POST['validCode'],$_SESSION['authcode'])!=0){
-			$this->load->view('redirect',array("info"=>"Please enter the letters in the picture exactly!",'url'=>'/home/login'));
+			$this->load->view('redirect',array("info"=>"Please enter the letters in the picture exactly!",'url'=>'/home/login?username='.$_POST["username"]));
 		}
 		if(isset($_POST["username"]) && isset($_POST["pwd"])){
 			$condition=array(
@@ -43,7 +43,7 @@ class Home extends CI_Controller {
 					$this->load->view('redirect',array("url"=>"/home"));
 				}
 				else{
-					$this->load->view('redirect',array("info"=>"Wrong password!",'url'=>'/home/login'));
+					$this->load->view('redirect',array("info"=>"Wrong password!",'url'=>'/home/login?username='.$_POST["username"]));
 				}
 			}
 			else{
@@ -158,7 +158,7 @@ class Home extends CI_Controller {
 	}
 	public function item(){
 		$item=$this->commongetdata->getContent('product',$_GET['itemId']);
-		$merchant=$this->commongetdata->getContent('merchant',$item->product_merchant);
+		$merchant=$this->commongetdata->getContent('user',$item->product_merchant);
 		$optionData=$this->commongetdata->getOptionData($_GET['itemId'],'data');
 		$optionArray=array();
 		foreach($optionData as $option){
@@ -193,7 +193,7 @@ class Home extends CI_Controller {
 			$this->load->view('redirect',array("info"=>"Wrong url!",'url'=>'/home'));
 		}
 		$data=array(
-			'merchant'=>$this->commongetdata->getContent('merchant',$_GET['shopId']),
+			'merchant'=>$this->commongetdata->getContent('user',$_GET['shopId']),
 			"merchantProductsAmount"=>$this->commongetdata->getProductsAdvance(array(
 				"result"=>'count',
 				"merchant"=>$_GET['shopId'],
@@ -210,7 +210,7 @@ class Home extends CI_Controller {
 			$this->load->view('redirect',array("info"=>"Wrong url!",'url'=>'/home'));
 		}
 		$data=array(
-			'merchant'=>$this->commongetdata->getContent('merchant',$_GET['shopId']),
+			'merchant'=>$this->commongetdata->getContent('user',$_GET['shopId']),
 			"merchantProductsAmount"=>$this->commongetdata->getProductsAdvance(array(
 				"result"=>'count',
 				"merchant"=>$_GET['shopId'],
@@ -231,7 +231,7 @@ class Home extends CI_Controller {
 			$this->load->view('redirect',array("info"=>"Wrong url!",'url'=>'/home'));
 		}
 		$data=array(
-			'merchant'=>$this->commongetdata->getContent('merchant',$_GET['shopId']),
+			'merchant'=>$this->commongetdata->getContent('user',$_GET['shopId']),
 			"merchantProductsAmount"=>$this->commongetdata->getProductsAdvance(array(
 				"result"=>'count',
 				"merchant"=>$_GET['shopId'],
@@ -257,6 +257,7 @@ class Home extends CI_Controller {
 	public function mypanel(){
 		$this->checkUserLogin();
 		$data=array(
+			'user'=>$this->commongetdata->getContent('user',$_SESSION['userid']),
 			'cart'=>$this->commongetdata->getCartListByMerchants()
 		);
 		$this->homeBaseHandler('My Panel','panel',$data);

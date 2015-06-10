@@ -9,7 +9,8 @@ class Cms extends CI_Controller {
 		$this->load->model("dbHandler");
 	}
 	public function checkMerchantLogin(){
-		if (!checkLogin() || strcmp($_SESSION["usertype"], "merchant")) {
+		// || strcmp($_SESSION["usertype"], "merchant")
+		if (!checkLogin()) {
 			$this->load->view('redirect',array("url"=>"/cms/login","info"=>"Please login merchant account!"));
 			return false;
 		}else return true;
@@ -18,21 +19,25 @@ class Cms extends CI_Controller {
 		$this->load->view('cms/login',array('title'=>"Login ASM"));
 	}
 	public function loginHandler(){
+		if(!isset($_POST['validCode']) || strcasecmp($_POST['validCode'],$_SESSION['authcode'])!=0){
+			$this->load->view('redirect',array("info"=>"Wrong Security Code!","url"=>"/cms/login?username=".$_POST["username"]));
+			return false;
+		}
 		if(isset($_POST["username"]) && isset($_POST["pwd"])){
 			$condition=array(
-				'table'=>'merchant',
+				'table'=>'user',
 				'result'=>'data',
-				'where'=>array('merchant_username'=>$_POST["username"])
+				'where'=>array('user_username'=>$_POST["username"])
 			);
 			$info=$this->dbHandler->selectData($condition);
 			if(count($info,0)==1){
 				$post_pwd=MD5("MonkeyKing".$_POST["pwd"]);
-				$db_pwd=$info[0]->merchant_pwd;
+				$db_pwd=$info[0]->user_pwd;
 				if($post_pwd==$db_pwd){
-					$_SESSION['username']=$info[0]->merchant_username;
-					$_SESSION['userid']=$info[0]->merchant_id;
-					$_SESSION['usertype']="merchant";
-					$_SESSION['merchantEmail']=$info[0]->merchant_email;
+					$_SESSION['username']=$info[0]->user_username;
+					$_SESSION['userid']=$info[0]->user_id;
+//					$_SESSION['usertype']="merchant";
+					$_SESSION['merchantEmail']=$info[0]->user_email;
 					//状态：0：注册完成但没有完善信息 1：完善信息等待审核 2：审核通过 3：审核不通过
 					switch($info[0]->merchant_status){
 						case 0:
@@ -50,14 +55,14 @@ class Cms extends CI_Controller {
 					}
 				}
 				else{
-					$this->load->view('redirect',array("info"=>"Wrong Password!"));
+					$this->load->view('redirect',array("info"=>"Wrong Password!","url"=>"/cms/login?username=".$_POST["username"]));
 				}
 			}
 			else{
-				$this->load->view('redirect',array("info"=>"Username does not exist!"));
+				$this->load->view('redirect',array("info"=>"Username does not exist!","url"=>"/cms/login"));
 			}
 		}else{
-			$this->load->view('redirect',array("info"=>"Please enter your username and password!"));
+			$this->load->view('redirect',array("info"=>"Please enter your username and password!","url"=>"/cms/login"));
 		}
 	}
 	public function logout(){
@@ -94,12 +99,14 @@ class Cms extends CI_Controller {
 		$this->load->view('home/footer',array());
 	}
 	public function registerInformation(){
+		$this->checkMerchantLogin();
 		$data=array();
 		$this->load->view('home/header',
 			array(
 				'title' => "Seller Information-AiiMai",
 				'websiteName'=>"AiiMai",
-				'categories'=>$this->commongetdata->getCategories(false)
+				'categories'=>$this->commongetdata->getCategories(false),
+				'user'=>$this->commongetdata->getContent('user',$_SESSION['userid'])
 			)
 		);
 		$this->load->view('home/sellerInformation',$data);
@@ -128,7 +135,7 @@ class Cms extends CI_Controller {
 	}
 	public function myInfo(){
 		$data=array(
-			"merchant"=>$this->commongetdata->getContent('merchant',$_SESSION['userid'])
+			"merchant"=>$this->commongetdata->getContent('user',$_SESSION['userid'])
 		);
 		$this->cmsBaseHandler('My Info',array('baseInfo'=>true,'myInfo'=>true),'myInfo',$data);
 	}

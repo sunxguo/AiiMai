@@ -27,6 +27,13 @@
 				<li><a href="/home/personalInfo">Personal Info</a></li>
 			  </ul>
 			</li>
+			<li>
+				<?php if($user->user_is_merchant):?>
+				You have been the seller account.
+				<?php else:?>
+				<a href="/cms/registerInformation" target="_blank" style="color:#337ab7;">Upgrade to a Seller Account</a>
+				<?php endif;?>
+			</li>
 			<!--
 			<li class="dropdown" onmouseover="$('#aAccount').show();" onmouseout="$('#aAccount').hide();">
 			  <a href="#" class="dropdown-toggle">A·account <span class="caret"></span></a>

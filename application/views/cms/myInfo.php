@@ -8,15 +8,15 @@
 					<td class="field width15p"><?php echo lang('cms_sider_UserID');?></td>
 					<td class="value width17p"><?php echo $merchant->merchant_login_ID;?></td>
 					<td class="field width15p"><?php echo lang('cms_sider_Seller');?></td>
-					<td class="value width17p"><?php echo $merchant->merchant_username;?></td>
+					<td class="value width17p"><?php echo $merchant->user_username;?></td>
 					<td class="field width15p"><?php echo lang('cms_sider_RegisterDate');?></td>
-					<td class="value "><?php echo $merchant->merchant_reg_time;?></td>
+					<td class="value "><?php echo $merchant->user_reg_time;?></td>
 				  </tr>
 				  <tr>
 					<td class="field"><?php echo lang('cms_sider_Sellertype');?></td>
 					<td class="value"><?php echo $merchant->merchant_type=='1'?lang('cms_sider_Person'):'Company';?></td>
 					<td class="field"><?php echo lang('cms_sider_Sellerlevel');?></td>
-					<td class="value"><?php echo $merchant->merchant_grade;?><?php //echo lang('cms_sider_StandardSeller');?></td>
+					<td class="value"><?php echo $merchant->user_grade;?><?php //echo lang('cms_sider_StandardSeller');?></td>
 					<td class="field"><?php echo lang('cms_sider_Password');?></td>
 					<td class="value" style="padding: 2px 0;">
 						<button onclick="modifySellerBaseInfoPwd();" type="button" class="km-btn km-btn-primary" style="height: 30px;font-size: 12px;"><?php echo lang('cms_sider_Editpassword');?></button>
@@ -241,7 +241,7 @@
 					</td>
 					<td class="field width10p" rowspan="2"><?php echo lang('cms_myInfo_Email');?></td>
 					<td class="value width17p" rowspan="2">
-						<?php echo $merchant->merchant_email;?>
+						<?php echo $merchant->user_email;?>
 						<button onclick="setDivCenter('#baseContactInfoEmail',true);" type="button" class="km-btn km-btn-primary" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button><br>
 						<?php echo lang('cms_myInfo_EmailTip');?></td>
 						<div class="km-modal-dialog width40p" id="baseContactInfoEmail">
@@ -252,7 +252,7 @@
 								</div>
 								<div class="km-modal-body">
 									<label for="customer_view_email" class="km-control-label"><?php echo lang('cms_myInfo_Email');?>:</label>
-									<input type="text" class="km-form-control" id="merchant_email" value="<?php echo $merchant->merchant_email;?>" style="width: 95%;padding: 0 5px;">
+									<input type="text" class="km-form-control" id="merchant_email" value="<?php echo $merchant->user_email;?>" style="width: 95%;padding: 0 5px;">
 								</div>
 								<div class="km-modal-footer">
 									<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_myInfo_Close');?></button>
@@ -339,9 +339,13 @@
 				<tbody>
 				  <tr>
 					<td class="field width10p"><?php echo lang('cms_myInfo_Address');?></td>
-					<td class="value width17p tal" colspan="3">
-						<input id="baseInfoAddress" type="checkbox" style="vertical-align: middle;" checked><label for="baseInfoAddress" style="margin-right:10px;">Display</label><span class="km-label km-label-success" style="padding:0 0.6em"><?php echo lang('cms_myInfo_Display');?></span> (521168) 168A SIMEI LANE 168A Simei Lane Singapore 521168	<br>
-						<input id="baseInfoPhone" type="checkbox" style="vertical-align: middle;"><label for="baseInfoPhone" style="margin-right:10px;">Display</label><span class="km-label km-label-danger" style="padding:0 0.6em"><?php echo lang('cms_myInfo_Hide');?></span> Singapore 9685-1921
+					<td class="value width17p tal" colspan="3"> 
+						<input id="baseInfoAddress" type="checkbox" style="vertical-align: middle;" <?php echo $merchant->merchant_displayed_address_address_display?'checked':'';?>>
+						<label for="baseInfoAddress" class="km-label km-label-<?php echo $merchant->merchant_displayed_address_address_display?'success':'danger';?>" style="margin-right:10px;padding:0 0.6em">Display</label>
+						 <?php echo $merchant->merchant_displayed_address_address_content;?>	<br>
+						<input id="baseInfoPhone" type="checkbox" style="vertical-align: middle;" <?php echo $merchant->merchant_displayed_address_phone_display?'checked':'';?>>
+						<label for="baseInfoPhone" class="km-label km-label-<?php echo $merchant->merchant_displayed_address_phone_display?'success':'danger';?>" style="margin-right:10px;padding:0 0.6em">Display</label>
+						 <?php echo $merchant->merchant_displayed_address_phone_content1.' '.$merchant->merchant_displayed_address_phone_content2.'-'.$merchant->merchant_displayed_address_phone_content3;?>
 						<button onclick="setDivCenter('#MyInfoCustomerViewAddress',true);" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
 						<div class="km-modal-dialog width40p" id="MyInfoCustomerViewAddress">
 							<div class="km-modal-content">
@@ -351,15 +355,15 @@
 								</div>
 								<div class="km-modal-body">
 									<label for="seller_baseinfo_oldpwd" class="km-control-label">Address:</label>
-									<input value="(521168) 168A SIMEI LANE 168A Simei Lane Singapore 521168" type="text" class="km-form-control" id="customer_view_address" style="width: 95%;padding: 0 5px;height: 30px;">
+									<input value="<?php echo $merchant->merchant_displayed_address_address_content;?>" type="text" class="km-form-control" id="baseInfoAddressContent" style="width: 95%;padding: 0 5px;height: 30px;">
 									<label for="customer_view_email" class="km-control-label">Phone:</label>
-									<select id="customer_view_fax_countrycode" style="display:block;height: 30px;"><?php require('countryPhoneNO.php');?></select><br>
-									<input type="text" class="km-form-control" id="customer_view_address_areacode" value="9685" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;">-
-									<input type="text" class="km-form-control" id="customer_view_address_number" value="1921" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;">
+									<select id="baseInfoPhoneContent1" style="display:block;height: 30px;"><?php require('countryPhoneNO.php');?></select><br>
+									<input type="text" class="km-form-control" id="baseInfoPhoneContent2" value="<?php echo $merchant->merchant_displayed_address_phone_content2;?>" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;">-
+									<input type="text" class="km-form-control" id="baseInfoPhoneContent3" value="<?php echo $merchant->merchant_displayed_address_phone_content3;?>" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;">
 								</div>
 								<div class="km-modal-footer">
 									<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_myInfo_Close');?></button>
-									<button type="button" class="km-btn km-btn-primary"><?php echo lang('cms_myInfo_Savechanges');?></button>
+									<button onclick="savebaseInfo();" type="button" class="km-btn km-btn-primary"><?php echo lang('cms_myInfo_Savechanges');?></button>
 								</div>
 							</div><!-- /.modal-content -->
 						</div><!-- /.modal-dialog -->
@@ -368,7 +372,7 @@
 				  <tr>
 					<td class="field width10p"><?php echo lang('cms_myInfo_Faxnumber');?></td>
 					<td class="value width17p">
-						Singapore 9685-1921
+						<?php echo $merchant->merchant_displayed_faxnumber1.' '.$merchant->merchant_displayed_faxnumber2.'-'.$merchant->merchant_displayed_faxnumber3;?>
 						<button onclick="setDivCenter('#MyInfoCustomerViewFax',true);" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
 						<div class="km-modal-dialog width40p" id="MyInfoCustomerViewFax">
 							<div class="km-modal-content">
@@ -378,19 +382,19 @@
 								</div>
 								<div class="km-modal-body">
 									<label for="customer_view_email" class="km-control-label"><?php echo lang('cms_myInfo_Faxnumber');?>:</label>
-									<select id="customer_view_fax_countrycode" style="display:block;height: 30px;"><?php require('countryPhoneNO.php');?></select><br>
-									<input type="text" class="km-form-control" id="customer_view_fax_areacode" value="9685" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;">-
-									<input type="text" class="km-form-control" id="customer_view_fax_number" value="1921" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;">
+									<select id="baseInfoFaxnumber1" style="display:block;height: 30px;"><?php require('countryPhoneNO.php');?></select><br>
+									<input type="text" class="km-form-control" id="baseInfoFaxnumber2" value="<?php echo $merchant->merchant_displayed_faxnumber2;?>" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;">-
+									<input type="text" class="km-form-control" id="baseInfoFaxnumber3" value="<?php echo $merchant->merchant_displayed_faxnumber3;?>" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;">
 								</div>
 								<div class="km-modal-footer">
 									<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_myInfo_Close');?></button>
-									<button type="button" class="km-btn km-btn-primary"><?php echo lang('cms_myInfo_Savechanges');?></button>
+									<button onclick="saveBaseInfoFaxnumber();" type="button" class="km-btn km-btn-primary"><?php echo lang('cms_myInfo_Savechanges');?></button>
 								</div>
 							</div><!-- /.modal-content -->
 						</div><!-- /.modal-dialog -->
 					</td>
 					<td class="field width10p" rowspan="2"><?php echo lang('cms_myInfo_CustomerCenterWorkingHour');?></td>
-					<td class="value width17p" rowspan="2">周一~周五：上午9点~下午6点<br>周六： 上午9点~下午1点<br>周日，公休日：停业	
+					<td class="value width17p" rowspan="2"><?php echo $merchant->merchant_displayed_workinghour;?>
 						<button onclick="setDivCenter('#MyInfoCustomerViewBusinessHours',true);" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
 						<div class="km-modal-dialog width40p" id="MyInfoCustomerViewBusinessHours">
 							<div class="km-modal-content">
@@ -400,11 +404,11 @@
 								</div>
 								<div class="km-modal-body">
 									<label for="customer_view_email" class="km-control-label"><?php echo lang('cms_myInfo_CustomerCenterWorkingHour');?>:</label>
-									<textarea class="km-form-control" id="customer_view_businessHours" style="width:90%;min-height:60px;">周一~周五：上午9点~下午6点<br>周六： 上午9点~下午1点<br>周日，公休日：停业	</textarea>
+									<textarea class="km-form-control" id="customer_view_businessHours" style="width:90%;min-height:60px;"><?php echo $merchant->merchant_displayed_workinghour;?></textarea>
 								</div>
 								<div class="km-modal-footer">
 									<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_myInfo_Close');?></button>
-									<button type="button" class="km-btn km-btn-primary"><?php echo lang('cms_myInfo_Savechanges');?></button>
+									<button onclick="saveBaseInfoWorkinghour();" type="button" class="km-btn km-btn-primary"><?php echo lang('cms_myInfo_Savechanges');?></button>
 								</div>
 							</div><!-- /.modal-content -->
 						</div><!-- /.modal-dialog -->
@@ -413,7 +417,7 @@
 				  <tr>
 					<td class="field width10p"><?php echo lang('cms_myInfo_Email');?></td>
 					<td class="value width17p">
-						kcheongn@gmail.com
+						<?php echo $merchant->merchant_displayed_email;?>
 						<button onclick="modifyMyInfoCustomerViewEmail();" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
 						<div class="km-modal-dialog width40p" id="MyInfoCustomerViewEmail">
 							<div class="km-modal-content">
@@ -423,11 +427,11 @@
 								</div>
 								<div class="km-modal-body">
 									<label for="customer_view_email" class="km-control-label"><?php echo lang('cms_myInfo_Email');?>:</label>
-									<input type="text" class="km-form-control" id="customer_view_email" value="kcheongn@gmail.com" style="width: 95%;padding: 0 5px;">
+									<input type="text" class="km-form-control" id="displayedInfoEmail" value="<?php echo $merchant->merchant_displayed_email;?>" style="width: 95%;padding: 0 5px;">
 								</div>
 								<div class="km-modal-footer">
 									<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_myInfo_Close');?></button>
-									<button type="button" class="km-btn km-btn-primary"><?php echo lang('cms_myInfo_Savechanges');?></button>
+									<button onclick="saveDisplayedInfoEmail();" type="button" class="km-btn km-btn-primary"><?php echo lang('cms_myInfo_Savechanges');?></button>
 								</div>
 							</div><!-- /.modal-content -->
 						</div><!-- /.modal-dialog -->

@@ -96,7 +96,7 @@
 			</a>
 			<ul class="nav <?php echo array_key_exists('callCenter',$sider)?'':'hide';?>">
 				<li><a href="/cms/message" class="<?php echo array_key_exists('message',$sider)?'active':'';?>"><?php echo lang('cms_sider_CustomerInquiry');?></a></li>
-				<li><a href="/cms/Qtalk" class="<?php echo array_key_exists('Qtalk',$sider)?'active':'';?>"><?php echo lang('cms_sider_ApostOrAtalk');?></a></li>
+<!--				<li><a href="/cms/Qtalk" class="<?php echo array_key_exists('Qtalk',$sider)?'active':'';?>"><?php echo lang('cms_sider_ApostOrAtalk');?></a></li>-->
 				<li><a href="/cms/bulletin" class="<?php echo array_key_exists('bulletin',$sider)?'active':'';?>"><?php echo lang('cms_sider_ManageNotice');?></a></li>
 				<li><a href="/cms/comment" class="<?php echo array_key_exists('comment',$sider)?'active':'';?>"><?php echo lang('cms_sider_CustomerReview');?></a></li>
 			</ul>

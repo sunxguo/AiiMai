@@ -56,23 +56,23 @@
 			<?php foreach($merchants as $merchant):?>
 			<tr class="list1">
 				<td><img src="<?php echo $merchant->merchant_shop_icon;?>" width="54" height="43"></td>
-				<td class="column-name"><a href="/home/shop?shopId=<?php echo $merchant->merchant_id;?>" target="_blank"><?php echo $merchant->merchant_shop_name;?></a></td>
-				<td><img src="<?php echo $merchant->merchant_avatar;?>" width="54" height="43"></td>
-				<td><?php echo $merchant->merchant_username;?></td>
-				<td><?php echo $merchant->merchant_email;?></td>
-				<td><?php echo $merchant->merchant_gender==0?'Male':'Female';//0:male 1:female 2:unknown?></td>
-				<td><?php echo $merchant->merchant_vip_grade;?></td>
+				<td class="column-name"><a href="/home/shop?shopId=<?php echo $merchant->user_id;?>" target="_blank"><?php echo $merchant->merchant_shop_name;?></a></td>
+				<td><img src="<?php echo $merchant->user_avatar;?>" width="54" height="43"></td>
+				<td><?php echo $merchant->user_username;?></td>
+				<td><?php echo $merchant->user_email;?></td>
+				<td><?php echo $merchant->user_gender==0?'Male':'Female';//0:male 1:female 2:unknown?></td>
+				<td><?php echo $merchant->user_vip_grade;?></td>
 				<td><?php echo $merchant->merchant_status;//状态：0：注册完成但没有完善信息 1：完善信息等待审核 2：审核通过 3：审核不通过 4:冻结?></td>
-				<td><?php echo $merchant->merchant_lastlogin_time;?></td>
+				<td><?php echo $merchant->user_lastlogin_time;?></td>
 				<td>
-					<a href="/home/shop?shopId=<?php echo $merchant->merchant_id;?>" target="_blank">Go</a>&nbsp;&nbsp;&nbsp;
-					<a href="javascript:window.open('/admin/modifyMerchant?merchantId=<?php echo $merchant->merchant_id;?>','Edit Merchant','height=700,width=900,toolbar=no,menubar=no');">Edit</a>&nbsp;&nbsp;&nbsp;
+					<a href="/home/shop?shopId=<?php echo $merchant->user_id;?>" target="_blank">Go</a>&nbsp;&nbsp;&nbsp;
+					<a href="javascript:window.open('/admin/modifyMerchant?merchantId=<?php echo $merchant->user_id;?>','Edit Merchant','height=700,width=900,toolbar=no,menubar=no');">Edit</a>&nbsp;&nbsp;&nbsp;
 					<?php if($merchant->merchant_status!=2):?>
-					<a href="javascript:confirmMerchant('<?php echo $merchant->merchant_id;?>','Sure to confirm <<?php echo $merchant->merchant_username;?>>？','Successfully Confirmed <?php echo $merchant->merchant_username;?>')">Confirm</a>&nbsp;&nbsp;&nbsp;
+					<a href="javascript:confirmMerchant('<?php echo $merchant->user_id;?>','Sure to confirm <<?php echo $merchant->user_username;?>>？','Successfully Confirmed <?php echo $merchant->user_username;?>')">Confirm</a>&nbsp;&nbsp;&nbsp;
 					<?php else:?>
-					<a href="javascript:doNotConfirmMerchant('<?php echo $merchant->merchant_id;?>','Do not confirm <<?php echo $merchant->merchant_username;?>>？','Successfully did not confirm <?php echo $merchant->merchant_username;?>')">Do Not Confirm</a>&nbsp;&nbsp;&nbsp;
+					<a href="javascript:doNotConfirmMerchant('<?php echo $merchant->user_id;?>','Do not confirm <<?php echo $merchant->user_username;?>>？','Successfully did not confirm <?php echo $merchant->user_username;?>')">Do Not Confirm</a>&nbsp;&nbsp;&nbsp;
 					<?php endif;?>
-					<a href="javascript:delMerchant('<?php echo $merchant->merchant_id;?>','Sure to delete <<?php echo $merchant->merchant_username;?>>？','Successfully Deleted <?php echo $merchant->merchant_username;?>')">Delete</a>
+					<a href="javascript:delMerchant('<?php echo $merchant->user_id;?>','Sure to delete <<?php echo $merchant->user_username;?>>？','Successfully Deleted <?php echo $merchant->user_username;?>')">Delete</a>
 				</td>
 			</tr>
 			<?php endforeach;?>

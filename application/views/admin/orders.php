@@ -7,6 +7,32 @@
 		<div class="clear">
 		</div>
 	</div>-->
+	<div id="appDiv" class="titA tit-bot pb5" style="">
+		<div style="float: right;margin-left:10px;">
+			<input type="text" id="keyword" class="inp-txt width200" value="<?php echo isset($_GET["search"])?$_GET["search"]:"";?>">
+			<a href="javascript:selectOrder('<?php echo $selectPage;?>')" class="btn80">Search</a>
+		</div>
+		<div style="float: right;">
+			<span class="font12">Status:</span>
+			<select id="status" onchange="selectOrder('<?php echo $selectPage;?>')" class="select w100">
+                <option value="-1">All</option>
+                <option value="0" <?php echo isset($_GET["status"]) && $_GET["status"]==0?'selected = "selected"':'';?>>
+					Waiting for payment
+				</option>
+                <option value="1" <?php echo isset($_GET["status"]) && $_GET["status"]==1?'selected = "selected"':'';?>>
+					Waiting for confirmation
+				</option>
+                <option value="2" <?php echo isset($_GET["status"]) && $_GET["status"]==2?'selected = "selected"':'';?>>
+					In the distribution
+				</option>
+                <option value="3" <?php echo isset($_GET["status"]) && $_GET["status"]==3?'selected = "selected"':'';?>>
+					Completed
+				</option>
+            </select>
+		</div>
+		<div class="clear">
+		</div>
+	</div>
 	<table>
 		<thead>
 			<tr class="table-head">

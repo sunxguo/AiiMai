@@ -1,5 +1,16 @@
 $(document).ready(function(){
-	
+	$("#baseInfoAddress").click(function(){
+		var baseInfoAddressDisplay = new Object();
+		baseInfoAddressDisplay.id=$("#merchantId").val();
+		baseInfoAddressDisplay.display = $("#baseInfoAddress").prop("checked");
+		dataHandler("modify","baseInfoAddressDisplay",baseInfoAddressDisplay,successRefresh,null,null,null,true);
+	});
+	$("#baseInfoPhone").click(function(){
+		var baseInfoPhoneDisplay = new Object();
+		baseInfoPhoneDisplay.id=$("#merchantId").val();
+		baseInfoPhoneDisplay.display = $("#baseInfoPhone").prop("checked");
+		dataHandler("modify","baseInfoPhoneDisplay",baseInfoPhoneDisplay,successRefresh,null,null,null,true);
+	});
 });
 function modifyMyInfoCustomerViewEmail(){
 	setDivCenter('#MyInfoCustomerViewEmail',true);
@@ -99,4 +110,33 @@ function saveMyInfoEmail(){
 	myInfoEmail.id=$("#merchantId").val();
 	myInfoEmail.merchant_email = $("#merchant_email").val();
 	dataHandler("modify","myInfoEmail",myInfoEmail,successRefresh,null,null,null,true);
+}
+function savebaseInfo(){
+	var baseInfo = new Object();
+	baseInfo.id=$("#merchantId").val();
+	baseInfo.address = $("#baseInfoAddressContent").val();
+	baseInfo.phone1 = $("#baseInfoPhoneContent1").val();
+	baseInfo.phone2 = $("#baseInfoPhoneContent2").val();
+	baseInfo.phone3 = $("#baseInfoPhoneContent3").val();
+	dataHandler("modify","baseInfo",baseInfo,successRefresh,null,null,null,true);
+}
+function saveBaseInfoFaxnumber(){
+	var baseInfoFaxnumber = new Object();
+	baseInfoFaxnumber.id=$("#merchantId").val();
+	baseInfoFaxnumber.phone1 = $("#baseInfoFaxnumber1").val();
+	baseInfoFaxnumber.phone2 = $("#baseInfoFaxnumber2").val();
+	baseInfoFaxnumber.phone3 = $("#baseInfoFaxnumber3").val();
+	dataHandler("modify","baseInfoFaxnumber",baseInfoFaxnumber,successRefresh,null,null,null,true);
+}
+function saveBaseInfoWorkinghour(){
+	var businessHours = new Object();
+	businessHours.id=$("#merchantId").val();
+	businessHours.businessHours = $("#customer_view_businessHours").val();
+	dataHandler("modify","businessHours",businessHours,successRefresh,null,null,null,true);
+}
+function saveDisplayedInfoEmail(){
+	var displayedInfoEmail = new Object();
+	displayedInfoEmail.id=$("#merchantId").val();
+	displayedInfoEmail.email = $("#displayedInfoEmail").val();
+	dataHandler("modify","displayedInfoEmail",displayedInfoEmail,successRefresh,null,null,null,true);
 }

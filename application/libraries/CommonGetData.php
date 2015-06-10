@@ -363,12 +363,12 @@ class CommonGetData{
 		}
 		return $result;
 	}
-	public function checkUniqueAdvance($type,$field,$value){
+	public function checkUniqueAdvance($type,$where){
 		$result=false;
 		$condition=array(
 			'table'=>$type,
 			'result'=>'data',
-			'where'=>array($field=>$value)
+			'where'=>$where
 		);
 		$data=$this->getData($condition);
 		if(sizeof($data)<1){
@@ -425,6 +425,20 @@ class CommonGetData{
 		if(isset($parameters['orderBy'])) $condition['order_by']=$parameters['orderBy'];
 		$products=$this->CI->dbHandler->selectData($condition);
 		return $products;
+	}
+	/**
+	 *  
+	 **/
+	public function getMerchantsAdvance($parameters){
+		//,$merchantId,$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order
+		$condition=array('table'=>'user');
+		if(isset($parameters['result'])) $condition['result']=$parameters['result'];
+		if(isset($parameters['gender'])) $condition['where']['user_gender']=$parameters['gender'];
+		if(isset($parameters['status'])) $condition['where']['product_status']=$parameters['status'];
+		if(isset($parameters['like'])) $condition['like']=$parameters['like'];
+		if(isset($parameters['orderBy'])) $condition['order_by']=$parameters['orderBy'];
+		$merchants=$this->CI->dbHandler->selectData($condition);
+		return $merchants;
 	}
 	public function getHotItems($merchantId){
 		$condition=array(
@@ -568,7 +582,7 @@ class CommonGetData{
 			$amount = intval($item["amount"]);
 			if(!array_key_exists($merchant_id, $result)) {
 				// getMerchantInfo
-				$merchant_info = $this->getContent('merchant',$merchant_id);
+				$merchant_info = $this->getContent('user',$merchant_id);
 				$result[$merchant_id] = array(
 					"merchant_info" => $merchant_info,
 					"products" => array(),
