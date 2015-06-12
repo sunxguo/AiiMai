@@ -71,7 +71,7 @@
 				</td>
 				<td>
 					<a href="/home/item?itemId=<?php echo $item->product_id;?>" target="_blank">Preview</a>
-					<a href="javascript:window.open('/admin/modifyItem?itemId=1','Edit Item','height=700,width=900,toolbar=no,menubar=no');">Edit</a>
+					<a href="javascript:window.open('/admin/modifyItem?itemId=<?php echo $item->product_id;?>','Edit Item','height=700,width=900,toolbar=no,menubar=no');">Edit</a>
 					<a href="javascript:delItem('<?php echo $item->product_id;?>','Sure to delete <<?php echo $item->product_item_title_english;?>>？','Successfully deleted <?php echo $item->product_item_title_english;?>')">Delete</a>
 				</td>
 			</tr>

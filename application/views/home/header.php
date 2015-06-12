@@ -21,7 +21,7 @@
 			</div>
 			<div class="my-func fr">
 				<ul>
-					<?php if(!isset($_SESSION['username'])):?>
+					<?php if(!isset($_SESSION['username']) || (isset($_SESSION['usertype']) && $_SESSION['usertype']=="admin")):?>
 					<li><a href="/home/login">Log In</a></li>
 					<li>|</li>
 					<li><a href="/home/register">Register</a></li>

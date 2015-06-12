@@ -9,7 +9,7 @@ class Home extends CI_Controller {
 		$this->load->model("dbHandler");
 	}
 	public function checkUserLogin(){
-		if (!checkLogin() || !strcmp($_SESSION["usertype"], "admin")) {
+		if (!checkLogin() || (isset($_SESSION["usertype"]) && !strcmp($_SESSION["usertype"],"admin"))) {
 			$this->load->view('redirect',array("url"=>"/home/login","info"=>"Please login!"));
 			return false;
 		}
@@ -40,7 +40,7 @@ class Home extends CI_Controller {
 					$_SESSION['userid']=$info[0]->user_id;
 					$_SESSION['usertype']="user";
 					$_SESSION['userEmail']=$info[0]->user_email;
-					$this->checkUserLogin();
+					if(!$this->checkUserLogin()) return false;
 					$this->load->view('redirect',array("url"=>"/home"));
 				}
 				else{
@@ -256,7 +256,7 @@ class Home extends CI_Controller {
 		$this->homeBaseHandler('Place Order','placeOrder',$data);
 	}
 	public function mypanel(){
-		$this->checkUserLogin();
+		if(!$this->checkUserLogin()) return false;
 		$data=array(
 			'user'=>$this->commongetdata->getContent('user',$_SESSION['userid']),
 			'cart'=>$this->commongetdata->getCartListByMerchants()
@@ -264,35 +264,35 @@ class Home extends CI_Controller {
 		$this->homeBaseHandler('My Panel','panel',$data);
 	}
 	public function personalInfo(){
-		$this->checkUserLogin();
+		if(!$this->checkUserLogin()) return false;
 		$data=array(
 			'user'=>$this->commongetdata->getContent('user',$_SESSION['userid'])
 		);
 		$this->homeBaseHandler('Personal Info','personalInfo',$data);
 	}
 	public function recentOrders(){
-		$this->checkUserLogin();
+		if(!$this->checkUserLogin()) return false;
 		$data=array(
 			'cart'=>$this->commongetdata->getCartListByMerchants()
 		);
 		$this->homeBaseHandler('Recent Orders','recentOrders',$data);
 	}
 	public function auction(){
-		$this->checkUserLogin();
+		if(!$this->checkUserLogin()) return false;
 		$data=array(
 			'cart'=>$this->commongetdata->getCartListByMerchants()
 		);
 		$this->homeBaseHandler('auction','auction',$data);
 	}
 	public function viewAll(){
-		$this->checkUserLogin();
+		if(!$this->checkUserLogin()) return false;
 		$data=array(
 			'cart'=>$this->commongetdata->getCartListByMerchants()
 		);
 		$this->homeBaseHandler('viewAll','viewAll',$data);
 	}
 	public function cancelRefund(){
-		$this->checkUserLogin();
+		if(!$this->checkUserLogin()) return false;
 		$data=array(
 			'cart'=>$this->commongetdata->getCartListByMerchants()
 		);
