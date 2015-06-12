@@ -121,7 +121,6 @@ class Common extends CI_Controller {
 					"merchant_status"=>0,
 					"user_reg_time"=>$time
 				);
-				$_SESSION['userEmail']=$data->email;
 			break;
 			case 'follow':
 				if(!isset($_SESSION['userid'])){
@@ -150,6 +149,15 @@ class Common extends CI_Controller {
 			}
 			if($productId!='') echo json_encode(array("result"=>"success","message"=>"信息写入成功"));
 			else echo json_encode(array("result"=>"failed","message"=>"信息写入失败"));
+			return true;
+		}
+		if($_POST['info_type']=="merchant"){
+			$userId=$this->dbHandler->insertDataReturnId($table,$info);
+			$_SESSION['username']=$data->username;
+			$_SESSION['userid']=$userId;
+			$_SESSION['userEmail']=$data->email;
+			if($userId!='') echo json_encode(array("result"=>"success","message"=>"信息写入成功"));
+			else echo json_encode(array("result"=>"failed","message"=>"Failed!"));
 			return true;
 		}
 		$result=$this->dbHandler->insertData($table,$info);
@@ -294,7 +302,7 @@ class Common extends CI_Controller {
 				);
 			break;
 			case 'merchantBankbook':
-				$condition['table']="merchant";
+				$condition['table']="user";
 				$condition['where']=array("user_id"=>$_SESSION['userid']);
 				$condition['data']=array(
 					"merchant_bank_account"=>$data->src,
@@ -302,7 +310,7 @@ class Common extends CI_Controller {
 				);
 			break;
 			case 'GstInfo':
-				$condition['table']="merchant";
+				$condition['table']="user";
 				$condition['where']=array("user_id"=>$_SESSION['userid']);
 				$condition['data']=array(
 					"merchant_gst_name"=>$data->gstName,
@@ -318,7 +326,7 @@ class Common extends CI_Controller {
 				);
 			break;
 			case 'merchantStatus':
-				$condition['table']="merchant";
+				$condition['table']="user";
 				$condition['where']=array("user_id"=>$data->id);
 				$condition['data']=array(
 					"merchant_status"=>$data->status
@@ -658,7 +666,23 @@ class Common extends CI_Controller {
 		}
 		echo json_encode(array("result"=>"success","message"=>$url));
 	}
+	public function checkUserLogin(){
+		if (!checkLogin() || (isset($_SESSION["usertype"]) && !strcmp($_SESSION["usertype"],"admin"))) {
+//			$this->load->view('redirect',array("url"=>"/home/login","info"=>"Please login!"));
+			echo json_encode(array("result"=>"failed","message"=>'Please login first!'));
+			return false;
+		}
+		$user=$this->commongetdata->getContent('user',$_SESSION['userid']);
+		if($user->user_confirm_email==0){
+			$_SESSION['userEmail']=$user->user_email;
+//			$this->load->view('redirect',array("url"=>"/home/confirmEmail","info"=>"Please confirm your E-mail!"));
+			echo json_encode(array("result"=>"failed","message"=>'Please confirm your E-mail!'));
+			return false;
+		}
+		return true;
+	}
 	public function addToCart(){
+		if(!$this->checkUserLogin()) return false;
 		$result=$this->commongetdata->addToCart(array(
 			"productId"=>$_POST['product_id'],
 			"op1"=>isset($_POST['op1'])?$_POST['op1']:'',

@@ -31,7 +31,7 @@ function saveSellerBaseInfoPwd(successMsg){
 		alert('The two password don`t match!');
 		return false;
 	}
-	var pwd = new Object(); 
+	var pwd = new Object();
 	pwd.oldpwd = $("#seller_baseinfo_oldpwd").val();
 	pwd.newpwd = $("#seller_baseinfo_newpwd").val();
 	dataHandler("modify","merchantpwd",pwd,null,null,null,successMsg,true);

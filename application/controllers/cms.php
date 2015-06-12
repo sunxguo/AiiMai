@@ -37,7 +37,7 @@ class Cms extends CI_Controller {
 					$_SESSION['username']=$info[0]->user_username;
 					$_SESSION['userid']=$info[0]->user_id;
 //					$_SESSION['usertype']="merchant";
-					$_SESSION['merchantEmail']=$info[0]->user_email;
+					$_SESSION['userEmail']=$info[0]->user_email;
 					//状态：0：注册完成但没有完善信息 1：完善信息等待审核 2：审核通过 3：审核不通过
 					switch($info[0]->merchant_status){
 						case 0:
@@ -72,7 +72,7 @@ class Cms extends CI_Controller {
 		$this->load->view('redirect',array("url"=>"/cms/login"));
 	}
 	public function cmsBaseHandler($title,$sider,$view,$data){
-		$this->checkMerchantLogin();
+		if(!$this->checkMerchantLogin()) return false;
 		$websiteConfig=$this->commongetdata->getWebsiteConfig("ALLINFO");
 		$websiteName=$websiteConfig['website_name_'.$_SESSION['language']];
 		$this->load->view('cms/header',
@@ -99,7 +99,7 @@ class Cms extends CI_Controller {
 		$this->load->view('home/footer',array());
 	}
 	public function registerInformation(){
-		$this->checkMerchantLogin();
+		if(!$this->checkMerchantLogin()) return false;
 		$data=array();
 		$this->load->view('home/header',
 			array(
