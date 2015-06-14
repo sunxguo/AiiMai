@@ -8,12 +8,41 @@ class Cms extends CI_Controller {
 		$this->commongetdata->language('cms');
 		$this->load->model("dbHandler");
 	}
+	public function checkMerchantSimpleLogin(){
+		if (!checkLogin()) {
+			$this->load->view('redirect',array("url"=>"/cms/login","info"=>"Please login merchant account!"));
+			return false;
+		}else return true;
+	}
 	public function checkMerchantLogin(){
 		// || strcmp($_SESSION["usertype"], "merchant")
 		if (!checkLogin()) {
 			$this->load->view('redirect',array("url"=>"/cms/login","info"=>"Please login merchant account!"));
 			return false;
-		}else return true;
+		}else{
+			$condition=array(
+				'table'=>'user',
+				'result'=>'data',
+				'where'=>array('user_username'=>$_SESSION["username"])
+			);
+			$info=$this->dbHandler->selectData($condition);
+			//状态：0：注册完成但没有完善信息 1：完善信息等待审核 2：审核通过 3：审核不通过
+			switch($info[0]->merchant_status){
+				case 0:
+					$this->load->view('redirect',array("url"=>"/cms/registerInformation"));
+				break;
+				case 1:
+					$this->load->view('redirect',array("url"=>"/cms/waitConfirm"));
+				break;
+				case 2:
+					$this->load->view('redirect',array("url"=>"/cms/index"));
+				break;
+				case 3:
+					$this->load->view('redirect',array("url"=>"/cms/confirmFailed"));
+				break;
+			}
+			return true;
+		}
 	}
 	public function login(){
 		$this->load->view('cms/login',array('title'=>"Login ASM"));
@@ -99,7 +128,7 @@ class Cms extends CI_Controller {
 		$this->load->view('home/footer',array());
 	}
 	public function registerInformation(){
-		if(!$this->checkMerchantLogin()) return false;
+		if(!$this->checkMerchantSimpleLogin()) return false;
 		$data=array();
 		$this->load->view('home/header',
 			array(
@@ -113,6 +142,7 @@ class Cms extends CI_Controller {
 		$this->load->view('home/footer',array());
 	}
 	public function waitConfirm(){
+		if(!$this->checkMerchantSimpleLogin()) return false;
 		$data=array();
 		$this->load->view('home/header',
 			array(

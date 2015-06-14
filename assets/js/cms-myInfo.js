@@ -27,8 +27,14 @@ function saveSellerBaseInfoPwd(successMsg){
 		alert('New password can not be empty!');
 		return false;
 	}
+	var length = $("#seller_baseinfo_newpwd").val().length;
+	if(length<6 || length>25){	//3-15个字符
+//		alert("密码长度为6~25个字符！");
+		alert('Password must be 6 to 25 characters!');
+		return false;
+	}
 	if($("#seller_baseinfo_newpwd").val()!=$("#seller_baseinfo_confirmpwd").val()){
-		alert('The two password don`t match!');
+		alert('The two passwords you entered are different!');
 		return false;
 	}
 	var pwd = new Object();
