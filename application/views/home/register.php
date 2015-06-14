@@ -9,7 +9,8 @@
 	<div class="register-main-top">
 		<h3>Tell us about yourself</h3>
 		<p class="reg-sns">
-			<a href="<?php echo $loginUrl;?>" class="icon_fb">Facebook Login</a>
+			<?php /*?><a href="<?php echo $loginUrl;?>" class="icon_fb">Facebook Login</a><?php */?>
+			<fb:login-button scope="public_profile,email" onlogin="checkLoginState();" style="top: -15px;"></fb:login-button>
 			<span class="txt">Register with your facebook account</span>
 		</p>
 		<div class="reg-seller fr">
@@ -121,7 +122,6 @@
 			<a href="" class="fl" target="_blank">Seller Register</a>
 			<br><p class="fl">※ If you are not a member of AiiMai yet, please create an account first, then you can register as a seller.</p>
 		</div>
-		<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
 	</div>
 </div>
 <script>
@@ -219,6 +219,7 @@
 				location.href="/home";
 			}else{
 				alert(result.message);
+				$("#email").val(response.email);
 			}
 		});
     });

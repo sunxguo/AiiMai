@@ -813,7 +813,7 @@ class Common extends CI_Controller {
 		);
 		$info=$this->dbHandler->selectData($condition);
 		if(sizeof($info)<1){
-			echo json_encode(array("result"=>"failed","message"=>"No user!"));
+			echo json_encode(array("result"=>"failed","message"=>"The email has not been registered!"));
 			return false;
 		}
 		$_SESSION['username']=$info[0]->user_username;
