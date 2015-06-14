@@ -476,11 +476,39 @@ function getCheckValue(){
 	});
 	return productIdArray;
 }
-var isCheck=true;
-function checkAllCart(){
-	isCheck=!isCheck;
-	$("input[name='cartItem']").attr("checked",isCheck);
-	$("input[name='checkAllCartButton']").attr("checked",isCheck);
+function checkAllCart(tag){
+	var isCheck=$(tag).prop('checked');
+	$("input[name='cartItem']").prop("checked",isCheck);
+	$("input[name='checkAllCartButton']").prop("checked",isCheck);
+	$.post(
+	"/common/checkAllCartProduct",
+	{
+		'isCheck':isCheck
+	},
+	function(data){
+		var result=$.parseJSON(data);
+		if(result.result=="success"){
+			location.reload();
+		}else{
+			alert(result.message);
+		}
+	});
+}
+function checkItem(tag,itemId){
+	$.post(
+	"/common/checkCartProduct",
+	{
+		'productId':itemId,
+		'isCheck':$(tag).prop('checked')
+	},
+	function(data){
+		var result=$.parseJSON(data);
+		if(result.result=="success"){
+			location.reload();
+		}else{
+			alert(result.message);
+		}
+	});
 }
 function checkID(){
 	if ($("#ID").val() == "") {

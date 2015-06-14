@@ -15,8 +15,7 @@
 	<div class="clearfix">
 		<h3 class="cart-title">Order Info</h3>
 		<ul class="cart-header">
-			<li style="width:10%;"><input type="checkbox">all</li>
-			<li style="width:40%;">Item</li>
+			<li style="width:50%;">Item</li>
 			<li style="width:10%;">Benefit</li>
 			<li style="width:10%;">Qty.</li>
 			<li style="width:10%;">Price/Option</li>
@@ -24,23 +23,30 @@
 			<li style="width:10%;">Subtotal</li>
 		</ul>
 		<div class="cart-body clearfix">
-			<?php foreach($cart as $merchant):?>
-			<?php foreach($merchant['products'] as $product):?>
+			<?php //print_r($cart); 
+				$totalPrice=0;
+				foreach($cart as $merchant):?>
+			<?php
+				foreach($merchant['products'] as $product):
+				if($product->checked=='true'):
+			?>
 			<ul class="clearfix">
-				<li style="width:10%;"><input type="checkbox"></li>
-				<li style="width:40%;">
+				<li style="width:50%;">
 					<a href="/home/item?itemId=<?php echo $product->product_id;?>" target="_blank">
 						<img src="<?php echo $product->product_image;?>" width="82" height="82">
 						<?php echo $product->product_item_title_english;?>
 					</a>
 				</li>
-				<li style="width:10%;">XX</li>
-				<li style="width:10%;"><input class="inp-txt" style="width:25px;" value="<?php echo $product->amount;?>"></li>
+				<li style="width:10%;"></li>
+				<li style="width:10%;"><?php echo $product->amount;?></li>
 				<li style="width:10%;">S$<?php echo $product->product_sell_price;?></li>
-				<li style="width:10%;">-S$4.00</li>
-				<li style="width:10%;">S$14.00</li>
+				<li style="width:10%;">-S$0.00</li>
+				<li style="width:10%;">S$<?php $total=($product->product_sell_price)*($product->amount);echo $total;
+					if($product->checked=='true'){
+						$totalPrice+=$total;
+					}?></li>
 			</ul>
-			<?php endforeach;?>
+			<?php endif;endforeach;?>
 			<?php endforeach;?>
 		</div>
 	</div>
@@ -49,22 +55,22 @@
 		<div class="count">
 			<div class="price">
 				<h4>Total Price</h4>
-				<div><span id="">S$18.00</span></div>
+				<div><span id="">S$<?php echo $totalPrice;?></span></div>
 			</div>
 			<div class="discount">
 				<em class="subtraction">subtraction(-)</em>
 				<h4>Discount</h4>
-				<div><span id="">S$4.00</span></div>
+				<div><span id="">S$0.00</span></div>
 			</div>
 			<div class="rate">
 				<em class="plus">plus(+)</em>
 				<h4>Shipping rate</h4>
-				<div><span id="">S$3.99</span></div>
+				<div><span id="">S$0.00</span></div>
 			</div>
 			<div class="total">
 				<em class="sum">balance(=)</em>
 				<h4>Total Payment(1 items)</h4>
-				<div><span id="">S$17.99</span></div>
+				<div><span id="">S$<?php echo $totalPrice;?></span></div>
 				
 			</div>
 		</div>

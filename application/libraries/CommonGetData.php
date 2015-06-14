@@ -542,9 +542,10 @@ class CommonGetData{
 		$this->_ensureCartInSession();
 		$cart = $_SESSION['cart'];
 		$product_id=$product['productId'];
-		if(!array_key_exists($product_id, $cart)){
+		if(!array_key_exists($product_id,$cart)){
 			$cart[$product_id] = array(
 				"merchant" => $merchant_id,
+				"checked"=>true,
 				"amount" => 0
 			);
 		}
@@ -556,7 +557,44 @@ class CommonGetData{
 			return true;
 		}else return false;
 	}
-	
+	public function setCartProductNumber($product,$amount){
+		$this->_ensureCartInSession();
+		$cart = $_SESSION['cart'];
+		$product_id=$product['productId'];
+		if(!array_key_exists($product_id,$cart)){
+			return false;
+		}
+		if(!is_numeric($amount)){
+			return false;
+		}
+		$stock=$this->getStock($product_id,$product['op1'],$product['op2'],$product['op3']);
+		if($stock>=$amount){
+			$cart[$product_id]["amount"] = $amount;
+			$_SESSION['cart'] =($cart);
+			return true;
+		}else return false;
+	}
+	public function checkCartProduct($productId,$isCheck){
+		$this->_ensureCartInSession();
+		$cart = $_SESSION['cart'];
+		if(!array_key_exists($productId,$cart)){
+			return false;
+		}
+		$cart[$productId]["checked"] = $isCheck;
+		$_SESSION['cart'] =($cart);
+		return true;
+	}
+	public function checkAllCartProduct($isCheck){
+		$this->_ensureCartInSession();
+		$cart = $_SESSION['cart'];
+		foreach($cart as $key=>$product){
+			$cart[$key]["checked"] = $isCheck;
+//			echo $product["checked"];
+		}
+//		print_r($cart);
+		$_SESSION['cart'] =($cart);
+		return true;
+	}
 	/**
 	 * 从购物车中删除商品
 	 * @param string $product_id
@@ -579,6 +617,7 @@ class CommonGetData{
 		$result = array();
 		foreach($cart as $product_id => $item) {
 			$merchant_id = $item["merchant"];
+			$checked = $item["checked"];
 			$amount = intval($item["amount"]);
 			if(!array_key_exists($merchant_id, $result)) {
 				// getMerchantInfo
@@ -591,6 +630,7 @@ class CommonGetData{
 			// getProductInfo
 			$product_info = $this->getContent('product',$product_id); //TODO
 			$product_info->amount = $amount;
+			$product_info->checked = $checked;
 			$result[$merchant_id]["products"][$product_id] = $product_info;
 		}
 		return $result;

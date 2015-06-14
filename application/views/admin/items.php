@@ -70,14 +70,37 @@
 					</span>
 				</td>
 				<td>
-					<a href="/home/item?itemId=<?php echo $item->product_id;?>" target="_blank">Preview</a>
-					<a href="javascript:window.open('/admin/modifyItem?itemId=<?php echo $item->product_id;?>','Edit Item','height=700,width=900,toolbar=no,menubar=no');">Edit</a>
+					<a href="/home/item?itemId=<?php echo $item->product_id;?>" target="_blank">Preview</a> |
+					<a href="javascript:showStatus('<?php echo $item->product_item_title_english;?>','<?php echo $item->product_id;?>','<?php echo $item->product_status;?>');">Status</a> |
+					<a href="javascript:window.open('/admin/modifyItem?itemId=<?php echo $item->product_id;?>','Edit Item','height=700,width=900,toolbar=no,menubar=no');">Edit</a> |
 					<a href="javascript:delItem('<?php echo $item->product_id;?>','Sure to delete <<?php echo $item->product_item_title_english;?>>？','Successfully deleted <?php echo $item->product_item_title_english;?>')">Delete</a>
 				</td>
 			</tr>
 			<?php endforeach;?>
 		</tbody>
 	</table>
+	<div class="km-modal-dialog width40p" id="statusDialog">
+		<div class="km-modal-content">
+			<div class="km-modal-header">
+				<button type="button" class="km-close"><span>&times;</span></button>
+				<h4 class="km-modal-title"><span id="productName"></span> - Change Status</h4>
+			</div>
+			<div class="km-modal-body">
+				<select id="productStatus" style="display:block;height: 30px;">
+					<option value="1">Under Review</option>
+				    <option value="2">On queue</option>
+					<option value="3">Available</option>
+				    <option value="4">Deleted</option>
+				    <option value="5">Suspended</option>
+				    <option value="6">Restricted</option>
+				</select>
+			</div>
+			<div class="km-modal-footer">
+				<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_sider_Close');?></button>
+				<button type="button" class="km-btn km-btn-primary" onclick="saveProductStatus();"><?php echo lang('cms_sider_Savechanges');?></button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
 	<nav>
 	  Total <?php echo $amount;?>
 	  <ul class="km-pagination">

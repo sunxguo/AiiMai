@@ -26,6 +26,13 @@
 		Select type of member
 		<input name="merchantType" id="person" type="radio" value="1" onclick="$('#personDesc').show();$('#companyDesc').hide();$('#personName').show();$('#companyName').hide();" checked><label for="person">Person</label>
 		<input name="merchantType" id="company" type="radio" value="2" onclick="$('#personDesc').hide();$('#companyDesc').show();$('#personName').hide();$('#companyName').show();"><label for="company">Company/Organization</label>
+		<?php if($user->merchant_type==2):?>
+		<script>
+		$(document).ready(function(){
+			$("#company").click();
+		});
+		</script>
+		<?php endif;?>
 		<p id="personDesc">
 			- For individuals who buy and sell online.<br>
 			- Merchants who use a company or group name should select ‘Business Owner’
@@ -43,14 +50,14 @@
 					<span id="companyName" style="display:none;">Company Name</span>
 				</td>
 				<td style="padding-right:0px;">
-					<input type="text" id="name" placeholder="" class="inp-txt width150">* Please type your real full name on NRIC or business name as it shown in the license.
+					<input type="text" id="name" value="<?php echo $user->merchant_name;?>" class="inp-txt width150">* Please type your real full name on NRIC or business name as it shown in the license.
 					<!--<p style="color:red;">note) You will not be approved as a seller if you do not type your real name/business name on the required document.</p>-->
 				</td>
 			</tr>
 			<tr>
 				<td><font color="red">*</font>ID log-in</td>
 				<td>
-					<input type="text" id="ID" placeholder="" class="inp-txt width250">
+					<input type="text" id="ID" value="<?php echo $user->merchant_login_ID;?>" class="inp-txt width250">
 					<button onclick="checkID();" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 10px;padding: 5px 10px;">Check ID</button>	
 				</td>
 			</tr>
@@ -126,8 +133,8 @@
 							<option value="1">United States</option>
 							<option value="84">Vietnam</option>
 						</select>
-						<input type="text" id="phone2" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" maxlength="4" value="" title="ex) 1234"> - 
-						<input type="text" id="phone3" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" maxlength="4" value="" title="ex) 5678">
+						<input type="text" id="phone2" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" maxlength="4" value="<?php echo $user->merchant_phone2;?>" title="ex) 1234"> - 
+						<input type="text" id="phone3" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" maxlength="4" value="<?php echo $user->merchant_phone3;?>" title="ex) 5678">
 					</div>
 					<div class="gsm_home">
 						<div id="" class="gsm_select" style="display: none;">
@@ -185,8 +192,8 @@
 							<option value="1">United States</option>
 							<option value="84">Vietnam</option>
 						</select>
-						<input type="text" id="homephone2" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" maxlength="4" value="" title="ex) 1234"> - 
-						<input type="text" id="homephone3" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" maxlength="4" value="" title="ex) 5678">
+						<input type="text" id="homephone2" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" maxlength="4" value="<?php echo $user->merchant_homephone2;?>" title="ex) 1234"> - 
+						<input type="text" id="homephone3" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" maxlength="4" value="<?php echo $user->merchant_homephone3;?>" title="ex) 5678">
 					</div>
 				</td>
 			</tr>
@@ -216,7 +223,7 @@ You can edit your address and change the display setting on ‘ASM > Setting > M
 						<option value="VN">Vietnam</option>
 					</select><br>
 <!--					<input type="text" id="address2" placeholder="" class="inp-txt width400"><br>-->
-					<textarea id="address2" class="width400" style="height:50px;margin-top:10px;"></textarea>
+					<textarea id="address2" class="width400" style="height:50px;margin-top:10px;"><?php echo $user->merchant_address2;?></textarea>
 					<!--<font color="red">*Please check the recipient name and address carefully for exact delivery. Letters and numbers only.</font>-->
 					<p style="font-weight:600;">*Please enter your real address as per registered in your business license / NRIC.</p>
 				</td>
@@ -225,7 +232,7 @@ You can edit your address and change the display setting on ‘ASM > Setting > M
 			<tr>
 				<td><font color="red">*</font>Sales staff name</td>
 				<td>
-					<input id="salesStaff" type="text" class="inp-txt width150">
+					<input id="salesStaff" type="text" class="inp-txt width150" value="<?php echo $user->merchant_salesStaff;?>">
 					 Sales staff name will be displayed at the shop information section of Item page.
 				</td>
 			</tr>

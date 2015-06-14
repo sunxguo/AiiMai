@@ -257,7 +257,7 @@ class Common extends CI_Controller {
 			break;
 			case "merchantInfo":
 				$condition['table']="user";
-				$condition['where']=array("user_email"=>$_SESSION['userEmail']);
+				$condition['where']=array("user_username"=>$_SESSION['username']);
 				$condition['data']=array(
 					"merchant_type"=>$data->merchantType,
 					"merchant_name"=>$data->name,
@@ -483,6 +483,13 @@ class Common extends CI_Controller {
 					"merchant_displayed_email"=>$data->email
 				);
 			break;
+			case 'proStatus':
+				$condition['table']="product";
+				$condition['where']=array("product_id"=>$data->id);
+				$condition['data']=array(
+					"product_status"=>$data->status
+				);
+			break;
 		}
 		if($_POST['info_type']!='userNewPwd'){
 			$result=$this->dbHandler->updateData($condition);
@@ -694,12 +701,39 @@ class Common extends CI_Controller {
 		else
 			echo json_encode(array("result"=>"failed","message"=>'Stocks do not have so many goods!'));
 	}
+	public function setCartProductNumber(){
+		if(!$this->checkUserLogin()) return false;
+		$result=$this->commongetdata->setCartProductNumber(array(
+			"productId"=>$_POST['product_id'],
+			"op1"=>isset($_POST['op1'])?$_POST['op1']:'',
+			"op2"=>isset($_POST['op2'])?$_POST['op2']:'',
+			"op3"=>isset($_POST['op3'])?$_POST['op3']:''
+		),$_POST['amount']);
+		if($result)
+			echo json_encode(array("result"=>"success","message"=>''));
+		else
+			echo json_encode(array("result"=>"failed","message"=>'Stocks do not have so many goods!'));
+	}
 	public function removeFromCart(){
 		$produts=json_decode($_POST['productIdArray']);
 		foreach($produts as $p){
 			$this->commongetdata->removeFromCart($p);
 		}
 		echo json_encode(array("result"=>"success","message"=>''));
+	}
+	public function checkCartProduct(){
+		$result=$this->commongetdata->checkCartProduct($_POST['productId'],$_POST['isCheck']);
+		if($result)
+			echo json_encode(array("result"=>"success","message"=>''));
+		else
+			echo json_encode(array("result"=>"failed","message"=>'Failed to check this product!'));
+	}
+	public function checkAllCartProduct(){
+		$result=$this->commongetdata->checkAllCartProduct($_POST['isCheck']);
+		if($result)
+			echo json_encode(array("result"=>"success","message"=>''));
+		else
+			echo json_encode(array("result"=>"failed","message"=>'Failed to check this product!'));
 	}
 	public function uploadImage(){
 		$result=upload("image");
@@ -888,14 +922,14 @@ class Common extends CI_Controller {
 		echo json_encode(array("result"=>"success","message"=>"验证码输入正确！"));
 	}
 	public function sendMerchantEmail(){
-		$this->commongetdata->email($_SESSION['merchantEmail'],'Successfully Registered. | Confirm E-mail!','<a href="aiimai.coolkeji.com/common/confirmMerchantEmail?email='.$_SESSION['merchantEmail'].'">Confirm</a>');
+		$this->commongetdata->email($_SESSION['userEmail'],'Successfully Registered. | Confirm E-mail!','<a href="aiimai.coolkeji.com/common/confirmMerchantEmail?email='.$_SESSION['merchantEmail'].'">Confirm</a>');
 		echo json_encode(array("result"=>"success","message"=>"success"));
 	}
 	public function reloadEmail(){
 		$condition=array(
 			'table'=>'user',
 			'result'=>'data',
-			'where'=>array('user_email'=>$_SESSION['merchantEmail'])
+			'where'=>array('user_email'=>$_SESSION['userEmail'])
 		);
 		$merchant=$this->commongetdata->getOneData($condition);
 		if($merchant->user_confirm_email==1)

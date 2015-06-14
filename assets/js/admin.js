@@ -1,4 +1,20 @@
 $(document).ready(function(){
+	$("#bkDiv").click(function(){
+		$(".km-modal-dialog").hide();
+		$(".km-alert").hide();
+		$("#bkDiv").hide();
+		$("body").removeClass('km-modal-open');
+	});
+	$(".km-close").click(function(){
+		$(".km-modal-dialog").hide();
+		$("#bkDiv").hide();
+		$("body").removeClass('km-modal-open');
+	});
+	$(".km-btn-close").click(function(){
+		$(".km-modal-dialog").hide();
+		$("#bkDiv").hide();
+		$("body").removeClass('km-modal-open');
+	});
 });
 function refreshCode(){
 	$("#validCodeImg").attr("src","/common/createVeriCode");
@@ -343,6 +359,22 @@ function userHandler(successMsg,isNew){
 		handlerType='modify';
 	}
 	dataHandler(handlerType,'product',product,null,null,null,successMsg,true);
+}
+var productId='';
+function showStatus(_productName,_productId,_statusNo){
+	setDivCenter('#statusDialog',true);
+	$("#productName").text(_productName);
+	$("#productStatus").val(_statusNo);
+	productId=_productId;
+}
+function saveProductStatus(){
+	var proStatus = new Object();
+	proStatus.id = productId;
+	proStatus.status = $("#productStatus").val();
+	dataHandler("modify","proStatus",proStatus,successProStatus,null,null,null,true);
+}
+function successProStatus(){
+	alert('Successfully saved!');
 }
 /*Example:
 $(".slider-item").mouseout(function(){
