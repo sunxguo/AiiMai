@@ -110,6 +110,7 @@ class Home extends CI_Controller {
 		} else {
 		  $loginUrl = $this->facebook->getLoginUrl();
 		}
+		
 		$data=array(
 			'user'=>$user,
 			'profile'=>$user?$user_profile:array(),
