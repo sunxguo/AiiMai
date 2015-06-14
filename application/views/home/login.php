@@ -41,8 +41,10 @@
 				<img src="/assets/images/home/login-ad.jpg">
 			</div>
 			<ul class="">
+				<!--
 				<li><a href="">Find email or ID </a>|<a href=""> Find Password</a></li>
 				<li><a href="">Guide for Problem</a></li>
+				-->
 				<li>
 					<p class="reg-sns">
 						<a href="<?php echo $loginUrl;?>" class="icon_fb">Facebook Login</a>

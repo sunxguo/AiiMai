@@ -4,10 +4,10 @@
 		<p>You want to be a seller?</p>
 	</div>
 	<div class="sllr_step">
-        <ul>
+        <ul style="width: 670px;">
             <li class="">01. Account Information</li>
-            <li class="on">02. Seller’s Information</li>
-            <li class="last-child">03. Complete Registration</li>
+            <li class="on" style="padding-left: 40px;">02. Seller’s Information</li>
+            <li class="last-child" style="padding-left: 0px;padding-right: 0px;">03. Complete Registration</li>
         </ul>
     </div>
 	<div class="">
