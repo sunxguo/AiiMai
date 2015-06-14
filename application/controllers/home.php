@@ -86,6 +86,7 @@ class Home extends CI_Controller {
 		$this->homeBaseHandler('Home','index',$data,array("showFooter"=>false));
 	}
 	public function register(){
+		parse_str( $_SERVER['QUERY_STRING'], $_REQUEST );
 		$this->load->library('Facebook',array(
 		  'appId'  => '705101599598980',//835653329821020
 		  'secret' => '344d05ab622eeb60e9c72aa03c3bb7dd',//db8ff82c09c285d593dde540b7e50f08
