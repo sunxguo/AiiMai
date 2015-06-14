@@ -580,6 +580,11 @@ function saveNewPassword(){
 		showAlert('danger','Failed!','Password can not be empty！');
 		return false;
 	}
+	if(newpwd.length<6 || newpwd.length>25){	//3-15个字符
+//		alert("密码长度为6~25个字符！");
+		showAlert('danger','Password',' must be 6 to 25 characters!');
+		return false;
+	}
 	if(newpwd!=renewpwd){
 		showAlert('danger','Failed!','The two new password are different!');
 		return false;

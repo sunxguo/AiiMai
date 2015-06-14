@@ -372,20 +372,21 @@ class Common extends CI_Controller {
 					echo json_encode(array("result"=>"failed","message"=>$msg));
 					return false;
 				}
-				$condition['table']="user";
-				$condition['where']=array("token"=>$data->verify);
-				$condition['data']=array(
+				$newCondition=array();
+				$newCondition['table']="user";
+				$newCondition['where']=array("token"=>$data->verify);
+				$newCondition['data']=array(
 					"user_pwd"=>MD5("MonkeyKing".$data->newpwd),
 					"user_confirm_email"=>1
 				);
-				$result=$this->dbHandler->updateData($condition);
-				if($result==1){
+				$result=$this->dbHandler->updateData($newCondition);
+				if($result>0){
 					$this->commongetdata->email($user->user_email,$this->commongetdata->getWebsiteConfig("website_reset_password_success_subject"),$this->commongetdata->getWebsiteConfig("website_reset_password_success_content"));
 //					$this->load->view('redirect',array("url"=>"/home/login","info"=>"Success!"));
 					echo json_encode(array("result"=>"success","message"=>'Password is changed successfully!'));
 				}
 				else{
-					echo json_encode(array("result"=>"failed","message"=>'Failed. You cannot re-use an old password'));
+					echo json_encode(array("result"=>"failed","message"=>'Failed. You cannot re-use an old password or your email has not been verified!'));
 				}
 				/*
 				$condition['table']="user";
@@ -870,7 +871,8 @@ class Common extends CI_Controller {
 		$token_exptime = time()+60*60*24;//过期时间为24小时后
 		$condition['table']="user";
 		$condition['where']=array(
-			"user_email"=>$_SESSION['userEmail']
+			"user_email"=>$_SESSION['userEmail'],
+			"user_confirm_email"=>1
 		);
 		$condition['data']=array(
 			"token"=>$token,
