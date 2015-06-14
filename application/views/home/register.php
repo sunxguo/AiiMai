@@ -139,6 +139,7 @@
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
       testAPI();
+	  loginAiiMaiWithFB();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -204,6 +205,23 @@
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
+    });
+  }
+  function loginAiiMaiWithFB(){
+	FB.api('/me', function(response) {
+		$.post(
+		"/common/loginWithFB",
+		{
+			'email':response.email
+		},
+		function(data){
+			var result=$.parseJSON(data);
+			if(result.result=="success"){
+				location.href="/home";
+			}else{
+				alert(result.message);
+			}
+		});
     });
   }
 </script>

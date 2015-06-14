@@ -805,6 +805,24 @@ class Common extends CI_Controller {
 			$this->load->view('redirect',array("info"=>"failed!"));
 		}
 	}
+	public function loginWithFB(){
+		$condition=array(
+			'table'=>'user',
+			'result'=>'data',
+			'where'=>array('user_email'=>$_POST["email"],'user_confirm_email'=>1)
+		);
+		$info=$this->dbHandler->selectData($condition);
+		if(sizeof($info)<1){
+			echo json_encode(array("result"=>"failed","message"=>"No user!"));
+			return false;
+		}
+		$_SESSION['username']=$info[0]->user_username;
+		$_SESSION['userid']=$info[0]->user_id;
+		$_SESSION['usertype']="user";
+		$_SESSION['userEmail']=$info[0]->user_email;
+		echo json_encode(array("result"=>"success","message"=>"Login with Facebook successfully!"));
+		return false;
+	}
 	public function active(){
 //		!$this->commongetdata->checkUniqueAdvance("user","user_email",$_GET['email']);
 		$condition=array(
