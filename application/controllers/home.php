@@ -91,16 +91,18 @@ class Home extends CI_Controller {
 		  'secret' => '344d05ab622eeb60e9c72aa03c3bb7dd',//db8ff82c09c285d593dde540b7e50f08
 		));
 		$user=$this->facebook->getUser();
+		print_r($user);
 		if ($user) {
 		  try {
 			// Proceed knowing you have a logged in user who's authenticated.
 			$user_profile = $this->facebook->api('/me');
+			print_r($user_profile);
 		  } catch (FacebookApiException $e) {
 			error_log($e);
 			$user = null;
 		  }
-		}$user_profile = $this->facebook->api('/me');
-			print_r($user_profile);
+		}
+			
 		// Login or logout url will be needed depending on current user state.
 		if ($user) {
 		  $logoutUrl = $this->facebook->getLogoutUrl();
