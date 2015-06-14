@@ -121,8 +121,7 @@
 			<a href="" class="fl" target="_blank">Seller Register</a>
 			<br><p class="fl">※ If you are not a member of AiiMai yet, please create an account first, then you can register as a seller.</p>
 		</div>
-		<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
+		<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
 	</div>
 </div>
 <script>
@@ -181,10 +180,10 @@
   //    your app or not.
   //
   // These three cases are handled in the callback function.
-
+/*
   FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
-  });
+  });*/
 
   };
 
