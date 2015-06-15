@@ -671,3 +671,19 @@ function savePersonalInfoPwd(successMsg){
 	pwd.newpwd = $("#personalInfoNewpwd").val();
 	dataHandler("modify","merchantpwd",pwd,null,null,null,successMsg,true);
 }
+function successRefresh(){
+	showAlert('success','Success!','Refreshing...');
+}
+function modifyPersonalGender(gender){
+	var personalGender = new Object();
+	personalGender.gender = gender;
+	dataHandler("modify","personalGender",personalGender,successRefresh,null,null,null,true);
+}
+function savePersonalInfoContactsPhone(){
+	var personalContactsPhone = new Object();
+	personalContactsPhone.contactsMobilephone0 = $("#contactsMobilephone0").val();
+	personalContactsPhone.contactsMobilephone1 = $("#contactsMobilephone1").val();
+	personalContactsPhone.contactsMobilephone2 = $("#contactsMobilephone2").val();
+	personalContactsPhone.contactsMobilephone3 = $("#contactsMobilephone3").val();
+	dataHandler("modify","personalContactsPhone",personalContactsPhone,successRefresh,null,null,null,true);
+}

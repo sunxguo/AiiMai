@@ -88,62 +88,62 @@
 				  <tr>
 					<td class="field br">Gender</td>
 					<td class="value tal">
-						<input type="radio" name="gender" id="genderMale" value="0" style="vertical-align: middle;margin-right: 5px;" <?php echo $user->user_gender==0?'checked':'';?>><label for="genderMale">Male</label>
-						<input type="radio" name="gender" id="genderFeMale" value="1" style="vertical-align: middle;margin-right: 5px;" <?php echo $user->user_gender==1?'checked':'';?>><label for="genderFeMale">Female</label>
+						<input type="radio" name="gender" id="genderMale" value="0" onclick="modifyPersonalGender('0')" style="vertical-align: middle;margin-right: 5px;" <?php echo $user->user_gender==0?'checked':'';?>><label for="genderMale">Male</label>
+						<input type="radio" name="gender" id="genderFeMale" value="1" onclick="modifyPersonalGender('1')" style="vertical-align: middle;margin-right: 5px;" <?php echo $user->user_gender==1?'checked':'';?>><label for="genderFeMale">Female</label>
 					</td>
 				  </tr>
 				  <tr>
 					<td class="field br">Contacts</td>
 					<td class="value tal">
 						Phone: 
-						<select id="contactsPhone1" style="height: 30px;">
+						<select id="contactsMobilephone0" style="height: 30px;">
 							<option value="">Choose Country</option>
-							<option value="AU">Australia</option>
-							<option value="BR">Brazil</option>
-							<option value="BN">Brunei Darussalam</option>
-							<option value="CA">Canada</option>
-							<option value="CN">China</option>
-							<option value="DK">Denmark</option>
-							<option value="EG">Egypt</option>
-							<option value="FI">Finland</option>
-							<option value="FR">France</option>
-							<option value="DE">Germany</option>
-							<option value="GR">Greece</option>
-							<option value="HK">Hong Kong</option>
-							<option value="HU">Hungary</option>
-							<option value="IN">India</option>
-							<option value="ID">Indonesia</option>
-							<option value="IL">Israel</option>
-							<option value="IT">Italy</option>
-							<option value="JP">Japan</option>
-							<option value="KW">Kuwait</option>
-							<option value="MO">Macau</option>
-							<option value="MY">Malaysia</option>
-							<option value="MX">Mexico</option>
-							<option value="MM">Myanma</option>
-							<option value="NL">Netherlands</option>
-							<option value="NZ">New Zealand</option>
-							<option value="NO">Norway</option>
-							<option value="PH">Philippines</option>
-							<option value="PL">Poland</option>
-							<option value="PT">Portugal</option>
-							<option value="RU">Russia</option>
-							<option value="SG" selected>Singapore</option>
-							<option value="KR">South Korea</option>
-							<option value="ES">Spain</option>
-							<option value="SE">Sweden</option>
-							<option value="CH">Switzerland</option>
-							<option value="TW">Taiwan</option>
-							<option value="TH">Thailand</option>
-							<option value="TR">Turkey</option>
-							<option value="GB">United Kingdom</option>
-							<option value="US">United States</option>
-							<option value="VN">Vietnam</option>
+							<option value="SG" <?php echo $user->user_contact_mobilephone0=='SG'?'selected':'';?>>Singapore</option>
+							<option value="AU" <?php echo $user->user_contact_mobilephone0=='AU'?'selected':'';?>>Australia</option>
+							<option value="BR" <?php echo $user->user_contact_mobilephone0=='BR'?'selected':'';?>>Brazil</option>
+							<option value="BN" <?php echo $user->user_contact_mobilephone0=='BN'?'selected':'';?>>Brunei Darussalam</option>
+							<option value="CA" <?php echo $user->user_contact_mobilephone0=='CA'?'selected':'';?>>Canada</option>
+							<option value="CN" <?php echo $user->user_contact_mobilephone0=='CN'?'selected':'';?>>China</option>
+							<option value="DK" <?php echo $user->user_contact_mobilephone0=='DK'?'selected':'';?>>Denmark</option>
+							<option value="EG" <?php echo $user->user_contact_mobilephone0=='EG'?'selected':'';?>>Egypt</option>
+							<option value="FI" <?php echo $user->user_contact_mobilephone0=='FI'?'selected':'';?>>Finland</option>
+							<option value="FR" <?php echo $user->user_contact_mobilephone0=='FR'?'selected':'';?>>France</option>
+							<option value="DE" <?php echo $user->user_contact_mobilephone0=='DE'?'selected':'';?>>Germany</option>
+							<option value="GR" <?php echo $user->user_contact_mobilephone0=='GR'?'selected':'';?>>Greece</option>
+							<option value="HK" <?php echo $user->user_contact_mobilephone0=='HK'?'selected':'';?>>Hong Kong</option>
+							<option value="HU" <?php echo $user->user_contact_mobilephone0=='HU'?'selected':'';?>>Hungary</option>
+							<option value="IN" <?php echo $user->user_contact_mobilephone0=='IN'?'selected':'';?>>India</option>
+							<option value="ID" <?php echo $user->user_contact_mobilephone0=='ID'?'selected':'';?>>Indonesia</option>
+							<option value="IL" <?php echo $user->user_contact_mobilephone0=='IL'?'selected':'';?>>Israel</option>
+							<option value="IT" <?php echo $user->user_contact_mobilephone0=='IT'?'selected':'';?>>Italy</option>
+							<option value="JP" <?php echo $user->user_contact_mobilephone0=='JP'?'selected':'';?>>Japan</option>
+							<option value="KW" <?php echo $user->user_contact_mobilephone0=='KW'?'selected':'';?>>Kuwait</option>
+							<option value="MO" <?php echo $user->user_contact_mobilephone0=='MO'?'selected':'';?>>Macau</option>
+							<option value="MY" <?php echo $user->user_contact_mobilephone0=='MY'?'selected':'';?>>Malaysia</option>
+							<option value="MX" <?php echo $user->user_contact_mobilephone0=='MX'?'selected':'';?>>Mexico</option>
+							<option value="MM" <?php echo $user->user_contact_mobilephone0=='MM'?'selected':'';?>>Myanma</option>
+							<option value="NL" <?php echo $user->user_contact_mobilephone0=='NL'?'selected':'';?>>Netherlands</option>
+							<option value="NZ" <?php echo $user->user_contact_mobilephone0=='NZ'?'selected':'';?>>New Zealand</option>
+							<option value="NO" <?php echo $user->user_contact_mobilephone0=='NO'?'selected':'';?>>Norway</option>
+							<option value="PH" <?php echo $user->user_contact_mobilephone0=='PH'?'selected':'';?>>Philippines</option>
+							<option value="PL" <?php echo $user->user_contact_mobilephone0=='PL'?'selected':'';?>>Poland</option>
+							<option value="PT" <?php echo $user->user_contact_mobilephone0=='PT'?'selected':'';?>>Portugal</option>
+							<option value="RU" <?php echo $user->user_contact_mobilephone0=='RU'?'selected':'';?>>Russia</option>
+							<option value="KR" <?php echo $user->user_contact_mobilephone0=='KR'?'selected':'';?>>South Korea</option>
+							<option value="ES" <?php echo $user->user_contact_mobilephone0=='ES'?'selected':'';?>>Spain</option>
+							<option value="SE" <?php echo $user->user_contact_mobilephone0=='SE'?'selected':'';?>>Sweden</option>
+							<option value="CH" <?php echo $user->user_contact_mobilephone0=='CH'?'selected':'';?>>Switzerland</option>
+							<option value="TW" <?php echo $user->user_contact_mobilephone0=='TW'?'selected':'';?>>Taiwan</option>
+							<option value="TH" <?php echo $user->user_contact_mobilephone0=='TH'?'selected':'';?>>Thailand</option>
+							<option value="TR" <?php echo $user->user_contact_mobilephone0=='TR'?'selected':'';?>>Turkey</option>
+							<option value="GB" <?php echo $user->user_contact_mobilephone0=='GB'?'selected':'';?>>United Kingdom</option>
+							<option value="US" <?php echo $user->user_contact_mobilephone0=='US'?'selected':'';?>>United States</option>
+							<option value="VN" <?php echo $user->user_contact_mobilephone0=='VN'?'selected':'';?>>Vietnam</option>
 						</select>
-						<input type="text" value="<?php echo $user->user_contact_mobilephone1;?>" class="inp-txt" style="width:60px;top:-2px;position: relative;"> -
-						<input type="text" value="<?php echo $user->user_contact_mobilephone2;?>" class="inp-txt" style="width:60px;top:-2px;position: relative;"> -
-						<input type="text" value="<?php echo $user->user_contact_mobilephone3;?>" class="inp-txt" style="width:60px;top:-2px;position: relative;">
-						<button onclick="()" type="button" class="km-btn km-btn-primary" style=" height: 28px;font-size: 10px;padding: 0px 10px;top:-2px;position: relative;">Save</button>
+						<input id="contactsMobilephone1" type="text" value="<?php echo $user->user_contact_mobilephone1;?>" class="inp-txt" style="width:60px;top:-2px;position: relative;"> -
+						<input id="contactsMobilephone2" type="text" value="<?php echo $user->user_contact_mobilephone2;?>" class="inp-txt" style="width:60px;top:-2px;position: relative;"> -
+						<input id="contactsMobilephone3" type="text" value="<?php echo $user->user_contact_mobilephone3;?>" class="inp-txt" style="width:60px;top:-2px;position: relative;">
+						<button onclick="savePersonalInfoContactsPhone('Successfully saved!');" type="button" class="km-btn km-btn-primary" style=" height: 28px;font-size: 10px;padding: 0px 10px;top:-2px;position: relative;">Save</button>
 					</td>
 				  </tr>
 				  <tr>
