@@ -101,7 +101,7 @@ class Cms extends CI_Controller {
 		$this->load->view('redirect',array("url"=>"/cms/login"));
 	}
 	public function cmsBaseHandler($title,$sider,$view,$data){
-		if(!$this->checkMerchantLogin()) return false;
+		if(!$this->checkMerchantSimpleLogin()) return false;
 		$websiteConfig=$this->commongetdata->getWebsiteConfig("ALLINFO");
 		$websiteName=$websiteConfig['website_name_'.$_SESSION['language']];
 		$this->load->view('cms/header',
