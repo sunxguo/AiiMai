@@ -203,7 +203,16 @@ class Cms extends CI_Controller {
 		$this->cmsBaseHandler('Shop',array('baseInfo'=>true,'shop'=>true,'shopInfo'=>true),'shopInfo',$data);
 	}
 	public function goodsStatistics(){
-		$this->cmsBaseHandler('Item List/Edit',array('goodsManagement'=>true,'goods'=>true,'goodsStatistics'=>true),'goodsStatistics',array());
+		$parameters=array(
+			"result"=>'count',
+			"merchant"=>$_SESSION['userid']
+		);
+		$data=array(
+			'total'=>$this->commongetdata->getProductsAdvance(array("result"=>'count',"merchant"=>$_SESSION['userid'])),
+			'onSale'=>$this->commongetdata->getProductsAdvance(array("result"=>'count',"merchant"=>$_SESSION['userid'],"status"=>3)),
+			'registeredToday'=>$this->commongetdata->getProductsAdvance(array("result"=>'count',"merchant"=>$_SESSION['userid'],"listedTimeBegin"=>date("Y-m-d"),"listedTimeEnd"=>date("Y-m-d"))),
+		);
+		$this->cmsBaseHandler('Item List/Edit',array('goodsManagement'=>true,'goods'=>true,'goodsStatistics'=>true),'goodsStatistics',$data);
 	}
 	public function goodsAdd(){
 		$categories=$this->commongetdata->getCategories(false);
