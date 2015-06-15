@@ -29,7 +29,7 @@
 			</li>
 			<li>
 				<?php if($user->user_is_merchant):?>
-				You have been the seller account.
+				<a>You have been the seller account.</a>
 				<?php else:?>
 				<a href="/cms/registerInformation" target="_blank" style="color:#337ab7;">Upgrade to a Seller Account</a>
 				<?php endif;?>

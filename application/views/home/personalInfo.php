@@ -87,7 +87,29 @@
 				  </tr>
 				  <tr>
 					<td class="field br">Gender</td>
-					<td class="value tal"><?php echo $user->user_gender;?></td>
+					<td class="value tal">
+						<input type="radio" name="gender" id="genderMale" value="0" style="vertical-align: middle;margin-right: 5px;" <?php echo $user->user_gender==0?'checked':'';?>><label for="genderMale">Male</label>
+						<input type="radio" name="gender" id="genderFeMale" value="1" style="vertical-align: middle;margin-right: 5px;" <?php echo $user->user_gender==1?'checked':'';?>><label for="genderFeMale">Female</label>
+					</td>
+				  </tr>
+				  <tr>
+					<td class="field br">Contacts</td>
+					<td class="value tal">
+						Phone: <input type="text" value="<?php echo $user->user_phone;?>" class="inp-txt" style="width:40%;">
+					</td>
+				  </tr>
+				  <tr>
+					<td class="field br">Password</td>
+					<td class="value tal">
+						<button onclick="()" type="button" class="km-btn km-btn-primary" style=" height: 23px;font-size: 10px;padding: 0px 10px;">Change Password</button>
+					</td>
+				  </tr>
+				  <tr>
+					<td class="field br">Email</td>
+					<td class="value tal">
+						<?php echo $user->user_email;?>
+						<button onclick="()" type="button" class="km-btn km-btn-primary" style=" height: 23px;font-size: 10px;padding: 0px 10px;">Change</button>
+					</td>
 				  </tr>
 				  <?php /*?>
 				  <tr>
@@ -121,6 +143,19 @@
 					</td>
 				  </tr>
 				  <?php */?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="km-panel km-panel-primary" style="width: 98%;margin-top:20px;">
+		<div class="km-panel-heading">My Credit Points</div>
+		<div class="km-panel-body" style="padding:0px;">
+			<table class="km-table">
+				<tbody>
+				  <tr>
+					<td class="field width15p br">Buyer</td>
+					<td class="value tal">points : <?php echo $user->user_points;?></td>
+				  </tr>
 				</tbody>
 			</table>
 		</div>
