@@ -411,7 +411,7 @@ class CommonGetData{
 		//,$merchantId,$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order
 		$condition=array('table'=>'product');
 		if(isset($parameters['result'])) $condition['result']=$parameters['result'];
-		if(isset($parameters['merchantId'])) $condition['where']['product_merchant']=$parameters['merchant'];
+		if(isset($parameters['merchant'])) $condition['where']['product_merchant']=$parameters['merchant'];
 		if(isset($parameters['category'])) $condition['where']['product_category']=$parameters['category'];
 		if(isset($parameters['subCategory'])) $condition['where']['product_sub_category']=$parameters['subCategory'];
 		if(isset($parameters['subSubCategory'])) $condition['where']['product_sub_sub_category']=$parameters['subSubCategory'];

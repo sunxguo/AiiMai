@@ -13,12 +13,16 @@
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
 		<div class="km-panel-heading"><?php echo lang('cms_baseInfo_goodsStatistics_ItemListSummary');?></div>
 		<div class="km-panel-body" style="padding:0px;">
-			<p style="height:30px;line-height:30px;font-size:14px;padding:10px;"><?php echo lang('cms_baseInfo_goodsStatistics_Total');?> <span class="km-badge">42</span><?php echo lang('cms_baseInfo_goodsStatistics_items');?>, <span class="km-badge km-badge-success">25</span><?php echo lang('cms_baseInfo_goodsStatistics_itemsonsale');?></p>
+			<p style="height:30px;line-height:30px;font-size:14px;padding:10px;">
+				<?php echo lang('cms_baseInfo_goodsStatistics_Total');?> <span class="km-badge"><?php echo $total;?></span> 
+				<?php echo lang('cms_baseInfo_goodsStatistics_items');?>, <span class="km-badge km-badge-success"><?php echo $onSale;?></span>
+				<?php echo lang('cms_baseInfo_goodsStatistics_itemsonsale');?>
+			</p>
 			<table class="km-table">
 				<tbody>
 				  <tr class="bt2">
 					<td class="value width50p tal br">
-						<?php echo lang('cms_baseInfo_goodsStatistics_Registeredtoday');?>: <span class="km-badge km-badge-info">2</span> 
+						<?php echo lang('cms_baseInfo_goodsStatistics_Registeredtoday');?>: <span class="km-badge km-badge-info"><?php echo $registeredToday;?></span> 
 						<button onclick=";" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;">Go</button>
 					</td>
 					<td class="value width50p tal">
