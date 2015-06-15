@@ -889,8 +889,7 @@ class Common extends CI_Controller {
 		$token_exptime = time()+60*60*24;//过期时间为24小时后
 		$condition['table']="user";
 		$condition['where']=array(
-			"user_email"=>$_SESSION['userEmail'],
-			"user_confirm_email"=>1
+			"user_email"=>$_SESSION['userEmail']
 		);
 		$condition['data']=array(
 			"token"=>$token,
@@ -899,7 +898,7 @@ class Common extends CI_Controller {
 		$result=$this->dbHandler->updateData($condition);
 		$emailTitle=$this->commongetdata->getWebsiteConfig('website_confirm_email_title');
 		$emailContent=$this->commongetdata->getWebsiteConfig('website_confirm_email_content');
-		$this->commongetdata->email($_SESSION['userEmail'],$emailTitle,$emailContent.'<a href="aiimai.coolkeji.com/common/active?verify='.$token.'">Confirm</a>');
+		$this->commongetdata->email($_SESSION['userEmail'],$emailTitle,$emailContent.'<a href="aiimai.coolkeji.com/common/active?verify='.$token.'">Confirm</a><br>If the button is invalid, please copy the following link to your browser\'s address bar!<br>aiimai.coolkeji.com/common/active?verify='.$token);
 		echo json_encode(array("result"=>"success","message"=>"验证码输入正确！"));
 		/*		if(){
 			echo json_encode(array("result"=>"success","message"=>"验证码输入正确！"));

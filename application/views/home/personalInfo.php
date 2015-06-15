@@ -79,7 +79,7 @@
 				  </tr>
 				  <tr>
 					<td class="field br">Mobile number</td>
-					<td class="value tal"><?php echo $user->user_phone;?></td>
+					<td class="value tal"><input type="text" value="<?php echo $user->user_phone;?>" class="inp-txt" style="width:40%;"></td>
 				  </tr>
 				  <tr>
 					<td class="field br">Date of Birth</td>
@@ -95,7 +95,55 @@
 				  <tr>
 					<td class="field br">Contacts</td>
 					<td class="value tal">
-						Phone: <input type="text" value="<?php echo $user->user_phone;?>" class="inp-txt" style="width:40%;">
+						Phone: 
+						<select id="contactsPhone1" style="height: 30px;">
+							<option value="">Choose Country</option>
+							<option value="AU">Australia</option>
+							<option value="BR">Brazil</option>
+							<option value="BN">Brunei Darussalam</option>
+							<option value="CA">Canada</option>
+							<option value="CN">China</option>
+							<option value="DK">Denmark</option>
+							<option value="EG">Egypt</option>
+							<option value="FI">Finland</option>
+							<option value="FR">France</option>
+							<option value="DE">Germany</option>
+							<option value="GR">Greece</option>
+							<option value="HK">Hong Kong</option>
+							<option value="HU">Hungary</option>
+							<option value="IN">India</option>
+							<option value="ID">Indonesia</option>
+							<option value="IL">Israel</option>
+							<option value="IT">Italy</option>
+							<option value="JP">Japan</option>
+							<option value="KW">Kuwait</option>
+							<option value="MO">Macau</option>
+							<option value="MY">Malaysia</option>
+							<option value="MX">Mexico</option>
+							<option value="MM">Myanma</option>
+							<option value="NL">Netherlands</option>
+							<option value="NZ">New Zealand</option>
+							<option value="NO">Norway</option>
+							<option value="PH">Philippines</option>
+							<option value="PL">Poland</option>
+							<option value="PT">Portugal</option>
+							<option value="RU">Russia</option>
+							<option value="SG" selected>Singapore</option>
+							<option value="KR">South Korea</option>
+							<option value="ES">Spain</option>
+							<option value="SE">Sweden</option>
+							<option value="CH">Switzerland</option>
+							<option value="TW">Taiwan</option>
+							<option value="TH">Thailand</option>
+							<option value="TR">Turkey</option>
+							<option value="GB">United Kingdom</option>
+							<option value="US">United States</option>
+							<option value="VN">Vietnam</option>
+						</select>
+						<input type="text" value="<?php echo $user->user_contact_mobilephone1;?>" class="inp-txt" style="width:60px;top:-2px;position: relative;"> -
+						<input type="text" value="<?php echo $user->user_contact_mobilephone2;?>" class="inp-txt" style="width:60px;top:-2px;position: relative;"> -
+						<input type="text" value="<?php echo $user->user_contact_mobilephone3;?>" class="inp-txt" style="width:60px;top:-2px;position: relative;">
+						<button onclick="()" type="button" class="km-btn km-btn-primary" style=" height: 28px;font-size: 10px;padding: 0px 10px;top:-2px;position: relative;">Save</button>
 					</td>
 				  </tr>
 				  <tr>
