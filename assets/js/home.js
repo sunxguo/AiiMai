@@ -646,3 +646,28 @@ function addFileAfterUpload(src){
 	$("#loading").hide();
 	$("#fileSrc").val(src);
 }
+
+function savePersonalInfoPwd(successMsg){
+	if($("#personalInfoOldpwd").val()==""){
+		alert('Old password can not be empty!');
+		return false;
+	}
+	if($("#personalInfoNewpwd").val()==""){
+		alert('New password can not be empty!');
+		return false;
+	}
+	var length = $("#personalInfoNewpwd").val().length;
+	if(length<6 || length>25){	//3-15个字符
+//		alert("密码长度为6~25个字符！");
+		alert('Password must be 6 to 25 characters!');
+		return false;
+	}
+	if($("#personalInfoNewpwd").val()!=$("#personalInfoConfirmpwd").val()){
+		alert('The two passwords you entered are different!');
+		return false;
+	}
+	var pwd = new Object();
+	pwd.oldpwd = $("#personalInfoOldpwd").val();
+	pwd.newpwd = $("#personalInfoNewpwd").val();
+	dataHandler("modify","merchantpwd",pwd,null,null,null,successMsg,true);
+}
