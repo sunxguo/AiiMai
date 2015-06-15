@@ -491,6 +491,23 @@ class Common extends CI_Controller {
 					"product_status"=>$data->status
 				);
 			break;
+			case 'personalGender':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$_SESSION['userid']);
+				$condition['data']=array(
+					"user_gender"=>$data->gender
+				);
+			break;
+			case 'personalContactsPhone':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$_SESSION['userid']);
+				$condition['data']=array(
+					"user_contact_mobilephone0"=>$data->contactsMobilephone0,
+					"user_contact_mobilephone1"=>$data->contactsMobilephone1,
+					"user_contact_mobilephone2"=>$data->contactsMobilephone2,
+					"user_contact_mobilephone3"=>$data->contactsMobilephone3
+				);
+			break;
 		}
 		if($_POST['info_type']!='userNewPwd'){
 			$result=$this->dbHandler->updateData($condition);
