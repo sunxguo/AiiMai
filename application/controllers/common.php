@@ -851,7 +851,7 @@ class Common extends CI_Controller {
 			"user_confirm_email"=>1
 		);
 		$result=$this->dbHandler->updateData($condition);
-		if($result==1){
+		if($result>0){
 			$this->commongetdata->email($user->user_email,$this->commongetdata->getWebsiteConfig("website_user_register_success_email_subject"),$this->commongetdata->getWebsiteConfig("website_user_register_success_email_message"));
 			$this->load->view('redirect',array("url"=>"/home/login","info"=>"Success!"));
 		}
@@ -898,7 +898,7 @@ class Common extends CI_Controller {
 		$result=$this->dbHandler->updateData($condition);
 		$emailTitle=$this->commongetdata->getWebsiteConfig('website_confirm_email_title');
 		$emailContent=$this->commongetdata->getWebsiteConfig('website_confirm_email_content');
-		$this->commongetdata->email($_SESSION['userEmail'],$emailTitle,$emailContent.'<a href="aiimai.coolkeji.com/common/active?verify='.$token.'">Confirm</a><br>If the button is invalid, please copy the following link to your browser\'s address bar!<br>aiimai.coolkeji.com/common/active?verify='.$token);
+		$this->commongetdata->email($_SESSION['userEmail'],$emailTitle,$emailContent.'<a href="aiimai.coolkeji.com/common/active?verify='.$token.'">Confirm</a><br>If the button is invalid, please copy the following link to your browser\'s address bar!<br><span style="color:blue;">aiimai.coolkeji.com/common/active?verify='.$token.'</span>');
 		echo json_encode(array("result"=>"success","message"=>"验证码输入正确！"));
 		/*		if(){
 			echo json_encode(array("result"=>"success","message"=>"验证码输入正确！"));
