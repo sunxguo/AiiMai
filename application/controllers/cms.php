@@ -182,11 +182,14 @@ class Cms extends CI_Controller {
 		$this->cmsBaseHandler('vendor',array('baseInfo'=>true,'sellerPermission'=>true,'vendor'=>true),'vendor',array());
 	}
 	public function shopBaseInfo(){
-		$this->cmsBaseHandler('Shop',array('baseInfo'=>true,'shop'=>true,'shopBaseInfo'=>true),'shopBaseInfo',array());
+		$data=array(
+			"merchant"=>$this->commongetdata->getContent('user',$_SESSION['userid'])
+		);
+		$this->cmsBaseHandler('Shop',array('baseInfo'=>true,'shop'=>true,'shopBaseInfo'=>true),'shopBaseInfo',$data);
 	}
 	public function shopHomePage(){
 		$data=array(
-			'merchant'=>$this->commongetdata->getContent('merchant',$_SESSION['userid'])
+			'merchant'=>$this->commongetdata->getContent('user',$_SESSION['userid'])
 		);
 		$this->cmsBaseHandler('Shop',array('baseInfo'=>true,'shop'=>true,'shopHomePage'=>true),'shopHomePage',$data);
 	}
@@ -198,7 +201,7 @@ class Cms extends CI_Controller {
 	}
 	public function shopInfo(){
 		$data=array(
-			'merchant'=>$this->commongetdata->getContent('merchant',$_SESSION['userid'])
+			'merchant'=>$this->commongetdata->getContent('user',$_SESSION['userid'])
 		);
 		$this->cmsBaseHandler('Shop',array('baseInfo'=>true,'shop'=>true,'shopInfo'=>true),'shopInfo',$data);
 	}
@@ -211,6 +214,11 @@ class Cms extends CI_Controller {
 			'total'=>$this->commongetdata->getProductsAdvance(array("result"=>'count',"merchant"=>$_SESSION['userid'])),
 			'onSale'=>$this->commongetdata->getProductsAdvance(array("result"=>'count',"merchant"=>$_SESSION['userid'],"status"=>3)),
 			'registeredToday'=>$this->commongetdata->getProductsAdvance(array("result"=>'count',"merchant"=>$_SESSION['userid'],"listedTimeBegin"=>date("Y-m-d"),"listedTimeEnd"=>date("Y-m-d"))),
+			
+			'groupBuy'=>$this->commongetdata->getProductsAdvance(array("result"=>'count',"merchant"=>$_SESSION['userid'],"groupBuy"=>1)),
+			'auction'=>$this->commongetdata->getProductsAdvance(array("result"=>'count',"merchant"=>$_SESSION['userid'],"sellFormat"=>2,"status"=>3)),
+			'underReview'=>$this->commongetdata->getProductsAdvance(array("result"=>'count',"merchant"=>$_SESSION['userid'],"status"=>1)),
+			'rejected'=>$this->commongetdata->getProductsAdvance(array("result"=>'count',"merchant"=>$_SESSION['userid'],"status"=>4)),
 		);
 		$this->cmsBaseHandler('Item List/Edit',array('goodsManagement'=>true,'goods'=>true,'goodsStatistics'=>true),'goodsStatistics',$data);
 	}

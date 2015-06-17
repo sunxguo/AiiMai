@@ -20,15 +20,48 @@
 					  <tr>
 						<td class="field width10p"><?php echo lang('cms_grade_shop_SellerShopTitle');?></td>
 						<td class="value width17p tal">
-							ThinKel's <a href=""><?php echo lang('cms_grade_shop_GoSellerShop');?></a>
-							<button onclick=";" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_common_Edit');?></button>
+							<span class="km-label km-label-info fl"><?php echo isset($merchant->merchant_shop_name)?$merchant->merchant_shop_name:'Null';?></span>   
+							<a href="/home/shop?shopId=<?php echo $merchant->user_id;?>" target="_blank"><?php echo lang('cms_grade_shop_GoSellerShop');?></a>
+							<button onclick="setDivCenter('#sellerShopTitle',true);" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_common_Edit');?></button>
+							<div class="km-modal-dialog width40p" id="sellerShopTitle">
+								<div class="km-modal-content">
+									<div class="km-modal-header">
+										<button type="button" class="km-close"><span>&times;</span></button>
+										<h4 class="km-modal-title">Seller Shop Information - Title</h4>
+									</div>
+									<div class="km-modal-body">
+										<label for="sellerShopTitleInput" class="km-control-label">Seller Shop Title:</label>
+										<input type="text" class="km-form-control" id="sellerShopTitleInput" value="<?php echo $merchant->merchant_shop_name;?>" style="width: 95%;padding: 0 5px;">
+									</div>
+									<div class="km-modal-footer">
+										<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_myInfo_Close');?></button>
+										<button type="button" class="km-btn km-btn-primary" onclick="saveSellerShopTitle();"><?php echo lang('cms_myInfo_Savechanges');?></button>
+									</div>
+								</div><!-- /.modal-content -->
+							</div><!-- /.modal-dialog -->
 						</td>
 					  </tr>
 					  <tr>
 						<td class="field width10p"><?php echo lang('cms_grade_shop_Introductionandwelcomemessage');?></td>
 						<td class="value width17p tal" colspan="3">
-							Welcome to ThinKel's!
-							<button onclick=";" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_common_Edit');?></button>
+							<?php echo isset($merchant->merchant_shop_welcome)?$merchant->merchant_shop_welcome:'Null';?>
+							<button onclick="setDivCenter('#sellerShopWelcome',true);" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_common_Edit');?></button>
+							<div class="km-modal-dialog width40p" id="sellerShopWelcome">
+								<div class="km-modal-content">
+									<div class="km-modal-header">
+										<button type="button" class="km-close"><span>&times;</span></button>
+										<h4 class="km-modal-title">Seller Shop Information - Welcome Message</h4>
+									</div>
+									<div class="km-modal-body">
+										<label for="sellerShopWelcomeInput" class="km-control-label">Introduction:</label>
+										<input type="text" class="km-form-control" id="sellerShopWelcomeInput" value="<?php echo $merchant->merchant_shop_welcome;?>" style="width: 95%;padding: 0 5px;">
+									</div>
+									<div class="km-modal-footer">
+										<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_myInfo_Close');?></button>
+										<button type="button" class="km-btn km-btn-primary" onclick="saveSellerShopWelcome();"><?php echo lang('cms_myInfo_Savechanges');?></button>
+									</div>
+								</div><!-- /.modal-content -->
+							</div><!-- /.modal-dialog -->
 						</td>
 					  </tr>
 					</tbody>
@@ -55,16 +88,19 @@
 							</div>
 						</td>
 						<td class="value width17p br">
-							<img src="/assets/temp/shopicon.png" width="108" height="86">
+							<img src="<?php echo $merchant->merchant_shop_icon;?>" width="108" height="86" id="mainLogoImage">
 						</td>
 						<td class="value width5p br">
 							<?php echo lang('cms_grade_shop_Size');?> 108*86
 						</td>
 						<td class="value width10p br">
-							<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 10px;"><?php echo lang('cms_grade_shop_Upload');?></button>
+							<form id="upload_mainLogo_form" method="post" enctype="multipart/form-data">
+								<input onchange="return uploadMainLogo()" name="image" type="file" id="fileMainLogo" style="display:none;" accept="image/*">
+							</form>
+							<button onclick="$('#fileMainLogo').click();" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 10px;"><?php echo lang('cms_grade_shop_Upload');?></button>
 						</td>
 						<td class="value width10p">
-							<button onclick=";" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 10px;"><?php echo lang('cms_common_Delete');?></button>
+							<button onclick="deleteMainLogo();" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 10px;"><?php echo lang('cms_common_Delete');?></button>
 						</td>
 					  </tr>
 					  <tr>
@@ -82,16 +118,19 @@
 							</div>
 						</td>
 						<td class="value width17p br">
-							<img src="/assets/temp/shopiconmini.png" width="57" height="15">
+							<img src="<?php echo $merchant->merchant_shop_smallicon;?>" width="57" height="15" id="smallLogoImage">
 						</td>
 						<td class="value width5p br">
 							<?php echo lang('cms_grade_shop_Size');?> 57x15
 						</td>
 						<td class="value width10p br">
-							<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 10px;"><?php echo lang('cms_grade_shop_Upload');?></button>
+							<form id="upload_smallLogo_form" method="post" enctype="multipart/form-data">
+								<input onchange="return uploadSmallLogo()" name="image" type="file" id="fileSmallLogo" style="display:none;" accept="image/*">
+							</form>
+							<button onclick="$('#fileSmallLogo').click();" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 10px;"><?php echo lang('cms_grade_shop_Upload');?></button>
 						</td>
 						<td class="value width10p">
-							<button onclick=";" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 10px;"><?php echo lang('cms_common_Delete');?></button>
+							<button onclick="deleteSmallLogo();" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 10px;"><?php echo lang('cms_common_Delete');?></button>
 						</td>
 					  </tr>
 					</tbody>
@@ -106,8 +145,9 @@
 					  <tr>
 						<td class="field width10p">*<?php echo lang('cms_grade_shop_SetyourownSellerShopaddress');?></td>
 						<td class="value width17p tal">
-							http://www.aiimai.com/shop/<input value="Thinkels" type="text" class="km-form-control" id="customer_view_fax_number" style="width: 25%;height: 20px;padding: 0 5px;display: inline-block;font-size:10px;"><a href="http://www.aiimai.com/shop/Thinkels">   <?php echo lang('cms_grade_shop_Go');?></a>
-							<button onclick=";" type="button" class="km-btn km-btn-primary fr" style="height: 28px;font-size: 12px;padding: 5px 10px;"><?php echo lang('cms_grade_shop_Change');?></button>
+							http://aiimai.coolkeji.com/home/shop?address= <input value="<?php echo $merchant->merchant_shop_address;?>" type="text" class="km-form-control" id="shopAddress" style="width: 25%;height: 20px;padding: 0 5px;display: inline-block;font-size:10px;">
+							<a href="http://aiimai.coolkeji.com/home/shop?address=<?php echo $merchant->merchant_shop_address;?>" target="_blank">   <?php echo lang('cms_grade_shop_Go');?></a>
+							<button onclick="saveShopAddress();" type="button" class="km-btn km-btn-primary fr" style="height: 28px;font-size: 12px;padding: 5px 10px;"><?php echo lang('cms_grade_shop_Change');?></button>
 						</td>
 					  </tr>
 					</tbody>
@@ -123,8 +163,12 @@
 						<td class="field width10p"><?php echo lang('cms_grade_shop_ShareAffiliateProgram');?></td>
 						<td class="value width17p tal">
 							<?php echo lang('cms_grade_shop_ShareAffiliateProgramDescription');?>
-							
-							<input type="checkbox" style="vertical-align: middle;margin-right: 5px;"><?php echo lang('cms_grade_shop_ShareAffiliateProgramCondition');?><button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_grade_shop_JoinFree');?></button>
+							<?php if($merchant->merchant_shop_affiliate_program!=1):?>
+							<input id="ifAccept" type="checkbox" style="vertical-align: middle;margin-right: 5px;"><?php echo lang('cms_grade_shop_ShareAffiliateProgramCondition');?>
+							<button onclick="joinAffiliateProgram('1')" type="button" class="km-btn km-btn-primary" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_grade_shop_JoinFree');?></button>
+							<?php else:?>
+							<span class="km-label km-label-success fl">You have joined this Program.</span>
+							<?php endif;?>
 						</td>
 					  </tr>
 					</tbody>

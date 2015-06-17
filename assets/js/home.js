@@ -687,3 +687,8 @@ function savePersonalInfoContactsPhone(){
 	personalContactsPhone.contactsMobilephone3 = $("#contactsMobilephone3").val();
 	dataHandler("modify","personalContactsPhone",personalContactsPhone,successRefresh,null,null,null,true);
 }
+function savePersonalInfoBirthday(){
+	var personalBirthday = new Object();
+	personalBirthday.birthday = $("#birthday").val();
+	dataHandler("modify","personalBirthday",personalBirthday,successRefresh,null,null,null,true);
+}
