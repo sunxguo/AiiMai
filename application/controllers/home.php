@@ -195,11 +195,18 @@ class Home extends CI_Controller {
 		$this->homeBaseHandler('Item','item',$data);
 	}
 	public function shop(){
-		if(!isset($_GET['shopId']) || !is_numeric($_GET['shopId'])){
+		if((!isset($_GET['shopId']) || !is_numeric($_GET['shopId'])) && !isset($_GET['address'])) {
 			$this->load->view('redirect',array("info"=>"Wrong url!",'url'=>'/home'));
+			return false;
+		}
+		if(isset($_GET['address'])){
+			$merchant=$this->commongetdata->getContentAdvance('user',array('merchant_shop_address'=>$_GET['address']));
+			$_GET['shopId']=$merchant->user_id;
+		}else{
+			$merchant=$this->commongetdata->getContent('user',$_GET['shopId']);
 		}
 		$data=array(
-			'merchant'=>$this->commongetdata->getContent('user',$_GET['shopId']),
+			'merchant'=>$merchant,
 			"merchantProductsAmount"=>$this->commongetdata->getProductsAdvance(array(
 				"result"=>'count',
 				"merchant"=>$_GET['shopId'],
@@ -278,34 +285,34 @@ class Home extends CI_Controller {
 	public function recentOrders(){
 		if(!$this->checkUserLogin()) return false;
 		$data=array(
-			'cart'=>$this->commongetdata->getCartListByMerchants()
+			'user'=>$this->commongetdata->getContent('user',$_SESSION['userid'])
 		);
 		$this->homeBaseHandler('Recent Orders','recentOrders',$data);
 	}
 	public function auction(){
 		if(!$this->checkUserLogin()) return false;
 		$data=array(
-			'cart'=>$this->commongetdata->getCartListByMerchants()
+			'user'=>$this->commongetdata->getContent('user',$_SESSION['userid'])
 		);
 		$this->homeBaseHandler('auction','auction',$data);
 	}
 	public function viewAll(){
 		if(!$this->checkUserLogin()) return false;
 		$data=array(
-			'cart'=>$this->commongetdata->getCartListByMerchants()
+			'user'=>$this->commongetdata->getContent('user',$_SESSION['userid'])
 		);
 		$this->homeBaseHandler('viewAll','viewAll',$data);
 	}
 	public function cancelRefund(){
 		if(!$this->checkUserLogin()) return false;
 		$data=array(
-			'cart'=>$this->commongetdata->getCartListByMerchants()
+			'user'=>$this->commongetdata->getContent('user',$_SESSION['userid'])
 		);
 		$this->homeBaseHandler('Cancel Refund','cancelRefund',$data);
 	}
 	public function forgotPassword(){
 		$data=array(
-			'cart'=>$this->commongetdata->getCartListByMerchants()
+			'user'=>$this->commongetdata->getContent('user',$_SESSION['userid'])
 		);
 		$this->homeBaseHandler('Forgot Your Password','forgotPassword',$data);
 	}

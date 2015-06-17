@@ -278,6 +278,14 @@ class CommonGetData{
 		);
 		return $this->getOneData($condition);
 	}
+	public function getContentAdvance($type,$where){
+		$condition=array(
+			'table'=>$type,
+			'result'=>'data',
+			'where'=>$where
+		);
+		return $this->getOneData($condition);
+	}
 	public function getData($condition){
 		return $this->CI->dbHandler->selectData($condition);
 	}
@@ -416,6 +424,7 @@ class CommonGetData{
 		if(isset($parameters['subCategory'])) $condition['where']['product_sub_category']=$parameters['subCategory'];
 		if(isset($parameters['subSubCategory'])) $condition['where']['product_sub_sub_category']=$parameters['subSubCategory'];
 		if(isset($parameters['status'])) $condition['where']['product_status']=$parameters['status'];
+		if(isset($parameters['groupBuy'])) $condition['where']['product_groupbuy']=$parameters['groupBuy'];
 		if(isset($parameters['sellFormat'])) $condition['where']['product_sell_format']=$parameters['sellFormat'];
 		if(isset($parameters['listedTimeBegin']))$condition['where']['product_time >=']=$parameters['listedTimeBegin'].' 00:00:00';
 		if(isset($parameters['listedTimeEnd']))$condition['where']['product_time <=']=$parameters['listedTimeEnd'].' 23:59:59';

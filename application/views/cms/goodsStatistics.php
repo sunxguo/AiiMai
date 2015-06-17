@@ -23,31 +23,31 @@
 				  <tr class="bt2">
 					<td class="value width50p tal br">
 						<?php echo lang('cms_baseInfo_goodsStatistics_Registeredtoday');?>: <span class="km-badge km-badge-info"><?php echo $registeredToday;?></span> 
-						<button onclick=";" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;">Go</button>
+						<a href="/cms/goodsEdit" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;">Go</a>
 					</td>
 					<td class="value width50p tal">
-						<?php echo lang('cms_baseInfo_goodsStatistics_Soldouttoday');?>: <span class="km-badge km-badge-info">1</span> 
-						<button onclick=";" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;">Go</button>
+						<?php echo lang('cms_baseInfo_goodsStatistics_Soldouttoday');?>: <span class="km-badge km-badge-info">0</span> 
+						<a href="/cms/goodsEdit" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;">Go</a>
 					</td>
 				  </tr>
 				  <tr>
 					<td class="value width50p tal br">
-						<?php echo lang('cms_baseInfo_goodsStatistics_GroupBuyinProgress');?>: <span class="km-badge km-badge-info">8</span>  
-						<button onclick=";" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;">Go</button>
+						<?php echo lang('cms_baseInfo_goodsStatistics_GroupBuyinProgress');?>: <span class="km-badge km-badge-info"><?php echo $groupBuy;?></span>  
+						<a href="/cms/goodsEdit" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;">Go</a>
 					</td>
 					<td class="value width50p tal">
-						<?php echo lang('cms_baseInfo_goodsStatistics_AuctioninProgress');?>: <span class="km-badge km-badge-info">1</span> 
-						<button onclick=";" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;">Go</button>
+						<?php echo lang('cms_baseInfo_goodsStatistics_AuctioninProgress');?>: <span class="km-badge km-badge-info"><?php echo $auction;?></span> 
+						<a href="/cms/goodsEdit" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;">Go</a>
 					</td>
 				  </tr>
 				  <tr>
 					<td class="value width50p tal br">
-						<?php echo lang('cms_baseInfo_goodsStatistics_Underreviewbeforelisting');?>: <span class="km-badge km-badge-info">3</span>  
-						<button onclick=";" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;">Go</button>
+						<?php echo lang('cms_baseInfo_goodsStatistics_Underreviewbeforelisting');?>: <span class="km-badge km-badge-info"><?php echo $underReview;?></span>  
+						<a href="/cms/goodsEdit" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;">Go</a>
 					</td>
 					<td class="value width50p tal">
-						<?php echo lang('cms_baseInfo_goodsStatistics_ListingRejected');?>: <span class="km-badge km-badge-info">0</span> 
-						<button onclick=";" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;">Go</button>
+						<?php echo lang('cms_baseInfo_goodsStatistics_ListingRejected');?>: <span class="km-badge km-badge-info"><?php echo $rejected;?></span> 
+						<a href="/cms/goodsEdit" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;">Go</a>
 					</td>
 				  </tr>
 				</tbody>

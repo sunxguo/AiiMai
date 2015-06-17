@@ -508,6 +508,60 @@ class Common extends CI_Controller {
 					"user_contact_mobilephone3"=>$data->contactsMobilephone3
 				);
 			break;
+			case 'personalBirthday':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$_SESSION['userid']);
+				$condition['data']=array(
+					"user_birthday"=>$data->birthday
+				);
+			break;
+			case 'sellerShopTitle':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_shop_name"=>$data->title
+				);
+			break;
+			case 'sellerShopWelcome':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_shop_welcome"=>$data->welcome
+				);
+			break;
+			case 'mainLogo':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_shop_icon"=>$data->src
+				);
+			break;
+			case 'smallLogo':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_shop_smallicon"=>$data->src
+				);
+			break;
+			case 'shopAddress':
+				$isUnique=$this->commongetdata->checkUniqueAdvance('user',array("merchant_shop_address"=>$data->address));
+				if(!$isUnique){
+					echo json_encode(array("result"=>"failed","message"=>"This address already exists！"));
+					return false;
+				}
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_shop_address"=>$data->address
+				);
+			break;
+			case 'affiliateProgram':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_shop_affiliate_program"=>$data->join
+				);
+			break;
 		}
 		if($_POST['info_type']!='userNewPwd'){
 			$result=$this->dbHandler->updateData($condition);

@@ -19,8 +19,9 @@
 				  <tr>
 					<td class="field width10p">*<?php echo lang('cms_grade_shop_SetyourownSellerShopaddress');?></td>
 					<td class="value width17p tal">
-						http://www.aiimai.com/shop/<input value="Thinkels" type="text" class="km-form-control" id="customer_view_fax_number" style="width: 25%;height: 20px;padding: 0 5px;display: inline-block;font-size:10px;"><a href="http://www.aiimai.com/shop/Thinkels">   <?php echo lang('cms_grade_shop_Go');?></a>
-						<button onclick=";" type="button" class="km-btn km-btn-primary fr" style="height: 28px;font-size: 12px;padding: 5px 10px;"><?php echo lang('cms_grade_shop_Change');?></button>
+						http://aiimai.coolkeji.com/home/shop?address= <input value="<?php echo $merchant->merchant_shop_address;?>" type="text" class="km-form-control" id="shopAddress" style="width: 25%;height: 20px;padding: 0 5px;display: inline-block;font-size:10px;">
+						<a href="http://aiimai.coolkeji.com/home/shop?address=<?php echo $merchant->merchant_shop_address;?>" target="_blank">   <?php echo lang('cms_grade_shop_Go');?></a>
+						<button onclick="saveShopAddress();" type="button" class="km-btn km-btn-primary fr" style="height: 28px;font-size: 12px;padding: 5px 10px;"><?php echo lang('cms_grade_shop_Change');?></button>
 					</td>
 				  </tr>
 				</tbody>
