@@ -163,7 +163,15 @@ class Home extends CI_Controller {
 		$this->homeBaseHandler('Category','category',$data);
 	}
 	public function item(){
+		if(!isset($_GET['itemId']) || !is_numeric($_GET['itemId'])){
+			$this->load->view('redirect',array("info"=>"Wrong url!",'url'=>'/home'));
+			return false;
+		}
 		$item=$this->commongetdata->getContent('product',$_GET['itemId']);
+		if(!isset($item->product_id)){
+			$this->load->view('redirect',array("info"=>"Wrong url!",'url'=>'/home'));
+			return false;
+		}
 		$merchant=$this->commongetdata->getContent('user',$item->product_merchant);
 		$optionData=$this->commongetdata->getOptionData($_GET['itemId'],'data');
 		$optionArray=array();
@@ -195,7 +203,7 @@ class Home extends CI_Controller {
 		$this->homeBaseHandler('Item','item',$data);
 	}
 	public function shop(){
-		if((!isset($_GET['shopId']) || !is_numeric($_GET['shopId'])) && !isset($_GET['address'])) {
+		if((!isset($_GET['shopId']) || !is_numeric($_GET['shopId'])) && (!isset($_GET['address']) || $_GET['address']=='')){
 			$this->load->view('redirect',array("info"=>"Wrong url!",'url'=>'/home'));
 			return false;
 		}
@@ -204,6 +212,10 @@ class Home extends CI_Controller {
 			$_GET['shopId']=$merchant->user_id;
 		}else{
 			$merchant=$this->commongetdata->getContent('user',$_GET['shopId']);
+		}
+		if(!isset($merchant->user_id)){
+			$this->load->view('redirect',array("info"=>"Wrong url!",'url'=>'/home'));
+			return false;
 		}
 		$data=array(
 			'merchant'=>$merchant,

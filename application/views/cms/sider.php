@@ -16,7 +16,9 @@
 				<li><a href="/cms/myInfo" class="<?php echo array_key_exists('myInfo',$sider)?'active':'';?>"><?php echo lang('cms_sider_MyInformation');?></a></li>
 				<li><a href="/cms/grade" class="<?php echo array_key_exists('grade',$sider)?'active':'';?>"><?php echo lang('cms_sider_MyGradeAndPoint');?></a></li>
 				<li><a href="/cms/shopBaseInfo" class="<?php echo array_key_exists('shop',$sider)?'active':'';?>"><?php echo lang('cms_sider_ManageSellerShop');?></a></li>
+				<!--
 				<li><a href="/cms/permission" class="<?php echo array_key_exists('sellerPermission',$sider)?'active':'';?>"><?php echo lang('cms_sider_ASMMenuAuthority');?></a></li>
+				-->
 			</ul>
 		</li>
 		<li class="has-sub">
@@ -27,17 +29,22 @@
 			</a>
 			<ul class="nav <?php echo array_key_exists('goodsManagement',$sider)?'':'hide';?>">
 				<li><a href="/cms/goodsStatistics" class="<?php echo array_key_exists('goods',$sider)?'active':'';?>"><?php echo lang('cms_sider_ListingAndEditing');?></a></li>
+				<!--
 				<li><a href="/cms/auctionGoods" class="<?php echo array_key_exists('auction',$sider)?'active':'';?>"><?php echo lang('cms_sider_AuctionAndLuckyPrice');?></a></li>
+				-->
 				<li><a href="/cms/groupBuy" class="<?php echo array_key_exists('groupBuy',$sider)?'active':'';?>"><?php echo lang('cms_sider_ManageGroupBuy');?></a></li>
 				<li><a href="/cms/price" class="<?php echo array_key_exists('price',$sider)?'active':'';?>"><?php echo lang('cms_sider_PricingAndQty');?></a></li>
 				<li><a href="/cms/deliveryFee" class="<?php echo array_key_exists('deliveryFee',$sider)?'active':'';?>"><?php echo lang('cms_sider_ShippingRateOrForm');?></a></li>
 				<li><a href="/cms/inventory" class="<?php echo array_key_exists('inventoryManagement',$sider)?'active':'';?>"><?php echo lang('cms_sider_Inventory');?></a></li>
 				<li><a href="/cms/stockOptionQuery" class="<?php echo array_key_exists('stockOptionQuery',$sider)?'active':'';?>"><?php echo lang('cms_sider_InventoryOptionSearch');?></a></li>
+				<!--
 				<li><a href="/cms/goodsGroup" class="<?php echo array_key_exists('goodsGroup',$sider)?'active':'';?>"><?php echo lang('cms_sider_SetSalesGroup');?></a></li>
 				<li><a href="/cms/globalSales" class="<?php echo array_key_exists('globalSales',$sider)?'active':'';?>"><?php echo lang('cms_sider_ManageGlobalSales');?></a></li>
+				-->
 				<li><a href="/cms/bigData" class="<?php echo array_key_exists('bigData',$sider)?'active':'';?>"><?php echo lang('cms_sider_BulkDataManagement');?></a></li>
 			</ul>
 		</li>
+		<!--
 		<li class="has-sub">
 			<a href="javascript:void();" class="nav-header <?php echo array_key_exists('ad',$sider)?'active':'';?>">
 				<i class="icon-th"><img src="/assets/images/cms/icon/icon-ad-bs.png"></i>
@@ -62,6 +69,7 @@
 				<li><a href="/cms/feedback" class=""><?php echo lang('cms_sider_PushPromotion');?></a></li>
 			</ul>
 		</li>
+		-->
 		<li class="has-sub">
 			<a href="javascript:void();" class="nav-header <?php echo array_key_exists('deliveryManagement',$sider)?'active':'';?>">
 				<i class="icon-bar"><img src="/assets/images/cms/icon/icon-data-bs.png"></i>

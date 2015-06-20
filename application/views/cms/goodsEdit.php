@@ -58,14 +58,14 @@
 							<option value="1"><?php echo lang('cms_goodsCopy_ChangeDate');?></option>
 						</select>
 					</td>
-					<td class="value tal">
+					<td class="value tal" style="width: 300px;">
 						<input id="beginDate" type="date" value="<?php echo date("Y-m-d",strtotime(date("Y-m-d")." -30 day"));?>" class="km-form-control" style="width: 40%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;"> ~ <input id="endDate" type="date" value="<?php echo date("Y-m-d");?>" class="km-form-control" style="width: 40%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 					</td>
 					<td class="field width10p tal br">
 						<?php echo lang('cms_goodsCopy_SellFormat');?>
 					</td>
 					<td class="value width17p tal">
-						<select id="SellFormat" style="height: 30px;" onchange="if($(this).val()=='T6') $('#stock').show();else $('#stock').hide();">
+						<select id="SellFormat" style="height: 30px;width: 80px;" onchange="if($(this).val()=='1') $('#stock').show();else $('#stock').hide();">
 							<option value="1" selected="selected"><?php echo lang('cms_goodsCopy_BuyNow');?></option>
 							<option value="2"><?php echo lang('cms_goodsCopy_Auction');?></option>
 							<option value="3"><?php echo lang('cms_goodsCopy_FreeFormat');?></option>

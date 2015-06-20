@@ -376,6 +376,20 @@ function saveProductStatus(){
 function successProStatus(){
 	alert('Successfully saved!');
 }
+function showCat(catId,display){
+	var displayCat = new Object();
+	displayCat.id = catId;
+	displayCat.display = display;
+	dataHandler("modify","displayCat",displayCat,successShowCat,null,null,null,true);
+}
+function successShowCat(){
+	alert('Successfully saved!');
+}
+function showChangeImageDiv(tag){
+	setDivCenter('#changeHomeFeaturedImageDiv',true);
+	$("#titleInput").val($(tag).attr('title'));
+	$("#titleInput").val($(tag).attr('title'));
+}
 /*Example:
 $(".slider-item").mouseout(function(){
 	$(this).find('.oper').hide();

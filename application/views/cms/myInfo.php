@@ -449,28 +449,28 @@
 				  <tr>
 					<td class="field width10p"><?php echo lang('cms_myInfo_Salesstaff');?></td>
 					<td class="value width17p">
-						kcheongn
-						<button onclick="setDivCenter('#managePrincipal',true);" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
-						<div class="km-modal-dialog width40p" id="managePrincipal">
+						<?php echo $merchant->merchant_salesStaff;?>
+						<button onclick="setDivCenter('#myInfoSalesstaffDiv',true);" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
+						<div class="km-modal-dialog width40p" id="myInfoSalesstaffDiv">
 							<div class="km-modal-content">
 								<div class="km-modal-header">
 									<button type="button" class="km-close"><span>&times;</span></button>
 									<h4 class="km-modal-title"><?php echo lang('cms_myInfo_SalesStaffInformation').'-'.lang('cms_myInfo_Salesstaff');?></h4>
 								</div>
 								<div class="km-modal-body">
-									<label for="customer_view_email" class="km-control-label">Name:</label>
-									<input type="text" class="km-form-control" id="managePrincipal_name" value="kcheongn" style="width: 95%;padding: 0 5px;">
+									<label for="salesStaffName" class="km-control-label">Name:</label>
+									<input type="text" class="km-form-control" id="salesStaffName" value="<?php echo $merchant->merchant_salesStaff;?>" style="width: 95%;padding: 0 5px;">
 								</div>
 								<div class="km-modal-footer">
 									<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_myInfo_Close');?></button>
-									<button type="button" class="km-btn km-btn-primary"><?php echo lang('cms_myInfo_Savechanges');?></button>
+									<button onclick="saveSalesStaffName();" type="button" class="km-btn km-btn-primary"><?php echo lang('cms_myInfo_Savechanges');?></button>
 								</div>
 							</div><!-- /.modal-content -->
 						</div><!-- /.modal-dialog -->
 					</td>
 					<td class="field width10p"><?php echo lang('cms_myInfo_Email');?></td>
 					<td class="value width17p">
-						kcheongn@gmail.com   
+						<?php echo $merchant->merchant_salesStaff_email;?>
 						<button onclick="setDivCenter('#manageEmail',true);" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button><br>
 						<div class="km-modal-dialog width40p" id="manageEmail">
 							<div class="km-modal-content">
@@ -479,12 +479,12 @@
 									<h4 class="km-modal-title"><?php echo lang('cms_myInfo_SalesStaffInformation').'-'.lang('cms_myInfo_Email');?></h4>
 								</div>
 								<div class="km-modal-body">
-									<label for="customer_view_email" class="km-control-label"><?php echo lang('cms_myInfo_Email');?>:</label>
-									<input type="text" class="km-form-control" id="baseContactInfo_email" value="kcheongn@gmail.com" style="width: 95%;padding: 0 5px;">
+									<label for="salesStaffEmail" class="km-control-label"><?php echo lang('cms_myInfo_Email');?>:</label>
+									<input type="text" class="km-form-control" id="salesStaffEmail" value="<?php echo $merchant->merchant_salesStaff_email;?>" style="width: 95%;padding: 0 5px;">
 								</div>
 								<div class="km-modal-footer">
 									<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_myInfo_Close');?></button>
-									<button type="button" class="km-btn km-btn-primary"><?php echo lang('cms_myInfo_Savechanges');?></button>
+									<button onclick="saveSalesStaffEmail();" type="button" class="km-btn km-btn-primary"><?php echo lang('cms_myInfo_Savechanges');?></button>
 								</div>
 							</div><!-- /.modal-content -->
 						</div><!-- /.modal-dialog -->
@@ -493,7 +493,7 @@
 				  <tr>
 					<td class="field width10p"><?php echo lang('cms_myInfo_MobilephoneNo');?></td>
 					<td class="value width17p">
-						Singapore 9685-1921 
+						<?php echo $merchant->merchant_salesStaff_mobilephone1;?> <?php echo $merchant->merchant_salesStaff_mobilephone2;?>-<?php echo $merchant->merchant_salesStaff_mobilephone3;?> 
 						<button onclick="setDivCenter('#manageMobilePhoneNumber',true);" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
 						<div class="km-modal-dialog width40p" id="manageMobilePhoneNumber">
 							<div class="km-modal-content">
@@ -502,21 +502,21 @@
 									<h4 class="km-modal-title"><?php echo lang('cms_myInfo_SalesStaffInformation').'-'.lang('cms_myInfo_MobilephoneNo');?></h4>
 								</div>
 								<div class="km-modal-body">
-									<label for="customer_view_email" class="km-control-label"><?php echo lang('cms_myInfo_MobilephoneNo');?>:</label>
-									<select id="customer_view_fax_countrycode" style="display:block;height: 30px;"><?php require('countryPhoneNO.php');?></select><br>
-									<input type="text" class="km-form-control" id="customer_view_fax_areacode" value="9685" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;">-
-									<input type="text" class="km-form-control" id="customer_view_fax_number" value="1921" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;">
+									<label for="salesStaffMobilePhone1" class="km-control-label"><?php echo lang('cms_myInfo_MobilephoneNo');?>:</label>
+									<select id="salesStaffMobilePhone1" style="display:block;height: 30px;"><?php require('countryPhoneNO.php');?></select><br>
+									<input type="text" class="km-form-control" id="salesStaffMobilePhone2" value="<?php echo $merchant->merchant_salesStaff_mobilephone2;?>" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;">-
+									<input type="text" class="km-form-control" id="salesStaffMobilePhone3" value="<?php echo $merchant->merchant_salesStaff_mobilephone3;?>" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;">
 								</div>
 								<div class="km-modal-footer">
 									<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_myInfo_Close');?></button>
-									<button type="button" class="km-btn km-btn-primary"><?php echo lang('cms_myInfo_Savechanges');?></button>
+									<button onclick="saveSalesStaffMobilePhone();" type="button" class="km-btn km-btn-primary"><?php echo lang('cms_myInfo_Savechanges');?></button>
 								</div>
 							</div><!-- /.modal-content -->
 						</div><!-- /.modal-dialog -->
 					</td>
 					<td class="field width10p"><?php echo lang('cms_myInfo_Phonenumber');?></td>
 					<td class="value width17p">
-						Singapore 9685-1921 
+						<?php echo $merchant->merchant_salesStaff_phone1;?> <?php echo $merchant->merchant_salesStaff_phone2;?>-<?php echo $merchant->merchant_salesStaff_phone3;?> 
 						<button onclick="setDivCenter('#managePhoneNumber',true);" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
 						<div class="km-modal-dialog width40p" id="managePhoneNumber">
 							<div class="km-modal-content">
@@ -525,14 +525,14 @@
 									<h4 class="km-modal-title"><?php echo lang('cms_myInfo_SalesStaffInformation').'-'.lang('cms_myInfo_Phonenumber');?></h4>
 								</div>
 								<div class="km-modal-body">
-									<label for="customer_view_email" class="km-control-label"><?php echo lang('cms_myInfo_Phonenumber');?>:</label>
-									<select id="customer_view_fax_countrycode" style="display:block;height: 30px;"><?php require('countryPhoneNO.php');?></select><br>
-									<input type="text" class="km-form-control" id="customer_view_fax_areacode" value="9685" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;">-
-									<input type="text" class="km-form-control" id="customer_view_fax_number" value="1921" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;">
+									<label for="salesStaffPhone1" class="km-control-label"><?php echo lang('cms_myInfo_Phonenumber');?>:</label>
+									<select id="salesStaffPhone1" style="display:block;height: 30px;"><?php require('countryPhoneNO.php');?></select><br>
+									<input type="text" class="km-form-control" id="salesStaffPhone2" value="<?php echo $merchant->merchant_salesStaff_phone2;?>" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;">-
+									<input type="text" class="km-form-control" id="salesStaffPhone3" value="<?php echo $merchant->merchant_salesStaff_phone3;?>" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;">
 								</div>
 								<div class="km-modal-footer">
 									<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_myInfo_Close');?></button>
-									<button type="button" class="km-btn km-btn-primary"><?php echo lang('cms_myInfo_Savechanges');?></button>
+									<button onclick="saveSalesStaffPhone();" type="button" class="km-btn km-btn-primary"><?php echo lang('cms_myInfo_Savechanges');?></button>
 								</div>
 							</div><!-- /.modal-content -->
 						</div><!-- /.modal-dialog -->
@@ -541,7 +541,7 @@
 				  <tr>
 					<td class="field width10p"><?php echo lang('cms_myInfo_Faxnumber');?></td>
 					<td class="value width17p" colspan="3">
-						Singapore 9685-1921 
+						<?php echo $merchant->merchant_salesStaff_faxnumber1;?> <?php echo $merchant->merchant_salesStaff_faxnumber2;?>-<?php echo $merchant->merchant_salesStaff_faxnumber3;?> 
 						<button onclick="setDivCenter('#manageFax',true);" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
 						<div class="km-modal-dialog width40p" id="manageFax">
 							<div class="km-modal-content">
@@ -550,14 +550,14 @@
 									<h4 class="km-modal-title"><?php echo lang('cms_myInfo_SalesStaffInformation').'-'.lang('cms_myInfo_Faxnumber');?></h4>
 								</div>
 								<div class="km-modal-body">
-									<label for="customer_view_email" class="km-control-label"><?php echo lang('cms_myInfo_Faxnumber');?>:</label>
-									<select id="customer_view_fax_countrycode" style="display:block;height: 30px;"><?php require('countryPhoneNO.php');?></select><br>
-									<input type="text" class="km-form-control" id="customer_view_fax_areacode" value="9685" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;">-
-									<input type="text" class="km-form-control" id="customer_view_fax_number" value="1921" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;">
+									<label for="salesStaffFax1" class="km-control-label"><?php echo lang('cms_myInfo_Faxnumber');?>:</label>
+									<select id="salesStaffFax1" style="display:block;height: 30px;"><?php require('countryPhoneNO.php');?></select><br>
+									<input type="text" class="km-form-control" id="salesStaffFax2" value="<?php echo $merchant->merchant_salesStaff_faxnumber2;?>" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;">-
+									<input type="text" class="km-form-control" id="salesStaffFax3" value="<?php echo $merchant->merchant_salesStaff_faxnumber3;?>" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;">
 								</div>
 								<div class="km-modal-footer">
 									<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_myInfo_Close');?></button>
-									<button type="button" class="km-btn km-btn-primary"><?php echo lang('cms_myInfo_Savechanges');?></button>
+									<button onclick="saveSalesStaffFax();" type="button" class="km-btn km-btn-primary"><?php echo lang('cms_myInfo_Savechanges');?></button>
 								</div>
 							</div><!-- /.modal-content -->
 						</div><!-- /.modal-dialog -->
@@ -575,48 +575,126 @@
 				  <tr>
 					<td class="field width10p"><?php echo lang('cms_myInfo_Shipfromaddress');?></td>
 					<td class="value width17p">
-						(521168) 168A SIMEI LANE 168A Simei Lane Singapore 521168<br>
+						<?php if(isset($shipAddress->address_detail)):?>
+						<?php echo ($shipAddress->address_detail).' '.($shipAddress->address_area).' '.($shipAddress->address_country);?>
+						<?php echo ($shipAddress->address_mobilephone1).' '.($shipAddress->address_mobilephone2).''.($shipAddress->address_mobilephone3);?>
+						<?php endif;?>
+						<br>
 						<?php echo lang('cms_myInfo_ShipfromaddressTip');?>
-						<button onclick="setDivCenter('#',true);" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
+						<button onclick="setDivCenter('#shipFromAddressDiv',true);" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
+						<div class="km-modal-dialog width40p" id="shipFromAddressDiv">
+							<div class="km-modal-content">
+								<div class="km-modal-header">
+									<button type="button" class="km-close"><span>&times;</span></button>
+									<h4 class="km-modal-title"><?php echo lang('cms_myInfo_ShippingInformation').'-'.lang('cms_myInfo_Shipfromaddress');?></h4>
+								</div>
+								<div class="km-modal-body">
+									<label for="shipFromAddressTitle" class="km-control-label" style="width: 80px;">Title:</label>
+									<input type="text" class="km-form-control" id="shipFromAddressTitle" value="<?php echo isset($shipAddress->address_title)?$shipAddress->address_title:'';?>" style="width: 50%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
+									<label for="shipFromAddressStaffName" class="km-control-label" style="width: 80px;">Staff Name:</label>
+									<input type="text" class="km-form-control" id="shipFromAddressStaffName" value="<?php echo isset($shipAddress->address_staffname)?$shipAddress->address_staffname:'';?>" style="width: 50%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
+									<label for="shipFromAddressCountry" class="km-control-label" style="width: 80px;">Country:</label>
+									<select id="shipFromAddressCountry" style="height: 30px;width:30%;"><?php require('countryPhoneNO.php');?></select>
+									<label for="shipFromAddressArea" class="km-control-label">Area:</label>
+									<input type="text" class="km-form-control" id="shipFromAddressArea" value="<?php echo isset($shipAddress->address_area)?$shipAddress->address_area:'';?>" style="width: 37.8%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
+									<label for="shipFromAddressDetail" class="km-control-label" style="width: 80px;">Detail:</label>
+									<input type="text" class="km-form-control" id="shipFromAddressDetail" value="<?php echo isset($shipAddress->address_detail)?$shipAddress->address_detail:'';?>" style="width: 74.5%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
+									
+									<label for="shipFromAddressMobilephone1" class="km-control-label" style="width: 120px;">Mobile Phone:</label>
+									<select id="shipFromAddressMobilephone1" style="height: 30px;"><?php require('countryPhoneNO.php');?></select>
+									<input type="text" class="km-form-control" id="shipFromAddressMobilephone2" value="<?php echo isset($shipAddress->address_mobilephone2)?$shipAddress->address_mobilephone2:'';?>" style="width: 20%;height: 30px;padding: 0 5px;display: inline-block;">-
+									<input type="text" class="km-form-control" id="shipFromAddressMobilephone3" value="<?php echo isset($shipAddress->address_mobilephone2)?$shipAddress->address_mobilephone2:'';?>" style="width: 20%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
+									<label for="shipFromAddressPhone1" class="km-control-label" style="width: 120px;">Phone Number:</label>
+									<select id="shipFromAddressPhone1" style="height: 30px;"><?php require('countryPhoneNO.php');?></select>
+									<input type="text" class="km-form-control" id="shipFromAddressPhone2" value="<?php echo isset($shipAddress->address_mobilephone2)?$shipAddress->address_mobilephone2:'';?>" style="width: 20%;height: 30px;padding: 0 5px;display: inline-block;">-
+									<input type="text" class="km-form-control" id="shipFromAddressPhone3" value="<?php echo isset($shipAddress->address_mobilephone2)?$shipAddress->address_mobilephone2:'';?>" style="width: 20%;height: 30px;padding: 0 5px;display: inline-block;">
+									
+								</div>
+								<div class="km-modal-footer">
+									<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_myInfo_Close');?></button>
+									<button onclick="saveShipFromAddress();" type="button" class="km-btn km-btn-primary"><?php echo lang('cms_myInfo_Savechanges');?></button>
+								</div>
+							</div><!-- /.modal-content -->
+						</div><!-- /.modal-dialog -->
 					</td>
 					<td class="field width10p"><?php echo lang('cms_myInfo_DeliveryCompany');?></td>
 					<td class="value width17p">
-						<select id="sel_srch_takbae" style="height: 30px;"><option value="">Select</option><option value="100000002">Singpost normal mail</option><option value="100000003">Singpost registered mail</option><option value="100000040">Singpost Smartpac</option><option value="100000004">TAQBIN</option><option value="100000005">EMS</option><option value="100000011">Korea registered airmail</option><option value="100000012">Korea normal airmail</option><option value="100000020">Qxpress</option><option value="100000053">Qxpress normal mail</option><option value="100000017">Speedpost</option><option value="100000058">SRE</option><option value="100000063">Quantium</option><option value="100000007">Toll</option><option value="100000009">DHL</option><option value="100000025">FedEx</option><option value="100000034">UPS</option><option value="100000026">Chinapost normal airmail</option><option value="100000027">Chinapost registered airmail</option><option value="100000030">Dex-i</option><option value="100000037">HK post normal mail</option><option value="100000038">HK post registered mail</option><option value="100000047">Thailand registered mail</option><option value="100000021">Citylink</option><option value="100000013">USPS registered mail</option><option value="100000056">USPS normal mail</option><option value="100000062">Asendia</option><option value="100000023">Arrow Air Action</option><option value="100000024">Cuckoo Express</option><option value="100000035">Comone Express</option><option value="100000065">YAMATO Global</option><option value="100000019">4PX Express</option><option value="100000029">Aramex</option><option value="100000031">Japanpost registered mail</option><option value="100000036">MypostOnline</option><option value="100000043">Airpak</option><option value="100000057">POS daftar</option><option value="100000052">Pos Laju</option><option value="100000008">Others</option></select>
-						<button onclick="setDivCenter('#',true);" type="button" class="km-btn km-btn-primary fr" style="height: 28px;font-size: 12px;padding: 5px 10px;"><?php echo lang('cms_common_save');?></button>
+						<select id="deliveryCompany" style="height: 30px;">
+							<option value="">Select</option>
+							<option value="100000002" <?php echo $merchant->merchant_delivery_company==100000002?'selected':'';?>>Singpost normal mail</option>
+							<option value="100000003" <?php echo $merchant->merchant_delivery_company==100000003?'selected':'';?>>Singpost registered mail</option>
+							<option value="100000040" <?php echo $merchant->merchant_delivery_company==100000040?'selected':'';?>>Singpost Smartpac</option>
+							<option value="100000004" <?php echo $merchant->merchant_delivery_company==100000004?'selected':'';?>>TAQBIN</option>
+							<option value="100000005" <?php echo $merchant->merchant_delivery_company==100000005?'selected':'';?>>EMS</option>
+							<option value="100000011" <?php echo $merchant->merchant_delivery_company==100000011?'selected':'';?>>Korea registered airmail</option>
+							<option value="100000012" <?php echo $merchant->merchant_delivery_company==100000012?'selected':'';?>>Korea normal airmail</option>
+							<option value="100000020" <?php echo $merchant->merchant_delivery_company==100000020?'selected':'';?>>Qxpress</option>
+							<option value="100000053" <?php echo $merchant->merchant_delivery_company==100000053?'selected':'';?>>Qxpress normal mail</option>
+							<option value="100000017" <?php echo $merchant->merchant_delivery_company==100000017?'selected':'';?>>Speedpost</option>
+							<option value="100000058" <?php echo $merchant->merchant_delivery_company==100000058?'selected':'';?>>SRE</option>
+							<option value="100000063" <?php echo $merchant->merchant_delivery_company==100000063?'selected':'';?>>Quantium</option>
+							<option value="100000007" <?php echo $merchant->merchant_delivery_company==100000007?'selected':'';?>>Toll</option>
+							<option value="100000009" <?php echo $merchant->merchant_delivery_company==100000009?'selected':'';?>>DHL</option>
+							<option value="100000025" <?php echo $merchant->merchant_delivery_company==100000025?'selected':'';?>>FedEx</option>
+							<option value="100000034" <?php echo $merchant->merchant_delivery_company==100000034?'selected':'';?>>UPS</option>
+							<option value="100000026" <?php echo $merchant->merchant_delivery_company==100000026?'selected':'';?>>Chinapost normal airmail</option>
+							<option value="100000027" <?php echo $merchant->merchant_delivery_company==100000027?'selected':'';?>>Chinapost registered airmail</option>
+							<option value="100000030" <?php echo $merchant->merchant_delivery_company==100000030?'selected':'';?>>Dex-i</option>
+							<option value="100000037" <?php echo $merchant->merchant_delivery_company==100000037?'selected':'';?>>HK post normal mail</option>
+							<option value="100000038" <?php echo $merchant->merchant_delivery_company==100000038?'selected':'';?>>HK post registered mail</option>
+							<option value="100000047" <?php echo $merchant->merchant_delivery_company==100000047?'selected':'';?>>Thailand registered mail</option>
+							<option value="100000021" <?php echo $merchant->merchant_delivery_company==100000021?'selected':'';?>>Citylink</option>
+							<option value="100000013" <?php echo $merchant->merchant_delivery_company==100000013?'selected':'';?>>USPS registered mail</option>
+							<option value="100000056" <?php echo $merchant->merchant_delivery_company==100000056?'selected':'';?>>USPS normal mail</option>
+							<option value="100000062" <?php echo $merchant->merchant_delivery_company==100000062?'selected':'';?>>Asendia</option>
+							<option value="100000023" <?php echo $merchant->merchant_delivery_company==100000023?'selected':'';?>>Arrow Air Action</option>
+							<option value="100000024" <?php echo $merchant->merchant_delivery_company==100000024?'selected':'';?>>Cuckoo Express</option>
+							<option value="100000035" <?php echo $merchant->merchant_delivery_company==100000035?'selected':'';?>>Comone Express</option>
+							<option value="100000065" <?php echo $merchant->merchant_delivery_company==100000065?'selected':'';?>>YAMATO Global</option>
+							<option value="100000019" <?php echo $merchant->merchant_delivery_company==100000019?'selected':'';?>>4PX Express</option>
+							<option value="100000029" <?php echo $merchant->merchant_delivery_company==100000029?'selected':'';?>>Aramex</option>
+							<option value="100000031" <?php echo $merchant->merchant_delivery_company==100000031?'selected':'';?>>Japanpost registered mail</option>
+							<option value="100000036" <?php echo $merchant->merchant_delivery_company==100000036?'selected':'';?>>MypostOnline</option>
+							<option value="100000043" <?php echo $merchant->merchant_delivery_company==100000043?'selected':'';?>>Airpak</option>
+							<option value="100000057" <?php echo $merchant->merchant_delivery_company==100000057?'selected':'';?>>POS daftar</option>
+							<option value="100000052" <?php echo $merchant->merchant_delivery_company==100000052?'selected':'';?>>Pos Laju</option>
+							<option value="100000008" <?php echo $merchant->merchant_delivery_company==100000008?'selected':'';?>>Others</option>
+						</select>
+						<button onclick="saveDeliveryCompany();" type="button" class="km-btn km-btn-primary fr" style="height: 28px;font-size: 12px;padding: 5px 10px;"><?php echo lang('cms_common_save');?></button>
 					</td>
 				  </tr>
 				  <tr>
 					<td class="field width10p"><?php echo lang('cms_myInfo_Orderalerttype');?></td>
 					<td class="value width17p tal" colspan="3">
-						<input type="checkbox" style="vertical-align: middle;margin-right: 5px;"><?php echo lang('cms_myInfo_ASMAndemailnotify');?> <input type="text" class="km-form-control" id="customer_view_fax_areacode" value="XXX@gmail.com" style="width: 30%;height: 25px;padding: 0 5px;display: inline-block; font-size:10px;"> <?php echo lang('cms_myInfo_ASMAndemailnotifyTip');?><br>
-						<input type="checkbox" style="vertical-align: middle;margin-right: 5px;"> <?php echo lang('cms_myInfo_SMSreceive');?>
+						<input id="isOrderAlertEmail" type="checkbox" <?php echo $merchant->merchant_order_alert_isemail==1?'checked':'';?> style="vertical-align: middle;margin-right: 5px;"><?php echo lang('cms_myInfo_ASMAndemailnotify');?> 
+						<input id="orderAlertEmail" type="text" class="km-form-control" value="<?php echo $merchant->merchant_order_alert_email;?>" style="width: 30%;height: 25px;padding: 0 5px;display: inline-block; font-size:10px;"> <?php echo lang('cms_myInfo_ASMAndemailnotifyTip');?><br>
+						<input id="isOrderAlertSMS" type="checkbox" <?php echo $merchant->merchant_order_alert_issms==1?'checked':'';?> style="vertical-align: middle;margin-right: 5px;"> <?php echo lang('cms_myInfo_SMSreceive');?>
 						<div class="km-popover-wrapper">
 							<img onclick="$(this).next().toggle(100)" src="/assets/images/cms/questionMark.png" width="14px" style="cursor:pointer;">
 							<div class="km-popover km-bottom" style="top: 25px;left:-125px; width:260px;">
 							  <div class="km-arrow"></div>
 							  <h3 class="km-popover-title"><?php echo lang('cms_myInfo_Description');?></h3>
-
 							  <div class="km-popover-content">
 								<p><?php echo lang('cms_myInfo_DescriptionContent');?></p>
 							  </div>
 							</div>
 						</div>
-						<?php echo lang('cms_myInfo_MobilephoneNo');?>：Singapore 9685-1921 <button onclick="setDivCenter('#',true);" type="button" class="km-btn km-btn-primary" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_common_Editmobilephonenumber');?></button>
-						<button onclick="" type="button" class="km-btn km-btn-primary fr" style="height: 28px;font-size: 12px;padding: 5px 10px;"><?php echo lang('cms_common_save');?></button>
+						<?php echo lang('cms_myInfo_MobilephoneNo');?>：<?php echo $merchant->merchant_order_alert_phone1;?> <?php echo $merchant->merchant_order_alert_phone2;?> <button onclick="setDivCenter('#',true);" type="button" class="km-btn km-btn-primary" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_common_Editmobilephonenumber');?></button>
+						<button onclick="saveOrderAlert();" type="button" class="km-btn km-btn-primary fr" style="height: 28px;font-size: 12px;padding: 5px 10px;"><?php echo lang('cms_common_save');?></button>
 					</td>
 				  </tr>
 				  <tr>
 					<td class="field width10p"><?php echo lang('cms_myInfo_Sendingnotifymail');?></td>
 					<td class="value width17p tal" colspan="3">
-						<input type="checkbox" style="vertical-align: middle;margin-right: 5px;"> <?php echo lang('cms_myInfo_Use');?> 	<?php echo lang('cms_myInfo_UseTip');?>
-						<button onclick="" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_common_save');?></button>
+						<input id="isSendingNotifyMail" type="checkbox" <?php echo $merchant->merchant_is_sending_notify_mail==1?'checked':'';?> style="vertical-align: middle;margin-right: 5px;"> <?php echo lang('cms_myInfo_Use');?> 	<?php echo lang('cms_myInfo_UseTip');?>
+						<button onclick="saveIsSendingNotifyMail();" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_common_save');?></button>
 					</td>
 				  </tr>
 				  <tr>
 					<td class="field width10p">e-Ticket <?php echo lang('cms_sider_Password');?></td>
 					<td class="value width17p tal" colspan="3">
-						<input type="text" class="km-form-control" id="customer_view_fax_number" style="width: 30%;height: 25px;padding: 0 5px;display: inline-block;">
-						<button onclick="" type="button" class="km-btn km-btn-primary fr" style="height: 22px;font-size: 10px;padding: 2px 10px;"><?php echo lang('cms_common_save');?></button>
+						<input type="text" class="km-form-control" id="eticketPassword" value="<?php echo $merchant->merchant_eticket_password;?>" style="width: 30%;height: 25px;padding: 0 5px;display: inline-block;">
+						<button onclick="saveEticketPassword();" type="button" class="km-btn km-btn-primary fr" style="height: 22px;font-size: 10px;padding: 2px 10px;"><?php echo lang('cms_common_save');?></button>
 					</td>
 				  </tr>
 				</tbody>

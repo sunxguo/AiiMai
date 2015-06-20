@@ -562,6 +562,108 @@ class Common extends CI_Controller {
 					"merchant_shop_affiliate_program"=>$data->join
 				);
 			break;
+			case 'salesStaffName':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_salesStaff"=>$data->name
+				);
+			break;
+			case 'salesStaffEmail':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_salesStaff_email"=>$data->email
+				);
+			break;
+			case 'salesStaffMobilePhone':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_salesStaff_mobilephone1"=>$data->salesStaffMobilePhone1,
+					"merchant_salesStaff_mobilephone2"=>$data->salesStaffMobilePhone2,
+					"merchant_salesStaff_mobilephone3"=>$data->salesStaffMobilePhone3
+				);
+			break;
+			case 'salesStaffPhone':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_salesStaff_phone1"=>$data->salesStaffPhone1,
+					"merchant_salesStaff_phone2"=>$data->salesStaffPhone2,
+					"merchant_salesStaff_phone3"=>$data->salesStaffPhone3
+				);
+			break;
+			case 'salesStaffFax':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_salesStaff_faxnumber1"=>$data->salesStaffFax1,
+					"merchant_salesStaff_faxnumber2"=>$data->salesStaffFax2,
+					"merchant_salesStaff_faxnumber3"=>$data->salesStaffFax3
+				);
+			break;
+			case 'deliveryCompany':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_delivery_company"=>$data->company
+				);
+			break;
+			case 'orderAlert':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_order_alert_isemail"=>$data->isEmail,
+					"merchant_order_alert_issms"=>$data->isSMS,
+					"merchant_order_alert_email"=>$data->email
+				);
+			break;
+			case 'isSendingNotifyMail':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_is_sending_notify_mail"=>$data->isSendingNotifyMail
+				);
+			break;
+			case 'eticketPassword':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_eticket_password"=>$data->eticketPassword
+				);
+			break;
+			case 'displayCat':
+				$condition['table']="category";
+				$condition['where']=array("category_id"=>$data->id);
+				$condition['data']=array(
+					"category_featured"=>$data->display
+				);
+			break;
+			case 'address':
+				$notExist=$this->commongetdata->checkUniqueAdvance("address",array("address_userid"=>$data->userId,"address_type"=>$data->type));
+				if($notExist){
+					$table="address";
+					$info=array("address_userid"=>$data->userId,"address_type"=>$data->type);
+					$result=$this->dbHandler->insertData($table,$info);
+				}
+				$condition['table']="address";
+				$condition['where']=array("address_userid"=>$data->userId,"address_type"=>$data->type);
+				$condition['data']=array(
+					"address_userid"=>$data->userId,
+					"address_title"=>$data->title,
+					"address_staffname"=>$data->staffname,
+					"address_country"=>$data->country,
+					"address_area"=>$data->area,
+					"address_detail"=>$data->detail,
+					"address_mobilephone1"=>$data->mobilephone1,
+					"address_mobilephone2"=>$data->mobilephone2,
+					"address_mobilephone3"=>$data->mobilephone3,
+					"address_phone1"=>$data->phone1,
+					"address_phone2"=>$data->phone2,
+					"address_phone3"=>$data->phone3
+				);
+			break;
 		}
 		if($_POST['info_type']!='userNewPwd'){
 			$result=$this->dbHandler->updateData($condition);

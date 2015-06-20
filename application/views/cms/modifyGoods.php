@@ -50,7 +50,9 @@
 								<option value="<?php echo $subSubCat->category_id;?>" <?php if($subSubCat->category_id==$item->product_sub_sub_category):?>selected<?php endif;?>><?php echo $subSubCat->category_name;?></option>
 							<?php endforeach;?>
 						</select>
+						<!--
 						<input type="text" placeholder="<?php echo lang('cms_baseInfo_goodsStatistics_Categorycode');?>" class="km-form-control" style="width: 30%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
+						-->
 					</td>
 				  </tr>
 				  <tr>
