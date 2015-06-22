@@ -156,7 +156,7 @@
     });
   }
   function loginAiiMaiWithFB(){
-	FB.api('/me', function(response) {
+	FB.api('/me', function(response){
 		$.post(
 		"/common/loginWithFB",
 		{
