@@ -1,18 +1,13 @@
-<div class="padding10 formList clearfix">
-	<div id="appDiv" class="titA tit-bot pb5" style="">
-		<div class="tabDiv">
-			<div onclick="location.href='/admin/websiteInfo'" class="left active" style="width:150px;">
-				About AiiMai
-			</div>
-			<div onclick="location.href='/admin/userAgreement'" class="right" style="width:150px;">
-				User Agreement
-			</div>
-			<div class="clear">
-			</div>
+<div class="padding10 formList clearfix modify_main">
+	<div class="tabs-box" style="margin-bottom:10px;">
+		<div class="tabs-top">
+			<a href="/admin/websiteInfo" class="current">About AiiMai</a>
+			<a href="/admin/userAgreement">User Agreement</a>
+			<a href="/admin/emailComfirmation">Email Comfirmation</a>
 		</div>
 	</div>
 	<div class="partContent clearboth content">
-		<div class="title" onclick="shows(2)">Content</div>
+		<div class="title">Content</div>
 		<textarea id="infoEditor" name="description"><?php echo $about;?></textarea>
 	</div>
 	<input type="hidden" value="<?php //echo $content->essay_id;?>" id="essayId">
