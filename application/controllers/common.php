@@ -798,6 +798,18 @@ class Common extends CI_Controller {
 				$merchant=isset($data->merchant)?$data->merchant:$_SESSION['userid'];
 				$result=$this->commongetdata->getOrdersByDay($startDate,$days,$merchant,true);
 			break;
+			case 'address':
+				$condition=array(
+					'table'=>'address',
+					'result'=>'data',
+					'where'=>array(
+						'address_userid'=>$data->userId,
+						'address_type'=>$data->type
+					)
+				);
+				$result=$this->commongetdata->getOneData($condition);
+				
+			break;
 		}
 		echo json_encode(array("result"=>"success","message"=>$result));
 	}

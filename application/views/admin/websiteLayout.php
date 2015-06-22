@@ -38,7 +38,7 @@
 				</div>
 			</div>
 			<div>
-				<img onclick="showChangeImageDiv(this,'4','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img4;?>" title="<?php echo $currentCat->category_home_title4;?>" catlink="<?php echo $currentCat->category_home_link4;?>" width="184" height="163" class="fl">
+				<img onclick="showChangeImageDiv(this,'4','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img4;?>" title="<?php echo $currentCat->category_home_title4;?>" catlink="<?php echo $currentCat->category_home_link4;?>" width="184" height="163" class="fl" style="cursor:pointer;">
 				<img onclick="showChangeImageDiv(this,'5','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img5;?>" title="<?php echo $currentCat->category_home_title5;?>" catlink="<?php echo $currentCat->category_home_link5;?>" width="184" height="163" class="fl" style="margin-left: 1px;cursor:pointer;">
 				<img onclick="showChangeImageDiv(this,'6','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img6;?>" title="<?php echo $currentCat->category_home_title6;?>" catlink="<?php echo $currentCat->category_home_link6;?>" width="184" height="163" class="fl" style="margin-left: 1px;cursor:pointer;">
 			</div>
@@ -52,7 +52,7 @@
 						<label for="titleInput" class="km-control-label">Title:</label>
 						<input type="text" class="km-form-control" id="titleInput" style="width: 95%;padding: 0 5px;">
 						<label for="linkInput" class="km-control-label">Link:</label>
-						<input type="text" class="km-form-control" id="linkInput" style="width: 95%;padding: 0 5px;">
+						<input type="text" class="km-form-control" id="linkInput" style="width: 95%;padding: 0 5px;" value="http://" placeholder="http://">
 						<label class="km-control-label">Image:</label>
 						<img id="featuredImage" onclick="$('#fileFeaturedImage').click();" src="" width="184" height="184" style="display:block;cursor:pointer;">
 						<input type="hidden" id="postionNo">

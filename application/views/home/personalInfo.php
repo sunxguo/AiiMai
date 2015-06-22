@@ -1,5 +1,6 @@
 <div class="" style="padding-left:30px;">
 	<?php require("personalInfoCommon.php");?>
+	<input type="hidden" id="userId" value="<?php echo $user->user_id;?>">
 	<div class="km-panel km-panel-primary" style="width: 98%;margin-top:20px;">
 		<div class="km-panel-heading">Personal Info</div>
 		<div class="km-panel-body" style="padding:0px;">
@@ -110,7 +111,7 @@
 				  <tr>
 					<td class="field br">Address</td>
 					<td class="value tal">
-						<button onclick="setDivCenter('#addressDiv',true);" type="button" class="km-btn km-btn-primary" style=" height: 23px;font-size: 10px;padding: 0px 10px;">My Address Book</button>
+						<button onclick="setDivCenter('#addressDiv',true);selectAddress();" type="button" class="km-btn km-btn-primary" style=" height: 23px;font-size: 10px;padding: 0px 10px;">My Address Book</button>
 						<div class="km-modal-dialog width40p" id="addressDiv">
 							<div class="km-modal-content">
 								<div class="km-modal-header">
@@ -149,7 +150,7 @@
 								</div>
 								<div class="km-modal-footer">
 									<button type="button" class="km-btn km-btn-default km-btn-close">Close</button>
-									<button onclick="saveShipFromAddress();" type="button" class="km-btn km-btn-primary">Save</button>
+									<button onclick="saveAddress();" type="button" class="km-btn km-btn-primary">Save</button>
 								</div>
 							</div><!-- /.modal-content -->
 						</div><!-- /.modal-dialog -->
@@ -806,3 +807,7 @@
 	<?php */?>
 </div>
 <script src="/assets/js/cms-myInfo.js" type="text/javascript"></script>
+<script>
+	$(document).ready(function(){
+		
+</script>
