@@ -316,10 +316,16 @@ function checkContactInfo(){
 	if(lengthPhone2<1 || lengthPhone3<1 || lengthHomePhone2<1 || lengthHomePhone3<1){
 		showAlert('danger','Phone Or Home ','cannot be empty!');
 		return false;
-	}else{
-		
-		return true;
 	}
+	if(lengthPhone2+lengthPhone3<8){
+		showAlert('danger','Mobile Phone',' is too short!');
+		return false;
+	}
+	if(lengthHomePhone2+lengthHomePhone3<8){
+		showAlert('danger','Phone',' is too short!');
+		return false;
+	}
+	return true;
 }
 function checkAddress(){
 	var length = $("#address2").val().length;
@@ -776,4 +782,11 @@ function saveAddress(){
 	address.phone2 = $("#addressPhone2").val();
 	address.phone3 = $("#addressPhone3").val();
 	dataHandler("modify","address",address,successRefresh,null,null,null,true);
+}
+function reportAbuse(productId){
+	var report = new Object();
+	report.productId = productId;
+	report.reason = $("#reportReason").val();
+	report.details = $("#reportDetails").val();
+	dataHandler("add","report",report,successRefresh,null,null,null,true);
 }

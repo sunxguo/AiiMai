@@ -3,19 +3,19 @@
 	<div class="span10">
 		<div class="slate clearfix">
 			<a class="stat-column" href="#">
-				<span class="number">16</span>
+				<span class="number">0</span>
 				<span>Open Orders</span>
 			</a>
 			<a class="stat-column" href="#">
-				<span class="number">S$2,512</span>
+				<span class="number">S$0</span>
 				<span>Turnover</span>
 			</a>
 			<a class="stat-column" href="#">
-				<span class="number">452</span>
+				<span class="number"><?php echo $userAmount;?></span>
 				<span>Users</span>
 			</a>
 			<a class="stat-column" href="#">
-				<span class="number">34</span>
+				<span class="number"><?php echo $merchantAmount;?></span>
 				<span>Merchants</span>
 			</a>
 		</div>

@@ -134,6 +134,20 @@ class Common extends CI_Controller {
 					"follow_time"=>date("Y-m-d H:i:s")
 				);
 			break;
+			case 'report':
+				if(!isset($_SESSION['userid'])){
+					echo json_encode(array("result"=>"failed","message"=>"Please login first!"));
+					return false;
+				}
+				$table="report";
+				$info=array(
+					"report_product_id"=>$data->productId,
+					"report_user_id"=>$_SESSION['userid'],
+					"report_reason"=>$data->reason,
+					"report_details"=>$data->details,
+					"report_time"=>date("Y-m-d H:i:s")
+				);
+			break;
 			case "category":
 				$table="category";
 				$selectCondition=array(
@@ -195,6 +209,7 @@ class Common extends CI_Controller {
 				$condition['where']=array("user_id"=>$data->id);
 			break;
 			case 'merchant':
+				$this->dbHandler->deleteData(array('table'=>'product','where'=>array('product_merchant'=>$data->id)));
 				$condition['table']="user";
 				$condition['where']=array("user_id"=>$data->id);
 			break;
@@ -1082,7 +1097,7 @@ class Common extends CI_Controller {
 		);
 		$info=$this->dbHandler->selectData($condition);
 		if(sizeof($info)<1){
-			echo json_encode(array("result"=>"failed","message"=>"The email has not been registered!"));
+			echo json_encode(array("result"=>"failed","message"=>"The email has not been registered!Please register with this email!"));
 			return false;
 		}
 		/*
@@ -1091,6 +1106,7 @@ class Common extends CI_Controller {
 			echo json_encode(array("result"=>"failed","message"=>"The email with facebook has not been confirmed!This email has been sent!"));
 			return false;
 		}*/
+		$this->commongetdata->email($_POST["email"],$this->commongetdata->getWebsiteConfig("website_facebook_success_title"),$this->commongetdata->getWebsiteConfig("website_facebook_success_content"));
 		$_SESSION['username']=$info[0]->user_username;
 		$_SESSION['userid']=$info[0]->user_id;
 		$_SESSION['usertype']="user";
