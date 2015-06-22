@@ -40,7 +40,7 @@
 					<li><a href="/cms/login">ASM</a></li>
 					<li>|</li>
 					<?php endif;?>
-					<li><a href="">Help</a></li>
+					<li><a href="/home/info?key=help">Help</a></li>
 				</ul>
 			</div>
 		</div>
@@ -53,8 +53,8 @@
 				</a>
 			</div>
 			<div class="search fr">
-				<form method="post" action="/home/search" autocomplete="off" enctype="multipart/form-data">
-					<input type="text" name="keywords" placeholder="">
+				<form method="get" action="/home/search" autocomplete="off" enctype="multipart/form-data">
+					<input type="text" name="keywords" value="<?php echo isset($_GET['keywords'])?$_GET['keywords']:'';?>">
 					<input type="submit" value="Search">
 				</form>
 			</div>

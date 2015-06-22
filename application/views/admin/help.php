@@ -3,22 +3,17 @@
 		<div class="tabs-top">
 			<a href="/admin/websiteInfo">About AiiMai</a>
 			<a href="/admin/userAgreement">User Agreement</a>
-			<a href="/admin/help">Help</a>
-			<a href="/admin/emailComfirmation" class="current">Email Comfirmation</a>
+			<a href="/admin/help" class="current">Help</a>
+			<a href="/admin/emailComfirmation">Email Comfirmation</a>
 		</div>
-	</div>
-	
-	<div class="partContent clearboth content">
-		<div class="title">Subject</div>
-		Subject: <input type="text" id="emailComfirmationTitle" class="inp-txt" value="<?php echo $emailComfirmationTitle;?>" style="width:80%;margin:20px 0;">
 	</div>
 	<div class="partContent clearboth content">
 		<div class="title">Content</div>
-		<textarea id="infoEditor" name="description"><?php echo $emailComfirmationContent;?></textarea>
+		<textarea id="infoEditor" name="description"><?php echo $help;?></textarea>
 	</div>
 	<input type="hidden" value="<?php //echo $content->essay_id;?>" id="essayId">
 	<div class="btn-center">
-		<a href="javascript:websiteInfoEmailComfirmationSave('Successfully Saved！Refreshing...')" class="btnfa120">Save</a>
+		<a href="javascript:websiteInfoSave('website_help','Successfully Saved！Refreshing...')" class="btnfa120">Save</a>
 	</div>
 </div>
 <link rel="stylesheet" href="/assets/kindEditor/themes/custom/custom.css" />

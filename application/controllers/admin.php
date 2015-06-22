@@ -74,8 +74,17 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/footer');
 	}
 	public function index(){
+		$condition=array(
+			'table'=>'user',
+			'result'=>"count",
+			'where'=>array('user_is_merchant'=>1)
+		);
+		$merchantAmount=$this->commongetdata->getData($condition);
+		$condition['where']=array('user_is_merchant'=>0);
+		$userAmount=$this->commongetdata->getData($condition);
 		$data=array(
-			"columns"=>$this->commongetdata->getColumns()
+			"merchantAmount"=>$merchantAmount,
+			"userAmount"=>$userAmount
 		);
 		$this->adminBaseHandler('Backend Panel',array('index','none'),'index',$data);
 	}
@@ -475,6 +484,12 @@ class Admin extends CI_Controller {
 			"userAgreement"=>$this->commongetdata->getWebsiteConfig('website_user_agreement')
 		);
 		$this->adminBaseHandler('userAgreement',array('setting','websiteInfo'),'userAgreement',$data);
+	}
+	public function help(){
+		$data=array(
+			"help"=>$this->commongetdata->getWebsiteConfig('website_help')
+		);
+		$this->adminBaseHandler('help',array('setting','websiteInfo'),'help',$data);
 	}
 	public function emailComfirmation(){
 		$data=array(

@@ -130,27 +130,9 @@
 								</span>
 							</div>
 						</li>
-						<li class="bul_report" onclick="setDivCenter('#reportDiv',true);"><a>Report!</a></li>
-						<div class="km-modal-dialog width40p" id="reportDiv">
-							<div class="km-modal-content">
-								<div class="km-modal-header">
-									<button type="button" class="km-close"><span>&times;</span></button>
-									<h4 class="km-modal-title">Report Abuse for Item</h4>
-								</div>
-								<div class="km-modal-body">
-									<label for="customer_view_email" class="km-control-label">Target:</label>
-									<span> Item Code : <?php echo $_GET['itemId'];?></span><br>
-									<label for="customer_view_email" class="km-control-label">Reason:</label>
-									<input type="text" class="km-form-control" id="merchant_phone2" value="<?php echo $merchant->merchant_phone2;?>" style="width: 30%;height: 30px;padding: 0 5px;display: inline-block;"><br>
-									<label for="customer_view_email" class="km-control-label">Details:</label>
-									<textarea id=""></textarea>
-								</div>
-								<div class="km-modal-footer">
-									<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_myInfo_Close');?></button>
-									<button type="button" class="km-btn km-btn-primary" onclick="saveMyInfoMobilephoneNo();"><?php echo lang('cms_myInfo_Savechanges');?></button>
-								</div>
-							</div><!-- /.modal-content -->
-						</div><!-- /.modal-dialog -->
+						<li class="bul_report" onclick="setDivCenter('#reportDiv',true);">
+							<a>Report!</a>
+						</li>
 						<!--
 						<li class="bul_size"><a href="javascript:ViewExplainSize();">Size Guide</a></li>
 						-->
@@ -283,7 +265,7 @@
 		<ul class="km-nav km-nav-tabs clearfix" name="ItemInfo">
 		  <li class="active"><a href="#ItemInfo">Item Info</a></li>
 		  <li><a href="#CustomerReview">Customer Review(<em><?php echo $comments['count'];?></em>)</a></li>
-		  <li><a href="#QuestionAnswer"><span>Question & Answer(<em>3</em>)</span></a></li>
+		  <li><a href="#QuestionAnswer"><span>Question & Answer(<em>0</em>)</span></a></li>
 <!--		  <li><a href="#ShoppingTalk">Shopping Talk</a></li>-->
 		  <li><a href="#PolicyNotice">Policy & Notice</a></li>
 		</ul>
@@ -293,7 +275,7 @@
 		<ul class="km-nav km-nav-tabs clearfix" id="CustomerReview">
 		  <li><a href="#ItemInfo">Item Info</a></li>
 		  <li class="active"><a href="#CustomerReview">Customer Review(<em><?php echo $comments['count'];?></em>)</a></li>
-		  <li><a href="#QuestionAnswer"><span>Question & Answer(<em>3</em>)</span></a></li>
+		  <li><a href="#QuestionAnswer"><span>Question & Answer(<em>0</em>)</span></a></li>
 <!--		  <li><a href="#ShoppingTalk">Shopping Talk</a></li>-->
 		  <li><a href="#PolicyNotice">Policy & Notice</a></li>
 		</ul>
@@ -306,7 +288,7 @@
 		<ul class="km-nav km-nav-tabs clearfix" id="QuestionAnswer">
 		  <li><a href="#ItemInfo">Item Info</a></li>
 		  <li><a href="#CustomerReview">Customer Review(<em><?php echo $comments['count'];?></em>)</a></li>
-		  <li class="active"><a href="#QuestionAnswer"><span>Question & Answer(<em>3</em>)</span></a></li>
+		  <li class="active"><a href="#QuestionAnswer"><span>Question & Answer(<em>0</em>)</span></a></li>
 <!--		  <li><a href="#ShoppingTalk">Shopping Talk</a></li>-->
 		  <li><a href="#PolicyNotice">Policy & Notice</a></li>
 		</ul>
@@ -325,7 +307,7 @@
 		<ul class="km-nav km-nav-tabs clearfix" id="PolicyNotice">
 		  <li><a href="#ItemInfo">Item Info</a></li>
 		  <li><a href="#CustomerReview">Customer Review(<em><?php echo $comments['count'];?></em>)</a></li>
-		  <li><a href="#QuestionAnswer"><span>Question & Answer(<em>3</em>)</span></a></li>
+		  <li><a href="#QuestionAnswer"><span>Question & Answer(<em>0</em>)</span></a></li>
 <!--		  <li><a href="#ShoppingTalk">Shopping Talk</a></li>-->
 		  <li class="active"><a href="#PolicyNotice">Policy & Notice</a></li>
 		</ul>
@@ -337,3 +319,24 @@
 		</div>
 	</div>
 </div>
+<div class="km-modal-dialog" id="reportDiv" style="width:600px;">
+	<div class="km-modal-content">
+		<div class="km-modal-header">
+			<button type="button" class="km-close"><span>&times;</span></button>
+			<h4 class="km-modal-title">Report Abuse for Item</h4>
+		</div>
+		<div class="km-modal-body">
+			<label for="customer_view_email" class="km-control-label" style="width:100px;">Target:</label>
+			 Item Code  
+			<span style="color:#109BFF;"><?php echo $_GET['itemId'];?></span><br>
+			<label for="reportReason" class="km-control-label" style="width:100px;">Reason:</label>
+			<input type="text" class="km-form-control" id="reportReason" style="width: 400px;height: 30px;padding: 0 5px;display: inline-block;"><br>
+			<label for="reportDetails" class="km-control-label" style="width:100px;vertical-align: top;margin-top: 10px;">Details:</label>
+			<textarea id="reportDetails" style="width:400px;height: 70px;margin-top:10px;"></textarea>
+		</div>
+		<div class="km-modal-footer">
+			<button type="button" class="km-btn km-btn-default km-btn-close">Close</button>
+			<button type="button" class="km-btn km-btn-primary" onclick="reportAbuse('<?php echo $_GET['itemId'];?>');">Report Abuse</button>
+		</div>
+	</div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->

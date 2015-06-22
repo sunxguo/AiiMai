@@ -238,8 +238,13 @@ class Home extends CI_Controller {
 		if(!isset($_GET['shopId']) || !is_numeric($_GET['shopId'])){
 			$this->load->view('redirect',array("info"=>"Wrong url!",'url'=>'/home'));
 		}
+		$merchant=$this->commongetdata->getContent('user',$_GET['shopId']);
+		if(!isset($merchant->user_id)){
+			$this->load->view('redirect',array("info"=>"Wrong url!",'url'=>'/home'));
+			return false;
+		}
 		$data=array(
-			'merchant'=>$this->commongetdata->getContent('user',$_GET['shopId']),
+			'merchant'=>$merchant,
 			"merchantProductsAmount"=>$this->commongetdata->getProductsAdvance(array(
 				"result"=>'count',
 				"merchant"=>$_GET['shopId'],
@@ -259,8 +264,13 @@ class Home extends CI_Controller {
 		if(!isset($_GET['shopId']) || !is_numeric($_GET['shopId'])){
 			$this->load->view('redirect',array("info"=>"Wrong url!",'url'=>'/home'));
 		}
+		$merchant=$this->commongetdata->getContent('user',$_GET['shopId']);
+		if(!isset($merchant->user_id)){
+			$this->load->view('redirect',array("info"=>"Wrong url!",'url'=>'/home'));
+			return false;
+		}
 		$data=array(
-			'merchant'=>$this->commongetdata->getContent('user',$_GET['shopId']),
+			'merchant'=>$merchant,
 			"merchantProductsAmount"=>$this->commongetdata->getProductsAdvance(array(
 				"result"=>'count',
 				"merchant"=>$_GET['shopId'],
@@ -270,6 +280,27 @@ class Home extends CI_Controller {
 			"followNo"=>$this->commongetdata->getFollowNo($_GET['shopId'])
 		);
 		$this->homeBaseHandler('Shop Info','shopInfo',$data);
+	}
+	public function shopFaq(){
+		if(!isset($_GET['shopId']) || !is_numeric($_GET['shopId'])){
+			$this->load->view('redirect',array("info"=>"Wrong url!",'url'=>'/home'));
+		}
+		$merchant=$this->commongetdata->getContent('user',$_GET['shopId']);
+		if(!isset($merchant->user_id)){
+			$this->load->view('redirect',array("info"=>"Wrong url!",'url'=>'/home'));
+			return false;
+		}
+		$data=array(
+			'merchant'=>$merchant,
+			"merchantProductsAmount"=>$this->commongetdata->getProductsAdvance(array(
+				"result"=>'count',
+				"merchant"=>$_GET['shopId'],
+				"status"=>3
+			)),
+			"follow"=>isset($_SESSION['userid'])?$this->commongetdata->getFollow($_GET['shopId'],$_SESSION['userid']):false,
+			"followNo"=>$this->commongetdata->getFollowNo($_GET['shopId'])
+		);
+		$this->homeBaseHandler('shop FAQ','shopFaq',$data);
 	}
 	public function cart(){
 		$data=array(
@@ -343,6 +374,42 @@ class Home extends CI_Controller {
 			
 		);
 		$this->homeBaseHandler('Create New Password','createNewPassword',$data);
+	}
+	public function search(){
+		$keywords=$_GET['keywords'];
+		$parameters=array(
+			'result'=>'data',
+			'status'=>3,
+			'like'=>array('product_item_title_english'=>$keywords),
+			'orderBy'=>array('product_time'=>'desc')
+		);
+		$data=array(
+			'products'=>$this->commongetdata->getProductsAdvance($parameters)
+		);
+		$this->homeBaseHandler('Search - '.$keywords,'search',$data);
+	}
+	public function info(){
+		$key=isset($_GET['key'])?$_GET['key']:'';
+		switch($key){
+			case 'about':
+				$key='website_about_aiimai';
+			break;
+			case 'userAgreement':
+				$key='website_user_agreement';
+			break;
+			case 'help':
+				$key='website_help';
+			break;
+		}
+		$info=$this->commongetdata->getContentAdvance('websiteconfig',array('key_websiteconfig'=>$key));
+		if(!isset($info->key_websiteconfig)){
+			$this->load->view('redirect',array("info"=>"Wrong url!",'url'=>'/home'));
+			return false;
+		}
+		$data=array(
+			'info'=>$info
+		);
+		$this->homeBaseHandler('Info - '.$key,'info',$data);
 	}
 	/*
 	public function contentList(){

@@ -6,8 +6,9 @@
 			<button onclick="sendEmail();" type="button" class="km-btn km-btn-success" style="margin-left:20px;height: 28px;font-size: 10px;padding: 5px 10px;">Send Email Again</button>
 		</p>
 	</div>
-	
 </div>
+<?php if(!isset($_SESSION['username']) || (isset($_SESSION['usertype']) && $_SESSION['usertype']=='admin')):?>
 <script>
-	<?php if(!isset($_SESSION['username'])):?>sendEmail();<?php endif;?>
+	sendEmail();
 </script>
+<?php endif;?>

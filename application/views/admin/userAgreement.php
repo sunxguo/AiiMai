@@ -3,6 +3,7 @@
 		<div class="tabs-top">
 			<a href="/admin/websiteInfo">About AiiMai</a>
 			<a href="/admin/userAgreement" class="current">User Agreement</a>
+			<a href="/admin/help">Help</a>
 			<a href="/admin/emailComfirmation">Email Comfirmation</a>
 		</div>
 	</div>

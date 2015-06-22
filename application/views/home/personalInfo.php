@@ -808,6 +808,5 @@
 </div>
 <script src="/assets/js/cms-myInfo.js" type="text/javascript"></script>
 <script>
-	$(document).ready(function(){
-		
+//	$(document).ready(function(){	
 </script>

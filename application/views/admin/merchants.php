@@ -72,7 +72,7 @@
 					<?php else:?>
 					<a href="javascript:doNotConfirmMerchant('<?php echo $merchant->user_id;?>','Do not confirm <<?php echo $merchant->user_username;?>>？','Successfully did not confirm <?php echo $merchant->user_username;?>')">Do Not Confirm</a>&nbsp;&nbsp;&nbsp;
 					<?php endif;?>
-					<a href="javascript:delMerchant('<?php echo $merchant->user_id;?>','Sure to delete <<?php echo $merchant->user_username;?>>？','Successfully Deleted <?php echo $merchant->user_username;?>')">Delete</a>
+					<a href="javascript:delMerchant('<?php echo $merchant->user_id;?>','Sure to delete <<?php echo $merchant->user_username;?>>？The products in this shop will be deleted too.','Successfully Deleted <?php echo $merchant->user_username;?>')">Delete</a>
 				</td>
 			</tr>
 			<?php endforeach;?>
