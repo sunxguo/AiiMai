@@ -15,6 +15,7 @@
 <div class="" style="padding-left:30px;">
 	<div class="km-panel km-panel-primary" style="width: 98%;">
 		<div class="km-panel-heading">User Infomation</div>
+		<input id="userId" type="hidden" value="<?php echo $user->user_id;?>">
 		<div class="km-panel-body" style="padding:0px;">
 			<table class="km-table">
 				<tbody>
@@ -41,8 +42,8 @@
 				  <tr>
 					<td class="field width15p br">Gender</td>
 					<td class="value width17p br">
-						<input type="radio" name="gender" value="male" id="male" <?php echo $user->user_gender==0?'checked':'';?>><label for="male">Male</label>
-						<input type="radio" name="gender" value="female" id="female" <?php echo $user->user_gender==1?'checked':'';;?>><label for="female">Female</label>
+						<input type="radio" name="gender" value="0" id="male" <?php echo $user->user_gender==0?'checked':'';?>><label for="male">Male</label>
+						<input type="radio" name="gender" value="1" id="female" <?php echo $user->user_gender==1?'checked':'';;?>><label for="female">Female</label>
 					</td>
 					<td class="field width15p br">Status</td>
 					<td class="value width17p">
@@ -57,14 +58,21 @@
 					<td class="value width17p br">
 						<?php echo $user->user_reg_time;?>
 					</td>
-					<td class="field width15p br">Status</td>
+					<td class="field width15p br">Birthday</td>
 					<td class="value width17p"><input id="birthday" type="date" class="inp-txt" value="<?php echo $user->user_birthday;?>"></td>
 				  </tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
-	<button onclick="userHandler('This user was saved successfully',false);" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">Save</button>
+	<button onclick="userHandler('This user was saved successfully');" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">Save</button>
+</div>
+<div id="waitDiv"><img src="/assets/images/cms/loading.gif"></div>
+<div id="bkDiv"></div>
+<div id="messageAlert" class="km-alert km-alert-dismissible fade in width40p hide">
+  <button type="button" class="km-close" onclick="$('#messageAlert').hide();"><span>×</span></button>
+  <strong></strong>
+  <span class="km-alert-msg"></span>
 </div>
 </body>
 </html>

@@ -134,6 +134,20 @@ class Common extends CI_Controller {
 					"follow_time"=>date("Y-m-d H:i:s")
 				);
 			break;
+			case "category":
+				$table="category";
+				$selectCondition=array(
+					'table'=>'category',
+					'result'=>'count',
+					'where'=>array('category_fid'=>$data->fid)
+				);
+				$amount=$this->dbHandler->selectData($selectCondition);
+				$info=array(
+					"category_fid"=>$data->fid,
+					"category_name"=>$data->name,
+					"category_order"=>$amount+1
+				);
+			break;
 		}
 		if($_POST['info_type']=="product"){
 			$productId=$this->dbHandler->insertDataReturnId($table,$info);
@@ -181,8 +195,8 @@ class Common extends CI_Controller {
 				$condition['where']=array("user_id"=>$data->id);
 			break;
 			case 'merchant':
-				$condition['table']="merchant";
-				$condition['where']=array("merchant_id"=>$data->id);
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
 			break;
 			case 'order':
 				$condition['table']="order";
@@ -191,6 +205,31 @@ class Common extends CI_Controller {
 			case 'comment':
 				$condition['table']="comment";
 				$condition['where']=array("comment_id"=>$data->id);
+			break;
+			case 'category':
+				$selectCondition=array(
+					'table'=>'category',
+					'result'=>'data',
+					'where'=>array('category_id'=>$data->id)
+				);
+				$currentCategory=$this->commongetdata->getOneData($selectCondition);
+				$selectCondition=array(
+					'table'=>'category',
+					'result'=>'amount',
+					'where'=>array('category_fid'=>$currentCategory->category_fid)
+				);
+				$amount=$this->dbHandler->selectData($selectCondition);
+				for($i=$currentCategory->category_order+1;$i<=$amount;$i++){
+					$updateCondition=array(
+						'table'=>'category',
+						'where'=>array('category_fid'=>$currentCategory->category_fid,'category_order'=>$i),
+						'data'=>array('category_order'=>($i-1))
+					);
+					$result=$this->dbHandler->updateData($updateCondition);
+				}
+				
+				$condition['table']="category";
+				$condition['where']=array("category_id"=>$data->id);
 			break;
 		}
 		$result=$this->dbHandler->deleteData($condition);
@@ -271,6 +310,17 @@ class Common extends CI_Controller {
 					"merchant_address1"=>$data->address1,
 					"merchant_address2"=>$data->address2,
 					"merchant_salesStaff"=>$data->salesStaff,
+					"merchant_salesStaff_email"=>$data->salesStaffEmail,
+					"merchant_salesStaff_phone1"=>$data->salesStaffPhone1,
+					"merchant_salesStaff_phone2"=>$data->salesStaffPhone2,
+					"merchant_salesStaff_phone3"=>$data->salesStaffPhone3,
+					"merchant_salesStaff_mobilephone1"=>$data->salesStaffMobilePhone1,
+					"merchant_salesStaff_mobilephone2"=>$data->salesStaffMobilePhone2,
+					"merchant_salesStaff_mobilephone3"=>$data->salesStaffMobilePhone3,
+					"merchant_business_license"=>$data->businessLicense,
+					"merchant_business_license_msg"=>'Register',
+					"merchant_bank_account"=>$data->bankAccount,
+					"merchant_bank_account_msg"=>'Register',
 					"merchant_doc"=>$data->doc,
 					"user_is_merchant"=>1,
 					"merchant_status"=>1
@@ -323,6 +373,24 @@ class Common extends CI_Controller {
 				$condition['where']=array("user_id"=>$data->id);
 				$condition['data']=array(
 					"user_state"=>$data->status
+				);
+			break;
+			case 'userInfo':
+				$user=$this->commongetdata->getOneData(array("table"=>'user',"result"=>'data',"where"=>array("user_username"=>$data->username)));
+				if(isset($user->user_id) && $user->user_id!=$data->id){
+					echo json_encode(array("result"=>"notunique","message"=>"This username already exists!"));
+					return false;
+				}
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"user_avatar"=>$data->avatar,
+					"user_username"=>$data->username,
+					"user_email"=>$data->email,
+					"user_phone"=>$data->phone,
+					"user_state"=>$data->status,
+					"user_birthday"=>$data->birthday,
+					"user_gender"=>$data->gender
 				);
 			break;
 			case 'merchantStatus':
@@ -638,6 +706,22 @@ class Common extends CI_Controller {
 				$condition['where']=array("category_id"=>$data->id);
 				$condition['data']=array(
 					"category_featured"=>$data->display
+				);
+			break;
+			case 'featuredProduct':
+				$condition['table']="category";
+				$condition['where']=array("category_id"=>$data->catId);
+				$condition['data']=array(
+					"category_home_title".$data->position=>$data->title,
+					"category_home_link".$data->position=>$data->link,
+					"category_home_img".$data->position=>$data->image,
+				);
+			break;
+			case 'category':
+				$condition['table']="category";
+				$condition['where']=array("category_id"=>$data->id);
+				$condition['data']=array(
+					"category_name"=>$data->name
 				);
 			break;
 			case 'address':
@@ -989,12 +1073,52 @@ class Common extends CI_Controller {
 			echo json_encode(array("result"=>"failed","message"=>"The email has not been registered!"));
 			return false;
 		}
+		if($info->user_facebook_confirm_email!=1){
+			$this->sendFacebookEmail($_POST["email"]);
+			echo json_encode(array("result"=>"failed","message"=>"The email with facebook has not been confirmed!This email has been sent!"));
+			return false;
+		}
 		$_SESSION['username']=$info[0]->user_username;
 		$_SESSION['userid']=$info[0]->user_id;
 		$_SESSION['usertype']="user";
 		$_SESSION['userEmail']=$info[0]->user_email;
 		echo json_encode(array("result"=>"success","message"=>"Login with Facebook successfully!"));
 		return false;
+	}
+	public function activeFacebook(){
+		$condition=array(
+			'table'=>'user',
+			'result'=>'data',
+			'where'=>array(
+				'token'=>$_GET['verify'],
+				'user_facebook_confirm_email'=>0
+			)
+		);
+		$user=$this->commongetdata->getData($condition);
+		if(sizeof($user)<1){
+			$this->load->view('redirect',array("url"=>"/home/login","info"=>"This token is error or this email has been verified!"));
+			return false;
+		}
+		$user=$user[0];
+		if(time()>$user->token_exptime){ //24hour 
+			$msg = 'You activate the validity period is over, please login your account to resend the activation email.'; 
+//			echo json_encode(array("result"=>"failed","message"=>$msg));
+			$this->load->view('redirect',array("url"=>"/home/login","info"=>$msg));
+			return false;
+		}
+		$condition['table']="user";
+		$condition['where']=array("token"=>$_GET['verify']);
+		$condition['data']=array(
+			"user_facebook_confirm_email"=>1
+		);
+		$result=$this->dbHandler->updateData($condition);
+		if($result>0){
+			$this->commongetdata->email($user->user_email,$this->commongetdata->getWebsiteConfig("website_user_register_success_email_subject"),$this->commongetdata->getWebsiteConfig("website_user_register_success_email_message"));
+			$this->load->view('redirect',array("url"=>"/home/login","info"=>"Success!"));
+		}
+		else{
+			$this->load->view('redirect',array("info"=>"failed!"));
+		}
 	}
 	public function active(){
 //		!$this->commongetdata->checkUniqueAdvance("user","user_email",$_GET['email']);
@@ -1072,6 +1196,42 @@ class Common extends CI_Controller {
 		$emailTitle=$this->commongetdata->getWebsiteConfig('website_confirm_email_title');
 		$emailContent=$this->commongetdata->getWebsiteConfig('website_confirm_email_content');
 		$this->commongetdata->email($_SESSION['userEmail'],$emailTitle,$emailContent.'<a href="aiimai.coolkeji.com/common/active?verify='.$token.'">Confirm</a><br>If the button is invalid, please copy the following link to your browser\'s address bar!<br><span style="color:blue;">aiimai.coolkeji.com/common/active?verify='.$token.'</span>');
+		echo json_encode(array("result"=>"success","message"=>"验证码输入正确！"));
+		/*		if(){
+			echo json_encode(array("result"=>"success","message"=>"验证码输入正确！"));
+		}else{
+			echo json_encode(array("result"=>"failed","message"=>"验证码输入错误！"));
+		}*/
+	}
+	public function sendFacebookEmail($email){
+		$condition=array(
+			'table'=>'user',
+			'result'=>'data',
+			'where'=>array(
+				'user_email'=>$email,
+				'user_facebook_confirm_email'=>0
+			)
+		);
+		$user=$this->commongetdata->getData($condition);
+		if(sizeof($user)<1){
+			echo json_encode(array("result"=>"failed","message"=>"This email doesn't exist or has been verified!"));
+			return false;
+		}
+		$user=$user[0];
+		$token=md5(($user->user_username).($user->user_pwd).time()); //创建用于激活识别码 
+		$token_exptime = time()+60*60*24;//过期时间为24小时后
+		$condition['table']="user";
+		$condition['where']=array(
+			"user_email"=>$email
+		);
+		$condition['data']=array(
+			"token"=>$token,
+			"token_exptime"=>$token_exptime
+		);
+		$result=$this->dbHandler->updateData($condition);
+		$emailTitle=$this->commongetdata->getWebsiteConfig('website_confirm_email_title');
+		$emailContent=$this->commongetdata->getWebsiteConfig('website_confirm_email_content');
+		$this->commongetdata->email($email,$emailTitle,$emailContent.'<a href="aiimai.coolkeji.com/common/activeFacebook?verify='.$token.'">Confirm</a><br>If the button is invalid, please copy the following link to your browser\'s address bar!<br><span style="color:blue;">aiimai.coolkeji.com/common/activeFacebook?verify='.$token.'</span>');
 		echo json_encode(array("result"=>"success","message"=>"验证码输入正确！"));
 		/*		if(){
 			echo json_encode(array("result"=>"success","message"=>"验证码输入正确！"));

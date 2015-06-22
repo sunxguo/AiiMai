@@ -3,60 +3,51 @@
 	<div class="cat-detail">
 		<dl class="sub-categories fl">
 			<?php foreach($cat->subCats as $subCats):?>
+				<?php if($subCats->category_featured==1):?>
 				<dt><a href="/home/category?cat=<?php echo $cat->category_id;?>"><?php echo $subCats->category_name;?></a></dt>
-				<?php /*foreach($subCats->subSubCats as $subSubCats):?>
+				<?php endif;?>
+				<?php foreach($subCats->subSubCats as $subSubCats):?>
+				<?php if($subSubCats->category_featured==1):?>
 				<dd><a href="/home/category?cat=<?php echo $cat->category_id;?>"><?php echo $subSubCats->category_name;?></a></dd>
-				<?php endforeach;*/?>
+				<?php endif;?>
+				<?php endforeach;?>
 			<?php endforeach;?>
 		</dl>
-		<?php $featuredProducts=$cat->featuredProducts;?>
 		<div class="featured-products fl">
 			<div class="fp-left fl">
 				<div class="fp-left-top widget borderR borderB">
-					<?php if(isset($featuredProducts[0])):?>
-					<a href="/home/item?itemId=<?php echo $featuredProducts[0]->product_id;?>">
-						<img src="<?php echo $featuredProducts[0]->product_image;?>">
+					<a href="<?php echo $cat->category_home_link1;?>">
+						<img src="<?php echo $cat->category_home_img1;?>">
 					</a>
-					<?php endif;?>
 				</div>
 				<div class="fp-left-bottom">
 					<div class="fp-left-bottom-item widget borderR borderB fl">
-						<?php if(isset($featuredProducts[1])):?>
-						<a href="/home/item?itemId=<?php echo $featuredProducts[1]->product_id;?>">
-							<img src="<?php echo $featuredProducts[1]->product_image;?>">
+						<a href="<?php echo $cat->category_home_link4;?>">
+							<img src="<?php echo $cat->category_home_img4;?>">
 						</a>
-						<?php endif;?>
 					</div>
-					<div class="fp-left-bottom-item widget borderR borderB fl">
-						<?php if(isset($featuredProducts[2])):?>
-						<a href="/home/item?itemId=<?php echo $featuredProducts[2]->product_id;?>">
-							<img src="<?php echo $featuredProducts[2]->product_image;?>">
+					<div class="fp-left-bottom-item widget borderB fl">
+						<a href="<?php echo $cat->category_home_link5;?>">
+							<img src="<?php echo $cat->category_home_img5;?>">
 						</a>
-						<?php endif;?>
 					</div>
 				</div>
 			</div>
 			<div class="fp-right fl">
 				<div class="fp-right-item widget borderR">
-					<?php if(isset($featuredProducts[3])):?>
-					<a href="/home/item?itemId=<?php echo $featuredProducts[3]->product_id;?>">
-						<img src="<?php echo $featuredProducts[3]->product_image;?>">
+					<a href="<?php echo $cat->category_home_link2;?>">
+						<img src="<?php echo $cat->category_home_img2;?>">
 					</a>
-					<?php endif;?>
 				</div>
 				<div class="fp-right-item widget borderR borderT">
-					<?php if(isset($featuredProducts[4])):?>
-					<a href="/home/item?itemId=<?php echo $featuredProducts[4]->product_id;?>">
-						<img src="<?php echo $featuredProducts[4]->product_image;?>">
+					<a href="<?php echo $cat->category_home_link3;?>">
+						<img src="<?php echo $cat->category_home_img3;?>">
 					</a>
-					<?php endif;?>
 				</div>
 				<div class="fp-right-item widget borderR borderB borderT">
-					<?php if(isset($featuredProducts[5])):?>
-					<a href="/home/item?itemId=<?php echo $featuredProducts[5]->product_id;?>">
-						<img src="<?php echo $featuredProducts[5]->product_image;?>">
+					<a href="<?php echo $cat->category_home_link6;?>">
+						<img src="<?php echo $cat->category_home_img6;?>">
 					</a>
-					<?php endif;?>
 				</div>
 			</div>
 		</div>

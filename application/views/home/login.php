@@ -160,7 +160,8 @@
 		$.post(
 		"/common/loginWithFB",
 		{
-			'email':response.email
+			'email':response.email,
+			'username':response.username
 		},
 		function(data){
 			var result=$.parseJSON(data);
