@@ -10,6 +10,7 @@
     <script src="/assets/js/jquery.js" type="text/javascript"></script>
 	<script src="/assets/js/admin-common.js" type="text/javascript"></script>
 	<script src="/assets/js/admin.js" type="text/javascript"></script>
+	<script src="/assets/js/jquery.form.js" type="text/javascript"></script>
 </head>
 <body>
     <div class="header-cms">

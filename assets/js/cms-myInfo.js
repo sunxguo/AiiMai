@@ -146,3 +146,82 @@ function saveDisplayedInfoEmail(){
 	displayedInfoEmail.email = $("#displayedInfoEmail").val();
 	dataHandler("modify","displayedInfoEmail",displayedInfoEmail,successRefresh,null,null,null,true);
 }
+function saveSalesStaffName(){
+	var salesStaffName = new Object();
+	salesStaffName.id=$("#merchantId").val();
+	salesStaffName.name = $("#salesStaffName").val();
+	dataHandler("modify","salesStaffName",salesStaffName,successRefresh,null,null,null,true);
+}
+function saveSalesStaffEmail(){
+	var salesStaffEmail = new Object();
+	salesStaffEmail.id=$("#merchantId").val();
+	salesStaffEmail.email = $("#salesStaffEmail").val();
+	dataHandler("modify","salesStaffEmail",salesStaffEmail,successRefresh,null,null,null,true);
+}
+function saveSalesStaffMobilePhone(){
+	var salesStaffMobilePhone = new Object();
+	salesStaffMobilePhone.id=$("#merchantId").val();
+	salesStaffMobilePhone.salesStaffMobilePhone1 = $("#salesStaffMobilePhone1").val();
+	salesStaffMobilePhone.salesStaffMobilePhone2 = $("#salesStaffMobilePhone2").val();
+	salesStaffMobilePhone.salesStaffMobilePhone3 = $("#salesStaffMobilePhone3").val();
+	dataHandler("modify","salesStaffMobilePhone",salesStaffMobilePhone,successRefresh,null,null,null,true);
+}
+function saveSalesStaffPhone(){
+	var salesStaffPhone = new Object();
+	salesStaffPhone.id=$("#merchantId").val();
+	salesStaffPhone.salesStaffPhone1 = $("#salesStaffPhone1").val();
+	salesStaffPhone.salesStaffPhone2 = $("#salesStaffPhone2").val();
+	salesStaffPhone.salesStaffPhone3 = $("#salesStaffPhone3").val();
+	dataHandler("modify","salesStaffPhone",salesStaffPhone,successRefresh,null,null,null,true);
+}
+function saveSalesStaffFax(){
+	var salesStaffFax = new Object();
+	salesStaffFax.id=$("#merchantId").val();
+	salesStaffFax.salesStaffFax1 = $("#salesStaffFax1").val();
+	salesStaffFax.salesStaffFax2 = $("#salesStaffFax2").val();
+	salesStaffFax.salesStaffFax3 = $("#salesStaffFax3").val();
+	dataHandler("modify","salesStaffFax",salesStaffFax,successRefresh,null,null,null,true);
+}
+function saveShipFromAddress(){
+	var shipFromAddress = new Object();
+	shipFromAddress.userId=$("#merchantId").val();
+	shipFromAddress.type = 1;
+	shipFromAddress.title = $("#shipFromAddressTitle").val();
+	shipFromAddress.staffname = $("#shipFromAddressStaffName").val();
+	shipFromAddress.country = $("#shipFromAddressCountry").val();
+	shipFromAddress.area = $("#shipFromAddressArea").val();
+	shipFromAddress.detail = $("#shipFromAddressDetail").val();
+	shipFromAddress.mobilephone1 = $("#shipFromAddressMobilephone1").val();
+	shipFromAddress.mobilephone2 = $("#shipFromAddressMobilephone2").val();
+	shipFromAddress.mobilephone3 = $("#shipFromAddressMobilephone3").val();
+	shipFromAddress.phone1 = $("#shipFromAddressPhone1").val();
+	shipFromAddress.phone2 = $("#shipFromAddressPhone2").val();
+	shipFromAddress.phone3 = $("#shipFromAddressPhone3").val();
+	dataHandler("modify","address",shipFromAddress,successRefresh,null,null,null,true);
+}
+function saveDeliveryCompany(){
+	var deliveryCompany = new Object();
+	deliveryCompany.id=$("#merchantId").val();
+	deliveryCompany.company = $("#deliveryCompany").val();
+	dataHandler("modify","deliveryCompany",deliveryCompany,successRefresh,null,null,null,true);
+}
+function saveOrderAlert(){
+	var orderAlert = new Object();
+	orderAlert.id=$("#merchantId").val();
+	orderAlert.isEmail = $("#isOrderAlertEmail").prop('checked')?1:0;
+	orderAlert.isSMS = $("#isOrderAlertSMS").prop('checked')?1:0;
+	orderAlert.email = $("#orderAlertEmail").val();
+	dataHandler("modify","orderAlert",orderAlert,successRefresh,null,null,null,true);
+}
+function saveIsSendingNotifyMail(){
+	var isSendingNotifyMail = new Object();
+	isSendingNotifyMail.id=$("#merchantId").val();
+	isSendingNotifyMail.isSendingNotifyMail = $("#isSendingNotifyMail").prop('checked')?1:0;
+	dataHandler("modify","isSendingNotifyMail",isSendingNotifyMail,successRefresh,null,null,null,true);
+}
+function saveEticketPassword(){
+	var eticketPassword = new Object();
+	eticketPassword.id=$("#merchantId").val();
+	eticketPassword.eticketPassword = $("#eticketPassword").val();
+	dataHandler("modify","eticketPassword",eticketPassword,successRefresh,null,null,null,true);
+}

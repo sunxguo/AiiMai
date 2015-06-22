@@ -164,8 +164,10 @@ class Cms extends CI_Controller {
 		$this->cmsBaseHandler('ASM Management',array('index'=>true),'index',$data);
 	}
 	public function myInfo(){
+		if(!$this->checkMerchantSimpleLogin()) return false;
 		$data=array(
-			"merchant"=>$this->commongetdata->getContent('user',$_SESSION['userid'])
+			"merchant"=>$this->commongetdata->getContent('user',$_SESSION['userid']),
+			"shipAddress"=>$this->commongetdata->getContentAdvance('address',array("address_type"=>1,"address_userid"=>$_SESSION['userid']))
 		);
 		$this->cmsBaseHandler('My Info',array('baseInfo'=>true,'myInfo'=>true),'myInfo',$data);
 	}
@@ -227,7 +229,10 @@ class Cms extends CI_Controller {
 		$this->cmsBaseHandler('Item List/Edit',array('goodsManagement'=>true,'goods'=>true,'goodsAdd'=>true),'goodsAdd',array('categories'=>$categories));
 	}
 	public function goodsCopy(){
-		$this->cmsBaseHandler('Item List/Edit',array('goodsManagement'=>true,'goods'=>true,'goodsCopy'=>true),'goodsCopy',array());
+		$data=array(
+			"categories"=>$this->commongetdata->getCategories(false)
+		);
+		$this->cmsBaseHandler('Item List/Edit',array('goodsManagement'=>true,'goods'=>true,'goodsCopy'=>true),'goodsCopy',$data);
 	}
 	public function goodsEdit(){
 		$data=array(

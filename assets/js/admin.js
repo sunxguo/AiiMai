@@ -301,7 +301,8 @@ function addImageBeforeUpload(){
 function addImageAfterUpload(imageSrc){
 	$("#avatar").attr("src",imageSrc);
 }
-function userHandler(successMsg,isNew){
+function userHandler(successMsg){
+	/*
 	if($("#MainCategory").val()==-1 || $("#stSubCategory").val()==-1 || $("#ndSubCategory").val()==-1){
 		showAlert('danger','',"Please select category!");
 		return false;
@@ -325,40 +326,17 @@ function userHandler(successMsg,isNew){
 	if($("#Quantity").val()=='' || isNaN($("#Quantity").val())){
 		showAlert('danger','',"Please enter the correct Quantity!");
 		return false;
-	}
-	var product = new Object();
-	product.MainCategory = $("#MainCategory").val();
-	product.stSubCategory = $("#stSubCategory").val();
-	product.ndSubCategory = $("#ndSubCategory").val();
-	product.SellFormat = $('input[name="salesMode"]:checked').val();
-	product.DeliveryType = $('input[name="shipType"]:checked').val();
-	product.ItemCondition = $('input[name="goodsStatus"]:checked').val();
-//	product.ItemCondition = $('input[name="goodsStatus"]:checked').val();
-	product.title_english = $("#title_english").val();
-	product.title_zh_cn = $("#title_zh_cn").val();
-	product.title_tw_cn = $("#title_tw_cn").val();
-	product.ShortTitle = $("#ShortTitle").val();
-	product.SellerCode = $("#SellerCode").val();
-	product.productImg = $("#productImg").attr('src');
-	product.ProductionPlaceCode = $("#ProductionPlaceCode").val();
-	product.ProductionPlaceDetail = $("#ProductionPlaceDetail").val();
-	product.AdultItem = $('input[name="adult"]:checked').val();
-	product.SellPrice = $("#SellPrice").val();
-	product.Quantity = $("#Quantity").val();
-	product.AvailablePeriod = $("#AvailablePeriod").val();
-	product.ReferencePrice = $("#ReferencePrice").val();
-	product.shippingAddress = $("#shippingAddress").val();
-	product.Displayleftavailableperiod = $("#Displayleftavailableperiod").val();
-	product.description = goodsInfoEditor.html();
-//	product.thumbnail = getThumb("#imgListDivs .imagelist");
-	var handlerType='';
-	if(isNew){
-		handlerType='add';
-	}else{
-		product.id = $("#productId").val();
-		handlerType='modify';
-	}
-	dataHandler(handlerType,'product',product,null,null,null,successMsg,true);
+	}*/
+	var user = new Object();
+	user.avatar = $("#avatar").attr('src');
+	user.username = $("#username").val();
+	user.email = $("#email").val();
+	user.phone = $("#phone").val();
+	user.status = $("#status").val();
+	user.birthday = $("#birthday").val();
+	user.gender = $('input[name="gender"]:checked').val();
+	user.id = $("#userId").val();
+	dataHandler('modify','userInfo',user,null,null,null,successMsg,true);
 }
 var productId='';
 function showStatus(_productName,_productId,_statusNo){
@@ -375,6 +353,67 @@ function saveProductStatus(){
 }
 function successProStatus(){
 	alert('Successfully saved!');
+}
+function showCat(catId,display){
+	var displayCat = new Object();
+	displayCat.id = catId;
+	displayCat.display = display;
+	dataHandler("modify","displayCat",displayCat,successShowCat,null,null,null,true);
+}
+function successShowCat(){
+	alert('Successfully saved!');
+}
+function successDelete(){
+	alert('Successfully deleted!');
+}
+function showChangeImageDiv(tag,postionNo,catId){
+	setDivCenter('#changeHomeFeaturedImageDiv',true);
+	$("#titleInput").val($(tag).attr('title'));
+	$("#linkInput").val($(tag).attr('catlink'));
+	$("#featuredImage").attr('src',$(tag).attr('src'));
+	$("#postionNo").val(postionNo);
+	$("#catId").val(catId);
+}
+function saveHomeFeaturedImage(){
+	var featuredProduct = new Object();
+	featuredProduct.catId = $("#catId").val();
+	featuredProduct.position = $("#postionNo").val();
+	featuredProduct.title = $("#titleInput").val();
+	featuredProduct.link = $("#linkInput").val();
+	featuredProduct.image = $("#featuredImage").attr('src');
+	dataHandler("modify","featuredProduct",featuredProduct,successShowCat,null,null,null,true);
+}
+function uploadFeaturedImage(){
+	uploadImageAdvance("#upload_featuredImage_form",addFeaturedImageBeforeUpload,addFeaturedImageAfterUpload)
+}
+function addFeaturedImageBeforeUpload(){
+	$("#featuredImage").attr('src','/assets/images/cms/loading.gif');
+}
+function addFeaturedImageAfterUpload(imageSrc){
+	//update database
+	$("#featuredImage").attr('src',imageSrc);
+}
+function modifyCategory(tag,id){
+	setDivCenter('#changeCategoryDiv',true);
+	$("#categoryId").val(id);
+	$("#nameInput").val($(tag).attr('categoryName'));
+}
+function saveCategory(){
+	var category = new Object();
+	category.id = $("#categoryId").val();
+	category.name = $("#nameInput").val();
+	dataHandler("modify","category",category,successShowCat,null,null,null,true);
+}
+function deleteCategory(tag,id){
+	var category = new Object();
+	category.id = id;
+	dataHandler("del","category",category,successDelete,'Sure to delete this category? ['+$(tag).attr('categoryName')+']',null,null,true);
+}
+function addCategory(){
+	var category = new Object();
+	category.fid = $("#fid").val();
+	category.name = $("#newCatNameInput").val();
+	dataHandler("add","category",category,successShowCat,null,null,null,true);
 }
 /*Example:
 $(".slider-item").mouseout(function(){

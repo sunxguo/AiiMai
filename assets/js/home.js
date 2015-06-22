@@ -351,14 +351,54 @@ function checkFile(){
 		return true;
 	}
 }
+function checkBusinessLicense(){
+	if($("#businessLicenseImage").attr('src')==''){
+		showAlert('danger','You must upload the copy of business license!','');
+		return false;
+	}else{
+		
+		return true;
+	}
+}
+function checkBankAccount(){
+	if($("#fileBankAccount").attr('src')==''){
+		showAlert('danger','You must upload the copy of bank account!','');
+		return false;
+	}else{
+		
+		return true;
+	}
+}
 function checkAllInfo(){
-	if(checkName() && checkContactInfo() && checkAddress() && checkSalesStaffName() && checkFile()){
+	if(checkName() && checkContactInfo() && checkAddress() && checkSalesStaffName() && checkFile() && checkBusinessLicense() && checkBankAccount()){
 		validation();
 		return true;
 	}else{
 		invalidation();
 		return false;
 	}
+}
+function uploadBusinessLicense(){
+	uploadImageAdvance("#upload_BusinessLicense_form",addBusinessLicenseBeforeUpload,addBusinessLicenseAfterUpload)
+}
+function addBusinessLicenseBeforeUpload(){
+	$("#loadingBusinessLicense").show();
+}
+function addBusinessLicenseAfterUpload(imageSrc){
+	//update database
+	$("#loadingBusinessLicense").hide();
+	$("#businessLicenseImage").attr('src',imageSrc);
+}
+function uploadBankAccount(){
+	uploadImageAdvance("#upload_BankAccount_form",addBankAccountBeforeUpload,addBankAccountAfterUpload)
+}
+function addBankAccountBeforeUpload(){
+	$("#loadingBankAccount").show();
+}
+function addBankAccountAfterUpload(imageSrc){
+	//update database
+	$("#loadingBankAccount").hide();
+	$("#bankAccountImage").attr('src',imageSrc);
 }
 function sellerInformation(){
 	if(checkAllInfo()){
@@ -376,7 +416,16 @@ function sellerInformation(){
 		merchantInfo.address1 = $('#address1').val();
 		merchantInfo.address2 = $('#address2').val();
 		merchantInfo.salesStaff = $('#salesStaff').val();
+		merchantInfo.salesStaffEmail = $('#salesStaffEmail').val();
+		merchantInfo.salesStaffPhone1 = $('#salesStaffPhone1').val();
+		merchantInfo.salesStaffPhone2 = $('#salesStaffPhone2').val();
+		merchantInfo.salesStaffPhone3 = $('#salesStaffPhone3').val();
+		merchantInfo.salesStaffMobilePhone1 = $('#salesStaffMobilePhone1').val();
+		merchantInfo.salesStaffMobilePhone2 = $('#salesStaffMobilePhone2').val();
+		merchantInfo.salesStaffMobilePhone3 = $('#salesStaffMobilePhone3').val();
 		merchantInfo.doc = $('#fileSrc').val();
+		merchantInfo.businessLicense = $("#fileBusinessLicense").attr('src');
+		merchantInfo.bankAccount = $("#fileBankAccount").attr('src');
 		
 		$.post("/common/modifyInfo",
 		{

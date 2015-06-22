@@ -1,3 +1,21 @@
+$(document).ready(function(){
+	$("#bkDiv").click(function(){
+		$(".km-modal-dialog").hide();
+		$(".km-alert").hide();
+		$("#bkDiv").hide();
+		$("body").removeClass('km-modal-open');
+	});
+	$(".km-close").click(function(){
+		$(".km-modal-dialog").hide();
+		$("#bkDiv").hide();
+		$("body").removeClass('km-modal-open');
+	});
+	$(".km-btn-close").click(function(){
+		$(".km-modal-dialog").hide();
+		$("#bkDiv").hide();
+		$("body").removeClass('km-modal-open');
+	});
+});
 //让指定的DIV始终显示在屏幕正中间   
 function setDivCenter(divId,bk){  
 	var top = ($(window).height() > $(divId).height())?($(window).height() - $(divId).height())/2:0;   
@@ -27,6 +45,23 @@ function showMsg(msg){
 }
 function closeMsg(){
 	$("#msgBox").hide();
+}
+/**
+ * type:success,warning,info,danger
+ */
+function showAlert(type,strong,msg){
+	$('#messageAlert').children('strong').text(strong);
+	$('#messageAlert').children('.km-alert-msg').text(msg);
+	$('#messageAlert').addClass('km-alert-'+type);
+	setDivCenter('#messageAlert',true)
+	setTimeout(closeAlert,2500);
+}
+function closeAlert(){
+	$(".km-modal-dialog").hide();
+	$(".km-alert").hide();
+	$("#bkDiv").hide();
+	$("body").removeClass('km-modal-open');
+	$('#messageAlert').removeClass('km-alert-success','km-alert-warning','km-alert-info','km-alert-danger');
 }
 function jumpPage(url){
 	var pageNum=$('#page_num').val();
@@ -61,7 +96,7 @@ function dataHandler(funcType,dataType,postDataObj,callBack,confirmMsg,cancelCal
 	function(data){
 		var result=$.parseJSON(data);
 		if(result.result=="success"){
-			if(successMsg) showMsg(successMsg);
+			if(successMsg) showAlert('success',successMsg,'');
 			if(callBack) callBack(result.message);
 			if(refresh) location.reload();
 		}else{
@@ -84,6 +119,25 @@ function uploadImage(beforeUpload,successHandler){
 		},
 		url: "/common/uploadImage",
 		data: $("#upload_image_form").formSerialize(),
+		type: 'POST',
+		beforeSubmit: function () {
+			beforeUpload();
+		}
+	});
+	return false;
+}
+function uploadImageAdvance(formId,beforeUpload,successHandler){
+	$(formId).ajaxSubmit({
+		success: function (data) {
+			var result=$.parseJSON(data);
+			if(result.code){
+				successHandler(result.message);
+			}else{
+				alert(result.message);
+			}
+		},
+		url: "/common/uploadImage",
+		data: $(formId).formSerialize(),
 		type: 'POST',
 		beforeSubmit: function () {
 			beforeUpload();

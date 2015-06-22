@@ -81,18 +81,24 @@ class Admin extends CI_Controller {
 	}
 	public function websiteLayout(){
 		$categories=$this->commongetdata->getCategories(false);
-		$currentCat=isset($_GET['cat'])?$_GET['cat']:$categories[0]->category_id;
+		$categoriesById=$this->commongetdata->getCategories(true);
+		$currentCat=isset($_GET['cat'])?$categoriesById[$_GET['cat']]:$categories[0];
 		$data=array(
 			"columns"=>$this->commongetdata->getColumns(),
 			"categories"=>$this->commongetdata->getCategories(false),
 			"currentCat"=>$currentCat,
-			"featuredProducts"=>$this->commongetdata->getProducts(false,$currentCat,false,false,false,false,false,false,false,array("field"=>'product_modify_time',"type"=>'DESC'))
+//			"featuredProducts"=>$this->commongetdata->getProducts(false,$currentCat,false,false,false,false,false,false,false,array("field"=>'product_modify_time',"type"=>'DESC'))
 		);
 		$this->adminBaseHandler('Website Layout',array('data','websiteLayout'),'websiteLayout',$data);
 	}
 	public function websiteCategory(){
+		$categories=$this->commongetdata->getCategories(false);
+		$categoriesById=$this->commongetdata->getCategories(true);
+		$currentCat=isset($_GET['cat']) && isset($categoriesById[$_GET['cat']])?$categoriesById[$_GET['cat']]:$categories[0];
 		$data=array(
-			"columns"=>$this->commongetdata->getColumns()
+			"columns"=>$this->commongetdata->getColumns(),
+			"categories"=>$this->commongetdata->getCategories(false),
+			"currentCat"=>$currentCat,
 		);
 		$this->adminBaseHandler('Categories',array('data','websiteLayout'),'websiteCategory',$data);
 	}
@@ -152,7 +158,7 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/modifyItem',$data);
 	}
 	public function modifyMerchant(){
-		$merchant=$this->commongetdata->getContent('merchant',$_GET['merchantId']);
+		$merchant=$this->commongetdata->getContent('user',$_GET['merchantId']);
 		$data=array(
 //			"categories"=>$this->commongetdata->getCategories(false),
 			"merchant"=>$merchant,

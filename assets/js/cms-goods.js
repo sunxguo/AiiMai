@@ -173,7 +173,7 @@ function goUrl(url){
 function loadProductsData(data){
 	$(".productItem").remove();
 	var product='';
-	for(var index in data){ 
+	for(var index in data){
         product='<tr class="productItem"><td class="value br"><a href="javascript:window.open(\'/cms/modifyGoods?itemId='+data[index].product_id+'\',\'Edit Item\',\'height=700,width=900,toolbar=no,menubar=no\');">Edit</a></td>'+
 		'<td class="value br">'+data[index].product_id+'</td>'+
 		'<td class="value br">'+''+'</td>'+

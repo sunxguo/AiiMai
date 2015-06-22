@@ -295,7 +295,10 @@ class CommonGetData{
 	 */
 	public function getOneData($condition){
 		$data=$this->CI->dbHandler->selectData($condition);
-		return $data[0];
+		if(sizeof($data)>0)
+			return $data[0];
+		else
+			return array();
 	}
 	public function getPageLink($baseUrl,$selectUrl,$currentPage,$amountPerPage,$amount){
 		$pageAmount=ceil($amount/$amountPerPage);
