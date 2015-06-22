@@ -106,6 +106,54 @@
 							</div><!-- /.modal-content -->
 						</div><!-- /.modal-dialog -->
 					</td>
+				  </tr> 
+				  <tr>
+					<td class="field br">Address</td>
+					<td class="value tal">
+						<button onclick="setDivCenter('#addressDiv',true);" type="button" class="km-btn km-btn-primary" style=" height: 23px;font-size: 10px;padding: 0px 10px;">My Address Book</button>
+						<div class="km-modal-dialog width40p" id="addressDiv">
+							<div class="km-modal-content">
+								<div class="km-modal-header">
+									<button type="button" class="km-close"><span>&times;</span></button>
+									<h4 class="km-modal-title">Personal Info - Address</h4>
+								</div>
+								<div class="km-modal-body">
+								<!--//1.shipAddress 2.Family 3.Work 4.Friends 5.Etc.-->
+									<label for="addressType" class="km-control-label" style="width: 80px;">Type:</label>
+									<select id="addressType" style="height:30px;vertical-align:middle;">
+										<option value="2">Family</option>
+										<option value="4">Friends</option>
+										<option value="3">Work</option>
+										<option value="5">Etc.</option>
+									</select><br><br>
+									<label for="addressTitle" class="km-control-label" style="width: 80px;">Title:</label>
+									<input type="text" class="km-form-control" id="addressTitle" value="" style="width: 50%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
+									<label for="addressStaffName" class="km-control-label" style="width: 80px;">Staff Name:</label>
+									<input type="text" class="km-form-control" id="addressStaffName" value="" style="width: 50%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
+									<label for="addressCountry" class="km-control-label" style="width: 80px;">Country:</label>
+									<select id="addressCountry" style="height: 30px;width:30%;"><?php require('countryPhoneNO.php');?></select>
+									<label for="addressArea" class="km-control-label">Area:</label>
+									<input type="text" class="km-form-control" id="addressArea" value="" style="width: 37.8%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
+									<label for="addressDetail" class="km-control-label" style="width: 80px;">Detail:</label>
+									<input type="text" class="km-form-control" id="addressDetail" value="" style="width: 74.5%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
+									
+									<label for="addressMobilephone1" class="km-control-label" style="width: 120px;">Mobile Phone:</label>
+									<select id="addressMobilephone1" style="height: 30px;"><?php require('countryPhoneNO.php');?></select>
+									<input type="text" class="km-form-control" id="addressMobilephone2" value="" style="width: 20%;height: 30px;padding: 0 5px;display: inline-block;">-
+									<input type="text" class="km-form-control" id="addressMobilephone3" value="" style="width: 20%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
+									<label for="addressPhone1" class="km-control-label" style="width: 120px;">Phone Number:</label>
+									<select id="addressPhone1" style="height: 30px;"><?php require('countryPhoneNO.php');?></select>
+									<input type="text" class="km-form-control" id="addressPhone2" value="" style="width: 20%;height: 30px;padding: 0 5px;display: inline-block;">-
+									<input type="text" class="km-form-control" id="addressPhone3" value="" style="width: 20%;height: 30px;padding: 0 5px;display: inline-block;">
+									
+								</div>
+								<div class="km-modal-footer">
+									<button type="button" class="km-btn km-btn-default km-btn-close">Close</button>
+									<button onclick="saveShipFromAddress();" type="button" class="km-btn km-btn-primary">Save</button>
+								</div>
+							</div><!-- /.modal-content -->
+						</div><!-- /.modal-dialog -->
+					</td>
 				  </tr>
 				  <tr>
 					<td class="field br">Email</td>

@@ -173,6 +173,10 @@ class Home extends CI_Controller {
 			return false;
 		}
 		$merchant=$this->commongetdata->getContent('user',$item->product_merchant);
+		if(!isset($merchant->user_id)){
+			$this->load->view('redirect',array("info"=>"This seller does not exist!",'url'=>'/home'));
+			return false;
+		}
 		$optionData=$this->commongetdata->getOptionData($_GET['itemId'],'data');
 		$optionArray=array();
 		foreach($optionData as $option){
