@@ -742,5 +742,38 @@ function savePersonalInfoBirthday(){
 	dataHandler("modify","personalBirthday",personalBirthday,successRefresh,null,null,null,true);
 }
 function selectAddress(){
-	
+	var address = new Object();
+	address.userId = $("#userId").val();
+	address.type = $("#addressType").val();
+	dataHandler("get","address",address,getAddressHandler,null,null,null,false);
+}
+function getAddressHandler(data){
+	 $("#addressTitle").val(data.address_title);
+	 $("#addressStaffName").val(data.address_staffname);
+	 $("#addressCountry").val(data.address_country);
+	 $("#addressArea").val(data.address_area);
+	 $("#addressDetail").val(data.address_detail);
+	 $("#addressMobilephone1").val(data.address_mobilephone1);
+	 $("#addressMobilephone2").val(data.address_mobilephone2);
+	 $("#addressMobilephone3").val(data.address_mobilephone3);
+	 $("#addressPhone1").val(data.address_phone1);
+	 $("#addressPhone2").val(data.address_phone2);
+	 $("#addressPhone3").val(data.address_phone3);
+}
+function saveAddress(){
+	var address = new Object();
+	address.userId = $("#userId").val();
+	address.type = $("#addressType").val();
+	address.title = $("#addressTitle").val();
+	address.staffname = $("#addressStaffName").val();
+	address.country = $("#addressCountry").val();
+	address.area = $("#addressArea").val();
+	address.detail = $("#addressDetail").val();
+	address.mobilephone1 = $("#addressMobilephone1").val();
+	address.mobilephone2 = $("#addressMobilephone2").val();
+	address.mobilephone3 = $("#addressMobilephone3").val();
+	address.phone1 = $("#addressPhone1").val();
+	address.phone2 = $("#addressPhone2").val();
+	address.phone3 = $("#addressPhone3").val();
+	dataHandler("modify","address",address,successRefresh,null,null,null,true);
 }

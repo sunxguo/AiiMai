@@ -169,7 +169,7 @@
 				location.href="/home";
 			}else{
 				alert(result.message);
-				$("#email").val(response.email);
+				location.href="/home/register";
 			}
 		});
     });
