@@ -120,7 +120,7 @@
 								<div class="km-modal-body">
 								<!--//1.shipAddress 2.Family 3.Work 4.Friends 5.Etc.-->
 									<label for="addressType" class="km-control-label" style="width: 80px;">Type:</label>
-									<select id="addressType" style="height:30px;vertical-align:middle;">
+									<select id="addressType" style="height:30px;vertical-align:middle;" onchange="selectAddress();">
 										<option value="2">Family</option>
 										<option value="4">Friends</option>
 										<option value="3">Work</option>

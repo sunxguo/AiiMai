@@ -741,3 +741,6 @@ function savePersonalInfoBirthday(){
 	personalBirthday.birthday = $("#birthday").val();
 	dataHandler("modify","personalBirthday",personalBirthday,successRefresh,null,null,null,true);
 }
+function selectAddress(){
+	
+}

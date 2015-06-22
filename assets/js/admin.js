@@ -155,6 +155,9 @@ function websiteInfoSave(key,successMsg){
 	websiteInfo.value = infoEditor.html();
 	dataHandler("modify","websiteInfo",websiteInfo,null,null,closeWait(),successMsg,true);
 }
+function websiteInfoEmailComfirmationSave(successMsg){
+	
+}
 function adminPwd(successMsg){
 	var username=$("#username").val();
 	var oldpwd=$("#oldpwd").val();

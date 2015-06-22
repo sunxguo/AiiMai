@@ -476,6 +476,13 @@ class Admin extends CI_Controller {
 		);
 		$this->adminBaseHandler('userAgreement',array('setting','websiteInfo'),'userAgreement',$data);
 	}
+	public function emailComfirmation(){
+		$data=array(
+			"emailComfirmationTitle"=>$this->commongetdata->getWebsiteConfig('website_confirm_email_title'),
+			"emailComfirmationContent"=>$this->commongetdata->getWebsiteConfig('website_confirm_email_content'),
+		);
+		$this->adminBaseHandler('emailComfirmation',array('setting','websiteInfo'),'emailComfirmation',$data);
+	}
 	public function columnList(){
 		$data=array("columns"=>$this->commongetdata->getColumns());
 		$this->adminBaseHandler('columnList','columnList','columnList',$data);
