@@ -477,26 +477,26 @@ class Admin extends CI_Controller {
 		$data=array(
 			"about"=>$this->commongetdata->getWebsiteConfig('website_about_aiimai')
 		);
-		$this->adminBaseHandler('websiteInfo',array('setting','websiteInfo'),'websiteInfo',$data);
+		$this->adminBaseHandler('websiteInfo',array('data','websiteInfo'),'websiteInfo',$data);
 	}
 	public function userAgreement(){
 		$data=array(
 			"userAgreement"=>$this->commongetdata->getWebsiteConfig('website_user_agreement')
 		);
-		$this->adminBaseHandler('userAgreement',array('setting','websiteInfo'),'userAgreement',$data);
+		$this->adminBaseHandler('userAgreement',array('data','websiteInfo'),'userAgreement',$data);
 	}
 	public function help(){
 		$data=array(
 			"help"=>$this->commongetdata->getWebsiteConfig('website_help')
 		);
-		$this->adminBaseHandler('help',array('setting','websiteInfo'),'help',$data);
+		$this->adminBaseHandler('help',array('data','websiteInfo'),'help',$data);
 	}
 	public function emailComfirmation(){
 		$data=array(
 			"emailComfirmationTitle"=>$this->commongetdata->getWebsiteConfig('website_confirm_email_title'),
 			"emailComfirmationContent"=>$this->commongetdata->getWebsiteConfig('website_confirm_email_content'),
 		);
-		$this->adminBaseHandler('emailComfirmation',array('setting','websiteInfo'),'emailComfirmation',$data);
+		$this->adminBaseHandler('emailComfirmation',array('data','websiteInfo'),'emailComfirmation',$data);
 	}
 	public function columnList(){
 		$data=array("columns"=>$this->commongetdata->getColumns());
