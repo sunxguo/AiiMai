@@ -156,7 +156,14 @@ function websiteInfoSave(key,successMsg){
 	dataHandler("modify","websiteInfo",websiteInfo,null,null,closeWait(),successMsg,true);
 }
 function websiteInfoEmailComfirmationSave(successMsg){
-	
+	var websiteInfo = new Object();
+	websiteInfo.key = 'website_confirm_email_title';
+	websiteInfo.value = $("#emailComfirmationTitle").val();
+	dataHandler("modify","websiteInfo",websiteInfo,null,null,closeWait(),successMsg,true);
+	var websiteInfo = new Object();
+	websiteInfo.key = 'website_confirm_email_content';
+	websiteInfo.value = infoEditor.html();
+	dataHandler("modify","websiteInfo",websiteInfo,null,null,closeWait(),successMsg,true);
 }
 function adminPwd(successMsg){
 	var username=$("#username").val();
