@@ -452,6 +452,29 @@ class CommonGetData{
 		$merchants=$this->CI->dbHandler->selectData($condition);
 		return $merchants;
 	}
+	/**
+	 *  
+	 **/
+	public function getGroupBuyAdvance($parameters){
+		//,$merchantId,$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order
+		$condition=array('table'=>'groupbuy');
+		if(isset($parameters['result'])) $condition['result']=$parameters['result'];
+		if(isset($parameters['merchant'])) $condition['where']['groupbuy_merchantId']=$parameters['merchant'];
+		if(isset($parameters['inPreparation'])){
+			$condition['where']['groupbuy_startingTime >']=$parameters['inPreparation']['startingTime'];
+		}
+		if(isset($parameters['inProgress'])){
+			$condition['where']['groupbuy_startingTime <=']=$parameters['inProgress']['startingTime'];
+			$condition['where']['groupbuy_endTime >=']=$parameters['inProgress']['endTime'];
+		}
+		if(isset($parameters['ended'])){
+			$condition['where']['groupbuy_endTime <']=$parameters['ended']['endTime'];
+		}
+		if(isset($parameters['like'])) $condition['like']=$parameters['like'];
+		if(isset($parameters['orderBy'])) $condition['order_by']=$parameters['orderBy'];
+		$results=$this->CI->dbHandler->selectData($condition);
+		return $results;
+	}
 	public function getHotItems($merchantId){
 		$condition=array(
 			'table'=>'product',

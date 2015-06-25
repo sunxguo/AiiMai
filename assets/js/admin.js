@@ -255,6 +255,13 @@ function productQuery(excel){
 	product.title = $("#keyword").val();
 	dataHandler('excel','productSimple',product,goUrl,null,null,null,false);
 }
+function merchantQuery(excel){
+	var merchant = new Object();
+	merchant.gender = $("#gender").val();
+	merchant.status = $("#status").val();
+	merchant.username = $("#keyword").val();
+	dataHandler('excel','merchantSimple',merchant,goUrl,null,null,null,false);
+}
 function goUrl(url){
 	location.href=url;
 }

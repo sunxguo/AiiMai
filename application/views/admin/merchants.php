@@ -3,6 +3,7 @@
 		<div style="float: right;margin-left:10px;">
 			<input type="text" id="keyword" class="inp-txt width200" value="<?php echo isset($_GET["search"])?$_GET["search"]:"";?>">
 			<a href="javascript:selectMerchant('<?php echo $selectPage;?>')" class="btn80">Search</a>
+			<button onclick="merchantQuery(true);" type="button" class="km-btn km-btn-success" style="height: 28px;font-size: 12px;padding:0px 10px;">Excel</button>
 		</div>
 		<div style="float: right;">
 			<span class="font12">Status:</span>
