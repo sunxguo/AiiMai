@@ -801,6 +801,28 @@ class Common extends CI_Controller {
 				$order=array("field"=>"product_modify_time","type"=>'DESC');
 				$result=$this->commongetdata->getProducts($_SESSION['userid'],$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order);
 			break;
+			case 'products':
+				$parameters=array(
+					'result'=>'data',
+					'merchant'=>$data->merchantId,
+					'orderBy'=>array('product_modify_time'=>'DESC')
+				);
+				if(isset($data->MainCategory)) $parameters['category']=$data->MainCategory;
+				if(isset($data->stSubCategory)) $parameters['subCategory']=$data->stSubCategory;
+				if(isset($data->ndSubCategory)) $parameters['subSubCategory']=$data->ndSubCategory;
+				if(isset($data->title)) $parameters['like']=array('product_item_title_english'=>$data->title);
+				
+				$result=$this->commongetdata->getProductsAdvance($parameters);
+			break;
+			case 'groupBuy':
+				$parameters=array(
+					'result'=>'data',
+					'merchant'=>$data->merchantId,
+					'orderBy'=>array('groupbuy_registeredTime'=>'DESC')
+				);
+				if($data->name!='') $parameters['like']=array('groupbuy_productName'=>$data->name);
+				$result=$this->commongetdata->getGroupBuyAdvance($parameters);
+			break;
 			case 'turnover':
 				$startDate=$data->startDate;
 				$days=$data->days;
@@ -920,6 +942,91 @@ class Common extends CI_Controller {
 					);
 				}
 				$url=$this->exportExcel('products','subject','description',$field,$dataArray);
+			break;
+			case 'merchant':
+				$field=array(
+					'Logo',
+					'Seller Shop Title',
+					'Avatar',
+					'Username',
+					'Email',
+					'Contact Mobile Phone',
+					'Gender',
+					'Vip',
+					'Facebook',
+					'Facebook',
+					'Facebook',
+					'Facebook',
+					'Facebook',
+					'Status',
+					'Registeration Time',
+					'Last Login Time'
+				);
+				$parameters=array(
+					'result'=>'data',
+					'orderBy'=>array('user_reg_time'=>'DESC')
+				);
+				if(isset($data->gender) & $data->gender!='') $parameters['gender']=$data->gender;
+				if(isset($data->status) & $data->status!='') $parameters['status']=$data->status;
+				if(isset($data->keywords) & $data->keywords!='') $parameters['like']=$data->keywords;
+				
+				$result=$this->commongetdata->getMerchantsAdvance($parameters);
+				$dataArray=array();
+				$websiteUrl=$this->commongetdata->getWebsiteConfig('website_url');
+				foreach($result as $value){
+					$dataArray[]=array(
+						$websiteUrl.'/'.($value->merchant_shop_icon),
+						$value->merchant_shop_name,
+						$websiteUrl.'/'.($value->user_avatar),
+						$value->user_username,
+						$value->user_email,
+						$value->user_gender,
+						$value->user_vip_grade,
+						$value->user_reg_time,
+						$value->user_lastlogin_time,
+					);
+				}
+				$url=$this->exportExcel('Sellers','subject','description',$field,$dataArray);
+			break;
+			case 'groupBuy':
+				$field=array(
+					'Group Buy No.',
+					'Item Code',
+					'Item Title',
+					'Price',
+					'Settle Price',
+					'Aimed(Min) Qty',
+					'Max Qty (Optional)',
+					'Ordered Qty',
+					'Starting Date',
+					'End Date',
+					'Registered Date'
+				);
+				$parameters=array(
+					'result'=>'data',
+					'merchant'=>$data->merchantId,
+					'orderBy'=>array('groupbuy_registeredTime'=>'DESC')
+				);
+				if($data->name!='') $parameters['like']=array('groupbuy_productName'=>$data->name);
+				$result=$this->commongetdata->getGroupBuyAdvance($parameters);
+				$dataArray=array();
+				$websiteUrl=$this->commongetdata->getWebsiteConfig('website_url');
+				foreach($result as $value){
+					$dataArray[]=array(
+						$value->groupbuy_code,
+						$value->groupbuy_productId,
+						$value->groupbuy_productName,
+						$value->groupbuy_price,
+						$value->groupbuy_settlePrice,
+						$value->groupbuy_minQty,
+						$value->groupbuy_maxQty,
+						$value->groupbuy_orderedQty,
+						$value->groupbuy_startingTime,
+						$value->groupbuy_endTime,
+						$value->groupbuy_registeredTime,
+					);
+				}
+				$url=$this->exportExcel('GroupBuy','subject','description',$field,$dataArray);
 			break;
 			/*
 			case 'merchant':

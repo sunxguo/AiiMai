@@ -8,9 +8,9 @@
 		<div class="km-panel-heading"><?php echo lang('cms_groupBuy_GroupBuyItemInfo');?></div>
 		<div class="km-panel-body" style="padding:0px;">
 			<div class="km-btn-group" style="width:100%;margin:10px auto;">
-			  <button type="button" class="km-btn km-btn-warning" style="width:33%;"><?php echo lang('cms_groupBuy_InPreparation');?>(0/0)</button>
-			  <button type="button" class="km-btn km-btn-success" style="width:34%;"><?php echo lang('cms_groupBuy_InProgress');?>(0/0)</button>
-			  <button type="button" class="km-btn km-btn-danger" style="width:33%;"><?php echo lang('cms_groupBuy_Ended');?>(0/0)</button>
+			  <button type="button" class="km-btn km-btn-warning" style="width:33%;"><?php echo lang('cms_groupBuy_InPreparation');?>(<?php echo $inPreparationAmount;?>/<?php echo $amount;?>)</button>
+			  <button type="button" class="km-btn km-btn-success" style="width:34%;"><?php echo lang('cms_groupBuy_InProgress');?>(<?php echo $inProgressAmount;?>/<?php echo $amount;?>)</button>
+			  <button type="button" class="km-btn km-btn-danger" style="width:33%;"><?php echo lang('cms_groupBuy_Ended');?>(<?php echo $endedAmount;?>/<?php echo $amount;?>)</button>
 			</div>
 			<table class="km-table">
 				<tbody>
@@ -20,16 +20,18 @@
 					</td>
 					<td class="value width50p tal" colspan="2">
 						<select style="height: 30px;">
+						<!--
 							<option value="" selected="selected"><?php echo lang('cms_groupBuy_All');?></option>
-							<option value="gd_no"><?php echo lang('cms_groupBuy_ItemCode');?></option>
-							<option value="gd_nm"><?php echo lang('cms_groupBuy_ItemTitle');?></option>
 							<option value="group_buy_no"><?php echo lang('cms_groupBuy_GroupBuyNo');?></option>
+							<option value="gd_no"><?php echo lang('cms_groupBuy_ItemCode');?></option>
+							-->
+							<option value="gd_nm"><?php echo lang('cms_groupBuy_ItemTitle');?></option>
 						</select>
-						<input type="text" class="km-form-control" style="width: 50%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
+						<input id="keywords" type="text" class="km-form-control" style="width: 50%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 					</td>
 					<td class="value tar">
-						<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;"><?php echo lang('cms_common_Search');?></button>
-						<button onclick=";" type="button" class="km-btn km-btn-success" style="height: 28px;font-size: 12px;padding: 5px 10px;"><?php echo lang('cms_common_Excel');?></button>
+						<button onclick="groupBuyQuery(false);" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;"><?php echo lang('cms_common_Search');?></button>
+						<button onclick="groupBuyQuery(true);" type="button" class="km-btn km-btn-success" style="height: 28px;font-size: 12px;padding: 5px 10px;"><?php echo lang('cms_common_Excel');?></button>
 					</td>
 				  </tr>
 				</tbody>
@@ -37,7 +39,7 @@
 		</div>
 		<div style="overflow:auto;">
 			<table class="km-table" style="overflow:scroll;width:150%;">
-				<tbody>
+				<tbody id="groupBuyData">
 				  <tr style="border-top:2px solid #ddd;border-bottom:2px solid #ddd;">
 					<td class="field width6p br"><?php echo lang('cms_groupBuy_GroupBuyNo2');?></td>
 					<td class="field width6p br"><?php echo lang('cms_groupBuy_ItemCode');?></td>
@@ -47,24 +49,12 @@
 					<td class="field width6p br"><?php echo lang('cms_groupBuy_AimedMinQty');?></td>
 					<td class="field width6p br"><?php echo lang('cms_groupBuy_MaxQtyOptional');?></td>
 					<td class="field width6p br"><?php echo lang('cms_groupBuy_OrderedQty');?></td>
+					<!--
 					<td class="field width6p br"><?php echo lang('cms_groupBuy_AchieveDeal');?></td>
+					-->
 					<td class="field width6p br"><?php echo lang('cms_groupBuy_StartingDate');?></td>
 					<td class="field width6p br"><?php echo lang('cms_groupBuy_EndDate');?></td>
 					<td class="field width6p"><?php echo lang('cms_groupBuy_RegisteredDate');?></td>
-				  </tr>
-				  <tr>
-					<td class="value br"></td>
-					<td class="value br"></td>
-					<td class="value br"></td>
-					<td class="value br"></td>
-					<td class="value br"></td>
-					<td class="value br"></td>
-					<td class="value br"></td>
-					<td class="value br"></td>
-					<td class="value br"></td>
-					<td class="value br"></td>
-					<td class="value br"></td>
-					<td class="value"></td>
 				  </tr>
 				</tbody>
 			</table>
@@ -76,10 +66,101 @@
 					<?php echo lang('cms_groupBuy_GroupBuyNoItem');?>
 				</td>
 				<td class="value width40p tal" colspan="3">
-					<input type="text" class="km-form-control km-input-disabled" id="customer_view_fax_areacode" style="width: 20%;height: 26px;padding: 0 5px;display: inline-block;vertical-align: bottom;" disabled="disabled">
-					<input type="text" class="km-form-control km-input-disabled" id="customer_view_fax_areacode" style="width: 20%;height: 26px;padding: 0 5px;display: inline-block;vertical-align: bottom;" disabled="disabled">
-					<input type="text" class="km-form-control km-input-disabled" id="customer_view_fax_areacode" style="width: 40%;height: 26px;padding: 0 5px;display: inline-block;vertical-align: bottom;" disabled="disabled">
-					<button onclick=";" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;"><?php echo lang('cms_groupBuy_Search');?></button>
+					<input type="text" class="km-form-control km-input-disabled" id="productCode" style="width: 10%;height: 26px;padding: 0 5px;display: inline-block;vertical-align: bottom;" disabled="disabled">
+					<input type="text" class="km-form-control km-input-disabled" id="productTitle" style="width: 20%;height: 26px;padding: 0 5px;display: inline-block;vertical-align: bottom;" disabled="disabled">
+					<input type="text" class="km-form-control km-input-disabled" id="productPrice" style="width: 10%;height: 26px;padding: 0 5px;display: inline-block;vertical-align: bottom;" disabled="disabled">
+					<button onclick="setDivCenter('#searchPropductDiv',true);" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;"><?php echo lang('cms_groupBuy_Search');?></button>
+					<div class="km-modal-dialog width40p" id="searchPropductDiv">
+						<div class="km-modal-content">
+							<div class="km-modal-header">
+								<button type="button" class="km-close"><span>&times;</span></button>
+								<h4 class="km-modal-title">Select Product</h4>
+							</div>
+							<div class="km-modal-body">
+								<div class="km-panel km-panel-primary mt10" style="width: 98%;">
+									<div class="km-panel-heading"><?php echo lang('cms_goodsCopy_Searchitem');?></div>
+									<div class="km-panel-body" style="padding:0px;">
+										<table class="km-table">
+											<tbody>
+											  <tr>
+												<td class="field width10p tal br">
+													<?php echo lang('cms_common_Category');?>
+												</td>
+												<td class="value tal">
+													<select style="height: 30px;" onchange="mainCategoryChange()" id="MainCategory">
+														<option value="-1">== <?php echo lang('cms_common_MainCategory');?> ==</option>
+														<?php foreach($categories as $cat):?>
+														<optgroup label="<?php echo $cat->category_name;?>">
+															<?php foreach($cat->subCats as $subCat):?>
+																<option value="<?php echo $subCat->category_id;?>"><?php echo $subCat->category_name;?></option>
+															<?php endforeach;?>
+														</optgroup>
+														<?php endforeach;?>
+													</select>
+													<select style="height: 30px;" onchange="stSubCategoryChange()" id="stSubCategory">
+														<option value="-1">== <?php echo lang('cms_common_1stSubCategory');?> ==</option>
+													</select>
+													<select style="height: 30px;"id="ndSubCategory">
+														<option value="-1">== <?php echo lang('cms_common_2ndSubCategory');?> ==</option>
+													</select>
+												</td>
+											  </tr>
+											  <tr>
+												<td class="field width10p tal br">
+													<select style="height: 30px;">
+														<option value="2"><?php echo lang('cms_goodsCopy_ItemTitle');?></option>
+														<!--
+														<option value="1"><?php echo lang('cms_goodsCopy_Itemcode');?></option>
+														<option value="3"><?php echo lang('cms_goodsCopy_SellerCode');?></option>
+														<option value="5"><?php echo lang('cms_goodsCopy_GlobalItemCode');?></option>
+														-->
+													</select>
+												</td>
+												<td class="value tal">
+													<input type="text" class="km-form-control" id="title" style="width: 90%;height: 30px;padding: 0 5px;display: inline-block;">
+												</td>
+											  </tr>
+											  <tr>
+												<td class="value tar" colspan="4">
+													<button onclick="productQuery(false);" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;"><?php echo lang('cms_common_Search');?></button>
+												</td>
+											  </tr>
+											</tbody>
+										</table>
+									</div>
+									<div style="height: 300px;overflow: scroll;">
+										<table class="km-table" style="overflow:scroll;width:150%;">
+											<tbody id="productsData">
+											  <tr style="border-top:2px solid #ddd;border-bottom:2px solid #ddd;">
+												<td class="field width6p br">Operation</td>
+												<td class="field width6p br"><?php echo lang('cms_goodsCopy_Itemcode');?></td>
+												<td class="field width6p br"><?php echo lang('cms_goodsCopy_SellerCode');?></td>
+												<td class="field width6p br"><?php echo lang('cms_goodsCopy_ItemTitle');?></td>
+												<td class="field width6p br"><?php echo lang('cms_goodsCopy_Price');?></td>
+												<td class="field width6p br"><?php echo lang('cms_goodsCopy_SettlePrice');?></td>
+												<td class="field width6p br"><?php echo lang('cms_goodsCopy_Qty');?></td>
+												<td class="field width6p br"><?php echo lang('cms_goodsCopy_PremiumList');?></td>
+												<td class="field width6p br"><?php echo lang('cms_goodsCopy_Status');?></td>
+												<td class="field width6p br"><?php echo lang('cms_goodsCopy_GlobalSales');?></td>
+												<td class="field width6p br"><?php echo lang('cms_goodsCopy_DeliveryType');?></td>
+												<td class="field width6p br"><?php echo lang('cms_goodsCopy_MainCat');?></td>
+												<td class="field width6p br"><?php echo lang('cms_goodsCopy_1stsubCat');?></td>
+												<td class="field width6p br"><?php echo lang('cms_goodsCopy_2ndsubCat');?></td>
+												<td class="field width6p br"><?php echo lang('cms_goodsCopy_PayondeliveryYOrN');?></td>
+												<td class="field width6p br"><?php echo lang('cms_goodsCopy_SalesFormat');?></td>
+												<td class="field width6p br"><?php echo lang('cms_goodsCopy_InventoryCode');?></td>
+												<td class="field width6p"><?php echo lang('cms_goodsCopy_ListedDate');?></td>
+											  </tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="km-modal-footer">
+								<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_sider_Close');?></button>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
 				</td>
 			  </tr>
 			  <tr>
@@ -87,9 +168,9 @@
 					<?php echo lang('cms_groupBuy_GroupBuyPrice');?>
 				</td>
 				<td class="value width50p tal">
-					<input type="text" class="km-form-control" id="customer_view_fax_areacode" style="width: 10%;height: 26px;padding: 0 5px;display: inline-block;vertical-align: bottom;">
-					<?php echo lang('cms_groupBuy_SettlePrice');?> : <input type="text" class="km-form-control km-input-disabled" id="customer_view_fax_areacode" style="width: 10%;height: 26px;padding: 0 5px;display: inline-block;vertical-align: bottom;" disabled="disabled">
-					(Service Rate : <input type="text" class="km-form-control km-input-disabled" id="customer_view_fax_areacode" style="width: 10%;height: 26px;padding: 0 5px;display: inline-block;vertical-align: bottom;" disabled="disabled">%)
+					<input type="text" class="km-form-control" id="groupBuyPrice" style="width: 10%;height: 26px;padding: 0 5px;display: inline-block;vertical-align: bottom;">
+					<?php echo lang('cms_groupBuy_SettlePrice');?> : <input type="text" class="km-form-control km-input-disabled" id="settlePrice" style="width: 10%;height: 26px;padding: 0 5px;display: inline-block;vertical-align: bottom;" disabled="disabled">
+					(Service Rate : <input type="text" value="100" class="km-form-control km-input-disabled" id="serviceRate" style="width: 10%;height: 26px;padding: 0 5px;display: inline-block;vertical-align: bottom;" disabled="disabled">%)
 				</td>
 				<td class="field width10p tal br">
 					<?php echo lang('cms_groupBuy_RetailPrice');?>
@@ -105,7 +186,7 @@
 					</div>
 				</td>
 				<td class="value width40p tal">
-					<input type="text" class="km-form-control" id="customer_view_fax_areacode" style="width: 20%;height: 26px;padding: 0 5px;display: inline-block;vertical-align: bottom;">
+					<input type="text" class="km-form-control" id="retailPrice" style="width: 20%;height: 26px;padding: 0 5px;display: inline-block;vertical-align: bottom;">
 				</td>
 			  </tr>
 			  <tr>
@@ -113,7 +194,7 @@
 					<?php echo lang('cms_groupBuy_AimedMinQty2');?>
 				</td>
 				<td class="value width40p tal">
-					<input type="text" class="km-form-control" id="customer_view_fax_areacode" style="width: 10%;height: 26px;padding: 0 5px;display: inline-block;vertical-align: bottom;">
+					<input type="text" class="km-form-control" id="minQty" style="width: 10%;height: 26px;padding: 0 5px;display: inline-block;vertical-align: bottom;">
 					<p style="display: inline-block;margin-left:20px;">
 						<?php echo lang('cms_groupBuy_AimedMinQtyTip');?>
 					</p>
@@ -122,7 +203,7 @@
 					<?php echo lang('cms_groupBuy_MaxQtyOptional2');?>
 				</td>
 				<td class="value width40p tal">
-					<input type="text" class="km-form-control" id="customer_view_fax_areacode" style="width: 10%;height: 26px;padding: 0 5px;display: inline-block;vertical-align: bottom;">
+					<input type="text" class="km-form-control" id="maxQty" style="width: 10%;height: 26px;padding: 0 5px;display: inline-block;vertical-align: bottom;">
 				</td>
 			  </tr>
 			  <tr>

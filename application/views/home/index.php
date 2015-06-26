@@ -249,21 +249,21 @@
 	<dl>
 		<dt>Buy on AiiMai</dt>
 		
-		<dd><a href="">Member Register</a></dd>
-		<dd><a href="">Bestsellers</a></dd>
-		<dd><a href="">Hot Deals</a></dd>
-		<dd><a href="">Last week's best hits</a></dd>
-		<dd><a href="">Qoopon &amp; event</a></dd>
-		<dd><a href="">Weekly Specials</a></dd>
-		<dd><a href="">Lucky Auction</a></dd>
+		<dd><a href="/home/register">Member Register</a></dd>
+		<dd><a href="#">Bestsellers</a></dd>
+		<dd><a href="#">Hot Deals</a></dd>
+		<dd><a href="#">Last week's best hits</a></dd>
+		<dd><a href="#">Qoopon &amp; event</a></dd>
+		<dd><a href="#">Weekly Specials</a></dd>
+		<dd><a href="#">Lucky Auction</a></dd>
 	</dl>
 		
 	<dl>
 		<dt>Sell on AiiMai</dt>
 		
-		<dd><a href="">Seller Register</a></dd>
+		<dd><a href="/cms/register">Seller Register</a></dd>
 		<dd><a href="">Secrets to success</a></dd>
-		<dd><a href="mailto:">Partnership</a></dd>
+		<dd><a href="#">Partnership</a></dd>
 		<dd><a href="">Join Curator Program</a></dd>
 		<dd><a href="">Selling Inquiry</a></dd>
 	</dl>
@@ -293,6 +293,7 @@
 	</dl>
 	
 	<dl>
+	<!--
 		<dt>Tools</dt>
 		
 		<dd><a href="" target="_blank">QSM (Seller Tool)</a></dd>
@@ -300,7 +301,7 @@
 		<dd><a href="">Mobile App</a></dd>
 		<dd><a href="">Qtalk</a></dd>
 		<dd><a href="" target="_blank">iQphone</a></dd>
-
+	-->
 		<dt>EZ Shopping</dt>
 		
 		<dd><a href="">Shopping Cart</a></dd>

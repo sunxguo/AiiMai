@@ -257,7 +257,18 @@ class Cms extends CI_Controller {
 		$this->cmsBaseHandler('auction',array('goodsManagement'=>true,'auction'=>true,'auctionBid'=>true),'auctionBid',array());
 	}
 	public function groupBuy(){
-		$this->cmsBaseHandler('groupBuy',array('goodsManagement'=>true,'groupBuy'=>true),'groupBuy',array());
+		$inPreparationAmount=$this->commongetdata->getGroupBuyAdvance(array('result'=>'count','merchant'=>$_SESSION['userid'],'inPreparation'=>array('startingTime'=>date("Y-m-d H:i:s"))));
+		$inProgressAmount=$this->commongetdata->getGroupBuyAdvance(array('result'=>'count','merchant'=>$_SESSION['userid'],'inProgress'=>array('startingTime'=>date("Y-m-d H:i:s"),'endTime'=>date("Y-m-d H:i:s"))));
+		$endedAmount=$this->commongetdata->getGroupBuyAdvance(array('result'=>'count','merchant'=>$_SESSION['userid'],'ended'=>array('endTime'=>date("Y-m-d H:i:s"))));
+		$amount=$inPreparationAmount+$inProgressAmount+$endedAmount;
+		$data=array(
+			'amount'=>$amount,
+			'inPreparationAmount'=>$inPreparationAmount,
+			'inProgressAmount'=>$inProgressAmount,
+			'endedAmount'=>$endedAmount,
+			'categories'=>$this->commongetdata->getCategories(false)
+		);
+		$this->cmsBaseHandler('groupBuy',array('goodsManagement'=>true,'groupBuy'=>true),'groupBuy',$data);
 	}
 	public function price(){
 		$this->cmsBaseHandler('Price',array('goodsManagement'=>true,'price'=>true),'price',array());
