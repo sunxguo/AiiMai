@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	$("#groupBuyPrice").keyup(function(){
 		var groupBuyPrice=parseFloat($("#groupBuyPrice").val());
-		var serviceRate=parseFloat(parseFloat($("#serviceRate").val())/100);
+		var serviceRate=parseFloat(parseFloat(100-$("#serviceRate").val())/100);
 		$("#settlePrice").val(groupBuyPrice*serviceRate);
 	});
 });
@@ -77,4 +77,69 @@ function selectProduct(id,title,price){
 	$("#productTitle").val(title);
 	$("#productPrice").val('S$ '+price);
 	$(".km-close").click();
+}
+function groupBuyHandler(successMsg,isNew){
+	if($("#productCode").val()==''){
+		showAlert('danger','',"Please select product!");
+		return false;
+	}
+	if($("#groupBuyPrice").val()=="" || isNaN($("#groupBuyPrice").val())){
+		showAlert('danger','',"Please enter Group Buy Price!");
+		return false;
+	}
+	if($("#retailPrice").val()=="" || isNaN($("#retailPrice").val())){
+		showAlert('danger','',"Please enter Retail Price!");
+		return false;
+	}
+	if($("#minQty").val()=='' || isNaN($("#minQty").val())){
+		showAlert('danger','',"Please enter the correct Min Qty!");
+		return false;
+	}
+	if($("#maxQty").val()=='' || isNaN($("#maxQty").val())){
+		showAlert('danger','',"Please enter the correct Max Qty!");
+		return false;
+	}
+/*	if($("#imgListDivs .imagelist").length<1){
+		alert("请上传至少一张缩略图！");
+		return false;
+	}*/
+	var groupBuy = new Object();
+	groupBuy.merchantId = $("#merchantId").val();
+	groupBuy.productCode = $("#productCode").val();
+	groupBuy.productName = $("#productTitle").val();
+	groupBuy.groupBuyPrice = $("#groupBuyPrice").val();
+	groupBuy.retailPrice = $("#retailPrice").val();
+	groupBuy.settlePrice = $("#settlePrice").val();
+	groupBuy.minQty = $("#minQty").val();
+	groupBuy.maxQty = $("#maxQty").val();
+	groupBuy.canBuyNow = $('#canBuyNow').prop('checked');
+	groupBuy.availableDateType=$("#availableDateType").val();
+	groupBuy.autoAchieve=$("#autoAchieve").val();
+	groupBuy.startingTime=$("#startingDate").val()+' '+$("#startingHour").val()+':'+$("#startingMinute").val()+':00';
+	groupBuy.endTime=$("#endDate").val()+' '+$("#endHour").val()+':'+$("#endMinute").val()+':00';
+	var handlerType='';
+	if(isNew){
+		handlerType='add';
+	}else{
+		groupBuy.id = $("#groupBuy").val();
+		handlerType='modify';
+	}
+	dataHandler(handlerType,'groupBuy',groupBuy,null,null,null,successMsg,true);
+}
+function selectAutoAchieve(){
+	if($("#autoAchieve").val()=='Y'){
+		$('#txt_achieve_Y').show();
+		$('#txt_achieve_N').hide();
+		$('#txt_achieve_S').hide();
+	}
+	else if($("#autoAchieve").val()=='N'){
+		$('#txt_achieve_Y').hide();
+		$('#txt_achieve_N').show();
+		$('#txt_achieve_S').hide();
+	}
+	else{
+		$('#txt_achieve_Y').hide();
+		$('#txt_achieve_N').hide();
+		$('#txt_achieve_S').show();
+	}
 }

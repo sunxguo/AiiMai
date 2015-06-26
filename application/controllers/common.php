@@ -162,6 +162,26 @@ class Common extends CI_Controller {
 					"category_order"=>$amount+1
 				);
 			break;
+			case "groupBuy":
+				$table="groupbuy";
+				$info=array(
+					"groupbuy_productId"=>$data->productCode,
+					"groupbuy_productName"=>$data->productName,
+					"groupbuy_price"=>$data->groupBuyPrice,
+					"groupbuy_settlePrice"=>$data->settlePrice,
+					"groupbuy_retailPrice"=>$data->retailPrice,
+					"groupbuy_minQty"=>$data->minQty,
+					"groupbuy_maxQty"=>$data->maxQty,
+					"groupbuy_orderedQty"=>0,
+					"groupbuy_startingTime"=>$data->startingTime,
+					"groupbuy_endTime"=>$data->endTime,
+					"groupbuy_registeredTime"=>date("Y-m-d H:i:s"),
+					"groupbuy_canBuyNow"=>$data->canBuyNow,
+					"groupbuy_availableDateType"=>$data->availableDateType,
+					"groupbuy_merchantId"=>$data->merchantId,
+					"groupbuy_autoAchieve"=>$data->autoAchieve
+				);
+			break;
 		}
 		if($_POST['info_type']=="product"){
 			$productId=$this->dbHandler->insertDataReturnId($table,$info);
