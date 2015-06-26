@@ -41,6 +41,7 @@
 			<table class="km-table" style="overflow:scroll;width:150%;">
 				<tbody id="groupBuyData">
 				  <tr style="border-top:2px solid #ddd;border-bottom:2px solid #ddd;">
+					<td class="field width6p br">Operation</td>
 					<td class="field width6p br"><?php echo lang('cms_groupBuy_GroupBuyNo2');?></td>
 					<td class="field width6p br"><?php echo lang('cms_groupBuy_ItemCode');?></td>
 					<td class="field width6p br"><?php echo lang('cms_groupBuy_ItemTitle');?></td>

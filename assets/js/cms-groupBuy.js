@@ -20,7 +20,7 @@ function loadGroupBuyData(data){
 	var groupBuy='';
 	for(var index in data){
         groupBuy='<tr class="groupBuyItem"><td class="value br"><a href="javascript:window.open(\'/cms/modifyGroupBuy?groupBuyId='+data[index].groupbuy_id+'\',\'Edit\',\'height=700,width=900,toolbar=no,menubar=no\');">Edit</a></td>'+
-		'<td class="value br">'+data[index].groupbuy_code+'</td>'+
+		'<td class="value br">'+data[index].groupbuy_id+'</td>'+
 		'<td class="value br">'+data[index].groupbuy_productId+'</td>'+
 		'<td class="value br">'+data[index].groupbuy_productName+'</td>'+
 		'<td class="value br">'+data[index].groupbuy_price+'</td>'+
@@ -93,10 +93,6 @@ function groupBuyHandler(successMsg,isNew){
 	}
 	if($("#minQty").val()=='' || isNaN($("#minQty").val())){
 		showAlert('danger','',"Please enter the correct Min Qty!");
-		return false;
-	}
-	if($("#maxQty").val()=='' || isNaN($("#maxQty").val())){
-		showAlert('danger','',"Please enter the correct Max Qty!");
 		return false;
 	}
 /*	if($("#imgListDivs .imagelist").length<1){
