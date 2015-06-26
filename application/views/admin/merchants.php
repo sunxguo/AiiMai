@@ -66,7 +66,8 @@
 				<td>
 					<?php //echo $merchant->merchant_status;状态：0：注册完成但没有完善信息 1：完善信息等待审核 2：审核通过 3：审核不通过 4:冻结?>
 					<span class="km-label 
-						<?php if($merchant->merchant_status==1):?>km-label-info<?php endif;?>
+						<?php if($merchant->merchant_status==0):?>km-label-info<?php endif;?>
+						<?php if($merchant->merchant_status==1):?>km-label-warning<?php endif;?>
 						<?php if($merchant->merchant_status==2):?>km-label-success<?php endif;?>
 						<?php if($merchant->merchant_status==3):?>km-label-danger<?php endif;?>
 						<?php if($merchant->merchant_status==4):?>km-label-default<?php endif;?>
