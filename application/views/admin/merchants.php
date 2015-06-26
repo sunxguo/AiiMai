@@ -49,7 +49,7 @@
 				<th style="width:100px;">Gender</th>
 				<th style="width:150px;">Vip</th>
 				<th style="width:100px;">Status</th>
-				<th style="width:200px;">Last Login Time</th>
+				<th style="width:200px;">Registration Time</th>
 				<th style="width:280px;">Operation</th>
 			</tr>
 		</thead>
@@ -63,22 +63,48 @@
 				<td><?php echo $merchant->user_email;?></td>
 				<td><?php echo $merchant->user_gender==0?'Male':'Female';//0:male 1:female 2:unknown?></td>
 				<td><?php echo $merchant->user_vip_grade;?></td>
-				<td><?php echo $merchant->merchant_status;//状态：0：注册完成但没有完善信息 1：完善信息等待审核 2：审核通过 3：审核不通过 4:冻结?></td>
-				<td><?php echo $merchant->user_lastlogin_time;?></td>
 				<td>
-					<a href="/home/shop?shopId=<?php echo $merchant->user_id;?>" target="_blank">Go</a>&nbsp;&nbsp;&nbsp;
-					<a href="javascript:window.open('/admin/modifyMerchant?merchantId=<?php echo $merchant->user_id;?>','Edit Merchant','height=700,width=900,toolbar=no,menubar=no');">Edit</a>&nbsp;&nbsp;&nbsp;
-					<?php if($merchant->merchant_status!=2):?>
-					<a href="javascript:confirmMerchant('<?php echo $merchant->user_id;?>','Sure to confirm <<?php echo $merchant->user_username;?>>？','Successfully Confirmed <?php echo $merchant->user_username;?>')">Confirm</a>&nbsp;&nbsp;&nbsp;
-					<?php else:?>
-					<a href="javascript:doNotConfirmMerchant('<?php echo $merchant->user_id;?>','Do not confirm <<?php echo $merchant->user_username;?>>？','Successfully did not confirm <?php echo $merchant->user_username;?>')">Do Not Confirm</a>&nbsp;&nbsp;&nbsp;
-					<?php endif;?>
+					<?php //echo $merchant->merchant_status;状态：0：注册完成但没有完善信息 1：完善信息等待审核 2：审核通过 3：审核不通过 4:冻结?>
+					<span class="km-label 
+						<?php if($merchant->merchant_status==1):?>km-label-info<?php endif;?>
+						<?php if($merchant->merchant_status==2):?>km-label-success<?php endif;?>
+						<?php if($merchant->merchant_status==3):?>km-label-danger<?php endif;?>
+						<?php if($merchant->merchant_status==4):?>km-label-default<?php endif;?>
+						"><?php echo $status[$merchant->merchant_status];?>
+					</span>
+				</td>
+				<td><?php echo $merchant->user_reg_time;?></td>
+				<td>
+					<a href="/home/shop?shopId=<?php echo $merchant->user_id;?>" target="_blank">Go</a> |
+					<a href="javascript:window.open('/admin/modifyMerchant?merchantId=<?php echo $merchant->user_id;?>','Edit Merchant','height=700,width=900,toolbar=no,menubar=no');">Edit</a> |
+					<a href="javascript:showMerchantStatus('<?php echo $merchant->user_username;?>','<?php echo $merchant->user_id;?>','<?php echo $merchant->merchant_status;?>');">Status</a> |
 					<a href="javascript:delMerchant('<?php echo $merchant->user_id;?>','Sure to delete <<?php echo $merchant->user_username;?>>？The products in this shop will be deleted too.','Successfully Deleted <?php echo $merchant->user_username;?>')">Delete</a>
 				</td>
 			</tr>
 			<?php endforeach;?>
 		</tbody>
 	</table>
+	<div class="km-modal-dialog width40p" id="statusDialog">
+		<div class="km-modal-content">
+			<div class="km-modal-header">
+				<button type="button" class="km-close"><span>&times;</span></button>
+				<h4 class="km-modal-title"><span id="userName"></span> - Change Status</h4>
+			</div>
+			<div class="km-modal-body">
+				<select id="merchantStatus" style="display:block;height: 30px;">
+					<option value="0">Need More Info.</option>
+					<option value="1">Under Review</option>
+				    <option value="2">Pass</option>
+					<option value="3">No Pass</option>
+				    <option value="4">Frozen</option>
+				</select>
+			</div>
+			<div class="km-modal-footer">
+				<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_sider_Close');?></button>
+				<button type="button" class="km-btn km-btn-primary" onclick="saveMerchantStatus();"><?php echo lang('cms_sider_Savechanges');?></button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
 	<nav>
 	   Total <?php echo $amount;?>
 	  <ul class="km-pagination">

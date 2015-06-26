@@ -362,11 +362,24 @@ function showStatus(_productName,_productId,_statusNo){
 	$("#productStatus").val(_statusNo);
 	productId=_productId;
 }
+var merchantId='';
+function showMerchantStatus(_userName,_userId,_statusNo){
+	setDivCenter('#statusDialog',true);
+	$("#userName").text(_userName);
+	$("#merchantStatus").val(_statusNo);
+	merchantId=_userId;
+}
 function saveProductStatus(){
 	var proStatus = new Object();
 	proStatus.id = productId;
 	proStatus.status = $("#productStatus").val();
 	dataHandler("modify","proStatus",proStatus,successProStatus,null,null,null,true);
+}
+function saveMerchantStatus(){
+	var merchantStatus = new Object();
+	merchantStatus.id = merchantId;
+	merchantStatus.status = $("#merchantStatus").val();
+	dataHandler("modify","merchantStatus",merchantStatus,successProStatus,null,null,null,true);
 }
 function successProStatus(){
 	alert('Successfully saved!');

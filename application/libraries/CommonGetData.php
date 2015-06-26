@@ -270,6 +270,17 @@ class CommonGetData{
 		);
 		return $status;
 	}
+	public function getMerchantStatus(){
+		////状态：0：注册完成但没有完善信息 1：完善信息等待审核 2：审核通过 3：审核不通过 4:冻结
+		$status=array(
+			'0'=>'Need More Info.',
+			'1'=>'Under Review',
+			'2'=>'Passed',
+			'3'=>'No Pass',
+			'4'=>'Frozen'
+		);
+		return $status;
+	}
 	public function getContent($type,$contentId){
 		$condition=array(
 			'table'=>$type,
