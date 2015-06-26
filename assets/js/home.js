@@ -430,8 +430,8 @@ function sellerInformation(){
 		merchantInfo.salesStaffMobilePhone2 = $('#salesStaffMobilePhone2').val();
 		merchantInfo.salesStaffMobilePhone3 = $('#salesStaffMobilePhone3').val();
 		merchantInfo.doc = $('#fileSrc').val();
-		merchantInfo.businessLicense = $("#fileBusinessLicense").attr('src');
-		merchantInfo.bankAccount = $("#fileBankAccount").attr('src');
+		merchantInfo.businessLicense = $("#fileBusinessLicense").val();
+		merchantInfo.bankAccount = $("#fileBankAccount").val();
 		
 		$.post("/common/modifyInfo",
 		{
