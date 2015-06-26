@@ -210,6 +210,7 @@ class Admin extends CI_Controller {
 		$condition['limit']=$pageInfo['limit'];
 		$data=array(
 			"columns"=>$this->commongetdata->getColumns(),
+			"status"=>$this->commongetdata->getMerchantStatus(),
 			"merchants"=>$this->commongetdata->getData($condition)
 		);
 		$data=array_merge($data,$pageInfo);
