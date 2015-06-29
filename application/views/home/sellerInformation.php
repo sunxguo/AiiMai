@@ -389,6 +389,7 @@ You can edit your address and change the display setting on ‘ASM > Setting > M
 				</td>
 			</tr>
 			-->
+			<!--
 			<tr>
 				<td><font color="red">*</font>More Datails</td>
 				<td>
@@ -400,6 +401,7 @@ You can edit your address and change the display setting on ‘ASM > Setting > M
 					<input id="fileSrc" type="hidden">
 				</td>
 			</tr>
+			-->
 		</table>
 		<div class="memberAgree clearfix">
 			<input type="checkbox" id="agreement" name="agreement" value="Y" checked="checked"> 

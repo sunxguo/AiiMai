@@ -1167,6 +1167,13 @@ class Common extends CI_Controller {
 			echo json_encode(array("result"=>"failed","message"=>"Wrong Security code!"));
 		}
 	}
+	public function checkMobileCode(){
+		if(isset($_POST['code']) && strcasecmp($_POST['code'],$_SESSION['mobilecode'])==0){
+			echo json_encode(array("result"=>"success","message"=>"Right Security code!"));
+		}else{
+			echo json_encode(array("result"=>"failed","message"=>"Wrong Security code!"));
+		}
+	}
 	public function checkEmail(){
 		if(!$this->commongetdata->checkUniqueAdvance("user",array("user_email"=>$_POST['email'],"user_confirm_email"=>1))){
 			echo json_encode(array("result"=>"notunique","message"=>"The email already exists!"));
@@ -1444,6 +1451,20 @@ class Common extends CI_Controller {
 			echo json_encode(array("result"=>"success","message"=>"Successfully Confirmed E-mail!"));
 		else
 			echo json_encode(array("result"=>"failed","message"=>"Failed Confirmed E-mail!"));
+	}
+	public function sendSMSForChangeMobile(){
+		$data=json_decode($_POST['data']);
+		if(!$this->commongetdata->checkUniqueAdvance("user",array("user_phone"=>$data->mobile))){
+			echo json_encode(array("result"=>"notunique","message"=>"Your mobile number is already confirmed and log-in available!"));
+			return false;
+		}
+		$result=$this->commongetdata->globalSMS($data->mobile,mobileCode());
+		if ($result>0) {
+			echo json_encode(array("result"=>"success", "message"=>"发送验证码成功"));
+		} else {
+			echo json_encode(array("result"=>"failed", "message"=>"发送失败，请稍后再试"));
+			unset($_SESSION["mobilecode"]);
+		}
 	}
 	/*
 	public function getSubCat(){

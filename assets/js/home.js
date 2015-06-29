@@ -376,7 +376,7 @@ function checkBankAccount(){
 	}
 }
 function checkAllInfo(){
-	if(checkName() && checkContactInfo() && checkAddress() && checkSalesStaffName() && checkFile() && checkBusinessLicense() && checkBankAccount()){
+	if(checkName() && checkContactInfo() && checkAddress() && checkSalesStaffName() && checkBusinessLicense() && checkBankAccount()){
 		validation();
 		return true;
 	}else{
@@ -789,4 +789,25 @@ function reportAbuse(productId){
 	report.reason = $("#reportReason").val();
 	report.details = $("#reportDetails").val();
 	dataHandler("add","report",report,successRefresh,null,null,null,true);
+}
+function sendSMS(successMsg){
+	if($("#personalInfoMobilePhoneNumber").val().length<8){
+		alert('Mobile Phone can`t be empty!');
+		return false;
+	}
+	var mobilePhone = new Object();
+	mobilePhone.mobile = $("#personalInfoMobilePhoneNation").val()+$("#personalInfoMobilePhoneNumber").val();
+	$.post(
+	"/common/sendSMSForChangeMobile",
+	{
+		'data':JSON.stringify(mobilePhone)
+	},
+	function(data){
+		var result=$.parseJSON(data);
+		if(result.result=="success"){
+			alert(successMsg);
+		}else{
+			alert(result.message);
+		}
+	});
 }

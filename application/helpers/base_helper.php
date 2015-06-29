@@ -209,4 +209,11 @@ function veri_code(){
 	header ( 'Content-type: image/png' );
 	imagepng($im);
 }
+function mobileCode(){
+	//mt_srand((double)microtime() * 1000000);
+	$mobileauthcode = mt_rand(100000, 999999);
+	unset($_SESSION["mobilecode"]);
+	$_SESSION["mobilecode"] = $mobileauthcode;
+	return $mobileauthcode;
+}
 ?>

@@ -706,6 +706,43 @@ class CommonGetData{
 
 	//			echo $this->email->print_debugger();
 	}
+	public function SMS($phoneNumber,$text){
+		$url='http://sms.webchinese.cn/web_api/';
+		$param=array(
+			'Uid'=>'MonkeyKing',
+			'Key'=>'916befe64d458c759a3a',
+			'smsMob'=>$phoneNumber,
+			'smsText'=>$text
+		);
+		return httpGet($url,$param,array());
+	}
+	public function globalSMS($phoneNumber,$text){
+		$param = array (
+			'src' => 'MonkeyKing', // 用户名
+			'pwd' => '19910910Mk1024', // 你的密码
+			'ServiceID' => 'SEND',
+			'dest' => $phoneNumber, // 你的目的号码
+			'sender' => '1370138', // 你的原号码
+			'codec' => '8', // 编码
+			'msg' => $this->encodeHexStr(8,$text)
+		);
+		$uri = "http://210.51.190.233:8085/mt/mt3.ashx";
+		return httpPost($url,$param,array());
+	}
+	public function encodeHexStr($dataCoding, $realStr){
+		if ($dataCoding == 15){
+			return strtoupper(bin2hex(iconv('UTF-8', 'GBK', $realStr)));               
+		}
+		else if ($dataCoding == 3){
+			return strtoupper(bin2hex(iconv('UTF-8', 'ISO-8859-1', $realStr)));               
+		}
+		else if ($dataCoding == 8){
+			return strtoupper(bin2hex(iconv('UTF-8', 'UCS-2', $realStr)));   
+		}
+		else{
+			return strtoupper(bin2hex(iconv('UTF-8', 'ASCII', $realStr)));
+		}
+	}
 }
 
 /* End of file Common.php */

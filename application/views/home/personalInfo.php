@@ -12,7 +12,48 @@
 				  </tr>
 				  <tr>
 					<td class="field br">Mobile number</td>
-					<td class="value tal"><input type="text" value="<?php echo $user->user_phone;?>" class="inp-txt" style="width:40%;"></td>
+					<td class="value tal">
+						<label for="baseInfoPhone" class="km-label km-label-default" style="margin-right:10px;padding:0 0.6em"><?php echo $user->user_phone;?></label>
+						<button onclick="setDivCenter('#personalInfoPhoneNumberDiv',true);" type="button" class="km-btn km-btn-primary" style="height: 18px;font-size: 10px;padding: 0px 10px;">Edit</button>
+						<div class="km-modal-dialog width40p" id="personalInfoPhoneNumberDiv">
+							<div class="km-modal-content">
+								<div class="km-modal-header">
+									<button type="button" class="km-close"><span>&times;</span></button>
+									<h4 class="km-modal-title">Personal Info - Change Mobile Phone</h4>
+								</div>
+								<div class="km-modal-body">
+									<label for="personalInfoMobilePhoneNumber" class="km-control-label" style="display:block;height:30px;line-height: 30px;">Please input mobile number and send SMS</label>
+									<select id="personalInfoMobilePhoneNation" style="height:30px;">
+										<option title="Japan" nation_cd="JP" value="81">JP</option>
+										<option title="Singapore" nation_cd="SG" value="65">SG</option>
+										<option title="China" nation_cd="CN" value="86">CN</option>
+										<option title="Indonesia" nation_cd="ID" value="62">ID</option>
+										<option title="Malaysia" nation_cd="MY" value="60">MY</option>
+										<option title="Hong Kong" nation_cd="HK" value="852">HK</option>
+										<option title="South Korea" nation_cd="KR" value="82">KR</option>
+										<option title="Australia" nation_cd="AU" value="61">AU</option>
+										<option title="Canada" nation_cd="CA" value="1">CA</option>
+										<option title="United Kingdom" nation_cd="GB" value="44">UK</option>
+										<option title="Philippines" nation_cd="PH" value="63">PH</option>
+										<option title="Russia" nation_cd="RU" value="7">RU</option>
+										<option title="Thailand" nation_cd="TH" value="66">TH</option>
+										<option title="Taiwan" nation_cd="TW" value="886">TW</option>
+										<option title="United States" nation_cd="US" value="1">US</option>
+										<option title="Vietnam" nation_cd="VN" value="84">VE</option>
+									</select>
+									<input type="text" class="km-form-control" id="personalInfoMobilePhoneNumber" style="width: 200px;padding: 0 5px;  display: inline-block;height: 30px;">
+									<button onclick="sendSMS('Confirm code sent out successfully.\nCheck your mobile phone and input confirm code.');" type="button" class="km-btn km-btn-primary" style=" height: 28px;font-size: 10px;padding: 0px 10px;vertical-align: top;margin-top: 2px;">Send Confirm Code</button>
+									<label for="inputMobileCode" class="km-control-label" style="display:block;height:30px;line-height: 30px;">Please input confirm code</label>
+									<input type="text" class="km-form-control" id="inputMobileCode" style="display:inline-block;width:150px;height:30px;padding:0px 5px;">
+									<button onclick="confirmMobilePhone('');" type="button" class="km-btn km-btn-primary" style=" height: 28px;font-size: 10px;padding: 0px 10px;vertical-align: top;margin-top: 2px;">Confirm</button>
+								</div>
+								<div class="km-modal-footer">
+									<button type="button" class="km-btn km-btn-default km-btn-close">Close</button>
+									<button type="button" class="km-btn km-btn-primary" onclick="savePersonalInfoMobilePhone('Successfully saved!');">Save</button>
+								</div>
+							</div><!-- /.modal-content -->
+						</div><!-- /.modal-dialog -->
+					</td>
 				  </tr>
 				  <tr>
 					<td class="field br">Date of Birth</td>
