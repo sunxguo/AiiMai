@@ -194,7 +194,7 @@ function sendEmail(){
 	$.ajax({
 	  type : "post",
 	  url : "/common/sendEmail",
-	  data : 'email=ok',
+	  data : 'email='+$("#email").text(),
 	  async : false,
 	  success : function(data){
 		var result=$.parseJSON(data);
