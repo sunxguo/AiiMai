@@ -359,7 +359,7 @@ class Home extends CI_Controller {
 	}
 	public function forgotPassword(){
 		$data=array(
-			'user'=>$this->commongetdata->getContent('user',$_SESSION['userid'])
+			
 		);
 		$this->homeBaseHandler('Forgot Your Password','forgotPassword',$data);
 	}

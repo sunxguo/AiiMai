@@ -7,7 +7,7 @@
 		</p>
 	</div>
 </div>
-<?php if(!isset($_SESSION['username']) || (isset($_SESSION['usertype']) && $_SESSION['usertype']=='admin')):?>
+<?php if(!isset($_SESSION['username'])):?>
 <script>
 	sendEmail();
 </script>
