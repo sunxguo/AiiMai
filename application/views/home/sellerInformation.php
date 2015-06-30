@@ -364,7 +364,7 @@ You can edit your address and change the display setting on ‘ASM > Setting > M
 			<tr>
 				<td><font color="red">*</font>Copy of business license</td>
 				<td>
-					<img style="min-width: 300px;  min-height: 60px;max-height:100px;cursor:pointer;" id="businessLicenseImage" onclick="$('#fileBusinessLicense').click();" title="Upload">
+					<img style="min-width: 300px;  min-height: 60px;max-height:100px;cursor:pointer;" id="businessLicenseImage" src="<?php echo $user->merchant_business_license;?>" onclick="$('#fileBusinessLicense').click();" title="Upload">
 					<img id="loadingBusinessLicense" src="/assets/images/cms/loading.gif" style="display:none;">
 					<form id="upload_BusinessLicense_form" method="post" enctype="multipart/form-data">
 						<input onchange="return uploadBusinessLicense()" name="image" type="file" id="fileBusinessLicense" style="display:none;" accept="image/*">
@@ -374,7 +374,7 @@ You can edit your address and change the display setting on ‘ASM > Setting > M
 			<tr>
 				<td><font color="red">*</font>Copy of bank account</td>
 				<td>
-					<img style="min-width: 300px;  min-height: 60px;max-height:100px;cursor:pointer;" id="bankAccountImage" onclick="$('#fileBankAccount').click();" title="Upload">
+					<img style="min-width: 300px;  min-height: 60px;max-height:100px;cursor:pointer;" id="bankAccountImage" src="<?php echo $user->merchant_bank_account;?>" onclick="$('#fileBankAccount').click();" title="Upload">
 					<img id="loadingBankAccount" src="/assets/images/cms/loading.gif" style="display:none;">
 					<form id="upload_BankAccount_form" method="post" enctype="multipart/form-data">
 						<input onchange="return uploadBankAccount()" name="image" type="file" id="fileBankAccount" style="display:none;" accept="image/*">
