@@ -398,6 +398,10 @@ class CommonGetData{
 		}
 		return $result;
 	}
+	public function checkProductSeller($merchantId){
+		if($this->checkUnique('user',$merchantId)) return false;
+		else return true;
+	}
 	/**
 	 *  商户id（$_SESSION['userid']），1级类别，2级类别，3级类别，状态，发布时间，最后修改时间，销售方式，商品标题
 	 **/
@@ -424,6 +428,13 @@ class CommonGetData{
 		if($title) $condition['like']['product_item_title_english']=$title;
 		if($order) $condition['order_by'][$order['field']]=$order['type'];
 		$products=$this->CI->dbHandler->selectData($condition);
+		if(is_array($products) && sizeof($products)>0){
+			foreach($products as $key=>$pro){
+				if(!$this->checkProductSeller($pro->product_merchant)){
+					array_splice($products,$key,1);
+				}
+			}
+		}
 		return $products;
 	}
 	/**
@@ -447,6 +458,13 @@ class CommonGetData{
 		if(isset($parameters['like'])) $condition['like']=$parameters['like'];
 		if(isset($parameters['orderBy'])) $condition['order_by']=$parameters['orderBy'];
 		$products=$this->CI->dbHandler->selectData($condition);
+		if(is_array($products) && sizeof($products)>0){
+			foreach($products as $key=>$pro){
+				if(!$this->checkProductSeller($pro->product_merchant)){
+					array_splice($products,$key,1);
+				}
+			}
+		}
 		return $products;
 	}
 	/**

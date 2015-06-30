@@ -29,7 +29,10 @@
 			</tr>
 			<tr>
 				<td>Username</td>
-				<td><input type="text" id="username" placeholder="" class="inp-txt width250"></td>
+				<td>
+					<input type="text" id="username" placeholder="" class="inp-txt width250">
+					<button onclick="checkuserName(true);" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 10px;padding: 5px 10px;">Validation Check</button>
+				</td>
 			</tr>
 			<tr>
 				<td>Password</td>

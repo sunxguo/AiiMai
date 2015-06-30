@@ -4,10 +4,16 @@
 		<p>You want to be a seller?</p>
 	</div>
 	<div class="sllr_step">
-        <ul style="width: 670px;">
-            <li class="">01. Account Information</li>
-            <li class="on" style="padding-left: 40px;">02. Seller’s Information</li>
-            <li class="last-child" style="padding-left: 0px;padding-right: 0px;">03. Complete Registration</li>
+        <ul style="width: 100%;">
+            <li class="" style="">
+				<span style="height: 36px; display: inline-block;border: 1px solid #d9d9d9;padding: 0 10px 0 20px;margin-right: 20px;border-right: none;border-radius: 6px 0 0 6px;">01. Account Information</span>
+			</li>
+            <li class="on" style="padding-left: 40px; padding-right: 30px;">
+				02. Seller's Information
+			</li>
+            <li class="last-child" style="padding-left: 0px;padding-right: 0px;  margin-left: -40px;">
+				<span style="height: 36px; display: inline-block;border: 1px solid #d9d9d9;padding: 0 10px 0 35px;margin-right: 20px;  border-radius: 0 6px 6px 0;border-left: none;">03. Complete Registration</span>
+			</li>
         </ul>
     </div>
 	<div class="">
@@ -81,119 +87,17 @@
 						<div id="hp_no0_code" class="gsm_select" style="display: none;">
 							<p><a href="javascript:showCallingCode('hp_no0_code','hp_no0_major_code');"><img src="http://static.image-gmkt.com/qoo10/front/cm/qsm/image/@sg.gif" width="29" height="19" alt=""></a></p>
 						</div>
-						<select id="phone1" style="width: 110px;">
-							<option value="62">Indonesia</option>
-							<option value="60">Malaysia</option>
-							<option value="65" selected>Singapore</option>
-							<option value="81">Japan</option>
-							<option value="82">South Korea</option>
-							<option value="852">Hong Kong</option>
-							<option value="853">Macau</option>
-							<option value="86">China</option>
-							<option value="91">India</option>
-							<option value="61">Australia</option>
-							<option value="673">Brunei Darussalam</option>
-							<option value="55">Brazil</option>
-							<option value="1">Canada</option>
-							<option value="41">Switzerland</option>
-							<option value="86">China</option>
-							<option value="49">Germany</option>
-							<option value="45">Denmark</option>
-							<option value="20">Egypt</option>
-							<option value="34">Spain</option>
-							<option value="358">Finland</option>
-							<option value="33">France</option>
-							<option value="44">United Kingdom</option>
-							<option value="30">Greece</option>
-							<option value="852">Hong Kong</option>
-							<option value="36">Hungary</option>
-							<option value="62">Indonesia</option>
-							<option value="972">Israel</option>
-							<option value="91">India</option>
-							<option value="39">Italy</option>
-							<option value="81">Japan</option>
-							<option value="82">South Korea</option>
-							<option value="965">Kuwait</option>
-							<option value="95">Myanma</option>
-							<option value="853">Macau</option>
-							<option value="52">Mexico</option>
-							<option value="60">Malaysia</option>
-							<option value="31">Netherland</option>
-							<option value="47">Norway</option>
-							<option value="64">New Zealand</option>
-							<option value="63">Philippines</option>
-							<option value="48">Poland</option>
-							<option value="351">Portugal</option>
-							<option value="7">Russia</option>
-							<option value="46">Sweden</option>
-							<option value="65">Singapore</option>
-							<option value="66">Thailand</option>
-							<option value="90">Turkey</option>
-							<option value="886">Taiwan</option>
-							<option value="1">United States</option>
-							<option value="84">Vietnam</option>
-						</select>
-						<input type="text" id="phone2" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" maxlength="4" value="<?php echo $user->merchant_phone2;?>" title="ex) 1234"> - 
-						<input type="text" id="phone3" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" maxlength="4" value="<?php echo $user->merchant_phone3;?>" title="ex) 5678">
+						<input type="text" id="phone1" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_phone1;?>" title="Country Code" placeholder="Country Code"> - 
+						<input type="text" id="phone2" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_phone2;?>" title="Area Code" placeholder="Area Code"> - 
+						<input type="text" id="phone3" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_phone3;?>" title="Number" placeholder="Number">
 					</div>
 					<div class="gsm_home">
 						<div id="" class="gsm_select" style="display: none;">
 							<p><a href=""><img src="http://static.image-gmkt.com/qoo10/front/cm/qsm/image/@sg.gif" width="29" height="19" alt=""></a></p>
 						</div>
-						<select id="homephone1" name="" style="width: 110px;">
-							<option value="62">Indonesia</option>
-							<option value="60">Malaysia</option>
-							<option value="65" selected>Singapore</option>
-							<option value="81">Japan</option>
-							<option value="82">South Korea</option>
-							<option value="852">Hong Kong</option>
-							<option value="853">Macau</option>
-							<option value="86">China</option>
-							<option value="91">India</option>
-							<option value="61">Australia</option>
-							<option value="673">Brunei Darussalam</option>
-							<option value="55">Brazil</option>
-							<option value="1">Canada</option>
-							<option value="41">Switzerland</option>
-							<option value="86">China</option>
-							<option value="49">Germany</option>
-							<option value="45">Denmark</option>
-							<option value="20">Egypt</option>
-							<option value="34">Spain</option>
-							<option value="358">Finland</option>
-							<option value="33">France</option>
-							<option value="44">United Kingdom</option>
-							<option value="30">Greece</option>
-							<option value="852">Hong Kong</option>
-							<option value="36">Hungary</option>
-							<option value="62">Indonesia</option>
-							<option value="972">Israel</option>
-							<option value="91">India</option>
-							<option value="39">Italy</option>
-							<option value="81">Japan</option>
-							<option value="82">South Korea</option>
-							<option value="965">Kuwait</option>
-							<option value="95">Myanma</option>
-							<option value="853">Macau</option>
-							<option value="52">Mexico</option>
-							<option value="60">Malaysia</option>
-							<option value="31">Netherland</option>
-							<option value="47">Norway</option>
-							<option value="64">New Zealand</option>
-							<option value="63">Philippines</option>
-							<option value="48">Poland</option>
-							<option value="351">Portugal</option>
-							<option value="7">Russia</option>
-							<option value="46">Sweden</option>
-							<option value="65">Singapore</option>
-							<option value="66">Thailand</option>
-							<option value="90">Turkey</option>
-							<option value="886">Taiwan</option>
-							<option value="1">United States</option>
-							<option value="84">Vietnam</option>
-						</select>
-						<input type="text" id="homephone2" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" maxlength="4" value="<?php echo $user->merchant_homephone2;?>" title="ex) 1234"> - 
-						<input type="text" id="homephone3" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" maxlength="4" value="<?php echo $user->merchant_homephone3;?>" title="ex) 5678">
+						<input type="text" id="homephone1" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_phone1;?>" title="Country Code" placeholder="Country Code"> - 
+						<input type="text" id="homephone2" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_homephone2;?>" title="Area Code" placeholder="Area Code"> - 
+						<input type="text" id="homephone3" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_homephone3;?>" title="Number" placeholder="Number">
 					</div>
 				</td>
 			</tr>
@@ -239,119 +143,17 @@ You can edit your address and change the display setting on ‘ASM > Setting > M
 						<div id="hp_no0_code" class="gsm_select" style="display: none;">
 							<p><a href="javascript:showCallingCode('hp_no0_code','hp_no0_major_code');"><img src="http://static.image-gmkt.com/qoo10/front/cm/qsm/image/@sg.gif" width="29" height="19" alt=""></a></p>
 						</div>
-						<select id="salesStaffPhone1" style="width: 110px;">
-							<option value="62">Indonesia</option>
-							<option value="60">Malaysia</option>
-							<option value="65" selected>Singapore</option>
-							<option value="81">Japan</option>
-							<option value="82">South Korea</option>
-							<option value="852">Hong Kong</option>
-							<option value="853">Macau</option>
-							<option value="86">China</option>
-							<option value="91">India</option>
-							<option value="61">Australia</option>
-							<option value="673">Brunei Darussalam</option>
-							<option value="55">Brazil</option>
-							<option value="1">Canada</option>
-							<option value="41">Switzerland</option>
-							<option value="86">China</option>
-							<option value="49">Germany</option>
-							<option value="45">Denmark</option>
-							<option value="20">Egypt</option>
-							<option value="34">Spain</option>
-							<option value="358">Finland</option>
-							<option value="33">France</option>
-							<option value="44">United Kingdom</option>
-							<option value="30">Greece</option>
-							<option value="852">Hong Kong</option>
-							<option value="36">Hungary</option>
-							<option value="62">Indonesia</option>
-							<option value="972">Israel</option>
-							<option value="91">India</option>
-							<option value="39">Italy</option>
-							<option value="81">Japan</option>
-							<option value="82">South Korea</option>
-							<option value="965">Kuwait</option>
-							<option value="95">Myanma</option>
-							<option value="853">Macau</option>
-							<option value="52">Mexico</option>
-							<option value="60">Malaysia</option>
-							<option value="31">Netherland</option>
-							<option value="47">Norway</option>
-							<option value="64">New Zealand</option>
-							<option value="63">Philippines</option>
-							<option value="48">Poland</option>
-							<option value="351">Portugal</option>
-							<option value="7">Russia</option>
-							<option value="46">Sweden</option>
-							<option value="65">Singapore</option>
-							<option value="66">Thailand</option>
-							<option value="90">Turkey</option>
-							<option value="886">Taiwan</option>
-							<option value="1">United States</option>
-							<option value="84">Vietnam</option>
-						</select>
-						<input type="text" id="salesStaffPhone2" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" maxlength="4" value="<?php echo $user->merchant_salesStaff_phone2;?>" title="ex) 1234"> - 
-						<input type="text" id="salesStaffPhone3" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" maxlength="4" value="<?php echo $user->merchant_salesStaff_phone3;?>" title="ex) 5678">
+						<input type="text" id="salesStaffPhone1" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_phone1;?>" title="Country Code" placeholder="Country Code"> - 
+						<input type="text" id="salesStaffPhone2" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_salesStaff_phone2;?>" title="Area Code" placeholder="Area Code"> - 
+						<input type="text" id="salesStaffPhone3" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_salesStaff_phone3;?>" title="Number" placeholder="Number">
 					</div>
 					<div class="gsm_home">
 						<div id="" class="gsm_select" style="display: none;">
 							<p><a href=""><img src="http://static.image-gmkt.com/qoo10/front/cm/qsm/image/@sg.gif" width="29" height="19" alt=""></a></p>
 						</div>
-						<select id="salesStaffMobilePhone1" name="" style="width: 110px;">
-							<option value="62">Indonesia</option>
-							<option value="60">Malaysia</option>
-							<option value="65" selected>Singapore</option>
-							<option value="81">Japan</option>
-							<option value="82">South Korea</option>
-							<option value="852">Hong Kong</option>
-							<option value="853">Macau</option>
-							<option value="86">China</option>
-							<option value="91">India</option>
-							<option value="61">Australia</option>
-							<option value="673">Brunei Darussalam</option>
-							<option value="55">Brazil</option>
-							<option value="1">Canada</option>
-							<option value="41">Switzerland</option>
-							<option value="86">China</option>
-							<option value="49">Germany</option>
-							<option value="45">Denmark</option>
-							<option value="20">Egypt</option>
-							<option value="34">Spain</option>
-							<option value="358">Finland</option>
-							<option value="33">France</option>
-							<option value="44">United Kingdom</option>
-							<option value="30">Greece</option>
-							<option value="852">Hong Kong</option>
-							<option value="36">Hungary</option>
-							<option value="62">Indonesia</option>
-							<option value="972">Israel</option>
-							<option value="91">India</option>
-							<option value="39">Italy</option>
-							<option value="81">Japan</option>
-							<option value="82">South Korea</option>
-							<option value="965">Kuwait</option>
-							<option value="95">Myanma</option>
-							<option value="853">Macau</option>
-							<option value="52">Mexico</option>
-							<option value="60">Malaysia</option>
-							<option value="31">Netherland</option>
-							<option value="47">Norway</option>
-							<option value="64">New Zealand</option>
-							<option value="63">Philippines</option>
-							<option value="48">Poland</option>
-							<option value="351">Portugal</option>
-							<option value="7">Russia</option>
-							<option value="46">Sweden</option>
-							<option value="65">Singapore</option>
-							<option value="66">Thailand</option>
-							<option value="90">Turkey</option>
-							<option value="886">Taiwan</option>
-							<option value="1">United States</option>
-							<option value="84">Vietnam</option>
-						</select>
-						<input type="text" id="salesStaffMobilePhone2" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" maxlength="4" value="<?php echo $user->merchant_salesStaff_mobilephone2;?>" title="ex) 1234"> - 
-						<input type="text" id="salesStaffMobilePhone3" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" maxlength="4" value="<?php echo $user->merchant_salesStaff_mobilephone3;?>" title="ex) 5678">
+						<input type="text" id="salesStaffMobilePhone1" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_phone1;?>" title="Country Code" placeholder="Country Code"> - 
+						<input type="text" id="salesStaffMobilePhone2" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_salesStaff_mobilephone2;?>" title="Area Code" placeholder="Area Code"> - 
+						<input type="text" id="salesStaffMobilePhone3" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_salesStaff_mobilephone3;?>" title="Number" placeholder="Number">
 					</div>
 				</td>
 			</tr>
@@ -362,23 +164,25 @@ You can edit your address and change the display setting on ‘ASM > Setting > M
 			</tr>
 			-->
 			<tr>
-				<td><font color="red">*</font>Copy of business license</td>
+				<td style="padding: 5px;"><font color="red">*</font>Copy of Business License (For Company / Organization Accounts) or NRIC / Passport (For Person Account)</td>
 				<td>
-					<img style="min-width: 300px;  min-height: 60px;max-height:100px;cursor:pointer;" id="businessLicenseImage" src="<?php echo $user->merchant_business_license;?>" onclick="$('#fileBusinessLicense').click();" title="Upload">
+					<img style="min-width: 300px;  min-height: 60px;max-height:100px;cursor:pointer;float: left;" id="businessLicenseImage" src="<?php echo $user->merchant_business_license;?>" onclick="$('#fileBusinessLicense').click();">
 					<img id="loadingBusinessLicense" src="/assets/images/cms/loading.gif" style="display:none;">
 					<form id="upload_BusinessLicense_form" method="post" enctype="multipart/form-data">
 						<input onchange="return uploadBusinessLicense()" name="image" type="file" id="fileBusinessLicense" style="display:none;" accept="image/*">
 					</form>
+					<button onclick="$('#fileBusinessLicense').click();" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 40px 0 0 30px;">Upload</button>
 				</td>
 			</tr>
 			<tr>
-				<td><font color="red">*</font>Copy of bank account</td>
+				<td style="padding: 5px;"><font color="red">*</font>Copy of Most Recent Bank Statement (For Company / Organization Accounts) or Utilities Bill (For Person Account)</td>
 				<td>
-					<img style="min-width: 300px;  min-height: 60px;max-height:100px;cursor:pointer;" id="bankAccountImage" src="<?php echo $user->merchant_bank_account;?>" onclick="$('#fileBankAccount').click();" title="Upload">
+					<img style="min-width: 300px;  min-height: 60px;max-height:100px;cursor:pointer;float: left;" id="bankAccountImage" src="<?php echo $user->merchant_bank_account;?>" onclick="$('#fileBankAccount').click();">
 					<img id="loadingBankAccount" src="/assets/images/cms/loading.gif" style="display:none;">
 					<form id="upload_BankAccount_form" method="post" enctype="multipart/form-data">
 						<input onchange="return uploadBankAccount()" name="image" type="file" id="fileBankAccount" style="display:none;" accept="image/*">
 					</form>
+					<button onclick="$('#fileBankAccount').click();" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 40px 0 0 30px;">Upload</button>
 				</td>
 			</tr>
 			<!--

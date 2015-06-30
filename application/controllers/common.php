@@ -231,6 +231,35 @@ class Common extends CI_Controller {
 			$_SESSION['userEmail']=$data->email;
 			if($userId!='') echo json_encode(array("result"=>"success","message"=>"信息写入成功"));
 			else echo json_encode(array("result"=>"failed","message"=>"Failed!"));
+			$condition=array(
+				'table'=>'user',
+				'result'=>'data',
+				'where'=>array(
+					'user_email'=>$_SESSION['userEmail'],
+					'user_confirm_email'=>0
+				)
+			);
+			$user=$this->commongetdata->getData($condition);
+			if(sizeof($user)<1){
+				echo json_encode(array("result"=>"failed","message"=>"This email doesn't exist or has been verified!"));
+				return false;
+			}
+			$user=$user[0];
+			$token=md5(($user->user_username).($user->user_pwd).time()); //创建用于激活识别码 
+			$token_exptime = time()+60*60*24;//过期时间为24小时后
+			$condition['table']="user";
+			$condition['where']=array(
+				"user_email"=>$_SESSION['userEmail']
+			);
+			$condition['data']=array(
+				"token"=>$token,
+				"token_exptime"=>$token_exptime
+			);
+			$result=$this->dbHandler->updateData($condition);
+			$emailTitle=$this->commongetdata->getWebsiteConfig('website_confirm_email_title');
+			$emailContent=$this->commongetdata->getWebsiteConfig('website_confirm_email_content');
+			$this->commongetdata->email($_SESSION['userEmail'],$emailTitle,$emailContent.'<a href="aiimai.coolkeji.com/common/active?verify='.$token.'">Confirm</a><br>If the button is invalid, please copy the following link to your browser\'s address bar!<br><span style="color:blue;">aiimai.coolkeji.com/common/active?verify='.$token.'</span>');
+			
 			return true;
 		}
 		$result=$this->dbHandler->insertData($table,$info);
@@ -630,10 +659,12 @@ class Common extends CI_Controller {
 				$condition['table']="user";
 				$condition['where']=array("user_id"=>$_SESSION['userid']);
 				$condition['data']=array(
-					"user_contact_mobilephone0"=>$data->contactsMobilephone0,
-					"user_contact_mobilephone1"=>$data->contactsMobilephone1,
-					"user_contact_mobilephone2"=>$data->contactsMobilephone2,
-					"user_contact_mobilephone3"=>$data->contactsMobilephone3
+					"merchant_homephone1"=>$data->contactsPhone1,
+					"merchant_homephone2"=>$data->contactsPhone2,
+					"merchant_homephone3"=>$data->contactsPhone3,
+					"merchant_phone1"=>$data->contactsMobilephone1,
+					"merchant_phone2"=>$data->contactsMobilephone2,
+					"merchant_phone3"=>$data->contactsMobilephone3,
 				);
 			break;
 			case 'personalBirthday':
@@ -819,7 +850,14 @@ class Common extends CI_Controller {
 		}
 		if($_POST['info_type']!='userNewPwd'){
 			$result=$this->dbHandler->updateData($condition);
-			if($result==1) echo json_encode(array("result"=>"success","message"=>"Successfully Modify!"));
+			if($result==1){
+				echo json_encode(array("result"=>"success","message"=>"Successfully Modify!"));
+				if($_POST['info_type']=='merchantStatus' && $data->ifSendEmail==true){
+					$merchant=$this->commongetdata->getContent('user',$data->id);
+					$statusArray=$this->commongetdata->getMerchantStatus();
+					$this->commongetdata->email($merchant->user_email,'Status has been changed | AiiMai','The status of your AiiMai account has been changed to "'.$statusArray[$data->status].'"');
+				}
+			}
 			else echo json_encode(array("result"=>"failed","message"=>"Failed to modify"));
 		}
 	}
@@ -1228,7 +1266,7 @@ class Common extends CI_Controller {
 	}
 	public function checkUsername(){
 		if(!$this->commongetdata->checkUniqueAdvance("user",array("user_username"=>$_POST['username']))){
-			echo json_encode(array("result"=>"notunique","message"=>"The email already exists!"));
+			echo json_encode(array("result"=>"notunique","message"=>"The username already exists!"));
 			return false;
 		}else{
 			echo json_encode(array("result"=>"success","message"=>"Success!"));

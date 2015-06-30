@@ -92,13 +92,14 @@
 				<h4 class="km-modal-title"><span id="userName"></span> - Change Status</h4>
 			</div>
 			<div class="km-modal-body">
-				<select id="merchantStatus" style="display:block;height: 30px;">
+				<select id="merchantStatus" style="height: 30px;">
 					<option value="0">Need More Info.</option>
 					<option value="1">Under Review</option>
 				    <option value="2">Pass</option>
 					<option value="3">No Pass</option>
 				    <option value="4">Frozen</option>
 				</select>
+				<input type="checkbox" id="notifySellerStatus" style="vertical-align: middle;" checked><label for="notifySellerStatus" style="font-weight:normal;margin-left:5px;">Notify the seller by email.</label>
 			</div>
 			<div class="km-modal-footer">
 				<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_sider_Close');?></button>
