@@ -119,6 +119,7 @@ class Common extends CI_Controller {
 					"user_country"=>$data->country,
 					"user_confirm_email"=>0,
 					"merchant_status"=>0,
+					"user_is_merchant"=>1,
 					"user_reg_time"=>$time
 				);
 			break;
@@ -180,6 +181,30 @@ class Common extends CI_Controller {
 					"groupbuy_availableDateType"=>$data->availableDateType,
 					"groupbuy_merchantId"=>$data->merchantId,
 					"groupbuy_autoAchieve"=>$data->autoAchieve
+				);
+			break;
+			case 'address':
+			/*	$notExist=$this->commongetdata->checkUniqueAdvance("address",array("address_userid"=>$data->userId,"address_type"=>$data->type));
+				if($notExist){
+					$table="address";
+					$info=array("address_userid"=>$data->userId,"address_type"=>$data->type);
+					$result=$this->dbHandler->insertData($table,$info);
+				}*/
+				$table="address";
+				$info=array(
+					"address_userid"=>$data->userId,
+					"address_title"=>$data->title,
+					"address_staffname"=>$data->staffname,
+					"address_country"=>$data->country,
+					"address_area"=>$data->area,
+					"address_detail"=>$data->detail,
+					"address_mobilephone1"=>$data->mobilephone1,
+					"address_mobilephone2"=>$data->mobilephone2,
+					"address_mobilephone3"=>$data->mobilephone3,
+					"address_type"=>6,
+					"address_phone1"=>$data->phone1,
+					"address_phone2"=>$data->phone2,
+					"address_phone3"=>$data->phone3
 				);
 			break;
 		}
@@ -356,7 +381,7 @@ class Common extends CI_Controller {
 					"merchant_business_license_msg"=>'Register',
 					"merchant_bank_account"=>$data->bankAccount,
 					"merchant_bank_account_msg"=>'Register',
-					"merchant_doc"=>$data->doc,
+//					"merchant_doc"=>$data->doc,
 					"user_is_merchant"=>1,
 					"merchant_status"=>1
 				);
@@ -713,6 +738,14 @@ class Common extends CI_Controller {
 					"merchant_delivery_company"=>$data->company
 				);
 			break;
+			case 'mobilePhone':
+				$condition['table']='user';
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"user_phoneNation"=>$data->nation,
+					"user_phone"=>$data->mobile
+				);
+			break;
 			case 'orderAlert':
 				$condition['table']="user";
 				$condition['where']=array("user_id"=>$data->id);
@@ -856,14 +889,25 @@ class Common extends CI_Controller {
 				$result=$this->commongetdata->getOrdersByDay($startDate,$days,$merchant,true);
 			break;
 			case 'address':
-				$condition=array(
-					'table'=>'address',
-					'result'=>'data',
-					'where'=>array(
-						'address_userid'=>$data->userId,
-						'address_type'=>$data->type
-					)
-				);
+				if($data->type==6){
+					$condition=array(
+						'table'=>'address',
+						'result'=>'data',
+						'where'=>array(
+							'address_id'=>$data->id
+						)
+					);
+				}else{
+					$condition=array(
+						'table'=>'address',
+						'result'=>'data',
+						'where'=>array(
+							'address_userid'=>$data->userId,
+							'address_type'=>$data->type
+						)
+					);
+				}
+				
 				$result=$this->commongetdata->getOneData($condition);
 				
 			break;
@@ -1175,11 +1219,19 @@ class Common extends CI_Controller {
 		}
 	}
 	public function checkEmail(){
-		if(!$this->commongetdata->checkUniqueAdvance("user",array("user_email"=>$_POST['email'],"user_confirm_email"=>1))){
+		if(!$this->commongetdata->checkUniqueAdvance("user",array("user_email"=>$_POST['email']))){
 			echo json_encode(array("result"=>"notunique","message"=>"The email already exists!"));
 			return false;
 		}else{
 			echo json_encode(array("result"=>"failed","message"=>"验证码输入错误！"));
+		}
+	}
+	public function checkUsername(){
+		if(!$this->commongetdata->checkUniqueAdvance("user",array("user_username"=>$_POST['username']))){
+			echo json_encode(array("result"=>"notunique","message"=>"The email already exists!"));
+			return false;
+		}else{
+			echo json_encode(array("result"=>"success","message"=>"Success!"));
 		}
 	}
 	public function checkEmailExist(){

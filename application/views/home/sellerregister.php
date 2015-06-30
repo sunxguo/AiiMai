@@ -4,10 +4,14 @@
 		<p>You want to be a seller?</p>
 	</div>
 	<div class="sllr_step">
-        <ul style="width: 670px;">
-            <li class="on">01. Account Information</li>
-            <li class="" style="padding-left: 0px;">02. Seller’s Information</li>
-            <li class="last-child" style="padding-left: 20px;padding-right: 0px;">03. Complete Registration</li>
+        <ul style="width: 100%;" style="border:none;">
+            <li class="on" style="padding-right: 30px;">01. Account Information</li>
+            <li class="" style="padding-left:0px;">
+				<span style="height: 36px; display: inline-block;border: 1px solid #d9d9d9;padding: 0 10px 0 20px;margin-right: 20px;border-right: none;border-radius: 6px 0 0 6px;">02. Seller’s Information</span>
+			</li>
+            <li class="last-child" style="padding-left: 20px;padding-right: 0px;">
+				<span style="height: 36px; display: inline-block;border: 1px solid #d9d9d9;padding: 0 10px 0 20px;margin-right: 20px;border-radius: 6px;">03. Complete Registration</span>
+			</li>
         </ul>
     </div>
 	<div class="register-main-top">
@@ -24,7 +28,10 @@
 			</tr>
 			<tr>
 				<td>Username</td>
-				<td><input type="text" id="username" placeholder="" class="inp-txt width250"></td>
+				<td>
+					<input type="text" id="username" placeholder="" class="inp-txt width250">
+					<button onclick="checkuserName(true);" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 10px;padding: 5px 10px;">Validation Check</button>
+				</td>
 			</tr>
 			<tr>
 				<td>Password</td>

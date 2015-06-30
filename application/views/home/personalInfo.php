@@ -13,8 +13,31 @@
 				  <tr>
 					<td class="field br">Mobile number</td>
 					<td class="value tal">
+						<!--
 						<label for="baseInfoPhone" class="km-label km-label-default" style="margin-right:10px;padding:0 0.6em"><?php echo $user->user_phone;?></label>
-						<button onclick="setDivCenter('#personalInfoPhoneNumberDiv',true);" type="button" class="km-btn km-btn-primary" style="height: 18px;font-size: 10px;padding: 0px 10px;">Edit</button>
+						-->
+						<select id="personalInfoMobilePhoneNation" style="height:30px;">
+							<option title="Japan" nation_cd="JP" value="81" <?php echo $user->user_phoneNation==81?'selected':'';?>>JP</option>
+							<option title="Singapore" nation_cd="SG" value="65" <?php echo $user->user_phoneNation==65?'selected':'';?>>SG</option>
+							<option title="China" nation_cd="CN" value="86" <?php echo $user->user_phoneNation==86?'selected':'';?>>CN</option>
+							<option title="Indonesia" nation_cd="ID" value="62" <?php echo $user->user_phoneNation==62?'selected':'';?>>ID</option>
+							<option title="Malaysia" nation_cd="MY" value="60" <?php echo $user->user_phoneNation==60?'selected':'';?>>MY</option>
+							<option title="Hong Kong" nation_cd="HK" value="852" <?php echo $user->user_phoneNation==852?'selected':'';?>>HK</option>
+							<option title="South Korea" nation_cd="KR" value="82" <?php echo $user->user_phoneNation==82?'selected':'';?>>KR</option>
+							<option title="Australia" nation_cd="AU" value="61" <?php echo $user->user_phoneNation==61?'selected':'';?>>AU</option>
+							<option title="Canada" nation_cd="CA" value="1" <?php echo $user->user_phoneNation==1?'selected':'';?>>CA</option>
+							<option title="United Kingdom" nation_cd="GB" value="44" <?php echo $user->user_phoneNation==44?'selected':'';?>>UK</option>
+							<option title="Philippines" nation_cd="PH" value="63" <?php echo $user->user_phoneNation==63?'selected':'';?>>PH</option>
+							<option title="Russia" nation_cd="RU" value="7" <?php echo $user->user_phoneNation==7?'selected':'';?>>RU</option>
+							<option title="Thailand" nation_cd="TH" value="66" <?php echo $user->user_phoneNation==66?'selected':'';?>>TH</option>
+							<option title="Taiwan" nation_cd="TW" value="886" <?php echo $user->user_phoneNation==886?'selected':'';?>>TW</option>
+							<option title="United States" nation_cd="US" value="1" <?php echo $user->user_phoneNation==1?'selected':'';?>>US</option>
+							<option title="Vietnam" nation_cd="VN" value="84" <?php echo $user->user_phoneNation==84?'selected':'';?>>VE</option>
+						</select>
+						<input type="text" class="km-form-control" id="personalInfoMobilePhoneNumber" style="width: 200px;padding: 0 5px;  display: inline-block;height: 30px;" value="<?php echo $user->user_phone;?>">
+						<button onclick="savePersonalInfoMobilePhone('Successfully saved!');" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 10px;padding: 0px 10px;top: -2px;position: relative;">Save</button>
+						
+						<!--
 						<div class="km-modal-dialog width40p" id="personalInfoPhoneNumberDiv">
 							<div class="km-modal-content">
 								<div class="km-modal-header">
@@ -51,8 +74,9 @@
 									<button type="button" class="km-btn km-btn-default km-btn-close">Close</button>
 									<button type="button" class="km-btn km-btn-primary" onclick="savePersonalInfoMobilePhone('Successfully saved!');">Save</button>
 								</div>
-							</div><!-- /.modal-content -->
-						</div><!-- /.modal-dialog -->
+							</div>
+						</div>
+						-->
 					</td>
 				  </tr>
 				  <tr>
@@ -167,6 +191,11 @@
 										<option value="4">Friends</option>
 										<option value="3">Work</option>
 										<option value="5">Etc.</option>
+										<?php
+										foreach($addresses as $addr):?>
+										<option value="<?php echo $addr->address_type;?>" addressId="<?php echo $addr->address_id;?>"><?php echo $addr->address_title;?></option>
+										<?php endforeach;?>
+										<option value="0">New Address</option>
 									</select><br><br>
 									<label for="addressTitle" class="km-control-label" style="width: 80px;">Title:</label>
 									<input type="text" class="km-form-control" id="addressTitle" value="" style="width: 50%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>

@@ -324,8 +324,15 @@ class Home extends CI_Controller {
 	}
 	public function personalInfo(){
 		if(!$this->checkUserLogin()) return false;
+		$condition=array(
+			'table'=>'address',
+			'result'=>'data',
+			'where'=>array('address_userid'=>$_SESSION['userid'],'address_type'=>6)
+		);
+		$addresses=$this->commongetdata->getData($condition);
 		$data=array(
-			'user'=>$this->commongetdata->getContent('user',$_SESSION['userid'])
+			'user'=>$this->commongetdata->getContent('user',$_SESSION['userid']),
+			'addresses'=>$addresses
 		);
 		$this->homeBaseHandler('Personal Info','personalInfo',$data);
 	}

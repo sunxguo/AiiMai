@@ -71,17 +71,6 @@ $(document).ready(function(){
 		$(this).prev().animate({'margin-left':destMl+'px'});
 	});
 });
-function checkuserName(){
-	var length = $("#username").val().length;
-	if(length<3 || length>15){	//3-15个字符
-//		alert("账号长度为3~15个字符！");
-		showAlert('danger','Username',' must be 3 to 15 characters!');
-		return false;
-	}else{
-		
-		return true;
-	}
-}
 function checkPwd(){
 	var length = $("#password").val().length;
 	if(length<6 || length>25){	//3-15个字符
@@ -150,6 +139,44 @@ function checkUserEmail(ifShowAlert){
 		var result=$.parseJSON(data);
 		if(result.result=="notunique"){
 			showAlert('danger','[Error]','With this email, an account is already created!');
+			checkResult=false;
+		}else{
+			if(ifShowAlert) showAlert('success','Congratulation!','Available!');
+			checkResult=true;
+		}
+	  }
+	});
+	return checkResult; 
+}
+/*
+function checkuserName(){
+	var length = $("#username").val().length;
+	if(length<3 || length>15){	//3-15个字符
+//		alert("账号长度为3~15个字符！");
+		showAlert('danger','Username',' must be 3 to 15 characters!');
+		return false;
+	}else{
+		
+		return true;
+	}
+}*/
+function checkuserName(ifShowAlert){
+	var length = $("#username").val().length;
+	if(length<3 || length>15){	//3-15个字符
+//		alert("账号长度为3~15个字符！");
+		showAlert('danger','Username',' must be 3 to 15 characters!');
+		return false;
+	}
+	var checkResult=false;
+	$.ajax({
+	  type : "post",
+	  url : "/common/checkUsername",
+	  data : 'username='+$("#username").val(),
+	  async : false,
+	  success : function(data){
+		var result=$.parseJSON(data);
+		if(result.result=="notunique"){
+			showAlert('danger','[Error]',result.message);
 			checkResult=false;
 		}else{
 			if(ifShowAlert) showAlert('success','Congratulation!','Available!');
@@ -367,7 +394,7 @@ function checkBusinessLicense(){
 	}
 }
 function checkBankAccount(){
-	if($("#fileBankAccount").attr('src')==''){
+	if($("#bankAccountImage").attr('src')==''){
 		showAlert('danger','You must upload the copy of bank account!','');
 		return false;
 	}else{
@@ -430,8 +457,8 @@ function sellerInformation(){
 		merchantInfo.salesStaffMobilePhone2 = $('#salesStaffMobilePhone2').val();
 		merchantInfo.salesStaffMobilePhone3 = $('#salesStaffMobilePhone3').val();
 		merchantInfo.doc = $('#fileSrc').val();
-		merchantInfo.businessLicense = $("#fileBusinessLicense").val();
-		merchantInfo.bankAccount = $("#fileBankAccount").val();
+		merchantInfo.businessLicense = $("#businessLicenseImage").attr('src');
+		merchantInfo.bankAccount = $("#bankAccountImage").attr('src');
 		
 		$.post("/common/modifyInfo",
 		{
@@ -751,6 +778,23 @@ function selectAddress(){
 	var address = new Object();
 	address.userId = $("#userId").val();
 	address.type = $("#addressType").val();
+	if($("#addressType").val()=='0'){
+		 $("#addressTitle").val('');
+		 $("#addressStaffName").val('');
+		 $("#addressCountry").val('');
+		 $("#addressArea").val('');
+		 $("#addressDetail").val('');
+		 $("#addressMobilephone1").val('');
+		 $("#addressMobilephone2").val('');
+		 $("#addressMobilephone3").val('');
+		 $("#addressPhone1").val('');
+		 $("#addressPhone2").val('');
+		 $("#addressPhone3").val('');
+		 return false;
+	}
+	if($("#addressType").val()=='6'){
+		address.id = $("#addressType").find("option:selected").attr('addressId');
+	}
 	dataHandler("get","address",address,getAddressHandler,null,null,null,false);
 }
 function getAddressHandler(data){
@@ -781,7 +825,17 @@ function saveAddress(){
 	address.phone1 = $("#addressPhone1").val();
 	address.phone2 = $("#addressPhone2").val();
 	address.phone3 = $("#addressPhone3").val();
-	dataHandler("modify","address",address,successRefresh,null,null,null,true);
+	if($("#addressType").val()=='6')
+		dataHandler("add","address",address,successRefresh,null,null,null,true);
+	else
+		dataHandler("modify","address",address,successRefresh,null,null,null,true);
+}
+function savePersonalInfoMobilePhone(){
+	var mobilePhone = new Object();
+	mobilePhone.id = $("#userId").val();
+	mobilePhone.nation = $("#personalInfoMobilePhoneNation").val();
+	mobilePhone.mobile = $("#personalInfoMobilePhoneNumber").val();
+	dataHandler("modify","mobilePhone",mobilePhone,successRefresh,null,null,null,true);
 }
 function reportAbuse(productId){
 	var report = new Object();

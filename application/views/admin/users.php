@@ -34,7 +34,8 @@
 	<table>
 		<thead>
 			<tr class="table-head">
-				<th style="width:100px;">Avatar</th>
+			<!--
+				<th style="width:100px;">Avatar</th>-->
 				<th style="width:100px;">Username</th>
 				<th style="width:100px;">Email</th>
 				<th style="width:100px;">Phone</th>
@@ -50,7 +51,8 @@
 		<tbody>
 			<?php foreach($users as $user):?>
 			<tr class="list1">
-				<td><img src="<?php echo $user->user_avatar;?>" width="54"></td>
+			<!--
+				<td><img src="<?php echo $user->user_avatar;?>" width="54"></td>-->
 				<td class="column-name"><a href="" target="_blank"><?php echo $user->user_username;?></a></td>
 				<td><?php echo $user->user_email;?></td>
 				<td><?php echo $user->user_phone;?></td>
