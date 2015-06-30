@@ -763,10 +763,12 @@ function modifyPersonalGender(gender){
 }
 function savePersonalInfoContactsPhone(){
 	var personalContactsPhone = new Object();
-	personalContactsPhone.contactsMobilephone0 = $("#contactsMobilephone0").val();
 	personalContactsPhone.contactsMobilephone1 = $("#contactsMobilephone1").val();
 	personalContactsPhone.contactsMobilephone2 = $("#contactsMobilephone2").val();
 	personalContactsPhone.contactsMobilephone3 = $("#contactsMobilephone3").val();
+	personalContactsPhone.contactsPhone1 = $("#contactsPhone1").val();
+	personalContactsPhone.contactsPhone2 = $("#contactsPhone2").val();
+	personalContactsPhone.contactsPhone3 = $("#contactsPhone3").val();
 	dataHandler("modify","personalContactsPhone",personalContactsPhone,successRefresh,null,null,null,true);
 }
 function savePersonalInfoBirthday(){

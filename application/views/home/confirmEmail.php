@@ -7,8 +7,9 @@
 		</p>
 	</div>
 </div>
-<?php if(!isset($_SESSION['username'])):?>
+
 <script>
+$(document).ready(function(){
 	sendEmail();
+});
 </script>
-<?php endif;?>

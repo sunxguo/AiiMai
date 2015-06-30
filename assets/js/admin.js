@@ -379,6 +379,7 @@ function saveMerchantStatus(){
 	var merchantStatus = new Object();
 	merchantStatus.id = merchantId;
 	merchantStatus.status = $("#merchantStatus").val();
+	merchantStatus.ifSendEmail = $("#notifySellerStatus").prop('checked');
 	dataHandler("modify","merchantStatus",merchantStatus,successProStatus,null,null,null,true);
 }
 function successProStatus(){
