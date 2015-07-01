@@ -16,7 +16,7 @@ class Home extends CI_Controller {
 		$user=$this->commongetdata->getContent('user',$_SESSION['userid']);
 		if($user->user_confirm_email==0){
 			$_SESSION['userEmail']=$user->user_email;
-			$this->load->view('redirect',array("url"=>"/home/confirmEmail","info"=>"Please confirm your E-mail!"));
+			$this->load->view('redirect',array("url"=>"/home/confirmEmail?auto=no","info"=>"Please confirm your E-mail!"));
 			return false;
 		}
 		return true;

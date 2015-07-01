@@ -87,17 +87,17 @@
 						<div id="hp_no0_code" class="gsm_select" style="display: none;">
 							<p><a href="javascript:showCallingCode('hp_no0_code','hp_no0_major_code');"><img src="http://static.image-gmkt.com/qoo10/front/cm/qsm/image/@sg.gif" width="29" height="19" alt=""></a></p>
 						</div>
-						<input type="text" id="phone1" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_phone1;?>" title="Country Code" placeholder="Country Code"> - 
-						<input type="text" id="phone2" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_phone2;?>" title="Area Code" placeholder="Area Code"> - 
-						<input type="text" id="phone3" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_phone3;?>" title="Number" placeholder="Number">
+						<input type="text" id="phone1" class="inp-txt" style="width: 60px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_phone1;?>" title="Country Code" placeholder="Country Code"> - 
+						<input type="text" id="phone2" class="inp-txt" style="width: 60px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_phone2;?>" title="Area Code" placeholder="Area Code"> - 
+						<input type="text" id="phone3" class="inp-txt" style="width: 120px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_phone3;?>" title="Number" placeholder="Number">
 					</div>
 					<div class="gsm_home">
 						<div id="" class="gsm_select" style="display: none;">
 							<p><a href=""><img src="http://static.image-gmkt.com/qoo10/front/cm/qsm/image/@sg.gif" width="29" height="19" alt=""></a></p>
 						</div>
-						<input type="text" id="homephone1" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_phone1;?>" title="Country Code" placeholder="Country Code"> - 
-						<input type="text" id="homephone2" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_homephone2;?>" title="Area Code" placeholder="Area Code"> - 
-						<input type="text" id="homephone3" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_homephone3;?>" title="Number" placeholder="Number">
+						<input type="text" id="homephone1" class="inp-txt" style="width: 60px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_phone1;?>" title="Country Code" placeholder="Country Code"> - 
+						<input type="text" id="homephone2" class="inp-txt" style="width: 60px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_homephone2;?>" title="Area Code" placeholder="Area Code"> - 
+						<input type="text" id="homephone3" class="inp-txt" style="width: 120px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_homephone3;?>" title="Number" placeholder="Number">
 					</div>
 				</td>
 			</tr>
@@ -143,17 +143,17 @@ You can edit your address and change the display setting on ‘ASM > Setting > M
 						<div id="hp_no0_code" class="gsm_select" style="display: none;">
 							<p><a href="javascript:showCallingCode('hp_no0_code','hp_no0_major_code');"><img src="http://static.image-gmkt.com/qoo10/front/cm/qsm/image/@sg.gif" width="29" height="19" alt=""></a></p>
 						</div>
-						<input type="text" id="salesStaffPhone1" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_phone1;?>" title="Country Code" placeholder="Country Code"> - 
-						<input type="text" id="salesStaffPhone2" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_salesStaff_phone2;?>" title="Area Code" placeholder="Area Code"> - 
-						<input type="text" id="salesStaffPhone3" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_salesStaff_phone3;?>" title="Number" placeholder="Number">
+						<input type="text" id="salesStaffPhone1" class="inp-txt" style="width: 60px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_phone1;?>" title="Country Code" placeholder="Country Code"> - 
+						<input type="text" id="salesStaffPhone2" class="inp-txt" style="width: 60px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_salesStaff_phone2;?>" title="Area Code" placeholder="Area Code"> - 
+						<input type="text" id="salesStaffPhone3" class="inp-txt" style="width: 120px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_salesStaff_phone3;?>" title="Number" placeholder="Number">
 					</div>
 					<div class="gsm_home">
 						<div id="" class="gsm_select" style="display: none;">
 							<p><a href=""><img src="http://static.image-gmkt.com/qoo10/front/cm/qsm/image/@sg.gif" width="29" height="19" alt=""></a></p>
 						</div>
-						<input type="text" id="salesStaffMobilePhone1" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_phone1;?>" title="Country Code" placeholder="Country Code"> - 
-						<input type="text" id="salesStaffMobilePhone2" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_salesStaff_mobilephone2;?>" title="Area Code" placeholder="Area Code"> - 
-						<input type="text" id="salesStaffMobilePhone3" class="inp-txt" style="width: 53px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_salesStaff_mobilephone3;?>" title="Number" placeholder="Number">
+						<input type="text" id="salesStaffMobilePhone1" class="inp-txt" style="width: 60px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_phone1;?>" title="Country Code" placeholder="Country Code"> - 
+						<input type="text" id="salesStaffMobilePhone2" class="inp-txt" style="width: 60px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_salesStaff_mobilephone2;?>" title="Area Code" placeholder="Area Code"> - 
+						<input type="text" id="salesStaffMobilePhone3" class="inp-txt" style="width: 120px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_salesStaff_mobilephone3;?>" title="Number" placeholder="Number">
 					</div>
 				</td>
 			</tr>
@@ -164,25 +164,29 @@ You can edit your address and change the display setting on ‘ASM > Setting > M
 			</tr>
 			-->
 			<tr>
-				<td style="padding: 5px;"><font color="red">*</font>Copy of Business License (For Company / Organization Accounts) or NRIC / Passport (For Person Account)</td>
+				<td style="padding: 5px;"><font color="red">*</font>Copy of Business License<p style="font-weight:normal;font-size:12px;color:#434343;">(For Company / Organization Accounts)</p> or NRIC / Passport <p style="font-weight:normal;font-size:12px;color:#434343;">(For Person Account)</p></td>
 				<td>
 					<img style="min-width: 300px;  min-height: 60px;max-height:100px;cursor:pointer;float: left;" id="businessLicenseImage" src="<?php echo $user->merchant_business_license;?>" onclick="$('#fileBusinessLicense').click();">
 					<img id="loadingBusinessLicense" src="/assets/images/cms/loading.gif" style="display:none;">
 					<form id="upload_BusinessLicense_form" method="post" enctype="multipart/form-data">
 						<input onchange="return uploadBusinessLicense()" name="image" type="file" id="fileBusinessLicense" style="display:none;" accept="image/*">
 					</form>
+					<span style="margin-left:10px;">(Image Formats:png,jpg,gif  Image MAX :1.5MB)</span>
 					<button onclick="$('#fileBusinessLicense').click();" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 40px 0 0 30px;">Upload</button>
+					<button onclick="$('#businessLicenseImage').attr('src','');" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 40px 0 0 30px;">Delete</button>
 				</td>
 			</tr>
 			<tr>
-				<td style="padding: 5px;"><font color="red">*</font>Copy of Most Recent Bank Statement (For Company / Organization Accounts) or Utilities Bill (For Person Account)</td>
+				<td style="padding: 5px;width: 27%;"><font color="red">*</font>Copy of Most Recent Bank Statement<p style="font-weight:normal;font-size:12px;color:#434343;">(For Company / Organization Accounts)</p> or Utilities Bill <p style="font-weight:normal;font-size:12px;color:#434343;">(For Person Account)</p></td>
 				<td>
 					<img style="min-width: 300px;  min-height: 60px;max-height:100px;cursor:pointer;float: left;" id="bankAccountImage" src="<?php echo $user->merchant_bank_account;?>" onclick="$('#fileBankAccount').click();">
 					<img id="loadingBankAccount" src="/assets/images/cms/loading.gif" style="display:none;">
 					<form id="upload_BankAccount_form" method="post" enctype="multipart/form-data">
 						<input onchange="return uploadBankAccount()" name="image" type="file" id="fileBankAccount" style="display:none;" accept="image/*">
 					</form>
+					<span style="margin-left:10px;">(Image Formats:png,jpg,gif  Image MAX :1.5MB)</span>
 					<button onclick="$('#fileBankAccount').click();" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 40px 0 0 30px;">Upload</button>
+					<button onclick="$('#bankAccountImage').attr('src','');" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 40px 0 0 30px;">Delete</button>
 				</td>
 			</tr>
 			<!--
