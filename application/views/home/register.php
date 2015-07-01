@@ -2,8 +2,10 @@
 	<div class="register-header">
 		<h2>Register</h2>
 		<span class="reg-tip">
+		<!--
 			- $2 Cart Coupon for New Member <br>
 			- 100 Apoint reward for Mobile App Download Member
+			-->
 		</span>
 	</div>
 	<div class="register-main-top">

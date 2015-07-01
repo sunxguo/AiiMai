@@ -9,7 +9,9 @@
 </div>
 
 <script>
+<?php if(!isset($_GET['auto']) || $_GET['auto']!='no'):?>
 $(document).ready(function(){
 	sendEmail();
 });
+<?php endif;?>
 </script>
