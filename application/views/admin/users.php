@@ -31,13 +31,16 @@
 		<div class="clear">
 		</div>
 	</div>
+	<input id="orderUser" type="hidden" value="<?php echo isset($_GET['orderUser'])?$_GET['orderUser']:'';?>">
+	<input id="orderEmail" type="hidden" value="<?php echo isset($_GET['orderEmail'])?$_GET['orderEmail']:'';?>">
 	<table>
 		<thead>
 			<tr class="table-head">
 			<!--
 				<th style="width:100px;">Avatar</th>-->
-				<th style="width:100px;">Username</th>
-				<th style="width:100px;">Email</th>
+				<th style="width:30px;"><input type="checkbox" id="checkAll"></th>
+				<th style="width:100px;" onclick="orderUser('<?php echo $selectPage;?>','username')">Username <?php if(isset($_GET['orderUser'])){if($_GET['orderUser']=='desc') echo '↑';else echo '↓';}?></th>
+				<th style="width:100px;" onclick="orderUser('<?php echo $selectPage;?>','email')">Email <?php if(isset($_GET['orderEmail'])){if($_GET['orderEmail']=='desc') echo '↑';else echo '↓';}?></th>
 				<th style="width:100px;">Phone</th>
 				<th style="width:100px;">Gender</th>
 				<th style="width:100px;">State</th>
@@ -53,6 +56,7 @@
 			<tr class="list1">
 			<!--
 				<td><img src="<?php echo $user->user_avatar;?>" width="54"></td>-->
+				<td><input type="checkbox" name="checkedUserId" value="<?php echo $user->user_id;?>"></td>
 				<td class="column-name"><a href="" target="_blank"><?php echo $user->user_username;?></a></td>
 				<td><?php echo $user->user_email;?></td>
 				<td><?php echo $user->user_phone;?></td>
@@ -76,6 +80,9 @@
 			<?php endforeach;?>
 		</tbody>
 	</table>
+	<div>
+		<button onclick="deleteCheckedUsers();" type="button" class="km-btn km-btn-danger" style="height: 18px;font-size: 10px;padding: 0px 10px;margin: 10px 0 0 0;">Delete</button>
+	</div>
 	<nav>
 	  Total <?php echo $amount;?>
 	  <ul class="km-pagination">

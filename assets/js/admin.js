@@ -15,6 +15,9 @@ $(document).ready(function(){
 		$("#bkDiv").hide();
 		$("body").removeClass('km-modal-open');
 	});
+	$("#checkAll").click(function(){
+		$("input[name='checkedUserId']").prop("checked",$("#checkAll").prop("checked"));
+	});
 });
 function refreshCode(){
 	$("#validCodeImg").attr("src","/common/createVeriCode");
@@ -272,6 +275,21 @@ function selectUser(baseUrl){
 	if($("#keyword").val()!="") extUrl+="&search="+$("#keyword").val();
 	location.href=baseUrl+extUrl;
 }
+function orderUser(baseUrl,currentOrder){
+	var extUrl="";
+	if($("#gender").val()!=-1) extUrl+="&gender="+$("#gender").val();
+	if($("#status").val()!=-1) extUrl+="&status="+$("#status").val();
+	if($("#keyword").val()!="") extUrl+="&search="+$("#keyword").val();
+	if(currentOrder=='username'){
+		if($("#orderUser").val()=="" || $("#orderUser").val()=="desc") extUrl+="&orderUser=asc";
+		else  extUrl+="&orderUser=desc";
+	}
+	if(currentOrder=='email'){
+		if($("#orderEmail").val()=="" || $("#orderEmail").val()=="desc") extUrl+="&orderEmail=asc";
+		else  extUrl+="&orderEmail=desc";
+	}
+	location.href=baseUrl+extUrl;
+}
 function selectMerchant(baseUrl){
 	var extUrl="";
 	if($("#gender").val()!=-1) extUrl+="&gender="+$("#gender").val();
@@ -445,6 +463,15 @@ function addCategory(){
 	category.fid = $("#fid").val();
 	category.name = $("#newCatNameInput").val();
 	dataHandler("add","category",category,successShowCat,null,null,null,true);
+}
+function deleteCheckedUsers(){
+	var usersArray = new Array();
+	$("input[name='checkedUserId']:checked").each(function(){
+		usersArray.push($(this).val()); 
+	});
+	var users = new Object();
+	users.idArray = usersArray;
+	dataHandler("delBulk","users",users,successShowCat,'Sure to delete these users?',null,null,true);
 }
 /*Example:
 $(".slider-item").mouseout(function(){

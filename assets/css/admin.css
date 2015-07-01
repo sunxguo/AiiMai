@@ -159,6 +159,7 @@
 	padding: 0 0 1px 0;
 	border:1px solid #ccd3dc;
 	border-left: 0px none;
+	cursor: pointer;
 }
 .table-head th:hover{
 	border: 1px solid #ccd3dc;
@@ -835,4 +836,32 @@ a:hover {
 .index input{
 	padding:0 5px !important;
 	font-size: 13px !important;
+}
+.index .alertDiv .alertNewUser{
+	background: #65CEA7;
+	margin-bottom: 20px;
+	width:47%;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+	box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.alert-panel-body {
+  padding: 15px;
+}
+.alert-row {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.col-xs-4 {
+  width: 33.33333333%;
+}
+.col-xs-8 {
+  width: 66.66666667%;
+}
+.states-info .state-title {
+  font-size: 13px;
+}
+.states-info {
+  color: #fff;
 }

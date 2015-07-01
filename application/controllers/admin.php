@@ -82,9 +82,13 @@ class Admin extends CI_Controller {
 		$merchantAmount=$this->commongetdata->getData($condition);
 		$condition['where']=array('user_is_merchant'=>0);
 		$userAmount=$this->commongetdata->getData($condition);
+		$condition['where']=array('user_is_merchant'=>1,'merchant_status'=>1);
+		$requiringMerchants=$this->commongetdata->getData($condition);
 		$data=array(
 			"merchantAmount"=>$merchantAmount,
-			"userAmount"=>$userAmount
+			"userAmount"=>$userAmount,
+			"requiringMerchants"=>$requiringMerchants,
+			"requiringItems"=>$this->commongetdata->getProductsAdvance(array('result'=>'count','status'=>1))
 		);
 		$this->adminBaseHandler('Backend Panel',array('index','none'),'index',$data);
 	}
@@ -235,10 +239,25 @@ class Admin extends CI_Controller {
 			$condition['like']['user_username']=$_GET['search'];
 			$baseUrl.='&search='.$_GET['search'];
 		}
+		if(isset($_GET['orderUser'])){
+			if($_GET['orderUser']=='asc')
+				$condition['order_by']['user_username']='ASC';
+			if($_GET['orderUser']=='desc')
+				$condition['order_by']['user_username']='DESC';
+		}
+		if(isset($_GET['orderEmail'])){
+			if($_GET['orderEmail']=='asc')
+				$condition['order_by']['user_email']='ASC';
+			if($_GET['orderEmail']=='desc')
+				$condition['order_by']['user_email']='DESC';
+		}
+		if(!isset($condition['order_by'])){
+			$condition['order_by']=array('user_reg_time'=>'DESC');
+		}
 		$condition['result']="count";
 		$amount=$this->commongetdata->getData($condition);
 		$condition['result']="data";
-		$condition['order_by']=array('user_reg_time'=>'DESC');
+		
 		$pageInfo=$this->commongetdata->getPageLink($baseUrl,$selectUrl,$page,$amountPerPage,$amount);
 		$condition['limit']=$pageInfo['limit'];
 		$data=array(

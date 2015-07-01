@@ -325,6 +325,20 @@ class Common extends CI_Controller {
 		if($result==1) echo json_encode(array("result"=>"success","message"=>"信息删除成功"));
 		else echo json_encode(array("result"=>"failed","message"=>"信息删除失败"));
 	}
+	public function delBulkInfo(){
+		$condition=array();
+		$data=json_decode($_POST['data']);
+		switch($_POST['info_type']){
+			case 'users':
+				$table="user";
+				$where="user_id";
+			break;
+		}
+		foreach($data->idArray as $id){
+			$result=$this->dbHandler->deleteData(array("table"=>$table,"where"=>array($where=>$id)));
+		}
+		echo json_encode(array("result"=>"success","message"=>"信息删除成功"));
+	}
 	public function modifyInfo(){
 		$condition=array();
 		$data=json_decode($_POST['data']);

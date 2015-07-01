@@ -19,6 +19,34 @@
 				<span>Merchants</span>
 			</a>
 		</div>
+		<div class="alertDiv states-info clearfix">
+			<div class="alertNewUser" style="float:left;">
+				<div class="alert-panel-body">
+					<div class="alert-row" style="text-align:center;">
+						<div class="">
+							<i class="fa fa-gavel"></i>
+						</div>
+						<div class="">
+							<span class="state-title"> 	New Seller Registration requiring review & confirmation  </span>
+							<h4 style="line-height: 50px;height: 30px;"><a href="/admin/merchants" style="color:white;font-size:18px;"><?php echo $requiringMerchants;?></a></h4>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="alertNewUser" style="float:right;">
+				<div class="alert-panel-body">
+					<div class="alert-row" style="text-align:center;">
+						<div class="">
+							<i class="fa fa-gavel"></i>
+						</div>
+						<div class="">
+							<span class="state-title"> 	New Items listed requiring review & confirmation  </span>
+							<h4 style="line-height: 50px;height: 30px;"><a href="/admin/items" style="color:white;font-size:18px;"><?php echo $requiringItems;?></a></h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 <div class="row">
