@@ -119,7 +119,7 @@ class Common extends CI_Controller {
 					"user_country"=>$data->country,
 					"user_confirm_email"=>0,
 					"merchant_status"=>0,
-					"user_is_merchant"=>1,
+					"user_is_merchant"=>0,
 					"user_reg_time"=>$time
 				);
 			break;
