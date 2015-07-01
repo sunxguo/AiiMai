@@ -99,13 +99,13 @@
 					<td class="field br">Contacts</td>
 					<td class="value tal">
 						<span style="display:inline-block;width:100px;">Telephone:</span>
-						<input id="contactsPhone1" type="text" value="<?php echo $user->merchant_homephone1;?>" class="inp-txt" style="height:18px;width:60px;top:-2px;position: relative;" title="Country Code" placeholder="Country Code"> -
-						<input id="contactsPhone2" type="text" value="<?php echo $user->merchant_homephone2;?>" class="inp-txt" style="height:18px;width:60px;top:-2px;position: relative;" title="Area Code" placeholder="Area Code"> -
-						<input id="contactsPhone3" type="text" value="<?php echo $user->merchant_homephone3;?>" class="inp-txt" style="height:18px;width:60px;top:-2px;position: relative;" title="Number" placeholder="Number"><br>
+						<input id="contactsPhone1" type="text" value="<?php echo $user->merchant_homephone1;?>" class="inp-txt" style="height:18px;width:65px;top:-2px;position: relative;" title="Country Code" placeholder="Country Code"> -
+						<input id="contactsPhone2" type="text" value="<?php echo $user->merchant_homephone2;?>" class="inp-txt" style="height:18px;width:65px;top:-2px;position: relative;" title="Area Code" placeholder="Area Code"> -
+						<input id="contactsPhone3" type="text" value="<?php echo $user->merchant_homephone3;?>" class="inp-txt" style="height:18px;width:120px;top:-2px;position: relative;" title="Number" placeholder="Number"><br>
 						<span style="display:inline-block;width:100px;margin-top:10px;">Mobile Phone: </span>
-						<input id="contactsMobilephone1" type="text" value="<?php echo $user->merchant_phone1;?>" class="inp-txt" style="height:18px;width:60px;top:-2px;position: relative;" title="Country Code" placeholder="Country Code"> -
-						<input id="contactsMobilephone2" type="text" value="<?php echo $user->merchant_phone2;?>" class="inp-txt" style="height:18px;width:60px;top:-2px;position: relative;" title="Area Code" placeholder="Area Code"> -
-						<input id="contactsMobilephone3" type="text" value="<?php echo $user->merchant_phone3;?>" class="inp-txt" style="height:18px;width:60px;top:-2px;position: relative;" title="Number" placeholder="Number">
+						<input id="contactsMobilephone1" type="text" value="<?php echo $user->merchant_phone1;?>" class="inp-txt" style="height:18px;width:65px;top:-2px;position: relative;" title="Country Code" placeholder="Country Code"> -
+						<input id="contactsMobilephone2" type="text" value="<?php echo $user->merchant_phone2;?>" class="inp-txt" style="height:18px;width:65px;top:-2px;position: relative;" title="Area Code" placeholder="Area Code"> -
+						<input id="contactsMobilephone3" type="text" value="<?php echo $user->merchant_phone3;?>" class="inp-txt" style="height:18px;width:120px;top:-2px;position: relative;" title="Number" placeholder="Number">
 						<button onclick="savePersonalInfoContactsPhone('Successfully saved!');" type="button" class="km-btn km-btn-primary" style=" height: 28px;font-size: 10px;padding: 0px 10px;top:-2px;position: relative;">Save</button>
 					</td>
 				  </tr>
