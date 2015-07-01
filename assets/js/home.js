@@ -336,22 +336,23 @@ function checkName(){
 	}
 }
 function checkContactInfo(){
-	var lengthPhone2 = $("#phone2").val().length;
+	var lengthPhone1 = $("#phone1").val().length;
 	var lengthPhone3 = $("#phone3").val().length;
-	var lengthHomePhone2 = $("#homephone2").val().length;
+	var lengthHomePhone1 = $("#homephone1").val().length;
 	var lengthHomePhone3 = $("#homephone3").val().length;
-	if(lengthPhone2<1 || lengthPhone3<1 || lengthHomePhone2<1 || lengthHomePhone3<1){
+	if(lengthPhone1<1 || lengthPhone3<1 || lengthHomePhone1<1 || lengthHomePhone3<1){
 		showAlert('danger','Phone Or Home ','cannot be empty!');
 		return false;
 	}
-	if(lengthPhone2+lengthPhone3<8){
+	if(lengthPhone3<8){
 		showAlert('danger','Mobile Phone',' is too short!');
 		return false;
 	}
+	/*
 	if(lengthHomePhone2+lengthHomePhone3<8){
 		showAlert('danger','Phone',' is too short!');
 		return false;
-	}
+	}*/
 	return true;
 }
 function checkAddress(){
