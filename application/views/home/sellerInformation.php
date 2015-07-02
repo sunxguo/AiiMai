@@ -4,6 +4,7 @@
 		<p>You want to be a seller?</p>
 	</div>
 	<div class="sllr_step">
+	<!--
         <ul style="width: 100%;">
             <li class="" style="">
 				<span style="height: 36px; display: inline-block;border: 1px solid #d9d9d9;padding: 0 10px 0 20px;margin-right: 20px;border-right: none;border-radius: 6px 0 0 6px;">01. Account Information</span>
@@ -13,6 +14,17 @@
 			</li>
             <li class="last-child" style="padding-left: 0px;padding-right: 0px;  margin-left: -40px;">
 				<span style="height: 36px; display: inline-block;border: 1px solid #d9d9d9;padding: 0 10px 0 35px;margin-right: 20px;  border-radius: 0 6px 6px 0;border-left: none;">03. Complete Registration</span>
+			</li>
+        </ul>-->
+		<ul style="width: 100%;" style="border:none;">
+            <li class="" style="padding-right: 0px;margin-right: 40px;">
+				<span style="height: 36px; display: inline-block;border: 1px solid #d9d9d9;padding: 0 10px 0 20px;margin-right: 20px;border-right: none;border-radius: 6px 0 0 6px;">01. Account Information</span>
+			</li>
+            <li class="on" style="padding-left:20px;padding-right: 30px;border-radius: 6px 0 0 6px;">
+				02. Seller's Information
+			</li>
+            <li class="last-child" style="padding-right: 0px;">
+				<span style="height: 36px; display: inline-block;border: 1px solid #d9d9d9;padding: 0 10px 0 20px;margin-right: 20px;border-radius: 6px;">03. Complete Registration</span>
 			</li>
         </ul>
     </div>
@@ -60,6 +72,7 @@
 					<!--<p style="color:red;">note) You will not be approved as a seller if you do not type your real name/business name on the required document.</p>-->
 				</td>
 			</tr>
+			<!--
 			<tr>
 				<td><font color="red">*</font>ID log-in</td>
 				<td>
@@ -67,10 +80,11 @@
 					<button onclick="checkID();" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 10px;padding: 5px 10px;">Check ID</button>	
 				</td>
 			</tr>
+			-->
 			<tr>
 				<td><font color="red">*</font>Contact Information</td>
 				<td>
-					<?php if($user->user_confirm_email==0):?>
+					<?php /*if($user->user_confirm_email==0):?>
 					<div id="gsm_mail_wrapper" class="gsm_mail" style="background-position: -260px -625px;">
 						<input type="text" id="email" class="inp-txt" style="width:190px;" readonly="" value="<?php echo $_SESSION['userEmail'];?>">
 						<button onclick="sendMerchantEmail();" type="button" class="km-btn km-btn-primary" style="height: 24px;font-size: 10px;padding: 3px 5px;">Send Confirmation Email</button>	
@@ -79,8 +93,8 @@
 							<button onclick="reloadEmail();" type="button" class="km-btn km-btn-primary" style="height: 24px;font-size: 10px;padding: 3px 5px;">Reload</button>	
 						</p>
 					</div>
-					<?php endif;?>
-					<div id="confirmEmail" class="gsm_mail" <?php if($user->user_confirm_email==0):?>style="display:none;"<?php endif;?>>
+					<?php endif;*/?>
+					<div id="confirmEmail" class="gsm_mail">
 						<h3><?php echo $_SESSION['userEmail'];?></h3>
 					</div>
 					<div class="gsm_phone">
@@ -165,26 +179,26 @@ You can edit your address and change the display setting on ‘ASM > Setting > M
 			-->
 			<tr>
 				<td style="padding: 5px;"><font color="red">*</font>Copy of Business License<p style="font-weight:normal;font-size:12px;color:#434343;">(For Company / Organization Accounts)</p> or NRIC / Passport <p style="font-weight:normal;font-size:12px;color:#434343;">(For Person Account)</p></td>
-				<td>
+				<td style="padding-right: 0px;">
 					<img style="min-width: 300px;  min-height: 60px;max-height:100px;cursor:pointer;float: left;" id="businessLicenseImage" src="<?php echo $user->merchant_business_license;?>" onclick="$('#fileBusinessLicense').click();">
 					<img id="loadingBusinessLicense" src="/assets/images/cms/loading.gif" style="display:none;">
 					<form id="upload_BusinessLicense_form" method="post" enctype="multipart/form-data">
-						<input onchange="return uploadBusinessLicense()" name="image" type="file" id="fileBusinessLicense" style="display:none;" accept="image/*">
+						<input onchange="return uploadBusinessLicense()" name="image" type="file" id="fileBusinessLicense" style="display:none;">
 					</form>
-					<span style="margin-left:10px;">(Image Formats:png,jpg,gif  Image MAX :1.5MB)</span>
+					<span style="margin-left:10px;">(Image Formats: png,jpg,gif,pdf; File Size Limit: 1.5MB)</span>
 					<button onclick="$('#fileBusinessLicense').click();" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 40px 0 0 30px;">Upload</button>
 					<button onclick="$('#businessLicenseImage').attr('src','');" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 40px 0 0 30px;">Delete</button>
 				</td>
 			</tr>
 			<tr>
 				<td style="padding: 5px;width: 27%;"><font color="red">*</font>Copy of Most Recent Bank Statement<p style="font-weight:normal;font-size:12px;color:#434343;">(For Company / Organization Accounts)</p> or Utilities Bill <p style="font-weight:normal;font-size:12px;color:#434343;">(For Person Account)</p></td>
-				<td>
+				<td style="padding-right: 0px;">
 					<img style="min-width: 300px;  min-height: 60px;max-height:100px;cursor:pointer;float: left;" id="bankAccountImage" src="<?php echo $user->merchant_bank_account;?>" onclick="$('#fileBankAccount').click();">
 					<img id="loadingBankAccount" src="/assets/images/cms/loading.gif" style="display:none;">
 					<form id="upload_BankAccount_form" method="post" enctype="multipart/form-data">
-						<input onchange="return uploadBankAccount()" name="image" type="file" id="fileBankAccount" style="display:none;" accept="image/*">
+						<input onchange="return uploadBankAccount()" name="image" type="file" id="fileBankAccount" style="display:none;">
 					</form>
-					<span style="margin-left:10px;">(Image Formats:png,jpg,gif  Image MAX :1.5MB)</span>
+					<span style="margin-left:10px;">(Image Formats: png,jpg,gif,pdf; File Size Limit: 1.5MB)</span>
 					<button onclick="$('#fileBankAccount').click();" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 40px 0 0 30px;">Upload</button>
 					<button onclick="$('#bankAccountImage').attr('src','');" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 40px 0 0 30px;">Delete</button>
 				</td>
@@ -218,7 +232,7 @@ You can edit your address and change the display setting on ‘ASM > Setting > M
 			</p>
 		</div>
 		<div class="reg-btn">
-			<input type="button" class="btn-big" id="btnRegister" onclick="sellerInformation()" value="Submit">
+			<input type="button" class="btn-big" id="btnRegister" onclick="nextStep()" value="Save & Next">
 		</div>
 	</div>
 	<!--

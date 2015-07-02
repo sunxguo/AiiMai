@@ -434,8 +434,17 @@ function addBankAccountAfterUpload(imageSrc){
 	$("#loadingBankAccount").hide();
 	$("#bankAccountImage").attr('src',imageSrc);
 }
-function sellerInformation(){
-	if(checkAllInfo()){
+function checkStep2Info(){
+	if(checkName() && checkContactInfo() && checkAddress() && checkSalesStaffName() && checkBusinessLicense() && checkBankAccount()){
+		validation();
+		return true;
+	}else{
+		invalidation();
+		return false;
+	}
+}
+function nextStep(){
+	if(checkStep2Info()){
 		var merchantInfo = new Object();
 		var merchantType=$('input[name="merchantType"]:checked').val();
 		merchantInfo.merchantType = merchantType;
@@ -465,6 +474,34 @@ function sellerInformation(){
 		{
 			'info_type':'merchantInfo',
 			'data':JSON.stringify(merchantInfo)
+		},
+		function(data){
+			var result=$.parseJSON(data);
+			if(result.result=="success"){
+				//showAlert('success','Success!','Please wait for confirmation!');
+				//Please fill in the details
+				location.href="/cms/sellerRegStep3";
+			}else if(result.result=="notunique"){
+				showAlert('danger','Not unique',result.message);
+			}else{
+				showAlert('danger','Sorry,',' Failed! Please try again later!');
+			}
+		});
+	}
+}
+function sellerInformation(){
+	if(checkEmailIsConfirm()){
+		var merchantInfoStep3 = new Object();
+		merchantInfoStep3.bank = $("#bank").val();
+		merchantInfoStep3.bankBranch = $("#bankBranch").val();
+		merchantInfoStep3.accountNumber = $("#accountNumber").val();
+		merchantInfoStep3.GSTName = $("#GSTName").val();
+		merchantInfoStep3.GSTRegistrationNo = $("#GSTRegistrationNo").val();
+		merchantInfoStep3.GSTAddress = $("#GSTAddress").val();
+		$.post("/common/modifyInfo",
+		{
+			'info_type':'merchantInfoStep3',
+			'data':JSON.stringify(merchantInfoStep3)
 		},
 		function(data){
 			var result=$.parseJSON(data);
@@ -655,6 +692,25 @@ function sendConfirmEmail(){
 		}
 	  }
 	});
+}
+function checkEmailIsConfirm(){
+	var result=false;
+	$.ajax({
+	  type : "post",
+	  url : "/common/reloadEmail",
+	  data : 'email=ok',
+	  async : false,
+	  success : function(data){
+		var result=$.parseJSON(data);
+		if(result.result=="success"){
+			result=true
+		}else{
+			showAlert('danger','Failed! Please confirm on the email first!','');
+			window.open('/home/confirmEmail?auto=no');
+		}
+	  }
+	});
+	return result;
 }
 function saveNewPassword(){
 	var newpwd=$("#newpwd").val();

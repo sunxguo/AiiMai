@@ -141,6 +141,20 @@ class Cms extends CI_Controller {
 		$this->load->view('home/sellerInformation',$data);
 		$this->load->view('home/footer',array());
 	}
+	public function sellerRegStep3(){
+		if(!$this->checkMerchantSimpleLogin()) return false;
+		$data=array();
+		$this->load->view('home/header',
+			array(
+				'title' => "Seller Information-AiiMai",
+				'websiteName'=>"AiiMai",
+				'categories'=>$this->commongetdata->getCategories(false),
+				'user'=>$this->commongetdata->getContent('user',$_SESSION['userid'])
+			)
+		);
+		$this->load->view('home/sellerRegStep3',$data);
+		$this->load->view('home/footer',array());
+	}
 	public function waitConfirm(){
 		if(!$this->checkMerchantSimpleLogin()) return false;
 		$data=array();
