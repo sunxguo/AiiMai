@@ -51,12 +51,6 @@
 				</td>
 			</tr>
 		</table>
-		<div class="memberAgree clearfix">
-			<input type="checkbox" id="agreement" name="agreement" value="Y" checked="checked"> 
-			<p class="fl">
-				<label for="agreement">I accept the Seller Agreement </label><a href="" target="_blank">Seller Agreement</a><br>
-			</p>
-		</div>
 		<div class="reg-btn">
 			<input type="button" class="btn-big" id="btnRegister" onclick="sellerInformation()" value="Submit">
 		</div>

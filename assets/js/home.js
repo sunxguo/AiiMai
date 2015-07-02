@@ -403,6 +403,14 @@ function checkBankAccount(){
 		return true;
 	}
 }
+function checkAgreement(){
+	if($("#agreement").prop('checked')){
+		return true;
+	}else{
+		showAlert('danger','Please accept the Seller Agreement!','');
+		return false;
+	}
+}
 function checkAllInfo(){
 	if(checkName() && checkContactInfo() && checkAddress() && checkSalesStaffName() && checkBusinessLicense() && checkBankAccount()){
 		validation();
@@ -435,7 +443,7 @@ function addBankAccountAfterUpload(imageSrc){
 	$("#bankAccountImage").attr('src',imageSrc);
 }
 function checkStep2Info(){
-	if(checkName() && checkContactInfo() && checkAddress() && checkSalesStaffName() && checkBusinessLicense() && checkBankAccount()){
+	if(checkAgreement() && checkName() && checkContactInfo() && checkAddress() && checkSalesStaffName() && checkBusinessLicense() && checkBankAccount()){
 		validation();
 		return true;
 	}else{
@@ -483,6 +491,8 @@ function nextStep(){
 				location.href="/cms/sellerRegStep3";
 			}else if(result.result=="notunique"){
 				showAlert('danger','Not unique',result.message);
+			}else if(result.result=="notConfirmEmail"){
+				setDivCenter('#confirmEmailDiv',true);
 			}else{
 				showAlert('danger','Sorry,',' Failed! Please try again later!');
 			}
@@ -490,7 +500,7 @@ function nextStep(){
 	}
 }
 function sellerInformation(){
-	if(checkEmailIsConfirm()){
+	if(true){
 		var merchantInfoStep3 = new Object();
 		merchantInfoStep3.bank = $("#bank").val();
 		merchantInfoStep3.bankBranch = $("#bankBranch").val();
@@ -512,7 +522,7 @@ function sellerInformation(){
 			}else if(result.result=="notunique"){
 				showAlert('danger','Not unique',result.message);
 			}else{
-				showAlert('danger','Sorry,',' Failed! Please try again later!');
+				showAlert('danger','Failed,',result.message);
 			}
 		});
 	}
@@ -705,8 +715,8 @@ function checkEmailIsConfirm(){
 		if(result.result=="success"){
 			result=true
 		}else{
-			showAlert('danger','Failed! Please confirm on the email first!','');
-			window.open('/home/confirmEmail?auto=no');
+			setDivCenter('#confirmEmailDiv',true);
+//			window.open('/home/confirmEmail?auto=no');
 		}
 	  }
 	});

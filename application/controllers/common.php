@@ -398,6 +398,15 @@ class Common extends CI_Controller {
 				);
 			break;
 			case "merchantInfo":
+				$merchant=$this->commongetdata->getOneData(array(
+					'table'=>'user',
+					'result'=>'data',
+					'where'=>array("user_username"=>$_SESSION['username'])
+				));
+				if($merchant->user_confirm_email!=1){
+					echo json_encode(array("result"=>"notConfirmEmail","message"=>"Failed Confirmed E-mail!"));
+					return false;
+				}
 				$condition['table']="user";
 				$condition['where']=array("user_username"=>$_SESSION['username']);
 				$condition['data']=array(
@@ -1476,7 +1485,7 @@ class Common extends CI_Controller {
 		$result=$this->dbHandler->updateData($condition);
 		$emailTitle=$this->commongetdata->getWebsiteConfig('website_confirm_email_title');
 		$emailContent=$this->commongetdata->getWebsiteConfig('website_confirm_email_content');
-		$this->commongetdata->email($_SESSION['userEmail'],$emailTitle,$emailContent.'<a href="aiimai.coolkeji.com/common/active?verify='.$token.'">Confirm</a><br>If the button is invalid, please copy the following link to your browser\'s address bar!<br><span style="color:blue;">aiimai.coolkeji.com/common/active?verify='.$token.'</span>');
+		$this->commongetdata->email($_SESSION['userEmail'],$emailTitle,$emailContent.'<a href="aiimai.coolkeji.com/common/active?verify='.$token.'" style="display: inline-block;padding: 6px 12px;margin-bottom: 0;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;background-image: none;border: 1px solid transparent;border-radius: 4px;font-family: inherit;color: #fff;background-color: #5cb85c;border-color: #4cae4c;font-size: 10px;text-decoration: none;padding: 5px 10px;">Confirm</a><br>If the button is invalid, please copy the following link to your browser\'s address bar!<br><br><span style="color:blue;">aiimai.coolkeji.com/common/active?verify='.$token.'</span>');
 		echo json_encode(array("result"=>"success","message"=>"验证码输入正确！"));
 		/*		if(){
 			echo json_encode(array("result"=>"success","message"=>"验证码输入正确！"));

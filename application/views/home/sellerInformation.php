@@ -187,7 +187,7 @@ You can edit your address and change the display setting on ‘ASM > Setting > M
 					</form>
 					<span style="margin-left:10px;">(Image Formats: png,jpg,gif,pdf; File Size Limit: 1.5MB)</span>
 					<button onclick="$('#fileBusinessLicense').click();" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 40px 0 0 30px;">Upload</button>
-					<button onclick="$('#businessLicenseImage').attr('src','');" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 40px 0 0 30px;">Delete</button>
+					<button onclick="$('#businessLicenseImage').attr('src','');$('#fileBusinessLicense').val('');" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 40px 0 0 30px;">Delete</button>
 				</td>
 			</tr>
 			<tr>
@@ -200,7 +200,7 @@ You can edit your address and change the display setting on ‘ASM > Setting > M
 					</form>
 					<span style="margin-left:10px;">(Image Formats: png,jpg,gif,pdf; File Size Limit: 1.5MB)</span>
 					<button onclick="$('#fileBankAccount').click();" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 40px 0 0 30px;">Upload</button>
-					<button onclick="$('#bankAccountImage').attr('src','');" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 40px 0 0 30px;">Delete</button>
+					<button onclick="$('#bankAccountImage').attr('src','');$('#fileBankAccount').val('');" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 40px 0 0 30px;">Delete</button>
 				</td>
 			</tr>
 			<!--
@@ -226,7 +226,7 @@ You can edit your address and change the display setting on ‘ASM > Setting > M
 			-->
 		</table>
 		<div class="memberAgree clearfix">
-			<input type="checkbox" id="agreement" name="agreement" value="Y" checked="checked"> 
+			<input type="checkbox" id="agreement" name="agreement" value="Y"> 
 			<p class="fl">
 				<label for="agreement">I accept the Seller Agreement </label><a href="" target="_blank">Seller Agreement</a><br>
 			</p>
@@ -245,7 +245,32 @@ You can edit your address and change the display setting on ‘ASM > Setting > M
 	</div>
 	-->
 </div>
+<div class="km-modal-dialog width40p" id="confirmEmailDiv">
+	<div class="km-modal-content">
+		<div class="km-modal-header">
+			<button type="button" class="km-close"><span>&times;</span></button>
+			<h4 class="km-modal-title">Please confirm the verification email</h4>
+		</div>
+		<div class="km-modal-body">
+			<div style="margin: 20px 10px 20px 10px;">
+				<h3>An verification email has been sent to you. Please confirm it, before proceeding to the next step.</h3>
+				<p style="color:blue;font-size:14px;line-height:30px;">
+					<?php echo isset($_SESSION['userEmail'])?$_SESSION['userEmail']:'';?>
+					<button onclick="sendEmail();" type="button" class="km-btn km-btn-success" style="margin-left:20px;height: 28px;font-size: 10px;padding: 5px 10px;">Send Email Again</button>
+				</p>
+			</div>
+		</div>
+		<!--
+		<div class="km-modal-footer">
+			<button type="button" class="km-btn km-btn-default km-btn-close">Close</button>
+			<button type="button" class="km-btn km-btn-primary" onclick="savePersonalInfoPwd('Successfully saved!');">Save</button>
+		</div>
+		-->
+	</div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
 <script src="/assets/js/jquery.form.js" type="text/javascript"></script>
 <script>
-	refreshCode();
+$(document).ready(function(){
+	checkEmailIsConfirm();
+});
 </script>
