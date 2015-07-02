@@ -58,7 +58,7 @@ class Home extends CI_Controller {
 		unset($_SESSION["username"]);
 		unset($_SESSION["userid"]);
 		unset($_SESSION["usertype"]);
-		$this->load->view('redirect',array());
+		$this->load->view('redirect',array("info"=>"You have successfully logged out.","url"=>'/home'));
 	}
 	public function homeBaseHandler($title,$view,$data,$footerData=array()){
 		$websiteConfig=$this->commongetdata->getWebsiteConfig("ALLINFO");
