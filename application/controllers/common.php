@@ -403,7 +403,7 @@ class Common extends CI_Controller {
 				$condition['data']=array(
 					"merchant_type"=>$data->merchantType,
 					"merchant_name"=>$data->name,
-					"merchant_login_ID"=>$data->ID,
+//					"merchant_login_ID"=>$data->ID,
 					"merchant_phone1"=>$data->phone1,
 					"merchant_phone2"=>$data->phone2,
 					"merchant_phone3"=>$data->phone3,
@@ -426,6 +426,19 @@ class Common extends CI_Controller {
 					"merchant_bank_account_msg"=>'Register',
 //					"merchant_doc"=>$data->doc,
 					"user_is_merchant"=>1,
+					"merchant_status"=>0
+				);
+			break;
+			case 'merchantInfoStep3':
+				$condition['table']="user";
+				$condition['where']=array("user_username"=>$_SESSION['username']);
+				$condition['data']=array(
+					"merchant_bank"=>$data->bank,
+					"merchant_bank_branch"=>$data->bankBranch,
+					"merchant_bank_account_number"=>$data->accountNumber,
+					"merchant_gst_name"=>$data->GSTName,
+					"merchant_gst_number"=>$data->GSTRegistrationNo,
+					"merchant_gst_address"=>$data->GSTAddress,
 					"merchant_status"=>1
 				);
 			break;
@@ -1304,7 +1317,8 @@ class Common extends CI_Controller {
 		}
 	}*/
 	public function checkID(){
-		if(!$this->commongetdata->checkUniqueAdvance("user",array("merchant_login_ID"=>$_POST['ID']))){
+		$user=$this->commongetdata->getContentAdvance('user',array('merchant_login_ID'=>$_POST['ID']));
+		if(sizeof($user)>0 && $user->user_id!=$_SESSION['userid']){
 			echo json_encode(array("result"=>"notunique","message"=>"The user name already exists!"));
 			return false;
 		}else{
