@@ -3,8 +3,11 @@
 		<div class="tabs-top">
 			<a href="/admin/websiteInfo" class="current">About AiiMai</a>
 			<a href="/admin/userAgreement">User Agreement</a>
+			<a href="/admin/sellerAgreement">Seller Agreement</a>
 			<a href="/admin/help">Help</a>
 			<a href="/admin/emailComfirmation">Email Comfirmation</a>
+			<a href="/admin/emailUserAccountRegisteredSuccessfully">Email of User Account Registered Successfully</a>
+			<a href="/admin/emailMerchantAccountApproval">Email of Merchant Account approval</a>
 		</div>
 	</div>
 	<div class="partContent clearboth content">

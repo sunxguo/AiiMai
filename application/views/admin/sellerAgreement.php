@@ -2,8 +2,8 @@
 	<div class="tabs-box" style="margin-bottom:10px;">
 		<div class="tabs-top">
 			<a href="/admin/websiteInfo">About AiiMai</a>
-			<a href="/admin/userAgreement" class="current">User Agreement</a>
-			<a href="/admin/sellerAgreement">Seller Agreement</a>
+			<a href="/admin/userAgreement">User Agreement</a>
+			<a href="/admin/sellerAgreement" class="current">Seller Agreement</a>
 			<a href="/admin/help">Help</a>
 			<a href="/admin/emailComfirmation">Email Comfirmation</a>
 			<a href="/admin/emailUserAccountRegisteredSuccessfully">Email of User Account Registered Successfully</a>
@@ -12,11 +12,11 @@
 	</div>
 	<div class="partContent clearboth content">
 		<div class="title">Content</div>
-		<textarea id="infoEditor" name="description"><?php echo $userAgreement;?></textarea>
+		<textarea id="infoEditor" name="description"><?php echo $sellerAgreement;?></textarea>
 	</div>
 	<input type="hidden" value="<?php //echo $content->essay_id;?>" id="essayId">
 	<div class="btn-center">
-		<a href="javascript:websiteInfoSave('website_user_agreement','Successfully Saved！Refreshing...')" class="btnfa120">Save</a>
+		<a href="javascript:websiteInfoSave('website_seller_agreement','Successfully Saved！Refreshing...')" class="btnfa120">Save</a>
 	</div>
 </div>
 <link rel="stylesheet" href="/assets/kindEditor/themes/custom/custom.css" />
