@@ -448,7 +448,7 @@ class Common extends CI_Controller {
 					"merchant_bank_account"=>$data->bankAccount,
 					"merchant_bank_account_msg"=>'Register',
 //					"merchant_doc"=>$data->doc,
-					"user_is_merchant"=>1,
+					"user_is_merchant"=>0,
 					"merchant_status"=>0
 				);
 			break;
@@ -462,6 +462,7 @@ class Common extends CI_Controller {
 					"merchant_gst_name"=>$data->GSTName,
 					"merchant_gst_number"=>$data->GSTRegistrationNo,
 					"merchant_gst_address"=>$data->GSTAddress,
+					"user_is_merchant"=>1,
 					"merchant_status"=>1
 				);
 			break;
