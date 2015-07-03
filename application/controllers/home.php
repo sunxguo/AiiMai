@@ -407,6 +407,9 @@ class Home extends CI_Controller {
 			case 'help':
 				$key='website_help';
 			break;
+			case 'sellerAgreement':
+				$key='website_seller_agreement';
+			break;
 		}
 		$info=$this->commongetdata->getContentAdvance('websiteconfig',array('key_websiteconfig'=>$key));
 		if(!isset($info->key_websiteconfig)){

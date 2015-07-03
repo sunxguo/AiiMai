@@ -168,6 +168,26 @@ function websiteInfoEmailComfirmationSave(successMsg){
 	websiteInfo.value = infoEditor.html();
 	dataHandler("modify","websiteInfo",websiteInfo,null,null,closeWait(),successMsg,true);
 }
+function websiteInfoEmailMerchantApprovalSave(successMsg){
+	var websiteInfo = new Object();
+	websiteInfo.key = 'website_seller_approval_email_title';
+	websiteInfo.value = $("#emailMerchantApprovalTitle").val();
+	dataHandler("modify","websiteInfo",websiteInfo,null,null,closeWait(),successMsg,true);
+	var websiteInfo = new Object();
+	websiteInfo.key = 'website_seller_approval_email_content';
+	websiteInfo.value = infoEditor.html();
+	dataHandler("modify","websiteInfo",websiteInfo,null,null,closeWait(),successMsg,true);
+}
+function websiteInfoEmailUserSuccessfulySave(successMsg){
+	var websiteInfo = new Object();
+	websiteInfo.key = 'website_user_success_email_title';
+	websiteInfo.value = $("#emailUserSuccessfullyTitle").val();
+	dataHandler("modify","websiteInfo",websiteInfo,null,null,closeWait(),successMsg,true);
+	var websiteInfo = new Object();
+	websiteInfo.key = 'website_user_success_email_content';
+	websiteInfo.value = infoEditor.html();
+	dataHandler("modify","websiteInfo",websiteInfo,null,null,closeWait(),successMsg,true);
+}
 function adminPwd(successMsg){
 	var username=$("#username").val();
 	var oldpwd=$("#oldpwd").val();
@@ -469,9 +489,27 @@ function deleteCheckedUsers(){
 	$("input[name='checkedUserId']:checked").each(function(){
 		usersArray.push($(this).val()); 
 	});
+	if(usersArray.length<1){
+		alert('Please select users.');
+		return false;
+	}
 	var users = new Object();
 	users.idArray = usersArray;
 	dataHandler("delBulk","users",users,successShowCat,'Sure to delete these users?',null,null,true);
+}
+function statusCheckedUsers(){
+	var usersArray = new Array();
+	$("input[name='checkedUserId']:checked").each(function(){
+		usersArray.push($(this).val()); 
+	});
+	if(usersArray.length<1){
+		alert('Please select users.');
+		return false;
+	}
+	var users = new Object();
+	users.idArray = usersArray;
+	users.status = usersArray;
+	dataHandler("statusBulk","users",users,successShowCat,'Sure to delete these users?',null,null,true);
 }
 /*Example:
 $(".slider-item").mouseout(function(){

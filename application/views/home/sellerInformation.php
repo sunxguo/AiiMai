@@ -228,7 +228,7 @@ You can edit your address and change the display setting on ‘ASM > Setting > M
 		<div class="memberAgree clearfix">
 			<input type="checkbox" id="agreement" name="agreement" value="Y"> 
 			<p class="fl">
-				<label for="agreement">I accept the Seller Agreement </label><a href="" target="_blank">Seller Agreement</a><br>
+				<label for="agreement">I agree to the following <a href="/home/info?key=sellerAgreement" target="_blank" style="color: #5F7392;font-size:12px;text-decoration:underline;">Seller Agreement</a></label><br>
 			</p>
 		</div>
 		<div class="reg-btn">

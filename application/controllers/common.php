@@ -339,6 +339,20 @@ class Common extends CI_Controller {
 		}
 		echo json_encode(array("result"=>"success","message"=>"信息删除成功"));
 	}
+	public function statusBulkInfo(){
+		$condition=array();
+		$data=json_decode($_POST['data']);
+		switch($_POST['info_type']){
+			case 'users':
+				$table="user";
+				$where="user_id";
+			break;
+		}
+		foreach($data->idArray as $id){
+			$result=$this->dbHandler->updateData(array("table"=>$table,"where"=>array($where=>$id),"info"=>$data->status));
+		}
+		echo json_encode(array("result"=>"success","message"=>"信息删除成功"));
+	}
 	public function modifyInfo(){
 		$condition=array();
 		$data=json_decode($_POST['data']);
@@ -894,7 +908,7 @@ class Common extends CI_Controller {
 					$this->commongetdata->email($merchant->user_email,'Status has been changed | AiiMai','The status of your AiiMai account has been changed to "'.$statusArray[$data->status].'"');
 				}
 			}
-			else echo json_encode(array("result"=>"failed","message"=>"Failed to modify"));
+			else echo json_encode(array("result"=>"failed","message"=>"Failed to modify.May be because some fields is the same as the before!"));
 		}
 	}
 	public function getInfo(){
@@ -1439,7 +1453,7 @@ class Common extends CI_Controller {
 		);
 		$result=$this->dbHandler->updateData($condition);
 		if($result>0){
-			$this->commongetdata->email($user->user_email,$this->commongetdata->getWebsiteConfig("website_user_register_success_email_subject"),$this->commongetdata->getWebsiteConfig("website_user_register_success_email_message"));
+			$this->commongetdata->email($user->user_email,$this->commongetdata->getWebsiteConfig("website_user_success_email_title"),$this->commongetdata->getWebsiteConfig("website_user_success_email_content"));
 			$this->load->view('redirect',array("url"=>"/home/login","info"=>"Success!"));
 		}
 		else{
@@ -1485,7 +1499,7 @@ class Common extends CI_Controller {
 		$result=$this->dbHandler->updateData($condition);
 		$emailTitle=$this->commongetdata->getWebsiteConfig('website_confirm_email_title');
 		$emailContent=$this->commongetdata->getWebsiteConfig('website_confirm_email_content');
-		$this->commongetdata->email($_SESSION['userEmail'],$emailTitle,$emailContent.'<a href="aiimai.coolkeji.com/common/active?verify='.$token.'" style="display: inline-block;padding: 6px 12px;margin-bottom: 0;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;background-image: none;border: 1px solid transparent;border-radius: 4px;font-family: inherit;color: #fff;background-color: #5cb85c;border-color: #4cae4c;font-size: 10px;text-decoration: none;padding: 5px 10px;">Confirm</a><br>If the button is invalid, please copy the following link to your browser\'s address bar!<br><br><span style="color:blue;">aiimai.coolkeji.com/common/active?verify='.$token.'</span>');
+		$this->commongetdata->email($_SESSION['userEmail'],$emailTitle,$emailContent.'<a href="aiimai.coolkeji.com/common/active?verify='.$token.'" style="display: inline-block;padding: 6px 12px;margin-bottom: 10px;font-size: 14px;font-weight: 400;line-height: 1.42857143;text-align: center;white-space: nowrap;vertical-align: middle;-ms-touch-action: manipulation;touch-action: manipulation;cursor: pointer;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;background-image: none;border: 1px solid transparent;border-radius: 4px;font-family: inherit;color: #fff;background-color: #5cb85c;border-color: #4cae4c;font-size: 12px;text-decoration: none;padding: 5px 10px;">Confirm</a><br>If the button is invalid, please copy the following link to your browser\'s address bar!<br><span style="color:blue;">http://aiimai.coolkeji.com/common/active?verify='.$token.'</span>');
 		echo json_encode(array("result"=>"success","message"=>"验证码输入正确！"));
 		/*		if(){
 			echo json_encode(array("result"=>"success","message"=>"验证码输入正确！"));

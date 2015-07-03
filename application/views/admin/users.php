@@ -82,6 +82,27 @@
 	</table>
 	<div>
 		<button onclick="deleteCheckedUsers();" type="button" class="km-btn km-btn-danger" style="height: 18px;font-size: 10px;padding: 0px 10px;margin: 10px 0 0 0;">Delete</button>
+		<button onclick="statusCheckedUsers();" type="button" class="km-btn km-btn-success" style="height: 18px;font-size: 10px;padding: 0px 10px;margin: 10px 0 0 0;">Status</button>
+		<div class="km-modal-dialog width40p" id="personalInfoPwd">
+			<div class="km-modal-content">
+				<div class="km-modal-header">
+					<button type="button" class="km-close"><span>&times;</span></button>
+					<h4 class="km-modal-title">Personal Info - Change Password</h4>
+				</div>
+				<div class="km-modal-body">
+					<label for="personalInfoOldpwd" class="km-control-label">Current Password:</label>
+					<input type="password" class="km-form-control" id="personalInfoOldpwd" style="width: 95%;padding: 0 5px;">
+					<label for="personalInfoNewpwd" class="km-control-label">New Password:</label>
+					<input type="password" class="km-form-control" id="personalInfoNewpwd" style="width: 95%;padding: 0 5px;">
+					<label for="personalInfoConfirmpwd" class="km-control-label">Re-enter New Password:</label>
+					<input type="password" class="km-form-control" id="personalInfoConfirmpwd" style="width: 95%;padding: 0 5px;">
+				</div>
+				<div class="km-modal-footer">
+					<button type="button" class="km-btn km-btn-default km-btn-close">Close</button>
+					<button type="button" class="km-btn km-btn-primary" onclick="savePersonalInfoPwd('Successfully saved!');">Save</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
 	</div>
 	<nav>
 	  Total <?php echo $amount;?>

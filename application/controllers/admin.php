@@ -505,6 +505,12 @@ class Admin extends CI_Controller {
 		);
 		$this->adminBaseHandler('userAgreement',array('data','websiteInfo'),'userAgreement',$data);
 	}
+	public function sellerAgreement(){
+		$data=array(
+			"sellerAgreement"=>$this->commongetdata->getWebsiteConfig('website_seller_agreement')
+		);
+		$this->adminBaseHandler('sellerAgreement',array('data','websiteInfo'),'sellerAgreement',$data);
+	}
 	public function help(){
 		$data=array(
 			"help"=>$this->commongetdata->getWebsiteConfig('website_help')
@@ -517,6 +523,20 @@ class Admin extends CI_Controller {
 			"emailComfirmationContent"=>$this->commongetdata->getWebsiteConfig('website_confirm_email_content'),
 		);
 		$this->adminBaseHandler('emailComfirmation',array('data','websiteInfo'),'emailComfirmation',$data);
+	}
+	public function emailUserAccountRegisteredSuccessfully(){
+		$data=array(
+			"emailUserSuccessfullyTitle"=>$this->commongetdata->getWebsiteConfig('website_user_success_email_title'),
+			"emailUserSuccessfullyContent"=>$this->commongetdata->getWebsiteConfig('website_user_success_email_content'),
+		);
+		$this->adminBaseHandler('Email of UserAccount Registered Successfully',array('data','websiteInfo'),'emailUserAccountRegisteredSuccessfully',$data);
+	}
+	public function emailMerchantAccountApproval(){
+		$data=array(
+			"emailMerchantApprovalTitle"=>$this->commongetdata->getWebsiteConfig('website_seller_approval_email_title'),
+			"emailMerchantApprovalContent"=>$this->commongetdata->getWebsiteConfig('website_seller_approval_email_content'),
+		);
+		$this->adminBaseHandler('Email of Merchant Account Approval',array('data','websiteInfo'),'emailMerchantAccountApproval',$data);
 	}
 	public function columnList(){
 		$data=array("columns"=>$this->commongetdata->getColumns());
