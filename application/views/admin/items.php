@@ -35,6 +35,7 @@
 	<table>
 		<thead>
 			<tr class="table-head">
+				<th style="width:30px;"><input type="checkbox" id="checkAll"></th>
 				<th style="width:100px;">Thumbnail</th>
 				<th style="width:300px;">Name</th>
 				<th style="width:150px;">Price</th>
@@ -50,6 +51,7 @@
 		<tbody>
 			<?php foreach($items as $item):?>
 			<tr class="list1">
+				<td><input type="checkbox" name="checkedUserId" value="<?php echo $item->product_id;?>"></td>
 				<td><img src="<?php echo $item->product_image;?>" width="60" height="60"></td>
 				<td class="column-name"><a href="/home/item?itemId=<?php echo $item->product_id;?>" target="_blank"><?php echo $item->product_item_title_english;?></a></td>
 				<td><?php echo $item->product_sell_price;?></td>
@@ -79,6 +81,32 @@
 			<?php endforeach;?>
 		</tbody>
 	</table>
+	<div>
+		<button onclick="deleteCheckedItems();" type="button" class="km-btn km-btn-danger" style="height: 18px;font-size: 10px;padding: 0px 10px;margin: 10px 0 0 0;">Delete</button>
+		<button onclick="setDivCenter('#statusCheckedItemsDiv',true);" type="button" class="km-btn km-btn-success" style="height: 18px;font-size: 10px;padding: 0px 10px;margin: 10px 0 0 0;">Status</button>
+		<div class="km-modal-dialog width40p" id="statusCheckedItemsDiv">
+			<div class="km-modal-content">
+				<div class="km-modal-header">
+					<button type="button" class="km-close"><span>&times;</span></button>
+					<h4 class="km-modal-title">Delete Items</h4>
+				</div>
+				<div class="km-modal-body">
+					<select id="statusChanged" class="select w100">
+						<option value="0">
+							Normal
+						</option>
+						<option value="1">
+							Frozen
+						</option>
+					</select>
+				</div>
+				<div class="km-modal-footer">
+					<button type="button" class="km-btn km-btn-default km-btn-close">Close</button>
+					<button type="button" class="km-btn km-btn-primary" onclick="statusCheckedUsers();">Save</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div>
 	<div class="km-modal-dialog width40p" id="statusDialog">
 		<div class="km-modal-content">
 			<div class="km-modal-header">

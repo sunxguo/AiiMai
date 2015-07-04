@@ -41,6 +41,7 @@
 	<table>
 		<thead>
 			<tr class="table-head">
+				<th style="width:30px;"><input type="checkbox" id="checkAll"></th>
 				<th style="width:100px;">Logo</th>
 				<th style="width:200px;">Seller Shop Title</th>
 				<th style="width:100px;">Avatar</th>
@@ -56,6 +57,7 @@
 		<tbody>
 			<?php foreach($merchants as $merchant):?>
 			<tr class="list1">
+				<td><input type="checkbox" name="checkedUserId" value="<?php echo $merchant->user_id;?>"></td>
 				<td><img src="<?php echo $merchant->merchant_shop_icon;?>" width="54" height="43"></td>
 				<td class="column-name"><a href="/home/shop?shopId=<?php echo $merchant->user_id;?>" target="_blank"><?php echo $merchant->merchant_shop_name;?></a></td>
 				<td><img src="<?php echo $merchant->user_avatar;?>" width="54" height="43"></td>
