@@ -508,8 +508,22 @@ function statusCheckedUsers(){
 	}
 	var users = new Object();
 	users.idArray = usersArray;
-	users.status = usersArray;
-	dataHandler("statusBulk","users",users,successShowCat,'Sure to delete these users?',null,null,true);
+	users.status = $("#statusChanged").val();
+	dataHandler("statusBulk","users",users,successShowCat,'Sure to modify the status of these users?',null,null,true);
+}
+function deleteCheckedItems(){
+	var itemsArray = new Array();
+	$("input[name='checkedUserId']:checked").each(function(){
+		itemsArray
+		.push($(this).val()); 
+	});
+	if(usersArray.length<1){
+		alert('Please select users.');
+		return false;
+	}
+	var users = new Object();
+	users.idArray = usersArray;
+	dataHandler("delBulk","users",users,successShowCat,'Sure to delete these users?',null,null,true);
 }
 /*Example:
 $(".slider-item").mouseout(function(){

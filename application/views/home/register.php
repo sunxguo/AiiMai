@@ -111,7 +111,7 @@
 			</tr>
 		</table>
 		<div class="memberAgree clearfix">
-			<input type="checkbox" id="agreement" name="agreement" value="Y" checked="checked"> 
+			<input type="checkbox" id="agreement" name="agreement" value="Y"> 
 			<p class="fl">
 				<label for="agreement">I agree to the following <a href="/home/info?key=userAgreement" target="_blank" style="color: #5F7392;font-size:12px;text-decoration:underline;">User Agreement</a></label><br>
 					For information on how we protect your privacy and use your information, please read our <a href="" target="_blank">Privacy Policy</a> 

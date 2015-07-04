@@ -249,8 +249,16 @@ function sendMerchantEmail(){
 	  }
 	});
 }
+function checkUserAgreement(){
+	if($("#agreement").prop('checked')){
+		return true;
+	}else{
+		showAlert('danger','Please accept the User Agreement!','');
+		return false;
+	}
+}
 function checkAll(){
-	if(checkuserName() && checkPwd() && checkCfmPwd() && checkCode() && checkUserEmail(false)){
+	if(checkUserAgreement() && checkuserName() && checkPwd() && checkCfmPwd() && checkCode() && checkUserEmail(false)){
 		validation();
 		return true;
 	}else{

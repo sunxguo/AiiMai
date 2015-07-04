@@ -76,11 +76,11 @@ class Home extends CI_Controller {
 	public function index(){
 		$categories=$this->commongetdata->getCategories(false);
 		foreach($categories as $cat){
-			$cat->featuredProducts=$this->commongetdata->getProducts(false,8,false,false,false,false,false,false,false,array("field"=>'product_modify_time',"type"=>'DESC'));
+			$cat->featuredProducts=$this->commongetdata->getProducts(false,8,false,false,false,3,false,false,false,array("field"=>'product_modify_time',"type"=>'DESC'));
 		}
 		$data=array(
 		//	"columns"=>$this->commongetdata->getColumns()
-			"topSalesProducts"=>$this->commongetdata->getProducts(false,false,false,false,false,false,false,false,false,array("field"=>'product_modify_time',"type"=>'DESC')),
+			"topSalesProducts"=>$this->commongetdata->getProducts(false,false,false,false,3,false,false,false,false,array("field"=>'product_modify_time',"type"=>'DESC')),
 			'categories'=>$categories
 		);
 		$this->homeBaseHandler('Home','index',$data,array("showFooter"=>false));
