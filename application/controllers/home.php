@@ -9,7 +9,7 @@ class Home extends CI_Controller {
 		$this->load->model("dbHandler");
 	}
 	public function checkUserLogin(){
-		if (!checkLogin() || (isset($_SESSION["usertype"]) && !strcmp($_SESSION["usertype"],"admin"))) {
+		if(!checkLogin() || (isset($_SESSION["usertype"]) && !strcmp($_SESSION["usertype"],"admin"))) {
 			$this->load->view('redirect',array("url"=>"/home/login","info"=>"Please login!"));
 			return false;
 		}
@@ -28,9 +28,13 @@ class Home extends CI_Controller {
 		if(isset($_POST["username"]) && isset($_POST["pwd"])){
 			$condition=array(
 				'table'=>'user',
-				'result'=>'data',
-				'where'=>array('user_username'=>$_POST["username"])
+				'result'=>'data'
 			);
+			if(!$this->commongetdata->checkEmail($_POST["username"])){
+				$condition['where']=array('user_username'=>$_POST["username"]);
+			}else{
+				$condition['where']=array('user_email'=>$_POST["username"]);
+			}
 			$info=$this->dbHandler->selectData($condition);
 			if(count($info,0)==1){
 				$post_pwd=MD5("MonkeyKing".$_POST["pwd"]);

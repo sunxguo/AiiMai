@@ -493,50 +493,70 @@ class Admin extends CI_Controller {
 		);
 		$this->adminBaseHandler('emergency Contacts',array('setting','emergencyContacts'),'emergencyContacts',$data);
 	}
+	public function websiteInfoList(){
+		$data=array(
+			//"about"=>$this->commongetdata->getWebsiteConfig('website_about_aiimai')
+		);
+		$this->adminBaseHandler('websiteInfoList',array('data','websiteInfo'),'websiteInfoList',$data);
+	}
 	public function websiteInfo(){
 		$data=array(
 			"about"=>$this->commongetdata->getWebsiteConfig('website_about_aiimai')
 		);
-		$this->adminBaseHandler('websiteInfo',array('data','websiteInfo'),'websiteInfo',$data);
+//		$this->adminBaseHandler('websiteInfo',array('data','websiteInfo'),'websiteInfo',$data);
+		$this->checkAdminLogin();
+		$this->load->view('admin/websiteInfo',$data);
 	}
 	public function userAgreement(){
 		$data=array(
 			"userAgreement"=>$this->commongetdata->getWebsiteConfig('website_user_agreement')
 		);
-		$this->adminBaseHandler('userAgreement',array('data','websiteInfo'),'userAgreement',$data);
+//		$this->adminBaseHandler('userAgreement',array('data','websiteInfo'),'userAgreement',$data);
+		$this->checkAdminLogin();
+		$this->load->view('admin/userAgreement',$data);
 	}
 	public function sellerAgreement(){
 		$data=array(
 			"sellerAgreement"=>$this->commongetdata->getWebsiteConfig('website_seller_agreement')
 		);
-		$this->adminBaseHandler('sellerAgreement',array('data','websiteInfo'),'sellerAgreement',$data);
+//		$this->adminBaseHandler('sellerAgreement',array('data','websiteInfo'),'sellerAgreement',$data);
+		$this->checkAdminLogin();
+		$this->load->view('admin/sellerAgreement',$data);
 	}
 	public function help(){
 		$data=array(
 			"help"=>$this->commongetdata->getWebsiteConfig('website_help')
 		);
-		$this->adminBaseHandler('help',array('data','websiteInfo'),'help',$data);
+//		$this->adminBaseHandler('help',array('data','websiteInfo'),'help',$data);
+		$this->checkAdminLogin();
+		$this->load->view('admin/help',$data);
 	}
 	public function emailComfirmation(){
 		$data=array(
 			"emailComfirmationTitle"=>$this->commongetdata->getWebsiteConfig('website_confirm_email_title'),
 			"emailComfirmationContent"=>$this->commongetdata->getWebsiteConfig('website_confirm_email_content'),
 		);
-		$this->adminBaseHandler('emailComfirmation',array('data','websiteInfo'),'emailComfirmation',$data);
+//		$this->adminBaseHandler('emailComfirmation',array('data','websiteInfo'),'emailComfirmation',$data);
+		$this->checkAdminLogin();
+		$this->load->view('admin/emailComfirmation',$data);
 	}
 	public function emailUserAccountRegisteredSuccessfully(){
 		$data=array(
 			"emailUserSuccessfullyTitle"=>$this->commongetdata->getWebsiteConfig('website_user_success_email_title'),
 			"emailUserSuccessfullyContent"=>$this->commongetdata->getWebsiteConfig('website_user_success_email_content'),
 		);
-		$this->adminBaseHandler('Email of UserAccount Registered Successfully',array('data','websiteInfo'),'emailUserAccountRegisteredSuccessfully',$data);
+//		$this->adminBaseHandler('Email of UserAccount Registered Successfully',array('data','websiteInfo'),'emailUserAccountRegisteredSuccessfully',$data);
+		$this->checkAdminLogin();
+		$this->load->view('admin/emailUserAccountRegisteredSuccessfully',$data);
 	}
 	public function emailMerchantAccountApproval(){
 		$data=array(
 			"emailMerchantApprovalTitle"=>$this->commongetdata->getWebsiteConfig('website_seller_approval_email_title'),
 			"emailMerchantApprovalContent"=>$this->commongetdata->getWebsiteConfig('website_seller_approval_email_content'),
 		);
-		$this->adminBaseHandler('Email of Merchant Account Approval',array('data','websiteInfo'),'emailMerchantAccountApproval',$data);
+//		$this->adminBaseHandler('Email of Merchant Account Approval',array('data','websiteInfo'),'emailMerchantAccountApproval',$data);
+		$this->checkAdminLogin();
+		$this->load->view('admin/emailMerchantAccountApproval',$data);
 	}
 	public function columnList(){
 		$data=array("columns"=>$this->commongetdata->getColumns());

@@ -21,7 +21,7 @@
 </h3>
 <ul style="display: block;">
 	<li><a href="/admin/websiteLayout" <?php echo isset($websiteLayout) && $websiteLayout?'class="current"':'';?>>Website Layout</a></li>
-	<li><a href="/admin/websiteInfo" <?php echo isset($websiteInfo) && $websiteInfo?'class="current"':'';?>>websiteInfo</a></li>
+	<li><a href="/admin/websiteInfoList" <?php echo isset($websiteInfo) && $websiteInfo?'class="current"':'';?>>websiteInfo</a></li>
 	<li><a href="/admin/items" <?php echo isset($items) && $items?'class="current"':'';?>><?php echo lang('admin_sider_Items');?></a></li>
 	<li><a href="/admin/merchants" <?php echo isset($merchants) && $merchants?'class="current"':'';?>><?php echo lang('admin_sider_Merchants');?></a></li>
 	<li><a href="/admin/users" <?php echo isset($users) && $users?'class="current"':'';?>><?php echo lang('admin_sider_Users');?></a></li>
@@ -63,7 +63,7 @@
 	<li><a href="/admin/securityCenter" <?php echo isset($securityCenter) && $securityCenter?'class="current"':'';?>><?php echo lang('admin_sider_SecurityCenter');?></a></li>
 <!--	<li><a href="/admin/template" <?php echo isset($template) && $template?'class="current"':'';?>><?php echo lang('admin_sider_Template');?></a></li>
 	<li><a href="/admin/emergencyContacts" <?php echo isset($emergencyContacts) && $emergencyContacts?'class="current"':'';?>><?php echo lang('admin_sider_EmergencyContacts');?></a></li>-->
-	
+
 </ul>
 <!--
 <h3 <?php echo isset($account) && $account?'class="current"':'';?>>

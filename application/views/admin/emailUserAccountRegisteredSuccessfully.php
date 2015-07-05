@@ -1,15 +1,19 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>User Agreement</title>
+	<link rel="stylesheet" href="/assets/css/base.css" type="text/css"/>
+	<link rel="stylesheet" href="/assets/css/bk.css" type="text/css"/>
+	<link rel="stylesheet" href="/assets/css/admin.css" type="text/css"/>
+	<link rel="stylesheet" href="/assets/css/template.css" type="text/css"/>
+    <script src="/assets/js/jquery.js" type="text/javascript"></script>
+	<script src="/assets/js/admin-common.js" type="text/javascript"></script>
+	<script src="/assets/js/admin.js" type="text/javascript"></script>
+	<script src="/assets/js/jquery.form.js" type="text/javascript"></script>
+</head>
+<body>
 <div class="padding10 formList clearfix modify_main">
-	<div class="tabs-box" style="margin-bottom:10px;">
-		<div class="tabs-top">
-			<a href="/admin/websiteInfo">About AiiMai</a>
-			<a href="/admin/userAgreement">User Agreement</a>
-			<a href="/admin/sellerAgreement">Seller Agreement</a>
-			<a href="/admin/help">Help</a>
-			<a href="/admin/emailComfirmation">Email Comfirmation</a>
-			<a href="/admin/emailUserAccountRegisteredSuccessfully" class="current">Email of User Account Registered Successfully</a>
-			<a href="/admin/emailMerchantAccountApproval">Email of Merchant Account approval</a>
-		</div>
-	</div>
 	
 	<div class="partContent clearboth content">
 		<div class="title">Subject</div>
@@ -45,3 +49,5 @@
 		});
 	});
 </script>
+</body>
+</html>
