@@ -333,6 +333,10 @@ class Common extends CI_Controller {
 				$table="user";
 				$where="user_id";
 			break;
+			case 'items':
+				$table="product";
+				$where="product_id";
+			break;
 		}
 		foreach($data->idArray as $id){
 			$result=$this->dbHandler->deleteData(array("table"=>$table,"where"=>array($where=>$id)));
@@ -346,10 +350,16 @@ class Common extends CI_Controller {
 			case 'users':
 				$table="user";
 				$where="user_id";
+				$statusField="user_state";
+			break;
+			case 'items':
+				$table="product";
+				$where="product_id";
+				$statusField="product_status";
 			break;
 		}
 		foreach($data->idArray as $id){
-			$result=$this->dbHandler->updateData(array("table"=>$table,"where"=>array($where=>$id),"data"=>array("user_state"=>$data->status)));
+			$result=$this->dbHandler->updateData(array("table"=>$table,"where"=>array($where=>$id),"data"=>array($statusField=>$data->status)));
 		}
 		echo json_encode(array("result"=>"success","message"=>"信息修改成功"));
 	}

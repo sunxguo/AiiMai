@@ -35,7 +35,7 @@
     </div>
 	<div class="main-bk" style="min-height:978px;">
 	<?php 
-		if(isset($showSlider) && $showSlider && $_SESSION['usertype']=="admin"){
+		if(isset($showSlider) && $showSlider){
 			require("slider.php");
 		}
 	?>

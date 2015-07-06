@@ -10,7 +10,7 @@ class Admin extends CI_Controller {
 		$this->load->model("dbHandler");
 	}
 	public function checkAdminLogin(){
-		if (!checkLogin() || strcmp($_SESSION["usertype"], "admin")) {
+		if (!isset($_SESSION['usernameAdmin'])) {
 			$this->load->view('redirect',array("url"=>"/admin/login","info"=>"Please login administrator account!"));
 			return false;
 		}else return true;
@@ -34,9 +34,9 @@ class Admin extends CI_Controller {
 				$post_pwd=MD5("MonkeyKing".$_POST["pwd"]);
 				$db_pwd=$info[0]->mkadmin_pwd;
 				if($post_pwd==$db_pwd){
-					$_SESSION['username']=$info[0]->mkadmin_username;
-					$_SESSION['userid']=$info[0]->mkadmin_id;
-					$_SESSION['usertype']="admin";
+					$_SESSION['usernameAdmin']=$info[0]->mkadmin_username;
+					$_SESSION['useridAdmin']=$info[0]->mkadmin_id;
+					$_SESSION['usertypeAdmin']="admin";
 					$this->load->view('redirect',array("url"=>"/admin/index"));
 				}
 				else{
@@ -51,9 +51,9 @@ class Admin extends CI_Controller {
 		}
 	}
 	public function logout(){
-		unset($_SESSION["username"]);
-		unset($_SESSION["userid"]);
-		unset($_SESSION["usertype"]);
+		unset($_SESSION["usernameAdmin"]);
+		unset($_SESSION["useridAdmin"]);
+		unset($_SESSION["usertypeAdmin"]);
 		$this->load->view('redirect',array("url"=>"/admin/login"));
 	}
 	public function adminBaseHandler($title,$sider,$view,$data){
@@ -273,7 +273,7 @@ class Admin extends CI_Controller {
 		$amountPerPage=20;
 		$condition['table']='order';
 		$baseUrl=$selectUrl='/admin/orders?placeholder=yes';
-		$condition['where']['order_merchant']=$_SESSION['userid'];
+//		$condition['where']['order_merchant']=$_SESSION['userid'];
 		if(isset($_GET['status'])&& is_numeric($_GET['status'])){
 			$condition['where']['order_status']=$_GET['status'];
 			$baseUrl.='?status='.$_GET['status'];
