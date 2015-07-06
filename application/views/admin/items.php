@@ -39,12 +39,12 @@
 				<th style="width:100px;">Thumbnail</th>
 				<th style="width:300px;">Name</th>
 				<th style="width:150px;">Price</th>
-				<th style="width:150px;">Reference Price</th>
-				<th style="width:150px;">Main Category</th>
+				<th style="width:200px;">Reference Price</th>
+				<th style="width:200px;">Main Category</th>
 				<th style="width:220px;">1st Sub Category</th>
 				<th style="width:220px;">2nd Sub Category</th>
 				<th style="width:150px;">Time</th>
-				<th style="width:150px;">Status</th>
+				<th style="width:80px;">Status</th>
 				<th style="width:280px;">Operation</th>
 			</tr>
 		</thead>
@@ -92,17 +92,17 @@
 				</div>
 				<div class="km-modal-body">
 					<select id="statusChanged" class="select w100">
-						<option value="0">
-							Normal
-						</option>
-						<option value="1">
-							Frozen
-						</option>
+						<option value="1">Under Review</option>
+						<option value="2">On queue</option>
+						<option value="3">Available</option>
+						<option value="4">Deleted</option>
+						<option value="5">Suspended</option>
+						<option value="6">Restricted</option>
 					</select>
 				</div>
 				<div class="km-modal-footer">
 					<button type="button" class="km-btn km-btn-default km-btn-close">Close</button>
-					<button type="button" class="km-btn km-btn-primary" onclick="statusCheckedUsers();">Save</button>
+					<button type="button" class="km-btn km-btn-primary" onclick="statusCheckedItems();">Save</button>
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->

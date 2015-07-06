@@ -333,6 +333,10 @@ class Common extends CI_Controller {
 				$table="user";
 				$where="user_id";
 			break;
+			case 'items':
+				$table="product";
+				$where="product_id";
+			break;
 		}
 		foreach($data->idArray as $id){
 			$result=$this->dbHandler->deleteData(array("table"=>$table,"where"=>array($where=>$id)));
@@ -346,10 +350,16 @@ class Common extends CI_Controller {
 			case 'users':
 				$table="user";
 				$where="user_id";
+				$statusField="user_state";
+			break;
+			case 'items':
+				$table="product";
+				$where="product_id";
+				$statusField="product_status";
 			break;
 		}
 		foreach($data->idArray as $id){
-			$result=$this->dbHandler->updateData(array("table"=>$table,"where"=>array($where=>$id),"data"=>array("user_state"=>$data->status)));
+			$result=$this->dbHandler->updateData(array("table"=>$table,"where"=>array($where=>$id),"data"=>array($statusField=>$data->status)));
 		}
 		echo json_encode(array("result"=>"success","message"=>"信息修改成功"));
 	}
@@ -1501,7 +1511,7 @@ class Common extends CI_Controller {
 		$result=$this->dbHandler->updateData($condition);
 		$emailTitle=$this->commongetdata->getWebsiteConfig('website_confirm_email_title');
 		$emailContent=$this->commongetdata->getWebsiteConfig('website_confirm_email_content');
-		$contentEnd='<a href="aiimai.coolkeji.com/common/active?verify='.$token.'" class="confirmBt"><img src="http://aiimai.coolkeji.com/assets/images/home/confirmbt.png"></a><br>If the button is invalid, please copy the following link to your browser\'s address bar!<br><span style="color:blue;">http://aiimai.coolkeji.com/common/active?verify='.$token.'</span></body></html>';
+		$contentEnd='<a href="aiimai.coolkeji.com/common/active?verify='.$token.'" class="confirmBt"><img src="http://aiimai.coolkeji.com/assets/images/home/confirmbt.png" alt="Confirm"></a><br>If the button is invalid, please copy the following link to your browser\'s address bar!<br><span style="color:blue;">http://aiimai.coolkeji.com/common/active?verify='.$token.'</span></body></html>';
 		$content='<!doctype html><html><head><meta charset="utf-8"><style>body{font-family:Microsoft Yahei;} .confirmBt{display: inline-block;margin-bottom: 10px;}</style></head><body>'.$emailContent.$contentEnd;
 		$this->commongetdata->email($_SESSION['userEmail'],$emailTitle,$content);
 		echo json_encode(array("result"=>"success","message"=>"验证码输入正确！"));

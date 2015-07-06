@@ -865,3 +865,22 @@ a:hover {
 .states-info {
   color: #fff;
 }
+.website-info-list .website-info-div .website-info-item{
+	float:left;
+	width:150px;
+	height:50px;
+	line-height: 50px;
+	background-color:#009AD7;
+	text-align:center;
+	color:white;
+	font-size:18px;
+	margin:10px;
+	border-radius: 6px;
+}
+.website-info-list .website-info-div .website-info-item:hover{
+	background-color: #2DB7ED;
+	transition: background-color 0.5s;
+	-moz-transition: background-color 0.5s;
+	-webkit-transition: background-color 0.5s;
+	-o-transition: background-color 0.5s;
+}

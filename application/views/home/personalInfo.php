@@ -147,6 +147,40 @@
 								</div>
 								<div class="km-modal-body">
 								<!--//1.shipAddress 2.Family 3.Work 4.Friends 5.Etc.-->
+									<ul class="km-nav km-nav-tabs clearfix">
+									  <li class="active"><a href="">Family</a></li>
+									  <li><a href="">Friends</a></li>
+									  <li><a href="">Wordk</a></li>
+									  <li><a href="">Etc.</a></li>
+									</ul>
+									<div id="familyAddress">
+										<ul>
+											<li>
+												
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="km-modal-footer">
+									<button type="button" class="km-btn km-btn-default km-btn-close">Close</button>
+									<button onclick="saveAddress();" type="button" class="km-btn km-btn-primary">Save</button>
+								</div>
+							</div><!-- /.modal-content -->
+						</div><!-- /.modal-dialog -->
+						<div class="km-modal-dialog width40p" id="editAddressDiv">
+							<div class="km-modal-content">
+								<div class="km-modal-header">
+									<button type="button" class="km-close"><span>&times;</span></button>
+									<h4 class="km-modal-title">Personal Info - Address</h4>
+								</div>
+								<div class="km-modal-body">
+								<!--//1.shipAddress 2.Family 3.Work 4.Friends 5.Etc.-->
+									<ul class="km-nav km-nav-tabs clearfix">
+									  <li class="active"><a href="">Family</a></li>
+									  <li><a href="">Friends</a></li>
+									  <li><a href="">Wordk</a></li>
+									  <li><a href="">Etc.</a></li>
+									</ul>
 									<label for="addressType" class="km-control-label" style="width: 80px;">Type:</label>
 									<select id="addressType" style="height:30px;vertical-align:middle;" onchange="selectAddress();">
 										<option value="2">Family</option>

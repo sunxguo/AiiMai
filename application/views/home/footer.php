@@ -7,7 +7,7 @@
 				<li><a href="/home/info?key=userAgreement">User Agreement</a></li>
 				<li><a href="/home/info?key=privacyPolicy">Privacy Policy</a></li>
 				<li><a href="/home/info?key=partnership">Partnership</a></li>
-				<li><a href="/home/cms/register">Seller Register</a></li>
+				<li><a href="/cms/register">Seller Register</a></li>
 				<li><a href="/home/info?key=help">Help</a></li>
 				<li><a href="/home/info?key=qsafeProgram">Qsafe Program</a></li>
 			</ul>

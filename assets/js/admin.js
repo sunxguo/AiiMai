@@ -514,16 +514,29 @@ function statusCheckedUsers(){
 function deleteCheckedItems(){
 	var itemsArray = new Array();
 	$("input[name='checkedUserId']:checked").each(function(){
-		itemsArray
-		.push($(this).val()); 
+		itemsArray.push($(this).val()); 
 	});
-	if(usersArray.length<1){
-		alert('Please select users.');
+	if(itemsArray.length<1){
+		alert('Please select items.');
 		return false;
 	}
-	var users = new Object();
-	users.idArray = usersArray;
-	dataHandler("delBulk","users",users,successShowCat,'Sure to delete these users?',null,null,true);
+	var items = new Object();
+	items.idArray = itemsArray;
+	dataHandler("delBulk","items",items,successShowCat,'Sure to delete these items?',null,null,true);
+}
+function statusCheckedItems(){
+	var itemsArray = new Array();
+	$("input[name='checkedUserId']:checked").each(function(){
+		itemsArray.push($(this).val()); 
+	});
+	if(itemsArray.length<1){
+		alert('Please select items.');
+		return false;
+	}
+	var items = new Object();
+	items.idArray = itemsArray;
+	items.status = $("#statusChanged").val();
+	dataHandler("statusBulk","items",items,successShowCat,'Sure to modify the status of these items?',null,null,true);
 }
 /*Example:
 $(".slider-item").mouseout(function(){

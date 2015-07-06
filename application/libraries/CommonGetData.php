@@ -699,6 +699,11 @@ class CommonGetData{
 		}
 		return $result;
 	}
+	public function checkEmail($email){
+		$regex = '/^[a-z0-9!#$%&\'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&\'*+\/=?^_`{|}~-]+)*@(?:[-_a-z0-9][-_a-z0-9]*\.)*(?:[a-z0-9][-a-z0-9]{0,62})\.(?:(?:[a-z]{2}\.)?[a-z]{2,})$/i';
+		if (preg_match($regex, $email)) return true;
+		else return false;
+	}
 	public function email($to,$subject,$message){
 		$this->CI->load->library('email');
 		//以下设置Email参数
