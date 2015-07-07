@@ -16,21 +16,31 @@
 		<button onclick="modifyCategory(this,'<?php echo $currentCat->category_id;?>');" categoryName="<?php echo $currentCat->category_name;?>" type="button" class="km-btn km-btn-primary" style="height: 28px; padding: 0px 12px;font-size: 12px;">Edit</button>
 		<button onclick="deleteCategory(this,'<?php echo $currentCat->category_id;?>');" categoryName="<?php echo $currentCat->category_name;?>" type="button" class="km-btn km-btn-danger" style="height: 28px; padding: 0px 12px;font-size: 12px;">Delete</button>
 		<div class="km-btn-group-vertical" style="margin-top:10px;width:100%;">
-			<?php foreach($currentCat->subCats as $subCats):?>
+			<?php $subAmount=sizeof($currentCat->subCats);
+			foreach($currentCat->subCats as $key=>$subCats):?>
 			<button type="button" class="km-btn km-btn-default" style="color: #000;font-size: 12px;font-weight: 600;text-align:left;">
 				<?php echo $subCats->category_name;?>
 				<a onclick="deleteCategory(this,'<?php echo $subCats->category_id;?>');" categoryName="<?php echo $subCats->category_name;?>" class="km-btn km-btn-danger fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;">Delete</a>
 				<a onclick="modifyCategory(this,'<?php echo $subCats->category_id;?>');" categoryName="<?php echo $subCats->category_name;?>" class="km-btn km-btn-primary fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;margin-right:10px;">Edit</a>
+				<?php if($key!=$subAmount-1):?>
 				<a onclick="orderCategory('<?php echo $subCats->category_id;?>','down')" class="fr" style="margin-right:10px;"><img src="/assets/images/cms/icon-down.png" width="15"></a>
+				<?php endif;?>
+				<?php if($key!=0):?>
 				<a onclick="orderCategory('<?php echo $subCats->category_id;?>','up')" class="fr" style="margin-right:10px;"><img src="/assets/images/cms/icon-up.png" width="15"></a>
+				<?php endif;?>
 			</button>
-				<?php foreach($subCats->subSubCats as $subSubCats):?>
+				<?php $subSubAmount=sizeof($subCats->subSubCats);
+				foreach($subCats->subSubCats as $k=>$subSubCats):?>
 				<button type="button" class="km-btn km-btn-default" style="color: #434343;font-size: 10px;text-align:left;">
 					-- <?php echo $subSubCats->category_name;?>
 					<a onclick="deleteCategory(this,'<?php echo $subSubCats->category_id;?>');" categoryName="<?php echo $subSubCats->category_name;?>" class="fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;">Delete</a>
 					<a onclick="modifyCategory(this,'<?php echo $subSubCats->category_id;?>');" categoryName="<?php echo $subSubCats->category_name;?>" class="fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;margin-right:10px;">Edit</a>
+					<?php if($k!=$subSubAmount-1):?>
 					<a onclick="orderCategory('<?php echo $subSubCats->category_id;?>','down')" class="fr" style="margin-right:10px;"><img src="/assets/images/cms/icon-down.png" width="15"></a>
+					<?php endif;?>
+					<?php if($k!=0):?>
 					<a onclick="orderCategory('<?php echo $subSubCats->category_id;?>','up')" class="fr" style="margin-right:10px;"><img src="/assets/images/cms/icon-up.png" width="15"></a>
+					<?php endif;?>
 				</button>
 				<?php endforeach;?>
 			<?php endforeach;?>

@@ -512,6 +512,12 @@ function statusCheckedUsers(){
 	users.status = $("#statusChanged").val();
 	dataHandler("statusBulk","users",users,successShowCat,'Sure to modify the status of these users?',null,null,true);
 }
+function orderCategory(id,direction){
+	var category = new Object();
+	category.id = id;
+	category.direction = direction;
+	dataHandler("modify","categoryOrder",category,null,null,null,null,true);
+}
 function deleteCheckedItems(){
 	var itemsArray = new Array();
 	$("input[name='checkedUserId']:checked").each(function(){
