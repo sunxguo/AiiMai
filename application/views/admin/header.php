@@ -21,15 +21,15 @@
         <ul class="menu-cms">
             <li class="name">
                 <img id="userPhoto" src="/assets/images/cms/defaulthead.png" width="35" height="35">
-				<span id="userShowName"><?php echo $_SESSION['username'];?></span>
+				<span id="userShowName"><?php echo $_SESSION['usernameAdmin'];?></span>
 			</li>
 			<li class="message">
-				<a href="/admin/message" title="消息" id="js-openmsg">
+				<a href="/admin/message" title="Message" id="js-openmsg">
                 <img src="/assets/images/cms/ico_mail.png" width="24" height="24"></a>
 				<span id="unreadMesNumber"></span>
 			</li>
 			<li class="logout">
-				<a href="/admin/logout" title="退出"><?php echo lang('admin_common_Logout');?></a>
+				<a href="/admin/logout" title="Logout"><?php echo lang('admin_common_Logout');?></a>
 			</li>
         </ul>
     </div>
@@ -40,7 +40,7 @@
 		}
 	?>
 	<div id="msgBox" class="msg-box" style="display:none;">
-		<a href="javascript:closeMsg()" class="close" title="关闭">Close</a>
+		<a href="javascript:closeMsg()" class="close" title="Close">Close</a>
 		<div class="msg-in">
 			<ul>
 				<li>

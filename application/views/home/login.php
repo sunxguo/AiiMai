@@ -9,19 +9,19 @@
 		<div class="login-main-info fl">
 		<form method="post" action="/home/loginHandler" enctype="multipart/form-data">
 			<div class="login-field">
-				<label>Username</label>
+				<label style="width:30%;">Username or Email</label>
 				<div>
 					<input name="username" type="text" class="inp-txt width250" value="<?php echo isset($_GET['username'])?$_GET['username']:'';?>">
 				</div>
 			</div>
 			<div class="login-field">
-				<label>Password</label>
+				<label style="width:30%;">Password</label>
 				<div>
 					<input name="pwd" type="password" class="inp-txt width250">
 				</div>
 			</div>
 			<div class="login-field">
-				<label>Security</label>
+				<label style="width:30%;">Security</label>
 				<div class="veri-code">
 					<img id="validCodeImg" src="" onclick="refreshCode()"> 
                     <a href="javascript:refreshCode()">Refresh</a>

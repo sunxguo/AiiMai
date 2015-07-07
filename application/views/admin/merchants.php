@@ -45,10 +45,10 @@
 				<th style="width:100px;">Logo</th>
 				<th style="width:200px;">Seller Shop Title</th>
 				<th style="width:100px;">Avatar</th>
-				<th style="width:200px;">Username</th>
-				<th style="width:200px;">Email</th>
+				<th style="width:150px;">Username</th>
+				<th style="width:160px;">Email</th>
 				<th style="width:100px;">Gender</th>
-				<th style="width:150px;">Vip</th>
+				<th style="width:80px;">Vip</th>
 				<th style="width:100px;">Status</th>
 				<th style="width:200px;">Registration Time</th>
 				<th style="width:280px;">Operation</th>

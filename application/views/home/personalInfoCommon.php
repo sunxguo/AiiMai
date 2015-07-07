@@ -28,7 +28,7 @@
 		</li>
 		<li>
 			<?php if($user->user_is_merchant):?>
-			<a href="/cms/login" class="km-btn km-btn-primary" style="display:inline-block;height:10px;line-height:10px;font-size:10px;color:white;margin-top:8px;">ASM</a>
+			<a href="/cms/login" target="_blank" class="km-btn km-btn-primary" style="display:inline-block;height:10px;line-height:10px;font-size:10px;color:white;margin-top:8px;">ASM</a>
 			<?php else:?>
 			<a href="/cms/registerInformation" target="_blank" style="color:#337ab7;">Upgrade to a Seller Account</a>
 			<?php endif;?>

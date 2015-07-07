@@ -169,12 +169,13 @@ function websiteInfoEmailComfirmationSave(successMsg){
 	dataHandler("modify","websiteInfo",websiteInfo,null,null,closeWait(),successMsg,true);
 }
 function websiteInfoEmailMerchantApprovalSave(successMsg){
+	var status=$("#merchantStatus").val();
 	var websiteInfo = new Object();
-	websiteInfo.key = 'website_seller_approval_email_title';
+	websiteInfo.key = 'website_seller_approval_email_title'+status;
 	websiteInfo.value = $("#emailMerchantApprovalTitle").val();
 	dataHandler("modify","websiteInfo",websiteInfo,null,null,closeWait(),successMsg,true);
 	var websiteInfo = new Object();
-	websiteInfo.key = 'website_seller_approval_email_content';
+	websiteInfo.key = 'website_seller_approval_email_content'+status;
 	websiteInfo.value = infoEditor.html();
 	dataHandler("modify","websiteInfo",websiteInfo,null,null,closeWait(),successMsg,true);
 }
@@ -537,6 +538,9 @@ function statusCheckedItems(){
 	items.idArray = itemsArray;
 	items.status = $("#statusChanged").val();
 	dataHandler("statusBulk","items",items,successShowCat,'Sure to modify the status of these items?',null,null,true);
+}
+function selectMerchantStatus(tag){
+	location.href='/admin/emailMerchantAccountApproval?status='+$(tag).val();
 }
 /*Example:
 $(".slider-item").mouseout(function(){

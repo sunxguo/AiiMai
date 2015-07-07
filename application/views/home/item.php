@@ -20,10 +20,10 @@
 		</div>
 		<div class="menu">
 			<ul>
-				<li><a href="/home/allItems?shopId=<?php echo $merchant->user_id;?>" class="" target="_blank"><span>All Items</span></a></li>
-<!--						<li><a href="/home/shopSpecial?shopId=<?php echo $_GET['shopId'];?>" target="_blank"><span>Shop Specials</span></a></li>-->
-				<li><a href="/home/shopFaq?shopId=<?php echo $merchant->user_id;?>" target="_blank"><span>Q&amp;A·FAQ</span></a></li>
-				<li><a href="/home/shopInfo?shopId=<?php echo $merchant->user_id;?>" target="_blank"><span>Shop Info</span></a></li>
+				<li><a href="/home/allItems?shopId=<?php echo $merchant->user_id;?>" class=""><span>All Items</span></a></li>
+<!--						<li><a href="/home/shopSpecial?shopId=<?php echo $_GET['shopId'];?>"><span>Shop Specials</span></a></li>-->
+				<li><a href="/home/shopFaq?shopId=<?php echo $merchant->user_id;?>"><span>Q&amp;A·FAQ</span></a></li>
+				<li><a href="/home/shopInfo?shopId=<?php echo $merchant->user_id;?>"><span>Shop Info</span></a></li>
 			</ul>
 		</div>
 		<div class="vwd_items">
