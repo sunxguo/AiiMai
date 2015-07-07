@@ -915,8 +915,13 @@ class Common extends CI_Controller {
 				echo json_encode(array("result"=>"success","message"=>"Successfully Modify!"));
 				if($_POST['info_type']=='merchantStatus' && $data->ifSendEmail==true){
 					$merchant=$this->commongetdata->getContent('user',$data->id);
-					$statusArray=$this->commongetdata->getMerchantStatus();
-					$this->commongetdata->email($merchant->user_email,'Status has been changed | AiiMai','The status of your AiiMai account has been changed to "'.$statusArray[$data->status].'"');
+					/*$statusArray=$this->commongetdata->getMerchantStatus();
+					$statusArray[$data->status]*/
+					$subject=$this->commongetdata->getWebsiteConfig('website_seller_approval_email_title'.$data->status);
+					$subject=str_replace("{USERNAME}",$merchant->user_username,$subject);
+					$content=$this->commongetdata->getWebsiteConfig('website_seller_approval_email_content'.$data->status);
+					$content=str_replace("{USERNAME}",$merchant->user_username,$content);
+					$this->commongetdata->email($merchant->user_email,$subject,$content);
 				}
 			}
 			else echo json_encode(array("result"=>"failed","message"=>"Failed to modify.May be because some fields is the same as the before!"));

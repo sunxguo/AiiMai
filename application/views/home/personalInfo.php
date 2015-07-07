@@ -156,7 +156,21 @@
 									<div id="familyAddress">
 										<ul>
 											<li>
-												
+												<div class="addressList-Title fl">
+													<span>title</span>
+												</div>
+												<div class="addressList-address fl">
+													<p>
+														Recipient name
+													</p>
+													<p>
+														Address
+													</p>
+												</div>
+												<div class="addressList-phone fl">
+													<p class="gsm_phone"><em>+65-1234-5567</em></p>
+													<p class="gsm_home"><em>+65-88-88</em></p>
+												</div>
 											</li>
 										</ul>
 									</div>

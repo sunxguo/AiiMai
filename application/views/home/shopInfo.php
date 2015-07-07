@@ -25,10 +25,10 @@
 			<div class="vwd_items">
 				<div class="menu">
 					<ul>
-						<li><a href="/home/allItems?shopId=<?php echo $_GET['shopId'];?>" class="" target="_blank"><span>All Items</span></a></li>
-<!--						<li><a href="/home/shopSpecial?shopId=<?php echo $_GET['shopId'];?>" target="_blank"><span>Shop Specials</span></a></li>-->
-						<li><a href="/home/shopFaq?shopId=<?php echo $_GET['shopId'];?>" target="_blank"><span>Q&amp;A·FAQ</span></a></li>
-						<li class="on"><a href="/home/shopInfo?shopId=<?php echo $_GET['shopId'];?>" target="_blank"><span>Shop Info</span></a></li>
+						<li><a href="/home/allItems?shopId=<?php echo $_GET['shopId'];?>" class=""><span>All Items</span></a></li>
+<!--						<li><a href="/home/shopSpecial?shopId=<?php echo $_GET['shopId'];?>"><span>Shop Specials</span></a></li>-->
+						<li><a href="/home/shopFaq?shopId=<?php echo $_GET['shopId'];?>"><span>Q&amp;A·FAQ</span></a></li>
+						<li class="on"><a href="/home/shopInfo?shopId=<?php echo $_GET['shopId'];?>"><span>Shop Info</span></a></li>
 					</ul>
 				</div>
 			</div>

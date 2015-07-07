@@ -550,9 +550,11 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/emailUserAccountRegisteredSuccessfully',$data);
 	}
 	public function emailMerchantAccountApproval(){
+		//状态：0：注册完成但没有完善信息 1：完善信息等待审核 2：审核通过 3：审核不通过 4:冻结
+		$status=isset($_GET['status'])?$_GET['status']:0;
 		$data=array(
-			"emailMerchantApprovalTitle"=>$this->commongetdata->getWebsiteConfig('website_seller_approval_email_title'),
-			"emailMerchantApprovalContent"=>$this->commongetdata->getWebsiteConfig('website_seller_approval_email_content'),
+			"emailMerchantApprovalTitle"=>$this->commongetdata->getWebsiteConfig('website_seller_approval_email_title'.$status),
+			"emailMerchantApprovalContent"=>$this->commongetdata->getWebsiteConfig('website_seller_approval_email_content'.$status),
 		);
 //		$this->adminBaseHandler('Email of Merchant Account Approval',array('data','websiteInfo'),'emailMerchantAccountApproval',$data);
 		$this->checkAdminLogin();

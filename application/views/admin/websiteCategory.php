@@ -15,7 +15,7 @@
 		<?php echo $currentCat->category_name;?>
 		<button onclick="modifyCategory(this,'<?php echo $currentCat->category_id;?>');" categoryName="<?php echo $currentCat->category_name;?>" type="button" class="km-btn km-btn-primary" style="height: 28px; padding: 0px 12px;font-size: 12px;">Edit</button>
 		<button onclick="deleteCategory(this,'<?php echo $currentCat->category_id;?>');" categoryName="<?php echo $currentCat->category_name;?>" type="button" class="km-btn km-btn-danger" style="height: 28px; padding: 0px 12px;font-size: 12px;">Delete</button>
-		<div class="km-btn-group-vertical" style="margin-top:10px;">
+		<div class="km-btn-group-vertical" style="margin-top:10px;width:100%;">
 			<?php foreach($currentCat->subCats as $subCats):?>
 			<button type="button" class="km-btn km-btn-default" style="color: #000;font-size: 12px;font-weight: 600;text-align:left;">
 				<?php echo $subCats->category_name;?>
