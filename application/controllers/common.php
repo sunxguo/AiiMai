@@ -920,7 +920,7 @@ class Common extends CI_Controller {
 				$condition['table']="category";
 				$condition['where']=array("category_id"=>$data->id);
 				$condition['data']=array(
-					"category_order"=>$data->direction=='up'?($data->order-1):($data->order+1)
+					"category_order"=>$data->direction=='up'?($order-1):($order+1)
 				);
 				
 				$updateCondition=array(
@@ -930,7 +930,7 @@ class Common extends CI_Controller {
 						'category_fid'=>$currentCategory->category_fid,
 						'category_order'=>$data->direction=='up'?$order-1:$order+1
 					),
-					'data'=>array('category_order'=>)
+					'data'=>array('category_order'=>$order)
 				);
 				$result=$this->dbHandler->updateData($updateCondition);
 			break;
