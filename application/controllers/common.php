@@ -343,6 +343,30 @@ class Common extends CI_Controller {
 		}
 		echo json_encode(array("result"=>"success","message"=>"信息删除成功"));
 	}
+	/*
+	public function orderInfo(){
+		$condition=array();
+		$data=json_decode($_POST['data']);
+		switch($_POST['info_type']){
+			case 'category':
+				$table="category";
+				$currentOrder=$data->orderNO;
+				$direction=$data->orderDirection;
+				$where=array("category_id"=>$data->id);
+			break;
+		}
+		$selectCondition=array(
+			'table'=>'category',
+			'result'=>'count',
+			'where'=>array('category_fid'=>$data->fid)
+		);
+		$amount=$this->dbHandler->selectData($selectCondition);
+		foreach($data->idArray as $id){
+			$result=$this->dbHandler->deleteData(array("table"=>$table,"where"=>array($where=>$id)));
+		}
+		echo json_encode(array("result"=>"success","message"=>"信息删除成功"));
+			
+	}*/
 	public function statusBulkInfo(){
 		$condition=array();
 		$data=json_decode($_POST['data']);
@@ -883,6 +907,32 @@ class Common extends CI_Controller {
 				$condition['data']=array(
 					"category_name"=>$data->name
 				);
+			break;
+			case 'categoryOrder':
+				$selectCondition=array(
+					'table'=>'category',
+					'result'=>'data',
+					'where'=>array('category_id'=>$data->id)
+				);
+				$currentCategory=$this->commongetdata->getOneData($selectCondition);
+				$order=$currentCategory->category_order;
+				
+				$condition['table']="category";
+				$condition['where']=array("category_id"=>$data->id);
+				$condition['data']=array(
+					"category_order"=>$data->direction=='up'?($data->order-1):($data->order+1)
+				);
+				
+				$updateCondition=array(
+					'table'=>'category',
+					'result'=>'data',
+					'where'=>array(
+						'category_fid'=>$currentCategory->category_fid,
+						'category_order'=>$data->direction=='up'?$order-1:$order+1
+					),
+					'data'=>array('category_order'=>)
+				);
+				$result=$this->dbHandler->updateData($updateCondition);
 			break;
 			case 'address':
 				$notExist=$this->commongetdata->checkUniqueAdvance("address",array("address_userid"=>$data->userId,"address_type"=>$data->type));
