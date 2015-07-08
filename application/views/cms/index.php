@@ -21,7 +21,7 @@
         <caption class="clearfix">
             <h2 class="pull-left list-income" style="width: 250px;text-align: left;">
 				<i class="icon-list-1"><img src="/assets/images/cms/icon/icon-list.png"></i>
-				Summary
+				Alerts
 			</h2>
         </caption>
         <thead>
@@ -63,21 +63,23 @@
         <caption class="clearfix">
             <h2 class="pull-left list-income" style="width: 250px;text-align: left;">
 				<i class="icon-list-1"><img src="/assets/images/cms/icon/icon-list.png"></i>
-				<?php echo lang('cms_index_turnoverlistindetail');?>
+				Recent Transactions
 			</h2>
         </caption>
         <thead>
             <tr>
-                <th><?php echo lang('cms_common_Date');?></th>
-                <th><?php echo lang('cms_index_totalturnover');?></th>
-                <th><?php echo lang('cms_index_numberofgoodssold');?></th>
+                <th>Products</th>
+                <th>Buyer</th>
+                <th>Total</th>
+                <th>Time</th>
             </tr>
         </thead>
         <tbody>
 			<tr>
-				<td>2015-04-07</td>
+				<td><a href="">T-shirt (1)</a></td>
+				<td>Username</td>
 				<td>S$110.00</td>
-				<td>88</td>
+				<td>2015-04-07 11:20:09</td>
 			</tr>
 	</table>
 	<table id="summary_table" class="app-list table ymtable table-striped">
@@ -178,7 +180,7 @@ function drawChart(flow,labels){
 				padding:'0 40',
 				height:20
 			},
-			footnote : 'Source: Website database',
+			footnote : '',
 			width : 1000,
 			height : 600,
 			sub_option:{
