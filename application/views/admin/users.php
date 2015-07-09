@@ -87,7 +87,7 @@
 			<div class="km-modal-content">
 				<div class="km-modal-header">
 					<button type="button" class="km-close"><span>&times;</span></button>
-					<h4 class="km-modal-title">Personal Info - Change Password</h4>
+					<h4 class="km-modal-title">Change Status</h4>
 				</div>
 				<div class="km-modal-body">
 					<select id="statusChanged" class="select w100">

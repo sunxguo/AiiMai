@@ -41,6 +41,7 @@
 							</div><!-- /.modal-dialog -->
 						</td>
 					  </tr>
+					  <!--
 					  <tr>
 						<td class="field width10p"><?php echo lang('cms_grade_shop_Introductionandwelcomemessage');?></td>
 						<td class="value width17p tal" colspan="3">
@@ -61,15 +62,16 @@
 										<button type="button" class="km-btn km-btn-primary" onclick="saveSellerShopWelcome();"><?php echo lang('cms_myInfo_Savechanges');?></button>
 									</div>
 								</div><!-- /.modal-content -->
-							</div><!-- /.modal-dialog -->
-						</td>
+						<!--	</div><!-- /.modal-dialog -->
+						<!--</td>
 					  </tr>
+					  -->
 					</tbody>
 				</table>
 			</div>
 		</div>
 		<div class="km-panel km-panel-primary mt10" style="width: 98%;">
-			<div class="km-panel-heading"><?php echo lang('cms_grade_shop_SellerShoplogomanagement');?></div>
+			<div class="km-panel-heading">Seller Shop Logo Management</div>
 			<div class="km-panel-body" style="padding:0px;">
 				<table class="km-table">
 					<tbody>
@@ -91,15 +93,15 @@
 							<img src="<?php echo $merchant->merchant_shop_icon;?>" width="108" height="86" id="mainLogoImage">
 						</td>
 						<td class="value width5p br">
-							<?php echo lang('cms_grade_shop_Size');?> 108*86
+							<?php echo lang('cms_grade_shop_Size');?>: 108 * 86 pixels
 						</td>
-						<td class="value width10p br">
+						<td class="value width5p br">
 							<form id="upload_mainLogo_form" method="post" enctype="multipart/form-data">
 								<input onchange="return uploadMainLogo()" name="image" type="file" id="fileMainLogo" style="display:none;" accept="image/*">
 							</form>
 							<button onclick="$('#fileMainLogo').click();" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 10px;"><?php echo lang('cms_grade_shop_Upload');?></button>
 						</td>
-						<td class="value width10p">
+						<td class="value width5p">
 							<button onclick="deleteMainLogo();" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 10px;"><?php echo lang('cms_common_Delete');?></button>
 						</td>
 					  </tr>
@@ -121,15 +123,15 @@
 							<img src="<?php echo $merchant->merchant_shop_smallicon;?>" width="57" height="15" id="smallLogoImage">
 						</td>
 						<td class="value width5p br">
-							<?php echo lang('cms_grade_shop_Size');?> 57x15
+							<?php echo lang('cms_grade_shop_Size');?>: 57 * 15 pixels
 						</td>
-						<td class="value width10p br">
+						<td class="value width5p br">
 							<form id="upload_smallLogo_form" method="post" enctype="multipart/form-data">
 								<input onchange="return uploadSmallLogo()" name="image" type="file" id="fileSmallLogo" style="display:none;" accept="image/*">
 							</form>
 							<button onclick="$('#fileSmallLogo').click();" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 10px;"><?php echo lang('cms_grade_shop_Upload');?></button>
 						</td>
-						<td class="value width10p">
+						<td class="value width5p">
 							<button onclick="deleteSmallLogo();" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 10px;"><?php echo lang('cms_common_Delete');?></button>
 						</td>
 					  </tr>

@@ -70,8 +70,8 @@ function delclick(obj){
 	$("#addImgList").show();
 }
 function productHandler(successMsg,isNew){
-	if($("#MainCategory").val()==-1 || $("#stSubCategory").val()==-1 || $("#ndSubCategory").val()==-1){
-		showAlert('danger','',"Please select category!");
+	if($("#MainCategory").val()==-1){
+		showAlert('danger','',"Please select 1st category!");
 		return false;
 	}
 	if($("#title_english").val()=="" && $("#title_zh_cn").val()=="" && $("#title_tw_cn").val()==""){
@@ -109,7 +109,7 @@ function productHandler(successMsg,isNew){
 	product.title_english = $("#title_english").val();
 	product.title_zh_cn = $("#title_zh_cn").val();
 	product.title_tw_cn = $("#title_tw_cn").val();
-	product.ShortTitle = $("#ShortTitle").val();
+	product.ShortTitle = '';
 	product.SellerCode = $("#SellerCode").val();
 	product.productImg = $("#productImg").attr('src');
 	product.ProductionPlaceCode = $("#ProductionPlaceCode").val();

@@ -11,6 +11,7 @@
 	  <li><a href="/cms/shopCategory"><?php echo lang('cms_grade_shop_Category');?></a></li>
 	  <li><a href="/cms/shopInfo"><?php echo lang('cms_grade_shop_ShopInformation');?></a></li>
 	</ul>
+	<!--
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
 		<div class="km-panel-heading"><?php echo lang('cms_grade_shop_Shopaddressmanagement');?></div>
 		<div class="km-panel-body" style="padding:0px;">
@@ -28,6 +29,7 @@
 			</table>
 		</div>
 	</div>
+	-->
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
 		<div class="km-panel-heading">A.<?php echo lang('cms_baseInfo_shop_shopHomePage_SelectLayout');?></div>
 		<div class="km-panel-body" style="padding:10px;">

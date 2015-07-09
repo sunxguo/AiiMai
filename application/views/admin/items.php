@@ -32,13 +32,15 @@
 		<div class="clear">
 		</div>
 	</div>
+	<input id="orderName" type="hidden" value="<?php echo isset($_GET['orderName'])?$_GET['orderName']:'';?>">
+	<input id="orderPrice" type="hidden" value="<?php echo isset($_GET['orderPrice'])?$_GET['orderPrice']:'';?>">
 	<table>
 		<thead>
 			<tr class="table-head">
 				<th style="width:30px;"><input type="checkbox" id="checkAll"></th>
 				<th style="width:100px;">Thumbnail</th>
-				<th style="width:300px;">Name</th>
-				<th style="width:150px;">Price</th>
+				<th style="width:300px;" onclick="orderItem('<?php echo $selectPage;?>','name')">Name <?php if(isset($_GET['orderName'])){if($_GET['orderName']=='desc') echo '↑';else echo '↓';}?></th>
+				<th style="width:150px;" onclick="orderItem('<?php echo $selectPage;?>','price')">Price <?php if(isset($_GET['orderPrice'])){if($_GET['orderPrice']=='desc') echo '↑';else echo '↓';}?></th>
 				<th style="width:200px;">Reference Price</th>
 				<th style="width:200px;">Main Category</th>
 				<th style="width:220px;">1st Sub Category</th>

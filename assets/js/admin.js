@@ -311,6 +311,40 @@ function orderUser(baseUrl,currentOrder){
 	}
 	location.href=baseUrl+extUrl;
 }
+function orderItem(baseUrl,currentOrder){
+	var extUrl="";
+	if($("#category").val()!=-1) extUrl+="&category="+$("#category").val();
+	if($("#status").val()!=-1) extUrl+="&status="+$("#status").val();
+	if($("#keyword").val()!="") extUrl+="&search="+$("#keyword").val();
+	if(currentOrder=='name'){
+		if($("#orderName").val()=="" || $("#orderName").val()=="desc") extUrl+="&orderName=asc";
+		else  extUrl+="&orderName=desc";
+	}
+	if(currentOrder=='price'){
+		if($("#orderPrice").val()=="" || $("#orderPrice").val()=="desc") extUrl+="&orderPrice=asc";
+		else  extUrl+="&orderPrice=desc";
+	}
+	location.href=baseUrl+extUrl;
+}
+function orderMerchant(baseUrl,currentOrder){
+	var extUrl="";
+	if($("#gender").val()!=-1) extUrl+="&gender="+$("#gender").val();
+	if($("#status").val()!=-1) extUrl+="&status="+$("#status").val();
+	if($("#keyword").val()!="") extUrl+="&search="+$("#keyword").val();
+	if(currentOrder=='shop'){
+		if($("#orderShopTitle").val()=="" || $("#orderShopTitle").val()=="desc") extUrl+="&orderShopTitle=asc";
+		else  extUrl+="&orderShopTitle=desc";
+	}
+	if(currentOrder=='username'){
+		if($("#orderUser").val()=="" || $("#orderUser").val()=="desc") extUrl+="&orderUser=asc";
+		else  extUrl+="&orderUser=desc";
+	}
+	if(currentOrder=='email'){
+		if($("#orderEmail").val()=="" || $("#orderEmail").val()=="desc") extUrl+="&orderEmail=asc";
+		else  extUrl+="&orderEmail=desc";
+	}
+	location.href=baseUrl+extUrl;
+}
 function selectMerchant(baseUrl){
 	var extUrl="";
 	if($("#gender").val()!=-1) extUrl+="&gender="+$("#gender").val();
@@ -498,6 +532,19 @@ function deleteCheckedUsers(){
 	users.idArray = usersArray;
 	dataHandler("delBulk","users",users,successShowCat,'Sure to delete these users?',null,null,true);
 }
+function deleteCheckedMerchants(){
+	var merchantsArray = new Array();
+	$("input[name='checkedUserId']:checked").each(function(){
+		merchantsArray.push($(this).val()); 
+	});
+	if(merchantsArray.length<1){
+		alert('Please select merchants.');
+		return false;
+	}
+	var merchants = new Object();
+	merchants.idArray = merchantsArray;
+	dataHandler("delBulk","merchants",merchants,successShowCat,'Sure to delete these merchants?',null,null,true);
+}
 function statusCheckedUsers(){
 	var usersArray = new Array();
 	$("input[name='checkedUserId']:checked").each(function(){
@@ -511,6 +558,20 @@ function statusCheckedUsers(){
 	users.idArray = usersArray;
 	users.status = $("#statusChanged").val();
 	dataHandler("statusBulk","users",users,successShowCat,'Sure to modify the status of these users?',null,null,true);
+}
+function statusCheckedMerchants(){
+	var merchantsArray = new Array();
+	$("input[name='checkedUserId']:checked").each(function(){
+		merchantsArray.push($(this).val()); 
+	});
+	if(merchantsArray.length<1){
+		alert('Please select merchants.');
+		return false;
+	}
+	var merchants = new Object();
+	merchants.idArray = merchantsArray;
+	merchants.status = $("#statusChanged").val();
+	dataHandler("statusBulk","merchants",merchants,successShowCat,'Sure to modify the status of these merchants?',null,null,true);
 }
 function orderCategory(id,direction){
 	var category = new Object();
