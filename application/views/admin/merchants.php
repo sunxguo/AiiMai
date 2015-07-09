@@ -38,15 +38,18 @@
 		<div class="clear">
 		</div>
 	</div>
+	<input id="orderShopTitle" type="hidden" value="<?php echo isset($_GET['orderShopTitle'])?$_GET['orderShopTitle']:'';?>">
+	<input id="orderUser" type="hidden" value="<?php echo isset($_GET['orderUser'])?$_GET['orderUser']:'';?>">
+	<input id="orderEmail" type="hidden" value="<?php echo isset($_GET['orderEmail'])?$_GET['orderEmail']:'';?>">
 	<table>
 		<thead>
 			<tr class="table-head">
 				<th style="width:30px;"><input type="checkbox" id="checkAll"></th>
 				<th style="width:100px;">Logo</th>
-				<th style="width:200px;">Seller Shop Title</th>
+				<th style="width:200px;" onclick="orderMerchant('<?php echo $selectPage;?>','shop')">Seller Shop Title <?php if(isset($_GET['orderShopTitle'])){if($_GET['orderShopTitle']=='desc') echo '↑';else echo '↓';}?></th>
 				<th style="width:100px;">Avatar</th>
-				<th style="width:150px;">Username</th>
-				<th style="width:160px;">Email</th>
+				<th style="width:150px;" onclick="orderMerchant('<?php echo $selectPage;?>','username')">Username <?php if(isset($_GET['orderUser'])){if($_GET['orderUser']=='desc') echo '↑';else echo '↓';}?></th>
+				<th style="width:160px;" onclick="orderMerchant('<?php echo $selectPage;?>','email')">Email <?php if(isset($_GET['orderEmail'])){if($_GET['orderEmail']=='desc') echo '↑';else echo '↓';}?></th>
 				<th style="width:100px;">Gender</th>
 				<th style="width:80px;">Vip</th>
 				<th style="width:100px;">Status</th>
@@ -87,6 +90,31 @@
 			<?php endforeach;?>
 		</tbody>
 	</table>
+	<div>
+		<button onclick="deleteCheckedMerchants();" type="button" class="km-btn km-btn-danger" style="height: 18px;font-size: 10px;padding: 0px 10px;margin: 10px 0 0 0;">Delete</button>
+		<button onclick="setDivCenter('#statusCheckedMerchantsDiv',true);" type="button" class="km-btn km-btn-success" style="height: 18px;font-size: 10px;padding: 0px 10px;margin: 10px 0 0 0;">Status</button>
+		<div class="km-modal-dialog width40p" id="statusCheckedMerchantsDiv">
+			<div class="km-modal-content">
+				<div class="km-modal-header">
+					<button type="button" class="km-close"><span>&times;</span></button>
+					<h4 class="km-modal-title">Change Status</h4>
+				</div>
+				<div class="km-modal-body">
+					<select id="statusChanged" class="select w100">
+						<option value="0">Need More Info.</option>
+						<option value="1">Under Review</option>
+						<option value="2">Pass</option>
+						<option value="3">No Pass</option>
+						<option value="4">Frozen</option>
+					</select>
+				</div>
+				<div class="km-modal-footer">
+					<button type="button" class="km-btn km-btn-default km-btn-close">Close</button>
+					<button type="button" class="km-btn km-btn-primary" onclick="statusCheckedMerchants();">Save</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div>
 	<div class="km-modal-dialog width40p" id="statusDialog">
 		<div class="km-modal-content">
 			<div class="km-modal-header">

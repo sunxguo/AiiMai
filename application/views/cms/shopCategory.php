@@ -29,7 +29,7 @@
 					<option value="sub"><?php echo lang('cms_baseInfo_shop_shopCategory_CategoryGroup');?> – <?php echo lang('cms_baseInfo_shop_shopCategory_SubCategory');?></option>
 				</select>
 				<?php echo lang('cms_baseInfo_shop_shopCategory_SelectCategoryTargetTip');?>
-				<button onclick=";" type="button" class="km-btn km-btn-primary fr" style="height: 28px;font-size: 12px;padding: 5px 10px;">保存</button>
+				<button onclick=";" type="button" class="km-btn km-btn-primary fr" style="height: 28px;font-size: 12px;padding: 5px 10px;">Save</button>
 			</div>
 		</div>
 		

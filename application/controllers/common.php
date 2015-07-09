@@ -333,6 +333,10 @@ class Common extends CI_Controller {
 				$table="user";
 				$where="user_id";
 			break;
+			case 'merchants':
+				$table="user";
+				$where="user_id";
+			break;
 			case 'items':
 				$table="product";
 				$where="product_id";
@@ -380,6 +384,11 @@ class Common extends CI_Controller {
 				$table="product";
 				$where="product_id";
 				$statusField="product_status";
+			break;
+			case 'merchants':
+				$table="user";
+				$where="user_id";
+				$statusField="merchant_status";
 			break;
 		}
 		foreach($data->idArray as $id){

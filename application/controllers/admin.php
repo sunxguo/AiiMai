@@ -145,10 +145,24 @@ class Admin extends CI_Controller {
 			$condition['like']['product_item_title_english']=$_GET['search'];
 			$baseUrl.='&search='.$_GET['search'];
 		}
+		if(isset($_GET['orderName'])){
+			if($_GET['orderName']=='asc')
+				$condition['order_by']['product_item_title_english']='ASC';
+			if($_GET['orderName']=='desc')
+				$condition['order_by']['product_item_title_english']='DESC';
+		}
+		if(isset($_GET['orderPrice'])){
+			if($_GET['orderPrice']=='asc')
+				$condition['order_by']['product_sell_price']='ASC';
+			if($_GET['orderPrice']=='desc')
+				$condition['order_by']['product_sell_price']='DESC';
+		}
+		if(!isset($condition['order_by'])){
+			$condition['order_by']=array('product_modify_time'=>'DESC');
+		}
 		$condition['result']="count";
 		$amount=$this->commongetdata->getData($condition);
 		$condition['result']="data";
-		$condition['order_by']=array('product_modify_time'=>'DESC');
 		$pageInfo=$this->commongetdata->getPageLink($baseUrl,$selectUrl,$page,$amountPerPage,$amount);
 		$condition['limit']=$pageInfo['limit'];
 		$data=array(
@@ -206,10 +220,30 @@ class Admin extends CI_Controller {
 			$condition['like']['user_username']=$_GET['search'];
 			$baseUrl.='&search='.$_GET['search'];
 		}
+		if(isset($_GET['orderShopTitle'])){
+			if($_GET['orderShopTitle']=='asc')
+				$condition['order_by']['merchant_shop_name']='ASC';
+			if($_GET['orderShopTitle']=='desc')
+				$condition['order_by']['merchant_shop_name']='DESC';
+		}
+		if(isset($_GET['orderUser'])){
+			if($_GET['orderUser']=='asc')
+				$condition['order_by']['user_username']='ASC';
+			if($_GET['orderUser']=='desc')
+				$condition['order_by']['user_username']='DESC';
+		}
+		if(isset($_GET['orderEmail'])){
+			if($_GET['orderEmail']=='asc')
+				$condition['order_by']['user_email']='ASC';
+			if($_GET['orderEmail']=='desc')
+				$condition['order_by']['user_email']='DESC';
+		}
+		if(!isset($condition['order_by'])){
+			$condition['order_by']=array('user_reg_time'=>'DESC');
+		}
 		$condition['result']="count";
 		$amount=$this->commongetdata->getData($condition);
 		$condition['result']="data";
-		$condition['order_by']=array('user_reg_time'=>'DESC');
 		$pageInfo=$this->commongetdata->getPageLink($baseUrl,$selectUrl,$page,$amountPerPage,$amount);
 		$condition['limit']=$pageInfo['limit'];
 		$data=array(
@@ -446,6 +480,12 @@ class Admin extends CI_Controller {
 		$this->adminBaseHandler('account',array('tool','account'),'account',$data);
 	}
 	public function sendMessage(){
+		$data=array(
+			"columns"=>$this->commongetdata->getColumns()
+		);
+		$this->adminBaseHandler('send Message',array('tool','sendMessage'),'sendmsg',$data);
+	}
+	public function asmNotice(){
 		$data=array(
 			"columns"=>$this->commongetdata->getColumns()
 		);
