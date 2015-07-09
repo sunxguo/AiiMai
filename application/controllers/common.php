@@ -500,6 +500,42 @@ class Common extends CI_Controller {
 					"merchant_status"=>1
 				);
 			break;
+			case "merchantAllInfo":
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"user_email"=>$data->email,
+					"user_username"=>$data->username,
+					"user_gender"=>$data->gender,
+					"user_country"=>$data->country,
+					"merchant_name"=>$data->name,
+					"merchant_type"=>$data->merchantType,
+					"merchant_phone1"=>$data->phone1,
+					"merchant_phone2"=>$data->phone2,
+					"merchant_phone3"=>$data->phone3,
+					"merchant_homephone1"=>$data->homephone1,
+					"merchant_homephone2"=>$data->homephone2,
+					"merchant_homephone3"=>$data->homephone3,
+					"merchant_address1"=>$data->address1,
+					"merchant_address2"=>$data->address2,
+					"merchant_salesStaff"=>$data->salesStaff,
+					"merchant_salesStaff_email"=>$data->salesStaffEmail,
+					"merchant_salesStaff_phone1"=>$data->salesStaffPhone1,
+					"merchant_salesStaff_phone2"=>$data->salesStaffPhone2,
+					"merchant_salesStaff_phone3"=>$data->salesStaffPhone3,
+					"merchant_salesStaff_mobilephone1"=>$data->salesStaffMobilePhone1,
+					"merchant_salesStaff_mobilephone2"=>$data->salesStaffMobilePhone2,
+					"merchant_salesStaff_mobilephone3"=>$data->salesStaffMobilePhone3,
+					"merchant_business_license"=>$data->businessLicense,
+					"merchant_bank_account"=>$data->bankAccount,
+					"merchant_bank"=>$data->bank,
+					"merchant_bank_branch"=>$data->bankBranch,
+					"merchant_bank_account_number"=>$data->accountNumber,
+					"merchant_gst_name"=>$data->GSTName,
+					"merchant_gst_number"=>$data->GSTRegistrationNo,
+					"merchant_gst_address"=>$data->GSTAddress,
+				);
+			break;
 			case 'merchantpwd':
 				$condition['table']="user";
 				$condition['where']=array("user_id"=>$_SESSION['userid']);

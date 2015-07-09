@@ -548,6 +548,9 @@ function statusCheckedItems(){
 function selectMerchantStatus(tag){
 	location.href='/admin/emailMerchantAccountApproval?status='+$(tag).val();
 }
+function showMutiChangeImageDiv(){
+	setDivCenter('#changeMutiHomeFeaturedImageDiv',true);
+}
 /*Example:
 $(".slider-item").mouseout(function(){
 	$(this).find('.oper').hide();
