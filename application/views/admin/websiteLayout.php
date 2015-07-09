@@ -27,10 +27,15 @@
 				<?php endforeach;?>
 			</div>
 		</div>
-		<div class="fl" style="margin-left: 20px;">
+		<div class="fl" style="margin-left: 70px;">
 			<div class="clearfix">
-				<div class="fl">
-					<img onclick="showChangeImageDiv(this,'1','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img1;?>" title="<?php echo $currentCat->category_home_title1;?>" catlink="<?php echo $currentCat->category_home_link1;?>" width="370" height="327" style="cursor:pointer;">
+				<div class="fl" style="position:relative;">
+					<img onclick="showMutiChangeImageDiv(this,'1','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img1;?>" title="<?php echo $currentCat->category_home_title1;?>" catlink="<?php echo $currentCat->category_home_link1;?>" width="370" height="327" style="cursor:pointer;">
+					<div style="height: 10px;width: 10px;border-radius: 5px;background-color: #30F76F;position: absolute;bottom: 5px;left: 140px;"></div>
+					<div style="height: 10px;width: 10px;border-radius: 5px;background-color: #FFF;position: absolute;bottom: 5px;left: 160px;"></div>
+					<div style="height: 10px;width: 10px;border-radius: 5px;background-color: #FFF;position: absolute;bottom: 5px;left: 180px;"></div>
+					<div style="height: 10px;width: 10px;border-radius: 5px;background-color: #FFF;position: absolute;bottom: 5px;left: 200px;"></div>
+					<div style="height: 10px;width: 10px;border-radius: 5px;background-color: #FFF;position: absolute;bottom: 5px;left: 220px;"></div>
 				</div>
 				<div class="fl" style="width:184px;">
 					<img onclick="showChangeImageDiv(this,'2','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img2;?>" title="<?php echo $currentCat->category_home_title2;?>" catlink="<?php echo $currentCat->category_home_link2;?>" width="184" height="163" style="cursor:pointer;">
@@ -67,7 +72,44 @@
 					</div>
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->
+			<div class="km-modal-dialog" style="width:1050px;" id="changeMutiHomeFeaturedImageDiv">
+				<div class="km-modal-content">
+					<div class="km-modal-header">
+						<button type="button" class="km-close"><span>&times;</span></button>
+						<h4 class="km-modal-title">Modify Featured Product</h4>
+					</div>
+					<div class="km-modal-body">
+						<img class="sliderImage" onclick="showChangeImageDiv(this,'1','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img1;?>" title="<?php echo $currentCat->category_home_title1;?>" catlink="<?php echo $currentCat->category_home_link1;?>" width="185" height="163" style="cursor:pointer;margin-left:10px;">
+						<img class="sliderImage" onclick="showChangeImageDiv(this,'1','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img2;?>" title="<?php echo $currentCat->category_home_title1;?>" catlink="<?php echo $currentCat->category_home_link1;?>" width="185" height="163" style="cursor:pointer;margin-left:10px;">
+						<img class="sliderImage" onclick="showChangeImageDiv(this,'1','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img3;?>" title="<?php echo $currentCat->category_home_title1;?>" catlink="<?php echo $currentCat->category_home_link1;?>" width="185" height="163" style="cursor:pointer;margin-left:10px;">
+						<img class="sliderImage" onclick="showChangeImageDiv(this,'1','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img4;?>" title="<?php echo $currentCat->category_home_title1;?>" catlink="<?php echo $currentCat->category_home_link1;?>" width="185" height="163" style="cursor:pointer;margin-left:10px;">
+						<img class="sliderImage" onclick="showChangeImageDiv(this,'1','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img5;?>" title="<?php echo $currentCat->category_home_title1;?>" catlink="<?php echo $currentCat->category_home_link1;?>" width="185" height="163" style="cursor:pointer;margin-left:10px;">
+					</div>
+					<div class="km-modal-footer">
+						<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_sider_Close');?></button>
+						<button type="button" class="km-btn km-btn-primary" onclick="saveHomeFeaturedImage('Successfully saved!');"><?php echo lang('cms_sider_Savechanges');?></button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
 		</div>
 	</div>
 </div>
 <script src="/assets/js/db_handler.js" type="text/javascript"></script>
+<script>
+$(document).ready(function(){
+	$(".sliderImage").mousedown(function(e){
+		$(this).css("cursor","move");
+		var offset = $(this).offset();//DIV在页面的位置 
+		var x = e.pageX - offset.left;//获得鼠标指针离DIV元素左边界的距离 
+		var y = e.pageY - offset.top;//获得鼠标指针离DIV元素上边界的距离 
+		$(document).bind("mousemove",function(ev){ 
+	//		$(".show").stop();
+			var _x = ev.pageX - x;//获得X轴方向移动的值 
+			var _y = ev.pageY - y;//获得Y轴方向移动的值 
+
+			$(this).animate({left:_x+"px",top:_y+"px"},10); 
+		}); 
+	});
+});
+	
+</script>

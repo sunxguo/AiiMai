@@ -67,7 +67,7 @@
 				<td><?php echo $user->user_birthday;?></td>
 				<td><?php echo $user->user_vip_grade==0?'No':$user->user_vip_grade;?></td>
 				<td>
-					<a href="javascript:window.open('/admin/modifyUser?userId=<?php echo $user->user_id;?>','Edit User','height=700,width=900,toolbar=no,menubar=no')">Edit</a>&nbsp;&nbsp;&nbsp;
+					<a href="javascript:window.open('/admin/modifyUser?userId=<?php echo $user->user_id;?>','Edit User','height=500,width=900,toolbar=no,menubar=no')">Edit</a>&nbsp;&nbsp;&nbsp;
 <!--					<a href="/admin/editColumn?column=<?php echo $user->user_id;?>">Edit</a>&nbsp;&nbsp;&nbsp;-->
 					<?php if($user->user_state==0):?>
 					<a href="javascript:freezeUser('<?php echo $user->user_id;?>','Sure to freeze <<?php echo $user->user_username;?>>？','Successfully froze <?php echo $user->user_username;?>')">Freeze</a>&nbsp;&nbsp;&nbsp;
