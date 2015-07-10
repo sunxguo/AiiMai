@@ -30,7 +30,7 @@
 		<div class="fl" style="margin-left: 70px;">
 			<div class="clearfix">
 				<div class="fl" style="position:relative;">
-					<img onclick="showMutiChangeImageDiv(this,'1','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img1;?>" title="<?php echo $currentCat->category_home_title1;?>" catlink="<?php echo $currentCat->category_home_link1;?>" width="370" height="327" style="cursor:pointer;">
+					<img onclick="showMutiChangeImageDiv(this,'1','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img11;?>" title="<?php echo $currentCat->category_home_title11;?>" catlink="<?php echo $currentCat->category_home_link11;?>" width="370" height="327" style="cursor:pointer;">
 					<div style="height: 10px;width: 10px;border-radius: 5px;background-color: #30F76F;position: absolute;bottom: 5px;left: 140px;"></div>
 					<div style="height: 10px;width: 10px;border-radius: 5px;background-color: #FFF;position: absolute;bottom: 5px;left: 160px;"></div>
 					<div style="height: 10px;width: 10px;border-radius: 5px;background-color: #FFF;position: absolute;bottom: 5px;left: 180px;"></div>
@@ -47,7 +47,7 @@
 				<img onclick="showChangeImageDiv(this,'5','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img5;?>" title="<?php echo $currentCat->category_home_title5;?>" catlink="<?php echo $currentCat->category_home_link5;?>" width="184" height="163" class="fl" style="margin-left: 1px;cursor:pointer;">
 				<img onclick="showChangeImageDiv(this,'6','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img6;?>" title="<?php echo $currentCat->category_home_title6;?>" catlink="<?php echo $currentCat->category_home_link6;?>" width="184" height="163" class="fl" style="margin-left: 1px;cursor:pointer;">
 			</div>
-			<div class="km-modal-dialog width40p" id="changeHomeFeaturedImageDiv">
+			<div class="km-modal-dialog width40p" id="changeHomeFeaturedImageDiv" style="z-index: 10051;">
 				<div class="km-modal-content">
 					<div class="km-modal-header">
 						<button type="button" class="km-close"><span>&times;</span></button>
@@ -79,15 +79,15 @@
 						<h4 class="km-modal-title">Modify Featured Product</h4>
 					</div>
 					<div class="km-modal-body">
-						<img class="sliderImage" onclick="showChangeImageDiv(this,'1','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img1;?>" title="<?php echo $currentCat->category_home_title1;?>" catlink="<?php echo $currentCat->category_home_link1;?>" width="185" height="163" style="cursor:pointer;margin-left:10px;">
-						<img class="sliderImage" onclick="showChangeImageDiv(this,'1','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img2;?>" title="<?php echo $currentCat->category_home_title1;?>" catlink="<?php echo $currentCat->category_home_link1;?>" width="185" height="163" style="cursor:pointer;margin-left:10px;">
-						<img class="sliderImage" onclick="showChangeImageDiv(this,'1','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img3;?>" title="<?php echo $currentCat->category_home_title1;?>" catlink="<?php echo $currentCat->category_home_link1;?>" width="185" height="163" style="cursor:pointer;margin-left:10px;">
-						<img class="sliderImage" onclick="showChangeImageDiv(this,'1','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img4;?>" title="<?php echo $currentCat->category_home_title1;?>" catlink="<?php echo $currentCat->category_home_link1;?>" width="185" height="163" style="cursor:pointer;margin-left:10px;">
-						<img class="sliderImage" onclick="showChangeImageDiv(this,'1','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img5;?>" title="<?php echo $currentCat->category_home_title1;?>" catlink="<?php echo $currentCat->category_home_link1;?>" width="185" height="163" style="cursor:pointer;margin-left:10px;">
+					
+						<img class="sliderImage" onclick="showChangeImageDiv(this,'11','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img11;?>" title="<?php echo $currentCat->category_home_title11;?>" catlink="<?php echo $currentCat->category_home_link11;?>" width="185" height="163" style="cursor:pointer;margin-left:10px;">
+						<img class="sliderImage" onclick="showChangeImageDiv(this,'12','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img12;?>" title="<?php echo $currentCat->category_home_title12;?>" catlink="<?php echo $currentCat->category_home_link12;?>" width="185" height="163" style="cursor:pointer;margin-left:10px;">
+						<img class="sliderImage" onclick="showChangeImageDiv(this,'13','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img13;?>" title="<?php echo $currentCat->category_home_title13;?>" catlink="<?php echo $currentCat->category_home_link13;?>" width="185" height="163" style="cursor:pointer;margin-left:10px;">
+						<img class="sliderImage" onclick="showChangeImageDiv(this,'14','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img14;?>" title="<?php echo $currentCat->category_home_title14;?>" catlink="<?php echo $currentCat->category_home_link14;?>" width="185" height="163" style="cursor:pointer;margin-left:10px;">
+						<img class="sliderImage" onclick="showChangeImageDiv(this,'15','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img15;?>" title="<?php echo $currentCat->category_home_title15;?>" catlink="<?php echo $currentCat->category_home_link15;?>" width="185" height="163" style="cursor:pointer;margin-left:10px;">
 					</div>
 					<div class="km-modal-footer">
 						<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_sider_Close');?></button>
-						<button type="button" class="km-btn km-btn-primary" onclick="saveHomeFeaturedImage('Successfully saved!');"><?php echo lang('cms_sider_Savechanges');?></button>
 					</div>
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->

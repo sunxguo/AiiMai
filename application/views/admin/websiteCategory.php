@@ -18,7 +18,7 @@
 		<div class="km-btn-group-vertical" style="margin-top:10px;width:100%;">
 			<?php $subAmount=sizeof($currentCat->subCats);
 			foreach($currentCat->subCats as $key=>$subCats):?>
-			<button type="button" class="km-btn km-btn-default" style="color: #000;font-size: 12px;font-weight: 600;text-align:left;">
+			<button type="button" class="km-btn km-btn-default category" style="color: #000;font-size: 12px;font-weight: 600;text-align:left;">
 				<?php echo $subCats->category_name;?>
 				<a onclick="deleteCategory(this,'<?php echo $subCats->category_id;?>');" categoryName="<?php echo $subCats->category_name;?>" class="km-btn km-btn-danger fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;">Delete</a>
 				<a onclick="modifyCategory(this,'<?php echo $subCats->category_id;?>');" categoryName="<?php echo $subCats->category_name;?>" class="km-btn km-btn-primary fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;margin-right:10px;">Edit</a>
@@ -31,7 +31,7 @@
 			</button>
 				<?php $subSubAmount=sizeof($subCats->subSubCats);
 				foreach($subCats->subSubCats as $k=>$subSubCats):?>
-				<button type="button" class="km-btn km-btn-default" style="color: #434343;font-size: 10px;text-align:left;">
+				<button type="button" class="km-btn km-btn-default category" style="color: #434343;font-size: 10px;text-align:left;">
 					-- <?php echo $subSubCats->category_name;?>
 					<a onclick="deleteCategory(this,'<?php echo $subSubCats->category_id;?>');" categoryName="<?php echo $subSubCats->category_name;?>" class="fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;">Delete</a>
 					<a onclick="modifyCategory(this,'<?php echo $subSubCats->category_id;?>');" categoryName="<?php echo $subSubCats->category_name;?>" class="fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;margin-right:10px;">Edit</a>
@@ -89,57 +89,25 @@
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
-	<!--
-	<div class="titA">Modify Password</div>-->
-	<div class="featured-products fl">
-			<div class="fp-left fl">
-				<div class="fp-left-top widget borderR borderB">
-					<?php if(isset($featuredProducts[0])):?>
-					<a href="/home/item?itemId=<?php echo $featuredProducts[0]->product_id;?>">
-						<img src="<?php echo $featuredProducts[0]->product_image;?>">
-					</a>
-					<?php endif;?>
-				</div>
-				<div class="fp-left-bottom">
-					<div class="fp-left-bottom-item widget borderR borderB fl">
-						<?php if(isset($featuredProducts[1])):?>
-						<a href="/home/item?itemId=<?php echo $featuredProducts[1]->product_id;?>">
-							<img src="<?php echo $featuredProducts[1]->product_image;?>">
-						</a>
-						<?php endif;?>
-					</div>
-					<div class="fp-left-bottom-item widget borderR borderB fl">
-						<?php if(isset($featuredProducts[2])):?>
-						<a href="/home/item?itemId=<?php echo $featuredProducts[2]->product_id;?>">
-							<img src="<?php echo $featuredProducts[2]->product_image;?>">
-						</a>
-						<?php endif;?>
-					</div>
-				</div>
-			</div>
-			<div class="fp-right fl">
-				<div class="fp-right-item widget borderR">
-					<?php if(isset($featuredProducts[3])):?>
-					<a href="/home/item?itemId=<?php echo $featuredProducts[3]->product_id;?>">
-						<img src="<?php echo $featuredProducts[3]->product_image;?>">
-					</a>
-					<?php endif;?>
-				</div>
-				<div class="fp-right-item widget borderR borderT">
-					<?php if(isset($featuredProducts[4])):?>
-					<a href="/home/item?itemId=<?php echo $featuredProducts[4]->product_id;?>">
-						<img src="<?php echo $featuredProducts[4]->product_image;?>">
-					</a>
-					<?php endif;?>
-				</div>
-				<div class="fp-right-item widget borderR borderB borderT">
-					<?php if(isset($featuredProducts[5])):?>
-					<a href="/home/item?itemId=<?php echo $featuredProducts[5]->product_id;?>">
-						<img src="<?php echo $featuredProducts[5]->product_image;?>">
-					</a>
-					<?php endif;?>
-				</div>
-			</div>
-		</div>
 </div>
 <script src="/assets/js/db_handler.js" type="text/javascript"></script>
+<script>
+$(document).ready(function(){
+	var mouseX=0;
+	var mouseY=0;
+	$(".category").mousedown(function(){
+		var category=$(this);
+		category.css('cursor','move');
+		$(document).mousemove(function(e){
+			var offset = category.offset();//DIV在页面的位置
+			var x = e.pageX - offset.left;//获得鼠标指针离DIV元素左边界的距离 
+			var y = e.pageY - offset.top;//获得鼠标指针离DIV元素上边界的距离
+			console.info(x+'&'+y)
+			var _x = e.pageX - x;//获得X轴方向移动的值 
+			var _y = e.pageY - y;//获得Y轴方向移动的值
+			category.css({'position':'fixed','z-index':'1000','left':_x,'top':_y});
+//				$(this).animate({left:_x+"px",top:_y+"px"},10);
+		});
+	});
+})
+</script>

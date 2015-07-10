@@ -517,6 +517,7 @@ class Common extends CI_Controller {
 					"user_username"=>$data->username,
 					"user_gender"=>$data->gender,
 					"user_country"=>$data->country,
+					"user_birthday"=>$data->birthday,
 					"merchant_name"=>$data->name,
 					"merchant_type"=>$data->merchantType,
 					"merchant_phone1"=>$data->phone1,
@@ -610,6 +611,30 @@ class Common extends CI_Controller {
 					"user_state"=>$data->status,
 					"user_birthday"=>$data->birthday,
 					"user_gender"=>$data->gender
+				);
+			break;
+			case 'userInfoByAdmin':
+				$user=$this->commongetdata->getOneData(array("table"=>'user',"result"=>'data',"where"=>array("user_username"=>$data->username)));
+				if(isset($user->user_id) && $user->user_id!=$data->id){
+					echo json_encode(array("result"=>"notunique","message"=>"This username already exists!"));
+					return false;
+				}
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+//					"user_avatar"=>$data->avatar,
+					"user_username"=>$data->username,
+					"user_email"=>$data->email,
+					"user_country"=>$data->country,
+					"user_state"=>$data->status,
+					"user_birthday"=>$data->birthday,
+					"user_gender"=>$data->gender,
+					"merchant_phone1"=>$data->phone1,
+					"merchant_phone2"=>$data->phone2,
+					"merchant_phone3"=>$data->phone3,
+					"merchant_homephone1"=>$data->homephone1,
+					"merchant_homephone2"=>$data->homephone2,
+					"merchant_homephone3"=>$data->homephone3
 				);
 			break;
 			case 'merchantStatus':

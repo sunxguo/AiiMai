@@ -81,6 +81,31 @@
 						</select>
 					</td>
 				  </tr>
+				  <tr style="border-top: 1px dashed #337ab7 !important;">
+					<td class="field width20p">Date of Birth</td>
+					<td class="value bl1">
+						<input id="birthday" type="date" value="<?php echo $merchant->user_birthday;?>" class="inp-txt">
+					</td>
+					<td class="field width20p bl1">Address</td>
+					<td class="value bl1">
+						<button onclick="" type="button" class="km-btn km-btn-primary" style=" height: 23px;font-size: 10px;padding: 0px 10px;">Address Book</button>
+					</td>
+					<!--
+					<td class="field width20p bl1">Contacts</td>
+					<td class="value bl1">
+						<div class="gsm_phone">
+							<input type="text" id="phone1" class="inp-txt" style="width: 60px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $merchant->merchant_phone1;?>" title="Country Code" placeholder="Country Code"> - 
+							<input type="text" id="phone2" class="inp-txt" style="width: 60px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $merchant->merchant_phone2;?>" title="Area Code" placeholder="Area Code"> - 
+							<input type="text" id="phone3" class="inp-txt" style="width: 120px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $merchant->merchant_phone3;?>" title="Number" placeholder="Number">
+						</div>
+						<div class="gsm_home">
+							<input type="text" id="homephone1" class="inp-txt" style="width: 60px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $merchant->merchant_phone1;?>" title="Country Code" placeholder="Country Code"> - 
+							<input type="text" id="homephone2" class="inp-txt" style="width: 60px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $merchant->merchant_homephone2;?>" title="Area Code" placeholder="Area Code"> - 
+							<input type="text" id="homephone3" class="inp-txt" style="width: 120px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $merchant->merchant_homephone3;?>" title="Number" placeholder="Number">
+						</div>
+					</td>
+					-->
+				  </tr>
 				</tbody>
 			</table>
 		</div>
@@ -351,6 +376,7 @@ function saveSellerInfo(){
 	merchant.username = $("#username").val();
 	merchant.gender = $('input[name="gender"]:checked').val();
 	merchant.country = $("#country").val();
+	merchant.birthday = $("#birthday").val();
 	merchant.name = $("#name").val();
 	merchant.merchantType = $('input[name="merchantType"]:checked').val();
 	merchant.phone1 = $("#phone1").val();

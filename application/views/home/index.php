@@ -15,10 +15,67 @@
 		</dl>
 		<div class="featured-products fl">
 			<div class="fp-left fl">
-				<div class="fp-left-top widget borderR borderB">
-					<a href="<?php echo $cat->category_home_link1;?>">
-						<img src="<?php echo $cat->category_home_img1;?>">
-					</a>
+				<div class="fp-left-top widget borderR borderB" style="width: 371px;height: 328px;">
+					<div class="banner">
+						<ul style="position:relative;">
+							<?php if(isset($cat->category_home_img11) && $cat->category_home_img11!=''):?>
+							<li>
+								<a href="<?php echo $cat->category_home_link11;?>" title="<?php echo $cat->category_home_title11;?>">
+									<img src="<?php echo $cat->category_home_img11;?>">
+								</a>
+							</li>
+							<?php endif;?>
+							<?php if(isset($cat->category_home_img12) && $cat->category_home_img12!=''):?>
+							<li>
+								<a href="<?php echo $cat->category_home_link12;?>" title="<?php echo $cat->category_home_title12;?>">
+									<img src="<?php echo $cat->category_home_img12;?>">
+								</a>
+							</li>
+							<?php endif;?>
+							<?php if(isset($cat->category_home_img11) && $cat->category_home_img11!=''):?>
+							<li>
+								<a href="<?php echo $cat->category_home_link11;?>" title="<?php echo $cat->category_home_title11;?>">
+									<img src="<?php echo $cat->category_home_img11;?>">
+								</a>
+							</li>
+							<?php endif;?>
+							<?php if(isset($cat->category_home_img12) && $cat->category_home_img12!=''):?>
+							<li>
+								<a href="<?php echo $cat->category_home_link12;?>" title="<?php echo $cat->category_home_title12;?>">
+									<img src="<?php echo $cat->category_home_img12;?>">
+								</a>
+							</li>
+							<?php endif;?>
+							<?php if(isset($cat->category_home_img11) && $cat->category_home_img11!=''):?>
+							<li>
+								<a href="<?php echo $cat->category_home_link11;?>" title="<?php echo $cat->category_home_title11;?>">
+									<img src="<?php echo $cat->category_home_img11;?>">
+								</a>
+							</li>
+							<?php endif;?>
+							<?php if(isset($cat->category_home_img13) && $cat->category_home_img13!=''):?>
+							<li>
+								<a href="<?php echo $cat->category_home_link13;?>" title="<?php echo $cat->category_home_title13;?>">
+									<img src="<?php echo $cat->category_home_img13;?>">
+								</a>
+							</li>
+							<?php endif;?>
+							<?php if(isset($cat->category_home_img14) && $cat->category_home_img14!=''):?>
+							<li>
+								<a href="<?php echo $cat->category_home_link14;?>" title="<?php echo $cat->category_home_title14;?>">
+									<img src="<?php echo $cat->category_home_img14;?>">
+								</a>
+							</li>
+							<?php endif;?>
+							<?php if(isset($cat->category_home_img15) && $cat->category_home_img15!=''):?>
+							<li>
+								<a href="<?php echo $cat->category_home_link15;?>" title="<?php echo $cat->category_home_title15;?>">
+									<img src="<?php echo $cat->category_home_img15;?>">
+								</a>
+							</li>
+							<?php endif;?>
+						</ul>
+					</div>
 				</div>
 				<div class="fp-left-bottom">
 					<div class="fp-left-bottom-item widget borderR borderB fl">
@@ -320,3 +377,16 @@
 		<dd class="hk"><a href="" target="_blank">Hong kong</a></dd>
 	</dl>
 </div>
+<script src="/assets/js/unslider.min.js"></script>
+<script>
+$(function() {
+    $('.banner').unslider({
+//		speed: 500,               //  The speed to animate each slide (in milliseconds)
+//		delay: 3000,              //  The delay between slide animations (in milliseconds)
+//		complete: function() {},  //  A function that gets called after every slide animation
+//		keys: true,               //  Enable keyboard (left, right) arrow shortcuts
+		dots: true,               //  Display dot navigation
+//		fluid: false              //  Support responsive design. May break non-responsive designs
+	});
+});
+</script>

@@ -418,15 +418,21 @@ function userHandler(successMsg){
 		return false;
 	}*/
 	var user = new Object();
-	user.avatar = $("#avatar").attr('src');
+//	user.avatar = $("#avatar").attr('src');
 	user.username = $("#username").val();
 	user.email = $("#email").val();
-	user.phone = $("#phone").val();
+	user.country = $("#country").val();
 	user.status = $("#status").val();
 	user.birthday = $("#birthday").val();
 	user.gender = $('input[name="gender"]:checked').val();
 	user.id = $("#userId").val();
-	dataHandler('modify','userInfo',user,null,null,null,successMsg,true);
+	user.phone1=$("#phone1").val();
+	user.phone2=$("#phone2").val();
+	user.phone3=$("#phone3").val();
+	user.homephone1=$("#homephone1").val();
+	user.homephone2=$("#homephone2").val();
+	user.homephone3=$("#homephone3").val();
+	dataHandler('modify','userInfoByAdmin',user,null,null,null,successMsg,true);
 }
 var productId='';
 function showStatus(_productName,_productId,_statusNo){
