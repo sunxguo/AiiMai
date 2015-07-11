@@ -1559,8 +1559,9 @@ class Common extends CI_Controller {
 		);
 		$info=$this->dbHandler->selectData($condition);
 		if(sizeof($info)<1){
-//			echo json_encode(array("result"=>"failed","message"=>"The email has not been registered!Please register with this email!"));
-			
+			echo json_encode(array("result"=>"notRegister","message"=>"The email has not been registered!Please register with this email!"));			
+			$_SESSION['userEmail']=$_POST["email"];
+			$_SESSION['username']=$_POST["username"];
 			return false;
 		}
 		/*

@@ -217,12 +217,15 @@
 		$.post(
 		"/common/loginWithFB",
 		{
-			'email':response.email
+			'email':response.email,
+			'username':response.username
 		},
 		function(data){
 			var result=$.parseJSON(data);
 			if(result.result=="success"){
 				location.href="/home";
+			}else if(result.result=='notRegister'){
+				location.href="/home/registerByFB?auto=yes";
 			}else{
 				alert(result.message);
 				$("#email").val(response.email);

@@ -129,6 +129,10 @@ class Home extends CI_Controller {
 		$data=array();
 		$this->homeBaseHandler('Confirm E-mail!','confirmEmail',$data);
 	}
+	public function registerByFB(){
+		$data=array();
+		$this->homeBaseHandler('Register!','registerByFB',$data);
+	}
 	public function login(){
 		$this->load->library('Facebook',array(
 		  'appId'  => '835653329821020',
