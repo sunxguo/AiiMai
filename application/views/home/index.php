@@ -32,27 +32,6 @@
 								</a>
 							</li>
 							<?php endif;?>
-							<?php if(isset($cat->category_home_img11) && $cat->category_home_img11!=''):?>
-							<li>
-								<a href="<?php echo $cat->category_home_link11;?>" title="<?php echo $cat->category_home_title11;?>">
-									<img src="<?php echo $cat->category_home_img11;?>">
-								</a>
-							</li>
-							<?php endif;?>
-							<?php if(isset($cat->category_home_img12) && $cat->category_home_img12!=''):?>
-							<li>
-								<a href="<?php echo $cat->category_home_link12;?>" title="<?php echo $cat->category_home_title12;?>">
-									<img src="<?php echo $cat->category_home_img12;?>">
-								</a>
-							</li>
-							<?php endif;?>
-							<?php if(isset($cat->category_home_img11) && $cat->category_home_img11!=''):?>
-							<li>
-								<a href="<?php echo $cat->category_home_link11;?>" title="<?php echo $cat->category_home_title11;?>">
-									<img src="<?php echo $cat->category_home_img11;?>">
-								</a>
-							</li>
-							<?php endif;?>
 							<?php if(isset($cat->category_home_img13) && $cat->category_home_img13!=''):?>
 							<li>
 								<a href="<?php echo $cat->category_home_link13;?>" title="<?php echo $cat->category_home_title13;?>">

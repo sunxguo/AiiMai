@@ -13,12 +13,13 @@
 	</ul>
 	<div style="margin-left:20px;margin-top:10px;">
 		<?php echo $currentCat->category_name;?>
+		<input id="categoryId" type="hidden" value="<?php echo $currentCat->category_id;?>">
 		<button onclick="modifyCategory(this,'<?php echo $currentCat->category_id;?>');" categoryName="<?php echo $currentCat->category_name;?>" type="button" class="km-btn km-btn-primary" style="height: 28px; padding: 0px 12px;font-size: 12px;">Edit</button>
 		<button onclick="deleteCategory(this,'<?php echo $currentCat->category_id;?>');" categoryName="<?php echo $currentCat->category_name;?>" type="button" class="km-btn km-btn-danger" style="height: 28px; padding: 0px 12px;font-size: 12px;">Delete</button>
-		<div class="km-btn-group-vertical" style="margin-top:10px;width:100%;">
+		<ul id="sortable" class="km-btn-group-vertical" style="margin-top:10px;width:100%;">
 			<?php $subAmount=sizeof($currentCat->subCats);
 			foreach($currentCat->subCats as $key=>$subCats):?>
-			<button type="button" class="km-btn km-btn-default category" style="color: #000;font-size: 12px;font-weight: 600;text-align:left;">
+			<li id="<?php echo $subCats->category_id;?>" type="button" class="km-btn km-btn-default category" style="color: #000;font-size: 12px;font-weight: 600;text-align:left;">
 				<?php echo $subCats->category_name;?>
 				<a onclick="deleteCategory(this,'<?php echo $subCats->category_id;?>');" categoryName="<?php echo $subCats->category_name;?>" class="km-btn km-btn-danger fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;">Delete</a>
 				<a onclick="modifyCategory(this,'<?php echo $subCats->category_id;?>');" categoryName="<?php echo $subCats->category_name;?>" class="km-btn km-btn-primary fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;margin-right:10px;">Edit</a>
@@ -28,10 +29,10 @@
 				<?php if($key!=0):?>
 				<a onclick="orderCategory('<?php echo $subCats->category_id;?>','up')" class="fr" style="margin-right:10px;"><img src="/assets/images/cms/icon-up.png" width="15"></a>
 				<?php endif;?>
-			</button>
+			</li>
 				<?php $subSubAmount=sizeof($subCats->subSubCats);
 				foreach($subCats->subSubCats as $k=>$subSubCats):?>
-				<button type="button" class="km-btn km-btn-default category" style="color: #434343;font-size: 10px;text-align:left;">
+				<li id="<?php echo $subSubCats->category_id;?>" type="button" class="km-btn km-btn-default category" style="color: #434343;font-size: 10px;text-align:left;">
 					-- <?php echo $subSubCats->category_name;?>
 					<a onclick="deleteCategory(this,'<?php echo $subSubCats->category_id;?>');" categoryName="<?php echo $subSubCats->category_name;?>" class="fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;">Delete</a>
 					<a onclick="modifyCategory(this,'<?php echo $subSubCats->category_id;?>');" categoryName="<?php echo $subSubCats->category_name;?>" class="fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;margin-right:10px;">Edit</a>
@@ -41,7 +42,7 @@
 					<?php if($k!=0):?>
 					<a onclick="orderCategory('<?php echo $subSubCats->category_id;?>','up')" class="fr" style="margin-right:10px;"><img src="/assets/images/cms/icon-up.png" width="15"></a>
 					<?php endif;?>
-				</button>
+				</li>
 				<?php endforeach;?>
 			<?php endforeach;?>
 		</div>
@@ -91,23 +92,64 @@
 	</div><!-- /.modal-dialog -->
 </div>
 <script src="/assets/js/db_handler.js" type="text/javascript"></script>
+<script src="/assets/jquery-ui/jquery-ui.js" type="text/javascript"></script>
+<link href="/assets/jquery-ui/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script>
+$( "#sortable" ).sortable({
+	delay : 1,  
+    stop :function(){
+		var postData = new Object();
+		postData.topId = $("#categoryId").val();
+		postData.idList = $("#sortable").sortable('toArray');
+		$.post(
+		"/common/modifyInfo",
+		{
+			'info_type':'categoryDrag',
+			'data':JSON.stringify(postData)
+		},
+		function(data){
+			var result=$.parseJSON(data);
+			if(result.result=="success"){
+				
+			}else{
+				alert(result.message);
+			}
+		});
+	}
+});
+/*
 $(document).ready(function(){
+	var hasMove=false;
 	var mouseX=0;
 	var mouseY=0;
-	$(".category").mousedown(function(){
+	$(".category").mousedown(function(event){
+		hasMove=true;
 		var category=$(this);
 		category.css('cursor','move');
-		$(document).mousemove(function(e){
-			var offset = category.offset();//DIV在页面的位置
-			var x = e.pageX - offset.left;//获得鼠标指针离DIV元素左边界的距离 
-			var y = e.pageY - offset.top;//获得鼠标指针离DIV元素上边界的距离
-			console.info(x+'&'+y)
-			var _x = e.pageX - x;//获得X轴方向移动的值 
-			var _y = e.pageY - y;//获得Y轴方向移动的值
-			category.css({'position':'fixed','z-index':'1000','left':_x,'top':_y});
-//				$(this).animate({left:_x+"px",top:_y+"px"},10);
-		});
+		var offset = category.offset();//DIV在页面的位置
+		var x = event.pageX - offset.left;//获得鼠标指针离DIV元素左边界的距离 
+		var y = event.pageY - offset.top;//获得鼠标指针离DIV元素上边界的距离
+			$(document).mousemove(function(e){
+				if(hasMove){
+					console.info(x+'&'+y);
+					var _x = e.pageX - x;//获得X轴方向移动的值 
+					var _y = e.pageY - y;//获得Y轴方向移动的值
+					category.css({'position':'fixed','z-index':'1000','left':_x,'top':_y});
+	//				$(this).animate({left:_x+"px",top:_y+"px"},10);
+				}
+			});
 	});
-})
+	$(".category").mouseup(function(){
+		var category=$(this);
+		if(category.css('position')=='fixed'){
+			category.css('position','static');
+		}
+		category.css('cursor','default');
+//		$(document).unbind("mousemove");
+		hasMove=false;
+	});
+	$(".category").mouseover(function(){
+		
+	});
+})*/
 </script>

@@ -1004,6 +1004,57 @@ class Common extends CI_Controller {
 				);
 				$result=$this->dbHandler->updateData($updateCondition);
 			break;
+			case 'categoryDrag':
+				$idList=$data->idList;
+				$category=$this->commongetdata->getContent('category',$idList[0]);
+				$fCategory=$this->commongetdata->getContent('category',$category->category_fid);
+				if(!isset($fCategory->category_id) || $fCategory->category_fid!=0){
+					echo json_encode(array("result"=>"failed","message"=>"Failed to modify.The first category is error !"));
+					return false;
+				}
+				$subCatOrder=1;
+				$subCatId=0;
+				$subSubCatOrder=1;
+				foreach($idList as $key=>$categoryId){
+					$category=$this->commongetdata->getContent('category',$categoryId);
+					$category=get_object_vars($category);
+					$fCategory=$this->commongetdata->getContent('category',$category['category_fid']);
+					unset($category['category_id']);
+					//insert new catgory
+					if($fCategory->category_fid==0){
+						$category['category_order']=$subCatOrder;
+						$subCatOrder++;
+						$subSubCatOrder=1;
+					}else{
+						$category['category_order']=$subSubCatOrder;
+						$category['category_fid']=$subCatId;
+						$subSubCatOrder++;
+					}
+					
+					$newCategoryId=$this->dbHandler->insertDataReturnId('category',$category);
+					if($fCategory->category_fid==0) $subCatId=$newCategoryId;
+					//delete old category
+					$this->dbHandler->deleteData(array('table'=>'category','where'=>array('category_id'=>$categoryId)));
+					
+					//move products in old category to new category
+					
+/*					if(isset($fCategory->category_id)){
+						if($fCategory->category_fid==0){
+							$categoryName=;
+						}
+						else{
+							
+						}
+					}else{
+						
+					}
+					if(){
+						$categoryName=;
+					}
+					$this->dbHandler->updateData(array('table'=>'product','where'=>array('product_sub_category'=>$data->topId,'product_category'=>)));*/
+				}
+				return true;
+			break;
 			case 'address':
 				$notExist=$this->commongetdata->checkUniqueAdvance("address",array("address_userid"=>$data->userId,"address_type"=>$data->type));
 				if($notExist){
