@@ -1561,7 +1561,7 @@ class Common extends CI_Controller {
 		if(sizeof($info)<1){
 			echo json_encode(array("result"=>"notRegister","message"=>"The email has not been registered!Please register with this email!"));			
 			$_SESSION['userEmail']=$_POST["email"];
-			$_SESSION['username']=$_POST["username"];
+			$_SESSION['username']=$_POST["name"];
 			return false;
 		}
 		/*
