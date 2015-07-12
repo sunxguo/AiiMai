@@ -68,19 +68,22 @@
         </caption>
         <thead>
             <tr>
-                <th>Products</th>
-                <th>Buyer</th>
-                <th>Total</th>
-                <th>Time</th>
+				<th class="width17p">Order Number</th>
+                <th style="width:32%;">Products</th>
+                <th class="width17p">Buyer</th>
+                <th class="width17p">Total</th>
+                <th class="width17p">Time</th>
             </tr>
         </thead>
         <tbody>
+			<!--
 			<tr>
 				<td><a href="">T-shirt (1)</a></td>
 				<td>Username</td>
 				<td>S$110.00</td>
 				<td>2015-04-07 11:20:09</td>
 			</tr>
+			-->
 	</table>
 	<table id="summary_table" class="app-list table ymtable table-striped">
         <caption class="clearfix">

@@ -214,6 +214,10 @@
   }
   function loginAiiMaiWithFB(){
 	FB.api('/me', function(response) {
+		for (var i in obj){
+			console.log(i+'->');            // 输出属性名：  attribute，method
+			console.log(obj[i])  
+		}
 		$.post(
 		"/common/loginWithFB",
 		{
