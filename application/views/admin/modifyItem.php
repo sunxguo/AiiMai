@@ -102,7 +102,7 @@
 						<span class="km-label km-label-default">繁體中文</span><input id="title_tw_cn" value="<?php echo $item->product_item_title_tw_cn;?>" type="text" placeholder="請輸入正確的型號名（最多200字）" class="km-form-control" style="width: 80%;height: 30px;margin-left:10px;padding: 0px 5px;display: inline-block;font-size:12px;"><br>
 					</td>
 				  </tr>
-				  <tr>
+				  <tr style="display:none;">
 					<td class="field width10p tal br">
 						<?php echo lang('cms_baseInfo_goodsStatistics_ShortTitle');?>
 					</td>

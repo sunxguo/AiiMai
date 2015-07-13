@@ -6,7 +6,7 @@
 <div class="" style="padding-left:30px;">
 	<ul class="km-nav km-nav-tabs clearfix">
 	  <li><a href="/cms/shopBaseInfo"><?php echo lang('cms_grade_shop_BasicInfo');?></a></li>
-	  <li><a href="/cms/shopHomePage"><?php echo lang('cms_grade_shop_Main');?></a></li>
+	  <li><a href="/cms/shopHomePage">Shop Front</a></li>
 	  <li><a href="/cms/shopDiscount"><?php echo lang('cms_grade_shop_FeaturedEvent');?></a></li>
 	  <li><a href="/cms/shopCategory"><?php echo lang('cms_grade_shop_Category');?></a></li>
 	  <li class="active"><a href="#no"><?php echo lang('cms_grade_shop_ShopInformation');?></a></li>

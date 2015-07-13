@@ -23,7 +23,7 @@
 				  <tr class="bt2">
 					<td class="value width50p tal br">
 						<?php echo lang('cms_baseInfo_goodsStatistics_Registeredtoday');?>: <span class="km-badge km-badge-info"><?php echo $registeredToday;?></span> 
-						<a href="/cms/goodsEdit" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;">Go</a>
+						<a href="/cms/goodsEdit?RT=true" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;">Go</a>
 					</td>
 					<td class="value width50p tal">
 						<?php echo lang('cms_baseInfo_goodsStatistics_Soldouttoday');?>: <span class="km-badge km-badge-info">0</span> 
@@ -43,11 +43,11 @@
 				  <tr>
 					<td class="value width50p tal br">
 						<?php echo lang('cms_baseInfo_goodsStatistics_Underreviewbeforelisting');?>: <span class="km-badge km-badge-info"><?php echo $underReview;?></span>  
-						<a href="/cms/goodsEdit" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;">Go</a>
+						<a href="/cms/goodsEdit?URBL=true" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;">Go</a>
 					</td>
 					<td class="value width50p tal">
 						<?php echo lang('cms_baseInfo_goodsStatistics_ListingRejected');?>: <span class="km-badge km-badge-info"><?php echo $rejected;?></span> 
-						<a href="/cms/goodsEdit" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;">Go</a>
+						<a href="/cms/goodsEdit?LR=true" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;">Go</a>
 					</td>
 				  </tr>
 				</tbody>

@@ -74,8 +74,8 @@
 							  <input id="BusinessLicenseMsg" type="text" class="km-form-control" placeholder="ASM Seller Confirm" style="height:20px;font-size: 12px;">
 							</div>
 						</div>
-						<div class="fl" style="margin-left:50px;">
-							<button onclick="$('#fileBusinessLicense').click();" type="button" class="km-btn km-btn-primary" style="height: 32px;font-size: 12px;"><?php echo lang('cms_sider_Upload');?></button>
+						<div class="fl" style="margin-left:50px; margin-top: 4px;">
+							<button onclick="$('#fileBusinessLicense').click();" type="button" class="km-btn km-btn-primary" style="height: 25px;font-size: 12px;padding: 0px 10px;"><?php echo lang('cms_sider_Upload');?></button>
 							<img src="/assets/images/cms/loading.gif" id="loadingBusinessLicense" class="hide">
 							<a href="<?php echo $merchant->merchant_business_license;?>" target="_blank"><?php echo lang('cms_sider_Viewimage');?></a>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo lang('cms_sider_ViewimageTip');?>
 							<form id="upload_BusinessLicense_form" method="post" enctype="multipart/form-data">
@@ -93,8 +93,8 @@
 							  <input id="BankbookMsg" type="text" class="km-form-control" placeholder="ASM Seller Confirm" style="height:20px;font-size: 12px;">
 							</div>
 						</div>
-						<div class="fl" style="margin-left:50px;">
-							<button type="button" onclick="$('#fileBankbook').click();" class="km-btn km-btn-primary" style="height: 32px;font-size: 12px;"><?php echo lang('cms_sider_Upload');?></button>
+						<div class="fl" style="margin-left:50px; margin-top: 4px;">
+							<button type="button" onclick="$('#fileBankbook').click();" class="km-btn km-btn-primary" style="height: 25px;font-size: 12px;padding: 0px 10px;"><?php echo lang('cms_sider_Upload');?></button>
 							<img src="/assets/images/cms/loading.gif" id="loadingBankbook" class="hide">
 							<a href="<?php echo $merchant->merchant_bank_account;?>" target="_blank"><?php echo lang('cms_sider_Viewimage');?></a>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo lang('cms_sider_ViewimageTip');?>
 							<form id="upload_bankbook_form" method="post" enctype="multipart/form-data">
@@ -106,7 +106,7 @@
 				  <tr>
 					<td class="field"><?php echo lang('cms_sider_Requestforapproval');?></td>
 					<td class="value">
-						<button onclick="requestForSettleInfo()" type="button" class="km-btn km-btn-primary" style="height: 32px;font-size: 12px;"><?php echo lang('cms_sider_Request');?></button>
+						<button onclick="requestForSettleInfo()" type="button" class="km-btn km-btn-primary" style="height: 25px;font-size: 12px;padding: 0px 10px;"><?php echo lang('cms_sider_Request');?></button>
 					</td>
 					<td class="field"><?php echo lang('cms_sider_Processingstatus');?></td>
 					<td class="value" colspan="3">
@@ -160,7 +160,7 @@
 					<td class="field">Address</td>
 					<td class="value" colspan="3">
 						<input id="gstAddress" value="<?php echo $merchant->merchant_gst_address;?>" type="text" class="km-form-control fl" placeholder="" style="height:20px;width:80%;">
-						<button onclick="saveGstInfo();" type="button" class="km-btn km-btn-primary fr" style="height: 32px;line-height:20px;font-size: 12px;">Request</button>
+						<button onclick="saveGstInfo();" type="button" class="km-btn km-btn-primary fr" style="height: 25px;font-size: 12px;padding: 0px 10px;">Request</button>
 					</td>
 				  </tr>
 				</tbody>
@@ -176,7 +176,7 @@
 					<td class="field width10p" rowspan="2"><?php echo lang('cms_myInfo_ContactNo');?></td>
 					<td class="value width17p">
 						<span class="km-label km-label-default fl"><?php echo lang('cms_myInfo_MobilephoneNo');?></span>  <?php echo $merchant->merchant_phone1;?> <?php echo $merchant->merchant_phone2;?>-<?php echo $merchant->merchant_phone3;?> 
-						<button onclick="setDivCenter('#baseInfoMobilePhoneNumber',true);" type="button" class="km-btn km-btn-primary fr" style=""><?php echo lang('cms_myInfo_Edit');?></button>
+						<button onclick="setDivCenter('#baseInfoMobilePhoneNumber',true);" type="button" class="km-btn km-btn-primary fr" style="height: 25px;font-size: 12px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
 						<div class="km-modal-dialog width40p" id="baseInfoMobilePhoneNumber">
 							<div class="km-modal-content">
 								<div class="km-modal-header">
@@ -242,7 +242,7 @@
 					<td class="field width10p" rowspan="2"><?php echo lang('cms_myInfo_Email');?></td>
 					<td class="value width17p" rowspan="2">
 						<?php echo $merchant->user_email;?>
-						<button onclick="setDivCenter('#baseContactInfoEmail',true);" type="button" class="km-btn km-btn-primary" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button><br>
+						<button onclick="setDivCenter('#baseContactInfoEmail',true);" type="button" class="km-btn km-btn-primary" style="height: 25px;font-size: 12px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button><br>
 						<?php echo lang('cms_myInfo_EmailTip');?></td>
 						<div class="km-modal-dialog width40p" id="baseContactInfoEmail">
 							<div class="km-modal-content">
@@ -264,7 +264,7 @@
 				  <tr>
 					<td class="value width17p">
 						<span class="km-label km-label-default fl"><?php echo lang('cms_myInfo_Phonenumber');?></span>  <?php echo $merchant->merchant_homephone1;?> <?php echo $merchant->merchant_homephone2;?>-<?php echo $merchant->merchant_homephone3;?> 
-						<button onclick="setDivCenter('#baseInfoPhoneNumber',true);" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
+						<button onclick="setDivCenter('#baseInfoPhoneNumber',true);" type="button" class="km-btn km-btn-primary fr" style="height: 25px;font-size: 12px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
 						<div class="km-modal-dialog width40p" id="baseInfoPhoneNumber">
 							<div class="km-modal-content">
 								<div class="km-modal-header">
@@ -346,7 +346,7 @@
 						<input id="baseInfoPhone" type="checkbox" style="vertical-align: middle;" <?php echo $merchant->merchant_displayed_address_phone_display?'checked':'';?>>
 						<label for="baseInfoPhone" class="km-label km-label-<?php echo $merchant->merchant_displayed_address_phone_display?'success':'danger';?>" style="margin-right:10px;padding:0 0.6em">Display</label>
 						 <?php echo $merchant->merchant_displayed_address_phone_content1.' '.$merchant->merchant_displayed_address_phone_content2.'-'.$merchant->merchant_displayed_address_phone_content3;?>
-						<button onclick="setDivCenter('#MyInfoCustomerViewAddress',true);" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
+						<button onclick="setDivCenter('#MyInfoCustomerViewAddress',true);" type="button" class="km-btn km-btn-primary fr" style="height: 25px;font-size: 12px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
 						<div class="km-modal-dialog width40p" id="MyInfoCustomerViewAddress">
 							<div class="km-modal-content">
 								<div class="km-modal-header">
@@ -373,7 +373,7 @@
 					<td class="field width10p"><?php echo lang('cms_myInfo_Faxnumber');?></td>
 					<td class="value width17p">
 						<?php echo $merchant->merchant_displayed_faxnumber1.' '.$merchant->merchant_displayed_faxnumber2.'-'.$merchant->merchant_displayed_faxnumber3;?>
-						<button onclick="setDivCenter('#MyInfoCustomerViewFax',true);" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
+						<button onclick="setDivCenter('#MyInfoCustomerViewFax',true);" type="button" class="km-btn km-btn-primary fr" style="height: 25px;font-size: 12px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
 						<div class="km-modal-dialog width40p" id="MyInfoCustomerViewFax">
 							<div class="km-modal-content">
 								<div class="km-modal-header">
@@ -395,7 +395,7 @@
 					</td>
 					<td class="field width10p" rowspan="2"><?php echo lang('cms_myInfo_CustomerCenterWorkingHour');?></td>
 					<td class="value width17p" rowspan="2"><?php echo $merchant->merchant_displayed_workinghour;?>
-						<button onclick="setDivCenter('#MyInfoCustomerViewBusinessHours',true);" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
+						<button onclick="setDivCenter('#MyInfoCustomerViewBusinessHours',true);" type="button" class="km-btn km-btn-primary fr" style="height: 25px;font-size: 12px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
 						<div class="km-modal-dialog width40p" id="MyInfoCustomerViewBusinessHours">
 							<div class="km-modal-content">
 								<div class="km-modal-header">
@@ -418,7 +418,7 @@
 					<td class="field width10p"><?php echo lang('cms_myInfo_Email');?></td>
 					<td class="value width17p">
 						<?php echo $merchant->merchant_displayed_email;?>
-						<button onclick="modifyMyInfoCustomerViewEmail();" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
+						<button onclick="modifyMyInfoCustomerViewEmail();" type="button" class="km-btn km-btn-primary fr" style="height: 25px;font-size: 12px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
 						<div class="km-modal-dialog width40p" id="MyInfoCustomerViewEmail">
 							<div class="km-modal-content">
 								<div class="km-modal-header">
@@ -450,7 +450,7 @@
 					<td class="field width10p"><?php echo lang('cms_myInfo_Salesstaff');?></td>
 					<td class="value width17p">
 						<?php echo $merchant->merchant_salesStaff;?>
-						<button onclick="setDivCenter('#myInfoSalesstaffDiv',true);" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
+						<button onclick="setDivCenter('#myInfoSalesstaffDiv',true);" type="button" class="km-btn km-btn-primary fr" style="height: 25px;font-size: 12px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
 						<div class="km-modal-dialog width40p" id="myInfoSalesstaffDiv">
 							<div class="km-modal-content">
 								<div class="km-modal-header">
@@ -471,7 +471,7 @@
 					<td class="field width10p"><?php echo lang('cms_myInfo_Email');?></td>
 					<td class="value width17p">
 						<?php echo $merchant->merchant_salesStaff_email;?>
-						<button onclick="setDivCenter('#manageEmail',true);" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button><br>
+						<button onclick="setDivCenter('#manageEmail',true);" type="button" class="km-btn km-btn-primary fr" style="height: 25px;font-size: 12px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button><br>
 						<div class="km-modal-dialog width40p" id="manageEmail">
 							<div class="km-modal-content">
 								<div class="km-modal-header">
@@ -494,7 +494,7 @@
 					<td class="field width10p"><?php echo lang('cms_myInfo_MobilephoneNo');?></td>
 					<td class="value width17p">
 						<?php echo $merchant->merchant_salesStaff_mobilephone1;?> <?php echo $merchant->merchant_salesStaff_mobilephone2;?>-<?php echo $merchant->merchant_salesStaff_mobilephone3;?> 
-						<button onclick="setDivCenter('#manageMobilePhoneNumber',true);" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
+						<button onclick="setDivCenter('#manageMobilePhoneNumber',true);" type="button" class="km-btn km-btn-primary fr" style="height: 25px;font-size: 12px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
 						<div class="km-modal-dialog width40p" id="manageMobilePhoneNumber">
 							<div class="km-modal-content">
 								<div class="km-modal-header">
@@ -517,7 +517,7 @@
 					<td class="field width10p"><?php echo lang('cms_myInfo_Phonenumber');?></td>
 					<td class="value width17p">
 						<?php echo $merchant->merchant_salesStaff_phone1;?> <?php echo $merchant->merchant_salesStaff_phone2;?>-<?php echo $merchant->merchant_salesStaff_phone3;?> 
-						<button onclick="setDivCenter('#managePhoneNumber',true);" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
+						<button onclick="setDivCenter('#managePhoneNumber',true);" type="button" class="km-btn km-btn-primary fr" style="height: 25px;font-size: 12px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
 						<div class="km-modal-dialog width40p" id="managePhoneNumber">
 							<div class="km-modal-content">
 								<div class="km-modal-header">
@@ -542,7 +542,7 @@
 					<td class="field width10p"><?php echo lang('cms_myInfo_Faxnumber');?></td>
 					<td class="value width17p" colspan="3">
 						<?php echo $merchant->merchant_salesStaff_faxnumber1;?> <?php echo $merchant->merchant_salesStaff_faxnumber2;?>-<?php echo $merchant->merchant_salesStaff_faxnumber3;?> 
-						<button onclick="setDivCenter('#manageFax',true);" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
+						<button onclick="setDivCenter('#manageFax',true);" type="button" class="km-btn km-btn-primary fr" style="height: 25px;font-size: 12px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
 						<div class="km-modal-dialog width40p" id="manageFax">
 							<div class="km-modal-content">
 								<div class="km-modal-header">
@@ -581,7 +581,7 @@
 						<?php endif;?>
 						<br>
 						<?php echo lang('cms_myInfo_ShipfromaddressTip');?>
-						<button onclick="setDivCenter('#shipFromAddressDiv',true);" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
+						<button onclick="setDivCenter('#shipFromAddressDiv',true);" type="button" class="km-btn km-btn-primary fr" style="height: 25px;font-size: 12px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
 						<div class="km-modal-dialog width40p" id="shipFromAddressDiv">
 							<div class="km-modal-content">
 								<div class="km-modal-header">
@@ -660,7 +660,7 @@
 							<option value="100000052" <?php echo $merchant->merchant_delivery_company==100000052?'selected':'';?>>Pos Laju</option>
 							<option value="100000008" <?php echo $merchant->merchant_delivery_company==100000008?'selected':'';?>>Others</option>
 						</select>
-						<button onclick="saveDeliveryCompany();" type="button" class="km-btn km-btn-primary fr" style="height: 28px;font-size: 12px;padding: 5px 10px;"><?php echo lang('cms_common_save');?></button>
+						<button onclick="saveDeliveryCompany();" type="button" class="km-btn km-btn-primary fr" style="height: 25px;font-size: 12px;padding: 0px 10px;"><?php echo lang('cms_common_save');?></button>
 					</td>
 				  </tr>
 				  <tr>
@@ -679,22 +679,22 @@
 							  </div>
 							</div>
 						</div>
-						<?php echo lang('cms_myInfo_MobilephoneNo');?>：<?php echo $merchant->merchant_order_alert_phone1;?> <?php echo $merchant->merchant_order_alert_phone2;?> <button onclick="setDivCenter('#',true);" type="button" class="km-btn km-btn-primary" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_common_Editmobilephonenumber');?></button>
-						<button onclick="saveOrderAlert();" type="button" class="km-btn km-btn-primary fr" style="height: 28px;font-size: 12px;padding: 5px 10px;"><?php echo lang('cms_common_save');?></button>
+						<?php echo lang('cms_myInfo_MobilephoneNo');?>：<?php echo $merchant->merchant_order_alert_phone1;?> <?php echo $merchant->merchant_order_alert_phone2;?> <button onclick="setDivCenter('#',true);" type="button" class="km-btn km-btn-primary" style="height: 25px;font-size: 12px;padding: 0px 10px;"><?php echo lang('cms_common_Editmobilephonenumber');?></button>
+						<button onclick="saveOrderAlert();" type="button" class="km-btn km-btn-primary fr" style="height: 25px;font-size: 12px;padding: 0px 10px;"><?php echo lang('cms_common_save');?></button>
 					</td>
 				  </tr>
 				  <tr>
 					<td class="field width10p"><?php echo lang('cms_myInfo_Sendingnotifymail');?></td>
 					<td class="value width17p tal" colspan="3">
 						<input id="isSendingNotifyMail" type="checkbox" <?php echo $merchant->merchant_is_sending_notify_mail==1?'checked':'';?> style="vertical-align: middle;margin-right: 5px;"> <?php echo lang('cms_myInfo_Use');?> 	<?php echo lang('cms_myInfo_UseTip');?>
-						<button onclick="saveIsSendingNotifyMail();" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_common_save');?></button>
+						<button onclick="saveIsSendingNotifyMail();" type="button" class="km-btn km-btn-primary fr" style="height: 25px;font-size: 12px;padding: 0px 10px;"><?php echo lang('cms_common_save');?></button>
 					</td>
 				  </tr>
 				  <tr>
 					<td class="field width10p">e-Ticket <?php echo lang('cms_sider_Password');?></td>
 					<td class="value width17p tal" colspan="3">
 						<input type="text" class="km-form-control" id="eticketPassword" value="<?php echo $merchant->merchant_eticket_password;?>" style="width: 30%;height: 25px;padding: 0 5px;display: inline-block;">
-						<button onclick="saveEticketPassword();" type="button" class="km-btn km-btn-primary fr" style="height: 22px;font-size: 10px;padding: 2px 10px;"><?php echo lang('cms_common_save');?></button>
+						<button onclick="saveEticketPassword();" type="button" class="km-btn km-btn-primary fr" style="height: 25px;font-size: 12px;padding: 0px 10px;"><?php echo lang('cms_common_save');?></button>
 					</td>
 				  </tr>
 				</tbody>

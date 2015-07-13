@@ -200,7 +200,7 @@
 						</select>
 					</td>
 					<td class="field width10p tal br">
-						<?php echo lang('cms_goodsAdd_ReferencePrice');?> (S$)
+						Retail Price (S$)
 					</td>
 					<td class="value tal">
 						<input id="ReferencePrice" type="text" class="km-form-control" style="width: 50%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">

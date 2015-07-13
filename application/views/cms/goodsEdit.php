@@ -131,6 +131,24 @@
 <script src="/assets/js/cms-goods.js" type="text/javascript"></script>
 <script>
 $(document).ready(function(){
+	<?php if(isset($_GET['RT']) && $_GET['RT']):?>
+	var today = new Date();
+    today.setDate(today.getDate());
+    var y = today.getFullYear();
+    var m = today.getMonth()+1;//获取当前月份
+	m=(m<10?'0':'')+m;
+    var d = today.getDate();
+	$("#beginDate").val(y+'-'+m+'-'+d);
+	<?php endif;?>
+	<?php if(isset($_GET['LR']) && $_GET['LR']):?>
+	$("#status").val(6);
+	<?php endif;?>
+	<?php if(isset($_GET['SOT']) && $_GET['SOT']):?>
+	$("#status").val(6);
+	<?php endif;?>
+	<?php if(isset($_GET['URBL']) && $_GET['URBL']):?>
+	$("#status").val(1);
+	<?php endif;?>
 	productQuery(false);
 });
 </script>

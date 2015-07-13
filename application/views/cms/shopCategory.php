@@ -6,7 +6,7 @@
 <div class="" style="padding-left:30px;">
 	<ul class="km-nav km-nav-tabs clearfix">
 	  <li><a href="/cms/shopBaseInfo"><?php echo lang('cms_grade_shop_BasicInfo');?></a></li>
-	  <li><a href="/cms/shopHomePage"><?php echo lang('cms_grade_shop_Main');?></a></li>
+	  <li><a href="/cms/shopHomePage">Shop Front</a></li>
 	  <li><a href="/cms/shopDiscount"><?php echo lang('cms_grade_shop_FeaturedEvent');?></a></li>
 	  <li class="active"><a href="#no"><?php echo lang('cms_grade_shop_Category');?></a></li>
 	  <li><a href="/cms/shopInfo"><?php echo lang('cms_grade_shop_ShopInformation');?></a></li>
@@ -18,7 +18,7 @@
 				<input type="radio" name="category" style="vertical-align: middle;margin-right: 5px;" checked> <?php echo lang('cms_baseInfo_shop_shopCategory_AiiMaiCategory');?>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="radio" name="category" style="vertical-align: middle;margin-right: 5px;"> <?php echo lang('cms_baseInfo_shop_shopCategory_CustomizedCategory');?>
-				<button onclick=";" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_common_save');?></button>
+				<button onclick=";" type="button" class="km-btn km-btn-primary fr" style="height: 25px;font-size: 12px;padding: 0px 10px;"><?php echo lang('cms_common_save');?></button>
 			</div>
 		</div>
 		<div class="km-panel km-panel-primary mt10" style="width: 98%;">
@@ -29,7 +29,7 @@
 					<option value="sub"><?php echo lang('cms_baseInfo_shop_shopCategory_CategoryGroup');?> – <?php echo lang('cms_baseInfo_shop_shopCategory_SubCategory');?></option>
 				</select>
 				<?php echo lang('cms_baseInfo_shop_shopCategory_SelectCategoryTargetTip');?>
-				<button onclick=";" type="button" class="km-btn km-btn-primary fr" style="height: 28px;font-size: 12px;padding: 5px 10px;">Save</button>
+				<button onclick=";" type="button" class="km-btn km-btn-primary fr" style="height: 25px;font-size: 12px;padding: 0px 10px;">Save</button>
 			</div>
 		</div>
 		
