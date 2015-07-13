@@ -222,7 +222,8 @@
 		"/common/loginWithFB",
 		{
 			'email':response.email,
-			'name':response.name
+			'username':response.name,
+			'gender':response.gender
 		},
 		function(data){
 			var result=$.parseJSON(data);

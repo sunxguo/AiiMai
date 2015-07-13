@@ -327,7 +327,7 @@ class CommonGetData{
 		);
 		return $page;
 	}
-	public function getOrdersByDay($startDate,$offset,$merchant=false,$withLabel=false){
+	public function getOrdersByDay($startDate,$offset,$merchant=false,$withLabel=false,$dateType='normal'){
 		$data=array();
 		for($i=0;$i<$offset;$i++){
 			$date=date("Y-m-d",strtotime($startDate." +".$i." day"));
@@ -344,9 +344,11 @@ class CommonGetData{
 			}
 			$orders=$this->getData($condition);
 			if($withLabel){
-				$data[$date]=0;
+				if($dateType=='normal') $data[$date]=0;
+				else $data[date("d",strtotime($startDate." +".$i." day"))]=0;
 				foreach($orders as $o){
-					$data[$date]+=$o->order_total;
+					if($dateType=='normal') $data[$date]+=$o->order_total;
+					else $data[date("d",strtotime($startDate." +".$i." day"))]+=$o->order_total;
 				}
 			}else{
 				$data[$i]=0;

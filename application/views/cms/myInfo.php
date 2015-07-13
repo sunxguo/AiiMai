@@ -19,7 +19,7 @@
 					<td class="value"><?php echo $merchant->user_grade;?><?php //echo lang('cms_sider_StandardSeller');?></td>
 					<td class="field"><?php echo lang('cms_sider_Password');?></td>
 					<td class="value" style="padding: 2px 0;">
-						<button onclick="modifySellerBaseInfoPwd();" type="button" class="km-btn km-btn-primary" style="height: 30px;font-size: 12px;"><?php echo lang('cms_sider_Editpassword');?></button>
+						<button onclick="modifySellerBaseInfoPwd();" type="button" class="km-btn km-btn-primary" style="height: 25px;font-size: 12px;padding: 0px 10px;"><?php echo lang('cms_sider_Editpassword');?></button>
 						<div class="km-modal-dialog width40p" id="sellerBaseInfoPwd">
 							<div class="km-modal-content">
 								<div class="km-modal-header">
@@ -176,7 +176,7 @@
 					<td class="field width10p" rowspan="2"><?php echo lang('cms_myInfo_ContactNo');?></td>
 					<td class="value width17p">
 						<span class="km-label km-label-default fl"><?php echo lang('cms_myInfo_MobilephoneNo');?></span>  <?php echo $merchant->merchant_phone1;?> <?php echo $merchant->merchant_phone2;?>-<?php echo $merchant->merchant_phone3;?> 
-						<button onclick="setDivCenter('#baseInfoMobilePhoneNumber',true);" type="button" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;"><?php echo lang('cms_myInfo_Edit');?></button>
+						<button onclick="setDivCenter('#baseInfoMobilePhoneNumber',true);" type="button" class="km-btn km-btn-primary fr" style=""><?php echo lang('cms_myInfo_Edit');?></button>
 						<div class="km-modal-dialog width40p" id="baseInfoMobilePhoneNumber">
 							<div class="km-modal-content">
 								<div class="km-modal-header">

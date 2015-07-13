@@ -618,6 +618,16 @@ function selectMerchantStatus(tag){
 function showMutiChangeImageDiv(){
 	setDivCenter('#changeMutiHomeFeaturedImageDiv',true);
 }
+
+function successPublished(){
+	alert('Successfully published!');
+}
+function pubNotice(){
+	var notice = new Object();
+	notice.idArray = itemsArray;
+	notice.status = $("#statusChanged").val();
+	dataHandler("add","notice",notice,successShowCat,'Sure to publish this?',null,null,true);
+}
 /*Example:
 $(".slider-item").mouseout(function(){
 	$(this).find('.oper').hide();

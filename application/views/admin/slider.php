@@ -50,6 +50,7 @@
 	<li><a href="/admin/account" <?php echo isset($account) && $account?'class="current"':'';?>><?php echo lang('admin_sider_Account');?></a></li>
 	<li><a href="/admin/searchStatistics" <?php echo isset($searchStatistics) && $searchStatistics?'class="current"':'';?>><?php echo lang('admin_sider_SearchStatistics');?></a></li>
 	<li><a href="/admin/sendMessage" <?php echo isset($sendMessage) && $sendMessage?'class="current"':'';?>><?php echo lang('admin_sider_SendMessage');?></a></li>
+	<li><a href="/admin/asmNotice" <?php echo isset($asmNotice) && $asmNotice?'class="current"':'';?>>ASM Notice</a></li>
 </ul>
 <h3 <?php echo isset($setting) && $setting?'class="current"':'';?>>
 	<a href="/admin/basicParameter">

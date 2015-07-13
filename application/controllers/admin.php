@@ -486,10 +486,20 @@ class Admin extends CI_Controller {
 		$this->adminBaseHandler('send Message',array('tool','sendMessage'),'sendmsg',$data);
 	}
 	public function asmNotice(){
+		if(isset($_GET['page'])&& is_numeric($_GET['page'])) $page=$_GET['page'];
+		else $page=1;
+		$amountPerPage=20;
+		$baseUrl=$selectUrl='/admin/users?placeholder=yes';
+		$condition['table']='notice';
+		$condition['result']="count";
+		$amount=$this->commongetdata->getData($condition);
+		$condition['result']="data";
 		$data=array(
-			"columns"=>$this->commongetdata->getColumns()
+			"notices"=>$this->commongetdata->getData($condition)
 		);
-		$this->adminBaseHandler('send Message',array('tool','sendMessage'),'sendmsg',$data);
+		$pageInfo=$this->commongetdata->getPageLink($baseUrl,$selectUrl,$page,$amountPerPage,$amount);
+		$data=array_merge($data,$pageInfo);
+		$this->adminBaseHandler('ASM Notice',array('tool','asmNotice'),'asmNotice',$data);
 	}
 	public function searchStatistics(){
 		$data=array(

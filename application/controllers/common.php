@@ -1161,7 +1161,7 @@ class Common extends CI_Controller {
 				$days=$data->days;
 				$startDate=date("Y-m-d",strtotime(date("Y-m-d")." -".$days." day"));
 				$merchant=isset($data->merchant)?$data->merchant:$_SESSION['userid'];
-				$result=$this->commongetdata->getOrdersByDay($startDate,$days,$merchant,true);
+				$result=$this->commongetdata->getOrdersByDay($startDate,$days,$merchant,true,'short');
 			break;
 			case 'address':
 				if($data->type==6){
@@ -1559,9 +1559,22 @@ class Common extends CI_Controller {
 		);
 		$info=$this->dbHandler->selectData($condition);
 		if(sizeof($info)<1){
-			echo json_encode(array("result"=>"notRegister","message"=>"The email has not been registered!Please register with this email!"));			
+			if(!$this->commongetdata->checkUniqueAdvance("user",array("user_username"=>$_POST["username"]))){
+				echo json_encode(array("result"=>"notunique","message"=>"This username already exists!"));
+				return false;
+			}
+			$facebookUserInfo=array(
+				"user_username"=>$_POST["username"],
+				"user_grade"=>1,
+				"user_gender"=>$_POST["gender"],
+				"user_email"=>$_POST["email"],
+				"user_is_merchant"=>0,
+				"user_reg_time"=>date("Y-m-d H:i:s")
+			);
+			$result=$this->dbHandler->insertData("user",$facebookUserInfo);
 			$_SESSION['userEmail']=$_POST["email"];
-			$_SESSION['username']=$_POST["name"];
+			$_SESSION['username']=$_POST["username"];
+			echo json_encode(array("result"=>"notRegister","message"=>"The email has not been registered!Please register with this email!"));			
 			return false;
 		}
 		/*
