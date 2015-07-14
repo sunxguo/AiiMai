@@ -1161,7 +1161,7 @@ class Common extends CI_Controller {
 				$days=$data->days;
 				$startDate=date("Y-m-d",strtotime(date("Y-m-d")." -".$days." day"));
 				$merchant=isset($data->merchant)?$data->merchant:$_SESSION['userid'];
-				$result=$this->commongetdata->getOrdersByDay($startDate,$days,$merchant,true,'short');
+				$result=$this->commongetdata->getOrdersByDay($startDate,$days,$merchant,true,'short',29);
 			break;
 			case 'address':
 				if($data->type==6){

@@ -69,9 +69,10 @@
         <thead>
             <tr>
 				<th class="width17p">Order Number</th>
-                <th style="width:32%;">Products</th>
+                <th style="width:22%;">Products</th>
                 <th class="width17p">Buyer</th>
                 <th class="width17p">Total</th>
+                <th class="width10p">Status</th>
                 <th class="width17p">Time</th>
             </tr>
         </thead>
@@ -185,7 +186,7 @@ function drawChart(flow,labels){
 				height:20
 			},
 			footnote : '',
-			width : 800,
+			width : 900,
 			height : 500,
 			sub_option:{
 				smooth : true,//平滑曲线
@@ -203,8 +204,8 @@ function drawChart(flow,labels){
 				line_color:'#ffb600'
 			},
 			coordinate:{
-				width:600,
-				valid_width:500,
+				width:750,
+				valid_width:700,
 				height:360,
 				axis:{
 					color:'#9f9f9f',

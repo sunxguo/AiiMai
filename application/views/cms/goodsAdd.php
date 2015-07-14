@@ -184,20 +184,24 @@
 						<?php echo lang('cms_goodsAdd_AvailablePeriod');?>
 					</td>
 					<td class="value tal">
-						<select style="height: 30px;" id="AvailablePeriod">
+						<select style="height: 30px;float:left;" id="AvailablePeriod" onchange="if($(this).val()==0) $('#AvailablePeriodRange').show();else $('#AvailablePeriodRange').hide();">
 							<option value="">Select</option>  
 							<option value="1">1 day</option>  
-							<option value="3">3 days</option>  
-							<option value="5">5 days</option>  
-							<option value="7">7 days</option>  
-							<option value="10">10 days</option>  
-							<option value="20">20 days</option>  
-							<option value="30">1 month</option>  
-							<option value="60">2 months</option>  
-							<option value="90">3 months</option>  
-							<option value="180">6 months</option>  
+							<option value="2">2 days</option> 
+							<option value="3">3 days</option>   
+							<option value="7">1 weeks</option>  
+							<option value="14">2 weeks</option>
+							<option value="30">1 month</option>
+							<option value="90">3 months</option>
+							<option value="180">6 months</option>
 							<option value="365" selected="">1 year</option>
+							<option value="10000">Infinite</option>
+							<option value="0">Date Range</option>
 						</select>
+						<div id="AvailablePeriodRange" style="display:none;float:left;margin-left:10px;">
+							<input id="AvailablePeriodBegin" type="date" class="inp-txt"> ~ 
+							<input id="AvailablePeriodEnd" type="date" class="inp-txt">
+						</div>
 					</td>
 					<td class="field width10p tal br">
 						Retail Price (S$)
@@ -208,14 +212,15 @@
 				  </tr>
 				  <tr>
 					<td class="field tal br">
-						<?php echo lang('cms_goodsAdd_Displayleftavailableperiod');?>
+						Display Expiring Alert
 					</td>
 					<td class="value tal" colspan="3">
 						<select style="height: 30px;" id="Displayleftavailableperiod">
 							<option value="1">1 <?php echo lang('cms_goodsAdd_days');?></option>
 							<option value="2">2 <?php echo lang('cms_goodsAdd_days');?></option>
 							<option value="3">3 <?php echo lang('cms_goodsAdd_days');?></option>
-							<option value="0" selected="selected">Not use</option>
+							<option value="7">7 <?php echo lang('cms_goodsAdd_days');?></option>
+							<option value="0" selected="selected">None (Do not Use)</option>
 						</select>
 						<?php echo lang('cms_goodsAdd_DisplayleftavailableperiodTip');?>
 					</td>
@@ -329,7 +334,7 @@
 			</textarea>
 		</div>
 	</div>
-	<button onclick="productHandler('This product was listed successfully',true);" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">List Item</button>
+	<button onclick="productHandler('Your item has been successfully submitted for review. Review will be done within 24 working hours.',true);" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">List Item</button>
 </div>
 <script src="/assets/js/cms-goods.js" type="text/javascript"></script>
 <link rel="stylesheet" href="/assets/kindEditor/themes/default/default.css" />

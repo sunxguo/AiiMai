@@ -151,7 +151,10 @@ function productHandler(successMsg,isNew){
 		product.id = $("#productId").val();
 		handlerType='modify';
 	}
-	dataHandler(handlerType,'product',product,null,null,null,successMsg,true);
+	dataHandler(handlerType,'product',product,redirect(),null,null,successMsg,true);
+}
+function redirect(){
+	location.href="/cms/goodsStatistics";
 }
 function productQuery(excel){
 	var product = new Object();
