@@ -46,14 +46,14 @@
 							<img src="/assets/images/cms/icon-minus.png" width="22" class="icon-order fr">
 							<img src="/assets/images/cms/icon-plus.png" width="22" class="icon-order fr">
 						</div>
-						<div class="km-list-group mt10">
-						  <a href="#no" class="km-list-group-item active">Women's Fashion</a>
-						  <a href="#no" class="km-list-group-item">Beauty & Diet</a>
-						  <a href="#no" class="km-list-group-item">Men & Sports</a>
-						  <a href="#no" class="km-list-group-item">Digital & Mobile</a>
-						  <a href="#no" class="km-list-group-item">Home & Living</a>
-						  <a href="#no" class="km-list-group-item">Baby & Food</a>
-						  <a href="#no" class="km-list-group-item">Deal & Entertain</a>
+						<div class="km-list-group mt10" id="sortableGroup">
+							<li><a href="#no" class="km-list-group-item active">Women's Fashion</a></li>
+							<li><a href="#no" class="km-list-group-item">Beauty & Diet</a></li>
+						    <li><a href="#no" class="km-list-group-item">Men & Sports</a></li>
+						    <li><a href="#no" class="km-list-group-item">Digital & Mobile</a></li>
+						    <li><a href="#no" class="km-list-group-item">Home & Living</a></li>
+						    <li><a href="#no" class="km-list-group-item">Baby & Food</a></li>
+						    <li><a href="#no" class="km-list-group-item">Deal & Entertain</a></li>
 						</div>
 					</div>
 					<div class="fl" style="margin:150px 10px;">
@@ -68,7 +68,7 @@
 							<img src="/assets/images/cms/icon-minus.png" width="22" class="icon-order fr">
 							<img src="/assets/images/cms/icon-plus.png" width="22" class="icon-order fr">
 						</div>
-						<div class="km-list-group mt10">
+						<div class="km-list-group mt10" id="sortableCategory">
 						  <a href="#no" class="km-list-group-item active">Women's Fashion</a>
 						  <a href="#no" class="km-list-group-item">Beauty & Diet</a>
 						  <a href="#no" class="km-list-group-item">Men & Sports</a>
@@ -84,3 +84,51 @@
 	</div>
 </div>
 <script src="/assets/js/cms-shop.js" type="text/javascript"></script>
+<script src="/assets/jquery-ui/jquery-ui.js" type="text/javascript"></script>
+<link href="/assets/jquery-ui/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script>
+$( "#sortableGroup" ).sortable({
+	delay : 1,  
+    stop :function(){
+		var postData = new Object();
+		postData.topId = $("#categoryId").val();
+		postData.idList = $("#sortableGroup").sortable('toArray');
+		$.post(
+		"/common/modifyInfo",
+		{
+			'info_type':'categoryDrag',
+			'data':JSON.stringify(postData)
+		},
+		function(data){
+			var result=$.parseJSON(data);
+			if(result.result=="success"){
+				
+			}else{
+				alert(result.message);
+			}
+		});
+	}
+});
+$( "#sortableCategory" ).sortable({
+	delay : 1,  
+    stop :function(){
+		var postData = new Object();
+		postData.topId = $("#categoryId").val();
+		postData.idList = $("#sortableCategory").sortable('toArray');
+		$.post(
+		"/common/modifyInfo",
+		{
+			'info_type':'categoryDrag',
+			'data':JSON.stringify(postData)
+		},
+		function(data){
+			var result=$.parseJSON(data);
+			if(result.result=="success"){
+				
+			}else{
+				alert(result.message);
+			}
+		});
+	}
+});
+</script>
