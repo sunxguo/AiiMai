@@ -51,6 +51,15 @@ class Common extends CI_Controller {
 					"message_time"=>date("Y-m-d H:i:s")
 				);
 			break;
+			case "notice":
+				$table="notice";
+				$info=array(
+					"notice_type"=>$data->type,
+					"notice_title"=>$data->title,
+					"notice_content"=>$data->content,
+					"notice_time"=>date("Y-m-d H:i:s")
+				);
+			break;
 			case "product":
 				$table="product";
 				$info=array(
@@ -282,6 +291,10 @@ class Common extends CI_Controller {
 				$condition['table']="user";
 				$condition['where']=array("user_id"=>$data->id);
 			break;
+			case 'notice':
+				$condition['table']="notice";
+				$condition['where']=array("notice_id"=>$data->id);
+			break;
 			case 'merchant':
 				$this->dbHandler->deleteData(array('table'=>'product','where'=>array('product_merchant'=>$data->id)));
 				$condition['table']="user";
@@ -409,6 +422,16 @@ class Common extends CI_Controller {
 					"column_display"=>$data->display,
 					"column_type"=>$data->type,
 					"column_ordernum"=>$data->order_num
+				);
+			break;			
+			case "notice":
+				$condition['table']="notice";
+				$condition['where']=array("notice_id"=>$data->id);
+				$condition['data']=array(
+					"notice_type"=>$data->type,
+					"notice_title"=>$data->title,
+					"notice_content"=>$data->content,
+					"notice_time"=>date("Y-m-d H:i:s")
 				);
 			break;
 			case "essay":

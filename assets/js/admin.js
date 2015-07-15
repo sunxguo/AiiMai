@@ -76,6 +76,12 @@ function delclick(obj){
 	$("#addImgList").show();
 }
 
+function delNotice(currentId,confirmMsg,successMsg){
+	showWait();
+	var notice = new Object();
+	notice.id = currentId;
+	dataHandler("del","notice",notice,null,confirmMsg,closeWait(),successMsg,true);
+}
 function delUser(currentId,confirmMsg,successMsg){
 	showWait();
 	var user = new Object();
@@ -229,6 +235,40 @@ function sendMsg(successMsg){
 	message.title = $("#title").val();
 	message.content = $("#msg_content").val();
 	dataHandler("add","message",message,null,null,closeWait(),successMsg,true);
+}
+function pubNotice(successMsg){
+	
+	if($("#title").val()==""){
+		alert("Please input title！");
+		return false;
+	}
+	if($("#notice_content").val()==""){
+		alert("Please input content！");
+		return false;
+	}
+	showWait();
+	var notice = new Object();
+	notice.type = $("#type").val();
+	notice.title = $("#title").val();
+	notice.content = $("#notice_content").val();
+	dataHandler("add","notice",notice,null,null,closeWait(),successMsg,true);
+}
+function saveNotice(successMsg){
+	if($("#title").val()==""){
+		alert("Please input title！");
+		return false;
+	}
+	if($("#notice_content").val()==""){
+		alert("Please input content！");
+		return false;
+	}
+	showWait();
+	var notice = new Object();
+	notice.id = $("#noticeId").val();
+	notice.type = $("#type").val();
+	notice.title = $("#title").val();
+	notice.content = $("#notice_content").val();
+	dataHandler("modify","notice",notice,null,null,closeWait(),successMsg,true);
 }
 function saveBasicParameter(successMsg){
 	if($("#websiteName").val()==""){
@@ -622,12 +662,13 @@ function showMutiChangeImageDiv(){
 function successPublished(){
 	alert('Successfully published!');
 }
+/*
 function pubNotice(){
 	var notice = new Object();
 	notice.idArray = itemsArray;
 	notice.status = $("#statusChanged").val();
 	dataHandler("add","notice",notice,successShowCat,'Sure to publish this?',null,null,true);
-}
+}*/
 /*Example:
 $(".slider-item").mouseout(function(){
 	$(this).find('.oper').hide();

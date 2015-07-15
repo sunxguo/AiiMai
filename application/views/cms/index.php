@@ -101,26 +101,29 @@
             </tr>
         </thead>
         <tbody>
+			<?php foreach($notices as $notice):?>
 			<tr>
-				<td><?php echo lang('cms_index_General');?></td>
-				<td><a href="" target="_blank">Changes to policy of requesting DailyDeal Premium</a></td>
-				<td>2015-04-07</td>
+				<td><?php echo $notice->notice_type==1?'<span class="km-label km-label-success" style="display: inline-block;">General</span>':'<span class="km-label km-label-danger" style="display: inline-block;">Emergency</span>';?></td>
+				<td>
+					<a href="javascript:setDivCenter('#notice<?php echo $notice->notice_id;?>',true);" target="_blank"><?php echo $notice->notice_title;?></a>
+				</td>
+				<td><?php echo date('Y-m-d',strtotime($notice->notice_time));?></td>
 			</tr>
-			<tr>
-				<td><?php echo lang('cms_index_General');?></td>
-				<td><a href="" target="_blank">Changes to policy of requesting DailyDeal Premium</a></td>
-				<td>2015-04-07</td>
-			</tr>
-			<tr>
-				<td><?php echo lang('cms_index_General');?></td>
-				<td><a href="" target="_blank">Changes to policy of requesting DailyDeal Premium</a></td>
-				<td>2015-04-07</td>
-			</tr>
-			<tr>
-				<td><?php echo lang('cms_index_General');?></td>
-				<td><a href="" target="_blank">Changes to policy of requesting DailyDeal Premium</a></td>
-				<td>2015-04-07</td>
-			</tr>
+			<div class="km-modal-dialog width40p" id="notice<?php echo $notice->notice_id;?>">
+				<div class="km-modal-content">
+					<div class="km-modal-header">
+						<button type="button" class="km-close"><span>&times;</span></button>
+						<h4 class="km-modal-title"><?php echo $notice->notice_title;?></h4>
+					</div>
+					<div class="km-modal-body">
+						<?php echo $notice->notice_content;?>
+					</div>
+					<div class="km-modal-footer">
+						<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_sider_Close');?></button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+			<?php endforeach;?>
 	</table>
 	<div class="qsm-ad"><a href="" target="_blank"><img src="/assets/temp/cms-ad-english.jpg"></a></div>
 </div>

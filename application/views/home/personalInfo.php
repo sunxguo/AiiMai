@@ -138,7 +138,7 @@
 				  <tr>
 					<td class="field br">Address</td>
 					<td class="value tal">
-						<button onclick="setDivCenter('#addressDiv',true);selectAddress();" type="button" class="km-btn km-btn-primary" style=" height: 23px;font-size: 10px;padding: 0px 10px;">My Address Book</button>
+						<button onclick="setDivCenter('#editAddressDiv',true);selectAddress();" type="button" class="km-btn km-btn-primary" style=" height: 23px;font-size: 10px;padding: 0px 10px;">My Address Book</button>
 						<div class="km-modal-dialog width40p" id="addressDiv">
 							<div class="km-modal-content">
 								<div class="km-modal-header">
@@ -195,17 +195,12 @@
 									  <li><a href="">Wordk</a></li>
 									  <li><a href="">Etc.</a></li>
 									</ul>
-									<label for="addressType" class="km-control-label" style="width: 80px;">Type:</label>
-									<select id="addressType" style="height:30px;vertical-align:middle;" onchange="selectAddress();">
-										<option value="2">Family</option>
-										<option value="4">Friends</option>
+									<label for="addressType" class="km-control-label" style="width: 80px;margin-top:10px;">Type:</label>
+									<select id="addressType" style="height:30px;vertical-align:middle;">
+										<option value="1">Family</option>
+										<option value="2">Friends</option>
 										<option value="3">Work</option>
-										<option value="5">Etc.</option>
-										<?php
-										foreach($addresses as $addr):?>
-										<option value="<?php echo $addr->address_type;?>" addressId="<?php echo $addr->address_id;?>"><?php echo $addr->address_title;?></option>
-										<?php endforeach;?>
-										<option value="0">New Address</option>
+										<option value="4">Etc.</option>
 									</select><br><br>
 									<label for="addressTitle" class="km-control-label" style="width: 80px;">Title:</label>
 									<input type="text" class="km-form-control" id="addressTitle" value="" style="width: 50%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
