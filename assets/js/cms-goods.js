@@ -88,6 +88,10 @@ function productHandler(successMsg,isNew){
 		showAlert('danger','',"Please select Production Place!");
 		return false;
 	}
+	if($("#ProductionPlaceCode").val()==2 && $("#ProductionPlaceDetail").val()==''){
+		showAlert('danger','',"Please enter the detail of Production Place!");
+		return false;
+	}
 	if($("#SellPrice").val()=='' || isNaN($("#SellPrice").val())){
 		showAlert('danger','',"Please enter the correct price!");
 		return false;

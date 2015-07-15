@@ -123,14 +123,13 @@
 				  </tr>
 				  <tr>
 					<td class="field width10p tal br">
-						<?php echo lang('cms_baseInfo_goodsStatistics_ProductionPlace');?>
+						Country of Manufacture
 					</td>
 					<td class="value tal">
 						<select style="height: 30px;" id="ProductionPlaceCode">
 							<option value="-1" selected="selected">====<?php echo lang('cms_baseInfo_goodsStatistics_select');?>=====</option>
 							<option value="1"><?php echo lang('cms_baseInfo_goodsStatistics_Domestic');?></option>
 							<option value="2"><?php echo lang('cms_baseInfo_goodsStatistics_Overseas');?></option>
-							<option value="3"><?php echo lang('cms_baseInfo_goodsStatistics_Others');?></option>
 						</select>
 						<input id="ProductionPlaceDetail" type="text" class="km-form-control" style="width: 20%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 					</td>

@@ -138,8 +138,8 @@
 				  <tr>
 					<td class="field br">Address</td>
 					<td class="value tal">
-						<button onclick="setDivCenter('#editAddressDiv',true);selectAddress();" type="button" class="km-btn km-btn-primary" style=" height: 23px;font-size: 10px;padding: 0px 10px;">My Address Book</button>
-						<div class="km-modal-dialog width40p" id="addressDiv">
+						<button onclick="setDivCenter('#addressDiv',true);selectAddress();" type="button" class="km-btn km-btn-primary" style=" height: 23px;font-size: 10px;padding: 0px 10px;">My Address Book</button>
+						<div class="km-modal-dialog" style="width:70%;" id="addressDiv">
 							<div class="km-modal-content">
 								<div class="km-modal-header">
 									<button type="button" class="km-close"><span>&times;</span></button>
@@ -154,8 +154,8 @@
 									  <li><a href="">Etc.</a></li>
 									</ul>
 									<div id="familyAddress">
-										<ul>
-											<li>
+										<ul class="clearfix">
+											<li class="clearfix">
 												<div class="addressList-Title fl">
 													<span>title</span>
 												</div>
@@ -171,13 +171,16 @@
 													<p class="gsm_phone"><em>+65-1234-5567</em></p>
 													<p class="gsm_home"><em>+65-88-88</em></p>
 												</div>
+												<div class="addressList-operation fl">
+													<button onclick="editAddress();" type="button" class="km-btn km-btn-primary" style="height:18px;font-size:10px;padding: 0 10px;">Edit</button>
+													<button onclick="deleteAddress();" type="button" class="km-btn km-btn-danger" style="height:18px;font-size:10px;padding: 0 10px;">Delete</button>
+												</div>
 											</li>
 										</ul>
 									</div>
 								</div>
 								<div class="km-modal-footer">
 									<button type="button" class="km-btn km-btn-default km-btn-close">Close</button>
-									<button onclick="saveAddress();" type="button" class="km-btn km-btn-primary">Save</button>
 								</div>
 							</div><!-- /.modal-content -->
 						</div><!-- /.modal-dialog -->
