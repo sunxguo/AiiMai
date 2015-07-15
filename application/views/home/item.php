@@ -81,6 +81,7 @@
 				<li><a href="">Dresses</a></li>
 			</ul>
 		</dd>
+		<?php if(isset($categoriesIndex[$item->product_sub_sub_category])):?>
 		<dd id="depMenu3">
 			<a href="" class="menuName current">
 				<span><?php echo $categoriesIndex[$item->product_sub_sub_category]->category_name;?></span>
@@ -90,6 +91,7 @@
 			</ul>
 			
 		</dd>
+		<?php endif;?>
 	</dl>
 
   

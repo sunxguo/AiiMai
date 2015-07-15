@@ -69,7 +69,9 @@ function delclick(obj){
 	$("#file").val("");
 	$("#addImgList").show();
 }
+var productSuccessMsg='';
 function productHandler(successMsg,isNew){
+	productSuccessMsg=successMsg;
 	if($("#MainCategory").val()==-1){
 		showAlert('danger','',"Please select 1st category!");
 		return false;
@@ -84,6 +86,10 @@ function productHandler(successMsg,isNew){
 	}
 	if($("#ProductionPlaceCode").val()==-1){
 		showAlert('danger','',"Please select Production Place!");
+		return false;
+	}
+	if($("#ProductionPlaceCode").val()==2 && $("#ProductionPlaceDetail").val()==''){
+		showAlert('danger','',"Please enter the detail of Production Place!");
 		return false;
 	}
 	if($("#SellPrice").val()=='' || isNaN($("#SellPrice").val())){
@@ -151,9 +157,10 @@ function productHandler(successMsg,isNew){
 		product.id = $("#productId").val();
 		handlerType='modify';
 	}
-	dataHandler(handlerType,'product',product,redirect,null,null,successMsg,true);
+	dataHandler(handlerType,'product',product,redirect,null,null,null,false);
 }
 function redirect(){
+	alert(productSuccessMsg);
 	location.href="/cms/goodsStatistics";
 }
 function productQuery(excel){

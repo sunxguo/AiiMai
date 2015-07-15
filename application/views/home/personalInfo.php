@@ -139,7 +139,7 @@
 					<td class="field br">Address</td>
 					<td class="value tal">
 						<button onclick="setDivCenter('#addressDiv',true);selectAddress();" type="button" class="km-btn km-btn-primary" style=" height: 23px;font-size: 10px;padding: 0px 10px;">My Address Book</button>
-						<div class="km-modal-dialog width40p" id="addressDiv">
+						<div class="km-modal-dialog" style="width:70%;" id="addressDiv">
 							<div class="km-modal-content">
 								<div class="km-modal-header">
 									<button type="button" class="km-close"><span>&times;</span></button>
@@ -154,8 +154,8 @@
 									  <li><a href="">Etc.</a></li>
 									</ul>
 									<div id="familyAddress">
-										<ul>
-											<li>
+										<ul class="clearfix">
+											<li class="clearfix">
 												<div class="addressList-Title fl">
 													<span>title</span>
 												</div>
@@ -171,13 +171,16 @@
 													<p class="gsm_phone"><em>+65-1234-5567</em></p>
 													<p class="gsm_home"><em>+65-88-88</em></p>
 												</div>
+												<div class="addressList-operation fl">
+													<button onclick="editAddress();" type="button" class="km-btn km-btn-primary" style="height:18px;font-size:10px;padding: 0 10px;">Edit</button>
+													<button onclick="deleteAddress();" type="button" class="km-btn km-btn-danger" style="height:18px;font-size:10px;padding: 0 10px;">Delete</button>
+												</div>
 											</li>
 										</ul>
 									</div>
 								</div>
 								<div class="km-modal-footer">
 									<button type="button" class="km-btn km-btn-default km-btn-close">Close</button>
-									<button onclick="saveAddress();" type="button" class="km-btn km-btn-primary">Save</button>
 								</div>
 							</div><!-- /.modal-content -->
 						</div><!-- /.modal-dialog -->
@@ -195,17 +198,12 @@
 									  <li><a href="">Wordk</a></li>
 									  <li><a href="">Etc.</a></li>
 									</ul>
-									<label for="addressType" class="km-control-label" style="width: 80px;">Type:</label>
-									<select id="addressType" style="height:30px;vertical-align:middle;" onchange="selectAddress();">
-										<option value="2">Family</option>
-										<option value="4">Friends</option>
+									<label for="addressType" class="km-control-label" style="width: 80px;margin-top:10px;">Type:</label>
+									<select id="addressType" style="height:30px;vertical-align:middle;">
+										<option value="1">Family</option>
+										<option value="2">Friends</option>
 										<option value="3">Work</option>
-										<option value="5">Etc.</option>
-										<?php
-										foreach($addresses as $addr):?>
-										<option value="<?php echo $addr->address_type;?>" addressId="<?php echo $addr->address_id;?>"><?php echo $addr->address_title;?></option>
-										<?php endforeach;?>
-										<option value="0">New Address</option>
+										<option value="4">Etc.</option>
 									</select><br><br>
 									<label for="addressTitle" class="km-control-label" style="width: 80px;">Title:</label>
 									<input type="text" class="km-form-control" id="addressTitle" value="" style="width: 50%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>

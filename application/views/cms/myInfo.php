@@ -184,7 +184,7 @@
 				  <tr>
 					<td class="field width20p" style="padding-left: 8px;">Copy of Business License<p style="font-weight:normal;font-size:12px;color:#434343;">(For Company / Organization Accounts)</p> or NRIC / Passport <p style="font-weight:normal;font-size:12px;color:#434343;">(For Person Account)</p></td>
 					<td class="value bl1" colspan="3">
-						<img style="min-width: 300px;  min-height: 60px;max-height:100px;cursor:pointer;float: left;" id="businessLicenseImage" src="<?php echo $merchant->merchant_business_license;?>" onclick="$('#fileBusinessLicense').click();">
+						<img style="min-width: 300px;  min-height: 60px;max-height:100px;cursor:pointer;float: left;" id="businessLicenseImage" src="<?php echo $merchant->merchant_business_license;?>" onclick="setDivCenter('#showFullBusinessLicense',true);$('.km-modal-open').css('overflow','auto');">
 						<img id="loadingBusinessLicense" src="/assets/images/cms/loading.gif" style="display:none;">
 						<form id="upload_BusinessLicense_form" method="post" enctype="multipart/form-data">
 							<input onchange="return uploadModifyBusinessLicense()" name="image" type="file" id="fileBusinessLicense" style="display:none;">
@@ -192,12 +192,26 @@
 						<span style="margin-left:10px;">(Image Formats: png,jpg,gif,pdf; File Size Limit: 1.5MB)</span>
 						<button onclick="$('#fileBusinessLicense').click();" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 40px 0 0 30px;">Upload</button>
 						<button onclick="$('#businessLicenseImage').attr('src','');$('#fileBusinessLicense').val('');" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 40px 0 0 30px;">Delete</button>
+						<div class="km-modal-dialog" style="width:60%;" id="showFullBusinessLicense">
+							<div class="km-modal-content">
+								<div class="km-modal-header">
+									<button type="button" class="km-close"><span>&times;</span></button>
+									<h4 class="km-modal-title">Copy of Business License or NRIC / Passport</h4>
+								</div>
+								<div class="km-modal-body">
+									<img style="width:100%;" src="<?php echo $merchant->merchant_business_license;?>">
+								</div>
+								<div class="km-modal-footer">
+									<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_myInfo_Close');?></button>
+								</div>
+							</div><!-- /.modal-content -->
+						</div><!-- /.modal-dialog -->
 					</td>
 				  </tr>
 				   <tr>
 					<td class="field width20p" style="padding-left: 8px;">Copy of Most Recent Bank Statement<p style="font-weight:normal;font-size:12px;color:#434343;">(For Company / Organization Accounts)</p> or Utilities Bill <p style="font-weight:normal;font-size:12px;color:#434343;">(For Person Account)</p></td>
 					<td class="value bl1" colspan="3">
-						<img style="min-width: 300px;  min-height: 60px;max-height:100px;cursor:pointer;float: left;" id="bankAccountImage" src="<?php echo $merchant->merchant_bank_account;?>" onclick="$('#fileBankAccount').click();">
+						<img style="min-width: 300px;  min-height: 60px;max-height:100px;cursor:pointer;float: left;" id="bankAccountImage" src="<?php echo $merchant->merchant_bank_account;?>" onclick="setDivCenter('#showFullRecentBankStatement',true);$('.km-modal-open').css('overflow','auto');">
 						<img id="loadingBankAccount" src="/assets/images/cms/loading.gif" style="display:none;">
 						<form id="upload_bankbook_form" method="post" enctype="multipart/form-data">
 							<input onchange="return uploadModifyBankbook()" name="image" type="file" id="fileBankAccount" style="display:none;">
@@ -205,6 +219,20 @@
 						<span style="margin-left:10px;">(Image Formats: png,jpg,gif,pdf; File Size Limit: 1.5MB)</span>
 						<button onclick="$('#fileBankAccount').click();" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 40px 0 0 30px;">Upload</button>
 						<button onclick="$('#bankAccountImage').attr('src','');$('#fileBankAccount').val('');" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 40px 0 0 30px;">Delete</button>
+						<div class="km-modal-dialog" style="width:60%;" id="showFullRecentBankStatement">
+							<div class="km-modal-content">
+								<div class="km-modal-header">
+									<button type="button" class="km-close"><span>&times;</span></button>
+									<h4 class="km-modal-title">Copy of Most Recent Bank Statement or Utilities Bill</h4>
+								</div>
+								<div class="km-modal-body">
+									<img style="width:100%;" src="<?php echo $merchant->merchant_bank_account;?>">
+								</div>
+								<div class="km-modal-footer">
+									<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_myInfo_Close');?></button>
+								</div>
+							</div><!-- /.modal-content -->
+						</div><!-- /.modal-dialog -->
 					</td>
 				  </tr>
 				</tbody>

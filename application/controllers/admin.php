@@ -501,6 +501,13 @@ class Admin extends CI_Controller {
 		$data=array_merge($data,$pageInfo);
 		$this->adminBaseHandler('ASM Notice',array('tool','asmNotice'),'asmNotice',$data);
 	}
+	public function asmNoticeModification(){
+		$notice=$this->commongetdata->getContent('notice',$_GET['noticeId']);
+		$data=array(
+			"notice"=>$notice,
+		);
+		$this->load->view('admin/asmNoticeModification',$data);
+	}
 	public function searchStatistics(){
 		$data=array(
 			"columns"=>$this->commongetdata->getColumns()
