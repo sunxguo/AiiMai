@@ -743,3 +743,28 @@ background: url(/assets/images/home/bul_order.png) left -540px no-repeat;
 .gsm_home {
 background-position: -260px -550px;
 }
+
+#familyAddress li{
+	border-bottom:1px dashed #CCC;
+}
+#familyAddress li:last-child{
+	border:none;
+}
+.addressList-Title{
+	width:20%;
+	height:50px;
+	line-height:50px;
+}
+.addressList-address{
+	width:40%;
+	height:50px;
+	line-height:25px;
+}
+.addressList-phone{
+	width:20%;
+}
+.addressList-operation{
+	width:20%;
+	height:50px;
+	line-height:50px;
+}

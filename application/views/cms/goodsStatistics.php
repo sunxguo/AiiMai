@@ -27,17 +27,17 @@
 					</td>
 					<td class="value width50p tal">
 						<?php echo lang('cms_baseInfo_goodsStatistics_Soldouttoday');?>: <span class="km-badge km-badge-info">0</span> 
-						<a href="/cms/goodsEdit" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;">Go</a>
+						<a href="/cms/goodsEdit?SOT=true" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;">Go</a>
 					</td>
 				  </tr>
 				  <tr>
 					<td class="value width50p tal br">
 						<?php echo lang('cms_baseInfo_goodsStatistics_GroupBuyinProgress');?>: <span class="km-badge km-badge-info"><?php echo $groupBuy;?></span>  
-						<a href="/cms/goodsEdit" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;">Go</a>
+						<a href="/cms/goodsEdit?GB=true" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;">Go</a>
 					</td>
 					<td class="value width50p tal">
 						<?php echo lang('cms_baseInfo_goodsStatistics_AuctioninProgress');?>: <span class="km-badge km-badge-info"><?php echo $auction;?></span> 
-						<a href="/cms/goodsEdit" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;">Go</a>
+						<a href="/cms/goodsEdit?AIP=true" class="km-btn km-btn-primary fr" style="height: 18px;font-size: 10px;padding: 0px 10px;">Go</a>
 					</td>
 				  </tr>
 				  <tr>

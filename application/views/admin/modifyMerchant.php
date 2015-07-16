@@ -212,7 +212,7 @@
 									<h4 class="km-modal-title">Copy of Business License or NRIC / Passport</h4>
 								</div>
 								<div class="km-modal-body">
-									<img style="width:100%;" src="<?php echo $merchant->merchant_business_license;?>">
+									<img style="width:100%;max-height:500px;" src="<?php echo $merchant->merchant_business_license;?>">
 								</div>
 								<div class="km-modal-footer">
 									<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_myInfo_Close');?></button>
@@ -239,7 +239,7 @@
 									<h4 class="km-modal-title">Copy of Most Recent Bank Statement or Utilities Bill</h4>
 								</div>
 								<div class="km-modal-body">
-									<img style="width:100%;" src="<?php echo $merchant->merchant_bank_account;?>">
+									<img style="width:100%;max-height:500px;" src="<?php echo $merchant->merchant_bank_account;?>">
 								</div>
 								<div class="km-modal-footer">
 									<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_myInfo_Close');?></button>
