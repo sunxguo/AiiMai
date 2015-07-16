@@ -1212,6 +1212,23 @@ class Common extends CI_Controller {
 		}
 		echo json_encode(array("result"=>"success","message"=>$result));
 	}
+	public function uploadInfo(){
+		$data=json_decode($_POST['data']);
+		$result=array();
+		switch($_POST['info_type']){
+			case 'csv':
+				$websiteUrl=$this->commongetdata->getWebsiteConfig('website_url');
+				$file = fopen($websiteUrl.$data->src,'r'); 
+				$itemList=array();
+				while ($data = fgetcsv($file)) { //每次读取CSV里面的一行内容
+					//print_r($data); //此为一个数组，要获得每一个数据，访问数组下标即可
+					$itemList[] = $data;
+				 }
+				 print_r($itemList);
+				 fclose($file);
+			break;
+		}
+	}
 	public function excelInfo(){
 		$data=json_decode($_POST['data']);
 		$result=array();
