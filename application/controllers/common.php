@@ -1212,6 +1212,52 @@ class Common extends CI_Controller {
 		}
 		echo json_encode(array("result"=>"success","message"=>$result));
 	}
+	/*
+	Array
+	(
+		[0] => Array
+			(
+				[0] => Main Category
+				[1] => 1st Sub Category
+				[2] => 2nd Sub Category
+				[3] => Sell Format
+				[4] => Delivery Type
+				[5] => Item Condition
+				[6] => Item Title
+				[7] => Seller Code
+				[8] => Country of Manufacture
+				[9] => Country of Manufacture Detail
+				[10] => Adult Item
+				[11] => Sell Price (S$)
+				[12] => Quantity
+				[13] => Available Period
+				[14] => Retail Price (S$)
+				[15] => Display Expiring Alert
+				[16] => Shipping Address
+			)
+
+		[1] => Array
+			(
+				[0] => 1
+				[1] => 1
+				[2] => 1
+				[3] => 1
+				[4] => 1
+				[5] => 1
+				[6] => Test Product Tile
+				[7] => 
+				[8] => 1
+				[9] => 
+				[10] => 
+				[11] => 12
+				[12] => 100
+				[13] => 100
+				[14] => 22
+				[15] => 0
+				[16] => 
+			)
+
+	)*/
 	public function uploadInfo(){
 		$data=json_decode($_POST['data']);
 		$result=array();
@@ -1220,14 +1266,49 @@ class Common extends CI_Controller {
 				$websiteUrl=$this->commongetdata->getWebsiteConfig('website_url');
 				$file = fopen($websiteUrl.$data->src,'r'); 
 				$itemList=array();
+				$head=fgetcsv($file);
 				while ($data = fgetcsv($file)) { //每次读取CSV里面的一行内容
 					//print_r($data); //此为一个数组，要获得每一个数据，访问数组下标即可
-					$itemList[] = $data;
+					$table="product";
+					$info=array(
+						"product_category"=>$data[0],
+						"product_sub_category"=>$data[1],
+						"product_sub_sub_category"=>$data[2],
+						"product_sell_format"=>$data[3],
+						"product_delivery_type"=>$data[4],
+						"product_item_condition"=>$data[5],
+						"product_item_title_zh_cn"=>'',
+						"product_item_title_tw_cn"=>'',
+						"product_item_title_english"=>$data[6],
+						"product_short_title"=>'',
+						"product_sell_price"=>$data[11],
+						"product_reference_price"=>$data[14],
+						"product_seller_code"=>$data[7],
+						"product_adult"=>$data[10],
+						"product_image"=>$data[17],
+						"product_image_s1"=>$data[18],
+						"product_image_s2"=>$data[19],
+						"product_image_s3"=>$data[20],
+						"product_image_s4"=>$data[21],
+						"product_production_place_code"=>$data[8],
+						"product_production_place_detail"=>$data[9],
+						"product_quantity"=>$data[12],
+						"product_available_period"=>$data[13],
+						"product_display_left"=>$data[15],
+						"product_shipping_rate"=>1,
+						"product_description"=>$data[22],
+						"product_shipping_address"=>$data[16],
+						"product_merchant"=>$_SESSION['userid'],
+						"product_time"=>date("Y-m-d H:i:s"),
+						"product_modify_time"=>date("Y-m-d H:i:s")
+					);
+					$result=$this->dbHandler->insertData($table,$info);
 				 }
-				 print_r($itemList);
 				 fclose($file);
 			break;
 		}
+		if($result==1)echo json_encode(array("result"=>"success","message"=>"信息写入成功"));
+		else echo json_encode(array("result"=>"failed","message"=>"信息写入失败"));
 	}
 	public function excelInfo(){
 		$data=json_decode($_POST['data']);
