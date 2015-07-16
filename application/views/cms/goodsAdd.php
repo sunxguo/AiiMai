@@ -8,7 +8,7 @@
 	  <li><a href="/cms/goodsStatistics"><?php echo lang('cms_baseInfo_goodsStatistics_ItemListSummary');?></a></li>
 	  <li class="active"><a href="/cms/goodsAdd"><?php echo lang('cms_baseInfo_goodsStatistics_NewItemListing');?></a></li>
 	  <li><a href="/cms/goodsCopy"><?php echo lang('cms_baseInfo_goodsStatistics_CopyListing');?></a></li>
-	  <li><a href="/cms/goodsEdit"><?php echo lang('cms_baseInfo_goodsStatistics_ChangeItemInfo');?></a></li>
+	  <li><a href="/cms/goodsEdit">Item Management</a></li>
 	</ul>
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
 		<div class="km-panel-heading"><?php echo lang('cms_baseInfo_goodsStatistics_CategoryandSellFormat');?></div>
@@ -114,8 +114,8 @@
 					<td class="value tal">
 						<div class="km-upload-img fl" style="width: 200px;" onclick="$('#file').click();">
 							<img src="" width="200" height="200" id="productImg">
-							<p style="line-height: 30px;padding-top: 50px;height: 150px;">
-								Upload Main Image<br>400 x 400<br>(up to 800)
+							<p style="line-height: 30px;padding-top: 45px;height: 155px;">
+								Upload Main Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
 							</p>
 						</div>
 						<form id="upload_image_form" method="post" enctype="multipart/form-data">
@@ -123,8 +123,8 @@
 						</form>
 						<div class="km-upload-img fl" style="width: 100px;margin-left:10px;margin-top:100px;" onclick="$('#fileS1').click();">
 							<img src="" width="100" height="100" id="productImgS1">
-							<p style="padding-top: 20px;height:80px;line-height:20px;font-size:10px;">
-								Secondary Image<br>400 x 400<br>(up to 800)
+							<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
+								Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
 							</p>
 						</div>
 						<form id="upload_imageS1_form" method="post" enctype="multipart/form-data">
@@ -132,8 +132,8 @@
 						</form>
 						<div class="km-upload-img fl" style="width: 100px;margin-left:10px;margin-top:100px;" onclick="$('#fileS2').click();">
 							<img src="" width="100" height="100" id="productImgS2">
-							<p style="padding-top: 20px;height:80px;line-height:20px;font-size:10px;">
-								Secondary Image<br>400 x 400<br>(up to 800)
+							<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
+								Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
 							</p>
 						</div>
 						<form id="upload_imageS2_form" method="post" enctype="multipart/form-data">
@@ -141,8 +141,8 @@
 						</form>
 						<div class="km-upload-img fl" style="width: 100px;margin-left:10px;margin-top:100px;" onclick="$('#fileS3').click();">
 							<img src="" width="100" height="100" id="productImgS3">
-							<p style="padding-top: 20px;height:80px;line-height:20px;font-size:10px;">
-								Secondary Image<br>400 x 400<br>(up to 800)
+							<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
+								Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
 							</p>
 						</div>
 						<form id="upload_imageS3_form" method="post" enctype="multipart/form-data">
@@ -150,8 +150,8 @@
 						</form>
 						<div class="km-upload-img fl" style="width: 100px;margin-left:10px;margin-top:100px;" onclick="$('#fileS4').click();">
 							<img src="" width="100" height="100" id="productImgS4">
-							<p style="padding-top: 20px;height:80px;line-height:20px;font-size:10px;">
-								Secondary Image<br>400 x 400<br>(up to 800)
+							<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
+								Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
 							</p>
 						</div>
 						<form id="upload_imageS4_form" method="post" enctype="multipart/form-data">
@@ -191,7 +191,7 @@
 			<table class="km-table">
 				<tbody>
 				  <tr>
-					<td class="field width15p tal br">
+					<td class="field width20p tal br">
 						<?php echo lang('cms_goodsAdd_SellPrice');?> (S$)
 					</td>
 					<td class="value tal">
@@ -249,7 +249,7 @@
 				  </tr>
 				  <tr>
 					<td class="field tal br">
-						Display Expiring Alert
+						Display Expiring Item Alert
 					</td>
 					<td class="value tal" colspan="3">
 						<select style="height: 30px;" id="Displayleftavailableperiod">
@@ -259,7 +259,7 @@
 							<option value="7">7 <?php echo lang('cms_goodsAdd_days');?></option>
 							<option value="0" selected="selected">None (Do not Use)</option>
 						</select>
-						<?php echo lang('cms_goodsAdd_DisplayleftavailableperiodTip');?>
+						You can choose if to display an alert when an item’s availability is expiring.
 					</td>
 				  </tr>
 				  <!--

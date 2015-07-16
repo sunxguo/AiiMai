@@ -216,6 +216,8 @@ function productQuery(excel){
 	product.endDate = $("#endDate").val();
 	product.SellFormat = $("#SellFormat").val();
 	product.title = $("#title").val();
+	product.groupbuy = $('input[name="groupbuy"]:checked').val();
+	product.stock = $("#stock").val();
 	if(excel) dataHandler('excel','product',product,goUrl,null,null,null,false);
 	else dataHandler('get','product',product,loadProductsData,null,null,null,false);
 }

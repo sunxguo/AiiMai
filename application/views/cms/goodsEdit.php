@@ -8,7 +8,7 @@
 	  <li><a href="/cms/goodsStatistics"><?php echo lang('cms_baseInfo_goodsStatistics_ItemListSummary');?></a></li>
 	  <li><a href="/cms/goodsAdd"><?php echo lang('cms_baseInfo_goodsStatistics_NewItemListing');?></a></li>
 	  <li><a href="/cms/goodsCopy"><?php echo lang('cms_baseInfo_goodsStatistics_CopyListing');?></a></li>
-	  <li class="active"><a href="/cms/goodsEdit"><?php echo lang('cms_baseInfo_goodsStatistics_ChangeItemInfo');?></a></li>
+	  <li class="active"><a href="/cms/goodsEdit">Item Management</a></li>
 	</ul>
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
 		<div class="km-panel-heading"><?php echo lang('cms_goodsCopy_Searchitem');?></div>
@@ -101,9 +101,9 @@
 						GroupBuy
 					</td>
 					<td class="value tal" style="width: 200px;">
-						<input id="groupBuyYes" type="radio" value="1" name="GroupBuy" style="vertical-align:middle;">
+						<input id="groupBuyYes" type="radio" value="1" name="groupbuy" style="vertical-align:middle;">
 						<label for="groupBuyYes">Yes</label>
-						<input id="groupBuyNo" type="radio" value="0" name="GroupBuy" style="vertical-align:middle;" checked>
+						<input id="groupBuyNo" type="radio" value="0" name="groupbuy" style="vertical-align:middle;" checked>
 						<label for="groupBuyNo">No</label>
 					</td>
 					<td class="value tar" colspan="2">

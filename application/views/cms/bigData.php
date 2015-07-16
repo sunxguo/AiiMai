@@ -16,8 +16,10 @@
 					<td class="value width30p tal br">
 						<input type="radio" id="typeRegister" name="type" style="vertical-align: middle;" checked>
 						<label for="typeRegister" class="km-control-label">Register items</label>
+						<!--
 						<input type="radio" id="typeEdit" name="type" style="vertical-align: middle;">
 						<label for="typeEdit" class="km-control-label">Edit items</label>
+						-->
 					</td>
 					<td class="field width10p tal br">
 						Format

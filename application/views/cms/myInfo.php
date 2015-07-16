@@ -295,14 +295,18 @@
 				  <tr>
 					<td class="field width20p" style="padding-left: 8px;">Copy of Business License<p style="font-weight:normal;font-size:12px;color:#434343;">(For Company / Organization Accounts)</p> or NRIC / Passport <p style="font-weight:normal;font-size:12px;color:#434343;">(For Person Account)</p></td>
 					<td class="value bl1" colspan="3">
-						<img style="min-width: 300px;  min-height: 60px;max-height:100px;cursor:pointer;float: left;" id="businessLicenseImage" src="<?php echo $merchant->merchant_business_license;?>" onclick="setDivCenter('#showFullBusinessLicense',true);$('.km-modal-open').css('overflow','auto');">
-						<img id="loadingBusinessLicense" src="/assets/images/cms/loading.gif" style="display:none;">
+						<img style="float:left;min-width: 300px;  min-height: 60px;max-height:100px;cursor:pointer;float: left;" id="businessLicenseImage" src="<?php echo $merchant->merchant_business_license;?>" onclick="setDivCenter('#showFullBusinessLicense',true);$('.km-modal-open').css('overflow','auto');">
+						<img id="loadingBusinessLicense" src="/assets/images/cms/loading.gif" style="float:left;display:none;">
 						<form id="upload_BusinessLicense_form" method="post" enctype="multipart/form-data">
 							<input onchange="return uploadModifyBusinessLicense()" name="image" type="file" id="fileBusinessLicense" style="display:none;">
 						</form>
-						<span style="margin-left:10px;">(Image Formats: png,jpg,gif,pdf; File Size Limit: 1.5MB)</span>
-						<button onclick="$('#fileBusinessLicense').click();" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 40px 0 0 30px;">Upload</button>
-						<button onclick="$('#businessLicenseImage').attr('src','');$('#fileBusinessLicense').val('');" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 23px 0 0 30px;">Delete</button>
+						<div style="float:left;width:400px;">
+							<p style="">(Image Formats: png,jpg,gif,pdf; File Size Limit: 1.5MB)</p>
+							<div class="clearfix">
+								<button onclick="$('#fileBusinessLicense').click();" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 40px 0 0 40px;">Upload</button>
+								<button onclick="$('#businessLicenseImage').attr('src','');$('#fileBusinessLicense').val('');" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 40px 0 0 30px;">Delete</button>
+							</div>
+						</div>
 						<div class="km-modal-dialog" style="width:60%;" id="showFullBusinessLicense">
 							<div class="km-modal-content">
 								<div class="km-modal-header">
@@ -322,14 +326,18 @@
 				   <tr>
 					<td class="field width20p" style="padding-left: 8px;">Copy of Most Recent Bank Statement<p style="font-weight:normal;font-size:12px;color:#434343;">(For Company / Organization Accounts)</p> or Utilities Bill <p style="font-weight:normal;font-size:12px;color:#434343;">(For Person Account)</p></td>
 					<td class="value bl1" colspan="3">
-						<img style="min-width: 300px;  min-height: 60px;max-height:100px;cursor:pointer;float: left;" id="bankAccountImage" src="<?php echo $merchant->merchant_bank_account;?>" onclick="setDivCenter('#showFullRecentBankStatement',true);$('.km-modal-open').css('overflow','auto');">
+						<img style="float:left;min-width: 300px;  min-height: 60px;max-height:100px;cursor:pointer;float: left;" id="bankAccountImage" src="<?php echo $merchant->merchant_bank_account;?>" onclick="setDivCenter('#showFullRecentBankStatement',true);$('.km-modal-open').css('overflow','auto');">
 						<img id="loadingBankAccount" src="/assets/images/cms/loading.gif" style="display:none;">
 						<form id="upload_bankbook_form" method="post" enctype="multipart/form-data">
 							<input onchange="return uploadModifyBankbook()" name="image" type="file" id="fileBankAccount" style="display:none;">
 						</form>
-						<span style="margin-left:10px;">(Image Formats: png,jpg,gif,pdf; File Size Limit: 1.5MB)</span>
-						<button onclick="$('#fileBankAccount').click();" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 40px 0 0 30px;">Upload</button>
-						<button onclick="$('#bankAccountImage').attr('src','');$('#fileBankAccount').val('');" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 23px 0 0 30px;">Delete</button>
+						<div style="float:left;width:400px;">
+							<span style="">(Image Formats: png,jpg,gif,pdf; File Size Limit: 1.5MB)</span>
+							<div class="clearfix">
+								<button onclick="$('#fileBankAccount').click();" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 40px 0 0 40px;">Upload</button>
+								<button onclick="$('#bankAccountImage').attr('src','');$('#fileBankAccount').val('');" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 40px 0 0 30px;">Delete</button>
+							</div>
+						</div>
 						<div class="km-modal-dialog" style="width:60%;" id="showFullRecentBankStatement">
 							<div class="km-modal-content">
 								<div class="km-modal-header">
