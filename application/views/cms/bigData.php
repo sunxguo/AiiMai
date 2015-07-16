@@ -30,7 +30,10 @@
 						Upload file
 					</td>
 					<td class="value width10p tal">
-						<button onclick=";" type="button" class="km-btn km-btn-success" style="height: 28px;font-size: 12px;padding: 5px 10px;">Upload</button>
+						<button onclick="$('#file').click();" type="button" class="km-btn km-btn-success" style="height: 28px;font-size: 12px;padding: 5px 10px;">Upload</button>
+						<form id="upload_csv_form" method="post" enctype="multipart/form-data">
+							<input onchange="return uploadCSV('#upload_csv_form')" name="image" type="file" id="file" style="display:none;">
+						</form>
 					</td>
 				  </tr>
 				  <tr>

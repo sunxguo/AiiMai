@@ -851,43 +851,96 @@ function savePersonalInfoBirthday(){
 	personalBirthday.birthday = $("#birthday").val();
 	dataHandler("modify","personalBirthday",personalBirthday,successRefresh,null,null,null,true);
 }
-function selectAddress(){
+var _currentAddressType;
+function selectAddress(type){
+	$("#addressTypeList li").removeClass('active');
+	$("#addressTypeList li:eq("+(type-1)+")").addClass('active');
+	_currentAddressType=type;
+	$("#addressList").html('');
 	var address = new Object();
 	address.userId = $("#userId").val();
-	address.type = $("#addressType").val();
-	if($("#addressType").val()=='0'){
-		 $("#addressTitle").val('');
-		 $("#addressStaffName").val('');
-		 $("#addressCountry").val('');
-		 $("#addressArea").val('');
-		 $("#addressDetail").val('');
-		 $("#addressMobilephone1").val('');
-		 $("#addressMobilephone2").val('');
-		 $("#addressMobilephone3").val('');
-		 $("#addressPhone1").val('');
-		 $("#addressPhone2").val('');
-		 $("#addressPhone3").val('');
-		 return false;
+	address.type = type;
+	dataHandler("get","addressList",address,getAddressListHandler,null,null,null,false);
+}
+function getAddressListHandler(data){
+	var listHtml='';
+	for(var i=0;i<data.length;i++){
+		var item='<li class="clearfix">	'+
+				'	<div class="addressList-Title fl">	'+
+				'		<span>'+data[i].address_title+'</span>	'+
+				'	</div>	'+
+				'	<div class="addressList-address fl">	'+
+				'		<p>	'+
+				'			'+data[i].address_staffname+'	'+
+				'		</p>	'+
+				'		<p>	'+
+				'			'+data[i].address_detail+','+data[i].address_area+','+data[i].address_country+'	'+
+				'		</p>	'+
+				'	</div>	'+
+				'	<div class="addressList-phone fl">	'+
+				'		<p class="gsm_phone"><em>'+data[i].address_mobilephone1+'-'+data[i].address_mobilephone2+'-'+data[i].address_mobilephone3+'</em></p>	'+
+				'		<p class="gsm_home"><em>'+data[i].address_phone1+'-'+data[i].address_phone2+'-'+data[i].address_phone3+'</em></p>	'+
+				'	</div>	'+
+				'	<div class="addressList-operation fl">	'+
+				'		<button onclick="editAddress('+data[i].address_id+');" type="button" class="km-btn km-btn-primary" style="height:18px;font-size:10px;padding: 0 10px;">Edit</button>	'+
+				'		<button onclick="deleteAddress('+data[i].address_id+',\'Sure to delete this address?\',\'Success!\');" type="button" class="km-btn km-btn-danger" style="height:18px;font-size:10px;padding: 0 10px;">Delete</button>	'+
+				'	</div>	'+
+				'</li>';
+		listHtml+=item;
 	}
-	if($("#addressType").val()=='6'){
-		address.id = $("#addressType").find("option:selected").attr('addressId');
-	}
+	$("#addressList").html(listHtml);
+}
+function deleteAddress(id,confirmMsg,successMsg){
+	var address = new Object();
+	address.id = id;
+	dataHandler("del","address",address,refreshAddressList,confirmMsg,null,successMsg,false);
+}
+function refreshAddressList(){
+	selectAddress(_currentAddressType);
+}
+function editAddress(id){
+	setDivCenter('#editAddressDiv',true);
+	var address = new Object();
+	address.id = id;
 	dataHandler("get","address",address,getAddressHandler,null,null,null,false);
 }
 function getAddressHandler(data){
-	 $("#addressTitle").val(data.address_title);
-	 $("#addressStaffName").val(data.address_staffname);
-	 $("#addressCountry").val(data.address_country);
-	 $("#addressArea").val(data.address_area);
-	 $("#addressDetail").val(data.address_detail);
-	 $("#addressMobilephone1").val(data.address_mobilephone1);
-	 $("#addressMobilephone2").val(data.address_mobilephone2);
-	 $("#addressMobilephone3").val(data.address_mobilephone3);
-	 $("#addressPhone1").val(data.address_phone1);
-	 $("#addressPhone2").val(data.address_phone2);
-	 $("#addressPhone3").val(data.address_phone3);
+	$("#addressId").val(data.address_id)
+	 $("#addressTypeModification").val(data.address_type);
+	 $("#addressTitleModification").val(data.address_title);
+	 $("#addressStaffNameModification").val(data.address_staffname);
+	 $("#addressCountryModification").val(data.address_country);
+	 $("#addressAreaModification").val(data.address_area);
+	 $("#addressDetailModification").val(data.address_detail);
+	 $("#addressMobilephone1Modification").val(data.address_mobilephone1);
+	 $("#addressMobilephone2Modification").val(data.address_mobilephone2);
+	 $("#addressMobilephone3Modification").val(data.address_mobilephone3);
+	 $("#addressPhone1Modification").val(data.address_phone1);
+	 $("#addressPhone2Modification").val(data.address_phone2);
+	 $("#addressPhone3Modification").val(data.address_phone3);
 }
 function saveAddress(){
+	var address = new Object();
+	address.id = $("#addressId").val();
+	address.type = $("#addressTypeModification").val();
+	address.title = $("#addressTitleModification").val();
+	address.staffname = $("#addressStaffNameModification").val();
+	address.country = $("#addressCountryModification").val();
+	address.area = $("#addressAreaModification").val();
+	address.detail = $("#addressDetailModification").val();
+	address.mobilephone1 = $("#addressMobilephone1Modification").val();
+	address.mobilephone2 = $("#addressMobilephone2Modification").val();
+	address.mobilephone3 = $("#addressMobilephone3Modification").val();
+	address.phone1 = $("#addressPhone1Modification").val();
+	address.phone2 = $("#addressPhone2Modification").val();
+	address.phone3 = $("#addressPhone3Modification").val();
+	dataHandler("modify","address",address,successSaveAddress,null,null,null,false);
+}
+function successSaveAddress(){
+	$("#editAddressDiv").hide();
+	selectAddress(_currentAddressType);
+}
+function addAddress(){
 	var address = new Object();
 	address.userId = $("#userId").val();
 	address.type = $("#addressType").val();
@@ -902,10 +955,11 @@ function saveAddress(){
 	address.phone1 = $("#addressPhone1").val();
 	address.phone2 = $("#addressPhone2").val();
 	address.phone3 = $("#addressPhone3").val();
-	if($("#addressType").val()=='6')
-		dataHandler("add","address",address,successRefresh,null,null,null,true);
-	else
-		dataHandler("modify","address",address,successRefresh,null,null,null,true);
+	dataHandler("add","address",address,successAddAddress,null,null,null,false);
+}
+function successAddAddress(){
+	$("#addAddressDiv").hide();
+	selectAddress(_currentAddressType);
 }
 function savePersonalInfoMobilePhone(){
 	var mobilePhone = new Object();

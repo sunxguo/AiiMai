@@ -58,23 +58,18 @@
 							<option value="1"><?php echo lang('cms_goodsCopy_ChangeDate');?></option>
 						</select>
 					</td>
-					<td class="value tal" style="width: 300px;">
+					<td class="value tal" style="width: 290px;">
 						<input id="beginDate" type="date" value="<?php echo date("Y-m-d",strtotime(date("Y-m-d")." -30 day"));?>" class="km-form-control" style="width: 40%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;"> ~ <input id="endDate" type="date" value="<?php echo date("Y-m-d");?>" class="km-form-control" style="width: 40%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 					</td>
 					<td class="field width10p tal br">
 						<?php echo lang('cms_goodsCopy_SellFormat');?>
 					</td>
-					<td class="value width17p tal">
+					<td class="value width17p tal" style="width: 200px;">
 						<select id="SellFormat" style="height: 30px;width: 80px;" onchange="if($(this).val()=='1') $('#stock').show();else $('#stock').hide();">
 							<option value="1" selected="selected"><?php echo lang('cms_goodsCopy_BuyNow');?></option>
 							<option value="2"><?php echo lang('cms_goodsCopy_Auction');?></option>
 							<option value="3"><?php echo lang('cms_goodsCopy_FreeFormat');?></option>
 							<option value="4"><?php echo lang('cms_goodsCopy_ReservationOrTicket');?></option>
-						</select>
-						<select style="height: 30px;" id="stock">
-							<option value="" selected="selected"><?php echo lang('cms_goodsCopy_all');?></option>
-							<option value="Y"><?php echo lang('cms_goodsCopy_Instock');?></option>
-							<option value="N"><?php echo lang('cms_goodsCopy_Outofstock');?></option>
 						</select>
 					</td>
 					<td class="field width10p tal br">
@@ -92,7 +87,26 @@
 					</td>
 				  </tr>
 				  <tr>
-					<td class="value tar" colspan="6">
+					<td class="field width10p tal br">
+						Stock
+					</td>
+					<td class="value tal" style="width: 290px;">
+						<select style="height: 30px;width: 110px;" id="stock">
+							<option value="" selected="selected"><?php echo lang('cms_goodsCopy_all');?></option>
+							<option value="Y"><?php echo lang('cms_goodsCopy_Instock');?></option>
+							<option value="N"><?php echo lang('cms_goodsCopy_Outofstock');?></option>
+						</select>
+					</td>
+					<td class="field width10p tal br">
+						GroupBuy
+					</td>
+					<td class="value tal" style="width: 200px;">
+						<input id="groupBuyYes" type="radio" value="1" name="GroupBuy" style="vertical-align:middle;">
+						<label for="groupBuyYes">Yes</label>
+						<input id="groupBuyNo" type="radio" value="0" name="GroupBuy" style="vertical-align:middle;" checked>
+						<label for="groupBuyNo">No</label>
+					</td>
+					<td class="value tar" colspan="2">
 						<button onclick="productQuery(false);" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;"><?php echo lang('cms_common_Search');?></button>
 						<button onclick="productQuery(true);" type="button" class="km-btn km-btn-success" style="height: 28px;font-size: 12px;padding: 5px 10px;"><?php echo lang('cms_common_Excel');?></button>
 					</td>
@@ -144,10 +158,16 @@ $(document).ready(function(){
 	$("#status").val(6);
 	<?php endif;?>
 	<?php if(isset($_GET['SOT']) && $_GET['SOT']):?>
-	$("#status").val(6);
+	$("#stock").val('N');
 	<?php endif;?>
 	<?php if(isset($_GET['URBL']) && $_GET['URBL']):?>
 	$("#status").val(1);
+	<?php endif;?>
+	<?php if(isset($_GET['GB']) && $_GET['GB']):?>
+	$('#groupBuyYes').attr('checked',true);
+	<?php endif;?>
+	<?php if(isset($_GET['AIP']) && $_GET['AIP']):?>
+	$('#SellFormat').val(2);
 	<?php endif;?>
 	productQuery(false);
 });

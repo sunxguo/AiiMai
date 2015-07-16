@@ -8,14 +8,52 @@ function addImageBeforeUpload(){
 	$("#productImg").attr("src","/assets/images/cms/loading.gif");
 }
 function addImageAfterUpload(imageSrc){
-/*	$("#productImg").attr("src","/assets/images/cms/appbg_ad.png");
-	var new_img_item='<li onmouseover="imgover(this)" onmouseout="imgout(this)" class="img-item imagelist"><img class="thumb-src" width="77" height="77" src="'+imageSrc+'"><img onclick="delclick(this)" class="del-bt" title="删除该缩略图" src="/assets/images/cms/delete.png"></li>';
-	$("#addImgList").before(new_img_item);
-	if($("#imgListDivs").children(".imagelist").length>=3){
-		$("#addImgList").hide();
-	}*/
 	$("#productImg").attr("src",imageSrc);
 }
+//--begin >>
+function uploadSecondaryImage1(formId){
+	uploadImageAdvance(formId,addImageBeforeUpload1,addImageAfterUpload1);
+}
+function addImageBeforeUpload1(){
+	$("#productImgS1").attr("src","/assets/images/cms/loading.gif");
+}
+function addImageAfterUpload1(imageSrc){
+	$("#productImgS1").attr("src",imageSrc);
+}
+//--end <<
+//--begin >>
+function uploadSecondaryImage2(formId){
+	uploadImageAdvance(formId,addImageBeforeUpload2,addImageAfterUpload2);
+}
+function addImageBeforeUpload2(){
+	$("#productImgS2").attr("src","/assets/images/cms/loading.gif");
+}
+function addImageAfterUpload2(imageSrc){
+	$("#productImgS2").attr("src",imageSrc);
+}
+//--end <<
+//--begin >>
+function uploadSecondaryImage3(formId){
+	uploadImageAdvance(formId,addImageBeforeUpload3,addImageAfterUpload3);
+}
+function addImageBeforeUpload3(){
+	$("#productImgS3").attr("src","/assets/images/cms/loading.gif");
+}
+function addImageAfterUpload3(imageSrc){
+	$("#productImgS3").attr("src",imageSrc);
+}
+//--end <<
+//--begin >>
+function uploadSecondaryImage4(formId){
+	uploadImageAdvance(formId,addImageBeforeUpload4,addImageAfterUpload4);
+}
+function addImageBeforeUpload4(){
+	$("#productImgS4").attr("src","/assets/images/cms/loading.gif");
+}
+function addImageAfterUpload4(imageSrc){
+	$("#productImgS4").attr("src",imageSrc);
+}
+//--end <<
 function column(handleType,nameNullMsg,successMsg){
 	if($("#name").val()==""){
 		alert(nameNullMsg);
@@ -118,6 +156,10 @@ function productHandler(successMsg,isNew){
 	product.ShortTitle = '';
 	product.SellerCode = $("#SellerCode").val();
 	product.productImg = $("#productImg").attr('src');
+	product.productImgS1 = $("#productImgS1").attr('src');
+	product.productImgS2 = $("#productImgS2").attr('src');
+	product.productImgS3 = $("#productImgS3").attr('src');
+	product.productImgS4 = $("#productImgS4").attr('src');
 	product.ProductionPlaceCode = $("#ProductionPlaceCode").val();
 	product.ProductionPlaceDetail = $("#ProductionPlaceDetail").val();
 	product.AdultItem = $('input[name="adult"]:checked').val();

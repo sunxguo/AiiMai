@@ -78,6 +78,10 @@ class Common extends CI_Controller {
 					"product_seller_code"=>$data->SellerCode,
 					"product_adult"=>$data->AdultItem,
 					"product_image"=>$data->productImg,
+					"product_image_s1"=>$data->productImgS1,
+					"product_image_s2"=>$data->productImgS2,
+					"product_image_s3"=>$data->productImgS3,
+					"product_image_s4"=>$data->productImgS4,
 					"product_production_place_code"=>$data->ProductionPlaceCode,
 					"product_production_place_detail"=>$data->ProductionPlaceDetail,
 					"product_quantity"=>$data->Quantity,
@@ -210,7 +214,7 @@ class Common extends CI_Controller {
 					"address_mobilephone1"=>$data->mobilephone1,
 					"address_mobilephone2"=>$data->mobilephone2,
 					"address_mobilephone3"=>$data->mobilephone3,
-					"address_type"=>6,
+					"address_type"=>$data->type,
 					"address_phone1"=>$data->phone1,
 					"address_phone2"=>$data->phone2,
 					"address_phone3"=>$data->phone3
@@ -294,6 +298,10 @@ class Common extends CI_Controller {
 			case 'notice':
 				$condition['table']="notice";
 				$condition['where']=array("notice_id"=>$data->id);
+			break;
+			case 'address':
+				$condition['table']="address";
+				$condition['where']=array("address_id"=>$data->id);
 			break;
 			case 'merchant':
 				$this->dbHandler->deleteData(array('table'=>'product','where'=>array('product_merchant'=>$data->id)));
@@ -1079,21 +1087,15 @@ class Common extends CI_Controller {
 				return true;
 			break;
 			case 'address':
-				$notExist=$this->commongetdata->checkUniqueAdvance("address",array("address_userid"=>$data->userId,"address_type"=>$data->type));
-				if($notExist){
-					$table="address";
-					$info=array("address_userid"=>$data->userId,"address_type"=>$data->type);
-					$result=$this->dbHandler->insertData($table,$info);
-				}
 				$condition['table']="address";
-				$condition['where']=array("address_userid"=>$data->userId,"address_type"=>$data->type);
+				$condition['where']=array("address_id"=>$data->id);
 				$condition['data']=array(
-					"address_userid"=>$data->userId,
 					"address_title"=>$data->title,
 					"address_staffname"=>$data->staffname,
 					"address_country"=>$data->country,
 					"address_area"=>$data->area,
 					"address_detail"=>$data->detail,
+					"address_type"=>$data->type,
 					"address_mobilephone1"=>$data->mobilephone1,
 					"address_mobilephone2"=>$data->mobilephone2,
 					"address_mobilephone3"=>$data->mobilephone3,
@@ -1186,26 +1188,24 @@ class Common extends CI_Controller {
 				$merchant=isset($data->merchant)?$data->merchant:$_SESSION['userid'];
 				$result=$this->commongetdata->getOrdersByDay($startDate,$days,$merchant,true,'short',29);
 			break;
-			case 'address':
-				if($data->type==6){
-					$condition=array(
-						'table'=>'address',
-						'result'=>'data',
-						'where'=>array(
-							'address_id'=>$data->id
-						)
-					);
-				}else{
-					$condition=array(
-						'table'=>'address',
-						'result'=>'data',
-						'where'=>array(
-							'address_userid'=>$data->userId,
-							'address_type'=>$data->type
-						)
-					);
-				}
+			case 'addressList':
+				$condition=array(
+					'table'=>'address',
+					'result'=>'data',
+					'where'=>array(
+						'address_userid'=>$data->userId,
+						'address_type'=>$data->type
+					));
+				$result=$this->commongetdata->getData($condition);
 				
+			break;
+			case 'address':
+				$condition=array(
+					'table'=>'address',
+					'result'=>'data',
+					'where'=>array(
+						'address_id'=>$data->id
+					));
 				$result=$this->commongetdata->getOneData($condition);
 				
 			break;

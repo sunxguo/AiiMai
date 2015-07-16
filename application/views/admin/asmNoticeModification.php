@@ -18,7 +18,7 @@
 	<input id="noticeId" type="hidden" value="<?php echo $notice->notice_id;?>">
 <div class="padding10 formList msglist clearfix">
 	
-	<div class="partContent baseInfo" style="width: 581px;margin: 10px auto; float:none;">
+	<div class="partContent baseInfo" style="width: 800px;margin: 10px auto; float:none;">
 		<div class="title">
 			<?php echo lang("cms_content_baseinfo");?>Basic Info.<span style="color: red;">*</span>
 		</div>
@@ -35,13 +35,34 @@
 			</div>
 		</div>
 	</div>
-	<div class="partContent clearboth content" style="width: 581px !important;margin: 10px auto !important;">
+	<div class="partContent clearboth content" style="width: 800px !important;margin: 10px auto !important;">
 		<div class="title" onclick="shows(2)">Content<span style="color: red;">*</span></div>
 		<textarea id="notice_content" name="description" style="width: 90%;height: 70px;margin: 10px 0 10px 23px;"><?php echo $notice->notice_content;?></textarea>
 	</div>
 	<div class="btn-center">
 		<a href="javascript:saveNotice('Successfully Saved!')" class="btnfa120">Save</a>
 	</div>
+	<link rel="stylesheet" href="/assets/kindEditor/themes/custom/custom.css" />
+<script charset="utf-8" src="/assets/kindEditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/assets/kindEditor/lang/zh_CN.js"></script>
+<script charset="utf-8" src="/assets/js/jquery.form.js"></script>
+<script>
+	var infoEditor;
+	$(document).ready(function(){
+		KindEditor.ready(function(K) {
+			infoEditor = K.create('#notice_content', {
+				uploadJson : '/assets/kindEditor/php/upload_json.php',
+				fileManagerJson : '/assets/kindEditor/php/file_manager_json.php',
+				allowFileManager : true,
+				width : '100%',
+				height:'300px',
+				resizeType:0,
+				imageTabIndex:1,
+				langType : '<?php echo $_SESSION['language']=="english"?'en':'zh_CN';?>'
+			});
+		});
+	});
+</script>
 </div>
 </div>
 <div id="waitDiv"><img src="/assets/images/cms/loading.gif"></div>

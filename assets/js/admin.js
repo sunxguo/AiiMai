@@ -242,15 +242,11 @@ function pubNotice(successMsg){
 		alert("Please input title！");
 		return false;
 	}
-	if($("#notice_content").val()==""){
-		alert("Please input content！");
-		return false;
-	}
 	showWait();
 	var notice = new Object();
 	notice.type = $("#type").val();
 	notice.title = $("#title").val();
-	notice.content = $("#notice_content").val();
+	notice.content = infoEditor.html();
 	dataHandler("add","notice",notice,null,null,closeWait(),successMsg,true);
 }
 function saveNotice(successMsg){
@@ -258,16 +254,12 @@ function saveNotice(successMsg){
 		alert("Please input title！");
 		return false;
 	}
-	if($("#notice_content").val()==""){
-		alert("Please input content！");
-		return false;
-	}
 	showWait();
 	var notice = new Object();
 	notice.id = $("#noticeId").val();
 	notice.type = $("#type").val();
 	notice.title = $("#title").val();
-	notice.content = $("#notice_content").val();
+	notice.content = infoEditor.html();
 	dataHandler("modify","notice",notice,null,null,closeWait(),successMsg,true);
 }
 function saveBasicParameter(successMsg){

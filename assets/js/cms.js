@@ -128,3 +128,18 @@ function saveShopInfo(){
 	shopInfo.info = shopInfoEditor.html();
 	dataHandler('modify','shopInfo',shopInfo,null,null,null,'Success',true);
 }
+function uploadCSV(formId){
+	uploadImageAdvance(formId,addCSVBeforeUpload,addCSVAfterUpload);
+}
+function addCSVBeforeUpload(){
+	$("#shopBottomImage").attr("src","/assets/images/cms/loading.gif");
+}
+function addCSVAfterUpload(src){
+	$("#shopBottomImage").attr("src",src);
+	modifyShopImg('bottom',src);
+}
+function addCSV(src){
+	var csv = new Object();
+	csv.src = src;
+	dataHandler('upload','csv',csv,null,null,null,'Success',true);
+}

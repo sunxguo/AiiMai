@@ -138,7 +138,7 @@
 				  <tr>
 					<td class="field br">Address</td>
 					<td class="value tal">
-						<button onclick="setDivCenter('#addressDiv',true);selectAddress();" type="button" class="km-btn km-btn-primary" style=" height: 23px;font-size: 10px;padding: 0px 10px;">My Address Book</button>
+						<button onclick="setDivCenter('#addressDiv',true);selectAddress(1);" type="button" class="km-btn km-btn-primary" style=" height: 23px;font-size: 10px;padding: 0px 10px;">My Address Book</button>
 						<div class="km-modal-dialog" style="width:70%;" id="addressDiv">
 							<div class="km-modal-content">
 								<div class="km-modal-header">
@@ -147,35 +147,16 @@
 								</div>
 								<div class="km-modal-body">
 								<!--//1.shipAddress 2.Family 3.Work 4.Friends 5.Etc.-->
-									<ul class="km-nav km-nav-tabs clearfix">
-									  <li class="active"><a href="">Family</a></li>
-									  <li><a href="">Friends</a></li>
-									  <li><a href="">Wordk</a></li>
-									  <li><a href="">Etc.</a></li>
+									<ul id="addressTypeList" class="km-nav km-nav-tabs clearfix">
+									  <li class="active"><a href="javascript:selectAddress(1);">Family</a></li>
+									  <li><a href="javascript:selectAddress(2);">Friends</a></li>
+									  <li><a href="javascript:selectAddress(3);">Work</a></li>
+									  <li><a href="javascript:selectAddress(4);">Etc.</a></li>
+									  <li><a href="javascript:setDivCenter('#addAddressDiv',true);"><img src="/assets/images/cms/icon-plus.png" width="15"></a></li>
 									</ul>
 									<div id="familyAddress">
-										<ul class="clearfix">
-											<li class="clearfix">
-												<div class="addressList-Title fl">
-													<span>title</span>
-												</div>
-												<div class="addressList-address fl">
-													<p>
-														Recipient name
-													</p>
-													<p>
-														Address
-													</p>
-												</div>
-												<div class="addressList-phone fl">
-													<p class="gsm_phone"><em>+65-1234-5567</em></p>
-													<p class="gsm_home"><em>+65-88-88</em></p>
-												</div>
-												<div class="addressList-operation fl">
-													<button onclick="editAddress();" type="button" class="km-btn km-btn-primary" style="height:18px;font-size:10px;padding: 0 10px;">Edit</button>
-													<button onclick="deleteAddress();" type="button" class="km-btn km-btn-danger" style="height:18px;font-size:10px;padding: 0 10px;">Delete</button>
-												</div>
-											</li>
+										<ul class="clearfix" id="addressList">
+											
 										</ul>
 									</div>
 								</div>
@@ -188,16 +169,53 @@
 							<div class="km-modal-content">
 								<div class="km-modal-header">
 									<button type="button" class="km-close"><span>&times;</span></button>
-									<h4 class="km-modal-title">Personal Info - Address</h4>
+									<h4 class="km-modal-title">Personal Info - Edit Address</h4>
+									<input type="hidden" id="addressId">
 								</div>
 								<div class="km-modal-body">
 								<!--//1.shipAddress 2.Family 3.Work 4.Friends 5.Etc.-->
-									<ul class="km-nav km-nav-tabs clearfix">
-									  <li class="active"><a href="">Family</a></li>
-									  <li><a href="">Friends</a></li>
-									  <li><a href="">Wordk</a></li>
-									  <li><a href="">Etc.</a></li>
-									</ul>
+									<label for="addressTypeModification" class="km-control-label" style="width: 80px;margin-top:10px;">Type:</label>
+									<select id="addressTypeModification" style="height:30px;vertical-align:middle;">
+										<option value="1">Family</option>
+										<option value="2">Friends</option>
+										<option value="3">Work</option>
+										<option value="4">Etc.</option>
+									</select><br><br>
+									<label for="addressTitleModification" class="km-control-label" style="width: 80px;">Title:</label>
+									<input type="text" class="km-form-control" id="addressTitleModification" value="" style="width: 50%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
+									<label for="addressStaffNameModification" class="km-control-label" style="width: 80px;">Staff Name:</label>
+									<input type="text" class="km-form-control" id="addressStaffNameModification" value="" style="width: 50%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
+									<label for="addressCountryModification" class="km-control-label" style="width: 80px;">Country:</label>
+									<select id="addressCountryModification" style="height: 30px;width:30%;"><?php require('countryPhoneNO.php');?></select>
+									<label for="addressAreaModification" class="km-control-label">Area:</label>
+									<input type="text" class="km-form-control" id="addressAreaModification" value="" style="width: 37.8%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
+									<label for="addressDetailModification" class="km-control-label" style="width: 80px;">Detail:</label>
+									<input type="text" class="km-form-control" id="addressDetailModification" value="" style="width: 74.5%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
+									
+									<label for="addressMobilephone1Modification" class="km-control-label" style="width: 120px;">Mobile Phone:</label>
+									<select id="addressMobilephone1Modification" style="height: 30px;"><?php require('countryPhoneNO.php');?></select>
+									<input type="text" class="km-form-control" id="addressMobilephone2Modification" value="" style="width: 20%;height: 30px;padding: 0 5px;display: inline-block;">-
+									<input type="text" class="km-form-control" id="addressMobilephone3Modification" value="" style="width: 20%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
+									<label for="addressPhone1Modification" class="km-control-label" style="width: 120px;">Phone Number:</label>
+									<select id="addressPhone1Modification" style="height: 30px;"><?php require('countryPhoneNO.php');?></select>
+									<input type="text" class="km-form-control" id="addressPhone2Modification" value="" style="width: 20%;height: 30px;padding: 0 5px;display: inline-block;">-
+									<input type="text" class="km-form-control" id="addressPhone3Modification" value="" style="width: 20%;height: 30px;padding: 0 5px;display: inline-block;">
+									
+								</div>
+								<div class="km-modal-footer">
+									<button type="button" class="km-btn km-btn-default km-btn-close">Close</button>
+									<button onclick="saveAddress();" type="button" class="km-btn km-btn-primary">Save</button>
+								</div>
+							</div><!-- /.modal-content -->
+						</div><!-- /.modal-dialog -->
+						<div class="km-modal-dialog" id="addAddressDiv" style="width:520px;z-index: 10051;">
+							<div class="km-modal-content">
+								<div class="km-modal-header">
+									<button type="button" class="km-close"><span>&times;</span></button>
+									<h4 class="km-modal-title">Personal Info - Add Address</h4>
+								</div>
+								<div class="km-modal-body">
+								<!--//1.shipAddress 2.Family 3.Work 4.Friends 5.Etc.-->
 									<label for="addressType" class="km-control-label" style="width: 80px;margin-top:10px;">Type:</label>
 									<select id="addressType" style="height:30px;vertical-align:middle;">
 										<option value="1">Family</option>
@@ -212,23 +230,23 @@
 									<label for="addressCountry" class="km-control-label" style="width: 80px;">Country:</label>
 									<select id="addressCountry" style="height: 30px;width:30%;"><?php require('countryPhoneNO.php');?></select>
 									<label for="addressArea" class="km-control-label">Area:</label>
-									<input type="text" class="km-form-control" id="addressArea" value="" style="width: 37.8%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
+									<input type="text" class="km-form-control" id="addressArea" value="" style="width: 200px;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
 									<label for="addressDetail" class="km-control-label" style="width: 80px;">Detail:</label>
-									<input type="text" class="km-form-control" id="addressDetail" value="" style="width: 74.5%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
+									<input type="text" class="km-form-control" id="addressDetail" value="" style="width: 385px;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
 									
 									<label for="addressMobilephone1" class="km-control-label" style="width: 120px;">Mobile Phone:</label>
-									<select id="addressMobilephone1" style="height: 30px;"><?php require('countryPhoneNO.php');?></select>
+									<select id="addressMobilephone1" style="height: 30px;width:125px;"><?php require('countryPhoneNO.php');?></select>
 									<input type="text" class="km-form-control" id="addressMobilephone2" value="" style="width: 20%;height: 30px;padding: 0 5px;display: inline-block;">-
 									<input type="text" class="km-form-control" id="addressMobilephone3" value="" style="width: 20%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
 									<label for="addressPhone1" class="km-control-label" style="width: 120px;">Phone Number:</label>
-									<select id="addressPhone1" style="height: 30px;"><?php require('countryPhoneNO.php');?></select>
+									<select id="addressPhone1" style="height: 30px;width:125px;"><?php require('countryPhoneNO.php');?></select>
 									<input type="text" class="km-form-control" id="addressPhone2" value="" style="width: 20%;height: 30px;padding: 0 5px;display: inline-block;">-
 									<input type="text" class="km-form-control" id="addressPhone3" value="" style="width: 20%;height: 30px;padding: 0 5px;display: inline-block;">
 									
 								</div>
 								<div class="km-modal-footer">
 									<button type="button" class="km-btn km-btn-default km-btn-close">Close</button>
-									<button onclick="saveAddress();" type="button" class="km-btn km-btn-primary">Save</button>
+									<button onclick="addAddress();" type="button" class="km-btn km-btn-primary">Add</button>
 								</div>
 							</div><!-- /.modal-content -->
 						</div><!-- /.modal-dialog -->
