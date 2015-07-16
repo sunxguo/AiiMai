@@ -65,6 +65,13 @@
 				<form id="upload_bottom_image_form" method="post" enctype="multipart/form-data">
 					<input onchange="return uploadShopBottomImage()" name="image" type="file" id="bottomFile" style="display:none;" accept="image/*">
 				</form>
+				
+				<div class="shop-focus-items" onclick="$('#shopFocusItemList').show();$('#shopItemList').hide();$(this).css('opacity','0.5');$('.shop-items-list').css('opacity','0.7');">
+					Focus Item
+				</div>
+				<div class="shop-items-list" onclick="$('#shopFocusItemList').hide();$('#shopItemList').show();$(this).css('opacity','0.5');$('.shop-focus-items').css('opacity','0.7');">
+					Item List
+				</div>
 			</div>
 			<div class="overview-edit fl" style="position:relative;margin-left:20px;border:1px solid #ccc;">
 				<div class="shop-preview-top-old-img">
@@ -76,6 +83,35 @@
 				<div class="shop-preview-bottom-old-img">
 					<img id="shopBottomImage" src="<?php echo $merchant->merchant_shop_bottomimg;?>" width="402" height="50">
 				</div>
+				<div id="shopFocusItemList" class="shopFocusItemList" style="display:none;padding:0 10px;">
+					<h3 style="line-height:20px;">Focus Item List</h3>
+					<div class="fl">
+						On / Off <select id="focusOnOff" style="height:30px;margin-left:10px;"><option value="1">On</option><option value="0">Off</option></select>
+					</div>
+					<button onclick="" type="button" class="km-btn km-btn-primary fr" style="height: 28px;font-size: 12px;padding: 5px 10px;">Set Focus Items</button>
+				</div>
+				<div id="shopItemList" class="shopItemList" style="display:none;">
+					<h3>Use All Item List</h3>
+				</div>
+			</div>
+			<div id="setFocusItemsDiv">
+				<h3>Set Focus Item</h3>
+				<table>
+					<tr>
+						<th>Select</th>
+						<th>Item Title</th>
+						<th>Sell Price</th>
+						<th>Reg.Date</th>
+					</tr>
+					<?php foreach($items as $item):?>
+					<tr>
+						<td><input type="checkbox" name=""></td>
+						<td><?php echo $item->product_item_title_english;?></td>
+						<td><?php echo $item->product_sell_price;?></td>
+						<td><?php echo $item->product_time;?></td>
+					</tr>
+					<?php endforeach;?>
+				</table>
 			</div>
 		</div>
 	</div>

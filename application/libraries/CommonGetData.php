@@ -445,22 +445,22 @@ class CommonGetData{
 	 **/
 	public function getProductsAdvance($parameters){
 		//,$merchantId,$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order
-		$condition=array('table'=>'product');
-		if(isset($parameters['result'])) $condition['result']=$parameters['result'];
-		if(isset($parameters['merchant'])) $condition['where']['product_merchant']=$parameters['merchant'];
-		if(isset($parameters['category'])) $condition['where']['product_category']=$parameters['category'];
-		if(isset($parameters['subCategory'])) $condition['where']['product_sub_category']=$parameters['subCategory'];
-		if(isset($parameters['subSubCategory'])) $condition['where']['product_sub_sub_category']=$parameters['subSubCategory'];
-		if(isset($parameters['status'])) $condition['where']['product_status']=$parameters['status'];
-		if(isset($parameters['groupBuy'])) $condition['where']['product_groupbuy']=$parameters['groupBuy'];
-		if(isset($parameters['sellFormat'])) $condition['where']['product_sell_format']=$parameters['sellFormat'];
-		if(isset($parameters['listedTimeBegin']))$condition['where']['product_time >=']=$parameters['listedTimeBegin'].' 00:00:00';
-		if(isset($parameters['listedTimeEnd']))$condition['where']['product_time <=']=$parameters['listedTimeEnd'].' 23:59:59';
-		if(isset($parameters['modifyTimeBegin']))$condition['where']['product_modify_time >=']=$parameters['modifyTimeBegin'].' 00:00:00';
-		if(isset($parameters['modifyTimeEnd']))$condition['where']['product_modify_time <=']=$parameters['modifyTimeEnd'].' 23:59:59';
-		if(isset($parameters['like'])) $condition['like']=$parameters['like'];
-		if(isset($parameters['orderBy'])) $condition['order_by']=$parameters['orderBy'];
-		$products=$this->CI->dbHandler->selectData($condition);
+		$pCondition=array('table'=>'product');
+		if(isset($parameters['result'])) $pCondition['result']=$parameters['result'];
+		if(isset($parameters['merchant'])) $pCondition['where']['product_merchant']=$parameters['merchant'];
+		if(isset($parameters['category'])) $pCondition['where']['product_category']=$parameters['category'];
+		if(isset($parameters['subCategory'])) $pCondition['where']['product_sub_category']=$parameters['subCategory'];
+		if(isset($parameters['subSubCategory'])) $pCondition['where']['product_sub_sub_category']=$parameters['subSubCategory'];
+		if(isset($parameters['status'])) $pCondition['where']['product_status']=$parameters['status'];
+		if(isset($parameters['groupBuy'])) $pCondition['where']['product_groupbuy']=$parameters['groupBuy'];
+		if(isset($parameters['sellFormat'])) $pCondition['where']['product_sell_format']=$parameters['sellFormat'];
+		if(isset($parameters['listedTimeBegin']))$pCondition['where']['product_time >=']=$parameters['listedTimeBegin'].' 00:00:00';
+		if(isset($parameters['listedTimeEnd']))$pCondition['where']['product_time <=']=$parameters['listedTimeEnd'].' 23:59:59';
+		if(isset($parameters['modifyTimeBegin']))$pCondition['where']['product_modify_time >=']=$parameters['modifyTimeBegin'].' 00:00:00';
+		if(isset($parameters['modifyTimeEnd']))$pCondition['where']['product_modify_time <=']=$parameters['modifyTimeEnd'].' 23:59:59';
+		if(isset($parameters['like'])) $pCondition['like']=$parameters['like'];
+		if(isset($parameters['orderBy'])) $pCondition['order_by']=$parameters['orderBy'];
+		$products=$this->CI->dbHandler->selectData($pCondition);
 		if(is_array($products) && sizeof($products)>0){
 			foreach($products as $key=>$pro){
 				if(!$this->checkProductSeller($pro->product_merchant)){
