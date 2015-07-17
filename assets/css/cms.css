@@ -736,15 +736,15 @@ transition: color .1s linear 0s;
 .shopFocusItemList{
 	position: absolute;
 	width: 382px;
-	min-height: 160px;
+	height: 154px;
 	top: 272px;
 	border:1px solid #CCC;
 }
 .shopItemList{
 	position: absolute;
 	width: 402px;
-	min-height: 160px;
-	top: 272px;
+	top: 428px;
+	height: 275px;
 	border:1px solid #CCC;
 }
 .shop .shopInfo h1,
@@ -809,4 +809,49 @@ background-position: -260px -550px;
 	width:20%;
 	height:50px;
 	line-height:50px;
+}
+.list-table{
+	border-spacing: 2px;
+	border-color: grey;
+	text-align:center;
+}
+.list-table .table-head {
+  border: 1px solid #CCD3DC;
+  background: #f6f6f6 url(/assets/images/cms/th.png) top repeat-x;
+  font-weight: normal;
+  color: #555555;
+}
+.list-table .table-head th {
+  height: 22px;
+  padding: 0 0 1px 0;
+  border: 1px solid #ccd3dc;
+  border-left: 0px none;
+  cursor: pointer;
+  font-weight: bold;
+  display: table-cell;
+  vertical-align: inherit;
+}
+.list-table .table-head th:hover {
+  border: 1px solid #ccd3dc;
+  background: #dadada url(/assets/images/cms/grid-bg.png) 0 -30px repeat-x;
+  /* font-weight: normal; */
+  color: #212121;
+}
+.list-table tbody tr td {
+  height: 22px;
+  padding: 0 0 1px 0;
+  border: 1px solid #ccd3dc;
+  text-align: center;
+}
+.alert-message{
+	width:100%;
+	height:30px;
+	line-height:30px;
+	padding:5px 0px;
+	background-color:#55BD5E;
+	color:white;
+	display:none;
+}
+.alert-message p{
+	margin-left:20px;
 }

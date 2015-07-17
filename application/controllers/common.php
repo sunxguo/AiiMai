@@ -60,6 +60,36 @@ class Common extends CI_Controller {
 					"notice_time"=>date("Y-m-d H:i:s")
 				);
 			break;
+			case "categoryGroup":
+				$selectCondition=array(
+					'table'=>'shopcategory',
+					'result'=>'count',
+					'where'=>array('shopcategory_merchant'=>$data->id,'shopcategory_fid'=>0)
+				);
+				$amount=$this->dbHandler->selectData($selectCondition);
+				$table="shopcategory";
+				$info=array(
+					"shopcategory_merchant"=>$data->id,
+					"shopcategory_fid"=>0,
+					"shopcategory_name"=>$data->name,
+					"shopcategory_order"=>$amount+1
+				);
+			break;
+			case "mainCategory":
+				$selectCondition=array(
+					'table'=>'shopcategory',
+					'result'=>'count',
+					'where'=>array('shopcategory_merchant'=>$data->id,'shopcategory_fid'=>$data->fid)
+				);
+				$amount=$this->dbHandler->selectData($selectCondition);
+				$table="shopcategory";
+				$info=array(
+					"shopcategory_merchant"=>$data->id,
+					"shopcategory_fid"=>$data->fid,
+					"shopcategory_name"=>$data->name,
+					"shopcategory_order"=>$amount+1
+				);
+			break;
 			case "product":
 				$table="product";
 				$info=array(
@@ -291,6 +321,14 @@ class Common extends CI_Controller {
 				$condition['table']="product";
 				$condition['where']=array("product_id"=>$data->id);
 			break;
+			case 'categoryGroup':
+				$condition['table']="shopcategory";
+				$condition['where']=array("shopcategory_id"=>$data->id);
+			break;
+			case 'mainCategory':
+				$condition['table']="shopcategory";
+				$condition['where']=array("shopcategory_id"=>$data->id);
+			break;
 			case 'user':
 				$condition['table']="user";
 				$condition['where']=array("user_id"=>$data->id);
@@ -365,6 +403,21 @@ class Common extends CI_Controller {
 		}
 		foreach($data->idArray as $id){
 			$result=$this->dbHandler->deleteData(array("table"=>$table,"where"=>array($where=>$id)));
+		}
+		echo json_encode(array("result"=>"success","message"=>"信息删除成功"));
+	}
+	public function modifyBulkInfo(){
+		$condition=array();
+		$data=json_decode($_POST['data']);
+		switch($_POST['info_type']){
+			case 'itemsFocus':
+				$table="product";
+				$where="product_merchant";
+				$this->dbHandler->updateData(array("table"=>$table,"where"=>array("product_merchant"=>$_SESSION['userid']),"data"=>array("product_focus"=>0)));
+				foreach($data->idArray as $id){
+					$result=$this->dbHandler->updateData(array("table"=>$table,"where"=>array("product_id"=>$id),"data"=>array("product_focus"=>1)));
+				}
+			break;
 		}
 		echo json_encode(array("result"=>"success","message"=>"信息删除成功"));
 	}
@@ -626,6 +679,34 @@ class Common extends CI_Controller {
 					"user_state"=>$data->status
 				);
 			break;
+			case 'categoryFormat':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_shop_category_type"=>$data->type
+				);
+			break;
+			case 'categoryTarget':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_shop_category_target"=>$data->type
+				);
+			break;
+			case 'categoryGroup':
+				$condition['table']="shopcategory";
+				$condition['where']=array("shopcategory_id"=>$data->id);
+				$condition['data']=array(
+					"shopcategory_name"=>$data->name
+				);
+			break;
+			case 'mainCategory':
+				$condition['table']="shopcategory";
+				$condition['where']=array("shopcategory_id"=>$data->id);
+				$condition['data']=array(
+					"shopcategory_name"=>$data->name
+				);
+			break;
 			case 'userInfo':
 				$user=$this->commongetdata->getOneData(array("table"=>'user',"result"=>'data',"where"=>array("user_username"=>$data->username)));
 				if(isset($user->user_id) && $user->user_id!=$data->id){
@@ -673,6 +754,34 @@ class Common extends CI_Controller {
 				$condition['where']=array("user_id"=>$data->id);
 				$condition['data']=array(
 					"merchant_status"=>$data->status
+				);
+			break;
+			case 'shopFocusOn':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_shop_focus_on"=>$data->on
+				);
+			break;
+			case 'shopItemListOn':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_shop_itemlist_on"=>$data->on
+				);
+			break;
+			case 'categoryGroupBar':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_showCategoryGroupBar"=>$data->show
+				);
+			break;
+			case 'subCategories':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_showSubCategories"=>$data->show
 				);
 			break;
 			case 'websiteInfo':
@@ -1209,6 +1318,18 @@ class Common extends CI_Controller {
 				$result=$this->commongetdata->getOneData($condition);
 				
 			break;
+			case 'mainCategory':
+				$condition=array(
+					'table'=>'shopcategory',
+					'result'=>'data',
+					'where'=>array(
+						'shopcategory_merchant'=>$data->merchantId,
+						'shopcategory_fid'=>$data->fid
+					),
+					'order_by'=>array('shopcategory_order'=>'ASC')
+				);
+				$result=$this->commongetdata->getData($condition);
+			break;
 		}
 		echo json_encode(array("result"=>"success","message"=>$result));
 	}
@@ -1309,6 +1430,33 @@ class Common extends CI_Controller {
 		}
 		if($result==1)echo json_encode(array("result"=>"success","message"=>"信息写入成功"));
 		else echo json_encode(array("result"=>"failed","message"=>"信息写入失败"));
+	}
+	public function dragItemInfo(){
+		$data=json_decode($_POST['data']);
+		$result=array();
+		switch($_POST['info_type']){
+			case 'shopCategoryDrag':
+				foreach($data->idList as $key=>$id){
+					$condition['table']="shopcategory";
+					$condition['where']=array("shopcategory_id"=>$id);
+					$condition['data']=array(
+						"shopcategory_order"=>($key+1)
+					);
+					$result=$this->dbHandler->updateData($condition);
+				}
+			break;
+			case 'shopMainCategoryDrag':
+				foreach($data->idList as $key=>$id){
+					$condition['table']="shopcategory";
+					$condition['where']=array("shopcategory_id"=>$id);
+					$condition['data']=array(
+						"shopcategory_order"=>($key+1)
+					);
+					$result=$this->dbHandler->updateData($condition);
+				}
+			break;
+		}
+		echo json_encode(array("result"=>"success","message"=>"信息写入成功"));
 	}
 	public function excelInfo(){
 		$data=json_decode($_POST['data']);

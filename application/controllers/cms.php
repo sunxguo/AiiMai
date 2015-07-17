@@ -208,16 +208,20 @@ class Cms extends CI_Controller {
 	public function shopHomePage(){
 		$data=array(
 			'merchant'=>$this->commongetdata->getContent('user',$_SESSION['userid']),
-			'items'=>$this->commongetdata->getProductsAdvance(array('result'=>'date','where'=>array('merchant'=>$_SESSION['userid'],'status'=>3)))
+			'items'=>$this->commongetdata->getProductsAdvance(array('result'=>'data','erchant'=>$_SESSION['userid'],'status'=>3))
 		);
-		print_r($data['items']);
 		$this->cmsBaseHandler('Shop',array('baseInfo'=>true,'shop'=>true,'shopHomePage'=>true),'shopHomePage',$data);
 	}
 	public function shopDiscount(){
 		$this->cmsBaseHandler('Shop',array('baseInfo'=>true,'shop'=>true,'shopDiscount'=>true),'shopDiscount',array());
 	}
 	public function shopCategory(){
-		$this->cmsBaseHandler('Shop',array('baseInfo'=>true,'shop'=>true,'shopCategory'=>true),'shopCategory',array());
+		$categoryGroup=$this->commongetdata->getData(array('table'=>'shopcategory','result'=>'data','where'=>array('shopcategory_merchant'=>$_SESSION['userid'],'shopcategory_fid'=>0),'order_by'=>array('shopcategory_order'=>'ASC')));
+		$data=array(
+			"categoryGroup"=>$categoryGroup,
+			'merchant'=>$this->commongetdata->getContent('user',$_SESSION['userid'])
+		);
+		$this->cmsBaseHandler('Shop',array('baseInfo'=>true,'shop'=>true,'shopCategory'=>true),'shopCategory',$data);
 	}
 	public function shopInfo(){
 		$data=array(
