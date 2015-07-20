@@ -45,43 +45,76 @@
 			<div class="overview fl" style="position:relative;">
 				<img src="/assets/images/cms/tmp_overview.jpg" width="402" height="706" alt="templet overview">
 				<!--top image-->
-				<div class="shop-top-img" onclick="$('#topFile').click();">
-					Upload Image(width:995 pixel)
+				<div class="shop-top-img" onclick="shopFrontClick(this,'#shopBanner');">
+					Shop Banner(width:995 pixel)
 				</div>
 				<form id="upload_top_image_form" method="post" enctype="multipart/form-data">
 					<input onchange="return uploadShopTopImage()" name="image" type="file" id="topFile" style="display:none;" accept="image/*">
 				</form>
 				<!--middle image-->
-				<div class="shop-middle-img" onclick="$('#middleFile').click();">
-					Upload Image(width:995 pixel)
+				<div class="shop-middle-img" onclick="shopFrontClick(this,'#shopMainAdvertisement');">
+					Shop Main Advertisement(width:995 pixel)
 				</div>
 				<form id="upload_middle_image_form" method="post" enctype="multipart/form-data">
 					<input onchange="return uploadShopMiddleImage()" name="image" type="file" id="middleFile" style="display:none;" accept="image/*">
 				</form>
 				<!--bottom image-->
-				<div class="shop-bottom-img" onclick="$('#bottomFile').click();">
-					Upload Image(width:995 pixel)
+				<div class="shop-bottom-img" onclick="shopFrontClick(this,'#shopSecondaryAdvertisement');">
+					Shop Secondary Advertisement(width:995 pixel)
 				</div>
 				<form id="upload_bottom_image_form" method="post" enctype="multipart/form-data">
 					<input onchange="return uploadShopBottomImage()" name="image" type="file" id="bottomFile" style="display:none;" accept="image/*">
 				</form>
 				
-				<div class="shop-focus-items" onclick="$('#shopFocusItemList').show();$('#shopItemList').hide();$(this).css('opacity','0.5');$('.shop-items-list').css('opacity','0.7');">
+				<div class="shop-focus-items" onclick="shopFrontClick(this,'#shopFocusItemList');">
 					Focus Item
 				</div>
-				<div class="shop-items-list" onclick="$('#shopFocusItemList').hide();$('#shopItemList').show();$(this).css('opacity','0.5');$('.shop-focus-items').css('opacity','0.7');">
+				<div class="shop-items-list" onclick="shopFrontClick(this,'#shopItemList');">
 					Item List
 				</div>
 			</div>
 			<div class="overview-edit fl" style="position:relative;margin-left:20px;border:1px solid #ccc;">
-				<div class="shop-preview-top-old-img">
-					<img id="shopTopImage" src="<?php echo $merchant->merchant_shop_topimg;?>" width="402" height="40">
+				<div id="shopBanner" class="shop-preview-top-old-img clearfix" style="padding:0 10px;display:none;">
+					<h3 style="line-height:20px;">Shop Banner</h3>
+					<div class="" style="margin-top:10px;">
+						On / Off 
+						<select id="shopBannerOnOff" style="height:30px;margin-left:10px;" onchange="changeShopBannerOn();">
+							<option value="1" <?php echo $merchant->merchant_shop_banner_on==1?'selected':'';?>>On</option>
+							<option value="0" <?php echo $merchant->merchant_shop_banner_on==0?'selected':'';?>>Off</option>
+						</select>
+					</div>
+					<img id="shopTopImage" src="<?php echo $merchant->merchant_shop_topimg;?>" width="402" height="40" alt="Shop Banner" style="margin:10px 0;">
+					<button onclick="deleteShopTopImage()" type="button" class="km-btn km-btn-danger fr" style="height: 20px;font-size: 12px;padding: 0px 5px;">Delete</button>
+					<button onclick="$('#topFile').click();" type="button" class="km-btn km-btn-primary fr" style="height: 20px;font-size: 12px;padding: 0px 5px;margin-right:10px;">Upload</button>
 				</div>
-				<div class="shop-preview-middle-old-img">
-					<img id="shopMiddleImage" src="<?php echo $merchant->merchant_shop_middleimg;?>" width="402" height="120">
+				<div id="shopMainAdvertisement" class="shop-preview-middle-old-img" style="padding:0 10px;display:none;">
+					
+					<h3 style="line-height:20px;">Shop Main Advertisement</h3>
+					<div class="" style="margin-top:10px;">
+						On / Off 
+						<select id="shopMainAdvertisementOnOff" style="height:30px;margin-left:10px;" onchange="changeShopMainAdvertisementOn();">
+							<option value="1" <?php echo $merchant->merchant_shop_mainAdvertisement_on==1?'selected':'';?>>On</option>
+							<option value="0" <?php echo $merchant->merchant_shop_mainAdvertisement_on==0?'selected':'';?>>Off</option>
+						</select>
+					</div>
+					<img id="shopMiddleImage" src="<?php echo $merchant->merchant_shop_middleimg;?>" width="402" height="120" alt="Shop Banner" style="margin:10px 0;">
+					<button onclick="deleteShopMiddleImage()" type="button" class="km-btn km-btn-danger fr" style="height: 20px;font-size: 12px;padding: 0px 5px;">Delete</button>
+					<button onclick="$('#middleFile').click();" type="button" class="km-btn km-btn-primary fr" style="height: 20px;font-size: 12px;padding: 0px 5px;margin-right:10px;">Upload</button>
+				
 				</div>
-				<div class="shop-preview-bottom-old-img">
-					<img id="shopBottomImage" src="<?php echo $merchant->merchant_shop_bottomimg;?>" width="402" height="50">
+				<div id="shopSecondaryAdvertisement" class="shop-preview-bottom-old-img" style="padding:0 10px;display:none;">
+					<h3 style="line-height:20px;">Shop Secondary Advertisement</h3>
+					<div class="" style="margin-top:10px;">
+						On / Off 
+						<select id="shopSecondaryAdvertisementOnOff" style="height:30px;margin-left:10px;" onchange="changeShopSecondaryAdvertisement();">
+							<option value="1" <?php echo $merchant->merchant_shop_secondaryAdvertisement_on==1?'selected':'';?>>On</option>
+							<option value="0" <?php echo $merchant->merchant_shop_secondaryAdvertisement_on==0?'selected':'';?>>Off</option>
+						</select>
+					</div>
+					<img id="shopBottomImage" src="<?php echo $merchant->merchant_shop_bottomimg;?>" width="402" height="50" alt="Shop Banner" style="margin:10px 0;">
+					<button onclick="deleteShopBottomImage()" type="button" class="km-btn km-btn-danger fr" style="height: 20px;font-size: 12px;padding: 0px 5px;">Delete</button>
+					<button onclick="$('#bottomFile').click();" type="button" class="km-btn km-btn-primary fr" style="height: 20px;font-size: 12px;padding: 0px 5px;margin-right:10px;">Upload</button>
+				
 				</div>
 				<div id="shopFocusItemList" class="shopFocusItemList" style="display:none;padding:0 10px;">
 					<h3 style="line-height:20px;">Focus Item List</h3>
@@ -162,6 +195,24 @@
 </div>
 <script src="/assets/js/cms-shop.js" type="text/javascript"></script>
 <script>
+
+function shopFrontClick(tag,showId){
+	initAll();
+	$(showId).show();
+	$(tag).css('opacity','0.5');
+}
+function initAll(){
+	$('#shopFocusItemList').hide();
+	$('#shopItemList').hide();
+	$('#shopBanner').hide();
+	$('#shopMainAdvertisement').hide();
+	$('#shopSecondaryAdvertisement').hide();
+	$('.shop-items-list').css('opacity','0.7');
+	$('.shop-focus-items').css('opacity','0.7');
+	$('.shop-top-img').css('opacity','0.7');
+	$('.shop-middle-img').css('opacity','0.7');
+	$('.shop-bottom-img').css('opacity','0.7');
+}
 $(document).ready(function(){
 });
 function focusCheckedItems(){
@@ -181,6 +232,24 @@ function changeFocusOn(){
 	shopFocusOn.id = $("#merchantId").val();
 	shopFocusOn.on = $("#focusOnOff").val();
 	dataHandler("modify","shopFocusOn",shopFocusOn,successShowCat,'Sure to modify?',null,null,true);
+}
+function changeShopBannerOn(){
+	var shopBannerOn = new Object();
+	shopBannerOn.id = $("#merchantId").val();
+	shopBannerOn.on = $("#shopBannerOnOff").val();
+	dataHandler("modify","shopBannerOn",shopBannerOn,successShowCat,'Sure to modify?',null,null,true);
+}
+function changeShopMainAdvertisementOn(){
+	var shopMainAdvertisementOn = new Object();
+	shopMainAdvertisementOn.id = $("#merchantId").val();
+	shopMainAdvertisementOn.on = $("#shopMainAdvertisementOnOff").val();
+	dataHandler("modify","shopMainAdvertisementOn",shopMainAdvertisementOn,successShowCat,'Sure to modify?',null,null,true);
+}
+function changeShopSecondaryAdvertisement(){
+	var shopSecondaryAdvertisementOn = new Object();
+	shopSecondaryAdvertisementOn.id = $("#merchantId").val();
+	shopSecondaryAdvertisementOn.on = $("#shopSecondaryAdvertisementOnOff").val();
+	dataHandler("modify","shopSecondaryAdvertisementOn",shopSecondaryAdvertisementOn,successShowCat,'Sure to modify?',null,null,true);
 }
 function changeItemListOn(){
 	var shopItemListOn = new Object();

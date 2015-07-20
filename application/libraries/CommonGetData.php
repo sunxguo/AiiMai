@@ -408,7 +408,7 @@ class CommonGetData{
 	/**
 	 *  商户id（$_SESSION['userid']），1级类别，2级类别，3级类别，状态，发布时间，最后修改时间，销售方式，商品标题
 	 **/
-	public function getProducts($merchantId,$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order){
+	public function getProducts($merchantId,$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order,$groupBuy=false,$outStock=false){
 		$condition=array(
 			'table'=>'product',
 			'result'=>'data',
@@ -420,6 +420,8 @@ class CommonGetData{
 		if($ssCat) $condition['where']['product_sub_sub_category']=$ssCat;
 		if($status) $condition['where']['product_status']=$status;
 		if($sellFormat) $condition['where']['product_sell_format']=$sellFormat;
+		if($groupBuy) $condition['where']['product_groupbuy']=1;
+		if($outStock) $condition['where']['product_quantity']=0;
 		if($listedTime){
 			$condition['where']['product_time >=']=$listedTime['begin'].' 00:00:00';
 			$condition['where']['product_time <=']=$listedTime['end'].' 23:59:59';
@@ -507,17 +509,29 @@ class CommonGetData{
 		$results=$this->CI->dbHandler->selectData($condition);
 		return $results;
 	}
-	public function getHotItems($merchantId){
+	public function getFocusItems($merchantId){
 		$condition=array(
 			'table'=>'product',
 			'result'=>'data',
 			'where'=>array(
 				'product_merchant'=>$merchantId,
-				'product_shop_hot'=>1
+				'product_focus'=>1
 			)
 		);
-		$hotItems=$this->getData($condition);
-		return $hotItems;
+		$focusItems=$this->getData($condition);
+		return $focusItems;
+	}
+	public function getShopCategory($merchantId){
+		$condition=array(
+			'table'=>'shopcategory',
+			'result'=>'data',
+			'where'=>array(
+				'shopcategory_merchant'=>$merchantId,
+				'shopcategory_fid'=>0
+			)
+		);
+		$category=$this->getData($condition);
+		return $category;
 	}
 	public function getCategoryFeaturedItems($catId){
 		$condition=array(

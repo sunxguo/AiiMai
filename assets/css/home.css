@@ -3282,7 +3282,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endCo
 	float:left;
 	margin-right: 30px;
 }
-.shop .itemsList .product:nth-child(3n){
+.shop .items .product:nth-child(n+3){
 	margin-right:0px;
 }
 .shop .items .product a:hover{

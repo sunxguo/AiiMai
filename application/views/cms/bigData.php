@@ -27,6 +27,7 @@
 					<td class="value width30p tal br">
 						<input type="radio" id="formatAiimai" name="format" style="vertical-align: middle;" checked>
 						<label for="formatAiimai" class="km-control-label">AiiMail</label>
+						<a href="/uploads/format.csv" target="_blank">Download excel format of AiiMai</a>
 					</td>
 					<td class="field width10p tal br">
 						Upload file
