@@ -763,6 +763,28 @@ class Common extends CI_Controller {
 					"merchant_shop_focus_on"=>$data->on
 				);
 			break;
+			case 'shopBannerOn':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_shop_banner_on"=>$data->on
+				);
+			break;
+			case 'shopMainAdvertisementOn':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_shop_mainAdvertisement_on"=>$data->on
+				);
+			break;
+			case 'shopSecondaryAdvertisementOn':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_shop_secondaryAdvertisement_on"=>$data->on
+				);
+			break;
+			
 			case 'shopItemListOn':
 				$condition['table']="user";
 				$condition['where']=array("user_id"=>$data->id);
@@ -1261,7 +1283,9 @@ class Common extends CI_Controller {
 				}
 				$sellFormat=$data->SellFormat;
 				$order=array("field"=>"product_modify_time","type"=>'DESC');
-				$result=$this->commongetdata->getProducts($_SESSION['userid'],$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order);
+				$groupBuy=$data->groupbuy==1?true:false;
+				$outStock=$data->stock==0?true:false;
+				$result=$this->commongetdata->getProducts($_SESSION['userid'],$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order,$groupBuy,$outStock);
 			break;
 			case 'products':
 				$parameters=array(

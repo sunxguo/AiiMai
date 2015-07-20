@@ -103,6 +103,21 @@ function addShopTopImageAfterUpload(imageSrc){
 	$("#shopTopImage").attr("src",imageSrc);
 	modifyShopImg('top',imageSrc);
 }
+function deleteShopTopImage(){
+	if(confirm('Sure to delete shop banner and save?')){
+		modifyShopImg('top','');
+	}
+}
+function deleteShopMiddleImage(){
+	if(confirm('Sure to delete shop main advertisement and save?')){
+		modifyShopImg('middle','');
+	}
+}
+function deleteShopBottomImage(){
+	if(confirm('Sure to delete shop secondary advertisement and save?')){
+		modifyShopImg('bottom','');
+	}
+}
 function uploadShopMiddleImage(){
 	uploadImageAdvance('#upload_middle_image_form',addShopMiddleImageBeforeUpload,addShopMiddleImageAfterUpload);
 }

@@ -208,7 +208,7 @@ class Home extends CI_Controller {
 				"status"=>3
 			)),
 			"comments"=>$this->commongetdata->getComments($_GET['itemId']),
-			"hotItems"=>$this->commongetdata->getHotItems($item->product_merchant),
+			"hotItems"=>$this->commongetdata->getFocusItems($item->product_merchant),
 			"follow"=>isset($_SESSION['userid'])?$this->commongetdata->getFollow($item->product_merchant,$_SESSION['userid']):false,
 			"followNo"=>$this->commongetdata->getFollowNo($item->product_merchant)
 		);
@@ -229,6 +229,7 @@ class Home extends CI_Controller {
 			$this->load->view('redirect',array("info"=>"Wrong url!",'url'=>'/home'));
 			return false;
 		}
+		$category=$this->commongetdata->getShopCategory($_GET['shopId']);
 		$data=array(
 			'merchant'=>$merchant,
 			"merchantProductsAmount"=>$this->commongetdata->getProductsAdvance(array(
@@ -236,9 +237,10 @@ class Home extends CI_Controller {
 				"merchant"=>$_GET['shopId'],
 				"status"=>3
 			)),
-			"hotItems"=>$this->commongetdata->getHotItems($_GET['shopId']),
+			"focusItem"=>$this->commongetdata->getFocusItems($_GET['shopId']),
 			"follow"=>isset($_SESSION['userid'])?$this->commongetdata->getFollow($_GET['shopId'],$_SESSION['userid']):false,
-			"followNo"=>$this->commongetdata->getFollowNo($_GET['shopId'])
+			"followNo"=>$this->commongetdata->getFollowNo($_GET['shopId']),
+			"category"=>$category
 		);
 		$this->homeBaseHandler('Shop','shop',$data);
 	}

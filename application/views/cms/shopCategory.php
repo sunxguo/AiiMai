@@ -245,6 +245,8 @@ function getMainCategoryHandler(data){
 	}
 	$("#sortableCategory").html(list);
 	mainCategoryId=0;
+	$("#newMainCategoryName").val('');
+	$("#editMainCategoryName").val('');
 	$(document).on('click', "#sortableCategory a", function () {
 		$('#sortableCategory a').removeClass('active');
 		$(this).addClass('active');

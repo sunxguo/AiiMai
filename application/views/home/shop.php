@@ -1,7 +1,9 @@
 <div class="shop">
+	<?php if($merchant->merchant_shop_banner_on==1):?>
 	<div>
-		<img src="<?php echo $merchant->merchant_shop_topimg;?>">
+		<img src="<?php echo $merchant->merchant_shop_topimg;?>" style="width: 980px;">
 	</div>
+	<?php endif;?>
 	<div class="mshop_bar">
 		<div class="info">
 			<div class="thumb">
@@ -35,13 +37,18 @@
 		</div>
 	</div>
 	<div class="">
-		<img src="<?php echo $merchant->merchant_shop_middleimg;?>">
-		<img src="<?php echo $merchant->merchant_shop_bottomimg;?>">
+		<?php if($merchant->merchant_shop_mainAdvertisement_on==1):?>
+		<img src="<?php echo $merchant->merchant_shop_middleimg;?>" style="width: 980px;">
+		<?php endif;?>
+		<?php if($merchant->merchant_shop_secondaryAdvertisement_on==1):?>
+		<img src="<?php echo $merchant->merchant_shop_bottomimg;?>" style="width: 980px;">
+		<?php endif;?>
 	</div>
+	<?php if($merchant->merchant_shop_focus_on):?>
 	<div class="items">
-		<h3>Hot Items</h3>
+		<h3>Focus Item</h3>
 		<ul class="clearfix">
-			<?php foreach($hotItems as $item):?>
+			<?php foreach($focusItem as $item):?>
 			<li class="product bd_glr3">
 				<a href="/home/item?itemId=<?php echo $item->product_id;?>">
 					<img src="<?php echo $item->product_image;?>" width="306" height="306">
@@ -62,4 +69,13 @@
 			<?php endforeach;?>
 		</ul>
 	</div>
+	<?php endif;?>
+	
+	<?php if($merchant->merchant_shop_itemlist_on):?>
+		<?php foreach($category as $cat):?>
+			<?php echo $cat->shopcategory_name;?>
+		<?php endforeach;?>
+	<?php endif;?>
+	<?php if($merchant->):?>
+	<?php endif;?>
 </div>

@@ -92,9 +92,10 @@
 					</td>
 					<td class="value tal" style="width: 290px;">
 						<select style="height: 30px;width: 110px;" id="stock">
-							<option value="" selected="selected"><?php echo lang('cms_goodsCopy_all');?></option>
-							<option value="Y"><?php echo lang('cms_goodsCopy_Instock');?></option>
-							<option value="N"><?php echo lang('cms_goodsCopy_Outofstock');?></option>
+						<!--
+							<option value="-1" selected="selected"><?php echo lang('cms_goodsCopy_all');?></option>-->
+							<option value="1"><?php echo lang('cms_goodsCopy_Instock');?></option>
+							<option value="0"><?php echo lang('cms_goodsCopy_Outofstock');?></option>
 						</select>
 					</td>
 					<td class="field width10p tal br">
@@ -158,7 +159,7 @@ $(document).ready(function(){
 	$("#status").val(6);
 	<?php endif;?>
 	<?php if(isset($_GET['SOT']) && $_GET['SOT']):?>
-	$("#stock").val('N');
+	$("#stock").val(0);
 	<?php endif;?>
 	<?php if(isset($_GET['URBL']) && $_GET['URBL']):?>
 	$("#status").val(1);

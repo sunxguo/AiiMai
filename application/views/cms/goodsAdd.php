@@ -259,7 +259,7 @@
 							<option value="7">7 <?php echo lang('cms_goodsAdd_days');?></option>
 							<option value="0" selected="selected">None (Do not Use)</option>
 						</select>
-						You can choose if to display an alert when an item’s availability is expiring.
+						You can choose if to display an alert when an item's availability is expiring.
 					</td>
 				  </tr>
 				  <!--

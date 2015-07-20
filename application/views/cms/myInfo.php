@@ -307,14 +307,14 @@
 								<button onclick="$('#businessLicenseImage').attr('src','');$('#fileBusinessLicense').val('');" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 40px 0 0 30px;">Delete</button>
 							</div>
 						</div>
-						<div class="km-modal-dialog" style="width:60%;" id="showFullBusinessLicense">
+						<div class="km-modal-dialog" id="showFullBusinessLicense" style="max-width:100%;">
 							<div class="km-modal-content">
 								<div class="km-modal-header">
 									<button type="button" class="km-close"><span>&times;</span></button>
 									<h4 class="km-modal-title">Copy of Business License or NRIC / Passport</h4>
 								</div>
 								<div class="km-modal-body" style="height:400px;overflow-x:hidden;overflow-y:scroll;">
-									<img style="width:100%;max-height:500px;" src="<?php echo $merchant->merchant_business_license;?>">
+									<img style="width:100%;" src="<?php echo $merchant->merchant_business_license;?>">
 								</div>
 								<div class="km-modal-footer">
 									<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_myInfo_Close');?></button>
@@ -338,14 +338,14 @@
 								<button onclick="$('#bankAccountImage').attr('src','');$('#fileBankAccount').val('');" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 20px;float: left;margin: 40px 0 0 30px;">Delete</button>
 							</div>
 						</div>
-						<div class="km-modal-dialog" style="width:60%;" id="showFullRecentBankStatement">
+						<div class="km-modal-dialog" id="showFullRecentBankStatement" style="max-width:100%;">
 							<div class="km-modal-content">
 								<div class="km-modal-header">
 									<button type="button" class="km-close"><span>&times;</span></button>
 									<h4 class="km-modal-title">Copy of Most Recent Bank Statement or Utilities Bill</h4>
 								</div>
 								<div class="km-modal-body" style="height:400px;overflow-x:hidden;overflow-y:scroll;">
-									<img style="width:100%;max-height:500px;" src="<?php echo $merchant->merchant_bank_account;?>">
+									<img style="width:100%;" src="<?php echo $merchant->merchant_bank_account;?>">
 								</div>
 								<div class="km-modal-footer">
 									<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_myInfo_Close');?></button>

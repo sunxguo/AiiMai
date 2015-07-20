@@ -208,7 +208,7 @@ class Cms extends CI_Controller {
 	public function shopHomePage(){
 		$data=array(
 			'merchant'=>$this->commongetdata->getContent('user',$_SESSION['userid']),
-			'items'=>$this->commongetdata->getProductsAdvance(array('result'=>'data','erchant'=>$_SESSION['userid'],'status'=>3))
+			'items'=>$this->commongetdata->getProductsAdvance(array('result'=>'data','merchant'=>$_SESSION['userid'],'status'=>3))
 		);
 		$this->cmsBaseHandler('Shop',array('baseInfo'=>true,'shop'=>true,'shopHomePage'=>true),'shopHomePage',$data);
 	}
