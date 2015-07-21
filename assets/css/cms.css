@@ -719,21 +719,21 @@ transition: color .1s linear 0s;
 	position:absolute;
 	border:1px solid #CCC;
 	width:402px;
-	height:160px;
+	height:210px;
 	top:18px;
 }
 .shop-preview-middle-old-img{
 	position:absolute;
 	border:1px solid #CCC;
 	width:402px;
-	height:250px;
+	height:280px;
 	top:99px;
 }
 .shop-preview-bottom-old-img{
 	position:absolute;
 	border:1px solid #CCC;
 	width:402px;
-	height:170px;
+	height:210px;
 	top:220px;
 }
 .shopFocusItemList{

@@ -40,8 +40,9 @@
 				<!--
 				<li><a href="/cms/goodsGroup" class="<?php echo array_key_exists('goodsGroup',$sider)?'active':'';?>"><?php echo lang('cms_sider_SetSalesGroup');?></a></li>
 				<li><a href="/cms/globalSales" class="<?php echo array_key_exists('globalSales',$sider)?'active':'';?>"><?php echo lang('cms_sider_ManageGlobalSales');?></a></li>
-				-->
 				<li><a href="/cms/bigData" class="<?php echo array_key_exists('bigData',$sider)?'active':'';?>"><?php echo lang('cms_sider_BulkDataManagement');?></a></li>
+				-->
+				
 			</ul>
 		</li>
 		<!--

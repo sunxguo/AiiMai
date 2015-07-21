@@ -237,6 +237,11 @@ class Home extends CI_Controller {
 				"merchant"=>$_GET['shopId'],
 				"status"=>3
 			)),
+			"items"=>$this->commongetdata->getProductsAdvance(array(
+				"result"=>'data',
+				"merchant"=>$_GET['shopId'],
+				"status"=>3
+			)),
 			"focusItem"=>$this->commongetdata->getFocusItems($_GET['shopId']),
 			"follow"=>isset($_SESSION['userid'])?$this->commongetdata->getFollow($_GET['shopId'],$_SESSION['userid']):false,
 			"followNo"=>$this->commongetdata->getFollowNo($_GET['shopId']),

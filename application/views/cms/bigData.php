@@ -4,6 +4,13 @@
 }
 </style>
 <div class="" style="padding-left:30px;">
+	<ul class="km-nav km-nav-tabs clearfix">
+	  <li><a href="/cms/goodsStatistics"><?php echo lang('cms_baseInfo_goodsStatistics_ItemListSummary');?></a></li>
+	  <li><a href="/cms/goodsAdd"><?php echo lang('cms_baseInfo_goodsStatistics_NewItemListing');?></a></li>
+	  <li><a href="/cms/goodsCopy"><?php echo lang('cms_baseInfo_goodsStatistics_CopyListing');?></a></li>
+	  <li><a href="/cms/goodsEdit">Item Management</a></li>
+	  <li class="active"><a href="/cms/bigData">Bulk Item Upload</a></li>
+	</ul>
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
 		<div class="km-panel-heading">[Register/Edit] Upload file</div>
 		<div class="km-panel-body" style="padding:0px;">

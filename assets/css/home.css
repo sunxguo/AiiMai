@@ -3493,3 +3493,37 @@ background: none;
 	height:50px;
 	line-height:50px;
 }
+.shopCategory{
+	width:100%;
+}
+.shopCategory li{
+	width:15%;
+	float:left;
+	height:30px;
+	line-height:30px;
+	text-align:center;
+	cursor:pointer;
+	margin-left:10px;
+	border:1px solid #CCC;
+	color:#555;
+	font-weight:bold;
+	-webkit-box-shadow:3px 3px 1px #CCC;
+	-moz-box-shadow:3px 3px 1px #CCC;
+	box-shadow:3px 3px 1px #CCC;
+}
+.shopCategory li:hover{
+	background-color:rgb(1,155,253);
+	color:#FFF;
+	border:1px solid rgb(1,155,253);
+	-webkit-box-shadow:3px 3px 1px rgb(1,155,253);
+	-moz-box-shadow:3px 3px 1px rgb(1,155,253);
+	box-shadow:3px 3px 1px rgb(1,155,253);
+}
+.shopCategory li.active{
+	background-color:rgb(1,155,253);
+	color:#FFF;
+	border:1px solid rgb(1,155,253);
+	-webkit-box-shadow:3px 3px 1px rgb(1,155,253);
+	-moz-box-shadow:3px 3px 1px rgb(1,155,253);
+	box-shadow:3px 3px 1px rgb(1,155,253);
+}
