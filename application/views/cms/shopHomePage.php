@@ -46,21 +46,21 @@
 				<img src="/assets/images/cms/tmp_overview.jpg" width="402" height="706" alt="templet overview">
 				<!--top image-->
 				<div class="shop-top-img" onclick="shopFrontClick(this,'#shopBanner');">
-					Shop Banner(width:995 pixel)
+					Shop Banner
 				</div>
 				<form id="upload_top_image_form" method="post" enctype="multipart/form-data">
 					<input onchange="return uploadShopTopImage()" name="image" type="file" id="topFile" style="display:none;" accept="image/*">
 				</form>
 				<!--middle image-->
 				<div class="shop-middle-img" onclick="shopFrontClick(this,'#shopMainAdvertisement');">
-					Shop Main Advertisement(width:995 pixel)
+					Shop Main Advertisement
 				</div>
 				<form id="upload_middle_image_form" method="post" enctype="multipart/form-data">
 					<input onchange="return uploadShopMiddleImage()" name="image" type="file" id="middleFile" style="display:none;" accept="image/*">
 				</form>
 				<!--bottom image-->
 				<div class="shop-bottom-img" onclick="shopFrontClick(this,'#shopSecondaryAdvertisement');">
-					Shop Secondary Advertisement(width:995 pixel)
+					Shop Secondary Advertisement
 				</div>
 				<form id="upload_bottom_image_form" method="post" enctype="multipart/form-data">
 					<input onchange="return uploadShopBottomImage()" name="image" type="file" id="bottomFile" style="display:none;" accept="image/*">
@@ -83,12 +83,14 @@
 							<option value="0" <?php echo $merchant->merchant_shop_banner_on==0?'selected':'';?>>Off</option>
 						</select>
 					</div>
-					<img id="shopTopImage" src="<?php echo $merchant->merchant_shop_topimg;?>" width="402" height="40" alt="Shop Banner" style="margin:10px 0;">
+					<div style="margin-top:10px;">
+						<span>980 * 150 pixels</span><span style="margin-left:20px;">File Size Limit: 1MB</span>
+					</div>
+					<img id="shopTopImage" src="<?php echo $merchant->merchant_shop_topimg;?>" width="402" height="62" alt="Shop Banner" style="margin:10px 0;">
 					<button onclick="deleteShopTopImage()" type="button" class="km-btn km-btn-danger fr" style="height: 20px;font-size: 12px;padding: 0px 5px;">Delete</button>
 					<button onclick="$('#topFile').click();" type="button" class="km-btn km-btn-primary fr" style="height: 20px;font-size: 12px;padding: 0px 5px;margin-right:10px;">Upload</button>
 				</div>
 				<div id="shopMainAdvertisement" class="shop-preview-middle-old-img" style="padding:0 10px;display:none;">
-					
 					<h3 style="line-height:20px;">Shop Main Advertisement</h3>
 					<div class="" style="margin-top:10px;">
 						On / Off 
@@ -97,7 +99,10 @@
 							<option value="0" <?php echo $merchant->merchant_shop_mainAdvertisement_on==0?'selected':'';?>>Off</option>
 						</select>
 					</div>
-					<img id="shopMiddleImage" src="<?php echo $merchant->merchant_shop_middleimg;?>" width="402" height="120" alt="Shop Banner" style="margin:10px 0;">
+					<div style="margin-top:10px;">
+						<span>980 * 320 pixels</span><span style="margin-left:20px;">File Size Limit: 1MB</span>
+					</div>
+					<img id="shopMiddleImage" src="<?php echo $merchant->merchant_shop_middleimg;?>" width="402" height="133" alt="Shop Banner" style="margin:10px 0;">
 					<button onclick="deleteShopMiddleImage()" type="button" class="km-btn km-btn-danger fr" style="height: 20px;font-size: 12px;padding: 0px 5px;">Delete</button>
 					<button onclick="$('#middleFile').click();" type="button" class="km-btn km-btn-primary fr" style="height: 20px;font-size: 12px;padding: 0px 5px;margin-right:10px;">Upload</button>
 				
@@ -111,7 +116,10 @@
 							<option value="0" <?php echo $merchant->merchant_shop_secondaryAdvertisement_on==0?'selected':'';?>>Off</option>
 						</select>
 					</div>
-					<img id="shopBottomImage" src="<?php echo $merchant->merchant_shop_bottomimg;?>" width="402" height="50" alt="Shop Banner" style="margin:10px 0;">
+					<div style="margin-top:10px;">
+						<span>980 * 160 pixels</span><span style="margin-left:20px;">File Size Limit: 1MB</span>
+					</div>
+					<img id="shopBottomImage" src="<?php echo $merchant->merchant_shop_bottomimg;?>" width="402" height="67" alt="Shop Banner" style="margin:10px 0;">
 					<button onclick="deleteShopBottomImage()" type="button" class="km-btn km-btn-danger fr" style="height: 20px;font-size: 12px;padding: 0px 5px;">Delete</button>
 					<button onclick="$('#bottomFile').click();" type="button" class="km-btn km-btn-primary fr" style="height: 20px;font-size: 12px;padding: 0px 5px;margin-right:10px;">Upload</button>
 				

@@ -9,6 +9,7 @@
 	  <li><a href="/cms/goodsAdd"><?php echo lang('cms_baseInfo_goodsStatistics_NewItemListing');?></a></li>
 	  <li><a href="/cms/goodsCopy"><?php echo lang('cms_baseInfo_goodsStatistics_CopyListing');?></a></li>
 	  <li><a href="/cms/goodsEdit">Item Management</a></li>
+	  <li><a href="/cms/bigData">Bulk Item Upload</a></li>
 	</ul>
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
 		<div class="km-panel-heading"><?php echo lang('cms_baseInfo_goodsStatistics_ItemListSummary');?></div>

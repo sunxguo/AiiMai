@@ -124,12 +124,50 @@
 						<?php echo lang('cms_baseInfo_goodsStatistics_ItemImageOrType');?>
 					</td>
 					<td class="value tal">
-						<div class="km-upload-img" style="width: 400px;" onclick="$('#file').click();">
-							<img src="<?php echo $item->product_image;?>" width="400" height="400" id="productImg">
-							<p style="line-height: 400px;">Upload Image</p>
+						<div class="km-upload-img fl" style="width: 200px;" onclick="$('#file').click();">
+							<img src="<?php echo $item->product_image;?>" width="200" height="200" id="productImg">
+							<p style="line-height: 30px;padding-top: 45px;height: 155px;">
+								Upload Main Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
+							</p>
 						</div>
 						<form id="upload_image_form" method="post" enctype="multipart/form-data">
 							<input onchange="return uploadProductImage('#uploadImgThumb')" name="image" type="file" id="file" style="display:none;" accept="image/*">
+						</form>
+						<div class="km-upload-img fl" style="width: 100px;margin-left:10px;margin-top:100px;" onclick="$('#fileS1').click();">
+							<img src="<?php echo $item->product_image_s1;?>" width="100" height="100" id="productImgS1">
+							<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
+								Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
+							</p>
+						</div>
+						<form id="upload_imageS1_form" method="post" enctype="multipart/form-data">
+							<input onchange="return uploadSecondaryImage1('#upload_imageS1_form')" name="image" type="file" id="fileS1" style="display:none;" accept="image/*">
+						</form>
+						<div class="km-upload-img fl" style="width: 100px;margin-left:10px;margin-top:100px;" onclick="$('#fileS2').click();">
+							<img src="<?php echo $item->product_image_s2;?>" width="100" height="100" id="productImgS2">
+							<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
+								Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
+							</p>
+						</div>
+						<form id="upload_imageS2_form" method="post" enctype="multipart/form-data">
+							<input onchange="return uploadSecondaryImage2('#upload_imageS2_form')" name="image" type="file" id="fileS2" style="display:none;" accept="image/*">
+						</form>
+						<div class="km-upload-img fl" style="width: 100px;margin-left:10px;margin-top:100px;" onclick="$('#fileS3').click();">
+							<img src="<?php echo $item->product_image_s3;?>" width="100" height="100" id="productImgS3">
+							<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
+								Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
+							</p>
+						</div>
+						<form id="upload_imageS3_form" method="post" enctype="multipart/form-data">
+							<input onchange="return uploadSecondaryImage3('#upload_imageS3_form')" name="image" type="file" id="fileS3" style="display:none;" accept="image/*">
+						</form>
+						<div class="km-upload-img fl" style="width: 100px;margin-left:10px;margin-top:100px;" onclick="$('#fileS4').click();">
+							<img src="<?php echo $item->product_image_s4;?>" width="100" height="100" id="productImgS4">
+							<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
+								Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
+							</p>
+						</div>
+						<form id="upload_imageS4_form" method="post" enctype="multipart/form-data">
+							<input onchange="return uploadSecondaryImage4('#upload_imageS4_form')" name="image" type="file" id="fileS4" style="display:none;" accept="image/*">
 						</form>
 					</td>
 				  </tr>
@@ -298,6 +336,12 @@
 	</div>
 	<button onclick="productHandler('This product was saved successfully',false);" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">Save</button>
 </div>
+<div id="bkDiv"></div>
+	<div id="messageAlert" class="km-alert km-alert-dismissible fade in width40p hide">
+      <button type="button" class="km-close" onclick="$('#messageAlert').hide();"><span>×</span></button>
+      <strong></strong>
+	  <span class="km-alert-msg"></span>
+    </div>
 <script src="/assets/js/cms-goods.js" type="text/javascript"></script>
 <link rel="stylesheet" href="/assets/kindEditor/themes/default/default.css" />
 <script charset="utf-8" src="/assets/kindEditor/kindeditor-min.js"></script>

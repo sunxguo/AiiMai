@@ -317,7 +317,7 @@ class Cms extends CI_Controller {
 		$this->cmsBaseHandler('global Sales',array('goodsManagement'=>true,'globalSales'=>true),'globalSales',array());
 	}
 	public function bigData(){
-		$this->cmsBaseHandler('bigData',array('goodsManagement'=>true,'bigData'=>true),'bigData',array());
+		$this->cmsBaseHandler('bigData',array('goodsManagement'=>true,'goods'=>true),'bigData',array());
 	}
 	public function adPlus(){
 		$this->cmsBaseHandler('adPlus',array('ad'=>true,'adPlus'=>true),'adPlus',array());

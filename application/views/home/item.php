@@ -62,6 +62,8 @@
 
 	<dl class="category">
 		<dt class="home">home</dt>
+		
+		<?php if(isset($categoriesIndex[$item->product_category])):?>
 		<dd id="depMenu1" onmouseout="hide('#MainCategory');">
 			<a href="" class="menuName" onmouseover="show('#MainCategory');">
 				<span><?php echo $categoriesIndex[$item->product_category]->category_name;?></span>
@@ -73,6 +75,8 @@
 				<?php endforeach;?>
 			</ul>-->
 		</dd>
+		<?php endif;?>
+		<?php if(isset($categoriesIndex[$item->product_sub_category])):?>
 		<dd id="depMenu2">
 			<a href="" class="menuName">
 				<span><?php echo $categoriesIndex[$item->product_sub_category]->category_name;?></span>
@@ -81,6 +85,7 @@
 				<li><a href="">Dresses</a></li>
 			</ul>
 		</dd>
+		<?php endif;?>
 		<?php if(isset($categoriesIndex[$item->product_sub_sub_category])):?>
 		<dd id="depMenu3">
 			<a href="" class="menuName current">
@@ -107,8 +112,45 @@
 		<!-- 왼쪽 상품이미지 영역 -->
         <div class="goods_img">
 		<div id="div_Default_Image">
-			<div class="thumb">
+			<div class="banner thumb">
+				<ul style="position:relative;">
+					<li>
+						<a title="<?php echo $item->product_item_title_english;?>">
+							<img src="<?php echo $item->product_image;?>" width="400" height="400">
+						</a>
+					</li>
+					<?php if(isset($item->product_image_s1)):?>
+					<li>
+						<a title="<?php echo $item->product_item_title_english;?>">
+							<img src="<?php echo $item->product_image_s1;?>" width="400" height="400">
+						</a>
+					</li>
+					<?php endif;?>
+					<?php if(isset($item->product_image_s2)):?>
+					<li>
+						<a title="<?php echo $item->product_item_title_english;?>">
+							<img src="<?php echo $item->product_image_s2;?>" width="400" height="400">
+						</a>
+					</li>
+					<?php endif;?>
+					<?php if(isset($item->product_image_s3)):?>
+					<li>
+						<a title="<?php echo $item->product_item_title_english;?>">
+							<img src="<?php echo $item->product_image_s3;?>" width="400" height="400">
+						</a>
+					</li>
+					<?php endif;?>
+					<?php if(isset($item->product_image_s4)):?>
+					<li>
+						<a title="<?php echo $item->product_item_title_english;?>">
+							<img src="<?php echo $item->product_image_s4;?>" width="400" height="400">
+						</a>
+					</li>
+					<?php endif;?>
+				</ul>
+				<!--
 				<a id="GoodsImageurl" onclick="ViewEnlargedImage('424457714');"><img id="GoodsImage" alt="<?php echo $item->product_item_title_english;?>" src="<?php echo $item->product_image;?>" width="400" height="400" onerror="javascript:this.src='/gmkt.inc/Img/no_image.gif'" style="height: 400px; width: 400px; position: absolute; left: 0px; top: 0px;"></a><div class="ly_opt_clicked" id="Img_option_title" style="display:none;"></div>
+				-->
 			</div>
 			
 			<div class="fctn_area">
@@ -342,3 +384,16 @@
 		</div>
 	</div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
+<script src="/assets/js/unslider.min.js"></script>
+<script>
+$(function() {
+    $('.banner').unslider({
+//		speed: 500,               //  The speed to animate each slide (in milliseconds)
+//		delay: 3000,              //  The delay between slide animations (in milliseconds)
+//		complete: function() {},  //  A function that gets called after every slide animation
+//		keys: true,               //  Enable keyboard (left, right) arrow shortcuts
+		dots: true,               //  Display dot navigation
+//		fluid: false              //  Support responsive design. May break non-responsive designs
+	});
+});
+</script>
