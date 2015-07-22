@@ -220,7 +220,7 @@
 			console.log(response[i])  
 		}
 		$.post(
-		"/common/loginWithFB",
+		"/common/registerWithFB",
 		{
 			'email':response.email,
 			'username':response.name,
