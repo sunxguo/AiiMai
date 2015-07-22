@@ -161,7 +161,7 @@
 		"/common/loginWithFB",
 		{
 			'email':response.email,
-			'username':response.username
+			'username':response.name
 		},
 		function(data){
 			var result=$.parseJSON(data);
