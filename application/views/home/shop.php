@@ -1,7 +1,7 @@
 <div class="shop">
 	<?php if($merchant->merchant_shop_banner_on==1):?>
 	<div>
-		<img src="<?php echo $merchant->merchant_shop_topimg;?>" style="width: 980px;">
+		<img src="<?php echo $merchant->merchant_shop_topimg;?>" style="width: 980px;height:150px;">
 	</div>
 	<?php endif;?>
 	<div class="mshop_bar">
@@ -38,16 +38,16 @@
 	</div>
 	<div class="">
 		<?php if($merchant->merchant_shop_mainAdvertisement_on==1):?>
-		<img src="<?php echo $merchant->merchant_shop_middleimg;?>" style="width: 980px;">
+		<img src="<?php echo $merchant->merchant_shop_middleimg;?>" style="width: 980px;height:320px;">
 		<?php endif;?>
 		<?php if($merchant->merchant_shop_secondaryAdvertisement_on==1):?>
-		<img src="<?php echo $merchant->merchant_shop_bottomimg;?>" style="width: 980px;">
+		<img src="<?php echo $merchant->merchant_shop_bottomimg;?>" style="width: 980px;height:160px;">
 		<?php endif;?>
 	</div>
 	<?php if($merchant->merchant_shop_focus_on):?>
 	<div class="items">
 		<h3>Focus Item</h3>
-		<ul class="clearfix">
+		<ul class="clearfix" style="margin-top:10px;">
 			<?php foreach($focusItem as $item):?>
 			<li class="product bd_glr3">
 				<a href="/home/item?itemId=<?php echo $item->product_id;?>">
@@ -73,7 +73,7 @@
 	
 	<?php if($merchant->merchant_shop_itemlist_on):?>
 		<?php if($merchant->merchant_showCategoryGroupBar):?>
-		<ul class="shopCategory clearfix" style="margin:20px 0 10px 0;">
+		<ul class="shopCategory clearfix" style="margin:20px 0 10px 0;border-top:2px solid #AAA;padding-top:10px;">
 			<li class="active" style="width:10%;">All</li>
 		<?php foreach($category as $cat):?>
 			<li><?php echo $cat->shopcategory_name;?></li>

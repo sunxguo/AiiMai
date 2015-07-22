@@ -95,14 +95,14 @@ function upload($upload_file_name="files"){
 			$save_path .= $dir_name . "/";
 			$save_url .= $dir_name . "/";
 			if (!file_exists($save_path)) {
-				mkdir($save_path);
+				mkdir($save_path,0777);
 			}
 		}
 		$ymd = date("Ymd");
 		$save_path .= $ymd . "/";
 		$save_url .= $ymd . "/";
 		if (!file_exists($save_path)) {
-			mkdir($save_path);
+			mkdir($save_path,0777);
 		}
 		//新文件名
 		$new_file_name = date("YmdHis") . '_' . rand(10000, 99999) . '.' . $file_ext;
@@ -111,7 +111,7 @@ function upload($upload_file_name="files"){
 		if (move_uploaded_file($tmp_name, $file_path) === false) {
 			return array("code"=>false,"message"=>"上传文件失败。");
 		}
-		@chmod($file_path, 0644);
+		@chmod($file_path, 0777);
 		$file_url = $save_url . $new_file_name;
 //		resizeImage($file_path,500,500,$file_path,$file_ext);
 		return array("code"=>true,"message"=>$file_url);
