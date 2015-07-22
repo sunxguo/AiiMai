@@ -161,15 +161,18 @@
 		"/common/loginWithFB",
 		{
 			'email':response.email,
-			'username':response.name
+			'username':response.name,
+			'gender':response.gender
 		},
 		function(data){
 			var result=$.parseJSON(data);
 			if(result.result=="success"){
 				location.href="/home";
+			}else if(result.result=='notRegister'){
+				location.href="/home/registerByFB?auto=yes";
 			}else{
 				alert(result.message);
-				location.href="/home/register";
+				$("#email").val(response.email);
 			}
 		});
     });
