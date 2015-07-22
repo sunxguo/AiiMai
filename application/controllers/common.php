@@ -1836,8 +1836,15 @@ class Common extends CI_Controller {
 			"user_confirm_email"=>1
 		);
 		$result=$this->dbHandler->updateData($condition);
+		$condition['result']="data";
+		$user=$this->dbHandler->selectData($condition);
 		if($result==1){
-			$this->commongetdata->email($_GET['email'],$this->commongetdata->getWebsiteConfig("website_user_register_success_email_subject"),$this->commongetdata->getWebsiteConfig("website_user_register_success_email_message"));
+			$subject=$this->commongetdata->getWebsiteConfig("website_user_register_success_email_subject");
+			$subject=str_replace("{USERNAME}",$user[0]->user_username,$subject);
+			$content=$this->commongetdata->getWebsiteConfig("website_user_register_success_email_message");
+			$content=str_replace("{USERNAME}",$user[0]->user_username,$content);
+			
+			$this->commongetdata->email($_GET['email'],$subject,$content);
 			$this->load->view('redirect',array("url"=>"/home/login","info"=>"Success!"));
 		}
 		else{
@@ -1876,7 +1883,13 @@ class Common extends CI_Controller {
 			echo json_encode(array("result"=>"failed","message"=>"The email with facebook has not been confirmed!This email has been sent!"));
 			return false;
 		}*/
-		$this->commongetdata->email($_POST["email"],$this->commongetdata->getWebsiteConfig("website_facebook_success_title"),$this->commongetdata->getWebsiteConfig("website_facebook_success_content"));
+		
+		$subject=$this->commongetdata->getWebsiteConfig("website_facebook_success_title");
+		$subject=str_replace("{USERNAME}",$_POST["username"],$subject);
+		$content=$this->commongetdata->getWebsiteConfig("website_facebook_success_content");
+		$content=str_replace("{USERNAME}",$_POST["username"],$content);
+			
+		$this->commongetdata->email($_POST["email"],$subject,$content);
 		$_SESSION['username']=$info[0]->user_username;
 		$_SESSION['userid']=$info[0]->user_id;
 		$_SESSION['usertype']="user";
@@ -1912,7 +1925,11 @@ class Common extends CI_Controller {
 		);
 		$result=$this->dbHandler->updateData($condition);
 		if($result>0){
-			$this->commongetdata->email($user->user_email,$this->commongetdata->getWebsiteConfig("website_user_register_success_email_subject"),$this->commongetdata->getWebsiteConfig("website_user_register_success_email_message"));
+			$subject=$this->commongetdata->getWebsiteConfig("website_user_register_success_email_subject");
+			$subject=str_replace("{USERNAME}",$user->user_username,$subject);
+			$content=$this->commongetdata->getWebsiteConfig("website_user_register_success_email_message");
+			$content=str_replace("{USERNAME}",$user->user_username,$content);
+			$this->commongetdata->email($user->user_email,$subject,$content);
 			$this->load->view('redirect',array("url"=>"/home/login","info"=>"Success!"));
 		}
 		else{
@@ -1948,7 +1965,12 @@ class Common extends CI_Controller {
 		);
 		$result=$this->dbHandler->updateData($condition);
 		if($result>0){
-			$this->commongetdata->email($user->user_email,$this->commongetdata->getWebsiteConfig("website_user_success_email_title"),$this->commongetdata->getWebsiteConfig("website_user_success_email_content"));
+			$subject=$this->commongetdata->getWebsiteConfig("website_user_success_email_title");
+			$subject=str_replace("{USERNAME}",$user->user_username,$subject);
+			$content=$this->commongetdata->getWebsiteConfig("website_user_success_email_content");
+			$content=str_replace("{USERNAME}",$user->user_username,$content);
+			
+			$this->commongetdata->email($user->user_email,$subject,$content);
 			$this->load->view('redirect',array("url"=>"/home/login","info"=>"Success!"));
 		}
 		else{
@@ -1994,6 +2016,11 @@ class Common extends CI_Controller {
 		$result=$this->dbHandler->updateData($condition);
 		$emailTitle=$this->commongetdata->getWebsiteConfig('website_confirm_email_title');
 		$emailContent=$this->commongetdata->getWebsiteConfig('website_confirm_email_content');
+		
+		$subject=str_replace("{USERNAME}",$user->user_username,$emailTitle);
+		
+		$content=str_replace("{USERNAME}",$user->user_username,$emailContent);
+		
 		$contentEnd='<a href="aiimai.coolkeji.com/common/active?verify='.$token.'" class="confirmBt"><img src="http://aiimai.coolkeji.com/assets/images/home/confirmbt.png" alt="Confirm"></a><br>If the button is invalid, please copy the following link to your browser\'s address bar!<br><span style="color:blue;">http://aiimai.coolkeji.com/common/active?verify='.$token.'</span></body></html>';
 		$content='<!doctype html><html><head><meta charset="utf-8"><style>body{font-family:Microsoft Yahei;} .confirmBt{display: inline-block;margin-bottom: 10px;}</style></head><body>'.$emailContent.$contentEnd;
 		$this->commongetdata->email($_SESSION['userEmail'],$emailTitle,$content);
@@ -2032,6 +2059,10 @@ class Common extends CI_Controller {
 		$result=$this->dbHandler->updateData($condition);
 		$emailTitle=$this->commongetdata->getWebsiteConfig('website_confirm_email_title');
 		$emailContent=$this->commongetdata->getWebsiteConfig('website_confirm_email_content');
+		
+		$subject=str_replace("{USERNAME}",$user->user_username,$emailTitle);
+		
+		$content=str_replace("{USERNAME}",$user->user_username,$emailContent);
 		$this->commongetdata->email($email,$emailTitle,$emailContent.'<a href="aiimai.coolkeji.com/common/activeFacebook?verify='.$token.'">Confirm</a><br>If the button is invalid, please copy the following link to your browser\'s address bar!<br><span style="color:blue;">aiimai.coolkeji.com/common/activeFacebook?verify='.$token.'</span>');
 		echo json_encode(array("result"=>"success","message"=>"验证码输入正确！"));
 		/*		if(){
@@ -2071,6 +2102,10 @@ class Common extends CI_Controller {
 		$result=$this->dbHandler->updateData($condition);
 		$emailTitle=$this->commongetdata->getWebsiteConfig('website_reset_password_title');
 		$emailContent=$this->commongetdata->getWebsiteConfig('website_reset_password_content');
+		
+		$subject=str_replace("{USERNAME}",$user->user_username,$emailTitle);
+		
+		$content=str_replace("{USERNAME}",$user->user_username,$emailContent);
 		$this->commongetdata->email($_POST['userEmail'],$emailTitle,$emailContent.'<br><a href="aiimai.coolkeji.com/home/createNewPassword?verify='.$token.'">Confirm</a>');
 		echo json_encode(array("result"=>"success","message"=>"验证码输入正确！"));
 	}
