@@ -307,9 +307,9 @@
     </div>
 	<div class="item-detail">
 		<ul class="km-nav km-nav-tabs clearfix" name="ItemInfo">
-		  <li class="active"><a href="#ItemInfo">Item Info</a></li>
-		  <li><a href="#CustomerReview">Customer Review(<em><?php echo $comments['count'];?></em>)</a></li>
-		  <li><a href="#QuestionAnswer"><span>Question & Answer(<em>0</em>)</span></a></li>
+		  <li class="active"><a href="#ItemInfo" style="background-color: #337ab7;color: white;">Product Info</a></li>
+		  <li><a href="#CustomerReview">Product Review(<em><?php echo $comments['count'];?></em>)</a></li>
+		  <li><a href="#QuestionAnswer"><span>Enquiries(<em>0</em>)</span></a></li>
 <!--		  <li><a href="#ShoppingTalk">Shopping Talk</a></li>-->
 		  <li><a href="#PolicyNotice">Policy & Notice</a></li>
 		</ul>
@@ -317,9 +317,9 @@
 			<?php echo $item->product_description;?>
 		</div>
 		<ul class="km-nav km-nav-tabs clearfix" id="CustomerReview">
-		  <li><a href="#ItemInfo">Item Info</a></li>
-		  <li class="active"><a href="#CustomerReview">Customer Review(<em><?php echo $comments['count'];?></em>)</a></li>
-		  <li><a href="#QuestionAnswer"><span>Question & Answer(<em>0</em>)</span></a></li>
+		  <li><a href="#ItemInfo">Product Info</a></li>
+		  <li class="active"><a href="#CustomerReview" style="background-color: #337ab7;color: white;">Product Review(<em><?php echo $comments['count'];?></em>)</a></li>
+		  <li><a href="#QuestionAnswer"><span>Enquiries(<em>0</em>)</span></a></li>
 <!--		  <li><a href="#ShoppingTalk">Shopping Talk</a></li>-->
 		  <li><a href="#PolicyNotice">Policy & Notice</a></li>
 		</ul>
@@ -327,17 +327,17 @@
 		<?php foreach($comments['data'] as $comment):?>
 		<?php echo $comment->comment_content;?>
 		<?php endforeach;?>
-		<?php echo sizeof($comments['data'])<1?'No Customer Review!':'';?>
+		<?php echo sizeof($comments['data'])<1?'No Reviews':'';?>
 		</div>
 		<ul class="km-nav km-nav-tabs clearfix" id="QuestionAnswer">
-		  <li><a href="#ItemInfo">Item Info</a></li>
-		  <li><a href="#CustomerReview">Customer Review(<em><?php echo $comments['count'];?></em>)</a></li>
-		  <li class="active"><a href="#QuestionAnswer"><span>Question & Answer(<em>0</em>)</span></a></li>
+		  <li><a href="#ItemInfo">Product Info</a></li>
+		  <li><a href="#CustomerReview">Product Review(<em><?php echo $comments['count'];?></em>)</a></li>
+		  <li class="active"><a href="#QuestionAnswer" style="background-color: #337ab7;color: white;"><span>Enquiries(<em>0</em>)</span></a></li>
 <!--		  <li><a href="#ShoppingTalk">Shopping Talk</a></li>-->
 		  <li><a href="#PolicyNotice">Policy & Notice</a></li>
 		</ul>
 		<div class="QuestionAnswer" style="min-height:100px;">
-			
+			No Reviews
 		</div>
 <!--		<ul class="km-nav km-nav-tabs clearfix" id="ShoppingTalk">
 		  <li><a href="#ItemInfo">Item Info</a></li>
@@ -349,11 +349,11 @@
 		<div class="ShoppingTalk">
 		</div>-->
 		<ul class="km-nav km-nav-tabs clearfix" id="PolicyNotice">
-		  <li><a href="#ItemInfo">Item Info</a></li>
-		  <li><a href="#CustomerReview">Customer Review(<em><?php echo $comments['count'];?></em>)</a></li>
-		  <li><a href="#QuestionAnswer"><span>Question & Answer(<em>0</em>)</span></a></li>
+		  <li><a href="#ItemInfo">Product Info</a></li>
+		  <li><a href="#CustomerReview">Product Review(<em><?php echo $comments['count'];?></em>)</a></li>
+		  <li><a href="#QuestionAnswer"><span>Enquiries(<em>0</em>)</span></a></li>
 <!--		  <li><a href="#ShoppingTalk">Shopping Talk</a></li>-->
-		  <li class="active"><a href="#PolicyNotice">Policy & Notice</a></li>
+		  <li class="active"><a href="#PolicyNotice" style="background-color: #337ab7;color: white;">Policy & Notice</a></li>
 		</ul>
 		<div class="PolicyNotice">
 			<img src="http://static.image-gmkt.com/qoo10/front/en/goods/image/img_gsPolicy01.gif">
