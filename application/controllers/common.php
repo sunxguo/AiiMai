@@ -1851,7 +1851,7 @@ class Common extends CI_Controller {
 			$this->load->view('redirect',array("info"=>"failed!"));
 		}
 	}
-	public function loginWithFB(){
+	public function registerWithFB(){
 		$condition=array(
 			'table'=>'user',
 			'result'=>'data',
@@ -1890,6 +1890,38 @@ class Common extends CI_Controller {
 		$content=str_replace("{USERNAME}",$_POST["username"],$content);
 			
 		$this->commongetdata->email($_POST["email"],$subject,$content);
+		$_SESSION['username']=$info[0]->user_username;
+		$_SESSION['userid']=$info[0]->user_id;
+		$_SESSION['usertype']="user";
+		$_SESSION['userEmail']=$info[0]->user_email;
+		echo json_encode(array("result"=>"success","message"=>"Login with Facebook successfully!"));
+		return false;
+	}
+	public function loginWithFB(){//user_confirm_email
+		$condition=array(
+			'table'=>'user',
+			'result'=>'data',
+			'where'=>array('user_email'=>$_POST["email"])
+		);
+		$info=$this->dbHandler->selectData($condition);
+		if(sizeof($info)<1){
+			if($this->commongetdata->checkUniqueAdvance("user",array("user_username"=>$_POST["username"]))){
+				echo json_encode(array("result"=>"notunique","message"=>"This account does'not exist!"));
+				return false;
+			}
+		}
+		if($info[0]->user_facebook_confirm_email!=1){
+			$this->sendFacebookEmail($_POST["email"]);
+			echo json_encode(array("result"=>"failed","message"=>"The email with facebook has not been confirmed!This email has been sent!"));
+			return false;
+		}
+		/*
+		$subject=$this->commongetdata->getWebsiteConfig("website_facebook_success_title");
+		$subject=str_replace("{USERNAME}",$_POST["username"],$subject);
+		$content=$this->commongetdata->getWebsiteConfig("website_facebook_success_content");
+		$content=str_replace("{USERNAME}",$_POST["username"],$content);
+			
+		$this->commongetdata->email($_POST["email"],$subject,$content);*/
 		$_SESSION['username']=$info[0]->user_username;
 		$_SESSION['userid']=$info[0]->user_id;
 		$_SESSION['usertype']="user";
