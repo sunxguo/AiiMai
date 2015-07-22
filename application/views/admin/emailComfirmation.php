@@ -17,7 +17,8 @@
 	
 	<div class="partContent clearboth content">
 		<div class="title">Subject</div>
-		Subject: <input type="text" id="emailComfirmationTitle" class="inp-txt" value="<?php echo $emailComfirmationTitle;?>" style="width:80%;margin:20px 0;">
+		Subject: <input type="text" id="emailComfirmationTitle" class="inp-txt" value="<?php echo $emailComfirmationTitle;?>" style="width:80%;margin:20px 0;"><br>
+		You can use {USERNAME} as a dynamic user name in both subject and content.When sending email {USERNAME} will be replaced with the real username.
 	</div>
 	<div class="partContent clearboth content">
 		<div class="title">Content</div>

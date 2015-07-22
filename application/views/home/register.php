@@ -12,7 +12,7 @@
 		<h3>Tell us about yourself</h3>
 		<p class="reg-sns">
 			<?php /*?><a href="<?php echo $loginUrl;?>" class="icon_fb">Facebook Login</a><?php */?>
-			<fb:login-button scope="public_profile,email" onlogin="checkLoginState();" style="top: -15px;"></fb:login-button>
+			<fb:login-button scope="public_profile,email" onlogin="checkLoginState();" style="top: -15px;">Register</fb:login-button>
 			<span class="txt">Register with your facebook account</span>
 		</p>
 		<div class="reg-seller fr">
@@ -114,7 +114,7 @@
 			<input type="checkbox" id="agreement" name="agreement" value="Y"> 
 			<p class="fl">
 				<label for="agreement">I agree to the following <a href="/home/info?key=userAgreement" target="_blank" style="color: #5F7392;font-size:12px;text-decoration:underline;">User Agreement</a></label><br>
-					For information on how we protect your privacy and use your information, please read our <a href="" target="_blank">Privacy Policy</a> 
+				<!--	For information on how we protect your privacy and use your information, please read our <a href="" target="_blank">Privacy Policy</a> -->
 			</p>
 		</div>
 		<div class="reg-btn">
@@ -123,9 +123,10 @@
 	</div>
 	<div class="register-main-bottom clearfix">
 		<div class="clearSelf">
-			<p class="fl">※ Already registered and want to sell? </p>
-			<a href="" class="fl" target="_blank">Seller Register</a>
+			<p class="fl">※ You may directly register yourself as a Seller. Please visit <a href="" target="_blank">Seller Register.</a></p>
+			<!--
 			<br><p class="fl">※ If you are not a member of AiiMai yet, please create an account first, then you can register as a seller.</p>
+			-->
 		</div>
 	</div>
 </div>
