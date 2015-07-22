@@ -83,8 +83,8 @@
 							<option value="0" <?php echo $merchant->merchant_shop_banner_on==0?'selected':'';?>>Off</option>
 						</select>
 					</div>
-					<div style="margin-top:10px;">
-						<span>980 * 150 pixels</span><span style="margin-left:20px;">File Size Limit: 1MB</span>
+					<div style="margin-top:10px;border-bottom:1px dashed #CCC;">
+						<span>Resolution: 995 * 150 pixels</span><span style="margin-left:20px;">File Type: jpeg, png, gif</span><br><span>File Size Limit: 1MB</span>
 					</div>
 					<img id="shopTopImage" src="<?php echo $merchant->merchant_shop_topimg;?>" width="402" height="62" alt="Shop Banner" style="margin:10px 0;">
 					<button onclick="deleteShopTopImage()" type="button" class="km-btn km-btn-danger fr" style="height: 20px;font-size: 12px;padding: 0px 5px;">Delete</button>
@@ -98,9 +98,9 @@
 							<option value="1" <?php echo $merchant->merchant_shop_mainAdvertisement_on==1?'selected':'';?>>On</option>
 							<option value="0" <?php echo $merchant->merchant_shop_mainAdvertisement_on==0?'selected':'';?>>Off</option>
 						</select>
-					</div>
-					<div style="margin-top:10px;">
-						<span>980 * 320 pixels</span><span style="margin-left:20px;">File Size Limit: 1MB</span>
+					</div>				
+					<div style="margin-top:10px;border-bottom:1px dashed #CCC;">
+						<span>Resolution: 995 * 320 pixels</span><span style="margin-left:20px;">File Type: jpeg, png, gif</span><br><span>File Size Limit: 1MB</span>
 					</div>
 					<img id="shopMiddleImage" src="<?php echo $merchant->merchant_shop_middleimg;?>" width="402" height="133" alt="Shop Banner" style="margin:10px 0;">
 					<button onclick="deleteShopMiddleImage()" type="button" class="km-btn km-btn-danger fr" style="height: 20px;font-size: 12px;padding: 0px 5px;">Delete</button>
@@ -115,24 +115,25 @@
 							<option value="1" <?php echo $merchant->merchant_shop_secondaryAdvertisement_on==1?'selected':'';?>>On</option>
 							<option value="0" <?php echo $merchant->merchant_shop_secondaryAdvertisement_on==0?'selected':'';?>>Off</option>
 						</select>
+					</div>		
+					<div style="margin-top:10px;border-bottom:1px dashed #CCC;">
+						<span>Resolution: 995 * 160 pixels</span><span style="margin-left:20px;">File Type: jpeg, png, gif</span><br><span>File Size Limit: 1MB</span>
 					</div>
-					<div style="margin-top:10px;">
-						<span>980 * 160 pixels</span><span style="margin-left:20px;">File Size Limit: 1MB</span>
-					</div>
-					<img id="shopBottomImage" src="<?php echo $merchant->merchant_shop_bottomimg;?>" width="402" height="67" alt="Shop Banner" style="margin:10px 0;">
+					<img id="shopBottomImage" src="<?php echo $merchant->merchant_shop_bottomimg;?>" width="402" height="67" alt="Shop Secondary Advertisement" style="margin:10px 0;">
 					<button onclick="deleteShopBottomImage()" type="button" class="km-btn km-btn-danger fr" style="height: 20px;font-size: 12px;padding: 0px 5px;">Delete</button>
 					<button onclick="$('#bottomFile').click();" type="button" class="km-btn km-btn-primary fr" style="height: 20px;font-size: 12px;padding: 0px 5px;margin-right:10px;">Upload</button>
 				
 				</div>
 				<div id="shopFocusItemList" class="shopFocusItemList" style="display:none;padding:0 10px;">
 					<h3 style="line-height:20px;">Focus Item List</h3>
-					<div class="fl" style="margin-top:10px;">
+					<div class="" style="margin-top:10px;">
 						On / Off 
 						<select id="focusOnOff" style="height:30px;margin-left:10px;" onchange="changeFocusOn();">
 							<option value="1" <?php echo $merchant->merchant_shop_focus_on==1?'selected':'';?>>On</option>
 							<option value="0" <?php echo $merchant->merchant_shop_focus_on==0?'selected':'';?>>Off</option>
 						</select>
 					</div>
+					<p style="clear:both;margin:5px 0;"> You can select up to 4 items to be displayed in your Focus Item area.</p>
 					<button onclick="setDivCenter('#setFocusItemsDiv',true);" type="button" class="km-btn km-btn-primary fr" style="height: 28px;font-size: 12px;padding: 5px 10px;">Set Focus Items</button>
 				</div>
 				<div id="shopItemList" class="shopItemList" style="padding: 0px 10px;display:none;">
@@ -228,6 +229,10 @@ function focusCheckedItems(){
 	$("input[name='checkedItemId']:checked").each(function(){
 		itemsArray.push($(this).val()); 
 	});
+	if(itemsArray.length>4){
+		alert("You can select up to 4 items to be displayed in your Focus Item area!");
+		return false;
+	}
 	var items = new Object();
 	items.idArray = itemsArray;
 	dataHandler("modifyBulk","itemsFocus",items,successShowCat,'Sure to modify?',null,null,true);
