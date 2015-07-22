@@ -1906,7 +1906,7 @@ class Common extends CI_Controller {
 		$info=$this->dbHandler->selectData($condition);
 		if(sizeof($info)<1){
 			if($this->commongetdata->checkUniqueAdvance("user",array("user_username"=>$_POST["username"]))){
-				echo json_encode(array("result"=>"notunique","message"=>"This account does'not exist!"));
+				echo json_encode(array("result"=>"notexist","message"=>"This account does'not exist!"));
 				return false;
 			}
 		}

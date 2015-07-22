@@ -15,7 +15,7 @@
 		</dl>
 		<div class="featured-products fl">
 			<div class="fp-left fl">
-				<div class="fp-left-top widget borderR borderB" style="width: 371px;height: 328px;">
+				<div class="fp-left-top widget borderR borderB" style="width: 371px;height: 315px;">
 					<div class="banner">
 						<ul style="position:relative;">
 							<?php if(isset($cat->category_home_img11) && $cat->category_home_img11!=''):?>
