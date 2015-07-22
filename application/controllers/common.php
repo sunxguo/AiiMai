@@ -1911,7 +1911,7 @@ class Common extends CI_Controller {
 			}
 		}
 		if($info[0]->user_facebook_confirm_email!=1){
-			$this->sendFacebookEmail($_POST["email"]);
+			//$this->sendFacebookEmail($_POST["email"]);
 			echo json_encode(array("result"=>"failed","message"=>"The email with facebook has not been confirmed!This email has been sent!"));
 			return false;
 		}
