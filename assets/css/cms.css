@@ -726,14 +726,14 @@ transition: color .1s linear 0s;
 	position:absolute;
 	border:1px solid #CCC;
 	width:402px;
-	height:280px;
+	height:290px;
 	top:99px;
 }
 .shop-preview-bottom-old-img{
 	position:absolute;
 	border:1px solid #CCC;
 	width:402px;
-	height:210px;
+	height:230px;
 	top:220px;
 }
 .shopFocusItemList{

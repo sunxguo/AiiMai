@@ -91,7 +91,7 @@ function modifyShopImg(position,imageSrc){
 	var shopImg = new Object();
 	shopImg.position = position;
 	shopImg.image = imageSrc;
-	dataHandler('modify','shopImg',shopImg,null,null,null,'Success',true);
+	dataHandler('modify','shopImg',shopImg,null,null,null,'Success',false);
 }
 function uploadShopTopImage(){
 	uploadImageAdvance('#upload_top_image_form',addShopTopImageBeforeUpload,addShopTopImageAfterUpload);

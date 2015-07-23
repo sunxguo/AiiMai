@@ -120,33 +120,45 @@
 			<table class="km-table" style="overflow:scroll;width:150%;">
 				<tbody id="productsData">
 				  <tr style="border-top:2px solid #ddd;border-bottom:2px solid #ddd;">
-					<td class="field width6p br">Operation</td>
-					<td class="field width6p br"><?php echo lang('cms_goodsCopy_Itemcode');?></td>
-					<td class="field width6p br"><?php echo lang('cms_goodsCopy_SellerCode');?></td>
-					<td class="field width6p br"><?php echo lang('cms_goodsCopy_ItemTitle');?></td>
-					<td class="field width6p br"><?php echo lang('cms_goodsCopy_Price');?></td>
-					<td class="field width6p br"><?php echo lang('cms_goodsCopy_SettlePrice');?></td>
-					<td class="field width6p br"><?php echo lang('cms_goodsCopy_Qty');?></td>
-					<td class="field width6p br"><?php echo lang('cms_goodsCopy_PremiumList');?></td>
-					<td class="field width6p br"><?php echo lang('cms_goodsCopy_Status');?></td>
-					<td class="field width6p br"><?php echo lang('cms_goodsCopy_GlobalSales');?></td>
-					<td class="field width6p br"><?php echo lang('cms_goodsCopy_DeliveryType');?></td>
-					<td class="field width6p br"><?php echo lang('cms_goodsCopy_MainCat');?></td>
-					<td class="field width6p br"><?php echo lang('cms_goodsCopy_1stsubCat');?></td>
-					<td class="field width6p br"><?php echo lang('cms_goodsCopy_2ndsubCat');?></td>
-					<td class="field width6p br"><?php echo lang('cms_goodsCopy_PayondeliveryYOrN');?></td>
-					<td class="field width6p br"><?php echo lang('cms_goodsCopy_SalesFormat');?></td>
-					<td class="field width6p br"><?php echo lang('cms_goodsCopy_InventoryCode');?></td>
-					<td class="field width6p"><?php echo lang('cms_goodsCopy_ListedDate');?></td>
+					<td class="field br tac" style="text-align:center;"><input type="checkbox" id="checkAllItems" ></td>
+					<td class="field width6p br tac">Operation</td>
+					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_Itemcode');?></td>
+					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_SellerCode');?></td>
+					<td class="field width6p br tac" style="cursor:pointer;" onclick="orderProduct('<?php echo $selectPage;?>','shop')">
+						<?php echo lang('cms_goodsCopy_ItemTitle');?>
+						<?php if(isset($_GET['orderItemTitle'])){if($_GET['orderItemTitle']=='desc') echo '↑';else echo '↓';}?>
+					</td>
+					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_Price');?></td>
+					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_SettlePrice');?></td>
+					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_Qty');?></td>
+					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_PremiumList');?></td>
+					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_Status');?></td>
+					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_GlobalSales');?></td>
+					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_DeliveryType');?></td>
+					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_MainCat');?></td>
+					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_1stsubCat');?></td>
+					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_2ndsubCat');?></td>
+					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_PayondeliveryYOrN');?></td>
+					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_SalesFormat');?></td>
+					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_InventoryCode');?></td>
+					<td class="field width6p tac"><?php echo lang('cms_goodsCopy_ListedDate');?></td>
 				  </tr>
 				</tbody>
 			</table>
+		</div>
+		<div style="margin:10px 0;">
+			<button onclick="" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 10px;">Delete</button>
+			<button onclick="" type="button" class="km-btn km-btn-success" style="height: 28px;font-size: 12px;padding: 5px 10px;">Available Period</button>
+			<button onclick="" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 10px;">Display Expiring Item Alert</button>
 		</div>
 	</div>
 </div>
 <script src="/assets/js/cms-goods.js" type="text/javascript"></script>
 <script>
 $(document).ready(function(){
+	$("#checkAllItems").click(function(){
+		$(".item").prop('checked',$("#checkAllItems").prop('checked'));
+	});
 	<?php if(isset($_GET['RT']) && $_GET['RT']):?>
 	var today = new Date();
     today.setDate(today.getDate());
