@@ -195,7 +195,7 @@
 					</div>
 					<div class="km-modal-footer">
 						<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_myInfo_Close');?></button>
-						<button onclick="focusCheckedItems()" type="button" class="km-btn km-btn-primary km-btn-close">Save</button>
+						<button onclick="focusCheckedItems()" type="button" class="km-btn km-btn-primary">Save</button>
 					</div>
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->
@@ -230,9 +230,12 @@ function focusCheckedItems(){
 		itemsArray.push($(this).val()); 
 	});
 	if(itemsArray.length>4){
-		alert("You can select up to 4 items to be displayed in your Focus Item area!");
+		alert('Please select not more than 4 items!');
 		return false;
+	}else{
+		$("#warnningMessage").fadeOut();
 	}
+	
 	var items = new Object();
 	items.idArray = itemsArray;
 	dataHandler("modifyBulk","itemsFocus",items,successShowCat,'Sure to modify?',null,null,true);
