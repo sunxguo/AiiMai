@@ -1994,7 +1994,8 @@ class Common extends CI_Controller {
 		$condition['table']="user";
 		$condition['where']=array("token"=>$_GET['verify']);
 		$condition['data']=array(
-			"user_confirm_email"=>1
+			"user_confirm_email"=>1,
+			"user_facebook_confirm_email"=>1
 		);
 		$result=$this->dbHandler->updateData($condition);
 		if($result>0){
