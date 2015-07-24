@@ -406,7 +406,8 @@ class Home extends CI_Controller {
 			'orderBy'=>array('product_time'=>'desc')
 		);
 		$data=array(
-			'products'=>$this->commongetdata->getProductsAdvance($parameters)
+			'products'=>$this->commongetdata->getProductsAdvance($parameters),
+			'shops'=>$this->commongetdata->getMerchantsAdvance(array('result'=>'data','like'=>array('merchant_shop_name'=>$keywords)))
 		);
 		$this->homeBaseHandler('Search - '.$keywords,'search',$data);
 	}

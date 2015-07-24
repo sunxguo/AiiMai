@@ -1,6 +1,21 @@
-<div class="shop">
+<div class="shop search">
 	<div class="items">
 		<h3>Search Results</h3>
+		<h4>Shops</h4>
+		<ul class="search-shopList clearfix">
+			<?php if(sizeof($shops)<1):?>
+				No shops!
+			<?php endif;?>
+			<?php foreach($shops as $shop):?>
+				<li>
+					<a href="/home/shop?shopId=<?php echo $shop->user_id;?>" target="_blank">
+						<img src="<?php echo $shop->merchant_shop_icon;?>" width="108" height="86">
+						<p><?php echo $shop->merchant_shop_name;?></p>
+					</a>
+				</li>
+			<?php endforeach;?>
+		</ul>
+		<h4>Products</h4>
 		<ul class="itemsList clearfix">
 			<?php foreach($products as $item):?>
 			<li class="product bd_glr3" style="float:left;">

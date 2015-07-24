@@ -205,6 +205,22 @@ function redirect(){
 	alert(productSuccessMsg);
 	location.href="/cms/goodsStatistics";
 }
+function orderProduct('itemTitle'){
+	var product = new Object();
+	product.MainCategory = $("#MainCategory").val();
+	product.stSubCategory = $("#stSubCategory").val();
+	product.ndSubCategory = $("#ndSubCategory").val();
+	product.status = $("#status").val();
+	product.dateType = $("#dateType").val();
+	product.beginDate = $("#beginDate").val();
+	product.endDate = $("#endDate").val();
+	product.SellFormat = $("#SellFormat").val();
+	product.title = $("#title").val();
+	product.groupbuy = $('input[name="groupbuy"]:checked').val();
+	product.stock = $("#stock").val();
+	if(excel) dataHandler('excel','product',product,goUrl,null,null,null,false);
+	else dataHandler('get','product',product,loadProductsData,null,null,null,false);
+}
 function productQuery(excel){
 	var product = new Object();
 	product.MainCategory = $("#MainCategory").val();

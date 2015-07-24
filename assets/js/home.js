@@ -874,7 +874,7 @@ function getAddressListHandler(data){
 				'			'+data[i].address_staffname+'	'+
 				'		</p>	'+
 				'		<p>	'+
-				'			'+data[i].address_detail+','+data[i].address_area+','+data[i].address_country+'	'+
+				'			'+data[i].address_detail+','+data[i].address_country+'	'+
 				'		</p>	'+
 				'	</div>	'+
 				'	<div class="addressList-phone fl">	'+
@@ -910,7 +910,7 @@ function getAddressHandler(data){
 	 $("#addressTitleModification").val(data.address_title);
 	 $("#addressStaffNameModification").val(data.address_staffname);
 	 $("#addressCountryModification").val(data.address_country);
-	 $("#addressAreaModification").val(data.address_area);
+//	 $("#addressAreaModification").val(data.address_area);
 	 $("#addressDetailModification").val(data.address_detail);
 	 $("#addressMobilephone1Modification").val(data.address_mobilephone1);
 	 $("#addressMobilephone2Modification").val(data.address_mobilephone2);
@@ -926,7 +926,7 @@ function saveAddress(){
 	address.title = $("#addressTitleModification").val();
 	address.staffname = $("#addressStaffNameModification").val();
 	address.country = $("#addressCountryModification").val();
-	address.area = $("#addressAreaModification").val();
+//	address.area = $("#addressAreaModification").val();
 	address.detail = $("#addressDetailModification").val();
 	address.mobilephone1 = $("#addressMobilephone1Modification").val();
 	address.mobilephone2 = $("#addressMobilephone2Modification").val();

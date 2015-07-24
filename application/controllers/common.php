@@ -1224,7 +1224,7 @@ class Common extends CI_Controller {
 					"address_title"=>$data->title,
 					"address_staffname"=>$data->staffname,
 					"address_country"=>$data->country,
-					"address_area"=>$data->area,
+//					"address_area"=>$data->area,
 					"address_detail"=>$data->detail,
 					"address_type"=>$data->type,
 					"address_mobilephone1"=>$data->mobilephone1,
