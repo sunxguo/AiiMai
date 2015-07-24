@@ -151,7 +151,7 @@
 									  <li class="active"><a href="javascript:selectAddress(1);">Family</a></li>
 									  <li><a href="javascript:selectAddress(2);">Friends</a></li>
 									  <li><a href="javascript:selectAddress(3);">Work</a></li>
-									  <li><a href="javascript:selectAddress(4);">Etc.</a></li>
+									  <li><a href="javascript:selectAddress(4);">Others</a></li>
 									  <li><a href="javascript:setDivCenter('#addAddressDiv',true);"><img src="/assets/images/cms/icon-plus.png" width="15"></a></li>
 									</ul>
 									<div id="familyAddress">
@@ -165,7 +165,7 @@
 								</div>
 							</div><!-- /.modal-content -->
 						</div><!-- /.modal-dialog -->
-						<div class="km-modal-dialog width40p" id="editAddressDiv">
+						<div class="km-modal-dialog" id="editAddressDiv" style="width:520px;z-index: 10051;">
 							<div class="km-modal-content">
 								<div class="km-modal-header">
 									<button type="button" class="km-close"><span>&times;</span></button>
@@ -174,30 +174,28 @@
 								</div>
 								<div class="km-modal-body">
 								<!--//1.shipAddress 2.Family 3.Work 4.Friends 5.Etc.-->
-									<label for="addressTypeModification" class="km-control-label" style="width: 80px;margin-top:10px;">Type:</label>
+									<label for="addressTypeModification" class="km-control-label" style="width: 100px;margin-top:10px;">Type:</label>
 									<select id="addressTypeModification" style="height:30px;vertical-align:middle;">
 										<option value="1">Family</option>
 										<option value="2">Friends</option>
 										<option value="3">Work</option>
-										<option value="4">Etc.</option>
+										<option value="4">Others</option>
 									</select><br><br>
-									<label for="addressTitleModification" class="km-control-label" style="width: 80px;">Title:</label>
+									<label for="addressTitleModification" class="km-control-label" style="width: 100px;">Address Name:</label>
 									<input type="text" class="km-form-control" id="addressTitleModification" value="" style="width: 50%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
-									<label for="addressStaffNameModification" class="km-control-label" style="width: 80px;">Staff Name:</label>
+									<label for="addressStaffNameModification" class="km-control-label" style="width: 100px;">Recipient:</label>
 									<input type="text" class="km-form-control" id="addressStaffNameModification" value="" style="width: 50%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
-									<label for="addressCountryModification" class="km-control-label" style="width: 80px;">Country:</label>
-									<select id="addressCountryModification" style="height: 30px;width:30%;"><?php require('countryPhoneNO.php');?></select>
-									<label for="addressAreaModification" class="km-control-label">Area:</label>
-									<input type="text" class="km-form-control" id="addressAreaModification" value="" style="width: 37.8%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
-									<label for="addressDetailModification" class="km-control-label" style="width: 80px;">Detail:</label>
-									<input type="text" class="km-form-control" id="addressDetailModification" value="" style="width: 74.5%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
+									<label for="addressCountryModification" class="km-control-label" style="width: 100px;">Country:</label>
+									<select id="addressCountryModification" style="height: 30px;width:30%;"><?php require('countryPhoneNO.php');?></select><br><br>
+									<label for="addressDetailModification" class="km-control-label" style="width: 100px;">Address:</label>
+									<input type="text" class="km-form-control" id="addressDetailModification" value="" style="width: 365px;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
 									
 									<label for="addressMobilephone1Modification" class="km-control-label" style="width: 120px;">Mobile Phone:</label>
-									<select id="addressMobilephone1Modification" style="height: 30px;"><?php require('countryPhoneNO.php');?></select>
+									<select id="addressMobilephone1Modification" style="height: 30px;width:125px;"><?php require('countryPhoneNO.php');?></select>
 									<input type="text" class="km-form-control" id="addressMobilephone2Modification" value="" style="width: 20%;height: 30px;padding: 0 5px;display: inline-block;">-
 									<input type="text" class="km-form-control" id="addressMobilephone3Modification" value="" style="width: 20%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
 									<label for="addressPhone1Modification" class="km-control-label" style="width: 120px;">Phone Number:</label>
-									<select id="addressPhone1Modification" style="height: 30px;"><?php require('countryPhoneNO.php');?></select>
+									<select id="addressPhone1Modification" style="height: 30px;width:125px;"><?php require('countryPhoneNO.php');?></select>
 									<input type="text" class="km-form-control" id="addressPhone2Modification" value="" style="width: 20%;height: 30px;padding: 0 5px;display: inline-block;">-
 									<input type="text" class="km-form-control" id="addressPhone3Modification" value="" style="width: 20%;height: 30px;padding: 0 5px;display: inline-block;">
 									
@@ -216,23 +214,21 @@
 								</div>
 								<div class="km-modal-body">
 								<!--//1.shipAddress 2.Family 3.Work 4.Friends 5.Etc.-->
-									<label for="addressType" class="km-control-label" style="width: 80px;margin-top:10px;">Type:</label>
+									<label for="addressType" class="km-control-label" style="width: 100px;margin-top:10px;">Type:</label>
 									<select id="addressType" style="height:30px;vertical-align:middle;">
 										<option value="1">Family</option>
 										<option value="2">Friends</option>
 										<option value="3">Work</option>
-										<option value="4">Etc.</option>
+										<option value="4">Others</option>
 									</select><br><br>
-									<label for="addressTitle" class="km-control-label" style="width: 80px;">Title:</label>
+									<label for="addressTitle" class="km-control-label" style="width: 100px;">Address Name:</label>
 									<input type="text" class="km-form-control" id="addressTitle" value="" style="width: 50%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
-									<label for="addressStaffName" class="km-control-label" style="width: 80px;">Staff Name:</label>
+									<label for="addressStaffName" class="km-control-label" style="width: 100px;">Recipient:</label>
 									<input type="text" class="km-form-control" id="addressStaffName" value="" style="width: 50%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
-									<label for="addressCountry" class="km-control-label" style="width: 80px;">Country:</label>
-									<select id="addressCountry" style="height: 30px;width:30%;"><?php require('countryPhoneNO.php');?></select>
-									<label for="addressArea" class="km-control-label">Area:</label>
-									<input type="text" class="km-form-control" id="addressArea" value="" style="width: 200px;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
-									<label for="addressDetail" class="km-control-label" style="width: 80px;">Detail:</label>
-									<input type="text" class="km-form-control" id="addressDetail" value="" style="width: 385px;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
+									<label for="addressCountry" class="km-control-label" style="width: 100px;">Country:</label>
+									<select id="addressCountry" style="height: 30px;width:30%;"><?php require('countryPhoneNO.php');?></select><br><br>
+									<label for="addressDetail" class="km-control-label" style="width: 100px;">Address:</label>
+									<input type="text" class="km-form-control" id="addressDetail" value="" style="width: 365px;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
 									
 									<label for="addressMobilephone1" class="km-control-label" style="width: 120px;">Mobile Phone:</label>
 									<select id="addressMobilephone1" style="height: 30px;width:125px;"><?php require('countryPhoneNO.php');?></select>

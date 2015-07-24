@@ -3426,7 +3426,7 @@ background: none;
 .banner li { list-style: none; }
 .banner ul li { float: left; }
 .banner .dots{
-	position:relative;
+	position:absolute;
 	bottom:20px;
 	text-align:center;
 	width:370px;
@@ -3526,4 +3526,17 @@ background: none;
 	-webkit-box-shadow:3px 3px 1px rgb(1,155,253);
 	-moz-box-shadow:3px 3px 1px rgb(1,155,253);
 	box-shadow:3px 3px 1px rgb(1,155,253);
+}
+.search .search-shopList li{
+	width:120px;
+	text-align:center;
+	float:left;
+}
+.search h4{
+	font-size:15px;
+	font-weight:600;
+	line-height:30px;
+	border-bottom:1px dashed #CCC;
+	margin-bottom:10px;
+	color:#3B8CCA;
 }
