@@ -116,6 +116,7 @@
 				</tbody>
 			</table>
 		</div>
+		<input id="orderItemTitle" type="hidden" value="<?php echo isset($_GET['orderItemTitle'])?$_GET['orderItemTitle']:'';?>">
 		<div style="overflow:auto;">
 			<table class="km-table" style="overflow:scroll;width:150%;">
 				<tbody id="productsData">
@@ -124,7 +125,7 @@
 					<td class="field width6p br tac">Operation</td>
 					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_Itemcode');?></td>
 					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_SellerCode');?></td>
-					<td class="field width6p br tac" style="cursor:pointer;" onclick="orderProduct('<?php echo $selectPage;?>','shop')">
+					<td class="field width6p br tac" style="cursor:pointer;" onclick="orderProduct('itemTitle');">
 						<?php echo lang('cms_goodsCopy_ItemTitle');?>
 						<?php if(isset($_GET['orderItemTitle'])){if($_GET['orderItemTitle']=='desc') echo '↑';else echo '↓';}?>
 					</td>
