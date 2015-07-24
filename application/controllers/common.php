@@ -1910,6 +1910,11 @@ class Common extends CI_Controller {
 				return false;
 			}
 		}
+		$_SESSION['username']=$info[0]->user_username;
+		$_SESSION['userid']=$info[0]->user_id;
+		$_SESSION['usertype']="user";
+		$_SESSION['userEmail']=$info[0]->user_email;
+		
 		if($info[0]->user_facebook_confirm_email!=1){
 			//$this->sendFacebookEmail($_POST["email"]);
 			echo json_encode(array("result"=>"failed","message"=>"The email with facebook has not been confirmed!This email has been sent!"));
@@ -1922,10 +1927,6 @@ class Common extends CI_Controller {
 		$content=str_replace("{USERNAME}",$_POST["username"],$content);
 			
 		$this->commongetdata->email($_POST["email"],$subject,$content);*/
-		$_SESSION['username']=$info[0]->user_username;
-		$_SESSION['userid']=$info[0]->user_id;
-		$_SESSION['usertype']="user";
-		$_SESSION['userEmail']=$info[0]->user_email;
 		echo json_encode(array("result"=>"success","message"=>"Login with Facebook successfully!"));
 		return false;
 	}

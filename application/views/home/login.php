@@ -172,7 +172,7 @@
 				alert(result.message);
 			}else{
 				alert(result.message);
-				location.href="/home/registerByFB?auto=yes";
+				location.href="/home/registerByFB?auto=no";
 			}
 		});
     });
