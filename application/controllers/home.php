@@ -134,6 +134,7 @@ class Home extends CI_Controller {
 		$this->homeBaseHandler('Register!','registerByFB',$data);
 	}
 	public function login(){
+		/*
 		$this->load->library('Facebook',array(
 		  'appId'  => '835653329821020',
 		  'secret' => 'db8ff82c09c285d593dde540b7e50f08',
@@ -159,8 +160,8 @@ class Home extends CI_Controller {
 			'profile'=>$user?$user_profile:array(),
 			'logoutUrl'=>$user?$logoutUrl:'',
 			'loginUrl'=>$user?'':$loginUrl
-		);
-		$this->homeBaseHandler('Login','login',$data);
+		);*/
+		$this->homeBaseHandler('Login','login',array());
 	}
 	public function category(){
 		$catId=isset($_GET['cat'])?$_GET['cat']:1;
