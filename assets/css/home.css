@@ -3540,3 +3540,26 @@ background: none;
 	margin-bottom:10px;
 	color:#3B8CCA;
 }
+.search .itemsListStyleList{
+
+}
+.search .itemsListStyleList .productList{
+	padding:6px 0;
+	border-bottom: 1px solid #CCC;
+	height: 100px;
+}
+.search .itemsListStyleList .productList div{
+	float:left;
+	height:100%;
+	line-height: 100px;
+}
+.search .itemsListStyleList .productListHeader{
+	color:black;
+	font-weight:600;
+	FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#CCC,endColorStr=#f5f5f5); /*IE 6 7 8*/ 
+	background:-ms-linear-gradient(top, #CCC,  #f5f5f5);        /* IE 10 */
+	background:-moz-linear-gradient(top,#CCC,#f5f5f5);/*火狐*/ 
+	background:-webkit-gradient(linear, 0% 0%, 0% 100%,from(#CCC), to(#f5f5f5));/*谷歌*/ 
+	background:-webkit-linear-gradient(top, #CCC, #f5f5f5);   /*Safari5.1 Chrome 10+*/
+	background:-o-linear-gradient(top, #CCC, #f5f5f5);  /*Opera 11.10+*/
+}

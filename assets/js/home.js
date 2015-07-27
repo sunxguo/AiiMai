@@ -947,7 +947,7 @@ function addAddress(){
 	address.title = $("#addressTitle").val();
 	address.staffname = $("#addressStaffName").val();
 	address.country = $("#addressCountry").val();
-	address.area = $("#addressArea").val();
+//	address.area = $("#addressArea").val();
 	address.detail = $("#addressDetail").val();
 	address.mobilephone1 = $("#addressMobilephone1").val();
 	address.mobilephone2 = $("#addressMobilephone2").val();
