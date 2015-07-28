@@ -3563,3 +3563,18 @@ background: none;
 	background:-webkit-linear-gradient(top, #CCC, #f5f5f5);   /*Safari5.1 Chrome 10+*/
 	background:-o-linear-gradient(top, #CCC, #f5f5f5);  /*Opera 11.10+*/
 }
+.shop .focusItems ul{
+	text-align: center;
+}
+.shop .focusItems .product {
+    width: 224px;
+    height: 267px;
+    display: inline-block;
+    margin-right: 24px;
+}
+.shop .focusItems .product:last-child{
+	margin-right: 0px;
+}
+.shop .focusItems .product p {
+    margin-top: 10px;
+}

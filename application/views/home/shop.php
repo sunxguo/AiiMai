@@ -45,13 +45,13 @@
 		<?php endif;?>
 	</div>
 	<?php if($merchant->merchant_shop_focus_on):?>
-	<div class="items">
+	<div class="focusItems">
 		<h3>Focus Item</h3>
 		<ul class="clearfix" style="margin-top:10px;">
 			<?php foreach($focusItem as $item):?>
 			<li class="product bd_glr3">
 				<a href="/home/item?itemId=<?php echo $item->product_id;?>">
-					<img src="<?php echo $item->product_image;?>" width="306" height="306">
+					<img src="<?php echo $item->product_image;?>" width="224" height="224">
 					<p><?php echo $item->product_item_title_english;?></p>
 				</a>
 				<div class="info">
