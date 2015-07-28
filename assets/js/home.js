@@ -905,7 +905,7 @@ function editAddress(id){
 	dataHandler("get","address",address,getAddressHandler,null,null,null,false);
 }
 function getAddressHandler(data){
-	$("#addressId").val(data.address_id)
+	 $("#addressId").val(data.address_id);
 	 $("#addressTypeModification").val(data.address_type);
 	 $("#addressTitleModification").val(data.address_title);
 	 $("#addressStaffNameModification").val(data.address_staffname);
@@ -936,9 +936,37 @@ function saveAddress(){
 	address.phone3 = $("#addressPhone3Modification").val();
 	dataHandler("modify","address",address,successSaveAddress,null,null,null,false);
 }
+function initEditAddress(){
+	$("#addressId").val('');
+	$("#addressTypeModification").val('');
+	$("#addressTitleModification").val('');
+	$("#addressStaffNameModification").val('');
+	$("#addressCountryModification").val('');
+	$("#addressDetailModification").val('');
+	$("#addressMobilephone1Modification").val('');
+	$("#addressMobilephone2Modification").val('');
+	$("#addressMobilephone3Modification").val('');
+	$("#addressPhone1Modification").val('');
+	$("#addressPhone2Modification").val('');
+	$("#addressPhone3Modification").val('');
+}
 function successSaveAddress(){
 	$("#editAddressDiv").hide();
+	initEditAddress();
 	selectAddress(_currentAddressType);
+}
+function initAddAddress(){
+	$("#addressType").val('');
+	$("#addressTitle").val('');
+	$("#addressStaffName").val('');
+	$("#addressCountry").val('');
+	$("#addressDetail").val('');
+	$("#addressMobilephone1").val('');
+	$("#addressMobilephone2").val('');
+	$("#addressMobilephone3").val('');
+	$("#addressPhone1").val('');
+	$("#addressPhone2").val('');
+	$("#addressPhone3").val('');
 }
 function addAddress(){
 	var address = new Object();
@@ -959,6 +987,7 @@ function addAddress(){
 }
 function successAddAddress(){
 	$("#addAddressDiv").hide();
+	initAddAddress();
 	selectAddress(_currentAddressType);
 }
 function savePersonalInfoMobilePhone(){
@@ -995,4 +1024,11 @@ function sendSMS(successMsg){
 			alert(result.message);
 		}
 	});
+}
+function postReview(productId){
+	var review = new Object();
+	review.productId = productId;
+	review.title = $("#newReviewTitle").val();
+	review.content = $("#newReviewContent").val();
+	dataHandler("add","comment",review,successRefresh,null,null,null,true);
 }

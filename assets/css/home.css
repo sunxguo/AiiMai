@@ -3578,3 +3578,26 @@ background: none;
 .shop .focusItems .product p {
     margin-top: 10px;
 }
+.km-add-address-close,.km-edit-address-close{
+	margin-top: -2px;
+    -webkit-appearance: none;
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .2;
+}
+.km-add-address-close:hover,.km-edit-address-close:hover {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    filter: alpha(opacity=50);
+    opacity: .5;
+}

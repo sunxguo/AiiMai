@@ -324,10 +324,22 @@
 		  <li><a href="#PolicyNotice">Policy & Notice</a></li>
 		</ul>
 		<div class="CustomerReview" style="min-height:100px;">
-		<?php foreach($comments['data'] as $comment):?>
-		<?php echo $comment->comment_content;?>
-		<?php endforeach;?>
-		<?php echo sizeof($comments['data'])<1?'No Reviews':'';?>
+			<div style="background-color:#F5F5F5;padding:20px;">
+				<h4 style="line-height:30px;font-weight:600;">Post a Review</h4>
+				<label for="newReviewTitle">Title</label>
+				<input id="newReviewTitle" type="text" class="km-form-control" style="width:400px;height: 30px;padding: 0 5px;">
+				<label for="newReviewContent">Content</label>
+				<textarea id="newReviewContent" class="km-form-control" style="width:400px;height:100px;padding: 5px 5px;"></textarea>
+				<button type="button" class="km-btn km-btn-primary" onclick="postReview('<?php echo $_GET['itemId'];?>');" style="padding: 2px 12px;margin-top:10px;">Post</button>
+			</div>
+			<ul>
+				<?php foreach($comments['data'] as $comment):?>
+				<li>
+					<?php echo $comment->comment_content;?>  --time: <?php echo $comment->comment_time;?>
+				</li>
+				<?php endforeach;?>
+			<?php echo sizeof($comments['data'])<1?'No Reviews':'';?>
+			</ul>
 		</div>
 		<ul class="km-nav km-nav-tabs clearfix" id="QuestionAnswer">
 		  <li><a href="#ItemInfo">Product Info</a></li>
