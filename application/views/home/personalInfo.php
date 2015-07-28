@@ -168,7 +168,7 @@
 						<div class="km-modal-dialog" id="editAddressDiv" style="width:520px;z-index: 10051;">
 							<div class="km-modal-content">
 								<div class="km-modal-header">
-									<button type="button" class="km-close"><span>&times;</span></button>
+									<button type="button" class="km-edit-address-close" onclick="$('#editAddressDiv').hide();"><span>&times;</span></button>
 									<h4 class="km-modal-title">Personal Info - Edit Address</h4>
 									<input type="hidden" id="addressId">
 								</div>
@@ -201,7 +201,6 @@
 									
 								</div>
 								<div class="km-modal-footer">
-									<button type="button" class="km-btn km-btn-default km-btn-close">Close</button>
 									<button onclick="saveAddress();" type="button" class="km-btn km-btn-primary">Save</button>
 								</div>
 							</div><!-- /.modal-content -->
@@ -209,7 +208,7 @@
 						<div class="km-modal-dialog" id="addAddressDiv" style="width:520px;z-index: 10051;">
 							<div class="km-modal-content">
 								<div class="km-modal-header">
-									<button type="button" class="km-close"><span>&times;</span></button>
+									<button type="button" class="km-add-address-close" onclick="$('#addAddressDiv').hide();"><span>&times;</span></button>
 									<h4 class="km-modal-title">Personal Info - Add Address</h4>
 								</div>
 								<div class="km-modal-body">
@@ -241,7 +240,6 @@
 									
 								</div>
 								<div class="km-modal-footer">
-									<button type="button" class="km-btn km-btn-default km-btn-close">Close</button>
 									<button onclick="addAddress();" type="button" class="km-btn km-btn-primary">Add</button>
 								</div>
 							</div><!-- /.modal-content -->

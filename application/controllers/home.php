@@ -406,8 +406,12 @@ class Home extends CI_Controller {
 			'like'=>array('product_item_title_english'=>$keywords),
 			'orderBy'=>array('product_time'=>'desc')
 		);
+		$products=$this->commongetdata->getProductsAdvance($parameters);
+		foreach ($products as $key => $value) {
+			$value->merchant=$this->commongetdata->getContent('user',$value->product_merchant);
+		}
 		$data=array(
-			'products'=>$this->commongetdata->getProductsAdvance($parameters),
+			'products'=>$products,
 			'shops'=>$this->commongetdata->getMerchantsAdvance(array('result'=>'data','like'=>array('merchant_shop_name'=>$keywords)))
 		);
 		$this->homeBaseHandler('Search - '.$keywords,'search',$data);

@@ -47,7 +47,7 @@
 	<?php if($merchant->merchant_shop_focus_on):?>
 	<div class="focusItems">
 		<h3>Focus Item</h3>
-		<ul class="clearfix" style="margin-top:10px;">
+		<ul class="clearfix" style="margin-top:10px;margin-bottom:35px;">
 			<?php foreach($focusItem as $item):?>
 			<li class="product bd_glr3">
 				<a href="/home/item?itemId=<?php echo $item->product_id;?>">

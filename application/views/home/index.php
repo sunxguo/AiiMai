@@ -55,7 +55,7 @@
 					</ul>
 				</div>
 				<div class="fp-left-bottom">
-					<div class="fp-left-bottom-item widget borderR borderB fl">
+					<div class="fp-left-bottom-item widget borderR borderB fl" style="margin-right: 1px;">
 						<a href="<?php echo $cat->category_home_link4;?>">
 							<img src="<?php echo $cat->category_home_img4;?>">
 						</a>
@@ -73,12 +73,12 @@
 						<img src="<?php echo $cat->category_home_img2;?>">
 					</a>
 				</div>
-				<div class="fp-right-item widget borderR borderT">
+				<div class="fp-right-item widget borderR borderT" style="margin-top: 1px;">
 					<a href="<?php echo $cat->category_home_link3;?>">
 						<img src="<?php echo $cat->category_home_img3;?>">
 					</a>
 				</div>
-				<div class="fp-right-item widget borderR borderB borderT" style="margin-top: 3px;">
+				<div class="fp-right-item widget borderR borderB borderT" style="margin-top: 3px;margin-left: 1px;">
 					<a href="<?php echo $cat->category_home_link6;?>">
 						<img src="<?php echo $cat->category_home_img6;?>">
 					</a>

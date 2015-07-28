@@ -56,29 +56,56 @@
 		<?php if(isset($_GET['viewStyle']) && $_GET['viewStyle']=='List'):?>
 		<ul class="itemsListStyleList clearfix">
 			<li class="productListHeader" style="line-height: 25px;">
-				<div style="width:760px;text-align:center;display:inline-block;">
+				<div style="width:560px;text-align:center;display:inline-block;">
 					Item
 				</div>
 				<div style="width:100px;text-align:center;display:inline-block;">
 					Price
 				</div>
 				<div style="width:100px;text-align:center;display:inline-block;">
+					Shipping/Origin
+				</div>
+				<div style="width:100px;text-align:center;display:inline-block;">
 					Seller
+				</div>
+				<div style="width:100px;text-align:center;display:inline-block;">
+					Rating
 				</div>
 			</li>
 			<?php foreach($products as $item):?>
 			<li class="productList clearfix">
 				<div style="width:100px;">
-					<a href="/home/item?itemId=<?php echo $item->product_id;?>"><img src="<?php echo $item->product_image;?>" width="100" height="100"></a>
+					<a href="/home/item?itemId=<?php echo $item->product_id;?>">
+						<img src="<?php echo $item->product_image;?>" width="100" height="100">
+					</a>
 				</div>
-				<div style="width:660px;padding-left:10px;">
-					<a href="/home/item?itemId=<?php echo $item->product_id;?>"><?php echo $item->product_item_title_english;?></a>
+				<div style="width:460px;padding-left:10px;line-height:20px;">
+					<div style="height:70px;display:block;float: none;line-height: 50px;">
+						<a href="/home/item?itemId=<?php echo $item->product_id;?>" target="_blank">
+							<?php echo $item->product_item_title_english;?>
+						</a>
+					</div>
+					<p style="height:30px;">
+						<a href="/home/item?itemId=<?php echo $item->product_id;?>#CustomerReview" target="_blank">Review</a>
+					</p>
+				</div>
+				<div style="width:100px;text-align:center;line-height:50px;">
+					<p style="color:#CCC;text-decoration:line-through;">S$ <?php echo $item->product_reference_price;?></p>
+					<p style="color:#337ab7;">S$ <?php echo $item->product_sell_price;?></p>
+				</div>
+				<div style="width:100px;text-align:center;line-height:50px;">
+					<p>
+						<?php echo $item->product_shipping_fee;?>
+					</p>
+					<p>
+						<?php echo $item->product_shipping_address;?>
+					</p>
 				</div>
 				<div style="width:100px;text-align:center;line-height:100px;">
-					S$ <?php echo $item->product_sell_price;?>
+					<a href="/home/shop?shopId=<?php echo $item->product_merchant;?>" target="_blank"><?php echo $item->merchant->merchant_shop_name;?></a>
 				</div>
 				<div style="width:100px;text-align:center;line-height:100px;">
-					<?php echo $item->product_merchant;?>
+					
 				</div>
 			</li>
 			<?php endforeach;?>

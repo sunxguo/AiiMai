@@ -60,6 +60,20 @@ class Common extends CI_Controller {
 					"notice_time"=>date("Y-m-d H:i:s")
 				);
 			break;
+			case "comment":
+				if(!isset($_SESSION['userid'])){
+					echo json_encode(array("result"=>"failed","message"=>"Please login first!"));
+					return false;
+				}
+				$table="comment";
+				$info=array(
+					"comment_author"=>$_SESSION['userid'],
+					"comment_product_id"=>$data->productId,
+					"comment_title"=>$data->title,
+					"comment_content"=>$data->content,
+					"comment_time"=>date("Y-m-d H:i:s")
+				);
+			break;
 			case "categoryGroup":
 				$selectCondition=array(
 					'table'=>'shopcategory',
@@ -239,7 +253,7 @@ class Common extends CI_Controller {
 					"address_title"=>$data->title,
 					"address_staffname"=>$data->staffname,
 					"address_country"=>$data->country,
-					"address_area"=>$data->area,
+//					"address_area"=>$data->area,
 					"address_detail"=>$data->detail,
 					"address_mobilephone1"=>$data->mobilephone1,
 					"address_mobilephone2"=>$data->mobilephone2,
