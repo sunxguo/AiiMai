@@ -666,14 +666,6 @@ class Common extends CI_Controller {
 				$condition['where']=array("user_id"=>$_SESSION['userid']);
 				$condition['result']="data";
 				$merchantInfo=$this->commongetdata->getOneData($condition);
-				if($merchantInfo->user_pwd!=MD5("MonkeyKing".$data->oldpwd)){
-					echo json_encode(array("result"=>"failed","message"=>"Wrong password！"));
-					return false;
-				}
-				if($merchantInfo->user_pwd==MD5("MonkeyKing".$data->newpwd)){
-					echo json_encode(array("result"=>"failed","message"=>"Failed. You cannot re-use an old password！"));
-					return false;
-				}
 				$condition['data']=array(
 					"user_pwd"=>MD5("MonkeyKing".$data->newpwd)
 				);
