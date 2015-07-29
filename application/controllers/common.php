@@ -2018,6 +2018,10 @@ class Common extends CI_Controller {
 			$subject=str_replace("{USERNAME}",$user->user_username,$subject);
 			$content=$this->commongetdata->getWebsiteConfig("website_user_success_email_content");
 			$content=str_replace("{USERNAME}",$user->user_username,$content);
+
+			unset($_SESSION["username"]);
+			unset($_SESSION["userid"]);
+			unset($_SESSION["usertype"]);
 			
 			$this->commongetdata->email($user->user_email,$subject,$content);
 			$this->load->view('redirect',array("url"=>"/home/login","info"=>"Success!"));
