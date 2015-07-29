@@ -828,6 +828,25 @@ function savePersonalInfoPwd(successMsg){
 	pwd.newpwd = $("#personalInfoNewpwd").val();
 	dataHandler("modify","merchantpwd",pwd,null,null,null,successMsg,true);
 }
+function saveFacebookPersonalInfoPwd(){
+	if($("#personalInfoNewpwd").val()==""){
+		alert('New password can not be empty!');
+		return false;
+	}
+	var length = $("#personalInfoNewpwd").val().length;
+	if(length<6 || length>25){	//3-15个字符
+//		alert("密码长度为6~25个字符！");
+		alert('Password must be 6 to 25 characters!');
+		return false;
+	}
+	if($("#personalInfoNewpwd").val()!=$("#personalInfoConfirmpwd").val()){
+		alert('The two passwords you entered are different!');
+		return false;
+	}
+	var pwd = new Object();
+	pwd.newpwd = $("#personalInfoNewpwd").val();
+	dataHandler("modify","facebookMerchantpwd",pwd,null,null,null,successMsg,true);
+}
 function successRefresh(){
 	showAlert('success','Success!','Refreshing...');
 }

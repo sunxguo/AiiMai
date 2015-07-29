@@ -112,6 +112,7 @@
 				  <tr>
 					<td class="field br">Password</td>
 					<td class="value tal">
+						<?php if($user->user_pwd!=''):?>
 						<button onclick="setDivCenter('#personalInfoPwd',true);" type="button" class="km-btn km-btn-primary" style=" height: 23px;font-size: 10px;padding: 0px 10px;">Change Password</button>
 						<div class="km-modal-dialog width40p" id="personalInfoPwd">
 							<div class="km-modal-content">
@@ -133,6 +134,27 @@
 								</div>
 							</div><!-- /.modal-content -->
 						</div><!-- /.modal-dialog -->
+					<?php else:?>
+						<button onclick="setDivCenter('#personalInfoPwd',true);" type="button" class="km-btn km-btn-primary" style=" height: 23px;font-size: 10px;padding: 0px 10px;">Set Password</button>
+						<div class="km-modal-dialog width40p" id="personalInfoPwd">
+							<div class="km-modal-content">
+								<div class="km-modal-header">
+									<button type="button" class="km-close"><span>&times;</span></button>
+									<h4 class="km-modal-title">Personal Info - Set Password</h4>
+								</div>
+								<div class="km-modal-body">
+									<label for="personalInfoNewpwd" class="km-control-label">New Password:</label>
+									<input type="password" class="km-form-control" id="personalInfoNewpwd" style="width: 95%;padding: 0 5px;">
+									<label for="personalInfoConfirmpwd" class="km-control-label">Re-enter New Password:</label>
+									<input type="password" class="km-form-control" id="personalInfoConfirmpwd" style="width: 95%;padding: 0 5px;">
+								</div>
+								<div class="km-modal-footer">
+									<button type="button" class="km-btn km-btn-default km-btn-close">Close</button>
+									<button type="button" class="km-btn km-btn-primary" onclick="saveFacebookPersonalInfoPwd('Successfully saved!');">Save</button>
+								</div>
+							</div><!-- /.modal-content -->
+						</div><!-- /.modal-dialog -->
+					<?php endif;?>
 					</td>
 				  </tr> 
 				  <tr>
