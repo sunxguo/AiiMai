@@ -826,7 +826,7 @@ function savePersonalInfoPwd(successMsg){
 	var pwd = new Object();
 	pwd.oldpwd = $("#personalInfoOldpwd").val();
 	pwd.newpwd = $("#personalInfoNewpwd").val();
-	dataHandler("modify","merchantpwd",pwd,null,null,null,successMsg,true);
+	dataHandler("modify","merchantpwd",pwd,successAlertRefresh,null,null,null,true);
 }
 function saveFacebookPersonalInfoPwd(successMsg){
 	if($("#personalInfoNewpwd").val()==""){
@@ -845,7 +845,10 @@ function saveFacebookPersonalInfoPwd(successMsg){
 	}
 	var pwd = new Object();
 	pwd.newpwd = $("#personalInfoNewpwd").val();
-	dataHandler("modify","facebookMerchantpwd",pwd,null,null,null,successMsg,true);
+	dataHandler("modify","facebookMerchantpwd",pwd,successAlertRefresh,null,null,null,true);
+}
+function successAlertRefresh(){
+	alert('Successfully saved!');
 }
 function successRefresh(){
 	showAlert('success','Success!','Refreshing...');

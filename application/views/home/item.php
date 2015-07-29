@@ -324,6 +324,7 @@
 		  <li><a href="#PolicyNotice">Policy & Notice</a></li>
 		</ul>
 		<div class="CustomerReview" style="min-height:100px;">
+			<!--
 			<div style="background-color:#F5F5F5;padding:20px;">
 				<h4 style="line-height:30px;font-weight:600;">Post a Review</h4>
 				<label for="newReviewTitle">Title</label>
@@ -332,14 +333,48 @@
 				<textarea id="newReviewContent" class="km-form-control" style="width:400px;height:100px;padding: 5px 5px;"></textarea>
 				<button type="button" class="km-btn km-btn-primary" onclick="postReview('<?php echo $_GET['itemId'];?>');" style="padding: 2px 12px;margin-top:10px;">Post</button>
 			</div>
-			<ul>
-				<?php foreach($comments['data'] as $comment):?>
-				<li>
-					<?php echo $comment->comment_content;?>  --time: <?php echo $comment->comment_time;?>
-				</li>
-				<?php endforeach;?>
-			<?php echo sizeof($comments['data'])<1?'No Reviews':'';?>
-			</ul>
+			-->
+			<div class="km-panel km-panel-primary" style="width: 98%;margin-top:20px;">
+				<div class="km-panel-heading">Photo Review (<?php echo sizeof($comments['data']);?>)</div>
+				<div class="km-panel-body" style="padding:0px;">
+					<table class="km-table">
+						<tbody>
+						  <?php echo sizeof($comments['data'])<1?'No Reviews':'';?>
+						  <?php foreach($comments['data'] as $key=>$comment):?>
+						  <tr>
+							<td class="value" style="width:86px;">
+								<img src="/assets/images/home/fp<?php echo $key+1;?>.jpg" style="width:86px;height:86px;">
+							</td>
+							<td class="value" style="width:650px;text-align:left;">
+								<ul>
+									<li class="comment-list-title">
+										<?php echo $comment->comment_title;?>
+									</li>
+									<li class="comment-list-option">
+										[option]:Selection:Xiaomi MiBand Silicon Band / Color:Blue(+S$0.98)
+									</li>
+									<li class="comment-list-shortMessage">
+										<?php echo $comment->comment_content;?> Fast delivery with reasonable quality. The packaging is unopened and new.
+									</li>
+								</ul>
+							</td>
+							<td class="value" style="text-align:right;">
+								<ul>
+									<li class="comment-list-time">
+										<?php echo $comment->comment_time;?>
+									</li>
+									<li class="comment-list-rating">
+										<?php echo $comment->comment_star;?>
+										Highly Recommended
+									</li>
+								</ul>
+							</td>
+						  </tr>
+						  <?php endforeach;?>
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 		<ul class="km-nav km-nav-tabs clearfix" id="QuestionAnswer">
 		  <li><a href="#ItemInfo">Product Info</a></li>
