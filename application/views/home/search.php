@@ -81,7 +81,7 @@
 				</div>
 				<div style="width:460px;padding-left:10px;line-height:20px;">
 					<div style="height:70px;display:block;float: none;line-height: 50px;">
-						<a href="/home/item?itemId=<?php echo $item->product_id;?>" target="_blank">
+						<a href="/home/item?itemId=<?php echo $item->product_id;?>" target="_blank" style="font-size: 16px;">
 							<?php echo $item->product_item_title_english;?>
 						</a>
 					</div>
@@ -89,8 +89,8 @@
 						<a href="/home/item?itemId=<?php echo $item->product_id;?>#CustomerReview" target="_blank">Review</a>
 					</p>
 				</div>
-				<div style="width:100px;text-align:center;line-height:50px;">
-					<p style="color:#CCC;text-decoration:line-through;">S$ <?php echo $item->product_reference_price;?></p>
+				<div style="width:100px;text-align:center;line-height:20px;">
+					<p style="color:#CCC;text-decoration:line-through;margin-top: 30px;">S$ <?php echo $item->product_reference_price;?></p>
 					<p style="color:#337ab7;">S$ <?php echo $item->product_sell_price;?></p>
 				</div>
 				<div style="width:100px;text-align:center;line-height:50px;">
@@ -101,11 +101,18 @@
 						<?php echo $item->product_shipping_address;?>
 					</p>
 				</div>
-				<div style="width:100px;text-align:center;line-height:100px;">
-					<a href="/home/shop?shopId=<?php echo $item->product_merchant;?>" target="_blank"><?php echo $item->merchant->merchant_shop_name;?></a>
+				<div style="width:100px;text-align:center;line-height:20px;">
+					<a href="/home/shop?shopId=<?php echo $item->product_merchant;?>" target="_blank" style="margin-top:30px;display: block;">
+						<?php echo $item->merchant->merchant_shop_name;?>
+					</a>
+					<a href="/home/shop?shopId=<?php echo $item->product_merchant;?>" target="_blank">
+						<img src="<?php echo $item->merchant->merchant_shop_smallicon;?>" width="57" height="15">
+					</a>
 				</div>
 				<div style="width:100px;text-align:center;line-height:100px;">
-					
+					<div class="item-rating" style="width: 80px;height: 15px;margin: 40px 20px;">
+						
+					</div>
 				</div>
 			</li>
 			<?php endforeach;?>

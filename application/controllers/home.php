@@ -90,6 +90,7 @@ class Home extends CI_Controller {
 		$this->homeBaseHandler('Home','index',$data,array("showFooter"=>false));
 	}
 	public function register(){
+		/*
 		parse_str( $_SERVER['QUERY_STRING'], $_REQUEST );
 		$this->load->library('Facebook',array(
 		  'appId'  => '705101599598980',//835653329821020
@@ -120,10 +121,10 @@ class Home extends CI_Controller {
 			'profile'=>$user?$user_profile:array(),
 			'logoutUrl'=>$user?$logoutUrl:'',
 			'loginUrl'=>$user?'':$loginUrl
-		);
+		);*/
 //		print_r($data);
 //		print_r($_SESSION);
-		$this->homeBaseHandler('Register','register',$data);
+		$this->homeBaseHandler('Register','register',array());
 	}
 	public function confirmEmail(){
 		$data=array();

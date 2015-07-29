@@ -15,7 +15,7 @@
 		</dl>
 		<div class="featured-products fl">
 			<div class="fp-left fl">
-				<div class="banner fp-left-top widget borderR borderB" style="width: 371px;height: 327px;min-height:327px;">
+				<div class="banner fp-left-top widget borderR borderB" style="width: 367px;height: 327px;min-height:327px;">
 					<ul style="position:relative;">
 						<?php if(isset($cat->category_home_img11) && $cat->category_home_img11!=''):?>
 						<li>
@@ -54,31 +54,31 @@
 						<?php endif;?>
 					</ul>
 				</div>
-				<div class="fp-left-bottom">
-					<div class="fp-left-bottom-item widget borderR borderB fl" style="margin-right: 1px;">
+				<div class="fp-left-bottom" style="margin-top: -4px;">
+					<div class="fp-left-bottom-item widget borderR borderB fl" style="">
 						<a href="<?php echo $cat->category_home_link4;?>">
-							<img src="<?php echo $cat->category_home_img4;?>">
+							<img src="<?php echo $cat->category_home_img4;?>" style="width:185px;">
 						</a>
 					</div>
-					<div class="fp-left-bottom-item widget borderB fl">
+					<div class="fp-left-bottom-item widget borderB fl" style="margin-left: -1px;">
 						<a href="<?php echo $cat->category_home_link5;?>">
 							<img src="<?php echo $cat->category_home_img5;?>">
 						</a>
 					</div>
 				</div>
 			</div>
-			<div class="fp-right fl">
-				<div class="fp-right-item widget borderR">
+			<div class="fp-right fl" style="margin-left:-1px;">
+				<div class="fp-right-item widget borderR" style="height:165px;">
 					<a href="<?php echo $cat->category_home_link2;?>">
 						<img src="<?php echo $cat->category_home_img2;?>">
 					</a>
 				</div>
-				<div class="fp-right-item widget borderR borderT" style="margin-top: 1px;">
+				<div class="fp-right-item widget borderR borderT" style="height:165px;margin-top: -3px;">
 					<a href="<?php echo $cat->category_home_link3;?>">
-						<img src="<?php echo $cat->category_home_img3;?>">
+						<img src="<?php echo $cat->category_home_img3;?>" style="height:164px;">
 					</a>
 				</div>
-				<div class="fp-right-item widget borderR borderB borderT" style="margin-top: 3px;margin-left: 1px;">
+				<div class="fp-right-item widget borderR borderB borderT" style="margin-top: -2px;">
 					<a href="<?php echo $cat->category_home_link6;?>">
 						<img src="<?php echo $cat->category_home_img6;?>">
 					</a>
