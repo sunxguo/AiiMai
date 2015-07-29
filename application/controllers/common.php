@@ -661,6 +661,23 @@ class Common extends CI_Controller {
 					"user_pwd"=>MD5("MonkeyKing".$data->newpwd)
 				);
 			break;
+			case 'facebookMerchantpwd':
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$_SESSION['userid']);
+				$condition['result']="data";
+				$merchantInfo=$this->commongetdata->getOneData($condition);
+				if($merchantInfo->user_pwd!=MD5("MonkeyKing".$data->oldpwd)){
+					echo json_encode(array("result"=>"failed","message"=>"Wrong password！"));
+					return false;
+				}
+				if($merchantInfo->user_pwd==MD5("MonkeyKing".$data->newpwd)){
+					echo json_encode(array("result"=>"failed","message"=>"Failed. You cannot re-use an old password！"));
+					return false;
+				}
+				$condition['data']=array(
+					"user_pwd"=>MD5("MonkeyKing".$data->newpwd)
+				);
+			break;
 			case 'merchantBusinessLicense':
 				$condition['table']="user";
 				$condition['where']=array("user_id"=>$_SESSION['userid']);
@@ -1932,7 +1949,7 @@ class Common extends CI_Controller {
 		
 		if($info[0]->user_facebook_confirm_email!=1){
 			//$this->sendFacebookEmail($_POST["email"]);
-			echo json_encode(array("result"=>"failed","message"=>"The email with facebook has not been confirmed!This email has been sent!"));
+			echo json_encode(array("result"=>"failed","message"=>"Please confirm your E-mail!"));
 			return false;
 		}
 		/*
@@ -2022,7 +2039,7 @@ class Common extends CI_Controller {
 			unset($_SESSION["username"]);
 			unset($_SESSION["userid"]);
 			unset($_SESSION["usertype"]);
-			
+
 			$this->commongetdata->email($user->user_email,$subject,$content);
 			$this->load->view('redirect',array("url"=>"/home/login","info"=>"Success!"));
 		}
