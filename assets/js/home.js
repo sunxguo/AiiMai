@@ -828,7 +828,7 @@ function savePersonalInfoPwd(successMsg){
 	pwd.newpwd = $("#personalInfoNewpwd").val();
 	dataHandler("modify","merchantpwd",pwd,null,null,null,successMsg,true);
 }
-function saveFacebookPersonalInfoPwd(){
+function saveFacebookPersonalInfoPwd(successMsg){
 	if($("#personalInfoNewpwd").val()==""){
 		alert('New password can not be empty!');
 		return false;
