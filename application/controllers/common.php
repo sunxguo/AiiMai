@@ -1746,7 +1746,7 @@ class Common extends CI_Controller {
 		if($result)
 			echo json_encode(array("result"=>"success","message"=>''));
 		else
-			echo json_encode(array("result"=>"failed","message"=>'Stocks do not have so many goods!'));
+			echo json_encode(array("result"=>"failed","message"=>'Sorry. Your quantity has exceeded the available stocks.'));
 	}
 	public function setCartProductNumber(){
 		if(!$this->checkUserLogin()) return false;

@@ -21,12 +21,60 @@
 		</ul>
 		<h4>
 			Products
-			<div class="km-btn-group fr" data-toggle="buttons" style="margin-top: 3px;">
+			<input type="hidden" id="viewStyle" value="<?php echo isset($_GET['viewStyle'])?$_GET['viewStyle']:'Grid';?>">
+			<input type="hidden" id="priceRange" value="<?php echo isset($_GET['priceRange'])?$_GET['priceRange']:'0';?>">
+			<div class="km-btn-group fr" data-toggle="buttons" style="margin-top: 3px;margin-left:10px;">
 				<label class="km-btn km-btn-primary <?php echo !isset($_GET['viewStyle']) || isset($_GET['viewStyle']) && $_GET['viewStyle']=='Grid'?'active':'';?>" style="font-size:10px;line-height: 1;">
-					<input onclick="javascript:location.href='/home/search?keywords=<?php echo $_GET['keywords'];?>&viewStyle=Grid'" type="radio" name="options" id="option1" autocomplete="off" <?php echo !isset($_GET['viewStyle']) || isset($_GET['viewStyle']) && $_GET['viewStyle']=='Grid'?'checked':'';?>> Grid
+					<input onclick="javascript:$('#viewStyle').val('Grid');orderProducts();" type="radio" name="options" id="option1" autocomplete="off" <?php echo !isset($_GET['viewStyle']) || isset($_GET['viewStyle']) && $_GET['viewStyle']=='Grid'?'checked':'';?>> Grid
 				</label>
 				<label class="km-btn km-btn-primary <?php echo isset($_GET['viewStyle']) && $_GET['viewStyle']=='List'?'active':'';?>" style="font-size:10px;line-height: 1;">
-					<input onclick="javascript:location.href='/home/search?keywords=<?php echo $_GET['keywords'];?>&viewStyle=List'" type="radio" name="options" id="option2" autocomplete="off" <?php echo isset($_GET['viewStyle']) && $_GET['viewStyle']=='List'?'checked':'';?>> List
+					<input onclick="javascript:$('#viewStyle').val('List');orderProducts();" type="radio" name="options" id="option2" autocomplete="off" <?php echo isset($_GET['viewStyle']) && $_GET['viewStyle']=='List'?'checked':'';?>> List
+				</label>
+			</div>
+			<div class="fr">
+				<span style="font-weight:normal;font-size:12px;">Sort by</span>
+				<select id="sortBy" onchange="orderProducts();" style="height:26px;margin-top: 3px;">
+					<option value="ARanking" <?php echo !isset($_GET['sortBy']) || $_GET['sortBy']=='ARanking'?'selected':'';?>>
+						A·Ranking
+					</option>
+					<option value="PriceA" <?php echo isset($_GET['sortBy']) && $_GET['sortBy']=='PriceA'?'selected':'';?>>
+						Price (Ascending)
+					</option>
+					<option value="PriceD" <?php echo isset($_GET['sortBy']) && $_GET['sortBy']=='PriceD'?'selected':'';?>>
+						Price (Descending)
+					</option>
+					<option value="Popularity" <?php echo isset($_GET['sortBy']) && $_GET['sortBy']=='Popularity'?'selected':'';?>>
+						Popularity
+					</option>
+					<option value="Sale" <?php echo isset($_GET['sortBy']) && $_GET['sortBy']=='Sale'?'selected':'';?>>
+						Sale
+					</option>
+					<option value="NewlyListed" <?php echo isset($_GET['sortBy']) && $_GET['sortBy']=='NewlyListed'?'selected':'';?>>
+						Newly Listed
+					</option>
+				</select>
+			</div>
+			<div class="km-btn-group" data-toggle="buttons" style="margin: 3px 0;">
+				<label class="km-btn km-btn-default <?php echo !isset($_GET['priceRange']) || $_GET['priceRange']=='0'?'active':'';?>" style="font-size:10px;line-height: 1;">
+					<input onclick="javascript:$('#priceRange').val('0');orderProducts();" type="radio" name="options" id="option1" autocomplete="off" <?php echo !isset($_GET['priceRange']) || $_GET['priceRange']=='0'?'checked':'';?>> All
+				</label>
+				<label class="km-btn km-btn-default <?php echo isset($_GET['priceRange']) && $_GET['priceRange']=='1'?'active':'';?>" style="font-size:10px;line-height: 1;">
+					<input onclick="javascript:$('#priceRange').val('1');orderProducts();" type="radio" name="options" id="option2" autocomplete="off" <?php echo isset($_GET['priceRange']) && $_GET['priceRange']=='1'?'checked':'';?>> SGD0 – SGD9.00
+				</label>
+				<label class="km-btn km-btn-default <?php echo isset($_GET['priceRange']) && $_GET['priceRange']=='2'?'active':'';?>" style="font-size:10px;line-height: 1;">
+					<input onclick="javascript:$('#priceRange').val('2');orderProducts();" type="radio" name="options" id="option3" autocomplete="off" <?php echo isset($_GET['priceRange']) && $_GET['priceRange']=='2'?'checked':'';?>> SGD10 – SGD24
+				</label>
+				<label class="km-btn km-btn-default <?php echo isset($_GET['priceRange']) && $_GET['priceRange']=='3'?'active':'';?>" style="font-size:10px;line-height: 1;">
+					<input onclick="javascript:$('#priceRange').val('3');orderProducts();" type="radio" name="options" id="option4" autocomplete="off" <?php echo isset($_GET['priceRange']) && $_GET['priceRange']=='3'?'checked':'';?>> SGD25 – SGD49
+				</label>
+				<label class="km-btn km-btn-default <?php echo isset($_GET['priceRange']) && $_GET['priceRange']=='4'?'active':'';?>" style="font-size:10px;line-height: 1;">
+					<input onclick="javascript:$('#priceRange').val('4');orderProducts();" type="radio" name="options" id="option5" autocomplete="off" <?php echo isset($_GET['priceRange']) && $_GET['priceRange']=='4'?'checked':'';?>> SGD50 – SGD99
+				</label>
+				<label class="km-btn km-btn-default <?php echo isset($_GET['priceRange']) && $_GET['priceRange']=='5'?'active':'';?>" style="font-size:10px;line-height: 1;">
+					<input onclick="javascript:$('#priceRange').val('5');orderProducts();" type="radio" name="options" id="option6" autocomplete="off" <?php echo isset($_GET['priceRange']) && $_GET['priceRange']=='5'?'checked':'';?>> SGD100 – SGD249.00
+				</label>
+				<label class="km-btn km-btn-default <?php echo isset($_GET['priceRange']) && $_GET['priceRange']=='6'?'active':'';?>" style="font-size:10px;line-height: 1;">
+					<input onclick="javascript:$('#priceRange').val('6');orderProducts();" type="radio" name="options" id="option7" autocomplete="off" <?php echo isset($_GET['priceRange']) && $_GET['priceRange']=='6'?'checked':'';?>> SGD250 & Above
 				</label>
 			</div>
 		</h4>

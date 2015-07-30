@@ -460,8 +460,11 @@ class CommonGetData{
 		if(isset($parameters['listedTimeEnd']))$pCondition['where']['product_time <=']=$parameters['listedTimeEnd'].' 23:59:59';
 		if(isset($parameters['modifyTimeBegin']))$pCondition['where']['product_modify_time >=']=$parameters['modifyTimeBegin'].' 00:00:00';
 		if(isset($parameters['modifyTimeEnd']))$pCondition['where']['product_modify_time <=']=$parameters['modifyTimeEnd'].' 23:59:59';
+		if(isset($parameters['priceBegin']))$pCondition['where']['product_sell_price >=']=$parameters['priceBegin'];
+		if(isset($parameters['priceEnd']))$pCondition['where']['product_sell_price <=']=$parameters['priceEnd'];
 		if(isset($parameters['like'])) $pCondition['like']=$parameters['like'];
 		if(isset($parameters['orderBy'])) $pCondition['order_by']=$parameters['orderBy'];
+		if(isset($parameters['limit'])) $pCondition['limit']=array('limit'=>$parameters['limit'],'offset'=>$parameters['offset']);
 		$products=$this->CI->dbHandler->selectData($pCondition);
 		if(is_array($products) && sizeof($products)>0){
 			foreach($products as $key=>$pro){
@@ -603,7 +606,35 @@ class CommonGetData{
 		$condition['result']='data';
 		$condition['order_by']=array('comment_time'=>'DESC');
 		$comments=$this->getData($condition);
+		foreach ($comments as $key => $value) {
+			$value->user=$this->getContent('user',$value->comment_author);
+		}
 		return array('count'=>$count,'data'=>$comments);
+	}
+	public function getRelatedProducts($itemId,$number){
+		$product=$this->getContent('product',$itemId);
+		$likeArray=explode(" ",$product->product_item_title_english);
+		$parameters=array(
+			'result' => 'data' ,
+			'orderBy'=> array('product_sold_count'=>'desc')
+		);
+		$allProducts=array();
+		foreach ($likeArray as $value) {
+			$parameters['like']=array('product_item_title_english' =>$value);
+			$allProducts=array_merge($allProducts,$this->getProductsAdvance($parameters));
+		}
+		if(sizeof($allProducts)>=$number){
+			$allProducts=array_slice($allProducts, 0, $number);
+		}else{
+			$parameters=array(
+				'result' => 'data' ,
+				'limit'=>$number-sizeof($allProducts),
+				'offset'=>0,
+				'orderBy'=> array('product_view_count'=>'desc')
+			);
+			$allProducts=array_merge($allProducts,$this->getProductsAdvance($parameters));
+		}
+		return $allProducts;
 	}
 	public function getOptionData($itemId,$result){
 		$condition=array(

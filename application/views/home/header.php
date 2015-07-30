@@ -54,7 +54,7 @@
 			</div>
 			<div class="search fr">
 				<form method="get" action="/home/search" autocomplete="off" enctype="multipart/form-data">
-					<input type="text" name="keywords" value="<?php echo isset($_GET['keywords'])?$_GET['keywords']:'';?>">
+					<input id="keywords" type="text" name="keywords" value="<?php echo isset($_GET['keywords'])?$_GET['keywords']:'';?>">
 					<input type="submit" value="Search">
 				</form>
 			</div>
