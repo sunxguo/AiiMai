@@ -69,7 +69,7 @@ class Home extends CI_Controller {
 		$websiteName=$websiteConfig['website_name_'.$_SESSION['language']];
 		$this->load->view('home/header',
 			array(
-				'title' => $title."-".$websiteName,
+				'title' => $websiteName."-".$title,
 				'websiteName'=>$websiteName,
 				'categories'=>$this->commongetdata->getCategories(false)
 			)
@@ -212,9 +212,10 @@ class Home extends CI_Controller {
 			"comments"=>$this->commongetdata->getComments($_GET['itemId']),
 			"hotItems"=>$this->commongetdata->getFocusItems($item->product_merchant),
 			"follow"=>isset($_SESSION['userid'])?$this->commongetdata->getFollow($item->product_merchant,$_SESSION['userid']):false,
-			"followNo"=>$this->commongetdata->getFollowNo($item->product_merchant)
+			"followNo"=>$this->commongetdata->getFollowNo($item->product_merchant),
+			"relatedProducts"=>$this->commongetdata->getRelatedProducts($_GET['itemId'],20)
 		);
-		$this->homeBaseHandler('Item','item',$data);
+		$this->homeBaseHandler($item->product_item_title_english,'item',$data);
 	}
 	public function shop(){
 		if((!isset($_GET['shopId']) || !is_numeric($_GET['shopId'])) && (!isset($_GET['address']) || $_GET['address']=='')){
@@ -404,9 +405,60 @@ class Home extends CI_Controller {
 		$parameters=array(
 			'result'=>'data',
 			'status'=>3,
-			'like'=>array('product_item_title_english'=>$keywords),
-			'orderBy'=>array('product_time'=>'desc')
+			'like'=>array('product_item_title_english'=>$keywords)
 		);
+		if(isset($_GET['sortBy'])){
+			switch($_GET['sortBy']){
+				case 'ARanking':
+				break;
+				case 'PriceA':
+					$parameters['orderBy']=array('product_sell_price'=>'asc');
+				break;
+				case 'PriceD':
+					$parameters['orderBy']=array('product_sell_price'=>'desc');
+				break;
+				case 'Popularity':
+					$parameters['orderBy']=array('product_view_count'=>'desc');
+				break;
+				case 'Sale':
+					$parameters['orderBy']=array('product_sold_count'=>'desc');
+				break;
+				case 'NewlyListed':
+					$parameters['orderBy']=array('product_time'=>'desc');
+				break;
+				default:
+				break;
+			}
+		}
+		if(isset($_GET['priceRange'])){
+			switch($_GET['priceRange']){
+				case 0:
+				break;
+				case 1:
+					$parameters['priceBegin']=0;
+					$parameters['priceEnd']=9.00;
+				break;
+				case 2:
+					$parameters['priceBegin']=10;
+					$parameters['priceEnd']=24.99;
+				break;
+				case 3:
+					$parameters['priceBegin']=25;
+					$parameters['priceEnd']=49.99;
+				break;
+				case 4:
+					$parameters['priceBegin']=50;
+					$parameters['priceEnd']=99.99;
+				break;
+				case 5:
+					$parameters['priceBegin']=100;
+					$parameters['priceEnd']=249.00;
+				break;
+				case 6:
+					$parameters['priceBegin']=250;
+				break;
+			}
+		}
 		$products=$this->commongetdata->getProductsAdvance($parameters);
 		foreach ($products as $key => $value) {
 			$value->merchant=$this->commongetdata->getContent('user',$value->product_merchant);

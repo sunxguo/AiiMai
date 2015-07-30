@@ -1054,3 +1054,6 @@ function postReview(productId){
 	review.content = $("#newReviewContent").val();
 	dataHandler("add","comment",review,successRefresh,null,null,null,true);
 }
+function orderProducts(){
+	location.href="/home/search?keywords="+$("#keywords").val()+"&viewStyle="+$("#viewStyle").val()+"&sortBy="+$("#sortBy").val()+"&priceRange="+$("#priceRange").val();
+}

@@ -335,7 +335,7 @@
 			</div>
 			-->
 			<div class="km-panel km-panel-primary" style="width: 98%;margin-top:20px;">
-				<div class="km-panel-heading">Photo Review (<?php echo sizeof($comments['data']);?>)</div>
+				<div class="km-panel-heading">Review (<?php echo sizeof($comments['data']);?>)</div>
 				<div class="km-panel-body" style="padding:0px;">
 					<table class="km-table">
 						<tbody>
@@ -345,7 +345,7 @@
 							<td class="value" style="width:86px;">
 								<img src="/assets/images/home/fp<?php echo $key+1;?>.jpg" style="width:86px;height:86px;">
 							</td>
-							<td class="value" style="width:650px;text-align:left;">
+							<td class="value" style="width:620px;text-align:left;">
 								<ul>
 									<li class="comment-list-title">
 										<?php echo $comment->comment_title;?>
@@ -362,6 +362,7 @@
 								<ul>
 									<li class="comment-list-time">
 										<?php echo $comment->comment_time;?>
+										<span style="margin-left: 10px;"><?php echo mb_substr($comment->user->user_username, 0 , 3).'******';?></span>
 									</li>
 									<li class="comment-list-rating">
 										<?php echo $comment->comment_star;?>
@@ -407,6 +408,20 @@
 			<img src="http://static.image-gmkt.com/qoo10/front/en/goods/image/img_gsPolicy02.gif">
 			<img src="http://static.image-gmkt.com/qoo10/front/en/goods/image/img_gsPolicy03.gif">
 			<img src="http://static.image-gmkt.com/qoo10/front/en/goods/image/img_gsPolicy04.gif">
+		</div>
+		<div class="km-panel km-panel-primary" style="width: 98%;margin-top:20px;">
+			<div class="km-panel-heading">Other Related Products</div>
+			<div class="km-panel-body" style="padding:0px;">
+				<ul style="height:216px;width:100000px;overflow:hidden;">
+					  <?php echo sizeof($relatedProducts)<1?'No Related Products':'';?>
+					  <?php foreach($relatedProducts as $key=>$pro):?>
+					  <li style="float:left;width:225px;margin-right:20px;">
+					  	<img src="<?php echo $pro->product_image;?>" width="200" height="200">
+					  	<?php echo $pro->product_item_title_english;?>
+					  </li>
+					  <?php endforeach;?>
+				</ul>
+			</div>
 		</div>
 	</div>
 </div>
