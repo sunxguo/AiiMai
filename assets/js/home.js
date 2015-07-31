@@ -75,6 +75,9 @@ $(document).ready(function(){
 		$(this).prev().animate({'margin-left':destMl+'px'});
 	});
 });
+function setProductImage(src){
+	$("#showProductImage").attr('src',src);
+}
 function checkPwd(){
 	var length = $("#password").val().length;
 	if(length<6 || length>25){	//3-15个字符

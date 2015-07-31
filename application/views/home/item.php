@@ -112,47 +112,44 @@
 		<!-- 왼쪽 상품이미지 영역 -->
         <div class="goods_img">
 		<div id="div_Default_Image">
-			<div class="banner thumb">
+			<div class="thumb">
 				<ul style="position:relative;">
 					<li>
 						<a title="<?php echo $item->product_item_title_english;?>">
-							<img src="<?php echo $item->product_image;?>" width="400" height="400">
+							<img id="showProductImage" src="<?php echo $item->product_image;?>" width="400" height="400">
 						</a>
 					</li>
-					<?php if(isset($item->product_image_s1)):?>
-					<li>
-						<a title="<?php echo $item->product_item_title_english;?>">
-							<img src="<?php echo $item->product_image_s1;?>" width="400" height="400">
-						</a>
-					</li>
-					<?php endif;?>
-					<?php if(isset($item->product_image_s2)):?>
-					<li>
-						<a title="<?php echo $item->product_item_title_english;?>">
-							<img src="<?php echo $item->product_image_s2;?>" width="400" height="400">
-						</a>
-					</li>
-					<?php endif;?>
-					<?php if(isset($item->product_image_s3)):?>
-					<li>
-						<a title="<?php echo $item->product_item_title_english;?>">
-							<img src="<?php echo $item->product_image_s3;?>" width="400" height="400">
-						</a>
-					</li>
-					<?php endif;?>
-					<?php if(isset($item->product_image_s4)):?>
-					<li>
-						<a title="<?php echo $item->product_item_title_english;?>">
-							<img src="<?php echo $item->product_image_s4;?>" width="400" height="400">
-						</a>
-					</li>
-					<?php endif;?>
+					
 				</ul>
 				<!--
 				<a id="GoodsImageurl" onclick="ViewEnlargedImage('424457714');"><img id="GoodsImage" alt="<?php echo $item->product_item_title_english;?>" src="<?php echo $item->product_image;?>" width="400" height="400" onerror="javascript:this.src='/gmkt.inc/Img/no_image.gif'" style="height: 400px; width: 400px; position: absolute; left: 0px; top: 0px;"></a><div class="ly_opt_clicked" id="Img_option_title" style="display:none;"></div>
 				-->
 			</div>
-			
+			<ul id="newThumb" class="new-thumb clearfix">
+				<li>
+					<img src="<?php echo $item->product_image;?>" onclick="setProductImage('<?php echo $item->product_image;?>')">
+				</li>
+				<?php if(isset($item->product_image_s1) && $item->product_image_s1!=''):?>
+				<li>
+					<img src="<?php echo $item->product_image_s1;?>" onclick="setProductImage('<?php echo $item->product_image_s1;?>')">
+				</li>
+				<?php endif;?>
+				<?php if(isset($item->product_image_s2) && $item->product_image_s2!=''):?>
+				<li>
+					<img src="<?php echo $item->product_image_s2;?>" onclick="setProductImage('<?php echo $item->product_image_s2;?>')">
+				</li>
+				<?php endif;?>
+				<?php if(isset($item->product_image_s3) && $item->product_image_s3!=''):?>
+				<li>
+					<img src="<?php echo $item->product_image_s3;?>" onclick="setProductImage('<?php echo $item->product_image_s3;?>')">
+				</li>
+				<?php endif;?>
+				<?php if(isset($item->product_image_s4) && $item->product_image_s4!=''):?>
+				<li>
+					<img src="<?php echo $item->product_image_s4;?>" onclick="setProductImage('<?php echo $item->product_image_s4;?>')">
+				</li>
+				<?php endif;?>
+			</ul>
 			<div class="fctn_area">
 				
 				<div class="fctn">
@@ -420,7 +417,7 @@
 					  	<a href="/home/item?itemId=<?php echo $pro->product_id;?>">
 					  		<img src="<?php echo $pro->product_image;?>" width="175" height="175">
 					  	</a>
-					  	<p>
+					  	<p style="text-overflow:ellipsis; white-space:nowrap; overflow:hidden; ">
 					  		<a href="/home/item?itemId=<?php echo $pro->product_id;?>">
 					  			<?php echo $pro->product_item_title_english;?>
 					  		</a>
@@ -431,6 +428,34 @@
 					  <?php endforeach;?>
 				</ul>
 				<div class="btn-next" style="left:928px;"><img src="/assets/images/home/next.png"></div>
+			</div>
+		</div>
+		<div class="km-panel km-panel-primary main-floor" style="width: 98%;margin-top:20px;">
+			<div class="km-panel-heading">Recently Viewed</div>
+			<div class="km-panel-body" style="padding:0px;">
+				<!--
+				<div class="btn-prev"><img src="/assets/images/home/prev.png"></div>
+				-->
+				<ul id="recentlyViewedProducts" style="height:226px;width:100000px;overflow:hidden;">
+					  <?php echo sizeof($recentlyViewedProducts)<1?'No Related Products':'';?>
+					  <?php foreach($recentlyViewedProducts as $key=>$pro):?>
+					  <li style="float:left;width:175px;margin-right:21px;">
+					  	<a href="/home/item?itemId=<?php echo $pro->product_id;?>">
+					  		<img src="<?php echo $pro->product_image;?>" width="175" height="175">
+					  	</a>
+					  	<p style="text-overflow:ellipsis; white-space:nowrap; overflow:hidden; ">
+					  		<a href="/home/item?itemId=<?php echo $pro->product_id;?>">
+					  			<?php echo $pro->product_item_title_english;?>
+					  		</a>
+					  	</p>
+					  	<p style="color: #4c4849;text-decoration: line-through;">SGD <?php echo $pro->product_reference_price;?></p>
+					  	<p style="color: #d4232b;font-weight: bold;font-size: 14px;">SGD <?php echo $pro->product_sell_price;?></p>
+					  </li>
+					  <?php endforeach;?>
+				</ul>
+				<!--
+				<div class="btn-next" style="left:928px;"><img src="/assets/images/home/next.png"></div>
+				-->
 			</div>
 		</div>
 	</div>

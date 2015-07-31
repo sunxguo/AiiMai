@@ -197,6 +197,16 @@ class Home extends CI_Controller {
 			if($option->product_option_3!='' && (!isset($optionArray[2]) || !in_array($option->product_option_3,$optionArray[2])))
 				$optionArray[2][]=$option->product_option_3;
 		}
+		//设置浏览记录
+		$recentlyViewedProducts=isset($_COOKIE['recentlyViewedProducts'])?json_decode($_COOKIE['recentlyViewedProducts']):array();
+		if(!in_array($_GET['itemId'],$recentlyViewedProducts)){
+			array_unshift($recentlyViewedProducts,$_GET['itemId']);
+		}
+		setcookie('recentlyViewedProducts',json_encode($recentlyViewedProducts));
+		$recentlyViewedProductsArray=array();
+		foreach ($recentlyViewedProducts as $value) {
+			$recentlyViewedProductsArray[]=$this->commongetdata->getContent('product',$value);
+		}
 		$data=array(
 			"categories"=>$this->commongetdata->getCategories(false),
 			"categoriesIndex"=>$this->commongetdata->getCategories(true),
@@ -213,7 +223,8 @@ class Home extends CI_Controller {
 			"hotItems"=>$this->commongetdata->getFocusItems($item->product_merchant),
 			"follow"=>isset($_SESSION['userid'])?$this->commongetdata->getFollow($item->product_merchant,$_SESSION['userid']):false,
 			"followNo"=>$this->commongetdata->getFollowNo($item->product_merchant),
-			"relatedProducts"=>$this->commongetdata->getRelatedProducts($_GET['itemId'],20)
+			"relatedProducts"=>$this->commongetdata->getRelatedProducts($_GET['itemId'],20),
+			"recentlyViewedProducts"=>$recentlyViewedProductsArray
 		);
 		$this->homeBaseHandler($item->product_item_title_english,'item',$data);
 	}

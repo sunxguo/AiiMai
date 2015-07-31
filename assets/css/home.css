@@ -3617,3 +3617,15 @@ background: none;
 	color:#EF5276;
 	margin-top: 10px;
 }
+.new-thumb{
+	margin-top:10px;
+}
+.new-thumb li{
+	float: left;
+	margin-left:5px;
+	cursor: pointer;
+}
+.new-thumb li img{
+	width:75px;
+	height:75px;
+}
