@@ -409,18 +409,28 @@
 			<img src="http://static.image-gmkt.com/qoo10/front/en/goods/image/img_gsPolicy03.gif">
 			<img src="http://static.image-gmkt.com/qoo10/front/en/goods/image/img_gsPolicy04.gif">
 		</div>
-		<div class="km-panel km-panel-primary" style="width: 98%;margin-top:20px;">
+		<div class="km-panel km-panel-primary main-floor" style="width: 98%;margin-top:20px;">
 			<div class="km-panel-heading">Other Related Products</div>
 			<div class="km-panel-body" style="padding:0px;">
-				<ul style="height:216px;width:100000px;overflow:hidden;">
+				<div class="btn-prev"><img src="/assets/images/home/prev.png"></div>
+				<ul id="relatedProducts" style="height:226px;width:100000px;overflow:hidden;">
 					  <?php echo sizeof($relatedProducts)<1?'No Related Products':'';?>
 					  <?php foreach($relatedProducts as $key=>$pro):?>
-					  <li style="float:left;width:225px;margin-right:20px;">
-					  	<img src="<?php echo $pro->product_image;?>" width="200" height="200">
-					  	<?php echo $pro->product_item_title_english;?>
+					  <li style="float:left;width:175px;margin-right:21px;">
+					  	<a href="/home/item?itemId=<?php echo $pro->product_id;?>">
+					  		<img src="<?php echo $pro->product_image;?>" width="175" height="175">
+					  	</a>
+					  	<p>
+					  		<a href="/home/item?itemId=<?php echo $pro->product_id;?>">
+					  			<?php echo $pro->product_item_title_english;?>
+					  		</a>
+					  	</p>
+					  	<p style="color: #4c4849;text-decoration: line-through;">SGD <?php echo $pro->product_reference_price;?></p>
+					  	<p style="color: #d4232b;font-weight: bold;font-size: 14px;">SGD <?php echo $pro->product_sell_price;?></p>
 					  </li>
 					  <?php endforeach;?>
 				</ul>
+				<div class="btn-next" style="left:928px;"><img src="/assets/images/home/next.png"></div>
 			</div>
 		</div>
 	</div>

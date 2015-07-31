@@ -78,7 +78,7 @@
 				</label>
 			</div>
 		</h4>
-		<?php if(!isset($_GET['viewStyle']) || isset($_GET['viewStyle']) && $_GET['viewStyle']=='Grid'):?>"
+		<?php if(!isset($_GET['viewStyle']) || isset($_GET['viewStyle']) && $_GET['viewStyle']=='Grid'):?>
 		<ul class="itemsList clearfix">
 			<?php foreach($products as $item):?>
 			<li class="product bd_glr3" style="float:left;">

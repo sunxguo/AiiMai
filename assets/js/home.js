@@ -27,6 +27,10 @@ $(document).ready(function(){
 		destObj.html($("#bestDiscounts"+$(this).index()).html());
 		destObj.css('margin-left',"0px");
 	});
+	$("#relatedProducts").hover(function(){
+		$(".btn-prev").show();
+		$(".btn-next").show();
+	});
 	$("#recommendedShops").html($("#recommendedShops0").html());
 	$("#recommendedShopsCats li").hover(function(){
 		$(this).siblings().removeClass("active");
@@ -511,7 +515,7 @@ function sellerInformation(){
 	if(true){
 		var merchantInfoStep3 = new Object();
 		merchantInfoStep3.bank = $("#bank").val();
-		merchantInfoStep3.bankBranch = $("#bankBranch").val();
+//		merchantInfoStep3.bankBranch = $("#bankBranch").val();
 		merchantInfoStep3.accountNumber = $("#accountNumber").val();
 		merchantInfoStep3.GSTName = $("#GSTName").val();
 		merchantInfoStep3.GSTRegistrationNo = $("#GSTRegistrationNo").val();
