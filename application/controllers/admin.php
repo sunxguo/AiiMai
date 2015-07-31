@@ -186,9 +186,16 @@ class Admin extends CI_Controller {
 	}
 	public function modifyMerchant(){
 		$merchant=$this->commongetdata->getContent('user',$_GET['merchantId']);
+		$bankList=$this->commongetdata->getData(array(
+				'table'=>'bank',
+				'result'=>'data',
+				'where'=>array('bank_valid'=>1),
+				'order_by'=>array('bank_order'=>'ASC'))
+		);
 		$data=array(
 //			"categories"=>$this->commongetdata->getCategories(false),
 			"merchant"=>$merchant,
+			"bankList"=>$bankList
 //			"subCatList"=>$this->commongetdata->getSubCat($merchant->product_category),
 //			"subSubCatList"=>$this->commongetdata->getSubCat($merchant->product_sub_category),
 		);

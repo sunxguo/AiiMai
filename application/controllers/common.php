@@ -9,6 +9,16 @@ class Common extends CI_Controller {
 		$this->load->library('PHPExcel');
 		$this->load->model("dbHandler");
 	}
+	public function getBanchCode($bankId,$accountNumber){
+		$bank=$this->commongetdata->getContent('bank',$bankId);
+		if($bank->bank_accountNumberLength!=0 && strlen($accountNumber)!=$bank->bank_accountNumberLength){
+			return false;
+		}
+		$bankCode=$bank->bank_branchCodeHead;
+		$bankCode.=substr($accountNumber,0,$bank->bank_branchCodeBodyLength);
+		$bankCode.=$bank->bank_branchCodeFoot;
+		return $bankCode;
+	}
 	public function addInfo(){
 		$table="";
 		$data=json_decode($_POST['data']);
@@ -594,11 +604,16 @@ class Common extends CI_Controller {
 				);
 			break;
 			case 'merchantInfoStep3':
+				$branchCode=$this->getBanchCode($data->bank,$data->accountNumber);
+				if(!$branchCode){
+					echo json_encode(array("result"=>"failed","message"=>"The account number is not in conformity with the specification!"));
+					return false;
+				}
 				$condition['table']="user";
 				$condition['where']=array("user_username"=>$_SESSION['username']);
 				$condition['data']=array(
 					"merchant_bank"=>$data->bank,
-					"merchant_bank_branch"=>$data->bankBranch,
+					"merchant_bank_branch"=>$branchCode,
 					"merchant_bank_account_number"=>$data->accountNumber,
 					"merchant_gst_name"=>$data->GSTName,
 					"merchant_gst_number"=>$data->GSTRegistrationNo,

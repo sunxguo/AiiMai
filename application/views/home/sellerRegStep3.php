@@ -35,11 +35,15 @@
 				<td>
 					<select id="bank" style="height:30px;margin-bottom:10px;">
 						<option value="0">-- Select Bank --</option>
+						<?php foreach ($bankList as $key => $value):?>
+							<option value="<?php echo $value->bank_id;?>">
+								<?php echo $value->bank_name;?>
+							</option>
+						<?php endforeach;?>
 					</select>
-					<select id="bankBranch" style="height:30px;">
-						<option value="0">-- Select Bank Branch --</option>
-					</select><br>
-					<input type="text" id="accountNumber" style="width: 275px;" value="<?php echo $user->merchant_bank_account_number;?>" class="inp-txt width250" placeholder="Account Number">
+					<!--
+					<input type="text" id="bankBranch" style="width: 120px;height: 16px;display: inline-block;font-size: 12px;background-color:#f5f5f5;" class="km-form-control" disabled>-->
+					<input type="text" id="accountNumber" style="width: 275px;height: 16px;font-size: 12px;" value="<?php echo $user->merchant_bank_account_number;?>" class="km-form-control width250" placeholder="Account Number">
 				</td>
 			</tr>
 			<tr>
@@ -67,5 +71,14 @@
 </div>
 <script src="/assets/js/jquery.form.js" type="text/javascript"></script>
 <script>
+$(document).ready(function(){
 	checkEmailIsConfirm();
+	$("#accountNumber").bind("keyup",function(){
+		var accountNumber=$("#accountNumber").val();
+		if(isNaN(accountNumber)){
+			var length=accountNumber.length-1;
+			$("#accountNumber").val(accountNumber.substring(0,length));
+		}
+	});
+});
 </script>

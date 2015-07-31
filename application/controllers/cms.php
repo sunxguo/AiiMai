@@ -143,7 +143,13 @@ class Cms extends CI_Controller {
 	}
 	public function sellerRegStep3(){
 		if(!$this->checkMerchantSimpleLogin()) return false;
-		$data=array();
+		$bankList=$this->commongetdata->getData(array(
+				'table'=>'bank',
+				'result'=>'data',
+				'where'=>array('bank_valid'=>1),
+				'order_by'=>array('bank_order'=>'ASC'))
+		);
+		$data=array('bankList'=>$bankList);
 		$this->load->view('home/header',
 			array(
 				'title' => "Seller Information-AiiMai",
@@ -181,9 +187,16 @@ class Cms extends CI_Controller {
 	}
 	public function myInfo(){
 		if(!$this->checkMerchantSimpleLogin()) return false;
+		$bankList=$this->commongetdata->getData(array(
+				'table'=>'bank',
+				'result'=>'data',
+				'where'=>array('bank_valid'=>1),
+				'order_by'=>array('bank_order'=>'ASC'))
+		);
 		$data=array(
 			"merchant"=>$this->commongetdata->getContent('user',$_SESSION['userid']),
-			"shipAddress"=>$this->commongetdata->getContentAdvance('address',array("address_type"=>1,"address_userid"=>$_SESSION['userid']))
+			"shipAddress"=>$this->commongetdata->getContentAdvance('address',array("address_type"=>1,"address_userid"=>$_SESSION['userid'])),
+			"bankList"=>$bankList
 		);
 		$this->cmsBaseHandler('My Info',array('baseInfo'=>true,'myInfo'=>true),'myInfo',$data);
 	}
