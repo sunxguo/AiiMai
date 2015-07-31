@@ -205,7 +205,7 @@ function redirect(){
 	alert(productSuccessMsg);
 	location.href="/cms/goodsStatistics";
 }
-function orderProduct('itemTitle'){
+function orderProduct(){
 	var product = new Object();
 	product.MainCategory = $("#MainCategory").val();
 	product.stSubCategory = $("#stSubCategory").val();
