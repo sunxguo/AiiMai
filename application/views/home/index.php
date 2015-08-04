@@ -145,13 +145,9 @@
 		<div class="floor-header-title fl"><a href="" class="themeA">Top Sales Products</a></div>
 		<ul class="floor-header-categories fr" id="topSaleCats">
 			<li class="active"><a href="">All</a></li>
-			<li><a href="" class="active">Fashion</a></li>
-			<li><a href="">Electronics</a></li>
-			<li><a href="">Home & Living</a></li>
-			<li><a href="">Health & Beauty</a></li>
-			<li><a href="">Sports & Outdoor</a></li>
-			<li><a href="">Baby & Kids</a></li>
-			<li><a href="">Deals & Services</a></li>
+			<?php foreach ($categories as $key => $value):?>
+			<li><a href=""><?php echo $value->category_name;?></a></li>
+			<?php endforeach;?>
 		</ul>
 	</div>
 	<div class="btn-prev"><img src="/assets/images/home/prev.png"></div>
@@ -186,13 +182,9 @@
 		<div class="floor-header-title fl"><a href="" class="themeA">Best Discounts</a></div>
 		<ul class="floor-header-categories fr" id="bestDiscountsCats">
 			<li class="active"><a href="">All</a></li>
-			<li><a href="" class="active">Fashion</a></li>
-			<li><a href="">Electronics</a></li>
-			<li><a href="">Home & Living</a></li>
-			<li><a href="">Health & Beauty</a></li>
-			<li><a href="">Sports & Outdoor</a></li>
-			<li><a href="">Baby & Kids</a></li>
-			<li><a href="">Deals & Services</a></li>
+			<?php foreach ($categories as $key => $value):?>
+			<li><a href=""><?php echo $value->category_name;?></a></li>
+			<?php endforeach;?>
 		</ul>
 	</div>
 	<ul class="floor-body p-style2 clearfix" id="bestDiscounts">
@@ -233,13 +225,9 @@
 		<div class="floor-header-title fl"><a href="" class="themeA">Recommended Shops</a></div>
 		<ul class="floor-header-categories fr" id="recommendedShopsCats">
 			<li class="active"><a href="">All</a></li>
-			<li><a href="" class="active">Fashion</a></li>
-			<li><a href="">Electronics</a></li>
-			<li><a href="">Home & Living</a></li>
-			<li><a href="">Health & Beauty</a></li>
-			<li><a href="">Sports & Outdoor</a></li>
-			<li><a href="">Baby & Kids</a></li>
-			<li><a href="">Deals & Services</a></li>
+			<?php foreach ($categories as $key => $value):?>
+			<li><a href=""><?php echo $value->category_name;?></a></li>
+			<?php endforeach;?>
 		</ul>
 	</div>
 	<div class="btn-prev recommendedShopsBtn"><img src="/assets/images/home/prev.png"></div>
