@@ -633,8 +633,8 @@ class CommonGetData{
 		}else{
 			$parameters=array(
 				'result' => 'data' ,
-				'limit'=>$number-sizeof($allProducts),
-				'offset'=>0,
+//				'limit'=>$number-sizeof($allProducts),
+//				'offset'=>0,
 				'status'=>3,
 				'orderBy'=> array('product_view_count'=>'desc')
 			);

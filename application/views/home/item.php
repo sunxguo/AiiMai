@@ -112,22 +112,52 @@
 		<!-- 왼쪽 상품이미지 영역 -->
         <div class="goods_img">
 		<div id="div_Default_Image" style="position:relative;">
+			<!--
 			<div class="thumb">
 				<ul>
 					<li>
 						<a title="<?php echo $item->product_item_title_english;?>" style="position:relative;">
 							<img id="showProductImage" src="<?php echo $item->product_image;?>" width="400" height="400">
-							<div id="hoverDiv"></div>
 						</a>
 					</li>
 				</ul>
 				<!--
 				<a id="GoodsImageurl" onclick="ViewEnlargedImage('424457714');"><img id="GoodsImage" alt="<?php echo $item->product_item_title_english;?>" src="<?php echo $item->product_image;?>" width="400" height="400" onerror="javascript:this.src='/gmkt.inc/Img/no_image.gif'" style="height: 400px; width: 400px; position: absolute; left: 0px; top: 0px;"></a><div class="ly_opt_clicked" id="Img_option_title" style="display:none;"></div>
 				-->
+				<!--
 			</div>
-			<div id="zoomImageDiv">
-
-			</div>
+			-->
+			<ul id="etalage">
+				<li>
+					<img class="etalage_thumb_image" src="<?php echo $item->product_image;?>" />
+					<img class="etalage_source_image" src="<?php echo $item->product_image;?>" />
+				</li>
+				<?php if(isset($item->product_image_s1) && $item->product_image_s1!=''):?>
+				<li>
+					<img class="etalage_thumb_image" src="<?php echo $item->product_image_s1;?>" />
+					<img class="etalage_source_image" src="<?php echo $item->product_image_s1;?>" />
+				</li>
+				<?php endif;?>
+				<?php if(isset($item->product_image_s2) && $item->product_image_s2!=''):?>
+				<li>
+					<img class="etalage_thumb_image" src="<?php echo $item->product_image_s2;?>" />
+					<img class="etalage_source_image" src="<?php echo $item->product_image_s2;?>" />
+				</li>
+				<?php endif;?>
+				<?php if(isset($item->product_image_s3) && $item->product_image_s3!=''):?>
+				<li>
+					<img class="etalage_thumb_image" src="<?php echo $item->product_image_s3;?>" />
+					<img class="etalage_source_image" src="<?php echo $item->product_image_s3;?>" />
+				</li>
+				<?php endif;?>
+				<?php if(isset($item->product_image_s4) && $item->product_image_s4!=''):?>
+				<li>
+					<img class="etalage_thumb_image" src="<?php echo $item->product_image_s4;?>" />
+					<img class="etalage_source_image" src="<?php echo $item->product_image_s4;?>" />
+				</li>
+				<?php endif;?>
+			</ul>
+			<!--
 			<ul id="newThumb" class="new-thumb clearfix">
 				<li>
 					<img src="<?php echo $item->product_image;?>" onclick="setProductImage('<?php echo $item->product_image;?>')">
@@ -153,6 +183,7 @@
 				</li>
 				<?php endif;?>
 			</ul>
+			-->
 			<div class="fctn_area">
 				
 				<div class="fctn">
@@ -484,10 +515,15 @@
 		</div>
 	</div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
+<link rel="stylesheet" href="/assets/css/etalage.css" type="text/css"/>
+<link rel="stylesheet" href="/assets/css/example3.css" type="text/css"/>
+
 <script src="/assets/js/unslider.min.js"></script>
 <script src="/assets/js/jquery.etalage.min.js"></script>
+
 <script>
 $(function() {
+	/*
     $('.banner').unslider({
 //		speed: 500,               //  The speed to animate each slide (in milliseconds)
 //		delay: 3000,              //  The delay between slide animations (in milliseconds)
@@ -495,19 +531,17 @@ $(function() {
 //		keys: true,               //  Enable keyboard (left, right) arrow shortcuts
 		dots: true,               //  Display dot navigation
 //		fluid: false              //  Support responsive design. May break non-responsive designs
-	});
-	$("#showProductImage").mouseenter(function(e){
-		
-		$("#hoverDiv").show();
-	});
-	$("#showProductImage").mouseleave(function(){
-		$("#hoverDiv").hide();
+	});*/
+	$('#etalage').etalage({
+		thumb_image_width: 400,
+		thumb_image_height: 400,
+		source_image_width: 1200,
+		source_image_height: 1200,
+		show_hint: true,
+		click_callback: function(image_anchor, instance_id){
+			alert('回调函数:\nYou clicked on an image with the anchor: "'+image_anchor+'"\n(in Etalage instance: "'+instance_id+'")');
+		}
 	});
 
-	$("#hoverDiv").mousemove(function(e){
-		var X = $('#showProductImage').offset().top;
-		var Y = $('#showProductImage').offset().left;
-		$("#hoverDiv").css({"left":e.pageX-X+120,"top":e.pageY-Y-230});
-	});
 });
 </script>

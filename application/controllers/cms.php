@@ -9,14 +9,14 @@ class Cms extends CI_Controller {
 		$this->load->model("dbHandler");
 	}
 	public function checkMerchantSimpleLogin(){
-		if (!checkLogin()) {
+		if (!checkLogin() || !isset($_SESSION["usertype"]) || strcmp($_SESSION["usertype"],"merchant")) {
 			$this->load->view('redirect',array("url"=>"/cms/login","info"=>"Please login merchant account!"));
 			return false;
 		}else return true;
 	}
 	public function checkMerchantLogin(){
 		// || strcmp($_SESSION["usertype"], "merchant")
-		if (!checkLogin()) {
+		if (!checkLogin() || !isset($_SESSION["usertype"]) || strcmp($_SESSION["usertype"],"merchant")) {
 			$this->load->view('redirect',array("url"=>"/cms/login","info"=>"Please login merchant account!"));
 			return false;
 		}else{
@@ -65,7 +65,7 @@ class Cms extends CI_Controller {
 				if($post_pwd==$db_pwd){
 					$_SESSION['username']=$info[0]->user_username;
 					$_SESSION['userid']=$info[0]->user_id;
-//					$_SESSION['usertype']="merchant";
+					$_SESSION['usertype']="merchant";
 					$_SESSION['userEmail']=$info[0]->user_email;
 					//状态：0：注册完成但没有完善信息 1：完善信息等待审核 2：审核通过 3：审核不通过
 					switch($info[0]->merchant_status){
