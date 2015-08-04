@@ -618,11 +618,16 @@ class CommonGetData{
 			'result' => 'data' ,
 			'orderBy'=> array('product_sold_count'=>'desc')
 		);
+		$allProductsTemp=array();
 		$allProducts=array();
 		foreach ($likeArray as $value) {
 			$parameters['like']=array('product_item_title_english' =>$value);
-			$allProducts=array_merge($allProducts,$this->getProductsAdvance($parameters));
+			$allProductsTemp=array_merge($allProductsTemp,$this->getProductsAdvance($parameters));
 		}
+		foreach ($allProductsTemp as $value) {
+			$allProducts[$value->product_id]=$value;
+		}
+		$allProductsTemp=array();
 		if(sizeof($allProducts)>=$number){
 			$allProducts=array_slice($allProducts, 0, $number);
 		}else{
@@ -630,9 +635,13 @@ class CommonGetData{
 				'result' => 'data' ,
 				'limit'=>$number-sizeof($allProducts),
 				'offset'=>0,
+				'status'=>3,
 				'orderBy'=> array('product_view_count'=>'desc')
 			);
-			$allProducts=array_merge($allProducts,$this->getProductsAdvance($parameters));
+			$allProductsTemp=$this->getProductsAdvance($parameters);
+		}
+		foreach ($allProductsTemp as $value) {
+			$allProducts[$value->product_id]=$value;
 		}
 		return $allProducts;
 	}

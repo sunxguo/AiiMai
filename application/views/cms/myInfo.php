@@ -366,16 +366,28 @@
 				  <tr>
 					<td class="field width20p">Bank Details</td>
 					<td class="value bl1" colspan="3">
+						<!--
 						<select id="bank" style="height:30px;margin-bottom:10px;">
 							<option value="0">-- Select Bank --</option>
 							<?php foreach ($bankList as $key => $value):?>
-								<option value="<?php echo $value->bank_id;?>" <?php echo $value->bank_id==$merchant->merchant_bank?'selected':'';?>>
+								<option value="<?php echo $value->bank_id;?>" 
+									<?php 
+									if($value->bank_id==$merchant->merchant_bank){
+										$currentBank=$value;
+										echo 'selected';
+									}?>
+								>
 									<?php echo $value->bank_name;?>
 								</option>
 							<?php endforeach;?>
 						</select>
 						<input type="text" id="bankBranch" value="<?php echo $merchant->merchant_bank_branch;?>" style="width: 120px;height: 16px;display: inline-block;font-size: 12px;background-color:#f5f5f5;" class="km-form-control" disabled>
 						<input type="text" id="accountNumber" style="width: 275px;vertical-align: top;" value="<?php echo $merchant->merchant_bank_account_number;?>" class="inp-txt width250" placeholder="Account Number">
+						-->
+						<span class="km-label km-label-default" style="display:inline-block;">Bank Code</span> : <?php echo $currentBank->bank_code;?>
+						<span class="km-label km-label-default" style="margin-left:15px;display:inline-block;">Bank Name</span> : <?php echo $currentBank->bank_name;?>
+						<span class="km-label km-label-default" style="margin-left:15px;display:inline-block;">Branch Code</span> : <?php echo $merchant->merchant_bank_branch;?>
+						<span class="km-label km-label-default" style="margin-left:15px;display:inline-block;">Account Number</span> : <?php echo $merchant->merchant_bank_account_number;?>
 					</td>
 				  </tr>
 				  <tr>
@@ -423,9 +435,9 @@ function saveSellerInfo(){
 	merchant.salesStaffMobilePhone3 = $("#salesStaffMobilePhone3").val();
 	merchant.businessLicense = $("#businessLicenseImage").attr('src');
 	merchant.bankAccount = $("#bankAccountImage").attr('src');
-	merchant.bank = $("#bank").val();
-	merchant.bankBranch = $("#bankBranch").val();
-	merchant.accountNumber = $("#accountNumber").val();
+//	merchant.bank = $("#bank").val();
+//	merchant.bankBranch = $("#bankBranch").val();
+//	merchant.accountNumber = $("#accountNumber").val();
 	merchant.GSTName = $("#GSTName").val();
 	merchant.GSTRegistrationNo = $("#GSTRegistrationNo").val();
 	merchant.GSTAddress = $("#GSTAddress").val();

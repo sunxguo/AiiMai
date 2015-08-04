@@ -111,19 +111,22 @@
 <div class="goods_info clearfix">
 		<!-- 왼쪽 상품이미지 영역 -->
         <div class="goods_img">
-		<div id="div_Default_Image">
+		<div id="div_Default_Image" style="position:relative;">
 			<div class="thumb">
-				<ul style="position:relative;">
+				<ul>
 					<li>
-						<a title="<?php echo $item->product_item_title_english;?>">
+						<a title="<?php echo $item->product_item_title_english;?>" style="position:relative;">
 							<img id="showProductImage" src="<?php echo $item->product_image;?>" width="400" height="400">
+							<div id="hoverDiv"></div>
 						</a>
 					</li>
-					
 				</ul>
 				<!--
 				<a id="GoodsImageurl" onclick="ViewEnlargedImage('424457714');"><img id="GoodsImage" alt="<?php echo $item->product_item_title_english;?>" src="<?php echo $item->product_image;?>" width="400" height="400" onerror="javascript:this.src='/gmkt.inc/Img/no_image.gif'" style="height: 400px; width: 400px; position: absolute; left: 0px; top: 0px;"></a><div class="ly_opt_clicked" id="Img_option_title" style="display:none;"></div>
 				-->
+			</div>
+			<div id="zoomImageDiv">
+
 			</div>
 			<ul id="newThumb" class="new-thumb clearfix">
 				<li>
@@ -482,6 +485,7 @@
 	</div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
 <script src="/assets/js/unslider.min.js"></script>
+<script src="/assets/js/jquery.etalage.min.js"></script>
 <script>
 $(function() {
     $('.banner').unslider({
@@ -491,6 +495,19 @@ $(function() {
 //		keys: true,               //  Enable keyboard (left, right) arrow shortcuts
 		dots: true,               //  Display dot navigation
 //		fluid: false              //  Support responsive design. May break non-responsive designs
+	});
+	$("#showProductImage").mouseenter(function(e){
+		
+		$("#hoverDiv").show();
+	});
+	$("#showProductImage").mouseleave(function(){
+		$("#hoverDiv").hide();
+	});
+
+	$("#hoverDiv").mousemove(function(e){
+		var X = $('#showProductImage').offset().top;
+		var Y = $('#showProductImage').offset().left;
+		$("#hoverDiv").css({"left":e.pageX-X+120,"top":e.pageY-Y-230});
 	});
 });
 </script>

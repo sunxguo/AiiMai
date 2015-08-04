@@ -3629,3 +3629,13 @@ background: none;
 	width:75px;
 	height:75px;
 }
+#hoverDiv{
+	width: 150px;
+	height: 150px;
+	background-color: #f3f3f3;
+	position: absolute;
+	top:0px;
+	left: 0px;
+	border: 1px solid #aaa;
+    opacity: 0.5;
+}

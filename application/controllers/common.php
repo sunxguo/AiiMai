@@ -651,13 +651,23 @@ class Common extends CI_Controller {
 					"merchant_salesStaff_mobilephone3"=>$data->salesStaffMobilePhone3,
 					"merchant_business_license"=>$data->businessLicense,
 					"merchant_bank_account"=>$data->bankAccount,
-					"merchant_bank"=>$data->bank,
-					"merchant_bank_branch"=>$data->bankBranch,
-					"merchant_bank_account_number"=>$data->accountNumber,
+//					"merchant_bank"=>$data->bank,
+//					"merchant_bank_branch"=>$data->bankBranch,
+//					"merchant_bank_account_number"=>$data->accountNumber,
 					"merchant_gst_name"=>$data->GSTName,
 					"merchant_gst_number"=>$data->GSTRegistrationNo,
 					"merchant_gst_address"=>$data->GSTAddress,
 				);
+				if(isset($data->bank)) {
+					$branchCode=$this->getBanchCode($data->bank,$data->accountNumber);
+					if(!$branchCode){
+						echo json_encode(array("result"=>"failed","message"=>"The account number is not in conformity with the specification!"));
+						return false;
+					}
+					$condition['data']["merchant_bank"]=$data->bank;
+					$condition['data']["merchant_bank_branch"]=$branchCode;
+					$condition['data']["merchant_bank_account_number"]=$data->accountNumber;
+				}
 			break;
 			case 'merchantpwd':
 				$condition['table']="user";

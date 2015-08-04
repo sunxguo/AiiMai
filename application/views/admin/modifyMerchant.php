@@ -259,17 +259,25 @@
 				<tbody>
 				  <tr>
 					<td class="field width20p">Bank Details</td>
-					<td class="value bl1" colspan="3">
+					<td class="value bl1 tal" colspan="3">
+						<span class="km-label km-label-default" style="display:inline-block;">Bank Name</span> : 
 						<select id="bank" style="height:30px;margin-bottom:10px;">
 							<option value="0">-- Select Bank --</option>
 							<?php foreach ($bankList as $key => $value):?>
-								<option value="<?php echo $value->bank_id;?>" <?php echo $value->bank_id==$merchant->merchant_bank?'selected':'';?>>
+								<option value="<?php echo $value->bank_id;?>" 
+									<?php 
+									if($value->bank_id==$merchant->merchant_bank){
+										$currentBank=$value;
+										echo 'selected';
+									}?>
+								>
 									<?php echo $value->bank_name;?>
 								</option>
 							<?php endforeach;?>
 						</select>
-						<input type="text" id="bankBranch" value="<?php echo $merchant->merchant_bank_branch;?>" style="width: 120px;height: 16px;display: inline-block;font-size: 12px;background-color:#f5f5f5;" class="km-form-control" disabled>
-						<input type="text" id="accountNumber" value="<?php echo $merchant->merchant_bank_account_number;?>" style="width: 275px;vertical-align: top;" value="<?php echo $merchant->merchant_bank_account_number;?>" class="inp-txt width250" placeholder="Account Number">
+						<span class="km-label km-label-default" style="display:inline-block;margin-left: 10px;">Bank Code</span> : <?php echo isset($currentBank)?$currentBank->bank_code:'';?> <br>
+						<span class="km-label km-label-default" style="display:inline-block;">Branch Code</span> : <input type="text" id="bankBranch" value="<?php echo $merchant->merchant_bank_branch;?>" style="width: 120px;height: 16px;display: inline-block;font-size: 12px;background-color:#f5f5f5;" class="km-form-control" disabled> <br>
+						<span class="km-label km-label-default" style="display:inline-block;margin-top: 15px;">Account Number</span> : <input type="text" id="accountNumber" value="<?php echo $merchant->merchant_bank_account_number;?>" style="width: 275px;vertical-align: top;margin-top: 10px;" value="<?php echo $merchant->merchant_bank_account_number;?>" class="inp-txt width250" placeholder="Account Number">
 					</td>
 				  </tr>
 				  <tr>
@@ -429,7 +437,7 @@ function saveSellerInfo(){
 	merchant.businessLicense = $("#businessLicenseImage").attr('src');
 	merchant.bankAccount = $("#bankAccountImage").attr('src');
 	merchant.bank = $("#bank").val();
-	merchant.bankBranch = $("#bankBranch").val();
+//	merchant.bankBranch = $("#bankBranch").val();
 	merchant.accountNumber = $("#accountNumber").val();
 	merchant.GSTName = $("#GSTName").val();
 	merchant.GSTRegistrationNo = $("#GSTRegistrationNo").val();
