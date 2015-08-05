@@ -3497,8 +3497,8 @@ background: none;
 	width:100%;
 }
 .shopCategory li{
-	width:15%;
 	float:left;
+	padding: 0 10px;
 	height:30px;
 	line-height:30px;
 	text-align:center;
@@ -3526,6 +3526,17 @@ background: none;
 	-webkit-box-shadow:3px 3px 1px rgb(1,155,253);
 	-moz-box-shadow:3px 3px 1px rgb(1,155,253);
 	box-shadow:3px 3px 1px rgb(1,155,253);
+}
+.subCategory{
+	margin:10px 0;
+}
+.subCategory li{
+	float: left;
+
+}
+.subCategory li a{
+	display: inline-block;
+	width:100%;
 }
 .search .search-shopList li{
 	width:120px;

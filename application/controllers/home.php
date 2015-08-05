@@ -243,7 +243,9 @@ class Home extends CI_Controller {
 			$this->load->view('redirect',array("info"=>"Wrong url!",'url'=>'/home'));
 			return false;
 		}
-		$category=$this->commongetdata->getShopCategory($_GET['shopId']);
+		$category=isset($_GET['category'])?$_GET['category']:'all';
+		$subCategory=$this->commongetdata->getSubCategory($category);
+//		$category=$this->commongetdata->getShopCategory($_GET['shopId']);
 		$data=array(
 			'merchant'=>$merchant,
 			"merchantProductsAmount"=>$this->commongetdata->getProductsAdvance(array(
@@ -259,7 +261,9 @@ class Home extends CI_Controller {
 			"focusItem"=>$this->commongetdata->getFocusItems($_GET['shopId']),
 			"follow"=>isset($_SESSION['userid'])?$this->commongetdata->getFollow($_GET['shopId'],$_SESSION['userid']):false,
 			"followNo"=>$this->commongetdata->getFollowNo($_GET['shopId']),
-			"category"=>$category
+//			"category"=>$category,
+			"allCategories"=>$this->commongetdata->getCategories(false),
+			"subCategory"=>$subCategory
 		);
 		$this->homeBaseHandler('Shop','shop',$data);
 	}

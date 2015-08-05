@@ -73,14 +73,26 @@
 	
 	<?php if($merchant->merchant_shop_itemlist_on):?>
 		<?php if($merchant->merchant_showCategoryGroupBar):?>
-		<ul class="shopCategory clearfix" style="margin:20px 0 10px 0;border-top:2px solid #AAA;padding-top:10px;">
-			<li class="active" style="width:10%;">All</li>
-		<?php foreach($category as $cat):?>
-			<li><?php echo $cat->shopcategory_name;?></li>
+		<ul id="shopCategory" class="shopCategory clearfix" style="margin:20px 0 10px 0;border-top:2px solid #AAA;padding-top:10px;">
+			<li class="<?php echo !isset($_GET['category']) || $_GET['category']=='all'?'active':'';?>" style="padding:0 20px;">
+				<a href="/home/shop?shopId=<?php echo $_GET['shopId'];?>&category=all#shopCategory">All</a>
+			</li>
+		<?php foreach($allCategories as $cat):?>
+			<li class="<?php echo isset($_GET['category']) && $_GET['category']==$cat->category_id?'active':'';?>">
+				<a href="/home/shop?shopId=<?php echo $_GET['shopId'];?>&category=<?php echo $cat->category_id;?>#shopCategory">
+					<?php echo $cat->category_name;?>
+				</a>
+			</li>
 		<?php endforeach;?>
 		</ul>
 		<?php endif;?>
-		
+		<ul class="subCategory clearfix">
+			<?php foreach ($subCategory as $key => $value):?>
+			<li style="padding:0 10px;">
+					<?php echo $value->category_name;?>
+			</li>
+			<?php endforeach;?>
+		</ul>
 		<ul class="items clearfix">
 			<?php foreach($items as $item):?>
 			<li class="product bd_glr3">

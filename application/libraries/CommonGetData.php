@@ -536,6 +536,19 @@ class CommonGetData{
 		$category=$this->getData($condition);
 		return $category;
 	}
+	public function getSubCategory($fcategory){
+		$condition=array(
+			'table'=>'category',
+			'result'=>'data'
+		);
+		if($fcategory=="all"){
+			$condition['where']=array('category_fid !='=>0);
+		}else{
+			$condition['where']=array('category_fid'=>$fcategory);
+		}
+		$category=$this->getData($condition);
+		return $category;
+	}
 	public function getCategoryFeaturedItems($catId){
 		$condition=array(
 			'table'=>'product',
