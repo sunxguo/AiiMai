@@ -183,13 +183,15 @@ class CommonGetData{
 			'where'=>array('category_id'=>$catId)
 		);
 		$category=$this->getOneData($condition);
-		$condition=array(
-			'table'=>'category',
-			'result'=>'data',
-			'where'=>array('category_fid'=>$category->category_id),
-			'order_by'=>array('category_order'=>'ASC')
-		);
-		$category->subCats=$this->CI->dbHandler->selectData($condition);
+		if (isset($category->category_id)) {
+			$condition=array(
+				'table'=>'category',
+				'result'=>'data',
+				'where'=>array('category_fid'=>$category->category_id),
+				'order_by'=>array('category_order'=>'ASC')
+			);
+			$category->subCats=$this->CI->dbHandler->selectData($condition);
+		}
 		return $category;
 	}
 	/**
