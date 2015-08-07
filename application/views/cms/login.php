@@ -22,7 +22,7 @@
 		<div class="login-main-info fl">
 		<form method="post" action="/cms/loginHandler" enctype="multipart/form-data">
 			<div class="login-field">
-				<label>Username</label>
+				<label>Username or Email</label>
 				<div>
 					<input name="username" type="text" class="inp-txt width250" value="<?php echo isset($_GET['username'])?$_GET['username']:'';?>">
 				</div>

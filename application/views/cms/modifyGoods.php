@@ -57,12 +57,14 @@
 				  </tr>
 				  <tr>
 					<td class="field width10p tal br">
-						<?php echo lang('cms_baseInfo_goodsStatistics_SellFormat');?>
+						Listing Type
 					</td>
 					<td class="value tal">
-						<input type="radio" name="salesMode" id="salesMode1" value="1" style="vertical-align: middle;margin-right: 5px;" <?php if($item->product_sell_format==1):?>checked<?php endif;?>><label for="salesMode1"><?php echo lang('cms_baseInfo_goodsStatistics_SellFormat_Buynow');?></label>
-						<input type="radio" name="salesMode" id="salesMode2" value="2" style="vertical-align: middle;margin-right: 5px;" <?php if($item->product_sell_format==2):?>checked<?php endif;?>><label for="salesMode2"><?php echo lang('cms_baseInfo_goodsStatistics_SellFormat_AuctionAndLuckyPrice');?></label>
+						<input type="radio" name="salesMode" id="salesMode1" value="1" style="vertical-align: middle;margin-right: 5px;" <?php if($item->product_sell_format==1):?>checked<?php endif;?>><label for="salesMode1">Standard Sales</label>
+						<input type="radio" name="salesMode" id="salesMode2" value="2" style="vertical-align: middle;margin-right: 5px;" <?php if($item->product_sell_format==2):?>checked<?php endif;?>><label for="salesMode2">Auction (For approved items)</label>
+						<!--
 						<input type="radio" name="salesMode" id="salesMode3" value="3" style="vertical-align: middle;margin-right: 5px;" <?php if($item->product_sell_format==3):?>checked<?php endif;?>><label for="salesMode3"><?php echo lang('cms_baseInfo_goodsStatistics_SellFormat_FreeFormat');?></label>
+						-->
 					</td>
 				  </tr>
 				  <tr>
@@ -113,7 +115,7 @@
 				  </tr>
 				  <tr>
 					<td class="field width10p tal br">
-						<?php echo lang('cms_baseInfo_goodsStatistics_SellerCode');?>
+						Seller’s Item Code
 					</td>
 					<td class="value tal">
 						<input id="SellerCode" value="<?php echo $item->product_seller_code;?>" type="text" class="km-form-control" style="width: 20%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
@@ -125,51 +127,70 @@
 						<?php echo lang('cms_baseInfo_goodsStatistics_ItemImageOrType');?>
 					</td>
 					<td class="value tal">
-						<div class="km-upload-img fl" style="width: 200px;" onclick="$('#file').click();">
-							<img src="<?php echo $item->product_image;?>" width="200" height="200" id="productImg">
-							<p style="line-height: 30px;padding-top: 45px;height: 155px;">
-								Upload Main Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
-							</p>
+						<div class="clearfix">
+							<div class="km-upload-img fl" style="width: 200px;" onclick="$('#file').click();">
+								<img src="<?php echo $item->product_image;?>" width="200" height="200" id="productImg">
+								<p style="line-height: 30px;padding-top: 45px;height: 155px;">
+									Upload Main Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
+								</p>
+							</div>
+							<form id="upload_image_form" method="post" enctype="multipart/form-data">
+								<input onchange="return uploadProductImage('#uploadImgThumb')" name="image" type="file" id="file" style="display:none;" accept="image/*">
+							</form>
+							<div class="km-upload-img fl" style="width: 100px;margin-left:10px;margin-top:100px;" onclick="$('#fileS1').click();">
+								<img src="<?php echo $item->product_image_s1;?>" width="100" height="100" id="productImgS1">
+								<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
+									Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
+								</p>
+							</div>
+							<form id="upload_imageS1_form" method="post" enctype="multipart/form-data">
+								<input onchange="return uploadSecondaryImage1('#upload_imageS1_form')" name="image" type="file" id="fileS1" style="display:none;" accept="image/*">
+							</form>
+							<div class="km-upload-img fl" style="width: 100px;margin-left:10px;margin-top:100px;" onclick="$('#fileS2').click();">
+								<img src="<?php echo $item->product_image_s2;?>" width="100" height="100" id="productImgS2">
+								<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
+									Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
+								</p>
+							</div>
+							<form id="upload_imageS2_form" method="post" enctype="multipart/form-data">
+								<input onchange="return uploadSecondaryImage2('#upload_imageS2_form')" name="image" type="file" id="fileS2" style="display:none;" accept="image/*">
+							</form>
+							<div class="km-upload-img fl" style="width: 100px;margin-left:10px;margin-top:100px;" onclick="$('#fileS3').click();">
+								<img src="<?php echo $item->product_image_s3;?>" width="100" height="100" id="productImgS3">
+								<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
+									Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
+								</p>
+							</div>
+							<form id="upload_imageS3_form" method="post" enctype="multipart/form-data">
+								<input onchange="return uploadSecondaryImage3('#upload_imageS3_form')" name="image" type="file" id="fileS3" style="display:none;" accept="image/*">
+							</form>
+							<div class="km-upload-img fl" style="width: 100px;margin-left:10px;margin-top:100px;" onclick="$('#fileS4').click();">
+								<img src="<?php echo $item->product_image_s4;?>" width="100" height="100" id="productImgS4">
+								<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
+									Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
+								</p>
+							</div>
+							<form id="upload_imageS4_form" method="post" enctype="multipart/form-data">
+								<input onchange="return uploadSecondaryImage4('#upload_imageS4_form')" name="image" type="file" id="fileS4" style="display:none;" accept="image/*">
+							</form>
 						</div>
-						<form id="upload_image_form" method="post" enctype="multipart/form-data">
-							<input onchange="return uploadProductImage('#uploadImgThumb')" name="image" type="file" id="file" style="display:none;" accept="image/*">
-						</form>
-						<div class="km-upload-img fl" style="width: 100px;margin-left:10px;margin-top:100px;" onclick="$('#fileS1').click();">
-							<img src="<?php echo $item->product_image_s1;?>" width="100" height="100" id="productImgS1">
-							<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
-								Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
-							</p>
+						<div class="image-action clearfix">
+							<div class="fl" style="width:200px;">
+								<img onclick="$('#productImg').attr('src','');" src="/assets/images/cms/delete.png" title="Delete" />
+							</div>
+							<div class="fl">
+								<img onclick="$('#productImgS1').attr('src','');" src="/assets/images/cms/delete.png" title="Delete" />
+							</div>
+							<div class="fl">
+								<img onclick="$('#productImgS2').attr('src','');" src="/assets/images/cms/delete.png" title="Delete" />
+							</div>
+							<div class="fl">
+								<img onclick="$('#productImgS3').attr('src','');" src="/assets/images/cms/delete.png" title="Delete" />
+							</div>
+							<div class="fl">
+								<img onclick="$('#productImgS4').attr('src','');" src="/assets/images/cms/delete.png" title="Delete" />
+							</div>
 						</div>
-						<form id="upload_imageS1_form" method="post" enctype="multipart/form-data">
-							<input onchange="return uploadSecondaryImage1('#upload_imageS1_form')" name="image" type="file" id="fileS1" style="display:none;" accept="image/*">
-						</form>
-						<div class="km-upload-img fl" style="width: 100px;margin-left:10px;margin-top:100px;" onclick="$('#fileS2').click();">
-							<img src="<?php echo $item->product_image_s2;?>" width="100" height="100" id="productImgS2">
-							<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
-								Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
-							</p>
-						</div>
-						<form id="upload_imageS2_form" method="post" enctype="multipart/form-data">
-							<input onchange="return uploadSecondaryImage2('#upload_imageS2_form')" name="image" type="file" id="fileS2" style="display:none;" accept="image/*">
-						</form>
-						<div class="km-upload-img fl" style="width: 100px;margin-left:10px;margin-top:100px;" onclick="$('#fileS3').click();">
-							<img src="<?php echo $item->product_image_s3;?>" width="100" height="100" id="productImgS3">
-							<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
-								Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
-							</p>
-						</div>
-						<form id="upload_imageS3_form" method="post" enctype="multipart/form-data">
-							<input onchange="return uploadSecondaryImage3('#upload_imageS3_form')" name="image" type="file" id="fileS3" style="display:none;" accept="image/*">
-						</form>
-						<div class="km-upload-img fl" style="width: 100px;margin-left:10px;margin-top:100px;" onclick="$('#fileS4').click();">
-							<img src="<?php echo $item->product_image_s4;?>" width="100" height="100" id="productImgS4">
-							<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
-								Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
-							</p>
-						</div>
-						<form id="upload_imageS4_form" method="post" enctype="multipart/form-data">
-							<input onchange="return uploadSecondaryImage4('#upload_imageS4_form')" name="image" type="file" id="fileS4" style="display:none;" accept="image/*">
-						</form>
 					</td>
 				  </tr>
 				  <tr>

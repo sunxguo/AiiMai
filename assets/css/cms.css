@@ -858,3 +858,17 @@ background-position: -260px -550px;
 .alert-message p{
 	margin-left:20px;
 }
+.image-action{
+	display: block;
+}
+.image-action div{
+	text-align:center;
+	width:100px;
+	margin-left: 12px;
+}
+.image-action div:first-child{
+	margin-left: 0px;
+}
+.image-action div img{
+	cursor: pointer;
+}

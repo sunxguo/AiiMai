@@ -5,7 +5,7 @@
 </style>
 <div class="" style="padding-left:30px;">
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
-		<div class="km-panel-heading"><?php echo lang('cms_groupBuy_GroupBuyItemInfo');?></div>
+		<div class="km-panel-heading">Group Buy Item Info</div>
 		<div class="km-panel-body" style="padding:0px;">
 			<div class="km-btn-group" style="width:100%;margin:10px auto;">
 			  <button type="button" class="km-btn km-btn-warning" style="width:33%;"><?php echo lang('cms_groupBuy_InPreparation');?>(<?php echo $inPreparationAmount;?>/<?php echo $amount;?>)</button>
@@ -217,8 +217,10 @@
 						<option value="7">~1<?php echo lang('cms_groupBuy_week');?></option>
 						<option value="14">~2<?php echo lang('cms_groupBuy_weeks');?></option>
 					</select>
+					<!--
 					<input type="text" value="1000" class="km-form-control km-input-disabled" id="customer_view_fax_areacode" style="width: 10%;height: 26px;padding: 0 5px;display: inline-block;" disabled="disabled">
 					<?php echo lang('cms_groupBuy_Qcash');?>   
+					-->
 					<input id="startingDate" type="date" value="<?php echo date("Y-m-d");?>" class="km-form-control" style="width: 15%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 					<select id="startingHour" style="height: 30px;">
 						<option value="00">00</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
