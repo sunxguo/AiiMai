@@ -243,9 +243,27 @@ class Home extends CI_Controller {
 			$this->load->view('redirect',array("info"=>"Wrong url!",'url'=>'/home'));
 			return false;
 		}
-		$category=isset($_GET['category'])?$_GET['category']:'all';
-		$subCategory=$this->commongetdata->getSubCategory($category);
-//		$category=$this->commongetdata->getShopCategory($_GET['shopId']);
+		$categoryId=isset($_GET['category'])?$_GET['category']:'all';
+		$category=$this->commongetdata->getShopCategory($_GET['shopId']);
+		$subCategory=$this->commongetdata->getShopSubCategory($_GET['shopId'],$categoryId);
+		foreach ($subCategory as $key => $value) {
+			$value->count=$this->commongetdata->getProductsAdvance(array(
+				"result"=>'count',
+				"merchant"=>$_GET['shopId'],
+				"shopCategory"=>$categoryId,
+				"shopSubCategory"=>$value->shopcategory_id,
+				"status"=>3
+			));
+		}
+		$parameters=array(
+			"result"=>'data',
+			"merchant"=>$_GET['shopId'],
+			"status"=>3
+		);
+		if(isset($_GET['category'])) $parameters['shopCategory']=$_GET['category'];
+		if(isset($_GET['subCategory'])) $parameters['shopSubCategory']=$_GET['subCategory'];
+
+		$items=$this->commongetdata->getProductsAdvance($parameters);
 		$data=array(
 			'merchant'=>$merchant,
 			"merchantProductsAmount"=>$this->commongetdata->getProductsAdvance(array(
@@ -253,16 +271,12 @@ class Home extends CI_Controller {
 				"merchant"=>$_GET['shopId'],
 				"status"=>3
 			)),
-			"items"=>$this->commongetdata->getProductsAdvance(array(
-				"result"=>'data',
-				"merchant"=>$_GET['shopId'],
-				"status"=>3
-			)),
+			"items"=>$items,
 			"focusItem"=>$this->commongetdata->getFocusItems($_GET['shopId']),
 			"follow"=>isset($_SESSION['userid'])?$this->commongetdata->getFollow($_GET['shopId'],$_SESSION['userid']):false,
 			"followNo"=>$this->commongetdata->getFollowNo($_GET['shopId']),
-//			"category"=>$category,
-			"allCategories"=>$this->commongetdata->getCategories(false),
+			"category"=>$category,
+//			"allCategories"=>$this->commongetdata->getCategories(false),
 			"subCategory"=>$subCategory
 		);
 		$this->homeBaseHandler('Shop','shop',$data);

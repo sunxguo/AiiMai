@@ -105,7 +105,14 @@
 					<img id="shopMiddleImage" src="<?php echo $merchant->merchant_shop_middleimg;?>" width="402" height="133" alt="Shop Banner" style="margin:10px 0;">
 					<button onclick="deleteShopMiddleImage()" type="button" class="km-btn km-btn-danger fr" style="height: 20px;font-size: 12px;padding: 0px 5px;">Delete</button>
 					<button onclick="$('#middleFile').click();" type="button" class="km-btn km-btn-primary fr" style="height: 20px;font-size: 12px;padding: 0px 5px;margin-right:10px;">Upload</button>
-				
+					<div class="clearfix" style="clear:both;padding-top:10px;">
+						<label for="mainAdvertisementHyperlink">Hyperlink</label> : <input id="mainAdvertisementHyperlink" class="inp-txt" type="text" style="width:200px;" placeholder="http://">
+						<select id="mainAdvertisementHyperlinkOnOff" style="height:25px;margin-left:10px;">
+							<option value="1" <?php echo $merchant->merchant_shop_mainAdvertisementHyperlink_on==1?'selected':'';?>>On</option>
+							<option value="0" <?php echo $merchant->merchant_shop_mainAdvertisementHyperlink_on==0?'selected':'';?>>Off</option>
+						</select>
+						<button onclick="saveMainAdvertisementHyperlink();" type="button" class="km-btn km-btn-primary" style="height: 20px;font-size: 12px;padding: 0px 5px;margin-right:10px;">Save</button>
+					</div>
 				</div>
 				<div id="shopSecondaryAdvertisement" class="shop-preview-bottom-old-img" style="padding:0 10px;display:none;">
 					<h3 style="line-height:20px;">Shop Secondary Advertisement</h3>

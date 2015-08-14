@@ -77,10 +77,10 @@
 			<li class="<?php echo !isset($_GET['category']) || $_GET['category']=='all'?'active':'';?>" style="padding:0 20px;">
 				<a href="/home/shop?shopId=<?php echo $_GET['shopId'];?>&category=all#shopCategory">All</a>
 			</li>
-		<?php foreach($allCategories as $cat):?>
-			<li class="<?php echo isset($_GET['category']) && $_GET['category']==$cat->category_id?'active':'';?>">
-				<a href="/home/shop?shopId=<?php echo $_GET['shopId'];?>&category=<?php echo $cat->category_id;?>#shopCategory">
-					<?php echo $cat->category_name;?>
+		<?php foreach($category as $cat):?>
+			<li class="<?php echo isset($_GET['category']) && $_GET['category']==$cat->shopcategory_id?'active':'';?>">
+				<a href="/home/shop?shopId=<?php echo $_GET['shopId'];?>&category=<?php echo $cat->shopcategory_id;?>#shopCategory">
+					<?php echo $cat->shopcategory_name;?>
 				</a>
 			</li>
 		<?php endforeach;?>
@@ -89,7 +89,7 @@
 		<ul class="subCategory clearfix">
 			<?php foreach ($subCategory as $key => $value):?>
 			<li style="padding:0 10px;">
-					<?php echo $value->category_name;?>
+					<?php echo $value->shopcategory_name;?>(<?php echo $value->count;?>)
 			</li>
 			<?php endforeach;?>
 		</ul>

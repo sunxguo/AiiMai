@@ -455,6 +455,10 @@ class CommonGetData{
 		if(isset($parameters['category'])) $pCondition['where']['product_category']=$parameters['category'];
 		if(isset($parameters['subCategory'])) $pCondition['where']['product_sub_category']=$parameters['subCategory'];
 		if(isset($parameters['subSubCategory'])) $pCondition['where']['product_sub_sub_category']=$parameters['subSubCategory'];
+
+		if(isset($parameters['shopCategory'])) $pCondition['where']['product_shopCategory']=$parameters['shopCategory'];
+		if(isset($parameters['shopSubCategory'])) $pCondition['where']['product_shopSubCategory']=$parameters['shopSubCategory'];
+
 		if(isset($parameters['status'])) $pCondition['where']['product_status']=$parameters['status'];
 		if(isset($parameters['groupBuy'])) $pCondition['where']['product_groupbuy']=$parameters['groupBuy'];
 		if(isset($parameters['sellFormat'])) $pCondition['where']['product_sell_format']=$parameters['sellFormat'];
@@ -535,6 +539,25 @@ class CommonGetData{
 				'shopcategory_fid'=>0
 			)
 		);
+		$category=$this->getData($condition);
+		return $category;
+	}
+	public function getShopSubCategory($merchantId,$fcategory){
+		$condition=array(
+			'table'=>'shopcategory',
+			'result'=>'data'
+		);
+		if($fcategory=="all"){
+			$condition['where']=array(
+				'shopcategory_merchant'=>$merchantId,
+				'shopcategory_fid !='=>0
+			);
+		}else{
+			$condition['where']=array(
+				'shopcategory_merchant'=>$merchantId,
+				'shopcategory_fid'=>$fcategory
+			);
+		}
 		$category=$this->getData($condition);
 		return $category;
 	}
