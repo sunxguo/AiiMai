@@ -424,7 +424,7 @@
 		});
 		$("#SellPrice").on('input',function(e){
 			if(!$.isNumeric($("#SellPrice").val())){
-				showAlert('danger','Error!','Price must be a number!');
+				showAlert('danger','Error!','Sell Price (S$) can only have numeric characters!');
 				$("#SellPrice").val('');
 				$("#SettlePrice").text('S$');
 				return false;
@@ -433,14 +433,14 @@
 		});
 		$("#ReferencePrice").on('input',function(e){
 			if(!$.isNumeric($("#ReferencePrice").val())){
-				showAlert('danger','Error!','Reference Price must be a number!');
+				showAlert('danger','Error!',' Retail Price (S$) can only have numeric characters!');
 				$("#ReferencePrice").val('');
 				return false;
 			}
 		});
 		$("#Quantity").on('input',function(e){
 			if(!$.isNumeric($("#Quantity").val())){
-				showAlert('danger','Error!','Quantity must be a number!');
+				showAlert('danger','Error!','Quantity can only have numeric characters!');
 				$("#Quantity").val('');
 				return false;
 			}
