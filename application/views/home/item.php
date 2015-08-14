@@ -194,11 +194,11 @@
 							</a>
 							<div class="ly_share" id="div_share_sns_layer">
 								<span>
-									<a href="javascript:window.open('http://www.facebook.com/share.php?u='+encodeURIComponent(location.href),'Share','height=500,width=600,toolbar=no,menubar=no' );">
+									<a href="javascript:window.open('http://www.facebook.com/share.php?u='+encodeURIComponent(location.href+'&share=<?php echo $merchant->user_id;?>'),'Share','height=500,width=600,toolbar=no,menubar=no' );">
 										<i class="ic_fb"></i>
 										<span>Facebook</span>
 									</a>
-									<a href="javascript:window.open('http://twitter.com/home/?status='+encodeURIComponent(document.title)+' '+encodeURIComponent(location.href),'Share','height=500,width=600,toolbar=no,menubar=no' );" onclick="">
+									<a href="javascript:window.open('http://twitter.com/home/?status='+encodeURIComponent(document.title)+' '+encodeURIComponent(location.href+'&share=<?php echo $merchant->user_id;?>'),'Share','height=500,width=600,toolbar=no,menubar=no' );" onclick="">
 										<i class="ic_tw"></i>
 										<span>Twitter</span>
 									</a>
