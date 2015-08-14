@@ -116,67 +116,75 @@
 					</td>
 					<td class="value tal">
 						<div class="clearfix">
-							<div class="km-upload-img fl" style="width: 200px;" onclick="$('#file').click();">
-								<img src="" width="200" height="200" id="productImg">
-								<p style="line-height: 30px;padding-top: 45px;height: 155px;">
-									Upload Main Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
-								</p>
-							</div>
-							<form id="upload_image_form" method="post" enctype="multipart/form-data">
-								<input onchange="return uploadProductImage('#uploadImgThumb')" name="image" type="file" id="file" style="display:none;" accept="image/*">
-							</form>
-							<div class="km-upload-img fl" style="width: 100px;margin-left:10px;margin-top:100px;" onclick="$('#fileS1').click();">
-								<img src="" width="100" height="100" id="productImgS1">
-								<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
-									Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
-								</p>
-							</div>
-							<form id="upload_imageS1_form" method="post" enctype="multipart/form-data">
-								<input onchange="return uploadSecondaryImage1('#upload_imageS1_form')" name="image" type="file" id="fileS1" style="display:none;" accept="image/*">
-							</form>
-							<div class="km-upload-img fl" style="width: 100px;margin-left:10px;margin-top:100px;" onclick="$('#fileS2').click();">
-								<img src="" width="100" height="100" id="productImgS2">
-								<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
-									Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
-								</p>
-							</div>
-							<form id="upload_imageS2_form" method="post" enctype="multipart/form-data">
-								<input onchange="return uploadSecondaryImage2('#upload_imageS2_form')" name="image" type="file" id="fileS2" style="display:none;" accept="image/*">
-							</form>
-							<div class="km-upload-img fl" style="width: 100px;margin-left:10px;margin-top:100px;" onclick="$('#fileS3').click();">
-								<img src="" width="100" height="100" id="productImgS3">
-								<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
-									Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
-								</p>
-							</div>
-							<form id="upload_imageS3_form" method="post" enctype="multipart/form-data">
-								<input onchange="return uploadSecondaryImage3('#upload_imageS3_form')" name="image" type="file" id="fileS3" style="display:none;" accept="image/*">
-							</form>
-							<div class="km-upload-img fl" style="width: 100px;margin-left:10px;margin-top:100px;" onclick="$('#fileS4').click();">
-								<img src="" width="100" height="100" id="productImgS4">
-								<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
-									Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
-								</p>
-							</div>
-							<form id="upload_imageS4_form" method="post" enctype="multipart/form-data">
-								<input onchange="return uploadSecondaryImage4('#upload_imageS4_form')" name="image" type="file" id="fileS4" style="display:none;" accept="image/*">
-							</form>
-						</div>
-						<div class="image-action clearfix">
 							<div class="fl" style="width:200px;">
-								<img onclick="$('#productImg').attr('src','');" src="/assets/images/cms/delete.png" title="Delete" />
+								<div class="km-upload-img fl" style="width: 200px;" onclick="$('#file').click();">
+									<img src="" width="200" height="200" id="productImg">
+									<p style="line-height: 30px;padding-top: 45px;height: 155px;">
+										Upload Main Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
+									</p>
+								</div>
+								<div style="text-align: center;">
+									<img onclick="$('#productImg').attr('src','');" src="/assets/images/cms/delete.png" title="Delete" />
+								</div>
+								<form id="upload_image_form" method="post" enctype="multipart/form-data">
+									<input onchange="return uploadProductImage('#uploadImgThumb')" name="image" type="file" id="file" style="display:none;" accept="image/*">
+								</form>
 							</div>
-							<div class="fl">
-								<img onclick="$('#productImgS1').attr('src','');" src="/assets/images/cms/delete.png" title="Delete" />
+							<div class="fl" style="width: 100px;margin-left:10px;margin-top:100px;">
+								<div class="km-upload-img fl" onclick="$('#fileS1').click();">
+									<img src="" width="100" height="100" id="productImgS1">
+									<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
+										Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
+									</p>
+								</div>
+								<div style="text-align: center;">
+									<img onclick="$('#productImgS1').attr('src','');" src="/assets/images/cms/delete.png" title="Delete" />
+								</div>
+								<form id="upload_imageS1_form" method="post" enctype="multipart/form-data">
+									<input onchange="return uploadSecondaryImage1('#upload_imageS1_form')" name="image" type="file" id="fileS1" style="display:none;" accept="image/*">
+								</form>
 							</div>
-							<div class="fl">
-								<img onclick="$('#productImgS2').attr('src','');" src="/assets/images/cms/delete.png" title="Delete" />
+							<div class="fl" style="width: 100px;margin-left:10px;margin-top:100px;">
+								<div class="km-upload-img fl" style="" onclick="$('#fileS2').click();">
+									<img src="" width="100" height="100" id="productImgS2">
+									<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
+										Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
+									</p>
+								</div>
+								<div style="text-align: center;">
+									<img onclick="$('#productImgS2').attr('src','');" src="/assets/images/cms/delete.png" title="Delete" />
+								</div>
+								<form id="upload_imageS2_form" method="post" enctype="multipart/form-data">
+									<input onchange="return uploadSecondaryImage2('#upload_imageS2_form')" name="image" type="file" id="fileS2" style="display:none;" accept="image/*">
+								</form>
 							</div>
-							<div class="fl">
-								<img onclick="$('#productImgS3').attr('src','');" src="/assets/images/cms/delete.png" title="Delete" />
+							<div class="fl" style="width: 100px;margin-left:10px;margin-top:100px;">
+								<div class="km-upload-img fl" style="" onclick="$('#fileS3').click();">
+									<img src="" width="100" height="100" id="productImgS3">
+									<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
+										Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
+									</p>
+								</div>
+								<div style="text-align: center;">
+									<img onclick="$('#productImgS3').attr('src','');" src="/assets/images/cms/delete.png" title="Delete" />
+								</div>
+								<form id="upload_imageS3_form" method="post" enctype="multipart/form-data">
+									<input onchange="return uploadSecondaryImage3('#upload_imageS3_form')" name="image" type="file" id="fileS3" style="display:none;" accept="image/*">
+								</form>
 							</div>
-							<div class="fl">
-								<img onclick="$('#productImgS4').attr('src','');" src="/assets/images/cms/delete.png" title="Delete" />
+							<div class="fl" style="width: 100px;margin-left:10px;margin-top:100px;">
+								<div class="km-upload-img fl" style="" onclick="$('#fileS4').click();">
+									<img src="" width="100" height="100" id="productImgS4">
+									<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
+										Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
+									</p>
+								</div>
+								<div style="text-align: center;">
+									<img onclick="$('#productImgS4').attr('src','');" src="/assets/images/cms/delete.png" title="Delete" />
+								</div>
+								<form id="upload_imageS4_form" method="post" enctype="multipart/form-data">
+									<input onchange="return uploadSecondaryImage4('#upload_imageS4_form')" name="image" type="file" id="fileS4" style="display:none;" accept="image/*">
+								</form>
 							</div>
 						</div>
 					</td>
