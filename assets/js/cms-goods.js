@@ -199,11 +199,15 @@ function productHandler(successMsg,isNew){
 		product.id = $("#productId").val();
 		handlerType='modify';
 	}
-	dataHandler(handlerType,'product',product,redirect,null,null,null,false);
+	dataHandler(handlerType,'product',product,handlerType+'Redirect',null,null,null,false);
 }
-function redirect(){
+function addRedirect(){
 	alert(productSuccessMsg);
 	location.href="/cms/goodsStatistics";
+}
+function modifyRedirect(){
+	alert(productSuccessMsg);
+	location.reload();
 }
 function orderProduct(){
 	var product = new Object();

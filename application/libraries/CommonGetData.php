@@ -861,6 +861,26 @@ class CommonGetData{
 			return strtoupper(bin2hex(iconv('UTF-8', 'ASCII', $realStr)));
 		}
 	}
+
+	public function sortProductImage($productImgS1,$productImgS2,$productImgS3,$productImgS4){
+		$imageArray=array($productImgS1,$productImgS2,$productImgS3,$productImgS4);
+		foreach ($imageArray as $key => $value) {
+			if($value==''){
+				array_splice($imageArray, $key, 1);
+			}
+		}
+		for ($i=0; $i < 4; $i++) { 
+			if(!isset($imageArray[$i])){
+				$imageArray[$i]='';
+			}
+		}
+		$imagesObject=new stdClass();
+		$imagesObject->productImgS1=$imageArray[0];
+		$imagesObject->productImgS2=$imageArray[1];
+		$imagesObject->productImgS3=$imageArray[2];
+		$imagesObject->productImgS4=$imageArray[3];
+		return $imagesObject;
+	}
 }
 
 /* End of file Common.php */

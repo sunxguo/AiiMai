@@ -116,6 +116,7 @@ class Common extends CI_Controller {
 			break;
 			case "product":
 				$table="product";
+				$imagesObject=$this->commongetdata->sortProductImage($data->productImgS1,$data->productImgS2,$data->productImgS3,$data->productImgS4);
 				$info=array(
 					"product_category"=>$data->MainCategory,
 					"product_sub_category"=>$data->stSubCategory,
@@ -132,10 +133,10 @@ class Common extends CI_Controller {
 					"product_seller_code"=>$data->SellerCode,
 					"product_adult"=>$data->AdultItem,
 					"product_image"=>$data->productImg,
-					"product_image_s1"=>$data->productImgS1,
-					"product_image_s2"=>$data->productImgS2,
-					"product_image_s3"=>$data->productImgS3,
-					"product_image_s4"=>$data->productImgS4,
+					"product_image_s1"=>$imagesObject->productImgS1,
+					"product_image_s2"=>$imagesObject->productImgS2,
+					"product_image_s3"=>$imagesObject->productImgS3,
+					"product_image_s4"=>$imagesObject->productImgS4,
 					"product_production_place_code"=>$data->ProductionPlaceCode,
 					"product_production_place_detail"=>$data->ProductionPlaceDetail,
 					"product_quantity"=>$data->Quantity,
@@ -533,6 +534,7 @@ class Common extends CI_Controller {
 				);
 			break;
 			case "product":
+				$imagesObject=$this->commongetdata->sortProductImage($data->productImgS1,$data->productImgS2,$data->productImgS3,$data->productImgS4);
 				$condition['table']="product";
 				$condition['where']=array("product_id"=>$data->id);
 				$condition['data']=array(
@@ -551,6 +553,10 @@ class Common extends CI_Controller {
 					"product_seller_code"=>$data->SellerCode,
 					"product_adult"=>$data->AdultItem,
 					"product_image"=>$data->productImg,
+					"product_image_s1"=>$imagesObject->productImgS1,
+					"product_image_s2"=>$imagesObject->productImgS2,
+					"product_image_s3"=>$imagesObject->productImgS3,
+					"product_image_s4"=>$imagesObject->productImgS4,
 					"product_production_place_code"=>$data->ProductionPlaceCode,
 					"product_production_place_detail"=>$data->ProductionPlaceDetail,
 					"product_quantity"=>$data->Quantity,

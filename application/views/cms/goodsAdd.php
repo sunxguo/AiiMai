@@ -103,7 +103,7 @@
 				  -->
 				  <tr>
 					<td class="field width10p tal br">
-						Seller’s Item Code
+						Seller's Item Code
 					</td>
 					<td class="value tal">
 						<input id="SellerCode" type="text" class="km-form-control" style="width: 20%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
