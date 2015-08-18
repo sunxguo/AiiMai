@@ -52,7 +52,7 @@
 								<option value="<?php echo $cat->shopcategory_id;?>"><?php echo $cat->shopcategory_name;?></option>
 							<?php endforeach;?>
 						</select>
-						<select style="height: 30px;" onchange="shopStSubCategoryChange()" id="shopStSubCategory">
+						<select style="height: 30px;" id="shopStSubCategory">
 							<option value="-1">== <?php echo lang('cms_common_1stSubCategory');?> ==</option>
 						</select>
 					</td>

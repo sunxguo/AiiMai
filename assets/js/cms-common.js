@@ -166,8 +166,17 @@ function mainCategoryChange(){
 }
 function shopMainCategoryChange(){
 	var category = new Object(); 
-	category.id = $("#MainCategory").val();
-	dataHandler('get','subCat',category,updateShopSubCategory,null,null,null,false);
+	category.merchantid = $("#merchantId").val();
+	category.fid = $("#shopMainCategory").val();
+	dataHandler('get','shopSubCat',category,updateShopSubCategory,null,null,null,false);
+}
+function updateShopSubCategory(data){
+	var subCategory=data;
+	var subCats='<option value="-1">== 1st Sub Category ==</option>';
+	for(var index in subCategory){ 
+        subCats+='<option value="'+subCategory[index].shopcategory_id+'">'+subCategory[index].shopcategory_name+'</option>';
+    }
+	$("#shopStSubCategory").html(subCats);
 }
 function stSubCategoryChange(){
 	var category = new Object(); 
