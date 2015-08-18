@@ -43,6 +43,22 @@
 				  </tr>
 				  <tr>
 					<td class="field width10p tal br">
+						Shop Category
+					</td>
+					<td class="value tal">
+						<select style="height: 30px;" onchange="shopMainCategoryChange()" id="shopMainCategory">
+							<option value="-1">== <?php echo lang('cms_common_MainCategory');?> ==</option>
+							<?php foreach($shopCategory as $cat):?>
+								<option value="<?php echo $cat->shopcategory_id;?>"><?php echo $cat->shopcategory_name;?></option>
+							<?php endforeach;?>
+						</select>
+						<select style="height: 30px;" onchange="shopStSubCategoryChange()" id="shopStSubCategory">
+							<option value="-1">== <?php echo lang('cms_common_1stSubCategory');?> ==</option>
+						</select>
+					</td>
+				  </tr>
+				  <tr>
+					<td class="field width10p tal br">
 						Listing Type
 					</td>
 					<td class="value tal">

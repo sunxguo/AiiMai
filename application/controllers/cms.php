@@ -265,7 +265,11 @@ class Cms extends CI_Controller {
 	}
 	public function goodsAdd(){
 		$categories=$this->commongetdata->getCategories(false);
-		$this->cmsBaseHandler('Item List/Edit',array('goodsManagement'=>true,'goods'=>true,'goodsAdd'=>true),'goodsAdd',array('categories'=>$categories));
+		$shopCategory=$this->commongetdata->getShopCategory($_SESSION['userid']);
+		$this->cmsBaseHandler('Item List/Edit',array(
+			'goodsManagement'=>true,
+			'goods'=>true,'goodsAdd'=>true
+		),'goodsAdd',array('categories'=>$categories,'shopCategory'=>$shopCategory));
 	}
 	public function goodsCopy(){
 		$data=array(

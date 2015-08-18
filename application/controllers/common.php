@@ -1316,6 +1316,9 @@ class Common extends CI_Controller {
 			case 'subCat':
 				$result=$this->commongetdata->getSubCat($data->id);
 			break;
+			case 'shopSubCat':
+				$result=$this->commongetdata->getShopSubCategory($data->merchantid,$data->fid);
+			break;
 			case 'product':
 				$cat=$data->MainCategory==-1?false:$data->MainCategory;
 				$sCat=$data->stSubCategory==-1?false:$data->stSubCategory;
@@ -1408,6 +1411,7 @@ class Common extends CI_Controller {
 				);
 				$result=$this->commongetdata->getData($condition);
 			break;
+
 		}
 		echo json_encode(array("result"=>"success","message"=>$result));
 	}

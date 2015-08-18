@@ -164,6 +164,11 @@ function mainCategoryChange(){
 	dataHandler('get','subCat',category,updateSubCategory,null,null,null,false);
 	stSubCategoryChange();
 }
+function shopMainCategoryChange(){
+	var category = new Object(); 
+	category.id = $("#MainCategory").val();
+	dataHandler('get','subCat',category,updateShopSubCategory,null,null,null,false);
+}
 function stSubCategoryChange(){
 	var category = new Object(); 
 	category.id = $("#stSubCategory").val();
