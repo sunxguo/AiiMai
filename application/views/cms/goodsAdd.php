@@ -226,18 +226,9 @@
 					</td>
 					<td class="value tal">
 						<input id="SellPrice" type="text" class="km-form-control" style="width: 20%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;"> 
-						(<?php echo lang('cms_goodsAdd_SettlePrice');?>: <span class="km-label km-label-danger" id="SettlePrice">S$</span>)
-						<div class="km-popover-wrapper">
-							<img onclick="$(this).next().toggle(10)" src="/assets/images/cms/questionMark.png" width="14px" style="cursor:pointer;">
-							<div class="km-popover km-bottom" style="top: 25px;left:-496px; max-width:1000px;width:1000px;">
-							  <div class="km-arrow"></div>
-							  <h3 class="km-popover-title"><?php echo lang('cms_goodsAdd_ServiceFee');?></h3>
-
-							  <div class="km-popover-content">
-								<?php echo lang('cms_goodsAdd_Detail');?>
-							  </div>
-							</div>
-						</div>
+						
+						<!--(<?php echo lang('cms_goodsAdd_SettlePrice');?>: <span class="km-label km-label-danger" id="SettlePrice">S$</span>)-->
+						
 					</td>
 					<td class="field width10p tal br">
 						<?php echo lang('cms_goodsAdd_Quantity');?>
@@ -275,6 +266,17 @@
 					</td>
 					<td class="value tal">
 						<input id="ReferencePrice" type="text" class="km-form-control" style="width: 50%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
+						<div class="km-popover-wrapper">
+							<img onclick="$(this).next().toggle(10)" src="/assets/images/cms/questionMark.png" width="14px" style="cursor:pointer;">
+							<div class="km-popover km-bottom" style="top: 25px;left:-145px; max-width:1000px;width:300px;">
+							  <div class="km-arrow"></div>
+							  <h3 class="km-popover-title">Retail Price</h3>
+
+							  <div class="km-popover-content">
+								This is the suggested market’s Retail Price, for comparison against your Sell Price.
+							  </div>
+							</div>
+						</div>
 					</td>
 				  </tr>
 				  <tr>
