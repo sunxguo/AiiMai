@@ -146,6 +146,8 @@ function productHandler(successMsg,isNew){
 	product.MainCategory = $("#MainCategory").val();
 	product.stSubCategory = $("#stSubCategory").val();
 	product.ndSubCategory = $("#ndSubCategory").val();
+	product.shopCategory = $("#shopMainCategory").val();
+	product.shopSubCategory = $("#shopStSubCategory").val();
 	product.SellFormat = $('input[name="salesMode"]:checked').val();
 	product.DeliveryType = $('input[name="shipType"]:checked').val();
 	product.ItemCondition = $('input[name="goodsStatus"]:checked').val();

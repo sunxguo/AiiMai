@@ -121,6 +121,8 @@ class Common extends CI_Controller {
 					"product_category"=>$data->MainCategory,
 					"product_sub_category"=>$data->stSubCategory,
 					"product_sub_sub_category"=>$data->ndSubCategory,
+					"product_shopCategory"=>$data->shopCategory,
+					"product_shopSubCategory"=>$data->shopSubCategory,
 					"product_sell_format"=>$data->SellFormat,
 					"product_delivery_type"=>$data->DeliveryType,
 					"product_item_condition"=>$data->ItemCondition,
