@@ -16,6 +16,7 @@
 	background-color:#FFF;
 }
 </style>
+<input type="hidden" id="merchantId" value="<?php echo $_SESSION['userid'];?>">
 <div class="" style="padding-left:30px;">
 	<input type="hidden" id="productId" value="<?php echo $item->product_id;?>">
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
@@ -40,19 +41,35 @@
 						</select>
 						<select style="height: 30px;" onchange="stSubCategoryChange()" id="stSubCategory">
 							<option value="-1">== <?php echo lang('cms_common_1stSubCategory');?> ==</option>
-							<?php foreach($subCatList->subCats as $subCat):?>
+							<?php if(isset($subCatList->subCats)):foreach($subCatList->subCats as $subCat):?>
 								<option value="<?php echo $subCat->category_id;?>" <?php if($subCat->category_id==$item->product_sub_category):?>selected<?php endif;?>><?php echo $subCat->category_name;?></option>
-							<?php endforeach;?>
+							<?php endforeach;endif;?>
 						</select>
 						<select style="height: 30px;"id="ndSubCategory">
 							<option value="-1">== <?php echo lang('cms_common_2ndSubCategory');?> ==</option>
-							<?php foreach($subSubCatList->subCats as $subSubCat):?>
+							<?php if(isset($subSubCatList->subCats)):foreach($subSubCatList->subCats as $subSubCat):?>
 								<option value="<?php echo $subSubCat->category_id;?>" <?php if($subSubCat->category_id==$item->product_sub_sub_category):?>selected<?php endif;?>><?php echo $subSubCat->category_name;?></option>
-							<?php endforeach;?>
+							<?php endforeach;endif;?>
 						</select>
 						<!--
 						<input type="text" placeholder="<?php echo lang('cms_baseInfo_goodsStatistics_Categorycode');?>" class="km-form-control" style="width: 30%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 						-->
+					</td>
+				  </tr>
+				  <tr>
+					<td class="field width10p tal br">
+						Shop Category
+					</td>
+					<td class="value tal">
+						<select style="height: 30px;" onchange="shopMainCategoryChange()" id="shopMainCategory">
+							<option value="-1">== <?php echo lang('cms_common_MainCategory');?> ==</option>
+							<?php foreach($shopCategory as $cat):?>
+								<option value="<?php echo $cat->shopcategory_id;?>" <?php if($cat->shopcategory_id==$item->product_shopCategory):?>selected<?php endif;?>><?php echo $cat->shopcategory_name;?></option>
+							<?php endforeach;?>
+						</select>
+						<select style="height: 30px;" id="shopStSubCategory">
+							<option value="-1">== <?php echo lang('cms_common_1stSubCategory');?> ==</option>
+						</select>
 					</td>
 				  </tr>
 				  <tr>
@@ -128,68 +145,76 @@
 					</td>
 					<td class="value tal">
 						<div class="clearfix">
-							<div class="km-upload-img fl" style="width: 200px;" onclick="$('#file').click();">
-								<img src="<?php echo $item->product_image;?>" width="200" height="200" id="productImg">
-								<p style="line-height: 30px;padding-top: 45px;height: 155px;">
-									Upload Main Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
-								</p>
-							</div>
-							<form id="upload_image_form" method="post" enctype="multipart/form-data">
-								<input onchange="return uploadProductImage('#uploadImgThumb')" name="image" type="file" id="file" style="display:none;" accept="image/*">
-							</form>
-							<div class="km-upload-img fl" style="width: 100px;margin-left:10px;margin-top:100px;" onclick="$('#fileS1').click();">
-								<img src="<?php echo $item->product_image_s1;?>" width="100" height="100" id="productImgS1">
-								<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
-									Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
-								</p>
-							</div>
-							<form id="upload_imageS1_form" method="post" enctype="multipart/form-data">
-								<input onchange="return uploadSecondaryImage1('#upload_imageS1_form')" name="image" type="file" id="fileS1" style="display:none;" accept="image/*">
-							</form>
-							<div class="km-upload-img fl" style="width: 100px;margin-left:10px;margin-top:100px;" onclick="$('#fileS2').click();">
-								<img src="<?php echo $item->product_image_s2;?>" width="100" height="100" id="productImgS2">
-								<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
-									Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
-								</p>
-							</div>
-							<form id="upload_imageS2_form" method="post" enctype="multipart/form-data">
-								<input onchange="return uploadSecondaryImage2('#upload_imageS2_form')" name="image" type="file" id="fileS2" style="display:none;" accept="image/*">
-							</form>
-							<div class="km-upload-img fl" style="width: 100px;margin-left:10px;margin-top:100px;" onclick="$('#fileS3').click();">
-								<img src="<?php echo $item->product_image_s3;?>" width="100" height="100" id="productImgS3">
-								<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
-									Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
-								</p>
-							</div>
-							<form id="upload_imageS3_form" method="post" enctype="multipart/form-data">
-								<input onchange="return uploadSecondaryImage3('#upload_imageS3_form')" name="image" type="file" id="fileS3" style="display:none;" accept="image/*">
-							</form>
-							<div class="km-upload-img fl" style="width: 100px;margin-left:10px;margin-top:100px;" onclick="$('#fileS4').click();">
-								<img src="<?php echo $item->product_image_s4;?>" width="100" height="100" id="productImgS4">
-								<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
-									Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
-								</p>
-							</div>
-							<form id="upload_imageS4_form" method="post" enctype="multipart/form-data">
-								<input onchange="return uploadSecondaryImage4('#upload_imageS4_form')" name="image" type="file" id="fileS4" style="display:none;" accept="image/*">
-							</form>
-						</div>
-						<div class="image-action clearfix">
 							<div class="fl" style="width:200px;">
-								<img onclick="$('#productImg').attr('src','');" src="/assets/images/cms/delete.png" title="Delete" />
+								<div class="km-upload-img fl" style="width: 200px;" onclick="$('#file').click();">
+									<img src="<?php echo $item->product_image;?>" width="200" height="200" id="productImg">
+									<p style="line-height: 30px;padding-top: 45px;height: 155px;">
+										Upload Main Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
+									</p>
+								</div>
+								<div style="text-align: center;">
+									<img onclick="$('#productImg').attr('src','');" src="/assets/images/cms/delete.png" title="Delete" style="cursor:pointer;" />
+								</div>
+								<form id="upload_image_form" method="post" enctype="multipart/form-data">
+									<input onchange="return uploadProductImage('#uploadImgThumb')" name="image" type="file" id="file" style="display:none;" accept="image/*">
+								</form>
 							</div>
-							<div class="fl">
-								<img onclick="$('#productImgS1').attr('src','');" src="/assets/images/cms/delete.png" title="Delete" />
+							<div class="fl" style="width: 100px;margin-left:10px;margin-top:100px;">
+								<div class="km-upload-img fl" onclick="$('#fileS1').click();">
+									<img src="<?php echo $item->product_image_s1;?>" width="100" height="100" id="productImgS1">
+									<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
+										Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
+									</p>
+								</div>
+								<div style="text-align: center;">
+									<img onclick="$('#productImgS1').attr('src','');" src="/assets/images/cms/delete.png" title="Delete" style="cursor:pointer;" />
+								</div>
+								<form id="upload_imageS1_form" method="post" enctype="multipart/form-data">
+									<input onchange="return uploadSecondaryImage1('#upload_imageS1_form')" name="image" type="file" id="fileS1" style="display:none;" accept="image/*">
+								</form>
 							</div>
-							<div class="fl">
-								<img onclick="$('#productImgS2').attr('src','');" src="/assets/images/cms/delete.png" title="Delete" />
+							<div class="fl" style="width: 100px;margin-left:10px;margin-top:100px;">
+								<div class="km-upload-img fl" style="" onclick="$('#fileS2').click();">
+									<img src="<?php echo $item->product_image_s2;?>" width="100" height="100" id="productImgS2">
+									<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
+										Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
+									</p>
+								</div>
+								<div style="text-align: center;">
+									<img onclick="$('#productImgS2').attr('src','');" src="/assets/images/cms/delete.png" title="Delete" style="cursor:pointer;" />
+								</div>
+								<form id="upload_imageS2_form" method="post" enctype="multipart/form-data">
+									<input onchange="return uploadSecondaryImage2('#upload_imageS2_form')" name="image" type="file" id="fileS2" style="display:none;" accept="image/*">
+								</form>
 							</div>
-							<div class="fl">
-								<img onclick="$('#productImgS3').attr('src','');" src="/assets/images/cms/delete.png" title="Delete" />
+							<div class="fl" style="width: 100px;margin-left:10px;margin-top:100px;">
+								<div class="km-upload-img fl" style="" onclick="$('#fileS3').click();">
+									<img src="<?php echo $item->product_image_s3;?>" width="100" height="100" id="productImgS3">
+									<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
+										Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
+									</p>
+								</div>
+								<div style="text-align: center;">
+									<img onclick="$('#productImgS3').attr('src','');" src="/assets/images/cms/delete.png" title="Delete" style="cursor:pointer;" />
+								</div>
+								<form id="upload_imageS3_form" method="post" enctype="multipart/form-data">
+									<input onchange="return uploadSecondaryImage3('#upload_imageS3_form')" name="image" type="file" id="fileS3" style="display:none;" accept="image/*">
+								</form>
 							</div>
-							<div class="fl">
-								<img onclick="$('#productImgS4').attr('src','');" src="/assets/images/cms/delete.png" title="Delete" />
-							</div>
+							<div class="fl" style="width: 100px;margin-left:10px;margin-top:100px;">
+								<div class="km-upload-img fl" style="" onclick="$('#fileS4').click();">
+									<img src="<?php echo $item->product_image_s4;?>" width="100" height="100" id="productImgS4">
+									<p style="padding-top: 15px;height:85px;line-height:15px;font-size:10px;">
+										Secondary Image<br>400 * 400<br>(Up to 800*800)<br>File Size Limit: 1.5MB
+									</p>
+								</div>
+								<div style="text-align: center;">
+									<img onclick="$('#productImgS4').attr('src','');" src="/assets/images/cms/delete.png" title="Delete" style="cursor:pointer;" />
+								</div>
+								<form id="upload_imageS4_form" method="post" enctype="multipart/form-data">
+									<input onchange="return uploadSecondaryImage4('#upload_imageS4_form')" name="image" type="file" id="fileS4" style="display:none;" accept="image/*">
+								</form>
+							</div>							
 						</div>
 					</td>
 				  </tr>
@@ -229,18 +254,9 @@
 						<?php echo lang('cms_goodsAdd_SellPrice');?> (S$)
 					</td>
 					<td class="value tal">
-						<input id="SellPrice" value="<?php echo $item->product_sell_price;?>" type="text" class="km-form-control" style="width: 20%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;"> (<?php echo lang('cms_goodsAdd_SettlePrice');?>: <span class="km-label km-label-danger">90.00</span>)
-						<div class="km-popover-wrapper">
-							<img onclick="$(this).next().toggle(10)" src="/assets/images/cms/questionMark.png" width="14px" style="cursor:pointer;">
-							<div class="km-popover km-bottom" style="top: 25px;left:-496px; max-width:1000px;width:1000px;">
-							  <div class="km-arrow"></div>
-							  <h3 class="km-popover-title"><?php echo lang('cms_goodsAdd_ServiceFee');?></h3>
-
-							  <div class="km-popover-content">
-								<?php echo lang('cms_goodsAdd_Detail');?>
-							  </div>
-							</div>
-						</div>
+						<input id="SellPrice" value="<?php echo $item->product_sell_price;?>" type="text" class="km-form-control" style="width: 20%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;"> 
+						<!--(<?php echo lang('cms_goodsAdd_SettlePrice');?>: <span class="km-label km-label-danger">90.00</span>)-->
+						
 					</td>
 					<td class="field width10p tal br">
 						<?php echo lang('cms_goodsAdd_Quantity');?>
@@ -255,7 +271,6 @@
 					</td>
 					<td class="value tal">
 						<select style="height: 30px;" id="AvailablePeriod">
-							<option value="">Select</option>  
 							<option value="1" <?php if($item->product_available_period=='1'):?>selected<?php endif;?>>1 day</option>  
 							<option value="3" <?php if($item->product_available_period=='3'):?>selected<?php endif;?>>3 days</option>  
 							<option value="5" <?php if($item->product_available_period=='5'):?>selected<?php endif;?>>5 days</option>  
@@ -270,10 +285,21 @@
 						</select>
 					</td>
 					<td class="field width10p tal br">
-						<?php echo lang('cms_goodsAdd_ReferencePrice');?> (S$)
+						Retail Price (S$)
 					</td>
 					<td class="value tal">
 						<input id="ReferencePrice" value="<?php echo $item->product_reference_price;?>" type="text" class="km-form-control" style="width: 50%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
+						<div class="km-popover-wrapper">
+							<img onclick="$(this).next().toggle(10)" src="/assets/images/cms/questionMark.png" width="14px" style="cursor:pointer;">
+							<div class="km-popover km-bottom" style="top: 25px;left:-145px; max-width:1000px;width:300px;">
+							  <div class="km-arrow"></div>
+							  <h3 class="km-popover-title">Retail Price</h3>
+
+							  <div class="km-popover-content">
+								This is the suggested market's Retail Price, for comparison against your Sell Price.
+							  </div>
+							</div>
+						</div>
 					</td>
 				  </tr>
 				  <tr>
@@ -326,7 +352,7 @@
 							  <h3 class="km-popover-title"><?php echo lang('cms_goodsAdd_ShippingRate');?></h3>
 
 							  <div class="km-popover-content" style="overflow:scroll;height: 851px;">
-								运费计算详情...
+								Detail
 							  </div>
 							</div>
 						</div>
@@ -357,6 +383,14 @@
 	</div>
 	<button onclick="productHandler('This product was saved successfully',false);" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;">Save</button>
 </div>
+
+<div id="waitDiv"><img src="/assets/images/cms/loading.gif"></div>
+<div id="bkDiv"></div>
+<div id="messageAlert" class="km-alert km-alert-dismissible fade in width40p hide">
+  <button type="button" class="km-close" onclick="$('#messageAlert').hide();"><span>×</span></button>
+  <strong></strong>
+  <span class="km-alert-msg"></span>
+</div>
 <script src="/assets/js/cms-goods.js" type="text/javascript"></script>
 <link rel="stylesheet" href="/assets/kindEditor/themes/default/default.css" />
 <script charset="utf-8" src="/assets/kindEditor/kindeditor-min.js"></script>
@@ -377,6 +411,13 @@
 			});
 		});
 	});
+	window.onbeforeunload = function() {
+	    //这里刷新方法有很多，具体要看你的子窗口是怎样出来的
+	    window.opener.location.reload();
+	    parent.location.reload();
+	    self.opener.location.reload();
+	    window.opener.location.href=window.opener.location.href;
+	};
 </script>
 </body>
 </html>

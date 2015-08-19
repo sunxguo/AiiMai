@@ -197,11 +197,12 @@ function productHandler(successMsg,isNew){
 	var handlerType='';
 	if(isNew){
 		handlerType='add';
+		dataHandler(handlerType,'product',product,addRedirect,null,null,null,false);
 	}else{
 		product.id = $("#productId").val();
 		handlerType='modify';
+		dataHandler(handlerType,'product',product,modifyRedirect,null,null,null,false);
 	}
-	dataHandler(handlerType,'product',product,handlerType+'Redirect',null,null,null,false);
 }
 function addRedirect(){
 	alert(productSuccessMsg);
@@ -210,6 +211,8 @@ function addRedirect(){
 function modifyRedirect(){
 	alert(productSuccessMsg);
 	location.reload();
+	window.opener.location.reload();
+	window.close();
 }
 function orderProduct(){
 	var product = new Object();

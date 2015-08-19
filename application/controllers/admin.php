@@ -181,6 +181,7 @@ class Admin extends CI_Controller {
 			"item"=>$item,
 			"subCatList"=>$this->commongetdata->getSubCat($item->product_category),
 			"subSubCatList"=>$this->commongetdata->getSubCat($item->product_sub_category),
+			"shopCategory"=>$this->commongetdata->getShopCategory($item->product_merchant)
 		);
 		$this->load->view('admin/modifyItem',$data);
 	}

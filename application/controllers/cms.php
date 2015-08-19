@@ -290,6 +290,7 @@ class Cms extends CI_Controller {
 			"item"=>$item,
 			"subCatList"=>$this->commongetdata->getSubCat($item->product_category),
 			"subSubCatList"=>$this->commongetdata->getSubCat($item->product_sub_category),
+			"shopCategory"=>$this->commongetdata->getShopCategory($_SESSION['userid'])
 		);
 		$this->load->view('cms/modifyGoods',$data);
 	}
