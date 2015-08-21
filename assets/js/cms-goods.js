@@ -235,6 +235,8 @@ function productQuery(excel){
 	product.MainCategory = $("#MainCategory").val();
 	product.stSubCategory = $("#stSubCategory").val();
 	product.ndSubCategory = $("#ndSubCategory").val();
+	product.shopMainCategory = $("#shopMainCategory").val();
+	product.shopStSubCategory = $("#shopStSubCategory").val();
 	product.status = $("#status").val();
 	product.dateType = $("#dateType").val();
 	product.beginDate = $("#beginDate").val();
@@ -257,21 +259,16 @@ function loadProductsData(data){
 		'<td class="value br"><input type="checkbox" class="item" id="'+data[index].product_id+'"></td>'+
 		'<td class="value br"><a href="javascript:window.open(\'/cms/modifyGoods?itemId='+data[index].product_id+'\',\'Edit Item\',\'height=700,width=900,toolbar=no,menubar=no\');">Edit</a></td>'+
 		'<td class="value br">'+data[index].product_id+'</td>'+
-		'<td class="value br">'+''+'</td>'+
 		'<td class="value br">'+data[index].product_item_title_english+'</td>'+
 		'<td class="value br">'+data[index].product_reference_price+'</td>'+
 		'<td class="value br">'+data[index].product_sell_price+'</td>'+
 		'<td class="value br">'+data[index].product_quantity+'</td>'+
-		'<td class="value br">'+''+'</td>'+
 		'<td class="value br">'+data[index].product_status+'</td>'+
-		'<td class="value br">'+''+'</td>'+
 		'<td class="value br">'+data[index].product_sell_format+'</td>'+
+		'<td class="value br">'+data[index].product_delivery_type+'</td>'+
 		'<td class="value br">'+data[index].product_category+'</td>'+
 		'<td class="value br">'+data[index].product_sub_category+'</td>'+
 		'<td class="value br">'+data[index].product_sub_sub_category+'</td>'+
-		'<td class="value br">'+''+'</td>'+
-		'<td class="value br">'+''+'</td>'+
-		'<td class="value br">'+''+'</td>'+
 		'<td class="value br">'+data[index].product_time+'</td></tr>';
 		$("#productsData").append(product);
     }

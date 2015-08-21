@@ -80,6 +80,13 @@ h1, h2, h3 {
 	background: url(../images/cms/top_line.png) left center no-repeat;
 	padding-left: 15px;
 }
+.header-cms .menu-cms .expiring-items a{
+	background-color: #E42222;
+	padding:0 5px;
+}
+.header-cms .menu-cms .expiring-items a:hover{
+	background-color: #F00;
+}
 /*.header-cms .menu-cms .message a{
 	display:block;
 	top:7px;

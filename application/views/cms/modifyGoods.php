@@ -270,19 +270,27 @@
 						<?php echo lang('cms_goodsAdd_AvailablePeriod');?>
 					</td>
 					<td class="value tal">
-						<select style="height: 30px;" id="AvailablePeriod">
+						<?php if($item->product_status!=3):?>
+						<select style="height: 30px;float:left;" id="AvailablePeriod" onchange="if($(this).val()==0) $('#AvailablePeriodRange').show();else $('#AvailablePeriodRange').hide();">
 							<option value="1" <?php if($item->product_available_period=='1'):?>selected<?php endif;?>>1 day</option>  
+							<option value="2" <?php if($item->product_available_period=='2'):?>selected<?php endif;?>>2 days</option>  
 							<option value="3" <?php if($item->product_available_period=='3'):?>selected<?php endif;?>>3 days</option>  
-							<option value="5" <?php if($item->product_available_period=='5'):?>selected<?php endif;?>>5 days</option>  
 							<option value="7" <?php if($item->product_available_period=='7'):?>selected<?php endif;?>>7 days</option>  
-							<option value="10" <?php if($item->product_available_period=='10'):?>selected<?php endif;?>>10 days</option>  
-							<option value="20" <?php if($item->product_available_period=='20'):?>selected<?php endif;?>>20 days</option>  
+							<option value="14" <?php if($item->product_available_period=='14'):?>selected<?php endif;?>>2 weeks</option>  
 							<option value="30" <?php if($item->product_available_period=='30'):?>selected<?php endif;?>>1 month</option>  
-							<option value="60" <?php if($item->product_available_period=='60'):?>selected<?php endif;?>>2 months</option>  
 							<option value="90" <?php if($item->product_available_period=='90'):?>selected<?php endif;?>>3 months</option>  
 							<option value="180" <?php if($item->product_available_period=='180'):?>selected<?php endif;?>>6 months</option>  
 							<option value="365" <?php if($item->product_available_period=='365'):?>selected<?php endif;?>>1 year</option>
+							<option value="10000" <?php if($item->product_available_period=='10000'):?>selected<?php endif;?>>Infinite</option>
+							<option value="0">Date Range</option>
 						</select>
+						<div id="AvailablePeriodRange" style="display:none;float:left;margin-left:10px;">
+							<input id="AvailablePeriodBegin" type="date" class="inp-txt"> ~ 
+							<input id="AvailablePeriodEnd" type="date" class="inp-txt">
+						</div>
+						<?php else:?>
+							<?php echo $item->product_available_period;?>
+						<?php endif;?>
 					</td>
 					<td class="field width10p tal br">
 						Retail Price (S$)

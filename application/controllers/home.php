@@ -84,7 +84,7 @@ class Home extends CI_Controller {
 		}
 		$data=array(
 		//	"columns"=>$this->commongetdata->getColumns()
-			"topSalesProducts"=>$this->commongetdata->getProducts(false,false,false,false,3,false,false,false,false,array("field"=>'product_modify_time',"type"=>'DESC')),
+			"topSalesProducts"=>$this->commongetdata->getProducts(false,false,false,false,3,false,false,false,false,array("field"=>'product_modify_time',"type"=>'DESC'),false,false,false,false,2),
 			'categories'=>$categories
 		);
 		$this->homeBaseHandler('Home','index',$data,array("showFooter"=>false));

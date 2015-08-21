@@ -108,12 +108,19 @@ class Cms extends CI_Controller {
 		if(!$this->checkMerchantSimpleLogin()) return false;
 		$websiteConfig=$this->commongetdata->getWebsiteConfig("ALLINFO");
 		$websiteName=$websiteConfig['website_name_'.$_SESSION['language']];
+		$products=$this->commongetdata->getProductsAdvance(array(
+				"result"=>'data',
+				"merchant"=>$_SESSION["userid"],
+				"status"=>3
+			));
+		$expiringProducts=$this->commongetdata->getExpiringProducts($products,true);
 		$this->load->view('cms/header',
 			array(
 				'title' => $websiteName."-",
 				'showSider' => true,
 				'sider' => $sider,
-				'websiteName'=>$websiteName
+				'websiteName'=>$websiteName,
+				'expiringItemsNum'=>sizeof($expiringProducts)
 			)
 		);
 		$this->load->view('cms/'.$view,$data);
@@ -279,7 +286,8 @@ class Cms extends CI_Controller {
 	}
 	public function goodsEdit(){
 		$data=array(
-			"categories"=>$this->commongetdata->getCategories(false)
+			"categories"=>$this->commongetdata->getCategories(false),
+			'shopCategory'=>$this->commongetdata->getShopCategory($_SESSION['userid'])
 		);
 		$this->cmsBaseHandler('Item List/Edit',array('goodsManagement'=>true,'goods'=>true,'goodsEdit'=>true),'goodsEdit',$data);
 	}

@@ -40,8 +40,8 @@
 				<th style="width:30px;"><input type="checkbox" id="checkAll"></th>
 				<th style="width:100px;">Thumbnail</th>
 				<th style="width:300px;" onclick="orderItem('<?php echo $selectPage;?>','name')">Name <?php if(isset($_GET['orderName'])){if($_GET['orderName']=='desc') echo '↑';else echo '↓';}?></th>
-				<th style="width:150px;" onclick="orderItem('<?php echo $selectPage;?>','price')">Price <?php if(isset($_GET['orderPrice'])){if($_GET['orderPrice']=='desc') echo '↑';else echo '↓';}?></th>
-				<th style="width:200px;">Reference Price</th>
+				<th style="width:150px;" onclick="orderItem('<?php echo $selectPage;?>','price')">Sell Price <?php if(isset($_GET['orderPrice'])){if($_GET['orderPrice']=='desc') echo '↑';else echo '↓';}?></th>
+				<th style="width:200px;">Retail Price</th>
 				<th style="width:200px;">Main Category</th>
 				<th style="width:220px;">1st Sub Category</th>
 				<th style="width:220px;">2nd Sub Category</th>

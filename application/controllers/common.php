@@ -1325,6 +1325,8 @@ class Common extends CI_Controller {
 				$cat=$data->MainCategory==-1?false:$data->MainCategory;
 				$sCat=$data->stSubCategory==-1?false:$data->stSubCategory;
 				$ssCat=$data->ndSubCategory==-1?false:$data->ndSubCategory;
+				$shopMainCat=$data->shopMainCategory==-1?false:$data->shopMainCategory;
+				$shopStSubCat=$data->shopStSubCategory==-1?false:$data->shopStSubCategory;
 				$title=$data->title==''?false:$data->title;
 				$status=$data->status;
 				if($data->dateType==0){
@@ -1344,7 +1346,23 @@ class Common extends CI_Controller {
 				$order=array("field"=>"product_modify_time","type"=>'DESC');
 				$groupBuy=$data->groupbuy==1?true:false;
 				$outStock=$data->stock==0?true:false;
-				$result=$this->commongetdata->getProducts($_SESSION['userid'],$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order,$groupBuy,$outStock);
+				$result=$this->commongetdata->getProducts($_SESSION['userid'],$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order,$groupBuy,$outStock,$shopMainCat,$shopStSubCat);
+
+
+				$categories=$this->commongetdata->getCategories(true);
+				$status=$this->commongetdata->getProductStatus();
+				$listingType=$this->commongetdata->getProductListingType();
+				$deliveryType=$this->commongetdata->getProductDeliveryType();
+
+
+				foreach ($result as $key => $value) {
+					$value->product_category=isset($categories[$value->product_category])?$categories[$value->product_category]->category_name:'Deleted';
+					$value->product_sub_category=isset($categories[$value->product_sub_category])?$categories[$value->product_sub_category]->category_name:'Deleted';
+					$value->product_sub_sub_category=isset($categories[$value->product_sub_sub_category])?$categories[$value->product_sub_sub_category]->category_name:'Deleted';
+					$value->product_status=$status[$value->product_status];
+					$value->product_sell_format=$listingType[$value->product_sell_format];
+					$value->product_delivery_type=$deliveryType[$value->product_delivery_type];
+				}
 			break;
 			case 'products':
 				$parameters=array(
@@ -1556,6 +1574,8 @@ class Common extends CI_Controller {
 				$cat=$data->MainCategory==-1?false:$data->MainCategory;
 				$sCat=$data->stSubCategory==-1?false:$data->stSubCategory;
 				$ssCat=$data->ndSubCategory==-1?false:$data->ndSubCategory;
+				$shopMainCat=$data->shopMainCategory==-1?false:$data->shopMainCategory;
+				$shopStSubCat=$data->shopStSubCategory==-1?false:$data->shopStSubCategory;
 				$title=$data->title==''?false:$data->title;
 				$status=$data->status;
 				if($data->dateType==0){
@@ -1573,7 +1593,7 @@ class Common extends CI_Controller {
 				}
 				$sellFormat=$data->SellFormat;
 				$order=array("field"=>"product_modify_time","type"=>'DESC');
-				$result=$this->commongetdata->getProducts($_SESSION['userid'],$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order);
+				$result=$this->commongetdata->getProducts($_SESSION['userid'],$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order,false,false,$shopMainCat,$shopStSubCat);
 				$dataArray=array();
 				foreach($result as $value){
 					$dataArray[]=array(

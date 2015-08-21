@@ -48,7 +48,23 @@
 							<option value="3" selected="selected"><?php echo lang('cms_goodsCopy_Available');?></option>
 							<option value="4"><?php echo lang('cms_goodsCopy_Deleted');?></option>
 							<option value="5"><?php echo lang('cms_goodsCopy_Suspended');?></option>
-							<option value="6"><?php echo lang('cms_goodsCopy_Restricted');?></option>
+							<option value="6">Rejected</option>
+						</select>
+					</td>
+				  </tr>
+				  <tr>
+					<td class="field width10p tal br">
+						Shop Category
+					</td>
+					<td class="value tal" colspan="5">
+						<select style="height: 30px;" onchange="shopMainCategoryChange()" id="shopMainCategory">
+							<option value="-1">== <?php echo lang('cms_common_MainCategory');?> ==</option>
+							<?php foreach($shopCategory as $cat):?>
+								<option value="<?php echo $cat->shopcategory_id;?>"><?php echo $cat->shopcategory_name;?></option>
+							<?php endforeach;?>
+						</select>
+						<select style="height: 30px;" id="shopStSubCategory">
+							<option value="-1">== <?php echo lang('cms_common_1stSubCategory');?> ==</option>
 						</select>
 					</td>
 				  </tr>
@@ -121,27 +137,32 @@
 			<table class="km-table" style="overflow:scroll;width:150%;">
 				<tbody id="productsData">
 				  <tr style="border-top:2px solid #ddd;border-bottom:2px solid #ddd;">
-					<td class="field br tac" style="text-align:center;"><input type="checkbox" id="checkAllItems" ></td>
+					<td class="field width6p br tac" style="text-align:center;"><input type="checkbox" id="checkAllItems" ></td>
 					<td class="field width6p br tac">Operation</td>
 					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_Itemcode');?></td>
-					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_SellerCode');?></td>
 					<td class="field width6p br tac" style="cursor:pointer;" onclick="orderProduct('itemTitle');">
 						<?php echo lang('cms_goodsCopy_ItemTitle');?>
 						<?php if(isset($_GET['orderItemTitle'])){if($_GET['orderItemTitle']=='desc') echo '↑';else echo '↓';}?>
 					</td>
-					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_Price');?></td>
-					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_SettlePrice');?></td>
+					<td class="field width6p br tac">Retail Price</td>
+					<td class="field width6p br tac">Sell Price</td>
 					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_Qty');?></td>
+					<!--
 					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_PremiumList');?></td>
+					-->
 					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_Status');?></td>
-					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_GlobalSales');?></td>
+					<td class="field width6p br tac">Listing Type</td>
 					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_DeliveryType');?></td>
+					<!--
+					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_GlobalSales');?></td>
+					-->
 					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_MainCat');?></td>
 					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_1stsubCat');?></td>
 					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_2ndsubCat');?></td>
+					<!--
 					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_PayondeliveryYOrN');?></td>
-					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_SalesFormat');?></td>
 					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_InventoryCode');?></td>
+					-->
 					<td class="field width6p tac"><?php echo lang('cms_goodsCopy_ListedDate');?></td>
 				  </tr>
 				</tbody>
