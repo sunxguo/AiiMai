@@ -214,21 +214,23 @@ function modifyRedirect(){
 	window.opener.location.reload();
 	window.close();
 }
-function orderProduct(){
-	var product = new Object();
-	product.MainCategory = $("#MainCategory").val();
-	product.stSubCategory = $("#stSubCategory").val();
-	product.ndSubCategory = $("#ndSubCategory").val();
-	product.status = $("#status").val();
-	product.dateType = $("#dateType").val();
-	product.beginDate = $("#beginDate").val();
-	product.endDate = $("#endDate").val();
-	product.SellFormat = $("#SellFormat").val();
-	product.title = $("#title").val();
-	product.groupbuy = $('input[name="groupbuy"]:checked').val();
-	product.stock = $("#stock").val();
-	if(excel) dataHandler('excel','product',product,goUrl,null,null,null,false);
-	else dataHandler('get','product',product,loadProductsData,null,null,null,false);
+function orderProduct(tag,field){
+	$("#directionIconUp").remove();
+	$("#directionIconDown").remove();
+	var iconUp='<span id="directionIconUp">↑</span>';
+	var iconDown='<span id="directionIconDown">↓</span>';
+	var direction=$("#direction").val();
+	var newDirection='';
+	if(direction=='DESC'){
+		newDirection='ASC';
+		$(tag).append(iconDown);
+	}else{
+		newDirection='DESC';
+		$(tag).append(iconUp);
+	}
+	$("#orderField").val(field);
+	$("#direction").val(newDirection);
+	productQuery(false);
 }
 function productQuery(excel){
 	var product = new Object();
@@ -245,6 +247,8 @@ function productQuery(excel){
 	product.title = $("#title").val();
 	product.groupbuy = $('input[name="groupbuy"]:checked').val();
 	product.stock = $("#stock").val();
+	product.orderField = $("#orderField").val();
+	product.direction = $("#direction").val();
 	if(excel) dataHandler('excel','product',product,goUrl,null,null,null,false);
 	else dataHandler('get','product',product,loadProductsData,null,null,null,false);
 }
@@ -462,4 +466,21 @@ function applyOption(){
 	$(".resultDataItem").remove();
 	$("#applyOptionData").append(resultData);
 	$("#applyOptionWrapper").show();
+}
+function copyProduct () {
+	// body...
+	var items=[];
+	$('.item').each(function(index){
+		if($(this).prop('checked')==true){
+			items.push($(this).attr('id'));
+		}
+	});
+	var product = new Object();
+	product.items = items;
+	dataHandler('add','copyProduct',product,afterCopyProduct,null,null,null,false);
+}
+function afterCopyProduct () {
+	// body...
+	showAlert('success','Success!',"");
+	productQuery(false);
 }

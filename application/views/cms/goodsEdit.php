@@ -132,7 +132,8 @@
 				</tbody>
 			</table>
 		</div>
-		<input id="orderItemTitle" type="hidden" value="<?php echo isset($_GET['orderItemTitle'])?$_GET['orderItemTitle']:'';?>">
+		<input id="orderField" type="hidden" value="product_modify_time">
+		<input id="direction" type="hidden" value="ASC">
 		<div style="overflow:auto;">
 			<table class="km-table" style="overflow:scroll;width:150%;">
 				<tbody id="productsData">
@@ -140,12 +141,11 @@
 					<td class="field width6p br tac" style="text-align:center;"><input type="checkbox" id="checkAllItems" ></td>
 					<td class="field width6p br tac">Operation</td>
 					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_Itemcode');?></td>
-					<td class="field width6p br tac" style="cursor:pointer;" onclick="orderProduct('itemTitle');">
+					<td class="field width6p br tac order-field" onclick="orderProduct(this,'product_item_title_english');">
 						<?php echo lang('cms_goodsCopy_ItemTitle');?>
-						<?php if(isset($_GET['orderItemTitle'])){if($_GET['orderItemTitle']=='desc') echo '↑';else echo '↓';}?>
 					</td>
-					<td class="field width6p br tac">Retail Price</td>
-					<td class="field width6p br tac">Sell Price</td>
+					<td class="field width6p br tac order-field" onclick="orderProduct(this,'product_reference_price');">Retail Price</td>
+					<td class="field width6p br tac order-field" onclick="orderProduct(this,'product_sell_price');">Sell Price</td>
 					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_Qty');?></td>
 					<!--
 					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_PremiumList');?></td>

@@ -429,8 +429,7 @@ class CommonGetData{
 	public function getProducts($merchantId,$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order,$groupBuy=false,$outStock=false,$shopMainCat=false,$shopStSubCat=false,$expired=3){
 		$condition=array(
 			'table'=>'product',
-			'result'=>'data',
-			'order_by'=>array('product_modify_time'=>'DESC')
+			'result'=>'data'
 		);
 		if($merchantId) $condition['where']['product_merchant']=$merchantId;
 		if($cat) $condition['where']['product_category']=$cat;
@@ -451,7 +450,11 @@ class CommonGetData{
 			$condition['where']['product_modify_time <=']=$modifyTime['end'].' 23:59:59';
 		}
 		if($title) $condition['like']['product_item_title_english']=$title;
-		if($order) $condition['order_by'][$order['field']]=$order['type'];
+		if($order){
+			$condition['order_by'][$order['field']]=$order['type'];
+		}else{
+			$condition['order_by']=array('product_modify_time'=>'DESC');
+		}
 		$products=$this->CI->dbHandler->selectData($condition);
 		$returnData=array();
 		if(is_array($products) && sizeof($products)>0){

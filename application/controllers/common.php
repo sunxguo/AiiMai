@@ -155,6 +155,50 @@ class Common extends CI_Controller {
 					$info['product_option'.($key+1)]=$optionType;
 				}
 			break;
+			case "copyProduct":
+				//查找商品
+				foreach ($data->items as $value) {
+					$product=$this->commongetdata->getContent('product',$value);
+					$info=array(
+						"product_category"=>$product->product_category,
+						"product_sub_category"=>$product->product_sub_category,
+						"product_sub_sub_category"=>$product->product_sub_sub_category,
+						"product_shopCategory"=>$product->product_shopCategory,
+						"product_shopSubCategory"=>$product->product_shopSubCategory,
+						"product_sell_format"=>$product->product_sell_format,
+						"product_delivery_type"=>$product->product_delivery_type,
+						"product_item_condition"=>$product->product_item_condition,
+						"product_item_title_zh_cn"=>$product->product_item_title_zh_cn,
+						"product_item_title_tw_cn"=>$product->product_item_title_tw_cn,
+						"product_item_title_english"=>$product->product_item_title_english,
+						"product_short_title"=>$product->product_short_title,
+						"product_sell_price"=>$product->product_sell_price,
+						"product_reference_price"=>$product->product_reference_price,
+						"product_seller_code"=>$product->product_seller_code,
+						"product_adult"=>$product->product_adult,
+						"product_image"=>$product->product_image,
+						"product_image_s1"=>$product->product_image_s1,
+						"product_image_s2"=>$product->product_image_s2,
+						"product_image_s3"=>$product->product_image_s3,
+						"product_image_s4"=>$product->product_image_s4,
+						"product_production_place_code"=>$product->product_production_place_code,
+						"product_production_place_detail"=>$product->product_production_place_detail,
+						"product_quantity"=>$product->product_quantity,
+						"product_available_period"=>$product->product_available_period,
+						"product_display_left"=>$product->product_display_left,
+						"product_shipping_rate"=>$product->product_shipping_rate,
+						"product_description"=>$product->product_description,
+						"product_shipping_address"=>$product->product_shipping_address,
+						"product_merchant"=>$product->product_merchant,
+						"product_time"=>date("Y-m-d H:i:s"),
+						"product_modify_time"=>date("Y-m-d H:i:s")
+					);
+					$result=$this->dbHandler->insertData('product',$info);
+				}
+				echo json_encode(array("result"=>"success","message"=>"信息写入成功"));
+				return true;
+				//添加商品
+			break;
 			case "register":
 				$table="user";
 				if(!$this->commongetdata->checkUniqueAdvance("user",array("user_username"=>$data->username))){
@@ -1343,7 +1387,12 @@ class Common extends CI_Controller {
 					$listedTime=false;
 				}
 				$sellFormat=$data->SellFormat;
-				$order=array("field"=>"product_modify_time","type"=>'DESC');
+				if($data->orderField!=''){
+					$order=array("field"=>$data->orderField,"type"=>$data->direction);
+				}else{
+					$order=array("field"=>"product_modify_time","type"=>'DESC');
+				}
+				
 				$groupBuy=$data->groupbuy==1?true:false;
 				$outStock=$data->stock==0?true:false;
 				$result=$this->commongetdata->getProducts($_SESSION['userid'],$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order,$groupBuy,$outStock,$shopMainCat,$shopStSubCat);
@@ -1592,10 +1641,36 @@ class Common extends CI_Controller {
 					$listedTime=false;
 				}
 				$sellFormat=$data->SellFormat;
-				$order=array("field"=>"product_modify_time","type"=>'DESC');
+				
+				if($data->orderField!=''){
+					$order=array("field"=>$data->orderField,"type"=>$data->direction);
+				}else{
+					$order=array("field"=>"product_modify_time","type"=>'DESC');
+				}
 				$result=$this->commongetdata->getProducts($_SESSION['userid'],$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order,false,false,$shopMainCat,$shopStSubCat);
+				$categories=$this->commongetdata->getCategories(true);
+				$status=$this->commongetdata->getProductStatus();
+				$listingType=$this->commongetdata->getProductListingType();
+				$deliveryType=$this->commongetdata->getProductDeliveryType();
+
 				$dataArray=array();
 				foreach($result as $value){
+					if(isset($categories[$value->product_category])){
+						$categoryName=$categories[$value->product_category]->category_name;
+					}else{
+						$categoryName='Deleted';
+					}
+					if(isset($categories[$value->product_sub_category])){
+						$subCategoryName=$categories[$value->product_sub_category]->category_name;
+					}else{
+						$subCategoryName='Deleted';
+					}
+					if(isset($categories[$value->product_sub_sub_category])){
+						$subSubCategoryName=$categories[$value->product_sub_sub_category]->category_name;
+					}else{
+						$subSubCategoryName='Deleted';
+					}
+
 					$dataArray[]=array(
 						$value->product_id,
 						'',
@@ -1604,12 +1679,12 @@ class Common extends CI_Controller {
 						$value->product_sell_price,
 						$value->product_quantity,
 						'',
-						$value->product_status,
+						$status[$value->product_status],
 						'',
-						$value->product_sell_format,
-						$categories[$value->product_category]->category_name,
-						$categories[$value->product_sub_category]->category_name,
-						$categories[$value->product_sub_sub_category]->category_name,
+						$listingType[$value->product_sell_format],
+						$categoryName,
+						$subCategoryName,
+						$subSubCategoryName,
 						'',
 						'',
 						'',
