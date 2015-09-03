@@ -477,6 +477,37 @@ class Common extends CI_Controller {
 		}
 		echo json_encode(array("result"=>"success","message"=>"信息删除成功"));
 	}
+	public function updateBulkInfo(){
+		$condition=array();
+		$data=json_decode($_POST['data']);
+		switch($_POST['info_type']){
+			case 'items_available_period':
+				$table="product";
+				$where="product_id";
+				$info=array(
+					'product_available_period'=>$data->availablePeriod
+				);
+			break;
+			case 'items_displayleft':
+				$table="product";
+				$where="product_id";
+				$info=array(
+					'product_display_left'=>$data->displayleft
+				);
+			break;
+			case 'items_status':
+				$table="product";
+				$where="product_id";
+				$info=array(
+					'product_status'=>$data->status
+				);
+			break;
+		}
+		foreach($data->idArray as $id){
+			$result=$this->dbHandler->updateData(array("table"=>$table,"where"=>array($where=>$id),"data"=>$info));
+		}
+		echo json_encode(array("result"=>"success","message"=>"信息删除成功"));
+	}
 	public function modifyBulkInfo(){
 		$condition=array();
 		$data=json_decode($_POST['data']);
@@ -890,6 +921,23 @@ class Common extends CI_Controller {
 				$condition['where']=array("user_id"=>$data->id);
 				$condition['data']=array(
 					"merchant_shop_itemlist_on"=>$data->on
+				);
+			break;
+
+			case "mainAdvertisementHyperlink":
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_shop_mainAdvertisementHyperlink"=>$data->link,
+					"merchant_shop_mainAdvertisementHyperlink_on"=>$data->on
+				);
+			break;
+			case "secondaryAdvertisementHyperlink":
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_shop_secondaryAdvertisementHyperlink"=>$data->link,
+					"merchant_shop_secondaryAdvertisementHyperlink_on"=>$data->on
 				);
 			break;
 			case 'categoryGroupBar':
@@ -1335,6 +1383,26 @@ class Common extends CI_Controller {
 					"address_phone3"=>$data->phone3
 				);
 			break;
+			
+			case "groupBuy":
+				$condition['table']="groupbuy";
+				$condition['where']=array("groupbuy_id"=>$data->id);
+				$condition['data']=array(
+					"groupbuy_productId"=>$data->productCode,
+					"groupbuy_productName"=>$data->productName,
+					"groupbuy_price"=>$data->groupBuyPrice,
+//					"groupbuy_settlePrice"=>$data->settlePrice,
+					"groupbuy_retailPrice"=>$data->retailPrice,
+					"groupbuy_minQty"=>$data->minQty,
+					"groupbuy_maxQty"=>$data->maxQty,
+					"groupbuy_startingTime"=>$data->startingTime,
+					"groupbuy_endTime"=>$data->endTime,
+					"groupbuy_canBuyNow"=>$data->canBuyNow,
+//					"groupbuy_availableDateType"=>$data->availableDateType,
+					"groupbuy_merchantId"=>$data->merchantId,
+					"groupbuy_autoAchieve"=>$data->autoAchieve
+				);
+			break;
 		}
 		if($_POST['info_type']!='userNewPwd'){
 			$result=$this->dbHandler->updateData($condition);
@@ -1433,6 +1501,24 @@ class Common extends CI_Controller {
 					'orderBy'=>array('groupbuy_registeredTime'=>'DESC')
 				);
 				if($data->name!='') $parameters['like']=array('groupbuy_productName'=>$data->name);
+				if(isset($data->status)){
+					switch ($data->status) {
+						case 'inPreparation':
+							$parameters['inPreparation']=array('startingTime'=>date("Y-m-d H:i:s"));
+							break;
+						case 'inProgress':
+							$parameters['inProgress']=array('startingTime'=>date("Y-m-d H:i:s"),'endTime'=>date("Y-m-d H:i:s"));
+							break;
+						case 'ended':
+							$parameters['ended']=array('endTime'=>date("Y-m-d H:i:s"));
+							break;
+						
+						default:
+							# code...
+							break;
+					}
+					
+				} 
 				$result=$this->commongetdata->getGroupBuyAdvance($parameters);
 			break;
 			case 'turnover':
@@ -1480,7 +1566,52 @@ class Common extends CI_Controller {
 				);
 				$result=$this->commongetdata->getData($condition);
 			break;
-
+			case 'optionData':
+				$condition=array(
+					'table'=>'product_option',
+					'result'=>'data',
+					'where'=>array(
+						'product_option_product_id'=>$data->productId
+					)
+				);
+				if(property_exists($data, 'option1')){
+					$condition['where']['product_option_1'] = $data->option1;
+				}
+				if(property_exists($data, 'option2')){
+					$condition['where']['product_option_2'] = $data->option2;
+				}
+				if(property_exists($data, 'option3')){
+					$condition['where']['product_option_3'] = $data->option3;
+				}
+				$result=$this->commongetdata->getData($condition);
+			break;
+			case 'optionStock':
+				$condition=array(
+					'table'=>'product_option',
+					'result'=>'data',
+					'where'=>array(
+						'product_option_product_id'=>$data->productId
+					)
+				);
+				if(property_exists($data, 'option1')){
+					$condition['where']['product_option_1'] = $data->option1;
+				}
+				if(property_exists($data, 'option2')){
+					$condition['where']['product_option_2'] = $data->option2;
+				}
+				$optionData=$this->commongetdata->getData($condition);
+				$optionArray=array();
+				foreach($optionData as $option){
+					if($option->product_option_3!=''){
+						$optionArray[$option->product_option_3]=$option->product_option_stock;
+					}else if($option->product_option_2!=''){
+						$optionArray[$option->product_option_2]=$option->product_option_stock;
+					}else if($option->product_option_1!=''){
+						$optionArray[$option->product_option_1]=$option->product_option_stock;
+					}
+				}
+				$result = $optionArray;
+			break;
 		}
 		echo json_encode(array("result"=>"success","message"=>$result));
 	}
@@ -1851,6 +1982,9 @@ class Common extends CI_Controller {
 			break;*/
 		}
 		echo json_encode(array("result"=>"success","message"=>$url));
+	}
+	public function getOptionsData(){
+		
 	}
 	public function checkUserLogin(){
 		if (!checkLogin() || (isset($_SESSION["usertype"]) && !strcmp($_SESSION["usertype"],"admin"))) {

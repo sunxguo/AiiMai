@@ -357,7 +357,9 @@
 				<table class="km-table" style="overflow:scroll;width:100%;">
 					<tbody id="applyOptionData">
 					  <tr style="border-top:2px solid #ddd;border-bottom:2px solid #ddd;">
+					  	<!--
 						<td class="field br tac">Operation</td>
+						-->
 						<td id="optionPricePos" class="field br tac" style="">Price</td>
 						<td class="field tac">Stock</td>
 					  </tr>

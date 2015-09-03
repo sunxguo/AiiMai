@@ -222,7 +222,18 @@
 			<h2 class="name"><?php echo $item->product_item_title_english;?></h2>
                     <ul class="infoArea">
                         <li class="infoData">
-                            
+                            <div class="left-day">
+								<?php 
+									$leftDay = $item->product_available_period-floor((time()-strtotime($item->product_time))/(3600*24));
+									if($leftDay>0){
+										if($leftDay<=$item->product_display_left){
+											echo $leftDay." days left";
+										}
+									}else{
+										echo "This product has been expired!";
+									}
+								?>
+                            </div>
                         <div id="">
 	
                                 <dl class="detailsArea">
@@ -294,7 +305,7 @@
                         
                     </li>
                     <!-- 재고 -->
-					<?php if(isset($item->product_option1)):?>
+					<?php if(isset($item->product_option1) && $item->product_option1!=''):?>
                     <li class="infoData" style="border-bottom : none;">
                         <div id="">
 							<dl class="detailsArea">
@@ -302,6 +313,7 @@
 									<strong>Item Type</strong>  
                                 </dt>
                             </dl>
+                            <input id="optionNum" type="hidden" value="<?php echo sizeof($optionType);?>">
 							<?php foreach($optionType as $key=>$ot):?>
 							<dl class="detailsArea stock">
 								<dt>∙ 
@@ -312,9 +324,9 @@
 									?>
 								</dt>
 								<dd>
-									<select id="op<?php echo ($key+1);?>">
+									<select id="op<?php echo ($key+1);?>" <?php if($key+1!=sizeof($optionType)):?>onchange="selectOption('<?php echo $item->product_id;?>');"<?php endif;?>>
 										<?php foreach($ot as $o):?>
-										<option><?php echo $o;?></option>
+										<option <?php echo $o;?>><?php echo $o;?></option>
 										<?php endforeach;?>
 									</select>
 								</dd>
@@ -323,6 +335,8 @@
 						</div>
                     </li>
 					<?php endif;?>
+
+					<?php if($leftDay>0):?>
                     <li class="infoData last" style="display:;">				
                         <div class="process_btn">
                             <span id="ProcessBtn_cart" class="btn" style="  float: none;">
@@ -333,6 +347,7 @@
                             </span>
 						</div>
                     </li>
+                	<?php endif;?>
                     </ul>
         </div>
     </div>
@@ -542,6 +557,6 @@ $(function() {
 			alert('回调函数:\nYou clicked on an image with the anchor: "'+image_anchor+'"\n(in Etalage instance: "'+instance_id+'")');
 		}
 	});
-
+	selectOption('<?php echo $item->product_id;?>');
 });
 </script>

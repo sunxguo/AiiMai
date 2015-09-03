@@ -189,13 +189,21 @@ class Home extends CI_Controller {
 		}
 		$optionData=$this->commongetdata->getOptionData($_GET['itemId'],'data');
 		$optionArray=array();
+		// $itemStockArray()=array();
+		// $option->product_option_stock;
 		foreach($optionData as $option){
-			if($option->product_option_1!='' && (!isset($optionArray[0]) || !in_array($option->product_option_1,$optionArray[0])))
+			//$optionArray[0][0]='Please select.';
+			if($option->product_option_1!='' && (!isset($optionArray[0]) || !in_array($option->product_option_1,$optionArray[0]))){
 				$optionArray[0][]=$option->product_option_1;
-			if($option->product_option_2!='' && (!isset($optionArray[1]) || !in_array($option->product_option_2,$optionArray[1])))
+			}
+			if($option->product_option_2!='' && (!isset($optionArray[1]) || !in_array($option->product_option_2,$optionArray[1]))){
+				//$optionArray[1][0]='[Please choose the above option first.]';
 				$optionArray[1][]=$option->product_option_2;
-			if($option->product_option_3!='' && (!isset($optionArray[2]) || !in_array($option->product_option_3,$optionArray[2])))
+			}
+			if($option->product_option_3!='' && (!isset($optionArray[2]) || !in_array($option->product_option_3,$optionArray[2]))){
+				//$optionArray[2][0]='[Please choose the above option first.]';
 				$optionArray[2][]=$option->product_option_3;
+			}
 		}
 		//设置浏览记录
 		$recentlyViewedProducts=isset($_COOKIE['recentlyViewedProducts'])?json_decode($_COOKIE['recentlyViewedProducts']):array();
@@ -247,20 +255,24 @@ class Home extends CI_Controller {
 		$category=$this->commongetdata->getShopCategory($_GET['shopId']);
 		$subCategory=$this->commongetdata->getShopSubCategory($_GET['shopId'],$categoryId);
 		foreach ($subCategory as $key => $value) {
-			$value->count=$this->commongetdata->getProductsAdvance(array(
+			$miniParameters=array(
 				"result"=>'count',
 				"merchant"=>$_GET['shopId'],
-				"shopCategory"=>$categoryId,
+//				"shopCategory"=>$categoryId,
 				"shopSubCategory"=>$value->shopcategory_id,
 				"status"=>3
-			));
+			);
+			if($categoryId!='all'){
+				$miniParameters["shopCategory"]=$categoryId;
+			}
+			$value->count=$this->commongetdata->getProductsAdvance($miniParameters);
 		}
 		$parameters=array(
 			"result"=>'data',
 			"merchant"=>$_GET['shopId'],
 			"status"=>3
 		);
-		if(isset($_GET['category'])) $parameters['shopCategory']=$_GET['category'];
+		if(isset($_GET['category']) && $_GET['category']!='all') $parameters['shopCategory']=$_GET['category'];
 		if(isset($_GET['subCategory'])) $parameters['shopSubCategory']=$_GET['subCategory'];
 
 		$items=$this->commongetdata->getProductsAdvance($parameters);

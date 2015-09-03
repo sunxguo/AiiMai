@@ -435,7 +435,9 @@ class CommonGetData{
 		if($cat) $condition['where']['product_category']=$cat;
 		if($sCat) $condition['where']['product_sub_category']=$sCat;
 		if($ssCat) $condition['where']['product_sub_sub_category']=$ssCat;
-		if($status) $condition['where']['product_status']=$status;
+		if($status!=0){
+			$condition['where']['product_status']=$status;
+		}
 		if($sellFormat) $condition['where']['product_sell_format']=$sellFormat;
 		if($groupBuy) $condition['where']['product_groupbuy']=1;
 		if($outStock) $condition['where']['product_quantity']=0;

@@ -106,7 +106,7 @@
 					<button onclick="deleteShopMiddleImage()" type="button" class="km-btn km-btn-danger fr" style="height: 20px;font-size: 12px;padding: 0px 5px;">Delete</button>
 					<button onclick="$('#middleFile').click();" type="button" class="km-btn km-btn-primary fr" style="height: 20px;font-size: 12px;padding: 0px 5px;margin-right:10px;">Upload</button>
 					<div class="clearfix" style="clear:both;padding-top:10px;">
-						<label for="mainAdvertisementHyperlink">Hyperlink</label> : <input id="mainAdvertisementHyperlink" class="inp-txt" type="text" style="width:200px;" placeholder="http://">
+						<label for="mainAdvertisementHyperlink">Hyperlink</label> : <input id="mainAdvertisementHyperlink" value="<?php echo $merchant->merchant_shop_mainAdvertisementHyperlink;?>" class="inp-txt" type="text" style="width:200px;" placeholder="http://">
 						<select id="mainAdvertisementHyperlinkOnOff" style="height:25px;margin-left:10px;">
 							<option value="1" <?php echo $merchant->merchant_shop_mainAdvertisementHyperlink_on==1?'selected':'';?>>On</option>
 							<option value="0" <?php echo $merchant->merchant_shop_mainAdvertisementHyperlink_on==0?'selected':'';?>>Off</option>
@@ -129,7 +129,14 @@
 					<img id="shopBottomImage" src="<?php echo $merchant->merchant_shop_bottomimg;?>" width="402" height="67" alt="Shop Secondary Advertisement" style="margin:10px 0;">
 					<button onclick="deleteShopBottomImage()" type="button" class="km-btn km-btn-danger fr" style="height: 20px;font-size: 12px;padding: 0px 5px;">Delete</button>
 					<button onclick="$('#bottomFile').click();" type="button" class="km-btn km-btn-primary fr" style="height: 20px;font-size: 12px;padding: 0px 5px;margin-right:10px;">Upload</button>
-				
+					<div class="clearfix" style="clear:both;padding-top:10px;">
+						<label for="secondaryAdvertisementHyperlink">Hyperlink</label> : <input id="secondaryAdvertisementHyperlink" value="<?php echo $merchant->merchant_shop_secondaryAdvertisementHyperlink;?>" class="inp-txt" type="text" style="width:200px;" placeholder="http://">
+						<select id="secondaryAdvertisementHyperlinkOnOff" style="height:25px;margin-left:10px;">
+							<option value="1" <?php echo $merchant->merchant_shop_secondaryAdvertisementHyperlink_on==1?'selected':'';?>>On</option>
+							<option value="0" <?php echo $merchant->merchant_shop_secondaryAdvertisementHyperlink_on==0?'selected':'';?>>Off</option>
+						</select>
+						<button onclick="saveSecondaryAdvertisementHyperlink();" type="button" class="km-btn km-btn-primary" style="height: 20px;font-size: 12px;padding: 0px 5px;margin-right:10px;">Save</button>
+					</div>
 				</div>
 				<div id="shopFocusItemList" class="shopFocusItemList" style="display:none;padding:0 10px;">
 					<h3 style="line-height:20px;">Focus Item List</h3>
@@ -291,5 +298,20 @@ function showSubCategories(){
 	subCategories.id = $("#merchantId").val();
 	subCategories.show = $('input[name="showSubCategories"]:checked').val();
 	dataHandler("modify","subCategories",subCategories,successShowCat,'Sure to modify?',null,null,true);
+}
+
+function saveMainAdvertisementHyperlink () {
+	var mainAdvertisementHyperlink = new Object();
+	mainAdvertisementHyperlink.id = $("#merchantId").val();
+	mainAdvertisementHyperlink.link = $("#mainAdvertisementHyperlink").val();
+	mainAdvertisementHyperlink.on = $("#mainAdvertisementHyperlinkOnOff").val();
+	dataHandler("modify","mainAdvertisementHyperlink",mainAdvertisementHyperlink,successShowCat,null,null,null,false);
+}
+function saveSecondaryAdvertisementHyperlink () {
+	var secondaryAdvertisementHyperlink = new Object();
+	secondaryAdvertisementHyperlink.id = $("#merchantId").val();
+	secondaryAdvertisementHyperlink.link = $("#secondaryAdvertisementHyperlink").val();
+	secondaryAdvertisementHyperlink.on = $("#secondaryAdvertisementHyperlinkOnOff").val();
+	dataHandler("modify","secondaryAdvertisementHyperlink",secondaryAdvertisementHyperlink,successShowCat,null,null,null,false);
 }
 </script>

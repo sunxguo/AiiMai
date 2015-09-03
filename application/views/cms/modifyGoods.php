@@ -319,7 +319,7 @@
 							<option value="1" <?php if($item->product_display_left=='1'):?>selected<?php endif;?>>1 <?php echo lang('cms_goodsAdd_days');?></option>
 							<option value="2" <?php if($item->product_display_left=='2'):?>selected<?php endif;?>>2 <?php echo lang('cms_goodsAdd_days');?></option>
 							<option value="3" <?php if($item->product_display_left=='3'):?>selected<?php endif;?>>3 <?php echo lang('cms_goodsAdd_days');?></option>
-							<option value="0" <?php if($item->product_display_left=='0'):?>selected<?php endif;?>selected="selected">Not use</option>
+							<option value="0" <?php if($item->product_display_left=='0'):?>selected<?php endif;?>>Not use</option>
 						</select>
 						<?php echo lang('cms_goodsAdd_DisplayleftavailableperiodTip');?>
 					</td>

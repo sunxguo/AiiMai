@@ -302,6 +302,19 @@ class Cms extends CI_Controller {
 		);
 		$this->load->view('cms/modifyGoods',$data);
 	}
+	public function modifyGroupBuy(){
+		$groupbuy=$this->commongetdata->getContent('groupbuy',$_GET['groupBuyId']);
+		$item=$this->commongetdata->getContent('product',$groupbuy->groupbuy_productId);
+		$data=array(
+			"categories"=>$this->commongetdata->getCategories(false),
+			"groupbuy"=>$groupbuy,
+			"item"=>$item,
+			"subCatList"=>$this->commongetdata->getSubCat($item->product_category),
+			"subSubCatList"=>$this->commongetdata->getSubCat($item->product_sub_category),
+			"shopCategory"=>$this->commongetdata->getShopCategory($_SESSION['userid'])
+		);
+		$this->load->view('cms/modifyGroupBuy',$data);
+	}
 	public function auctionGoods(){
 		$this->cmsBaseHandler('auction',array('goodsManagement'=>true,'auction'=>true,'auctionGoods'=>true),'auctionGoods',array());
 	}

@@ -99,7 +99,7 @@
 						<option value="3">Available</option>
 						<option value="4">Deleted</option>
 						<option value="5">Suspended</option>
-						<option value="6">Restricted</option>
+						<option value="6">Rejected</option>
 					</select>
 				</div>
 				<div class="km-modal-footer">
@@ -122,7 +122,7 @@
 					<option value="3">Available</option>
 				    <option value="4">Deleted</option>
 				    <option value="5">Suspended</option>
-				    <option value="6">Restricted</option>
+				    <option value="6">Rejected</option>
 				</select>
 			</div>
 			<div class="km-modal-footer">

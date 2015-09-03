@@ -1064,3 +1064,48 @@ function postReview(productId){
 function orderProducts(){
 	location.href="/home/search?keywords="+$("#keywords").val()+"&viewStyle="+$("#viewStyle").val()+"&sortBy="+$("#sortBy").val()+"&priceRange="+$("#priceRange").val();
 }
+function selectOption(productId){
+	var optionNum=$("#optionNum").val();
+	var optionStock = new Object();
+	optionStock.productId = productId;
+	if(optionNum>=2) optionStock.option1 = $("#op1").val();
+	if(optionNum==3) optionStock.option2 = $("#op2").val();
+	dataHandler("get","optionStock",optionStock,successGetOptionStock,null,null,null,false);
+}
+function successGetOptionStock (data) {
+	var optionNum=$("#optionNum").val();
+	$('#op'+optionNum).html('');
+	for(var optionName in data){
+		$('#op'+optionNum).append('<option value="'+optionName+'">'+optionName+'     --Qty : '+data[optionName]+'</option>');
+	}
+}
+// var _currentOptionType;
+// function selectOption(productId,type){
+// 	_currentOptionType=type;
+// 	var optionData = new Object();
+// 	optionData.productId = productId;
+// 	optionData.option1 = $("#op"+type).val();
+// 	dataHandler("get","optionData",optionData,successGetOption,null,null,null,false);
+// }
+// function successGetOption(data){
+// 	var productOption2= new Array();
+// 	var productOption3= new Array();
+// 	if(_currentOptionType==1){
+// 		$("#op2").html('');
+// 		$("#op3").html('<option>[Please choose the above option first.]</option>');
+// 	}else if(_currentOptionType==2){
+// 		$("#op3").html('');
+// 	}
+// 	for(var i=0;i<data.length;i++){
+// 		if(data[i].product_option_2!='' && productOption2.indexOf(data[i].product_option_2)==-1){
+// 			//$optionArray[1][]=$option->product_option_2;
+// 			$("#op2").append('<option>'+data[i].product_option_2+'</option>');
+// 			productOption2.push(data[i].product_option_2);
+// 		}
+// 		if(data[i].product_option_3!='' && productOption3.indexOf(data[i].product_option_3)==-1){
+// 			//$optionArray[1][]=$option->product_option_2;
+// 			$("#op3").append('<option>'+data[i].product_option_3+'</option>');
+// 			productOption3.push(data[i].product_option_3);
+// 		}
+// 	}
+// }

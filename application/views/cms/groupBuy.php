@@ -7,10 +7,11 @@
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
 		<div class="km-panel-heading">Group Buy Item Info</div>
 		<div class="km-panel-body" style="padding:0px;">
+			<input id="groupBuyStatusFilter" type="hidden" value="0">
 			<div class="km-btn-group" style="width:100%;margin:10px auto;">
-			  <button type="button" class="km-btn km-btn-warning" style="width:33%;"><?php echo lang('cms_groupBuy_InPreparation');?>(<?php echo $inPreparationAmount;?>/<?php echo $amount;?>)</button>
-			  <button type="button" class="km-btn km-btn-success" style="width:34%;"><?php echo lang('cms_groupBuy_InProgress');?>(<?php echo $inProgressAmount;?>/<?php echo $amount;?>)</button>
-			  <button type="button" class="km-btn km-btn-danger" style="width:33%;"><?php echo lang('cms_groupBuy_Ended');?>(<?php echo $endedAmount;?>/<?php echo $amount;?>)</button>
+			  <button onclick="groupBuyQueryStatus('inPreparation');" type="button" class="km-btn km-btn-warning" style="width:33%;"><?php echo lang('cms_groupBuy_InPreparation');?>(<?php echo $inPreparationAmount;?>/<?php echo $amount;?>)</button>
+			  <button onclick="groupBuyQueryStatus('inProgress');" type="button" class="km-btn km-btn-success" style="width:34%;"><?php echo lang('cms_groupBuy_InProgress');?>(<?php echo $inProgressAmount;?>/<?php echo $amount;?>)</button>
+			  <button onclick="groupBuyQueryStatus('ended');" type="button" class="km-btn km-btn-danger" style="width:33%;"><?php echo lang('cms_groupBuy_Ended');?>(<?php echo $endedAmount;?>/<?php echo $amount;?>)</button>
 			</div>
 			<table class="km-table">
 				<tbody>
@@ -67,11 +68,11 @@
 					<?php echo lang('cms_groupBuy_GroupBuyNoItem');?>
 				</td>
 				<td class="value width40p tal" colspan="3">
-					<input type="text" class="km-form-control km-input-disabled" id="productCode" style="width: 10%;height: 26px;padding: 0 5px;display: inline-block;vertical-align: bottom;" disabled="disabled">
+					Code: <input type="text" class="km-form-control km-input-disabled" id="productCode" style="width: 10%;height: 26px;padding: 0 5px;display: inline-block;vertical-align: bottom;" disabled="disabled">
 					<input type="text" class="km-form-control km-input-disabled" id="productTitle" style="width: 20%;height: 26px;padding: 0 5px;display: inline-block;vertical-align: bottom;" disabled="disabled">
 					<input type="text" class="km-form-control km-input-disabled" id="productPrice" style="width: 10%;height: 26px;padding: 0 5px;display: inline-block;vertical-align: bottom;" disabled="disabled">
 					<button onclick="setDivCenter('#searchPropductDiv',true);" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;"><?php echo lang('cms_groupBuy_Search');?></button>
-					<div class="km-modal-dialog width40p" id="searchPropductDiv">
+					<div class="km-modal-dialog" id="searchPropductDiv" style="width:800px;">
 						<div class="km-modal-content">
 							<div class="km-modal-header">
 								<button type="button" class="km-close"><span>&times;</span></button>
@@ -187,7 +188,7 @@
 					</div>
 				</td>
 				<td class="value width40p tal">
-					<input type="text" class="km-form-control" id="retailPrice" style="width: 20%;height: 26px;padding: 0 5px;display: inline-block;vertical-align: bottom;">
+					<input type="text" class="km-form-control km-input-disabled" id="retailPrice" style="width: 20%;height: 26px;padding: 0 5px;display: inline-block;vertical-align: bottom;" disabled="disabled">
 				</td>
 			  </tr>
 			  <tr>
@@ -196,6 +197,7 @@
 				</td>
 				<td class="value width40p tal">
 					<input type="text" class="km-form-control" id="minQty" style="width: 10%;height: 26px;padding: 0 5px;display: inline-block;vertical-align: bottom;">
+					&nbsp;&nbsp;Stock: <span id="stock" class="km-label km-label-warning">0</span>
 					<p style="display: inline-block;margin-left:20px;">
 						<?php echo lang('cms_groupBuy_AimedMinQtyTip');?>
 					</p>
@@ -212,7 +214,7 @@
 					<?php echo lang('cms_groupBuy_GroupBuyPeriod');?>
 				</td>
 				<td class="value width40p tal" colspan="3">
-					<select style="height: 30px;">
+					<select style="height: 30px;" onchange="GroupBuyPeriodChange(this);">
 						<option value="3">~3<?php echo lang('cms_groupBuy_days');?></option>
 						<option value="7">~1<?php echo lang('cms_groupBuy_week');?></option>
 						<option value="14">~2<?php echo lang('cms_groupBuy_weeks');?></option>
@@ -222,14 +224,14 @@
 					<?php echo lang('cms_groupBuy_Qcash');?>   
 					-->
 					<input id="startingDate" type="date" value="<?php echo date("Y-m-d");?>" class="km-form-control" style="width: 15%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
-					<select id="startingHour" style="height: 30px;">
+					<select id="startingHour" style="height: 30px;" onchange="selectTime();">
 						<option value="00">00</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
 					</select> <?php echo lang('cms_auctionGoods_Hr');?>  
 					<select id="startingMinute" style="height: 30px;">
 						<option value="00">00</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option>
 					</select> <?php echo lang('cms_auctionGoods_min');?>   ~ 
-					<input id="endDate" type="date" value="<?php echo date("Y-m-d");?>" class="km-form-control" style="width: 15%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
-					<select id="endHour" style="height: 30px;">
+					<input id="endDate" type="date" value="<?php echo date("Y-m-d",strtotime("+3days",time()));?>" class="km-form-control" style="width: 15%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
+					<select id="endHour" style="height: 30px;" onchange="selectTime();">
 						<option value="00">00</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option>
 					</select> <?php echo lang('cms_auctionGoods_Hr');?>  
 					<select id="endMinute" style="height: 30px;">
