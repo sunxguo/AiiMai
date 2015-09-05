@@ -46,10 +46,10 @@
 			<tr class="table-head">
 				<th style="width:30px;"><input type="checkbox" id="checkAll"></th>
 				<th style="width:100px;">Logo</th>
-				<th style="width:200px;" onclick="orderMerchant('<?php echo $selectPage;?>','shop')">Seller Shop Title <?php if(isset($_GET['orderShopTitle'])){if($_GET['orderShopTitle']=='desc') echo '↑';else echo '↓';}?></th>
+				<th style="width:200px;" class="field-order" onclick="orderMerchant('<?php echo $selectPage;?>','shop')">Seller Shop Title <?php if(isset($_GET['orderShopTitle'])){if($_GET['orderShopTitle']=='desc') echo '↑';else echo '↓';}?></th>
 				<th style="width:100px;">Avatar</th>
-				<th style="width:150px;" onclick="orderMerchant('<?php echo $selectPage;?>','username')">Username <?php if(isset($_GET['orderUser'])){if($_GET['orderUser']=='desc') echo '↑';else echo '↓';}?></th>
-				<th style="width:160px;" onclick="orderMerchant('<?php echo $selectPage;?>','email')">Email <?php if(isset($_GET['orderEmail'])){if($_GET['orderEmail']=='desc') echo '↑';else echo '↓';}?></th>
+				<th style="width:150px;" class="field-order" onclick="orderMerchant('<?php echo $selectPage;?>','username')">Username <?php if(isset($_GET['orderUser'])){if($_GET['orderUser']=='desc') echo '↑';else echo '↓';}?></th>
+				<th style="width:160px;" class="field-order" onclick="orderMerchant('<?php echo $selectPage;?>','email')">Email <?php if(isset($_GET['orderEmail'])){if($_GET['orderEmail']=='desc') echo '↑';else echo '↓';}?></th>
 				<th style="width:100px;">Gender</th>
 				<th style="width:80px;">Vip</th>
 				<th style="width:100px;">Status</th>

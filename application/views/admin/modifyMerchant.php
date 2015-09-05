@@ -88,7 +88,112 @@
 					</td>
 					<td class="field width20p bl1">Address</td>
 					<td class="value bl1">
-						<button onclick="" type="button" class="km-btn km-btn-primary" style=" height: 23px;font-size: 10px;padding: 0px 10px;">Address Book</button>
+						<button onclick="setDivCenter('#addressDiv',true);selectAddress(1);" type="button" class="km-btn km-btn-primary" style=" height: 23px;font-size: 10px;padding: 0px 10px;">Address Book</button>
+						<div class="km-modal-dialog" style="width:70%;" id="addressDiv">
+							<div class="km-modal-content">
+								<div class="km-modal-header">
+									<button type="button" class="km-close"><span>&times;</span></button>
+									<h4 class="km-modal-title">Personal Info - Address</h4>
+								</div>
+								<div class="km-modal-body">
+								<!--//1.shipAddress 2.Family 3.Work 4.Friends 5.Etc.-->
+									<ul id="addressTypeList" class="km-nav km-nav-tabs clearfix">
+									  <li class="active"><a href="javascript:selectAddress(1);">Family</a></li>
+									  <li><a href="javascript:selectAddress(2);">Friends</a></li>
+									  <li><a href="javascript:selectAddress(3);">Work</a></li>
+									  <li><a href="javascript:selectAddress(4);">Others</a></li>
+									  <li><a href="javascript:setDivCenter('#addAddressDiv',true);"><img src="/assets/images/cms/icon-plus.png" width="15"></a></li>
+									</ul>
+									<div id="familyAddress">
+										<ul class="clearfix" id="addressList">
+											
+										</ul>
+									</div>
+								</div>
+								<div class="km-modal-footer">
+									<button type="button" class="km-btn km-btn-default km-btn-close">Close</button>
+								</div>
+							</div><!-- /.modal-content -->
+						</div><!-- /.modal-dialog -->
+						<div class="km-modal-dialog" id="editAddressDiv" style="width:520px;z-index: 10051;">
+							<div class="km-modal-content">
+								<div class="km-modal-header">
+									<button type="button" class="km-edit-address-close" onclick="$('#editAddressDiv').hide();"><span>&times;</span></button>
+									<h4 class="km-modal-title">Personal Info - Edit Address</h4>
+									<input type="hidden" id="addressId">
+								</div>
+								<div class="km-modal-body">
+								<!--//1.shipAddress 2.Family 3.Work 4.Friends 5.Etc.-->
+									<label for="addressTypeModification" class="km-control-label" style="width: 100px;margin-top:10px;">Type:</label>
+									<select id="addressTypeModification" style="height:30px;vertical-align:middle;">
+										<option value="1">Family</option>
+										<option value="2">Friends</option>
+										<option value="3">Work</option>
+										<option value="4">Others</option>
+									</select><br><br>
+									<label for="addressTitleModification" class="km-control-label" style="width: 100px;">Address Name:</label>
+									<input type="text" class="km-form-control" id="addressTitleModification" value="" style="width: 50%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
+									<label for="addressStaffNameModification" class="km-control-label" style="width: 100px;">Recipient:</label>
+									<input type="text" class="km-form-control" id="addressStaffNameModification" value="" style="width: 50%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
+									<label for="addressCountryModification" class="km-control-label" style="width: 100px;">Country:</label>
+									<select id="addressCountryModification" style="height: 30px;width:30%;"><?php require('countryPhoneNO.php');?></select><br><br>
+									<label for="addressDetailModification" class="km-control-label" style="width: 100px;">Address:</label>
+									<input type="text" class="km-form-control" id="addressDetailModification" value="" style="width: 365px;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
+									
+									<label for="addressMobilephone1Modification" class="km-control-label" style="width: 120px;">Mobile Phone:</label>
+									<select id="addressMobilephone1Modification" style="height: 30px;width:125px;"><?php require('countryPhoneNO.php');?></select>
+									<input type="text" class="km-form-control" id="addressMobilephone2Modification" value="" style="width: 20%;height: 30px;padding: 0 5px;display: inline-block;">-
+									<input type="text" class="km-form-control" id="addressMobilephone3Modification" value="" style="width: 20%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
+									<label for="addressPhone1Modification" class="km-control-label" style="width: 120px;">Phone Number:</label>
+									<select id="addressPhone1Modification" style="height: 30px;width:125px;"><?php require('countryPhoneNO.php');?></select>
+									<input type="text" class="km-form-control" id="addressPhone2Modification" value="" style="width: 20%;height: 30px;padding: 0 5px;display: inline-block;">-
+									<input type="text" class="km-form-control" id="addressPhone3Modification" value="" style="width: 20%;height: 30px;padding: 0 5px;display: inline-block;">
+									
+								</div>
+								<div class="km-modal-footer">
+									<button onclick="saveAddress();" type="button" class="km-btn km-btn-primary">Save</button>
+								</div>
+							</div><!-- /.modal-content -->
+						</div><!-- /.modal-dialog -->
+						<div class="km-modal-dialog" id="addAddressDiv" style="width:520px;z-index: 10051;">
+							<div class="km-modal-content">
+								<div class="km-modal-header">
+									<button type="button" class="km-add-address-close" onclick="$('#addAddressDiv').hide();"><span>&times;</span></button>
+									<h4 class="km-modal-title">Personal Info - Add Address</h4>
+								</div>
+								<div class="km-modal-body">
+								<!--//1.shipAddress 2.Family 3.Work 4.Friends 5.Etc.-->
+									<label for="addressType" class="km-control-label" style="width: 100px;margin-top:10px;">Type:</label>
+									<select id="addressType" style="height:30px;vertical-align:middle;">
+										<option value="1">Family</option>
+										<option value="2">Friends</option>
+										<option value="3">Work</option>
+										<option value="4">Others</option>
+									</select><br><br>
+									<label for="addressTitle" class="km-control-label" style="width: 100px;">Address Name:</label>
+									<input type="text" class="km-form-control" id="addressTitle" value="" style="width: 50%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
+									<label for="addressStaffName" class="km-control-label" style="width: 100px;">Recipient:</label>
+									<input type="text" class="km-form-control" id="addressStaffName" value="" style="width: 50%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
+									<label for="addressCountry" class="km-control-label" style="width: 100px;">Country:</label>
+									<select id="addressCountry" style="height: 30px;width:30%;"><?php require('countryPhoneNO.php');?></select><br><br>
+									<label for="addressDetail" class="km-control-label" style="width: 100px;">Address:</label>
+									<input type="text" class="km-form-control" id="addressDetail" value="" style="width: 365px;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
+									
+									<label for="addressMobilephone1" class="km-control-label" style="width: 120px;">Mobile Phone:</label>
+									<select id="addressMobilephone1" style="height: 30px;width:125px;"><?php require('countryPhoneNO.php');?></select>
+									<input type="text" class="km-form-control" id="addressMobilephone2" value="" style="width: 20%;height: 30px;padding: 0 5px;display: inline-block;">-
+									<input type="text" class="km-form-control" id="addressMobilephone3" value="" style="width: 20%;height: 30px;padding: 0 5px;display: inline-block;"><br><br>
+									<label for="addressPhone1" class="km-control-label" style="width: 120px;">Phone Number:</label>
+									<select id="addressPhone1" style="height: 30px;width:125px;"><?php require('countryPhoneNO.php');?></select>
+									<input type="text" class="km-form-control" id="addressPhone2" value="" style="width: 20%;height: 30px;padding: 0 5px;display: inline-block;">-
+									<input type="text" class="km-form-control" id="addressPhone3" value="" style="width: 20%;height: 30px;padding: 0 5px;display: inline-block;">
+									
+								</div>
+								<div class="km-modal-footer">
+									<button onclick="addAddress();" type="button" class="km-btn km-btn-primary">Add</button>
+								</div>
+							</div><!-- /.modal-content -->
+						</div><!-- /.modal-dialog -->
 					</td>
 					<!--
 					<td class="field width20p bl1">Contacts</td>
@@ -215,6 +320,7 @@
 									<img style="width:100%;" src="<?php echo $merchant->merchant_business_license;?>">
 								</div>
 								<div class="km-modal-footer">
+									<button onclick="location.href='/common/downloadImage?filename=<?php echo $merchant->merchant_business_license;?>';" type="button" class="km-btn km-btn-success">Download</button>
 									<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_myInfo_Close');?></button>
 								</div>
 							</div><!-- /.modal-content -->
@@ -242,6 +348,7 @@
 									<img style="width:100%;" src="<?php echo $merchant->merchant_bank_account;?>">
 								</div>
 								<div class="km-modal-footer">
+									<button onclick="location.href='/common/downloadImage?filename=<?php echo $merchant->merchant_bank_account;?>';" type="button" class="km-btn km-btn-success">Download</button>
 									<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_myInfo_Close');?></button>
 								</div>
 							</div><!-- /.modal-content -->
@@ -468,6 +575,145 @@ function addModifyBankbookBeforeUpload(){
 function addModifyBankbookAfterUpload(imageSrc){
 	$("#loadingBankbook").hide();
 	$("#bankAccountImage").attr('src',imageSrc);
+}
+var _currentAddressType;
+function selectAddress(type){
+	$("#addressTypeList li").removeClass('active');
+	$("#addressTypeList li:eq("+(type-1)+")").addClass('active');
+	_currentAddressType=type;
+	$("#addressList").html('');
+	var address = new Object();
+	address.userId = $("#merchantId").val();
+	address.type = type;
+	dataHandler("get","addressList",address,getAddressListHandler,null,null,null,false);
+}
+function getAddressListHandler(data){
+	var listHtml='';
+	for(var i=0;i<data.length;i++){
+		var item='<li class="clearfix">	'+
+				'	<div class="addressList-Title fl">	'+
+				'		<span>'+data[i].address_title+'</span>	'+
+				'	</div>	'+
+				'	<div class="addressList-address fl">	'+
+				'		<p>	'+
+				'			'+data[i].address_staffname+'	'+
+				'		</p>	'+
+				'		<p>	'+
+				'			'+data[i].address_detail+','+data[i].address_country+'	'+
+				'		</p>	'+
+				'	</div>	'+
+				'	<div class="addressList-phone fl">	'+
+				'		<p class="gsm_phone"><em>'+data[i].address_mobilephone1+'-'+data[i].address_mobilephone2+'-'+data[i].address_mobilephone3+'</em></p>	'+
+				'		<p class="gsm_home"><em>'+data[i].address_phone1+'-'+data[i].address_phone2+'-'+data[i].address_phone3+'</em></p>	'+
+				'	</div>	'+
+				'	<div class="addressList-operation fl">	'+
+				'		<button onclick="editAddress('+data[i].address_id+');" type="button" class="km-btn km-btn-primary" style="height:18px;font-size:10px;padding: 0 10px;">Edit</button>	'+
+				'		<button onclick="deleteAddress('+data[i].address_id+',\'Sure to delete this address?\',\'Success!\');" type="button" class="km-btn km-btn-danger" style="height:18px;font-size:10px;padding: 0 10px;">Delete</button>	'+
+				'	</div>	'+
+				'</li>';
+		listHtml+=item;
+	}
+	$("#addressList").html(listHtml);
+}
+function deleteAddress(id,confirmMsg,successMsg){
+	var address = new Object();
+	address.id = id;
+	dataHandler("del","address",address,refreshAddressList,confirmMsg,null,successMsg,false);
+}
+function refreshAddressList(){
+	selectAddress(_currentAddressType);
+}
+function editAddress(id){
+	setDivCenter('#editAddressDiv',true);
+	var address = new Object();
+	address.id = id;
+	dataHandler("get","address",address,getAddressHandler,null,null,null,false);
+}
+function getAddressHandler(data){
+	 $("#addressId").val(data.address_id);
+	 $("#addressTypeModification").val(data.address_type);
+	 $("#addressTitleModification").val(data.address_title);
+	 $("#addressStaffNameModification").val(data.address_staffname);
+	 $("#addressCountryModification").val(data.address_country);
+//	 $("#addressAreaModification").val(data.address_area);
+	 $("#addressDetailModification").val(data.address_detail);
+	 $("#addressMobilephone1Modification").val(data.address_mobilephone1);
+	 $("#addressMobilephone2Modification").val(data.address_mobilephone2);
+	 $("#addressMobilephone3Modification").val(data.address_mobilephone3);
+	 $("#addressPhone1Modification").val(data.address_phone1);
+	 $("#addressPhone2Modification").val(data.address_phone2);
+	 $("#addressPhone3Modification").val(data.address_phone3);
+}
+function saveAddress(){
+	var address = new Object();
+	address.id = $("#addressId").val();
+	address.type = $("#addressTypeModification").val();
+	address.title = $("#addressTitleModification").val();
+	address.staffname = $("#addressStaffNameModification").val();
+	address.country = $("#addressCountryModification").val();
+//	address.area = $("#addressAreaModification").val();
+	address.detail = $("#addressDetailModification").val();
+	address.mobilephone1 = $("#addressMobilephone1Modification").val();
+	address.mobilephone2 = $("#addressMobilephone2Modification").val();
+	address.mobilephone3 = $("#addressMobilephone3Modification").val();
+	address.phone1 = $("#addressPhone1Modification").val();
+	address.phone2 = $("#addressPhone2Modification").val();
+	address.phone3 = $("#addressPhone3Modification").val();
+	dataHandler("modify","address",address,successSaveAddress,null,null,null,false);
+}
+function initEditAddress(){
+	$("#addressId").val('');
+	$("#addressTypeModification").val('');
+	$("#addressTitleModification").val('');
+	$("#addressStaffNameModification").val('');
+	$("#addressCountryModification").val('');
+	$("#addressDetailModification").val('');
+	$("#addressMobilephone1Modification").val('');
+	$("#addressMobilephone2Modification").val('');
+	$("#addressMobilephone3Modification").val('');
+	$("#addressPhone1Modification").val('');
+	$("#addressPhone2Modification").val('');
+	$("#addressPhone3Modification").val('');
+}
+function successSaveAddress(){
+	$("#editAddressDiv").hide();
+	initEditAddress();
+	selectAddress(_currentAddressType);
+}
+function initAddAddress(){
+	$("#addressType").val('');
+	$("#addressTitle").val('');
+	$("#addressStaffName").val('');
+	$("#addressCountry").val('');
+	$("#addressDetail").val('');
+	$("#addressMobilephone1").val('');
+	$("#addressMobilephone2").val('');
+	$("#addressMobilephone3").val('');
+	$("#addressPhone1").val('');
+	$("#addressPhone2").val('');
+	$("#addressPhone3").val('');
+}
+function addAddress(){
+	var address = new Object();
+	address.userId = $("#merchantId").val();
+	address.type = $("#addressType").val();
+	address.title = $("#addressTitle").val();
+	address.staffname = $("#addressStaffName").val();
+	address.country = $("#addressCountry").val();
+//	address.area = $("#addressArea").val();
+	address.detail = $("#addressDetail").val();
+	address.mobilephone1 = $("#addressMobilephone1").val();
+	address.mobilephone2 = $("#addressMobilephone2").val();
+	address.mobilephone3 = $("#addressMobilephone3").val();
+	address.phone1 = $("#addressPhone1").val();
+	address.phone2 = $("#addressPhone2").val();
+	address.phone3 = $("#addressPhone3").val();
+	dataHandler("add","address",address,successAddAddress,null,null,null,false);
+}
+function successAddAddress(){
+	$("#addAddressDiv").hide();
+	initAddAddress();
+	selectAddress(_currentAddressType);
 }
 </script>
 </body>

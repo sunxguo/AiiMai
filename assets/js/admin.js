@@ -654,6 +654,7 @@ function showMutiChangeImageDiv(){
 function successPublished(){
 	alert('Successfully published!');
 }
+
 /*
 function pubNotice(){
 	var notice = new Object();

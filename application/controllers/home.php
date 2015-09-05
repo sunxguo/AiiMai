@@ -210,7 +210,7 @@ class Home extends CI_Controller {
 		if(!in_array($_GET['itemId'],$recentlyViewedProducts)){
 			array_unshift($recentlyViewedProducts,$_GET['itemId']);
 		}
-		setcookie('recentlyViewedProducts',json_encode($recentlyViewedProducts));
+		setcookie('recentlyViewedProducts',json_encode($recentlyViewedProducts),time()+3600*24*60);
 		$recentlyViewedProductsArray=array();
 		foreach ($recentlyViewedProducts as $value) {
 			$recentlyViewedProductsArray[]=$this->commongetdata->getContent('product',$value);
@@ -228,8 +228,10 @@ class Home extends CI_Controller {
 				"status"=>3
 			)),
 			"comments"=>$this->commongetdata->getComments($_GET['itemId']),
+			"enquiries"=>array('data'=>array()),
 			"hotItems"=>$this->commongetdata->getFocusItems($item->product_merchant),
 			"follow"=>isset($_SESSION['userid'])?$this->commongetdata->getFollow($item->product_merchant,$_SESSION['userid']):false,
+			"wishlist"=>isset($_SESSION['userid'])?$this->commongetdata->getWishList($item->product_id,$_SESSION['userid']):false,
 			"followNo"=>$this->commongetdata->getFollowNo($item->product_merchant),
 			"relatedProducts"=>$this->commongetdata->getRelatedProducts($_GET['itemId'],20),
 			"recentlyViewedProducts"=>$recentlyViewedProductsArray
@@ -401,6 +403,40 @@ class Home extends CI_Controller {
 			'user'=>$this->commongetdata->getContent('user',$_SESSION['userid'])
 		);
 		$this->homeBaseHandler('Recent Orders','recentOrders',$data);
+	}
+	public function followingShop(){
+		if(!$this->checkUserLogin()) return false;
+		$parameters=array(
+			'table'=>'follow',
+			'result'=>'data',
+			'where'=>array("follow_user_id"=>$_SESSION['userid'])
+		);
+		$folows=$this->commongetdata->getData($parameters);
+		foreach ($folows as $value) {
+			$value->merchant=$this->commongetdata->getContent('user',$value->follow_merchant_id);
+		}
+		$data=array(
+			'user'=>$this->commongetdata->getContent('user',$_SESSION['userid']),
+			'follows'=>$folows
+		);
+		$this->homeBaseHandler('following Shop','followingShop',$data);
+	}
+	public function wishList(){
+		if(!$this->checkUserLogin()) return false;
+		$parameters=array(
+			'table'=>'wishlist',
+			'result'=>'data',
+			'where'=>array("wishlist_userid"=>$_SESSION['userid'])
+		);
+		$wishlists=$this->commongetdata->getData($parameters);
+		foreach ($wishlists as $value) {
+			$value->product=$this->commongetdata->getContent('product',$value->wishlist_productid);
+		}
+		$data=array(
+			'user'=>$this->commongetdata->getContent('user',$_SESSION['userid']),
+			'wishlists'=>$wishlists
+		);
+		$this->homeBaseHandler('Wish List','wishList',$data);
 	}
 	public function auction(){
 		if(!$this->checkUserLogin()) return false;

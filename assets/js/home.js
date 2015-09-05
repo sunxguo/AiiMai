@@ -1079,6 +1079,11 @@ function successGetOptionStock (data) {
 		$('#op'+optionNum).append('<option value="'+optionName+'">'+optionName+'     --Qty : '+data[optionName]+'</option>');
 	}
 }
+function addToWishList(productId){
+	var wishList = new Object();
+	wishList.productId = productId;
+	dataHandler("add","wishlist",wishList,successRefresh,null,null,null,true);
+}
 // var _currentOptionType;
 // function selectOption(productId,type){
 // 	_currentOptionType=type;

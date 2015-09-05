@@ -32,7 +32,7 @@
 				<button onclick="saveCategoryTarget();" type="button" class="km-btn km-btn-primary fr" style="height: 25px;font-size: 12px;padding: 0px 10px;">Save</button>
 			</div>
 		</div>
-		
+		 
 		<div class="km-panel km-panel-primary mt10 clearfix" style="width: 98%;">
 			<div class="km-panel-heading">C. <?php echo lang('cms_baseInfo_shop_shopCategory_CustomizeCategories');?></div>
 			<div id="alertMessage" class="alert-message">

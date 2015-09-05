@@ -34,6 +34,18 @@ class Common extends CI_Controller {
 					"column_ordernum"=>$data->order_num
 				);
 			break;
+			case "wishlist":
+				if(!isset($_SESSION['userid'])){
+					echo json_encode(array("result"=>"failed","message"=>"Please login first!"));
+					return false;
+				}
+				$table="wishlist";
+				$info=array(
+					"wishlist_userid"=>$_SESSION['userid'],
+					"wishlist_productid"=>$data->productId,
+					"wishlist_time"=>date("Y-m-d H:i:s")
+				);
+			break;
 			case "essay":
 				$table="essay";
 				$info=array(
@@ -470,6 +482,14 @@ class Common extends CI_Controller {
 			case 'items':
 				$table="product";
 				$where="product_id";
+			break;
+			case 'follows':
+				$table="follow";
+				$where="follow_id";
+			break;
+			case 'wishlists':
+				$table="wishlist";
+				$where="wishlist_id";
 			break;
 		}
 		foreach($data->idArray as $id){
@@ -1737,6 +1757,16 @@ class Common extends CI_Controller {
 					$result=$this->dbHandler->updateData($condition);
 				}
 			break;
+			case 'categories':
+				foreach($data->idList as $key=>$id){
+					$condition['table']="shopcategory";
+					$condition['where']=array("shopcategory_id"=>$id);
+					$condition['data']=array(
+						"shopcategory_order"=>($key+1)
+					);
+					$result=$this->dbHandler->updateData($condition);
+				}
+			break;
 		}
 		echo json_encode(array("result"=>"success","message"=>"信息写入成功"));
 	}
@@ -2186,6 +2216,26 @@ class Common extends CI_Controller {
 		$_SESSION['userEmail']=$info[0]->user_email;
 		echo json_encode(array("result"=>"success","message"=>"Login with Facebook successfully!"));
 		return false;
+	}
+	public function downloadImage(){
+		if(isset($_GET['filename'])){
+			// $filename="http://localhost/".$_GET[filename];//获取参数 
+			// header('Content-type: image/jpeg'); 
+			// header("Content-Disposition: attachment; filename='$filename'"); 
+			// //注意：header函数前确保没有任何输出 
+			// exit;//结束程序 
+			$filename=$_GET['filename'];
+			$localhostPath = str_replace("\\","/",$_SERVER['DOCUMENT_ROOT']);  //这里要引用绝对路径  
+		    $imageUrl = $localhostPath.$filename;   //合并成一个完整的路径  
+		    $imageUrl = iconv('utf-8', 'gbk', $imageUrl);              //这里可以防止中文名文件乱码,我的机器环境是utf-8  
+		      
+		    header('Content-type: application/octet-stream');  
+		    header('Content-Disposition: attachment; filename='.$filename);
+		      
+		    ob_clean();  
+		    flush();  
+		    readfile($imageUrl); 
+		}
 	}
 	public function loginWithFB(){//user_confirm_email
 		$condition=array(

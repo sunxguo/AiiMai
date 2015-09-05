@@ -675,6 +675,18 @@ class CommonGetData{
 		$hotItems=$this->getData($condition);
 		return sizeof($hotItems)>0?true:false;
 	}
+	public function getWishList($productId,$userId){
+		$condition=array(
+			'table'=>'wishlist',
+			'result'=>'data',
+			'where'=>array(
+				'wishlist_productid'=>$productId,
+				'wishlist_userid'=>$userId
+			)
+		);
+		$wishlist=$this->getData($condition);
+		return sizeof($wishlist)>0?true:false;
+	}
 	public function getFollowNo($merchantId){
 		$condition=array(
 			'table'=>'follow',

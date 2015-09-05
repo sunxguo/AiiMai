@@ -345,6 +345,11 @@
 									Add to Cart [Buy]
 								</a>
                             </span>
+                            <?php if($wishlist):?>
+                            <span class="km-btn km-btn-warning" style="height: 25px;padding: 0px 10px;font-size: 12px;margin: 10px 0 5px 10px;line-height: 25px;cursor:default;">Added</span>
+                            <?php else:?>
+                            <button onclick="addToWishList('<?php echo $item->product_id;?>');" type="button" class="km-btn km-btn-success" style="height: 25px;padding: 0px 10px;font-size: 12px;margin: 10px 0 5px 10px;">Wish List</button>
+                       		<?php endif;?>
 						</div>
                     </li>
                 	<?php endif;?>
@@ -431,7 +436,48 @@
 		  <li><a href="#PolicyNotice">Policy & Notice</a></li>
 		</ul>
 		<div class="QuestionAnswer" style="min-height:100px;">
-			No Reviews
+			<div class="km-panel km-panel-primary" style="width: 98%;margin-top:20px;">
+				<div class="km-panel-heading">Enquiries (<?php echo sizeof($enquiries['data']);?>)</div>
+				<div class="km-panel-body" style="padding:0px;">
+					<table class="km-table">
+						<tbody>
+						  <?php echo sizeof($enquiries['data'])<1?'No Enquiries':'';?>
+						  <?php foreach($enquiries['data'] as $key=>$comment):?>
+						  <tr>
+							<td class="value" style="width:86px;">
+								<img src="/assets/images/home/fp<?php echo $key+1;?>.jpg" style="width:86px;height:86px;">
+							</td>
+							<td class="value" style="width:620px;text-align:left;">
+								<ul>
+									<li class="comment-list-title">
+										<?php echo $enquiries->comment_title;?>
+									</li>
+									<li class="comment-list-option">
+										[option]:Selection:Xiaomi MiBand Silicon Band / Color:Blue(+S$0.98)
+									</li>
+									<li class="comment-list-shortMessage">
+										<?php echo $enquiries->comment_content;?> Fast delivery with reasonable quality. The packaging is unopened and new.
+									</li>
+								</ul>
+							</td>
+							<td class="value" style="text-align:right;">
+								<ul>
+									<li class="comment-list-time">
+										<?php echo $enquiries->comment_time;?>
+										<span style="margin-left: 10px;"><?php echo mb_substr($enquiries->user->user_username, 0 , 3).'******';?></span>
+									</li>
+									<li class="comment-list-rating">
+										<?php echo $enquiries->comment_star;?>
+										Highly Recommended
+									</li>
+								</ul>
+							</td>
+						  </tr>
+						  <?php endforeach;?>
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 <!--		<ul class="km-nav km-nav-tabs clearfix" id="ShoppingTalk">
 		  <li><a href="#ItemInfo">Item Info</a></li>
