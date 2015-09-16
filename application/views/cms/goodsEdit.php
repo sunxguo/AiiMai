@@ -34,7 +34,7 @@
 						<select style="height: 30px;" onchange="stSubCategoryChange()" id="stSubCategory">
 							<option value="-1">== <?php echo lang('cms_common_1stSubCategory');?> ==</option>
 						</select>
-						<select style="height: 30px;"id="ndSubCategory">
+						<select style="height: 30px;" id="ndSubCategory">
 							<option value="-1">== <?php echo lang('cms_common_2ndSubCategory');?> ==</option>
 						</select>
 					</td>
@@ -43,12 +43,29 @@
 					</td>
 					<td class="value tal">
 						<select style="height: 30px;" id="status">
+							<option value="0">All</option>
 							<option value="1"><?php echo lang('cms_goodsCopy_UnderReview');?></option>
 							<option value="2"><?php echo lang('cms_goodsCopy_Onqueue');?></option>
 							<option value="3" selected="selected"><?php echo lang('cms_goodsCopy_Available');?></option>
 							<option value="4"><?php echo lang('cms_goodsCopy_Deleted');?></option>
 							<option value="5"><?php echo lang('cms_goodsCopy_Suspended');?></option>
-							<option value="6"><?php echo lang('cms_goodsCopy_Restricted');?></option>
+							<option value="6">Rejected</option>
+						</select>
+					</td>
+				  </tr>
+				  <tr>
+					<td class="field width10p tal br">
+						Shop Category
+					</td>
+					<td class="value tal" colspan="5">
+						<select style="height: 30px;" onchange="shopMainCategoryChange()" id="shopMainCategory">
+							<option value="-1">== <?php echo lang('cms_common_MainCategory');?> ==</option>
+							<?php foreach($shopCategory as $cat):?>
+								<option value="<?php echo $cat->shopcategory_id;?>"><?php echo $cat->shopcategory_name;?></option>
+							<?php endforeach;?>
+						</select>
+						<select style="height: 30px;" id="shopStSubCategory">
+							<option value="-1">== <?php echo lang('cms_common_1stSubCategory');?> ==</option>
 						</select>
 					</td>
 				  </tr>
@@ -109,6 +126,7 @@
 						<label for="groupBuyNo">No</label>
 					</td>
 					<td class="value tar" colspan="2">
+						<button onclick="resetFilters();" type="button" class="km-btn km-btn-default" style="height: 28px;font-size: 12px;padding: 5px 20px;">Reset</button>
 						<button onclick="productQuery(false);" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 20px;"><?php echo lang('cms_common_Search');?></button>
 						<button onclick="productQuery(true);" type="button" class="km-btn km-btn-success" style="height: 28px;font-size: 12px;padding: 5px 10px;"><?php echo lang('cms_common_Excel');?></button>
 					</td>
@@ -116,42 +134,114 @@
 				</tbody>
 			</table>
 		</div>
-		<input id="orderItemTitle" type="hidden" value="<?php echo isset($_GET['orderItemTitle'])?$_GET['orderItemTitle']:'';?>">
+		<input id="orderField" type="hidden" value="product_modify_time">
+		<input id="direction" type="hidden" value="ASC">
 		<div style="overflow:auto;">
 			<table class="km-table" style="overflow:scroll;width:150%;">
 				<tbody id="productsData">
 				  <tr style="border-top:2px solid #ddd;border-bottom:2px solid #ddd;">
-					<td class="field br tac" style="text-align:center;"><input type="checkbox" id="checkAllItems" ></td>
+					<td class="field width6p br tac" style="text-align:center;"><input type="checkbox" id="checkAllItems" ></td>
 					<td class="field width6p br tac">Operation</td>
 					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_Itemcode');?></td>
-					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_SellerCode');?></td>
-					<td class="field width6p br tac" style="cursor:pointer;" onclick="orderProduct('itemTitle');">
+					<td class="field width6p br tac order-field" onclick="orderProduct(this,'product_item_title_english');">
 						<?php echo lang('cms_goodsCopy_ItemTitle');?>
-						<?php if(isset($_GET['orderItemTitle'])){if($_GET['orderItemTitle']=='desc') echo '↑';else echo '↓';}?>
 					</td>
-					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_Price');?></td>
-					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_SettlePrice');?></td>
+					<td class="field width6p br tac order-field" onclick="orderProduct(this,'product_reference_price');">Retail Price</td>
+					<td class="field width6p br tac order-field" onclick="orderProduct(this,'product_sell_price');">Sell Price</td>
 					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_Qty');?></td>
+					<!--
 					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_PremiumList');?></td>
+					-->
 					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_Status');?></td>
-					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_GlobalSales');?></td>
+					<td class="field width6p br tac">Listing Type</td>
 					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_DeliveryType');?></td>
+					<!--
+					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_GlobalSales');?></td>
+					-->
 					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_MainCat');?></td>
 					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_1stsubCat');?></td>
 					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_2ndsubCat');?></td>
+					<!--
 					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_PayondeliveryYOrN');?></td>
-					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_SalesFormat');?></td>
 					<td class="field width6p br tac"><?php echo lang('cms_goodsCopy_InventoryCode');?></td>
-					<td class="field width6p tac"><?php echo lang('cms_goodsCopy_ListedDate');?></td>
+					-->
+					<td class="field width6p tac order-field" onclick="orderProduct(this,'product_time');"><?php echo lang('cms_goodsCopy_ListedDate');?></td>
 				  </tr>
 				</tbody>
 			</table>
 		</div>
 		<div style="margin:10px 0;">
-			<button onclick="" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 10px;">Delete</button>
-			<button onclick="" type="button" class="km-btn km-btn-success" style="height: 28px;font-size: 12px;padding: 5px 10px;">Available Period</button>
-			<button onclick="" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 10px;">Display Expiring Item Alert</button>
+			<button onclick="deleteBulkProducts();" type="button" class="km-btn km-btn-danger" style="height: 28px;font-size: 12px;padding: 5px 10px;">Delete</button>
+			<button onclick="setDivCenter('#availablePeriodBulkProductsDiv',true);" type="button" class="km-btn km-btn-success" style="height: 28px;font-size: 12px;padding: 5px 10px;">Available Period</button>
+			<button onclick="setDivCenter('#expiringBulkProductsDiv',true);" type="button" class="km-btn km-btn-primary" style="height: 28px;font-size: 12px;padding: 5px 10px;">Display Expiring Item Alert</button>
+			<button onclick="setDivCenter('#statusBulkProductsDiv',true);" type="button" class="km-btn km-btn-info" style="height: 28px;font-size: 12px;padding: 5px 10px;">Status</button>
 		</div>
+		<div class="km-modal-dialog"  style="width: 300px;" id="availablePeriodBulkProductsDiv">
+			<div class="km-modal-content">
+				<div class="km-modal-header">
+					<button type="button" class="km-close"><span>&times;</span></button>
+					<h4 class="km-modal-title">Available Period</h4>
+				</div>
+				<div class="km-modal-body" style="overflow-x:hidden;">
+					<select style="height: 30px;float:left;" id="bulkAvailablePeriod" <?php /*?>onchange="if($(this).val()==0) $('#AvailablePeriodRange').show();else $('#AvailablePeriodRange').hide();"<?php */?>>
+						<option value="1">1 day</option>  
+						<option value="2">2 days</option> 
+						<option value="3">3 days</option>   
+						<option value="7">1 weeks</option>  
+						<option value="14">2 weeks</option>
+						<option value="30">1 month</option>
+						<option value="90">3 months</option>
+						<option value="180">6 months</option>
+						<option value="365">1 year</option>
+						<option value="10000" selected="">Infinite</option>
+					</select>
+				</div>
+				<div class="km-modal-footer">
+					<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_myInfo_Close');?></button>
+					<button onclick="availablePeriodBulkProducts();" type="button" class="km-btn km-btn-primary">Save</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+		<div class="km-modal-dialog"  style="width: 400px;" id="expiringBulkProductsDiv">
+			<div class="km-modal-content">
+				<div class="km-modal-header">
+					<button type="button" class="km-close"><span>&times;</span></button>
+					<h4 class="km-modal-title">Available Period</h4>
+				</div>
+				<div class="km-modal-body" style="overflow-x:hidden;">
+					<select style="height: 30px;" id="bulkDisplayleftavailableperiod">
+						<option value="1">1 <?php echo lang('cms_goodsAdd_days');?></option>
+						<option value="2">2 <?php echo lang('cms_goodsAdd_days');?></option>
+						<option value="3">3 <?php echo lang('cms_goodsAdd_days');?></option>
+						<option value="7">7 <?php echo lang('cms_goodsAdd_days');?></option>
+						<option value="0" selected="selected">None (Do not Use)</option>
+					</select><br>
+					You can choose if to display an alert when an item's availability is expiring.
+				</div>
+				<div class="km-modal-footer">
+					<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_myInfo_Close');?></button>
+					<button onclick="expiringBulkProducts();" type="button" class="km-btn km-btn-primary">Save</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+		<div class="km-modal-dialog"  style="width: 400px;" id="statusBulkProductsDiv">
+			<div class="km-modal-content">
+				<div class="km-modal-header">
+					<button type="button" class="km-close"><span>&times;</span></button>
+					<h4 class="km-modal-title">Status</h4>
+				</div>
+				<div class="km-modal-body" style="overflow-x:hidden;">
+					<select style="height: 30px;" id="bulkStatus">
+						<option value="3" selected="selected"><?php echo lang('cms_goodsCopy_Available');?></option>
+						<option value="5"><?php echo lang('cms_goodsCopy_Suspended');?></option>
+					</select>
+				</div>
+				<div class="km-modal-footer">
+					<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_myInfo_Close');?></button>
+					<button onclick="statusBulkProducts();" type="button" class="km-btn km-btn-primary">Save</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
 	</div>
 </div>
 <script src="/assets/js/cms-goods.js" type="text/javascript"></script>

@@ -259,7 +259,6 @@
 					</td>
 					<td class="value tal">
 						<select style="height: 30px;float:left;" id="AvailablePeriod" onchange="if($(this).val()==0) $('#AvailablePeriodRange').show();else $('#AvailablePeriodRange').hide();">
-							<option value="">Select</option>  
 							<option value="1">1 day</option>  
 							<option value="2">2 days</option> 
 							<option value="3">3 days</option>   
@@ -268,8 +267,8 @@
 							<option value="30">1 month</option>
 							<option value="90">3 months</option>
 							<option value="180">6 months</option>
-							<option value="365" selected="">1 year</option>
-							<option value="10000">Infinite</option>
+							<option value="365">1 year</option>
+							<option value="10000" selected="">Infinite</option>
 							<option value="0">Date Range</option>
 						</select>
 						<div id="AvailablePeriodRange" style="display:none;float:left;margin-left:10px;">
@@ -289,7 +288,7 @@
 							  <h3 class="km-popover-title">Retail Price</h3>
 
 							  <div class="km-popover-content">
-								This is the suggested market’s Retail Price, for comparison against your Sell Price.
+								This is the suggested market's Retail Price, for comparison against your Sell Price.
 							  </div>
 							</div>
 						</div>
@@ -358,7 +357,9 @@
 				<table class="km-table" style="overflow:scroll;width:100%;">
 					<tbody id="applyOptionData">
 					  <tr style="border-top:2px solid #ddd;border-bottom:2px solid #ddd;">
+					  	<!--
 						<td class="field br tac">Operation</td>
+						-->
 						<td id="optionPricePos" class="field br tac" style="">Price</td>
 						<td class="field tac">Stock</td>
 					  </tr>

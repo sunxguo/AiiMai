@@ -39,8 +39,8 @@
 			<!--
 				<th style="width:100px;">Avatar</th>-->
 				<th style="width:30px;"><input type="checkbox" id="checkAll"></th>
-				<th style="width:100px;" onclick="orderUser('<?php echo $selectPage;?>','username')">Username <?php if(isset($_GET['orderUser'])){if($_GET['orderUser']=='desc') echo '↑';else echo '↓';}?></th>
-				<th style="width:100px;" onclick="orderUser('<?php echo $selectPage;?>','email')">Email <?php if(isset($_GET['orderEmail'])){if($_GET['orderEmail']=='desc') echo '↑';else echo '↓';}?></th>
+				<th style="width:100px;" class="field-order" onclick="orderUser('<?php echo $selectPage;?>','username')">Username <?php if(isset($_GET['orderUser'])){if($_GET['orderUser']=='desc') echo '↑';else echo '↓';}?></th>
+				<th style="width:100px;" class="field-order" onclick="orderUser('<?php echo $selectPage;?>','email')">Email <?php if(isset($_GET['orderEmail'])){if($_GET['orderEmail']=='desc') echo '↑';else echo '↓';}?></th>
 				<th style="width:100px;">Phone</th>
 				<th style="width:100px;">Gender</th>
 				<th style="width:100px;">State</th>

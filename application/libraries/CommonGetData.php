@@ -268,9 +268,25 @@ class CommonGetData{
 			'3'=>'Available',
 			'4'=>'Deleted',
 			'5'=>'Suspended',
-			'6'=>'Restricted'
+			'6'=>'Rejected'
 		);
 		return $status;
+	}
+	//1.Standard Sales 2.  Auction (For approved items)
+	public function getProductListingType(){
+		$listingType=array(
+			'1'=>'Standard Sales',
+			'2'=>'Auction (For approved items)'
+		);
+		return $listingType;
+	}
+	//1.Delivery 2.  e-Ticket
+	public function getProductDeliveryType(){
+		$deliveryType=array(
+			'1'=>'Delivery',
+			'2'=>'e-Ticket'
+		);
+		return $deliveryType;
 	}
 	public function getMerchantStatus(){
 		////状态：0：注册完成但没有完善信息 1：完善信息等待审核 2：审核通过 3：审核不通过 4:冻结
@@ -410,20 +426,23 @@ class CommonGetData{
 	/**
 	 *  商户id（$_SESSION['userid']），1级类别，2级类别，3级类别，状态，发布时间，最后修改时间，销售方式，商品标题
 	 **/
-	public function getProducts($merchantId,$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order,$groupBuy=false,$outStock=false){
+	public function getProducts($merchantId,$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order,$groupBuy=false,$outStock=false,$shopMainCat=false,$shopStSubCat=false,$expired=3){
 		$condition=array(
 			'table'=>'product',
-			'result'=>'data',
-			'order_by'=>array('product_modify_time'=>'DESC')
+			'result'=>'data'
 		);
 		if($merchantId) $condition['where']['product_merchant']=$merchantId;
 		if($cat) $condition['where']['product_category']=$cat;
 		if($sCat) $condition['where']['product_sub_category']=$sCat;
 		if($ssCat) $condition['where']['product_sub_sub_category']=$ssCat;
-		if($status) $condition['where']['product_status']=$status;
+		if($status!=0){
+			$condition['where']['product_status']=$status;
+		}
 		if($sellFormat) $condition['where']['product_sell_format']=$sellFormat;
 		if($groupBuy) $condition['where']['product_groupbuy']=1;
 		if($outStock) $condition['where']['product_quantity']=0;
+		if($shopMainCat) $condition['where']['product_shopCategory']=$shopMainCat;
+		if($shopStSubCat) $condition['where']['product_shopSubCategory']=$shopStSubCat;
 		if($listedTime){
 			$condition['where']['product_time >=']=$listedTime['begin'].' 00:00:00';
 			$condition['where']['product_time <=']=$listedTime['end'].' 23:59:59';
@@ -433,16 +452,63 @@ class CommonGetData{
 			$condition['where']['product_modify_time <=']=$modifyTime['end'].' 23:59:59';
 		}
 		if($title) $condition['like']['product_item_title_english']=$title;
-		if($order) $condition['order_by'][$order['field']]=$order['type'];
+		if($order){
+			$condition['order_by'][$order['field']]=$order['type'];
+		}else{
+			$condition['order_by']=array('product_modify_time'=>'DESC');
+		}
 		$products=$this->CI->dbHandler->selectData($condition);
+		$returnData=array();
 		if(is_array($products) && sizeof($products)>0){
 			foreach($products as $key=>$pro){
 				if(!$this->checkProductSeller($pro->product_merchant)){
 					array_splice($products,$key,1);
+				}elseif($this->isExpiredProduct($pro)){//1:expired 2:unexpired 3:all
+					if($expired==1 || $expired==3){
+						$returnData[]=$pro;
+					}
+				}else{
+					if($expired==2 || $expired==3){
+						$returnData[]=$pro;
+					}
+				}
+			}
+		}else{
+			$returnData=$products;
+		}
+		return $returnData;
+	}
+
+	function getTimeDay($second){
+		$day = floor($second/(3600*24));
+		return $day;
+	}
+	public function getExpiringProducts($products,$expired){
+		$productsArray=array();
+		foreach ($products as $key => $value) {
+			$second=time()-strtotime($value->product_time);
+			$days=$this->getTimeDay($second);
+			if($expired){
+				if($days>$value->product_available_period){
+					$productsArray[]=$value;
+				}
+			}
+			else{
+				if($days<=$value->product_available_period){
+					$productsArray[]=$value;
 				}
 			}
 		}
-		return $products;
+		return $productsArray;
+	}
+	public function isExpiredProduct($product){
+		$second=time()-strtotime($product->product_time);
+		$days=$this->getTimeDay($second);
+		if($days>$product->product_available_period){
+			return true;
+		}else{
+			return false;
+		}
 	}
 	/**
 	 *  商户id（$_SESSION['userid']），1级类别，2级类别，3级类别，状态，发布时间，最后修改时间，销售方式，商品标题
@@ -471,15 +537,27 @@ class CommonGetData{
 		if(isset($parameters['like'])) $pCondition['like']=$parameters['like'];
 		if(isset($parameters['orderBy'])) $pCondition['order_by']=$parameters['orderBy'];
 		if(isset($parameters['limit'])) $pCondition['limit']=array('limit'=>$parameters['limit'],'offset'=>$parameters['offset']);
+		if(isset($parameters['expired'])) $expired=$parameters['expired']; else $expired=3;
 		$products=$this->CI->dbHandler->selectData($pCondition);
+		$returnData=array();
 		if(is_array($products) && sizeof($products)>0){
 			foreach($products as $key=>$pro){
 				if(!$this->checkProductSeller($pro->product_merchant)){
 					array_splice($products,$key,1);
+				}elseif($this->isExpiredProduct($pro)){//1:expired 2:unexpired 3:all
+					if($expired==1 || $expired==3){
+						$returnData[]=$pro;
+					}
+				}else{
+					if($expired==2 || $expired==3){
+						$returnData[]=$pro;
+					}
 				}
 			}
+		}else{
+			$returnData=$products;
 		}
-		return $products;
+		return $returnData;
 	}
 	/**
 	 *  
@@ -596,6 +674,18 @@ class CommonGetData{
 		);
 		$hotItems=$this->getData($condition);
 		return sizeof($hotItems)>0?true:false;
+	}
+	public function getWishList($productId,$userId){
+		$condition=array(
+			'table'=>'wishlist',
+			'result'=>'data',
+			'where'=>array(
+				'wishlist_productid'=>$productId,
+				'wishlist_userid'=>$userId
+			)
+		);
+		$wishlist=$this->getData($condition);
+		return sizeof($wishlist)>0?true:false;
 	}
 	public function getFollowNo($merchantId){
 		$condition=array(

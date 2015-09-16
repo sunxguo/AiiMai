@@ -197,11 +197,12 @@ function productHandler(successMsg,isNew){
 	var handlerType='';
 	if(isNew){
 		handlerType='add';
+		dataHandler(handlerType,'product',product,addRedirect,null,null,null,false);
 	}else{
 		product.id = $("#productId").val();
 		handlerType='modify';
+		dataHandler(handlerType,'product',product,modifyRedirect,null,null,null,false);
 	}
-	dataHandler(handlerType,'product',product,handlerType+'Redirect',null,null,null,false);
 }
 function addRedirect(){
 	alert(productSuccessMsg);
@@ -210,28 +211,34 @@ function addRedirect(){
 function modifyRedirect(){
 	alert(productSuccessMsg);
 	location.reload();
+	window.opener.location.reload();
+	window.close();
 }
-function orderProduct(){
-	var product = new Object();
-	product.MainCategory = $("#MainCategory").val();
-	product.stSubCategory = $("#stSubCategory").val();
-	product.ndSubCategory = $("#ndSubCategory").val();
-	product.status = $("#status").val();
-	product.dateType = $("#dateType").val();
-	product.beginDate = $("#beginDate").val();
-	product.endDate = $("#endDate").val();
-	product.SellFormat = $("#SellFormat").val();
-	product.title = $("#title").val();
-	product.groupbuy = $('input[name="groupbuy"]:checked').val();
-	product.stock = $("#stock").val();
-	if(excel) dataHandler('excel','product',product,goUrl,null,null,null,false);
-	else dataHandler('get','product',product,loadProductsData,null,null,null,false);
+function orderProduct(tag,field){
+	$("#directionIconUp").remove();
+	$("#directionIconDown").remove();
+	var iconUp='<span id="directionIconUp">↑</span>';
+	var iconDown='<span id="directionIconDown">↓</span>';
+	var direction=$("#direction").val();
+	var newDirection='';
+	if(direction=='DESC'){
+		newDirection='ASC';
+		$(tag).append(iconDown);
+	}else{
+		newDirection='DESC';
+		$(tag).append(iconUp);
+	}
+	$("#orderField").val(field);
+	$("#direction").val(newDirection);
+	productQuery(false);
 }
 function productQuery(excel){
 	var product = new Object();
 	product.MainCategory = $("#MainCategory").val();
 	product.stSubCategory = $("#stSubCategory").val();
 	product.ndSubCategory = $("#ndSubCategory").val();
+	product.shopMainCategory = $("#shopMainCategory").val();
+	product.shopStSubCategory = $("#shopStSubCategory").val();
 	product.status = $("#status").val();
 	product.dateType = $("#dateType").val();
 	product.beginDate = $("#beginDate").val();
@@ -240,6 +247,8 @@ function productQuery(excel){
 	product.title = $("#title").val();
 	product.groupbuy = $('input[name="groupbuy"]:checked').val();
 	product.stock = $("#stock").val();
+	product.orderField = $("#orderField").val();
+	product.direction = $("#direction").val();
 	if(excel) dataHandler('excel','product',product,goUrl,null,null,null,false);
 	else dataHandler('get','product',product,loadProductsData,null,null,null,false);
 }
@@ -254,21 +263,16 @@ function loadProductsData(data){
 		'<td class="value br"><input type="checkbox" class="item" id="'+data[index].product_id+'"></td>'+
 		'<td class="value br"><a href="javascript:window.open(\'/cms/modifyGoods?itemId='+data[index].product_id+'\',\'Edit Item\',\'height=700,width=900,toolbar=no,menubar=no\');">Edit</a></td>'+
 		'<td class="value br">'+data[index].product_id+'</td>'+
-		'<td class="value br">'+''+'</td>'+
 		'<td class="value br">'+data[index].product_item_title_english+'</td>'+
 		'<td class="value br">'+data[index].product_reference_price+'</td>'+
 		'<td class="value br">'+data[index].product_sell_price+'</td>'+
 		'<td class="value br">'+data[index].product_quantity+'</td>'+
-		'<td class="value br">'+''+'</td>'+
 		'<td class="value br">'+data[index].product_status+'</td>'+
-		'<td class="value br">'+''+'</td>'+
 		'<td class="value br">'+data[index].product_sell_format+'</td>'+
+		'<td class="value br">'+data[index].product_delivery_type+'</td>'+
 		'<td class="value br">'+data[index].product_category+'</td>'+
 		'<td class="value br">'+data[index].product_sub_category+'</td>'+
 		'<td class="value br">'+data[index].product_sub_sub_category+'</td>'+
-		'<td class="value br">'+''+'</td>'+
-		'<td class="value br">'+''+'</td>'+
-		'<td class="value br">'+''+'</td>'+
 		'<td class="value br">'+data[index].product_time+'</td></tr>';
 		$("#productsData").append(product);
     }
@@ -419,7 +423,7 @@ function applyOption(){
 		if(optionItemsLength==3){
 			for(var ind in optionItems[1]){
 				for(var i in optionItems[2]){
-					resultData+='<tr class="resultDataItem"><td class="value br"><input type="checkbox"></td>';
+					resultData+='<tr class="resultDataItem">';//<td class="value br"><input type="checkbox"></td>
 					resultData+='<td class="value br">'+optionItems[0][index]+'</td>';
 					resultData+='<td class="value br">'+optionItems[1][ind]+'</td>';
 					resultData+='<td class="value br">'+optionItems[2][i]+'</td>';
@@ -429,14 +433,14 @@ function applyOption(){
 			}
 		}else if(optionItemsLength==2){
 			for(var ind in optionItems[1]){
-				resultData+='<tr class="resultDataItem"><td class="value br"><input type="checkbox"></td>';
+				resultData+='<tr class="resultDataItem">';//<td class="value br"><input type="checkbox"></td>
 				resultData+='<td class="value br">'+optionItems[0][index]+'</td>';
 				resultData+='<td class="value br">'+optionItems[1][ind]+'</td>';
 				resultData+='<td class="value br"><input type="text" class="inp-txt optionPrice"></td>';
 				resultData+='<td class="value br"><input type="text" class="inp-txt optionStock"></td>';
 			}
 		}else{
-			resultData+='<tr class="resultDataItem"><td class="value br"><input type="checkbox"></td>';
+			resultData+='<tr class="resultDataItem">';//<td class="value br"><input type="checkbox"></td>
 			resultData+='<td class="value br">'+optionItems[0][index]+'</td>';
 			resultData+='<td class="value br"><input type="text" class="inp-txt optionPrice"></td>';
 			resultData+='<td class="value br"><input type="text" class="inp-txt optionStock"></td>';
@@ -454,12 +458,149 @@ function applyOption(){
 	resultData+=''+
 	'<script>$(document).ready(function(){	$(".optionPrice,.optionStock").on("input",function(e){ '+
 	'		if(!$.isNumeric($(this).val())){ '+
-	'			showAlert("danger","Error!","Not a number!"); '+
+	'			showAlert("danger","Error!","Can only have numeric characters!"); '+
 	'			$(this).val(""); '+
 	'			return false; '+
+	'		}else{ '+
+	'			var amount=0; '+
+	'			var quantity=0; '+
+	'			$(".optionPrice").each(function(index){ '+
+	'				amount+=Number($(this).val()); '+
+	'			}); '+
+	'			$(".optionStock").each(function(index){ '+
+	'				quantity+=Number($(this).val()); '+
+	'			}); '+
+	'			$("#SellPrice").val(amount);	 '+
+	'			$("#Quantity").val(quantity);	 '+
 	'		} '+
 	'	});})</script>';
 	$(".resultDataItem").remove();
 	$("#applyOptionData").append(resultData);
 	$("#applyOptionWrapper").show();
 }
+function copyProduct () {
+	// body...
+	var items=[];
+	$('.item').each(function(index){
+		if($(this).prop('checked')==true){
+			items.push($(this).attr('id'));
+		}
+	});
+	var product = new Object();
+	product.items = items;
+	dataHandler('add','copyProduct',product,afterCopyProduct,null,null,null,false);
+}
+function afterCopyProduct () {
+	// body...
+	showAlert('success','Success!',"");
+	productQuery(false);
+}
+function deleteBulkProducts () {
+	var items=[];
+	$('.item').each(function(index){
+		if($(this).prop('checked')==true){
+			items.push($(this).attr('id'));
+		}
+	});
+	if(items.length<1){
+		showAlert('danger','Please select product!',"");
+	}else{
+		var products=new Object();
+		products.idArray=items;
+		dataHandler('delBulk','items',products,afterDeleteBulkProduct,'Sure to delete these items?',null,null,false);
+	}
+}
+function afterDeleteBulkProduct () {
+	showAlert('success','Success!',"Refreshing...");
+	productQuery(false);
+}
+function availablePeriodBulkProducts () {
+	var items=[];
+	$('.item').each(function(index){
+		if($(this).prop('checked')==true){
+			items.push($(this).attr('id'));
+		}
+	});
+	if(items.length<1){
+		showAlert('danger','Please select product!',"");
+	}else{
+		var products=new Object();
+		products.idArray=items;
+		products.availablePeriod=$("#bulkAvailablePeriod").val();
+		dataHandler('updateBulk','items_available_period',products,afterDeleteBulkProduct,null,null,null,false);
+	}
+}
+function expiringBulkProducts () {
+	var items=[];
+	$('.item').each(function(index){
+		if($(this).prop('checked')==true){
+			items.push($(this).attr('id'));
+		}
+	});
+	if(items.length<1){
+		showAlert('danger','Please select product!',"");
+	}else{
+		var products=new Object();
+		products.idArray=items;
+		products.displayleft=$("#bulkDisplayleftavailableperiod").val();
+		dataHandler('updateBulk','items_displayleft',products,afterDeleteBulkProduct,null,null,null,false);
+	}
+}
+function statusBulkProducts () {
+	var items=[];
+	$('.item').each(function(index){
+		if($(this).prop('checked')==true){
+			items.push($(this).attr('id'));
+		}
+	});
+	if(items.length<1){
+		showAlert('danger','Please select product!',"");
+	}else{
+		var products=new Object();
+		products.idArray=items;
+		products.status=$("#bulkStatus").val();
+		dataHandler('updateBulk','items_status',products,afterDeleteBulkProduct,null,null,null,false);
+	}
+}
+function resetFilters () {
+	$("#MainCategory").val(-1);
+	$("#stSubCategory").val(-1);
+	$("#ndSubCategory").val(-1);
+	$("#status").val(3);
+	$("#shopMainCategory").val(-1);
+	$("#shopStSubCategory").val(-1);
+	$("#dateType").val(0);
+	var oDate = new Date(); //实例一个时间对象
+	$("#endDate").val(dateFormat ('YYYY-MM-DD',oDate));
+	oDate.setDate(oDate.getDate()-30);
+	$("#beginDate").val(dateFormat ('YYYY-MM-DD',oDate));
+	$("#SellFormat").val(1);
+	$("#title").val('');
+	$("#stock").val(1);
+	$("#groupBuyNo").prop('checked',true);
+}
+function dateFormat (formatStr,time){   
+    var str = formatStr;   
+    var Week = ['日','一','二','三','四','五','六'];  
+  	
+    str=str.replace(/yyyy|YYYY/,time.getFullYear());   
+    str=str.replace(/yy|YY/,(time.getYear() % 100)>9?(time.getYear() % 100).toString():'0' + (time.getYear() % 100));   
+  	var month=time.getMonth()+1;
+    str=str.replace(/MM/,month>9?month.toString():'0' + month);   
+    str=str.replace(/M/g,month);   
+  
+    str=str.replace(/w|W/g,Week[time.getDay()]);   
+  
+    str=str.replace(/dd|DD/,time.getDate()>9?time.getDate().toString():'0' + time.getDate());   
+    str=str.replace(/d|D/g,time.getDate());   
+  
+    str=str.replace(/hh|HH/,time.getHours()>9?time.getHours().toString():'0' + time.getHours());   
+    str=str.replace(/h|H/g,time.getHours());   
+    str=str.replace(/mm/,time.getMinutes()>9?time.getMinutes().toString():'0' + time.getMinutes());   
+    str=str.replace(/m/g,time.getMinutes());   
+  
+    str=str.replace(/ss|SS/,time.getSeconds()>9?time.getSeconds().toString():'0' + time.getSeconds());   
+    str=str.replace(/s|S/g,time.getSeconds());   
+  
+    return str;   
+}   

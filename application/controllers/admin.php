@@ -164,10 +164,24 @@ class Admin extends CI_Controller {
 		$condition['result']="data";
 		$pageInfo=$this->commongetdata->getPageLink($baseUrl,$selectUrl,$page,$amountPerPage,$amount);
 		$condition['limit']=$pageInfo['limit'];
+		$items=$this->commongetdata->getData($condition);
+
+		$categories=$this->commongetdata->getCategories(true);
+		$status=$this->commongetdata->getProductStatus();
+		$listingType=$this->commongetdata->getProductListingType();
+		$deliveryType=$this->commongetdata->getProductDeliveryType();
+
+		foreach ($items as $key => $value) {
+			$value->product_category=isset($categories[$value->product_category])?$categories[$value->product_category]->category_name:'Deleted';
+			$value->product_sub_category=isset($categories[$value->product_sub_category])?$categories[$value->product_sub_category]->category_name:'Deleted';
+			$value->product_sub_sub_category=isset($categories[$value->product_sub_sub_category])?$categories[$value->product_sub_sub_category]->category_name:'Deleted';
+			$value->product_sell_format=$listingType[$value->product_sell_format];
+			$value->product_delivery_type=$deliveryType[$value->product_delivery_type];
+		}
 		$data=array(
 			"columns"=>$this->commongetdata->getColumns(),
-			"items"=>$this->commongetdata->getData($condition),
-			"status"=>$this->commongetdata->getProductStatus(),
+			"items"=>$items,
+			"status"=>$status,
 			"categories"=>$this->commongetdata->getCategories(false)
 		);
 		$data=array_merge($data,$pageInfo);
@@ -180,6 +194,7 @@ class Admin extends CI_Controller {
 			"item"=>$item,
 			"subCatList"=>$this->commongetdata->getSubCat($item->product_category),
 			"subSubCatList"=>$this->commongetdata->getSubCat($item->product_sub_category),
+			"shopCategory"=>$this->commongetdata->getShopCategory($item->product_merchant)
 		);
 		$this->load->view('admin/modifyItem',$data);
 	}

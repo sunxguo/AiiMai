@@ -2562,6 +2562,12 @@ border-bottom: 1px dotted #717171;
 .goods_wrap .goods_detail .infoArea * {
 line-height: 20px;
 }
+.goods_wrap .goods_detail .infoArea .left-day{
+	background-color: #FF3C6D;
+	color: white;
+	border-radius: 5px;
+	text-align: right;
+}
 .goods_wrap .goods_detail .infoArea dl.detailsArea {
 clear: both;
 display: inline-block;
@@ -2649,6 +2655,10 @@ color: #f90f0e;
 }
 .goods_wrap .goods_detail .infoArea .dsc_txt {
 padding: 0 !important;
+}
+.goods_wrap .goods_detail .infoArea dl.detailsArea.stock select{
+	height:25px;
+	width: 150px;
 }
 .goods_wrap .goods_detail .infoArea dl.detailsArea dt {
 float: left;

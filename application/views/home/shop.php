@@ -89,7 +89,9 @@
 		<ul class="subCategory clearfix">
 			<?php foreach ($subCategory as $key => $value):?>
 			<li style="padding:0 10px;">
+				<a href="/home/shop?shopId=<?php echo $_GET['shopId'];?>&category=<?php echo isset($_GET['category'])?$_GET['category']:'all';?>&subCategory=<?php echo $value->shopcategory_id;?>#shopCategory">
 					<?php echo $value->shopcategory_name;?>(<?php echo $value->count;?>)
+				</a>
 			</li>
 			<?php endforeach;?>
 		</ul>

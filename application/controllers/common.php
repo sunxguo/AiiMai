@@ -34,6 +34,18 @@ class Common extends CI_Controller {
 					"column_ordernum"=>$data->order_num
 				);
 			break;
+			case "wishlist":
+				if(!isset($_SESSION['userid'])){
+					echo json_encode(array("result"=>"failed","message"=>"Please login first!"));
+					return false;
+				}
+				$table="wishlist";
+				$info=array(
+					"wishlist_userid"=>$_SESSION['userid'],
+					"wishlist_productid"=>$data->productId,
+					"wishlist_time"=>date("Y-m-d H:i:s")
+				);
+			break;
 			case "essay":
 				$table="essay";
 				$info=array(
@@ -154,6 +166,50 @@ class Common extends CI_Controller {
 				foreach($data->optionTypes as $key=>$optionType){
 					$info['product_option'.($key+1)]=$optionType;
 				}
+			break;
+			case "copyProduct":
+				//查找商品
+				foreach ($data->items as $value) {
+					$product=$this->commongetdata->getContent('product',$value);
+					$info=array(
+						"product_category"=>$product->product_category,
+						"product_sub_category"=>$product->product_sub_category,
+						"product_sub_sub_category"=>$product->product_sub_sub_category,
+						"product_shopCategory"=>$product->product_shopCategory,
+						"product_shopSubCategory"=>$product->product_shopSubCategory,
+						"product_sell_format"=>$product->product_sell_format,
+						"product_delivery_type"=>$product->product_delivery_type,
+						"product_item_condition"=>$product->product_item_condition,
+						"product_item_title_zh_cn"=>$product->product_item_title_zh_cn,
+						"product_item_title_tw_cn"=>$product->product_item_title_tw_cn,
+						"product_item_title_english"=>$product->product_item_title_english,
+						"product_short_title"=>$product->product_short_title,
+						"product_sell_price"=>$product->product_sell_price,
+						"product_reference_price"=>$product->product_reference_price,
+						"product_seller_code"=>$product->product_seller_code,
+						"product_adult"=>$product->product_adult,
+						"product_image"=>$product->product_image,
+						"product_image_s1"=>$product->product_image_s1,
+						"product_image_s2"=>$product->product_image_s2,
+						"product_image_s3"=>$product->product_image_s3,
+						"product_image_s4"=>$product->product_image_s4,
+						"product_production_place_code"=>$product->product_production_place_code,
+						"product_production_place_detail"=>$product->product_production_place_detail,
+						"product_quantity"=>$product->product_quantity,
+						"product_available_period"=>$product->product_available_period,
+						"product_display_left"=>$product->product_display_left,
+						"product_shipping_rate"=>$product->product_shipping_rate,
+						"product_description"=>$product->product_description,
+						"product_shipping_address"=>$product->product_shipping_address,
+						"product_merchant"=>$product->product_merchant,
+						"product_time"=>date("Y-m-d H:i:s"),
+						"product_modify_time"=>date("Y-m-d H:i:s")
+					);
+					$result=$this->dbHandler->insertData('product',$info);
+				}
+				echo json_encode(array("result"=>"success","message"=>"信息写入成功"));
+				return true;
+				//添加商品
 			break;
 			case "register":
 				$table="user";
@@ -427,9 +483,48 @@ class Common extends CI_Controller {
 				$table="product";
 				$where="product_id";
 			break;
+			case 'follows':
+				$table="follow";
+				$where="follow_id";
+			break;
+			case 'wishlists':
+				$table="wishlist";
+				$where="wishlist_id";
+			break;
 		}
 		foreach($data->idArray as $id){
 			$result=$this->dbHandler->deleteData(array("table"=>$table,"where"=>array($where=>$id)));
+		}
+		echo json_encode(array("result"=>"success","message"=>"信息删除成功"));
+	}
+	public function updateBulkInfo(){
+		$condition=array();
+		$data=json_decode($_POST['data']);
+		switch($_POST['info_type']){
+			case 'items_available_period':
+				$table="product";
+				$where="product_id";
+				$info=array(
+					'product_available_period'=>$data->availablePeriod
+				);
+			break;
+			case 'items_displayleft':
+				$table="product";
+				$where="product_id";
+				$info=array(
+					'product_display_left'=>$data->displayleft
+				);
+			break;
+			case 'items_status':
+				$table="product";
+				$where="product_id";
+				$info=array(
+					'product_status'=>$data->status
+				);
+			break;
+		}
+		foreach($data->idArray as $id){
+			$result=$this->dbHandler->updateData(array("table"=>$table,"where"=>array($where=>$id),"data"=>$info));
 		}
 		echo json_encode(array("result"=>"success","message"=>"信息删除成功"));
 	}
@@ -846,6 +941,23 @@ class Common extends CI_Controller {
 				$condition['where']=array("user_id"=>$data->id);
 				$condition['data']=array(
 					"merchant_shop_itemlist_on"=>$data->on
+				);
+			break;
+
+			case "mainAdvertisementHyperlink":
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_shop_mainAdvertisementHyperlink"=>$data->link,
+					"merchant_shop_mainAdvertisementHyperlink_on"=>$data->on
+				);
+			break;
+			case "secondaryAdvertisementHyperlink":
+				$condition['table']="user";
+				$condition['where']=array("user_id"=>$data->id);
+				$condition['data']=array(
+					"merchant_shop_secondaryAdvertisementHyperlink"=>$data->link,
+					"merchant_shop_secondaryAdvertisementHyperlink_on"=>$data->on
 				);
 			break;
 			case 'categoryGroupBar':
@@ -1305,6 +1417,26 @@ class Common extends CI_Controller {
 					"address_phone3"=>$data->phone3
 				);
 			break;
+			
+			case "groupBuy":
+				$condition['table']="groupbuy";
+				$condition['where']=array("groupbuy_id"=>$data->id);
+				$condition['data']=array(
+					"groupbuy_productId"=>$data->productCode,
+					"groupbuy_productName"=>$data->productName,
+					"groupbuy_price"=>$data->groupBuyPrice,
+//					"groupbuy_settlePrice"=>$data->settlePrice,
+					"groupbuy_retailPrice"=>$data->retailPrice,
+					"groupbuy_minQty"=>$data->minQty,
+					"groupbuy_maxQty"=>$data->maxQty,
+					"groupbuy_startingTime"=>$data->startingTime,
+					"groupbuy_endTime"=>$data->endTime,
+					"groupbuy_canBuyNow"=>$data->canBuyNow,
+//					"groupbuy_availableDateType"=>$data->availableDateType,
+					"groupbuy_merchantId"=>$data->merchantId,
+					"groupbuy_autoAchieve"=>$data->autoAchieve
+				);
+			break;
 		}
 		if($_POST['info_type']!='userNewPwd'){
 			$result=$this->dbHandler->updateData($condition);
@@ -1339,6 +1471,8 @@ class Common extends CI_Controller {
 				$cat=$data->MainCategory==-1?false:$data->MainCategory;
 				$sCat=$data->stSubCategory==-1?false:$data->stSubCategory;
 				$ssCat=$data->ndSubCategory==-1?false:$data->ndSubCategory;
+				$shopMainCat=$data->shopMainCategory==-1?false:$data->shopMainCategory;
+				$shopStSubCat=$data->shopStSubCategory==-1?false:$data->shopStSubCategory;
 				$title=$data->title==''?false:$data->title;
 				$status=$data->status;
 				if($data->dateType==0){
@@ -1355,10 +1489,31 @@ class Common extends CI_Controller {
 					$listedTime=false;
 				}
 				$sellFormat=$data->SellFormat;
-				$order=array("field"=>"product_modify_time","type"=>'DESC');
+				if($data->orderField!=''){
+					$order=array("field"=>$data->orderField,"type"=>$data->direction);
+				}else{
+					$order=array("field"=>"product_modify_time","type"=>'DESC');
+				}
+				
 				$groupBuy=$data->groupbuy==1?true:false;
 				$outStock=$data->stock==0?true:false;
-				$result=$this->commongetdata->getProducts($_SESSION['userid'],$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order,$groupBuy,$outStock);
+				$result=$this->commongetdata->getProducts($_SESSION['userid'],$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order,$groupBuy,$outStock,$shopMainCat,$shopStSubCat);
+
+
+				$categories=$this->commongetdata->getCategories(true);
+				$status=$this->commongetdata->getProductStatus();
+				$listingType=$this->commongetdata->getProductListingType();
+				$deliveryType=$this->commongetdata->getProductDeliveryType();
+
+
+				foreach ($result as $key => $value) {
+					$value->product_category=isset($categories[$value->product_category])?$categories[$value->product_category]->category_name:'Deleted';
+					$value->product_sub_category=isset($categories[$value->product_sub_category])?$categories[$value->product_sub_category]->category_name:'Deleted';
+					$value->product_sub_sub_category=isset($categories[$value->product_sub_sub_category])?$categories[$value->product_sub_sub_category]->category_name:'Deleted';
+					$value->product_status=$status[$value->product_status];
+					$value->product_sell_format=$listingType[$value->product_sell_format];
+					$value->product_delivery_type=$deliveryType[$value->product_delivery_type];
+				}
 			break;
 			case 'products':
 				$parameters=array(
@@ -1380,6 +1535,24 @@ class Common extends CI_Controller {
 					'orderBy'=>array('groupbuy_registeredTime'=>'DESC')
 				);
 				if($data->name!='') $parameters['like']=array('groupbuy_productName'=>$data->name);
+				if(isset($data->status)){
+					switch ($data->status) {
+						case 'inPreparation':
+							$parameters['inPreparation']=array('startingTime'=>date("Y-m-d H:i:s"));
+							break;
+						case 'inProgress':
+							$parameters['inProgress']=array('startingTime'=>date("Y-m-d H:i:s"),'endTime'=>date("Y-m-d H:i:s"));
+							break;
+						case 'ended':
+							$parameters['ended']=array('endTime'=>date("Y-m-d H:i:s"));
+							break;
+						
+						default:
+							# code...
+							break;
+					}
+					
+				} 
 				$result=$this->commongetdata->getGroupBuyAdvance($parameters);
 			break;
 			case 'turnover':
@@ -1427,7 +1600,52 @@ class Common extends CI_Controller {
 				);
 				$result=$this->commongetdata->getData($condition);
 			break;
-
+			case 'optionData':
+				$condition=array(
+					'table'=>'product_option',
+					'result'=>'data',
+					'where'=>array(
+						'product_option_product_id'=>$data->productId
+					)
+				);
+				if(property_exists($data, 'option1')){
+					$condition['where']['product_option_1'] = $data->option1;
+				}
+				if(property_exists($data, 'option2')){
+					$condition['where']['product_option_2'] = $data->option2;
+				}
+				if(property_exists($data, 'option3')){
+					$condition['where']['product_option_3'] = $data->option3;
+				}
+				$result=$this->commongetdata->getData($condition);
+			break;
+			case 'optionStock':
+				$condition=array(
+					'table'=>'product_option',
+					'result'=>'data',
+					'where'=>array(
+						'product_option_product_id'=>$data->productId
+					)
+				);
+				if(property_exists($data, 'option1')){
+					$condition['where']['product_option_1'] = $data->option1;
+				}
+				if(property_exists($data, 'option2')){
+					$condition['where']['product_option_2'] = $data->option2;
+				}
+				$optionData=$this->commongetdata->getData($condition);
+				$optionArray=array();
+				foreach($optionData as $option){
+					if($option->product_option_3!=''){
+						$optionArray[$option->product_option_3]=$option->product_option_stock;
+					}else if($option->product_option_2!=''){
+						$optionArray[$option->product_option_2]=$option->product_option_stock;
+					}else if($option->product_option_1!=''){
+						$optionArray[$option->product_option_1]=$option->product_option_stock;
+					}
+				}
+				$result = $optionArray;
+			break;
 		}
 		echo json_encode(array("result"=>"success","message"=>$result));
 	}
@@ -1553,6 +1771,16 @@ class Common extends CI_Controller {
 					$result=$this->dbHandler->updateData($condition);
 				}
 			break;
+			case 'categories':
+				foreach($data->idList as $key=>$id){
+					$condition['table']="shopcategory";
+					$condition['where']=array("shopcategory_id"=>$id);
+					$condition['data']=array(
+						"shopcategory_order"=>($key+1)
+					);
+					$result=$this->dbHandler->updateData($condition);
+				}
+			break;
 		}
 		echo json_encode(array("result"=>"success","message"=>"信息写入成功"));
 	}
@@ -1570,6 +1798,8 @@ class Common extends CI_Controller {
 				$cat=$data->MainCategory==-1?false:$data->MainCategory;
 				$sCat=$data->stSubCategory==-1?false:$data->stSubCategory;
 				$ssCat=$data->ndSubCategory==-1?false:$data->ndSubCategory;
+				$shopMainCat=$data->shopMainCategory==-1?false:$data->shopMainCategory;
+				$shopStSubCat=$data->shopStSubCategory==-1?false:$data->shopStSubCategory;
 				$title=$data->title==''?false:$data->title;
 				$status=$data->status;
 				if($data->dateType==0){
@@ -1586,10 +1816,36 @@ class Common extends CI_Controller {
 					$listedTime=false;
 				}
 				$sellFormat=$data->SellFormat;
-				$order=array("field"=>"product_modify_time","type"=>'DESC');
-				$result=$this->commongetdata->getProducts($_SESSION['userid'],$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order);
+				
+				if($data->orderField!=''){
+					$order=array("field"=>$data->orderField,"type"=>$data->direction);
+				}else{
+					$order=array("field"=>"product_modify_time","type"=>'DESC');
+				}
+				$result=$this->commongetdata->getProducts($_SESSION['userid'],$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order,false,false,$shopMainCat,$shopStSubCat);
+				$categories=$this->commongetdata->getCategories(true);
+				$status=$this->commongetdata->getProductStatus();
+				$listingType=$this->commongetdata->getProductListingType();
+				$deliveryType=$this->commongetdata->getProductDeliveryType();
+
 				$dataArray=array();
 				foreach($result as $value){
+					if(isset($categories[$value->product_category])){
+						$categoryName=$categories[$value->product_category]->category_name;
+					}else{
+						$categoryName='Deleted';
+					}
+					if(isset($categories[$value->product_sub_category])){
+						$subCategoryName=$categories[$value->product_sub_category]->category_name;
+					}else{
+						$subCategoryName='Deleted';
+					}
+					if(isset($categories[$value->product_sub_sub_category])){
+						$subSubCategoryName=$categories[$value->product_sub_sub_category]->category_name;
+					}else{
+						$subSubCategoryName='Deleted';
+					}
+
 					$dataArray[]=array(
 						$value->product_id,
 						'',
@@ -1598,12 +1854,12 @@ class Common extends CI_Controller {
 						$value->product_sell_price,
 						$value->product_quantity,
 						'',
-						$value->product_status,
+						$status[$value->product_status],
 						'',
-						$value->product_sell_format,
-						$categories[$value->product_category]->category_name,
-						$categories[$value->product_sub_category]->category_name,
-						$categories[$value->product_sub_sub_category]->category_name,
+						$listingType[$value->product_sell_format],
+						$categoryName,
+						$subCategoryName,
+						$subSubCategoryName,
 						'',
 						'',
 						'',
@@ -1770,6 +2026,9 @@ class Common extends CI_Controller {
 			break;*/
 		}
 		echo json_encode(array("result"=>"success","message"=>$url));
+	}
+	public function getOptionsData(){
+		
 	}
 	public function checkUserLogin(){
 		if (!checkLogin() || (isset($_SESSION["usertype"]) && !strcmp($_SESSION["usertype"],"admin"))) {
@@ -1971,6 +2230,26 @@ class Common extends CI_Controller {
 		$_SESSION['userEmail']=$info[0]->user_email;
 		echo json_encode(array("result"=>"success","message"=>"Login with Facebook successfully!"));
 		return false;
+	}
+	public function downloadImage(){
+		if(isset($_GET['filename'])){
+			// $filename="http://localhost/".$_GET[filename];//获取参数 
+			// header('Content-type: image/jpeg'); 
+			// header("Content-Disposition: attachment; filename='$filename'"); 
+			// //注意：header函数前确保没有任何输出 
+			// exit;//结束程序 
+			$filename=$_GET['filename'];
+			$localhostPath = str_replace("\\","/",$_SERVER['DOCUMENT_ROOT']);  //这里要引用绝对路径  
+		    $imageUrl = $localhostPath.$filename;   //合并成一个完整的路径  
+		    $imageUrl = iconv('utf-8', 'gbk', $imageUrl);              //这里可以防止中文名文件乱码,我的机器环境是utf-8  
+		      
+		    header('Content-type: application/octet-stream');  
+		    header('Content-Disposition: attachment; filename='.$filename);
+		      
+		    ob_clean();  
+		    flush();  
+		    readfile($imageUrl); 
+		}
 	}
 	public function loginWithFB(){//user_confirm_email
 		$condition=array(

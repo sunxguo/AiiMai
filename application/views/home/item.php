@@ -222,7 +222,18 @@
 			<h2 class="name"><?php echo $item->product_item_title_english;?></h2>
                     <ul class="infoArea">
                         <li class="infoData">
-                            
+                            <div class="left-day">
+								<?php 
+									$leftDay = $item->product_available_period-floor((time()-strtotime($item->product_time))/(3600*24));
+									if($leftDay>0){
+										if($leftDay<=$item->product_display_left){
+											echo $leftDay." days left";
+										}
+									}else{
+										echo "This product has been expired!";
+									}
+								?>
+                            </div>
                         <div id="">
 	
                                 <dl class="detailsArea">
@@ -294,7 +305,7 @@
                         
                     </li>
                     <!-- 재고 -->
-					<?php if(isset($item->product_option1)):?>
+					<?php if(isset($item->product_option1) && $item->product_option1!=''):?>
                     <li class="infoData" style="border-bottom : none;">
                         <div id="">
 							<dl class="detailsArea">
@@ -302,6 +313,7 @@
 									<strong>Item Type</strong>  
                                 </dt>
                             </dl>
+                            <input id="optionNum" type="hidden" value="<?php echo sizeof($optionType);?>">
 							<?php foreach($optionType as $key=>$ot):?>
 							<dl class="detailsArea stock">
 								<dt>∙ 
@@ -312,9 +324,9 @@
 									?>
 								</dt>
 								<dd>
-									<select id="op<?php echo ($key+1);?>">
+									<select id="op<?php echo ($key+1);?>" <?php if($key+1!=sizeof($optionType)):?>onchange="selectOption('<?php echo $item->product_id;?>');"<?php endif;?>>
 										<?php foreach($ot as $o):?>
-										<option><?php echo $o;?></option>
+										<option <?php echo $o;?>><?php echo $o;?></option>
 										<?php endforeach;?>
 									</select>
 								</dd>
@@ -323,6 +335,8 @@
 						</div>
                     </li>
 					<?php endif;?>
+
+					<?php if($leftDay>0):?>
                     <li class="infoData last" style="display:;">				
                         <div class="process_btn">
                             <span id="ProcessBtn_cart" class="btn" style="  float: none;">
@@ -331,8 +345,14 @@
 									Add to Cart [Buy]
 								</a>
                             </span>
+                            <?php if($wishlist):?>
+                            <span class="km-btn km-btn-warning" style="height: 25px;padding: 0px 10px;font-size: 12px;margin: 10px 0 5px 10px;line-height: 25px;cursor:default;">Added</span>
+                            <?php else:?>
+                            <button onclick="addToWishList('<?php echo $item->product_id;?>');" type="button" class="km-btn km-btn-success" style="height: 25px;padding: 0px 10px;font-size: 12px;margin: 10px 0 5px 10px;">Wish List</button>
+                       		<?php endif;?>
 						</div>
                     </li>
+                	<?php endif;?>
                     </ul>
         </div>
     </div>
@@ -416,7 +436,48 @@
 		  <li><a href="#PolicyNotice">Policy & Notice</a></li>
 		</ul>
 		<div class="QuestionAnswer" style="min-height:100px;">
-			No Reviews
+			<div class="km-panel km-panel-primary" style="width: 98%;margin-top:20px;">
+				<div class="km-panel-heading">Enquiries (<?php echo sizeof($enquiries['data']);?>)</div>
+				<div class="km-panel-body" style="padding:0px;">
+					<table class="km-table">
+						<tbody>
+						  <?php echo sizeof($enquiries['data'])<1?'No Enquiries':'';?>
+						  <?php foreach($enquiries['data'] as $key=>$comment):?>
+						  <tr>
+							<td class="value" style="width:86px;">
+								<img src="/assets/images/home/fp<?php echo $key+1;?>.jpg" style="width:86px;height:86px;">
+							</td>
+							<td class="value" style="width:620px;text-align:left;">
+								<ul>
+									<li class="comment-list-title">
+										<?php echo $enquiries->comment_title;?>
+									</li>
+									<li class="comment-list-option">
+										[option]:Selection:Xiaomi MiBand Silicon Band / Color:Blue(+S$0.98)
+									</li>
+									<li class="comment-list-shortMessage">
+										<?php echo $enquiries->comment_content;?> Fast delivery with reasonable quality. The packaging is unopened and new.
+									</li>
+								</ul>
+							</td>
+							<td class="value" style="text-align:right;">
+								<ul>
+									<li class="comment-list-time">
+										<?php echo $enquiries->comment_time;?>
+										<span style="margin-left: 10px;"><?php echo mb_substr($enquiries->user->user_username, 0 , 3).'******';?></span>
+									</li>
+									<li class="comment-list-rating">
+										<?php echo $enquiries->comment_star;?>
+										Highly Recommended
+									</li>
+								</ul>
+							</td>
+						  </tr>
+						  <?php endforeach;?>
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 <!--		<ul class="km-nav km-nav-tabs clearfix" id="ShoppingTalk">
 		  <li><a href="#ItemInfo">Item Info</a></li>
@@ -542,6 +603,6 @@ $(function() {
 			alert('回调函数:\nYou clicked on an image with the anchor: "'+image_anchor+'"\n(in Etalage instance: "'+instance_id+'")');
 		}
 	});
-
+	selectOption('<?php echo $item->product_id;?>');
 });
 </script>

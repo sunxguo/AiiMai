@@ -18,6 +18,11 @@
             <img src="/assets/images/cms/aiimai-cms-new-logo.png" alt="网站logo" class="logo-asm"/>
 		</a>
         <ul class="menu-cms">
+        	<?php if($expiringItemsNum>0):?>
+        	<li class="expiring-items">
+        		<a href="/cms/goodsEdit">Alert:Expiring Items(<?php echo $expiringItemsNum;?>)</a>
+        	</li>
+        	<?php endif;?>
 			<li class="language">
 				<a href="javascript:language('zh_cn')" class="<?php echo (!isset($_SESSION['language']) || $_SESSION['language']=="zh_cn")?"active":""?>" title="切换简体中文版">简中</a> <span>|</span>
 				<a href="javascript:language('tw_cn')" class="<?php echo ($_SESSION['language']=="tw_cn")?"active":""?>" title="切換繁體中文版">繁中</a> <span>|</span>

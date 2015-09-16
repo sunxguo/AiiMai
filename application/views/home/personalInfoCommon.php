@@ -20,6 +20,13 @@
 			<li><a href="/home/viewAll">ViewAll</a></li>
 		  </ul>
 		</li>
+		<li class="dropdown" onmouseover="$('#Alist').show();" onmouseout="$('#Alist').hide();">
+		  <a href="#" class="dropdown-toggle">A-List<span class="caret"></span></a>
+		  <ul class="dropdown-menu" id="Alist">
+			<li><a href="/home/followingShop">Following Shop</a></li>
+			<li><a href="/home/wishList">Wish List</a></li>
+		  </ul>
+		</li>
 		<li class="dropdown" onmouseover="$('#Myinfo').show();" onmouseout="$('#Myinfo').hide();">
 		  <a href="#" class="dropdown-toggle">My info<span class="caret"></span></a>
 		  <ul class="dropdown-menu" id="Myinfo">

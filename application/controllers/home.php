@@ -87,7 +87,7 @@ class Home extends CI_Controller {
 		}
 		$data=array(
 		//	"columns"=>$this->commongetdata->getColumns()
-			"topSalesProducts"=>$this->commongetdata->getProducts(false,false,false,false,3,false,false,false,false,array("field"=>'product_modify_time',"type"=>'DESC')),
+			"topSalesProducts"=>$this->commongetdata->getProducts(false,false,false,false,3,false,false,false,false,array("field"=>'product_modify_time',"type"=>'DESC'),false,false,false,false,2),
 			'categories'=>$categories
 		);
 		$this->homeBaseHandler('Home','index',$data,array("showFooter"=>false));
@@ -192,20 +192,28 @@ class Home extends CI_Controller {
 		}
 		$optionData=$this->commongetdata->getOptionData($_GET['itemId'],'data');
 		$optionArray=array();
+		// $itemStockArray()=array();
+		// $option->product_option_stock;
 		foreach($optionData as $option){
-			if($option->product_option_1!='' && (!isset($optionArray[0]) || !in_array($option->product_option_1,$optionArray[0])))
+			//$optionArray[0][0]='Please select.';
+			if($option->product_option_1!='' && (!isset($optionArray[0]) || !in_array($option->product_option_1,$optionArray[0]))){
 				$optionArray[0][]=$option->product_option_1;
-			if($option->product_option_2!='' && (!isset($optionArray[1]) || !in_array($option->product_option_2,$optionArray[1])))
+			}
+			if($option->product_option_2!='' && (!isset($optionArray[1]) || !in_array($option->product_option_2,$optionArray[1]))){
+				//$optionArray[1][0]='[Please choose the above option first.]';
 				$optionArray[1][]=$option->product_option_2;
-			if($option->product_option_3!='' && (!isset($optionArray[2]) || !in_array($option->product_option_3,$optionArray[2])))
+			}
+			if($option->product_option_3!='' && (!isset($optionArray[2]) || !in_array($option->product_option_3,$optionArray[2]))){
+				//$optionArray[2][0]='[Please choose the above option first.]';
 				$optionArray[2][]=$option->product_option_3;
+			}
 		}
 		//设置浏览记录
 		$recentlyViewedProducts=isset($_COOKIE['recentlyViewedProducts'])?json_decode($_COOKIE['recentlyViewedProducts']):array();
 		if(!in_array($_GET['itemId'],$recentlyViewedProducts)){
 			array_unshift($recentlyViewedProducts,$_GET['itemId']);
 		}
-		setcookie('recentlyViewedProducts',json_encode($recentlyViewedProducts));
+		setcookie('recentlyViewedProducts',json_encode($recentlyViewedProducts),time()+3600*24*60);
 		$recentlyViewedProductsArray=array();
 		foreach ($recentlyViewedProducts as $value) {
 			$recentlyViewedProductsArray[]=$this->commongetdata->getContent('product',$value);
@@ -223,8 +231,10 @@ class Home extends CI_Controller {
 				"status"=>3
 			)),
 			"comments"=>$this->commongetdata->getComments($_GET['itemId']),
+			"enquiries"=>array('data'=>array()),
 			"hotItems"=>$this->commongetdata->getFocusItems($item->product_merchant),
 			"follow"=>isset($_SESSION['userid'])?$this->commongetdata->getFollow($item->product_merchant,$_SESSION['userid']):false,
+			"wishlist"=>isset($_SESSION['userid'])?$this->commongetdata->getWishList($item->product_id,$_SESSION['userid']):false,
 			"followNo"=>$this->commongetdata->getFollowNo($item->product_merchant),
 			"relatedProducts"=>$this->commongetdata->getRelatedProducts($_GET['itemId'],20),
 			"recentlyViewedProducts"=>$recentlyViewedProductsArray
@@ -250,20 +260,24 @@ class Home extends CI_Controller {
 		$category=$this->commongetdata->getShopCategory($_GET['shopId']);
 		$subCategory=$this->commongetdata->getShopSubCategory($_GET['shopId'],$categoryId);
 		foreach ($subCategory as $key => $value) {
-			$value->count=$this->commongetdata->getProductsAdvance(array(
+			$miniParameters=array(
 				"result"=>'count',
 				"merchant"=>$_GET['shopId'],
-				"shopCategory"=>$categoryId,
+//				"shopCategory"=>$categoryId,
 				"shopSubCategory"=>$value->shopcategory_id,
 				"status"=>3
-			));
+			);
+			if($categoryId!='all'){
+				$miniParameters["shopCategory"]=$categoryId;
+			}
+			$value->count=$this->commongetdata->getProductsAdvance($miniParameters);
 		}
 		$parameters=array(
 			"result"=>'data',
 			"merchant"=>$_GET['shopId'],
 			"status"=>3
 		);
-		if(isset($_GET['category'])) $parameters['shopCategory']=$_GET['category'];
+		if(isset($_GET['category']) && $_GET['category']!='all') $parameters['shopCategory']=$_GET['category'];
 		if(isset($_GET['subCategory'])) $parameters['shopSubCategory']=$_GET['subCategory'];
 
 		$items=$this->commongetdata->getProductsAdvance($parameters);
@@ -392,6 +406,40 @@ class Home extends CI_Controller {
 			'user'=>$this->commongetdata->getContent('user',$_SESSION['userid'])
 		);
 		$this->homeBaseHandler('Recent Orders','recentOrders',$data);
+	}
+	public function followingShop(){
+		if(!$this->checkUserLogin()) return false;
+		$parameters=array(
+			'table'=>'follow',
+			'result'=>'data',
+			'where'=>array("follow_user_id"=>$_SESSION['userid'])
+		);
+		$folows=$this->commongetdata->getData($parameters);
+		foreach ($folows as $value) {
+			$value->merchant=$this->commongetdata->getContent('user',$value->follow_merchant_id);
+		}
+		$data=array(
+			'user'=>$this->commongetdata->getContent('user',$_SESSION['userid']),
+			'follows'=>$folows
+		);
+		$this->homeBaseHandler('following Shop','followingShop',$data);
+	}
+	public function wishList(){
+		if(!$this->checkUserLogin()) return false;
+		$parameters=array(
+			'table'=>'wishlist',
+			'result'=>'data',
+			'where'=>array("wishlist_userid"=>$_SESSION['userid'])
+		);
+		$wishlists=$this->commongetdata->getData($parameters);
+		foreach ($wishlists as $value) {
+			$value->product=$this->commongetdata->getContent('product',$value->wishlist_productid);
+		}
+		$data=array(
+			'user'=>$this->commongetdata->getContent('user',$_SESSION['userid']),
+			'wishlists'=>$wishlists
+		);
+		$this->homeBaseHandler('Wish List','wishList',$data);
 	}
 	public function auction(){
 		if(!$this->checkUserLogin()) return false;
