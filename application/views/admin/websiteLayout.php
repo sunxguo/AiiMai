@@ -59,7 +59,8 @@
 						<label for="linkInput" class="km-control-label">Link:</label>
 						<input type="text" class="km-form-control" id="linkInput" style="width: 95%;padding: 0 5px;" value="http://" placeholder="http://">
 						<label class="km-control-label">Image:</label>
-						<img id="featuredImage" onclick="$('#fileFeaturedImage').click();" src="" width="184" height="184" style="display:block;cursor:pointer;">
+						<p style="margin-bottom:10px;color:red;">184 * 163 Image Formats: png,jpg,gif,pdf; File Size Limit: 1.5MB</p>
+						<img id="featuredImage" onclick="$('#fileFeaturedImage').click();" src="" width="184" height="163" style="display:block;cursor:pointer;">
 						<input type="hidden" id="postionNo">
 						<input type="hidden" id="catId">
 						<form id="upload_featuredImage_form" method="post" enctype="multipart/form-data">
@@ -68,6 +69,7 @@
 					</div>
 					<div class="km-modal-footer">
 						<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_sider_Close');?></button>
+						<button type="button" class="km-btn km-btn-danger" onclick="deleteHomeFeaturedImage('Successfully deleted!');">Delete</button>
 						<button type="button" class="km-btn km-btn-primary" onclick="saveHomeFeaturedImage('Successfully saved!');"><?php echo lang('cms_sider_Savechanges');?></button>
 					</div>
 				</div><!-- /.modal-content -->
@@ -79,7 +81,7 @@
 						<h4 class="km-modal-title">Modify Featured Product</h4>
 					</div>
 					<div class="km-modal-body">
-					
+						<p style="margin-bottom:10px;color:red;">370 * 327 Image Formats: png,jpg,gif,pdf; File Size Limit: 1.5MB</p>
 						<img class="sliderImage" onclick="showChangeImageDiv(this,'11','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img11;?>" title="<?php echo $currentCat->category_home_title11;?>" catlink="<?php echo $currentCat->category_home_link11;?>" width="185" height="163" style="cursor:pointer;margin-left:10px;">
 						<img class="sliderImage" onclick="showChangeImageDiv(this,'12','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img12;?>" title="<?php echo $currentCat->category_home_title12;?>" catlink="<?php echo $currentCat->category_home_link12;?>" width="185" height="163" style="cursor:pointer;margin-left:10px;">
 						<img class="sliderImage" onclick="showChangeImageDiv(this,'13','<?php echo $currentCat->category_id;?>');" src="<?php echo $currentCat->category_home_img13;?>" title="<?php echo $currentCat->category_home_title13;?>" catlink="<?php echo $currentCat->category_home_link13;?>" width="185" height="163" style="cursor:pointer;margin-left:10px;">

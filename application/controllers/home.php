@@ -8,6 +8,9 @@ class Home extends CI_Controller {
 		$this->commongetdata->language();
 		$this->load->model("dbHandler");
 	}
+	public function phpinfo(){
+		phpinfo();
+	}
 	public function checkUserLogin(){
 		if(!checkLogin() || !isset($_SESSION["usertype"]) || strcmp($_SESSION["usertype"],"user")) {
 			$this->load->view('redirect',array("url"=>"/home/login","info"=>"Please login!"));

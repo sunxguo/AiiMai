@@ -109,8 +109,7 @@ class Admin extends CI_Controller {
 		$categoriesById=$this->commongetdata->getCategories(true);
 		$currentCat=isset($_GET['cat']) && isset($categoriesById[$_GET['cat']])?$categoriesById[$_GET['cat']]:$categories[0];
 		$data=array(
-			"columns"=>$this->commongetdata->getColumns(),
-			"categories"=>$this->commongetdata->getCategories(false),
+			"categories"=>$categories,
 			"currentCat"=>$currentCat,
 		);
 		$this->adminBaseHandler('Categories',array('data','websiteLayout'),'websiteCategory',$data);

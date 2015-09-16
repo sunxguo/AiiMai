@@ -1222,7 +1222,7 @@ class Common extends CI_Controller {
 				);
 				$result=$this->dbHandler->updateData($updateCondition);
 			break;
-			case 'categoryDrag':
+			case 'categoryDragbk':
 				$idList=$data->idList;
 				$category=$this->commongetdata->getContent('category',$idList[0]);
 				$fCategory=$this->commongetdata->getContent('category',$category->category_fid);
@@ -1270,6 +1270,20 @@ class Common extends CI_Controller {
 						$categoryName=;
 					}
 					$this->dbHandler->updateData(array('table'=>'product','where'=>array('product_sub_category'=>$data->topId,'product_category'=>)));*/
+				}
+				return true;
+			break;
+			case 'categoryDrag':
+				$idList=$data->idList;
+				// $fatherCategoryId=$data->topId;
+				// $fCategory=$this->commongetdata->getContent('category',$fatherCategoryId);
+				foreach($idList as $key=>$categoryId){
+					$condition['table']="category";
+					$condition['where']=array("category_id"=>$categoryId);
+					$condition['data']=array(
+						"category_order"=>$key
+					);
+					$result=$this->dbHandler->updateData($condition);
 				}
 				return true;
 			break;

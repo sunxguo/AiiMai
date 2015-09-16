@@ -525,6 +525,12 @@ function saveHomeFeaturedImage(){
 	featuredProduct.image = $("#featuredImage").attr('src');
 	dataHandler("modify","featuredProduct",featuredProduct,successShowCat,null,null,null,true);
 }
+function deleteHomeFeaturedImage(){
+	$("#titleInput").val('');
+	$("#linkInput").val('');
+	$("#featuredImage").attr('src','');
+	saveHomeFeaturedImage();
+}
 function uploadFeaturedImage(){
 	uploadImageAdvance("#upload_featuredImage_form",addFeaturedImageBeforeUpload,addFeaturedImageAfterUpload)
 }

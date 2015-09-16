@@ -13,7 +13,9 @@
 	</ul>
 	<div style="margin-left:20px;margin-top:10px;">
 		<?php echo $currentCat->category_name;?>
-		<input id="categoryId" type="hidden" value="<?php echo $currentCat->category_id;?>">
+		<!--
+		<input id="currentFatherCategoryId" type="hidden" value="<?php echo $currentCat->category_id;?>">
+		-->
 		<button onclick="modifyCategory(this,'<?php echo $currentCat->category_id;?>');" categoryName="<?php echo $currentCat->category_name;?>" type="button" class="km-btn km-btn-primary" style="height: 28px; padding: 0px 12px;font-size: 12px;">Edit</button>
 		<button onclick="deleteCategory(this,'<?php echo $currentCat->category_id;?>');" categoryName="<?php echo $currentCat->category_name;?>" type="button" class="km-btn km-btn-danger" style="height: 28px; padding: 0px 12px;font-size: 12px;">Delete</button>
 		<ul id="sortable" class="km-btn-group-vertical" style="margin-top:10px;width:100%;">
@@ -29,21 +31,41 @@
 				<?php if($key!=0):?>
 				<a onclick="orderCategory('<?php echo $subCats->category_id;?>','up')" class="fr" style="margin-right:10px;"><img src="/assets/images/cms/icon-up.png" width="15"></a>
 				<?php endif;?>
+				<ul class="sub-category km-btn-group-vertical" style="clear:both;display:block;width:95%;">
+					<?php $subSubAmount=sizeof($subCats->subSubCats);
+					foreach($subCats->subSubCats as $k=>$subSubCats):?>
+					<li id="<?php echo $subSubCats->category_id;?>" type="button" class="km-btn km-btn-default" style="color: #434343;font-size: 10px;text-align:left;">
+						-- <?php echo $subSubCats->category_name;?>
+						<a onclick="deleteCategory(this,'<?php echo $subSubCats->category_id;?>');" categoryName="<?php echo $subSubCats->category_name;?>" class="fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;">Delete</a>
+						<a onclick="modifyCategory(this,'<?php echo $subSubCats->category_id;?>');" categoryName="<?php echo $subSubCats->category_name;?>" class="fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;margin-right:10px;">Edit</a>
+						<?php if($k!=$subSubAmount-1):?>
+						<a onclick="orderCategory('<?php echo $subSubCats->category_id;?>','down')" class="fr" style="margin-right:10px;"><img src="/assets/images/cms/icon-down.png" width="15"></a>
+						<?php endif;?>
+						<?php if($k!=0):?>
+						<a onclick="orderCategory('<?php echo $subSubCats->category_id;?>','up')" class="fr" style="margin-right:10px;"><img src="/assets/images/cms/icon-up.png" width="15"></a>
+						<?php endif;?>
+
+						<ul class="sub-category km-btn-group-vertical" style="clear:both;display:block;width:95%;">
+							<?php $subSubSubAmount=sizeof($subSubCats->subSubSubCats);
+							foreach($subSubCats->subSubSubCats as $k=>$subSubSubCat):?>
+							<li id="<?php echo $subSubSubCat->category_id;?>" type="button" class="km-btn km-btn-default" style="color: #434343;font-size: 10px;text-align:left;">
+								-- <?php echo $subSubSubCat->category_name;?>
+								<a onclick="deleteCategory(this,'<?php echo $subSubSubCat->category_id;?>');" categoryName="<?php echo $subSubSubCat->category_name;?>" class="fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;">Delete</a>
+								<a onclick="modifyCategory(this,'<?php echo $subSubSubCat->category_id;?>');" categoryName="<?php echo $subSubSubCat->category_name;?>" class="fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;margin-right:10px;">Edit</a>
+								<?php if($k!=$subSubAmount-1):?>
+								<a onclick="orderCategory('<?php echo $subSubSubCat->category_id;?>','down')" class="fr" style="margin-right:10px;"><img src="/assets/images/cms/icon-down.png" width="15"></a>
+								<?php endif;?>
+								<?php if($k!=0):?>
+								<a onclick="orderCategory('<?php echo $subSubSubCat->category_id;?>','up')" class="fr" style="margin-right:10px;"><img src="/assets/images/cms/icon-up.png" width="15"></a>
+								<?php endif;?>
+							</li>
+							<?php endforeach;?>
+						</ul>
+					</li>
+					<?php endforeach;?>
+				</ul>
+
 			</li>
-				<?php $subSubAmount=sizeof($subCats->subSubCats);
-				foreach($subCats->subSubCats as $k=>$subSubCats):?>
-				<li id="<?php echo $subSubCats->category_id;?>" type="button" class="km-btn km-btn-default category" style="color: #434343;font-size: 10px;text-align:left;">
-					-- <?php echo $subSubCats->category_name;?>
-					<a onclick="deleteCategory(this,'<?php echo $subSubCats->category_id;?>');" categoryName="<?php echo $subSubCats->category_name;?>" class="fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;">Delete</a>
-					<a onclick="modifyCategory(this,'<?php echo $subSubCats->category_id;?>');" categoryName="<?php echo $subSubCats->category_name;?>" class="fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;margin-right:10px;">Edit</a>
-					<?php if($k!=$subSubAmount-1):?>
-					<a onclick="orderCategory('<?php echo $subSubCats->category_id;?>','down')" class="fr" style="margin-right:10px;"><img src="/assets/images/cms/icon-down.png" width="15"></a>
-					<?php endif;?>
-					<?php if($k!=0):?>
-					<a onclick="orderCategory('<?php echo $subSubCats->category_id;?>','up')" class="fr" style="margin-right:10px;"><img src="/assets/images/cms/icon-up.png" width="15"></a>
-					<?php endif;?>
-				</li>
-				<?php endforeach;?>
 			<?php endforeach;?>
 		</div>
 	</div>
@@ -78,6 +100,9 @@
 					<option value="<?php echo $cat->category_id;?>"><?php echo $cat->category_name;?></option>
 					<?php foreach($cat->subCats as $subCat):?>
 					<option value="<?php echo $subCat->category_id;?>">-- <?php echo $subCat->category_name;?></option>
+					<?php foreach($subCat->subSubCats as $subSubCat):?>
+					<option value="<?php echo $subSubCat->category_id;?>">&nbsp;&nbsp;&nbsp;&nbsp;---- <?php echo $subSubCat->category_name;?></option>
+					<?php endforeach;?>
 					<?php endforeach;?>
 					<?php endforeach;?>
 				</select>
@@ -91,7 +116,6 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div>
-<script src="/assets/js/db_handler.js" type="text/javascript"></script>
 <script src="/assets/jquery-ui/jquery-ui.js" type="text/javascript"></script>
 <link href="/assets/jquery-ui/jquery-ui.css" rel="stylesheet" type="text/css" />
 <script>
@@ -99,8 +123,9 @@ $( "#sortable" ).sortable({
 	delay : 1,  
     stop :function(){
 		var postData = new Object();
-		postData.topId = $("#categoryId").val();
+//		postData.topId = $("#currentFatherCategoryId").val();
 		postData.idList = $("#sortable").sortable('toArray');
+
 		$.post(
 		"/common/modifyInfo",
 		{
@@ -115,6 +140,29 @@ $( "#sortable" ).sortable({
 				alert(result.message);
 			}
 		});
+	}
+});
+$( ".sub-category" ).sortable({
+	delay : 1,
+    stop :function(){
+		var postData = new Object();
+//		postData.topId = $("#currentFatherCategoryId").val();
+		postData.idList = $(this).sortable('toArray');
+		$.post(
+		"/common/modifyInfo",
+		{
+			'info_type':'categoryDrag',
+			'data':JSON.stringify(postData)
+		},
+		function(data){
+			var result=$.parseJSON(data);
+			if(result.result=="success"){
+				
+			}else{
+				alert(result.message);
+			}
+		});
+		
 	}
 });
 /*
