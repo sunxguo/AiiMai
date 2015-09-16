@@ -21,15 +21,15 @@
 		<ul id="sortable" class="km-btn-group-vertical" style="margin-top:10px;width:100%;">
 			<?php $subAmount=sizeof($currentCat->subCats);
 			foreach($currentCat->subCats as $key=>$subCats):?>
-			<a id="<?php echo $subCats->category_id;?>" type="button" class="km-btn km-btn-default category" style="color: #000;font-size: 12px;font-weight: 600;text-align:left;">
+			<li id="<?php echo $subCats->category_id;?>" type="button" class="km-btn km-btn-default category" style="color: #000;font-size: 12px;font-weight: 600;text-align:left;">
 				<?php echo $subCats->category_name;?>
-				<span onclick="deleteCategory(this,'<?php echo $subCats->category_id;?>');" categoryName="<?php echo $subCats->category_name;?>" class="km-btn km-btn-danger fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;">Delete</span>
-				<span onclick="modifyCategory(this,'<?php echo $subCats->category_id;?>');" categoryName="<?php echo $subCats->category_name;?>" class="km-btn km-btn-primary fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;margin-right:10px;">Edit</span>
+				<a onclick="deleteCategory(this,'<?php echo $subCats->category_id;?>');" categoryName="<?php echo $subCats->category_name;?>" class="km-btn km-btn-danger fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;">Delete</a>
+				<a onclick="modifyCategory(this,'<?php echo $subCats->category_id;?>');" categoryName="<?php echo $subCats->category_name;?>" class="km-btn km-btn-primary fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;margin-right:10px;">Edit</a>
 				<?php if($key!=$subAmount-1):?>
-				<span onclick="orderCategory('<?php echo $subCats->category_id;?>','down')" class="fr" style="margin-right:10px;"><img src="/assets/images/cms/icon-down.png" width="15"></span>
+				<a onclick="orderCategory('<?php echo $subCats->category_id;?>','down')" class="fr" style="margin-right:10px;"><img src="/assets/images/cms/icon-down.png" width="15"></a>
 				<?php endif;?>
 				<?php if($key!=0):?>
-				<span onclick="orderCategory('<?php echo $subCats->category_id;?>','up')" class="fr" style="margin-right:10px;"><img src="/assets/images/cms/icon-up.png" width="15"></span>
+				<a onclick="orderCategory('<?php echo $subCats->category_id;?>','up')" class="fr" style="margin-right:10px;"><img src="/assets/images/cms/icon-up.png" width="15"></a>
 				<?php endif;?>
 				<ul class="sub-category km-btn-group-vertical" style="clear:both;display:block;width:95%;">
 					<?php $subSubAmount=sizeof($subCats->subSubCats);
@@ -66,21 +66,6 @@
 				</ul>
 
 			</li>
-			</a>
-				<?php $subSubAmount=sizeof($subCats->subSubCats);
-				foreach($subCats->subSubCats as $k=>$subSubCats):?>
-				<a id="<?php echo $subSubCats->category_id;?>" type="button" class="km-btn km-btn-default category" style="color: #434343;font-size: 10px;text-align:left;">
-					-- <?php echo $subSubCats->category_name;?>
-					<span onclick="deleteCategory(this,'<?php echo $subSubCats->category_id;?>');" categoryName="<?php echo $subSubCats->category_name;?>" class="fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;">Delete</span>
-					<span onclick="modifyCategory(this,'<?php echo $subSubCats->category_id;?>');" categoryName="<?php echo $subSubCats->category_name;?>" class="fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;margin-right:10px;">Edit</span>
-					<?php if($k!=$subSubAmount-1):?>
-					<span onclick="orderCategory('<?php echo $subSubCats->category_id;?>','down')" class="fr" style="margin-right:10px;"><img src="/assets/images/cms/icon-down.png" width="15"></span>
-					<?php endif;?>
-					<?php if($k!=0):?>
-					<span onclick="orderCategory('<?php echo $subSubCats->category_id;?>','up')" class="fr" style="margin-right:10px;"><img src="/assets/images/cms/icon-up.png" width="15"></span>
-					<?php endif;?>
-				</a>
-				<?php endforeach;?>
 			<?php endforeach;?>
 		</div>
 	</div>
@@ -181,58 +166,38 @@ $( ".sub-category" ).sortable({
 	}
 });
 /*
-=======
-// $( "#sortable" ).sortable({
-// 	delay : 1,  
-//     stop :function(){
-// 		var postData = new Object();
-// 		postData.topId = $("#categoryId").val();
-// 		postData.idList = $("#sortable").sortable('toArray');
-// 		$.post(
-// 		"/common/modifyInfo",
-// 		{
-// 			'info_type':'categoryDrag',
-// 			'data':JSON.stringify(postData)
-// 		},
-// 		function(data){
-// 			var result=$.parseJSON(data);
-// 			if(result.result=="success"){
-				
-// 			}else{
-// 				alert(result.message);
-// 			}
-// 		});
-// 	}
-// });
 $(document).ready(function(){
-	$("#sortable a").click(function(){
-		$("#sortable a").removeClass('active');
-		$(this).addClass('active');
-		categoryGroupId=$(this).attr('id');
-		categoryGroupName=$(this).attr('cgname');
-		getMainCategory(categoryGroupId);
-	});
-	$( "#sortable" ).sortable({
-		delay : 1,
-		items: "> a",
-		stop :function(){
-			var postData = new Object();
-			postData.idList = $("#sortable").sortable('toArray');
-			$.post(
-			"/common/dragItemInfo",
-			{
-				'info_type':'shopCategoryDrag',
-				'data':JSON.stringify(postData)
-			},
-			function(data){
-				var result=$.parseJSON(data);
-				if(result.result=="success"){
-					showMessage('Save Successfully!');
-				}else{
-					showMessage(result.message);
+	var hasMove=false;
+	var mouseX=0;
+	var mouseY=0;
+	$(".category").mousedown(function(event){
+		hasMove=true;
+		var category=$(this);
+		category.css('cursor','move');
+		var offset = category.offset();//DIV在页面的位置
+		var x = event.pageX - offset.left;//获得鼠标指针离DIV元素左边界的距离 
+		var y = event.pageY - offset.top;//获得鼠标指针离DIV元素上边界的距离
+			$(document).mousemove(function(e){
+				if(hasMove){
+					console.info(x+'&'+y);
+					var _x = e.pageX - x;//获得X轴方向移动的值 
+					var _y = e.pageY - y;//获得Y轴方向移动的值
+					category.css({'position':'fixed','z-index':'1000','left':_x,'top':_y});
+	//				$(this).animate({left:_x+"px",top:_y+"px"},10);
 				}
 			});
-		}
 	});
-});
+	$(".category").mouseup(function(){
+		var category=$(this);
+		if(category.css('position')=='fixed'){
+			category.css('position','static');
+		}
+		category.css('cursor','default');
+//		$(document).unbind("mousemove");
+		hasMove=false;
+	});
+	$(".category").mouseover(function(){
+		
+	});
+})*/
 </script>
