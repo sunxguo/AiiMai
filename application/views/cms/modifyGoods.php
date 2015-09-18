@@ -16,7 +16,7 @@
 	background-color:#FFF;
 }
 </style>
-<input type="hidden" id="merchantId" value="<?php echo $_SESSION['userid'];?>">
+<input type="hidden" id="merchantId" value="<?php echo $_SESSION['merchant_userid'];?>">
 <div class="" style="padding-left:30px;">
 	<input type="hidden" id="productId" value="<?php echo $item->product_id;?>">
 	<div class="km-panel km-panel-primary mt10" style="width: 98%;">
@@ -69,6 +69,9 @@
 						</select>
 						<select style="height: 30px;" id="shopStSubCategory">
 							<option value="-1">== <?php echo lang('cms_common_1stSubCategory');?> ==</option>
+							<?php foreach ($shopSubCategory as $value):?>
+							<option value="<?php echo $value->shopcategory_id;?>" <?php if($value->shopcategory_id==$item->product_shopSubCategory):?>selected<?php endif;?>><?php echo $value->shopcategory_name;?></option>
+							<?php endforeach;?>
 						</select>
 					</td>
 				  </tr>
@@ -290,6 +293,7 @@
 						</div>
 						<?php else:?>
 							<?php echo $item->product_available_period;?>
+							<input type="hidden" id="AvailablePeriod" value="<?php echo $item->product_available_period;?>" />
 						<?php endif;?>
 					</td>
 					<td class="field width10p tal br">

@@ -17,10 +17,12 @@
 						</td>
 						<td>
 							<div class="fl">
-								<img src="<?php echo $value->merchant->merchant_shop_icon;?>" width="100">
+								<a href="/home/shop?shopId=<?php echo $value->merchant->user_id;?>" target="_blank">
+									<img src="<?php echo $value->merchant->merchant_shop_icon;?>" width="100">
+								</a>
 							</div>
 							<div class="fl" style="margin-left:20px;padding-top:20px;">
-								<a style="display:block;color:#337ab7;font-weight:600;" href="/home/shop?shopId=<?php echo $value->merchant->user_id;?>"><?php echo $value->merchant->merchant_shop_name;?></a>
+								<a style="display:block;color:#337ab7;font-weight:600;" target="_blank" href="/home/shop?shopId=<?php echo $value->merchant->user_id;?>"><?php echo $value->merchant->merchant_shop_name;?></a>
 								<p>
 									<?php echo $value->merchant->merchant_shop_welcome;?>
 								</p>

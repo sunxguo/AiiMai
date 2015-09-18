@@ -739,6 +739,21 @@ class CommonGetData{
 		}
 		return array('count'=>$count,'data'=>$comments);
 	}
+	public function getEnquiries($itemId){
+		$condition=array(
+			'table'=>'enquiry',
+			'where'=>array('enquiry_product'=>$itemId)
+		);
+		$condition['result']='count';
+		$count=$this->getData($condition);
+		$condition['result']='data';
+		$condition['order_by']=array('enquiry_time'=>'DESC');
+		$enquiries=$this->getData($condition);
+		foreach ($enquiries as $key => $value) {
+			$value->user=$this->getContent('user',$value->enquiry_user);
+		}
+		return array('count'=>$count,'data'=>$enquiries);
+	}
 	public function getRelatedProducts($itemId,$number){
 		$product=$this->getContent('product',$itemId);
 		$likeArray=explode(" ",$product->product_item_title_english);

@@ -1033,6 +1033,23 @@ function reportAbuse(productId){
 	report.details = $("#reportDetails").val();
 	dataHandler("add","report",report,successRefresh,null,null,null,true);
 }
+function submitEnquiry (productId,merchantId) {
+	if($("#enquirySubject").val()==''){
+		alert('Subject can`t be empty!');
+		return false;
+	}
+	if($("#enquiryContent").val()==''){
+		alert('Content can`t be empty!');
+		return false;
+	}
+	var enquiry = new Object();
+	enquiry.productId = productId;
+	enquiry.merchantId = merchantId;
+	enquiry.category = $("#enquiryCategory").val();
+	enquiry.subject = $("#enquirySubject").val();
+	enquiry.content = $("#enquiryContent").val();
+	dataHandler("add","enquiry",enquiry,successRefresh,null,null,null,true);
+}
 function sendSMS(successMsg){
 	if($("#personalInfoMobilePhoneNumber").val().length<8){
 		alert('Mobile Phone can`t be empty!');

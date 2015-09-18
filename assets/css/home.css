@@ -80,12 +80,12 @@ a {
 	padding:0px 11px;
 	margin-top:5px;
 }
-.header .header-bottom ul li a{
+.header .header-bottom ul li .category{
 	color:#434343;
 	text-decoration:none;
 	text-transform: uppercase;
 }
-.header .header-bottom ul li a.active{
+.header .header-bottom ul li .category.active{
 	color:#FFF;
 }
 .header .header-bottom ul li img{
@@ -3659,4 +3659,157 @@ background: none;
 	left: 0px;
 	border: 1px solid #aaa;
     opacity: 0.5;
+}
+.mini-wishlist{
+	width: 222px;
+
+}
+.mini-wishlist li{
+	border-bottom:1px dashed #CCC; 
+}
+.mini-wishlist li:last-child{
+	border-bottom:none; 
+}
+.mini-wishlist li div{
+	display: inline-block;
+	float: left;
+	line-height: 40px;
+	font-size:10px;
+}
+.enquiry-wrap li{
+	padding: 10px 0;
+	border-bottom: 1px dotted #CCC;
+}
+.enquiry-product div{
+	float: left;
+}
+.category-wrap{
+	position: absolute;
+	z-index: 10000;
+	background-color: #FFF;
+	width: 200px;
+	border: 2px solid #337ab7;
+	padding: 10px;
+	font-size: 11px;
+	border-radius: 0 0 5px 5px;
+	display: none;
+}
+.category-wrap dd{
+	line-height: 20px;
+}
+.category-wrap .sub1{
+	font-weight: 600;
+	font-size: 12px;
+	color: #434343;
+}
+#categoriesList li:not(:last-child) .category-wrap{
+	left:0px;
+}
+#categoriesList li:last-child .category-wrap{
+	right:0px !important;
+}
+
+.header .header-bottom ul li:nth-child(2) .category-wrap{
+	border-color:#D90036;
+}
+.header .header-bottom ul li:nth-child(2) .category-wrap .sub1:hover{
+	background-color: #D90036;
+}
+.header .header-bottom ul li:nth-child(2) .category-wrap .sub1 a,
+.header .header-bottom ul li:nth-child(2) .category-wrap .sub2:hover{
+	color:#D90036;
+}
+.header .header-bottom ul li:nth-child(2) .category-wrap .sub1 a:hover{
+	color: #FFF;
+	text-decoration: none;
+}
+
+.header .header-bottom ul li:nth-child(3) .category-wrap{
+	border-color:#FF8000;
+}
+.header .header-bottom ul li:nth-child(3) .category-wrap .sub1:hover{
+	background-color: #FF8000;
+}
+.header .header-bottom ul li:nth-child(3) .category-wrap .sub1 a,
+.header .header-bottom ul li:nth-child(3) .category-wrap .sub2:hover{
+	color:#FF8000;
+}
+.header .header-bottom ul li:nth-child(3) .category-wrap .sub1 a:hover{
+	color: #FFF;
+	text-decoration: none;
+}
+
+.header .header-bottom ul li:nth-child(4) .category-wrap{
+	border-color:#006CD9;
+}
+.header .header-bottom ul li:nth-child(4) .category-wrap .sub1:hover{
+	background-color: #006CD9;
+}
+.header .header-bottom ul li:nth-child(4) .category-wrap .sub1 a,
+.header .header-bottom ul li:nth-child(4) .category-wrap .sub2:hover{
+	color:#006CD9;
+}
+.header .header-bottom ul li:nth-child(4) .category-wrap .sub1 a:hover{
+	color: #FFF;
+	text-decoration: none;
+}
+
+.header .header-bottom ul li:nth-child(5) .category-wrap{
+	border-color:#000;
+}
+.header .header-bottom ul li:nth-child(5) .category-wrap .sub1:hover{
+	background-color: #000;
+}
+.header .header-bottom ul li:nth-child(5) .category-wrap .sub1 a,
+.header .header-bottom ul li:nth-child(5) .category-wrap .sub2:hover{
+	color:#000;
+}
+.header .header-bottom ul li:nth-child(5) .category-wrap .sub1 a:hover{
+	color: #FFF;
+	text-decoration: none;
+}
+
+.header .header-bottom ul li:nth-child(6) .category-wrap{
+	border-color:#FF0000;
+}
+.header .header-bottom ul li:nth-child(6) .category-wrap .sub1:hover{
+	background-color: #FF0000;
+}
+.header .header-bottom ul li:nth-child(6) .category-wrap .sub1 a,
+.header .header-bottom ul li:nth-child(6) .category-wrap .sub2:hover{
+	color:#FF0000;
+}
+.header .header-bottom ul li:nth-child(6) .category-wrap .sub1 a:hover{
+	color: #FFF;
+	text-decoration: none;
+}
+
+.header .header-bottom ul li:nth-child(7) .category-wrap{
+	border-color:#00468C;
+}
+.header .header-bottom ul li:nth-child(7) .category-wrap .sub1:hover{
+	background-color: #00468C;
+}
+.header .header-bottom ul li:nth-child(7) .category-wrap .sub1 a,
+.header .header-bottom ul li:nth-child(7) .category-wrap .sub2:hover{
+	color:#00468C;
+}
+.header .header-bottom ul li:nth-child(7) .category-wrap .sub1 a:hover{
+	color: #FFF;
+	text-decoration: none;
+}
+
+.header .header-bottom ul li:nth-child(8) .category-wrap{
+	border-color:#D9D900;
+}
+.header .header-bottom ul li:nth-child(8) .category-wrap .sub1:hover{
+	background-color: #D9D900;
+}
+.header .header-bottom ul li:nth-child(8) .category-wrap .sub1 a,
+.header .header-bottom ul li:nth-child(8) .category-wrap .sub2:hover{
+	color:#D9D900;
+}
+.header .header-bottom ul li:nth-child(8) .category-wrap .sub1 a:hover{
+	color: #FFF;
+	text-decoration: none;
 }

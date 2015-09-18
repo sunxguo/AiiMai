@@ -159,7 +159,7 @@ class Common extends CI_Controller {
 					"product_shipping_rate"=>1,
 					"product_description"=>$data->description,
 					"product_shipping_address"=>$data->shippingAddress,
-					"product_merchant"=>$_SESSION['userid'],
+					"product_merchant"=>$_SESSION['merchant_userid'],
 					"product_time"=>date("Y-m-d H:i:s"),
 					"product_modify_time"=>date("Y-m-d H:i:s")
 				);
@@ -275,6 +275,22 @@ class Common extends CI_Controller {
 					"report_time"=>date("Y-m-d H:i:s")
 				);
 			break;
+			case 'enquiry':
+				if(!isset($_SESSION['userid'])){
+					echo json_encode(array("result"=>"failed","message"=>"Please login first!"));
+					return false;
+				}
+				$table="enquiry";
+				$info=array(
+					"enquiry_category"=>$data->category,
+					"enquiry_product"=>$data->productId,
+					"enquiry_user"=>$_SESSION['userid'],
+					"enquiry_seller"=>$data->merchantId,
+					"enquiry_subject"=>$data->subject,
+					"enquiry_content"=>$data->content,
+					"enquiry_time"=>date("Y-m-d H:i:s")
+				);
+			break;
 			case "category":
 				$table="category";
 				$selectCondition=array(
@@ -352,9 +368,10 @@ class Common extends CI_Controller {
 		}
 		if($_POST['info_type']=="merchant"){
 			$userId=$this->dbHandler->insertDataReturnId($table,$info);
-			$_SESSION['username']=$data->username;
-			$_SESSION['userid']=$userId;
+			$_SESSION['merchant_username']=$data->username;
+			$_SESSION['merchant_userid']=$userId;
 			$_SESSION['userEmail']=$data->email;
+			$_SESSION['usertype']="merchant";
 			if($userId!='') echo json_encode(array("result"=>"success","message"=>"信息写入成功"));
 			else echo json_encode(array("result"=>"failed","message"=>"Failed!"));
 			$condition=array(
@@ -535,7 +552,7 @@ class Common extends CI_Controller {
 			case 'itemsFocus':
 				$table="product";
 				$where="product_merchant";
-				$this->dbHandler->updateData(array("table"=>$table,"where"=>array("product_merchant"=>$_SESSION['userid']),"data"=>array("product_focus"=>0)));
+				$this->dbHandler->updateData(array("table"=>$table,"where"=>array("product_merchant"=>$_SESSION['merchant_userid']),"data"=>array("product_focus"=>0)));
 				foreach($data->idArray as $id){
 					$result=$this->dbHandler->updateData(array("table"=>$table,"where"=>array("product_id"=>$id),"data"=>array("product_focus"=>1)));
 				}
@@ -638,6 +655,8 @@ class Common extends CI_Controller {
 					"product_category"=>$data->MainCategory,
 					"product_sub_category"=>$data->stSubCategory,
 					"product_sub_sub_category"=>$data->ndSubCategory,
+					"product_shopCategory"=>$data->shopCategory,
+					"product_shopSubCategory"=>$data->shopSubCategory,
 					"product_sell_format"=>$data->SellFormat,
 					"product_delivery_type"=>$data->DeliveryType,
 					"product_item_condition"=>$data->ItemCondition,
@@ -669,14 +688,14 @@ class Common extends CI_Controller {
 				$merchant=$this->commongetdata->getOneData(array(
 					'table'=>'user',
 					'result'=>'data',
-					'where'=>array("user_username"=>$_SESSION['username'])
+					'where'=>array("user_username"=>$_SESSION['merchant_username'])
 				));
 				if($merchant->user_confirm_email!=1){
 					echo json_encode(array("result"=>"notConfirmEmail","message"=>"Failed Confirmed E-mail!"));
 					return false;
 				}
 				$condition['table']="user";
-				$condition['where']=array("user_username"=>$_SESSION['username']);
+				$condition['where']=array("user_username"=>$_SESSION['merchant_username']);
 				$condition['data']=array(
 					"merchant_type"=>$data->merchantType,
 					"merchant_name"=>$data->name,
@@ -709,11 +728,11 @@ class Common extends CI_Controller {
 			case 'merchantInfoStep3':
 				$branchCode=$this->getBanchCode($data->bank,$data->accountNumber);
 				if(!$branchCode){
-					echo json_encode(array("result"=>"failed","message"=>"The account number is not in conformity with the specification!"));
+					echo json_encode(array("result"=>"failed","message"=>"TThe account number does not match the chosen Bank’s specifications."));
 					return false;
 				}
 				$condition['table']="user";
-				$condition['where']=array("user_username"=>$_SESSION['username']);
+				$condition['where']=array("user_username"=>$_SESSION['merchant_username']);
 				$condition['data']=array(
 					"merchant_bank"=>$data->bank,
 					"merchant_bank_branch"=>$branchCode,
@@ -774,7 +793,7 @@ class Common extends CI_Controller {
 			break;
 			case 'merchantpwd':
 				$condition['table']="user";
-				$condition['where']=array("user_id"=>$_SESSION['userid']);
+				$condition['where']=array("user_id"=>$_SESSION['merchant_userid']);
 				$condition['result']="data";
 				$merchantInfo=$this->commongetdata->getOneData($condition);
 				if($merchantInfo->user_pwd!=MD5("MonkeyKing".$data->oldpwd)){
@@ -791,7 +810,7 @@ class Common extends CI_Controller {
 			break;
 			case 'facebookMerchantpwd':
 				$condition['table']="user";
-				$condition['where']=array("user_id"=>$_SESSION['userid']);
+				$condition['where']=array("user_id"=>$_SESSION['merchant_userid']);
 				$condition['result']="data";
 				$merchantInfo=$this->commongetdata->getOneData($condition);
 				$condition['data']=array(
@@ -800,7 +819,7 @@ class Common extends CI_Controller {
 			break;
 			case 'merchantBusinessLicense':
 				$condition['table']="user";
-				$condition['where']=array("user_id"=>$_SESSION['userid']);
+				$condition['where']=array("user_id"=>$_SESSION['merchant_userid']);
 				$condition['data']=array(
 					"merchant_business_license"=>$data->src,
 					"merchant_business_license_msg"=>$data->Msg,
@@ -808,7 +827,7 @@ class Common extends CI_Controller {
 			break;
 			case 'merchantBankbook':
 				$condition['table']="user";
-				$condition['where']=array("user_id"=>$_SESSION['userid']);
+				$condition['where']=array("user_id"=>$_SESSION['merchant_userid']);
 				$condition['data']=array(
 					"merchant_bank_account"=>$data->src,
 					"merchant_bank_account_msg"=>$data->Msg,
@@ -816,7 +835,7 @@ class Common extends CI_Controller {
 			break;
 			case 'GstInfo':
 				$condition['table']="user";
-				$condition['where']=array("user_id"=>$_SESSION['userid']);
+				$condition['where']=array("user_id"=>$_SESSION['merchant_userid']);
 				$condition['data']=array(
 					"merchant_gst_name"=>$data->gstName,
 					"merchant_gst_number"=>$data->gstNumber,
@@ -1067,14 +1086,14 @@ class Common extends CI_Controller {
 			break;
 			case 'shopImg':
 				$condition['table']="user";
-				$condition['where']=array("user_id"=>$_SESSION['userid']);
+				$condition['where']=array("user_id"=>$_SESSION['merchant_userid']);
 				$condition['data']=array(
 					"merchant_shop_".$data->position."img"=>$data->image
 				);
 			break;
 			case 'shopInfo':
 				$condition['table']="user";
-				$condition['where']=array("user_id"=>$_SESSION['userid']);
+				$condition['where']=array("user_id"=>$_SESSION['merchant_userid']);
 				$condition['data']=array(
 					"merchant_shop_info"=>$data->info
 				);
@@ -1135,14 +1154,26 @@ class Common extends CI_Controller {
 			break;
 			case 'personalGender':
 				$condition['table']="user";
-				$condition['where']=array("user_id"=>$_SESSION['userid']);
+				$userId='';
+				if(isset($_SESSION['userid'])){
+					$userId==$_SESSION['userid'];
+				}else{
+					$userId==$_SESSION['merchant_userid'];
+				}
+				$condition['where']=array("user_id"=>$userId);
 				$condition['data']=array(
 					"user_gender"=>$data->gender
 				);
 			break;
 			case 'personalContactsPhone':
 				$condition['table']="user";
-				$condition['where']=array("user_id"=>$_SESSION['userid']);
+				$userId='';
+				if(isset($_SESSION['userid'])){
+					$userId==$_SESSION['userid'];
+				}else{
+					$userId==$_SESSION['merchant_userid'];
+				}
+				$condition['where']=array("user_id"=>$userId);
 				$condition['data']=array(
 					"merchant_homephone1"=>$data->contactsPhone1,
 					"merchant_homephone2"=>$data->contactsPhone2,
@@ -1154,7 +1185,13 @@ class Common extends CI_Controller {
 			break;
 			case 'personalBirthday':
 				$condition['table']="user";
-				$condition['where']=array("user_id"=>$_SESSION['userid']);
+				$userId='';
+				if(isset($_SESSION['userid'])){
+					$userId==$_SESSION['userid'];
+				}else{
+					$userId==$_SESSION['merchant_userid'];
+				}
+				$condition['where']=array("user_id"=>$userId);
 				$condition['data']=array(
 					"user_birthday"=>$data->birthday
 				);
@@ -1497,7 +1534,7 @@ class Common extends CI_Controller {
 				
 				$groupBuy=$data->groupbuy==1?true:false;
 				$outStock=$data->stock==0?true:false;
-				$result=$this->commongetdata->getProducts($_SESSION['userid'],$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order,$groupBuy,$outStock,$shopMainCat,$shopStSubCat);
+				$result=$this->commongetdata->getProducts($_SESSION['merchant_userid'],$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order,$groupBuy,$outStock,$shopMainCat,$shopStSubCat);
 
 
 				$categories=$this->commongetdata->getCategories(true);
@@ -1564,7 +1601,7 @@ class Common extends CI_Controller {
 			case 'merchantTurnover':
 				$days=$data->days;
 				$startDate=date("Y-m-d",strtotime(date("Y-m-d")." -".$days." day"));
-				$merchant=isset($data->merchant)?$data->merchant:$_SESSION['userid'];
+				$merchant=isset($data->merchant)?$data->merchant:$_SESSION['merchant_userid'];
 				$result=$this->commongetdata->getOrdersByDay($startDate,$days,$merchant,true,'short',29);
 			break;
 			case 'addressList':
@@ -1735,7 +1772,7 @@ class Common extends CI_Controller {
 						"product_shipping_rate"=>1,
 						"product_description"=>$data[22],
 						"product_shipping_address"=>$data[16],
-						"product_merchant"=>$_SESSION['userid'],
+						"product_merchant"=>$_SESSION['merchant_userid'],
 						"product_time"=>date("Y-m-d H:i:s"),
 						"product_modify_time"=>date("Y-m-d H:i:s")
 					);
@@ -1822,7 +1859,7 @@ class Common extends CI_Controller {
 				}else{
 					$order=array("field"=>"product_modify_time","type"=>'DESC');
 				}
-				$result=$this->commongetdata->getProducts($_SESSION['userid'],$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order,false,false,$shopMainCat,$shopStSubCat);
+				$result=$this->commongetdata->getProducts($_SESSION['merchant_userid'],$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order,false,false,$shopMainCat,$shopStSubCat);
 				$categories=$this->commongetdata->getCategories(true);
 				$status=$this->commongetdata->getProductStatus();
 				$listingType=$this->commongetdata->getProductListingType();
@@ -2154,7 +2191,7 @@ class Common extends CI_Controller {
 	}*/
 	public function checkID(){
 		$user=$this->commongetdata->getContentAdvance('user',array('merchant_login_ID'=>$_POST['ID']));
-		if(sizeof($user)>0 && $user->user_id!=$_SESSION['userid']){
+		if(sizeof($user)>0 && $user->user_id!=$_SESSION['merchant_userid']){
 			echo json_encode(array("result"=>"notunique","message"=>"The user name already exists!"));
 			return false;
 		}else{

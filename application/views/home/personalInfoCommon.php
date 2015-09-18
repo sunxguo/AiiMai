@@ -21,7 +21,7 @@
 		  </ul>
 		</li>
 		<li class="dropdown" onmouseover="$('#Alist').show();" onmouseout="$('#Alist').hide();">
-		  <a href="#" class="dropdown-toggle">A-List<span class="caret"></span></a>
+		  <a href="#" class="dropdown-toggle">My Favourites<span class="caret"></span></a>
 		  <ul class="dropdown-menu" id="Alist">
 			<li><a href="/home/followingShop">Following Shop</a></li>
 			<li><a href="/home/wishList">Wish List</a></li>

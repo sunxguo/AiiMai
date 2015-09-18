@@ -7,7 +7,8 @@
 				<tbody>
 					<tr>
 						<th style="width:5%"><input type="checkbox" id="allCheck"></th>
-						<th style="width:80%">Product Info</th>
+						<th style="width:65%">Product Info</th>
+						<th style="width:15%">Expiring Time</th>
 						<th style="width:15%">Time</th>
 					</tr>
 					<?php foreach ($wishlists as $value):?>
@@ -17,14 +18,28 @@
 						</td>
 						<td>
 							<div class="fl">
-								<img src="<?php echo $value->product->product_image;?>" width="100">
+								<a target="_blank" href="/home/item?itemId=<?php echo $value->product->product_id;?>">
+									<img src="<?php echo $value->product->product_image;?>" width="100">
+								</a>
 							</div>
 							<div class="fl" style="margin-left:20px;padding-top:20px;">
-								<a style="display:block;color:#337ab7;font-weight:600;" href="/home/item?itemId=<?php echo $value->product->product_id;?>"><?php echo $value->product->product_item_title_english;?></a>
+								<a style="display:block;color:#337ab7;font-weight:600;" target="_blank" href="/home/item?itemId=<?php echo $value->product->product_id;?>"><?php echo $value->product->product_item_title_english;?></a>
 								<p>
 									<?php echo $value->product->product_sell_price;?>
 								</p>
 							</div>
+						</td>
+						<td class="tac">
+							<?php 
+								$leftday=$value->product->product_available_period-floor((time()-strtotime($value->product->product_time))/(3600*24));
+								if($leftday<0){
+									echo 'Expired';
+								}elseif($leftday>500){
+									echo 'Infinite';
+								}else{
+									echo $leftday.' days';
+								}
+							?>
 						</td>
 						<td>
 							<?php echo $value->wishlist_time;?>

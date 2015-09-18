@@ -12,7 +12,7 @@ class Home extends CI_Controller {
 		phpinfo();
 	}
 	public function checkUserLogin(){
-		if(!checkLogin() || !isset($_SESSION["usertype"]) || strcmp($_SESSION["usertype"],"user")) {
+		if(!checkLogin()) {
 			$this->load->view('redirect',array("url"=>"/home/login","info"=>"Please login!"));
 			return false;
 		}
@@ -70,11 +70,28 @@ class Home extends CI_Controller {
 	public function homeBaseHandler($title,$view,$data,$footerData=array()){
 		$websiteConfig=$this->commongetdata->getWebsiteConfig("ALLINFO");
 		$websiteName=$websiteConfig['website_name_'.$_SESSION['language']];
+		$wishlists=array();
+		if(isset($_SESSION['userid'])){
+			$parameters=array(
+				'table'=>'wishlist',
+				'result'=>'data',
+				'where'=>array("wishlist_userid"=>$_SESSION['userid']),
+				'order_by'=>array('wishlist_time'=>'DESC'),
+				'limit'=>array("limit"=>5,"offset"=>0)
+			);
+			$wishlists=$this->commongetdata->getData($parameters);
+			foreach ($wishlists as $value) {
+				$value->product=$this->commongetdata->getContent('product',$value->wishlist_productid);
+			}
+		}
 		$this->load->view('home/header',
 			array(
 				'title' => $websiteName."-".$title,
+				'pageName'=>$view,
 				'websiteName'=>$websiteName,
-				'categories'=>$this->commongetdata->getCategories(false)
+				'wishlists'=>$wishlists,
+				'categories'=>$this->commongetdata->getCategories(false),
+
 			)
 		);
 		$this->load->view('home/'.$view,$data);
@@ -231,7 +248,7 @@ class Home extends CI_Controller {
 				"status"=>3
 			)),
 			"comments"=>$this->commongetdata->getComments($_GET['itemId']),
-			"enquiries"=>array('data'=>array()),
+			"enquiries"=>$this->commongetdata->getEnquiries($_GET['itemId']),
 			"hotItems"=>$this->commongetdata->getFocusItems($item->product_merchant),
 			"follow"=>isset($_SESSION['userid'])?$this->commongetdata->getFollow($item->product_merchant,$_SESSION['userid']):false,
 			"wishlist"=>isset($_SESSION['userid'])?$this->commongetdata->getWishList($item->product_id,$_SESSION['userid']):false,

@@ -30,7 +30,7 @@
 			</li>
             <li class="name">
                 <img id="userPhoto" src="/assets/images/cms/defaulthead.png" width="35" height="35">
-				<span id="userShowName"><?php echo $_SESSION['username'];?></span>
+				<span id="userShowName"><?php echo $_SESSION['merchant_username'];?></span>
 			</li>
 			<li class="message">
 				<a href="/cms/message" title="Messages" id="js-openmsg">
@@ -43,7 +43,7 @@
 				<a href="/cms/logout" title="<?php echo lang('cms_common_Logout');?>"><?php echo lang('cms_common_Logout');?></a>
 			</li>
         </ul>
-		<input id="merchantId" type="hidden" value="<?php echo $_SESSION['userid'];?>">
+		<input id="merchantId" type="hidden" value="<?php echo $_SESSION['merchant_userid'];?>">
     </div>
 	<div class="cms-main">
 	<?php

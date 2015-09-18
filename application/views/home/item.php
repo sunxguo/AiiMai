@@ -360,7 +360,7 @@
 		<ul class="km-nav km-nav-tabs clearfix" name="ItemInfo">
 		  <li class="active"><a href="#ItemInfo" style="background-color: #337ab7;color: white;">Product Info</a></li>
 		  <li><a href="#CustomerReview">Product Review(<em><?php echo $comments['count'];?></em>)</a></li>
-		  <li><a href="#QuestionAnswer"><span>Enquiries(<em>0</em>)</span></a></li>
+		  <li><a href="#QuestionAnswer"><span>Enquiries(<em><?php echo sizeof($enquiries['data']);?></em>)</span></a></li>
 <!--		  <li><a href="#ShoppingTalk">Shopping Talk</a></li>-->
 		  <li><a href="#PolicyNotice">Policy & Notice</a></li>
 		</ul>
@@ -370,7 +370,7 @@
 		<ul class="km-nav km-nav-tabs clearfix" id="CustomerReview">
 		  <li><a href="#ItemInfo">Product Info</a></li>
 		  <li class="active"><a href="#CustomerReview" style="background-color: #337ab7;color: white;">Product Review(<em><?php echo $comments['count'];?></em>)</a></li>
-		  <li><a href="#QuestionAnswer"><span>Enquiries(<em>0</em>)</span></a></li>
+		  <li><a href="#QuestionAnswer"><span>Enquiries(<em><?php echo sizeof($enquiries['data']);?></em>)</span></a></li>
 <!--		  <li><a href="#ShoppingTalk">Shopping Talk</a></li>-->
 		  <li><a href="#PolicyNotice">Policy & Notice</a></li>
 		</ul>
@@ -431,7 +431,7 @@
 		<ul class="km-nav km-nav-tabs clearfix" id="QuestionAnswer">
 		  <li><a href="#ItemInfo">Product Info</a></li>
 		  <li><a href="#CustomerReview">Product Review(<em><?php echo $comments['count'];?></em>)</a></li>
-		  <li class="active"><a href="#QuestionAnswer" style="background-color: #337ab7;color: white;"><span>Enquiries(<em>0</em>)</span></a></li>
+		  <li class="active"><a href="#QuestionAnswer" style="background-color: #337ab7;color: white;"><span>Enquiries(<em><?php echo sizeof($enquiries['data']);?></em>)</span></a></li>
 <!--		  <li><a href="#ShoppingTalk">Shopping Talk</a></li>-->
 		  <li><a href="#PolicyNotice">Policy & Notice</a></li>
 		</ul>
@@ -442,33 +442,32 @@
 					<table class="km-table">
 						<tbody>
 						  <?php echo sizeof($enquiries['data'])<1?'No Enquiries':'';?>
-						  <?php foreach($enquiries['data'] as $key=>$comment):?>
+						  <?php foreach($enquiries['data'] as $key=>$enquiry):?>
 						  <tr>
 							<td class="value" style="width:86px;">
-								<img src="/assets/images/home/fp<?php echo $key+1;?>.jpg" style="width:86px;height:86px;">
+								<img src="<?php echo $enquiry->user->user_avatar;?>" style="width:86px;height:86px;">
 							</td>
 							<td class="value" style="width:620px;text-align:left;">
 								<ul>
 									<li class="comment-list-title">
-										<?php echo $enquiries->comment_title;?>
+										<?php echo $enquiry->enquiry_subject;?>
 									</li>
 									<li class="comment-list-option">
-										[option]:Selection:Xiaomi MiBand Silicon Band / Color:Blue(+S$0.98)
+										<?php echo $enquiry->enquiry_content;?>
 									</li>
 									<li class="comment-list-shortMessage">
-										<?php echo $enquiries->comment_content;?> Fast delivery with reasonable quality. The packaging is unopened and new.
+										[Re] <?php echo $enquiry->enquiry_answer;?>
 									</li>
 								</ul>
 							</td>
 							<td class="value" style="text-align:right;">
 								<ul>
 									<li class="comment-list-time">
-										<?php echo $enquiries->comment_time;?>
-										<span style="margin-left: 10px;"><?php echo mb_substr($enquiries->user->user_username, 0 , 3).'******';?></span>
+										<?php echo $enquiry->enquiry_time;?>
+										<span style="margin-left: 10px;"><?php echo mb_substr($enquiry->user->user_username, 0 , 3).'******';?></span>
 									</li>
 									<li class="comment-list-rating">
-										<?php echo $enquiries->comment_star;?>
-										Highly Recommended
+										<?php echo $enquiry->enquiry_answer==''?'Unanswered':'Answered';?>
 									</li>
 								</ul>
 							</td>
@@ -478,6 +477,7 @@
 					</table>
 				</div>
 			</div>
+			<button onclick="setDivCenter('#enquiryDiv',true);" type="button" class="km-btn km-btn-success" style="height: 25px;padding: 0px 10px;font-size: 12px;">Enquiry</button>
 		</div>
 <!--		<ul class="km-nav km-nav-tabs clearfix" id="ShoppingTalk">
 		  <li><a href="#ItemInfo">Item Info</a></li>
@@ -491,7 +491,7 @@
 		<ul class="km-nav km-nav-tabs clearfix" id="PolicyNotice">
 		  <li><a href="#ItemInfo">Product Info</a></li>
 		  <li><a href="#CustomerReview">Product Review(<em><?php echo $comments['count'];?></em>)</a></li>
-		  <li><a href="#QuestionAnswer"><span>Enquiries(<em>0</em>)</span></a></li>
+		  <li><a href="#QuestionAnswer"><span>Enquiries(<em><?php echo sizeof($enquiries['data']);?></em>)</span></a></li>
 <!--		  <li><a href="#ShoppingTalk">Shopping Talk</a></li>-->
 		  <li class="active"><a href="#PolicyNotice" style="background-color: #337ab7;color: white;">Policy & Notice</a></li>
 		</ul>
@@ -573,6 +573,57 @@
 		<div class="km-modal-footer">
 			<button type="button" class="km-btn km-btn-default km-btn-close">Close</button>
 			<button type="button" class="km-btn km-btn-primary" onclick="reportAbuse('<?php echo $_GET['itemId'];?>');">Report Abuse</button>
+		</div>
+	</div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+
+<div class="km-modal-dialog" id="enquiryDiv" style="width:600px;">
+	<div class="km-modal-content">
+		<div class="km-modal-header">
+			<button type="button" class="km-close"><span>&times;</span></button>
+			<h4 class="km-modal-title">Enquiry</h4>
+		</div>
+		<div class="km-modal-body">
+			<ul class="enquiry-wrap">
+				<li class="enquiry-product clearfix">
+					<div>
+						<img src="<?php echo $item->product_image;?>" width="30">
+					</div>
+					<div style="padding-left:10px;line-height:30px;">
+						<?php echo $item->product_item_title_english;?>
+					</div>
+				</li>
+				<li>
+					<label for="enquiryCategory" class="km-control-label" style="width:100px;">Category:</label>
+					<select id="enquiryCategory" style="height: 30px;">
+						<option value="1">
+							About Item
+						</option>
+						<option value="2">
+							Shipping
+						</option>
+						<option value="3">
+							Cancel/Refund
+						</option>
+						<option value="4">
+							Others
+						</option>
+					</select>
+				</li>
+				<li>
+					<label for="enquirySubject" class="km-control-label" style="width:100px;">Subject:</label>
+					<input type="text" class="km-form-control" id="enquirySubject" style="width: 400px;height: 30px;padding: 0 5px;display: inline-block;">
+				</li>
+				<li>
+					<label for="enquiryContent" class="km-control-label" style="width:100px;vertical-align: top;margin-top: 10px;">Content:</label>
+					<textarea id="enquiryContent" style="width:400px;height: 70px;margin-top:10px;"></textarea>
+				</li>
+			</ul>
+			
+		</div>
+		<div class="km-modal-footer">
+			<button type="button" class="km-btn km-btn-default km-btn-close">Cancel</button>
+			<button type="button" class="km-btn km-btn-primary" onclick="submitEnquiry('<?php echo $_GET['itemId'];?>','<?php echo $item->product_merchant;?>');">Submit</button>
 		</div>
 	</div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
