@@ -346,9 +346,9 @@
 								</a>
                             </span>
                             <?php if($wishlist):?>
-                            <span class="km-btn km-btn-warning" style="height: 25px;padding: 0px 10px;font-size: 12px;margin: 10px 0 5px 10px;line-height: 25px;cursor:default;">Added</span>
+                            <span class="km-btn km-btn-warning" style="height: 25px;padding: 0px 10px;font-size: 12px;margin: 10px 0 5px 10px;line-height: 25px;cursor:default;">Already in WishList</span>
                             <?php else:?>
-                            <button onclick="addToWishList('<?php echo $item->product_id;?>');" type="button" class="km-btn km-btn-success" style="height: 25px;padding: 0px 10px;font-size: 12px;margin: 10px 0 5px 10px;">Wish List</button>
+                            <button onclick="addToWishList('<?php echo $item->product_id;?>');" type="button" class="km-btn km-btn-success" style="height: 25px;padding: 0px 10px;font-size: 12px;margin: 10px 0 5px 10px;">Add to WishList</button>
                        		<?php endif;?>
 						</div>
                     </li>
@@ -444,9 +444,11 @@
 						  <?php echo sizeof($enquiries['data'])<1?'No Enquiries':'';?>
 						  <?php foreach($enquiries['data'] as $key=>$enquiry):?>
 						  <tr>
+						  	<!--
 							<td class="value" style="width:86px;">
 								<img src="<?php echo $enquiry->user->user_avatar;?>" style="width:86px;height:86px;">
 							</td>
+							-->
 							<td class="value" style="width:620px;text-align:left;">
 								<ul>
 									<li class="comment-list-title">
@@ -477,7 +479,7 @@
 					</table>
 				</div>
 			</div>
-			<button onclick="setDivCenter('#enquiryDiv',true);" type="button" class="km-btn km-btn-success" style="height: 25px;padding: 0px 10px;font-size: 12px;">Enquiry</button>
+			<button onclick="setDivCenter('#enquiryDiv',true);" type="button" class="km-btn km-btn-success btn_cart" style="height: 25px;padding: 0px 10px;font-size: 12px;">Enquire</button>
 		</div>
 <!--		<ul class="km-nav km-nav-tabs clearfix" id="ShoppingTalk">
 		  <li><a href="#ItemInfo">Item Info</a></li>
@@ -586,6 +588,7 @@
 		<div class="km-modal-body">
 			<ul class="enquiry-wrap">
 				<li class="enquiry-product clearfix">
+					<label class="km-control-label" style="width:100px;float:left;">Item:</label>
 					<div>
 						<img src="<?php echo $item->product_image;?>" width="30">
 					</div>

@@ -451,6 +451,7 @@ class Home extends CI_Controller {
 		$wishlists=$this->commongetdata->getData($parameters);
 		foreach ($wishlists as $value) {
 			$value->product=$this->commongetdata->getContent('product',$value->wishlist_productid);
+			$value->merchant=$this->commongetdata->getContent('user',$value->product->product_merchant);
 		}
 		$data=array(
 			'user'=>$this->commongetdata->getContent('user',$_SESSION['userid']),

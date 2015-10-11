@@ -7,7 +7,8 @@
 				<tbody>
 					<tr>
 						<th style="width:5%"><input type="checkbox" id="allCheck"></th>
-						<th style="width:65%">Product Info</th>
+						<th style="width:45%">Product Info</th>
+						<th style="width:20%">Seller</th>
 						<th style="width:15%">Expiring Time</th>
 						<th style="width:15%">Time</th>
 					</tr>
@@ -25,8 +26,15 @@
 							<div class="fl" style="margin-left:20px;padding-top:20px;">
 								<a style="display:block;color:#337ab7;font-weight:600;" target="_blank" href="/home/item?itemId=<?php echo $value->product->product_id;?>"><?php echo $value->product->product_item_title_english;?></a>
 								<p>
-									<?php echo $value->product->product_sell_price;?>
+									S$ <?php echo $value->product->product_sell_price;?>
 								</p>
+							</div>
+						</td>
+						<td class="tac">
+							<div>
+								<a target="_blank" href="/home/shop?shopId=<?php echo $value->merchant->user_id;?>">
+									<img src="<?php echo $value->merchant->merchant_shop_icon;?>" width="100">
+								</a>
 							</div>
 						</td>
 						<td class="tac">

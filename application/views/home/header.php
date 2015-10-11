@@ -98,7 +98,7 @@
 				<?php foreach($categories as $key=>$cat):?>
 				<li style="position:relative;" class="categoryItem <?php if((isset($_GET['cat']) && $_GET['cat']==$cat->category_id) || (!isset($_GET['cat']) && $key==0)):?>active<?php endif;?>">
 					<a href="/home/category" class="category <?php if((isset($_GET['cat']) && $_GET['cat']==$cat->category_id) || (!isset($_GET['cat']) && $key==0)):?>active<?php endif;?>"><?php echo $cat->category_name;?></a>
-					<?php if(!isset($pageName) || $pageName!='index'):?>
+					<?php //if(!isset($pageName) || $pageName!='index'):?>
 					<div class="category-wrap">
 						<dl>
 							<?php foreach ($cat->subCats as $subCat):?>
@@ -112,7 +112,7 @@
 							<?php endforeach;?>
 						</dl>
 					</div>
-					<?php endif;?>
+					<?php //endif;?>
 				</li>
 				<?php endforeach;?>
 			</ul>
