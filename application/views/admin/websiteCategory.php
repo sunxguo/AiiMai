@@ -24,6 +24,7 @@
 			<li id="<?php echo $subCats->category_id;?>" type="button" class="km-btn km-btn-default category" style="color: #000;font-size: 12px;font-weight: 600;text-align:left;">
 				<?php echo $subCats->category_name;?>
 				<a onclick="deleteCategory(this,'<?php echo $subCats->category_id;?>');" categoryName="<?php echo $subCats->category_name;?>" class="km-btn km-btn-danger fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;">Delete</a>
+				<a onclick="moveCategory(this,'<?php echo $subCats->category_id;?>');" categoryName="<?php echo $subCats->category_name;?>" class="km-btn km-btn-primary fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;margin-right:10px;">Move</a>
 				<a onclick="modifyCategory(this,'<?php echo $subCats->category_id;?>');" categoryName="<?php echo $subCats->category_name;?>" class="km-btn km-btn-primary fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;margin-right:10px;">Edit</a>
 				<?php if($key!=$subAmount-1):?>
 				<a onclick="orderCategory('<?php echo $subCats->category_id;?>','down')" class="fr" style="margin-right:10px;"><img src="/assets/images/cms/icon-down.png" width="15"></a>
@@ -37,6 +38,7 @@
 					<li id="<?php echo $subSubCats->category_id;?>" type="button" class="km-btn km-btn-default" style="color: #434343;font-size: 10px;text-align:left;">
 						-- <?php echo $subSubCats->category_name;?>
 						<a onclick="deleteCategory(this,'<?php echo $subSubCats->category_id;?>');" categoryName="<?php echo $subSubCats->category_name;?>" class="fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;">Delete</a>
+						<a onclick="moveCategory(this,'<?php echo $subSubCats->category_id;?>');" categoryName="<?php echo $subSubCats->category_name;?>" class="fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;margin-right:10px;">Move</a>
 						<a onclick="modifyCategory(this,'<?php echo $subSubCats->category_id;?>');" categoryName="<?php echo $subSubCats->category_name;?>" class="fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;margin-right:10px;">Edit</a>
 						<?php if($k!=$subSubAmount-1):?>
 						<a onclick="orderCategory('<?php echo $subSubCats->category_id;?>','down')" class="fr" style="margin-right:10px;"><img src="/assets/images/cms/icon-down.png" width="15"></a>
@@ -51,6 +53,7 @@
 							<li id="<?php echo $subSubSubCat->category_id;?>" type="button" class="km-btn km-btn-default" style="color: #434343;font-size: 10px;text-align:left;">
 								-- <?php echo $subSubSubCat->category_name;?>
 								<a onclick="deleteCategory(this,'<?php echo $subSubSubCat->category_id;?>');" categoryName="<?php echo $subSubSubCat->category_name;?>" class="fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;">Delete</a>
+								<a onclick="moveCategory(this,'<?php echo $subSubSubCat->category_id;?>');" categoryName="<?php echo $subSubSubCat->category_name;?>" class="fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;margin-right:10px;">Move</a>
 								<a onclick="modifyCategory(this,'<?php echo $subSubSubCat->category_id;?>');" categoryName="<?php echo $subSubSubCat->category_name;?>" class="fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;margin-right:10px;">Edit</a>
 								<?php if($k!=$subSubAmount-1):?>
 								<a onclick="orderCategory('<?php echo $subSubSubCat->category_id;?>','down')" class="fr" style="margin-right:10px;"><img src="/assets/images/cms/icon-down.png" width="15"></a>

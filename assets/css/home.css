@@ -3542,7 +3542,11 @@ background: none;
 }
 .subCategory li{
 	float: left;
-
+	min-width: 150px;
+}
+.subCategory li.active a{
+	font-weight: 600;
+	color: rgb(1,155,253);
 }
 .subCategory li a{
 	display: inline-block;

@@ -38,10 +38,10 @@
 	</div>
 	<div class="">
 		<?php if($merchant->merchant_shop_mainAdvertisement_on==1):?>
-		<img src="<?php echo $merchant->merchant_shop_middleimg;?>" style="width: 980px;height:320px;">
+		<a <?php if($merchant->merchant_shop_mainAdvertisementHyperlink_on==1):?>href="<?php echo $merchant->merchant_shop_mainAdvertisementHyperlink;?>"<?php endif;?>><img src="<?php echo $merchant->merchant_shop_middleimg;?>" style="width: 980px;height:320px;"></a>
 		<?php endif;?>
 		<?php if($merchant->merchant_shop_secondaryAdvertisement_on==1):?>
-		<img src="<?php echo $merchant->merchant_shop_bottomimg;?>" style="width: 980px;height:160px;">
+		<a <?php if($merchant->merchant_shop_secondaryAdvertisementHyperlink_on==1):?>href="<?php echo $merchant->merchant_shop_secondaryAdvertisementHyperlink;?>"<?php endif;?>><img src="<?php echo $merchant->merchant_shop_bottomimg;?>" style="width: 980px;height:160px;"></a>
 		<?php endif;?>
 	</div>
 	<?php if($merchant->merchant_shop_focus_on):?>
@@ -88,9 +88,9 @@
 		<?php endif;?>
 		<ul class="subCategory clearfix">
 			<?php foreach ($subCategory as $key => $value):?>
-			<li style="padding:0 10px;">
+			<li <?php echo isset($_GET['subCategory']) && $value->shopcategory_id==$_GET['subCategory']?'class="active"':'';?> style="padding:0 10px;">
 				<a href="/home/shop?shopId=<?php echo $_GET['shopId'];?>&category=<?php echo isset($_GET['category'])?$_GET['category']:'all';?>&subCategory=<?php echo $value->shopcategory_id;?>#shopCategory">
-					<?php echo $value->shopcategory_name;?>(<?php echo $value->count;?>)
+					<?php echo $value->shopcategory_name;?>(<font color="#3B8CCA" style="font-weight:600;"><?php echo $value->count;?></font>)
 				</a>
 			</li>
 			<?php endforeach;?>

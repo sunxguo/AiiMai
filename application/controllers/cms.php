@@ -329,6 +329,18 @@ class Cms extends CI_Controller {
 		);
 		$this->load->view('cms/modifyGoods',$data);
 	}
+	public function copyGood(){
+		$item=$this->commongetdata->getContent('product',$_GET['itemId']);
+		$data=array(
+			"categories"=>$this->commongetdata->getCategories(false),
+			"item"=>$item,
+			"subCatList"=>$this->commongetdata->getSubCat($item->product_category),
+			"subSubCatList"=>$this->commongetdata->getSubCat($item->product_sub_category),
+			"shopCategory"=>$this->commongetdata->getShopCategory($_SESSION['merchant_userid']),
+			"shopSubCategory"=>$this->commongetdata->getShopSubCategory($_SESSION['merchant_userid'],$item->product_shopCategory)
+		);
+		$this->load->view('cms/copyGood',$data);
+	}
 	public function modifyGroupBuy(){
 		$groupbuy=$this->commongetdata->getContent('groupbuy',$_GET['groupBuyId']);
 		$item=$this->commongetdata->getContent('product',$groupbuy->groupbuy_productId);

@@ -230,7 +230,7 @@
 											echo $leftDay." days left";
 										}
 									}else{
-										echo "This product has been expired!";
+										echo "The Product has expired";
 									}
 								?>
                             </div>
@@ -248,6 +248,11 @@
 									<strong >S$<?php echo $item->product_sell_price;?></strong>
 								</dd>
 							</dl>
+							<dl class="detailsArea">
+                                    <dt>Valid Period</dt>
+                                    <dd><?php echo date('d/m/Y',strtotime($item->product_time));?> ~ <?php echo date('d/m/Y',strtotime($item->product_time." +".$item->product_available_period." day"));?></dd>
+                                </dl>
+
                             <!-- 할인정보 -->
 							<?php if($item->product_time_sale==1):?>
 							<span>

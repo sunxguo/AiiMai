@@ -80,12 +80,13 @@
 						<input id="beginDate" type="date" value="<?php echo date("Y-m-d",strtotime(date("Y-m-d")." -30 day"));?>" class="km-form-control" style="width: 40%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;"> ~ <input id="endDate" type="date" value="<?php echo date("Y-m-d");?>" class="km-form-control" style="width: 40%;height: 30px;padding: 0px 5px;display: inline-block;font-size:12px;">
 					</td>
 					<td class="field width10p tal br">
-						<?php echo lang('cms_goodsCopy_SellFormat');?>
+						Listing Type
 					</td>
 					<td class="value width17p tal" style="width: 200px;">
-						<select id="SellFormat" style="height: 30px;width: 80px;" onchange="if($(this).val()=='1') $('#stock').show();else $('#stock').hide();">
-							<option value="1" selected="selected"><?php echo lang('cms_goodsCopy_BuyNow');?></option>
-							<option value="2"><?php echo lang('cms_goodsCopy_Auction');?></option>
+						<select id="SellFormat" style="height: 30px;width: 80px;">
+							<!--onchange="if($(this).val()=='1') $('#stock').show();else $('#stock').hide();"-->
+							<option value="1" selected="selected">Standard Sales</option>
+							<option value="2">Auction (For approved items)</option>
 							<option value="3"><?php echo lang('cms_goodsCopy_FreeFormat');?></option>
 							<option value="4"><?php echo lang('cms_goodsCopy_ReservationOrTicket');?></option>
 						</select>

@@ -486,9 +486,16 @@ function copyProduct () {
 			items.push($(this).attr('id'));
 		}
 	});
-	var product = new Object();
-	product.items = items;
-	dataHandler('add','copyProduct',product,afterCopyProduct,null,null,null,false);
+	if(items.length<1){
+		showAlert('danger','Please select product!',"");
+	}else if(items.length>1){
+		showAlert('danger','Please only select 1 item at a time for copying',"");
+	}else{
+		// var product = new Object();
+		// product.items = items;
+		// dataHandler('add','copyProduct',product,afterCopyProduct,null,null,null,false);
+		window.open('/cms/copyGood?itemId='+items[0],'Copy Item','height=700,width=900,toolbar=no,menubar=no');
+	}
 }
 function afterCopyProduct () {
 	// body...
