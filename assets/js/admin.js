@@ -552,6 +552,18 @@ function saveCategory(){
 	category.name = $("#nameInput").val();
 	dataHandler("modify","category",category,successShowCat,null,null,null,true);
 }
+function moveCategory(tag,id){
+	setDivCenter('#moveCategoryDiv',true);
+	$("#moveCategoryId").val(id);
+	$("#moveCategoryName").text($(tag).attr('categoryName'));
+}
+
+function saveMoveCategory(){
+	var category = new Object();
+	category.id = $("#moveCategoryId").val();
+	category.fid = $("#saveFid").val();
+	dataHandler("modify","movecategory",category,successShowCat,null,null,null,true);
+}
 function deleteCategory(tag,id){
 	var category = new Object();
 	category.id = id;

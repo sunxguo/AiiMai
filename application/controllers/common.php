@@ -1345,6 +1345,15 @@ class Common extends CI_Controller {
 					"category_name"=>$data->name
 				);
 			break;
+			case 'movecategory':
+				$condition['table']="category";
+				$condition['where']=array("category_id"=>$data->id);
+				$condition['data']=array(
+					"category_fid"=>$data->fid
+				);
+				//更新之下的商品
+
+			break;
 			case 'categoryOrder':
 				$selectCondition=array(
 					'table'=>'category',
@@ -1907,7 +1916,7 @@ class Common extends CI_Controller {
 			break;
 			case 'productSimple':
 				$categories=$this->commongetdata->getCategories(true);
-				$field=array('Item code','Seller Code','Item Title','Price','Settle Price','Qty','Premium List','Status','Global Sales','Delivery Type','Main Cat','1st subCat','2nd subCat','Pay on delivery Y/N','Sales Format','Inventory Code','Listed Date');
+				$field=array('Url','Item code','Seller Code','Item Title','Price','Settle Price','Qty','Available Period','Item Condition','Country of Manufacture','Adult Item','Status','Delivery Type','Main Cat','1st subCat','2nd subCat','List Type','Listed Date');
 				$cat=$data->MainCategory==-1?false:$data->MainCategory;
 				$sCat=false;
 				$ssCat=false;
@@ -1918,25 +1927,31 @@ class Common extends CI_Controller {
 				$sellFormat=false;
 				$order=array("field"=>"product_modify_time","type"=>'DESC');
 				$result=$this->commongetdata->getProducts(false,$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order);
+				
+				$status=$this->commongetdata->getProductStatus();
+				$listingType=$this->commongetdata->getProductListingType();
+				$deliveryType=$this->commongetdata->getProductDeliveryType();
+				$websiteUrl=$this->commongetdata->getWebsiteConfig('website_url');
 				$dataArray=array();
 				foreach($result as $value){
 					$dataArray[]=array(
+						$websiteUrl.'/home/item?itemId='.$value->product_id,
 						$value->product_id,
-						'',
+						$value->product_merchant,
 						$value->product_item_title_english,
 						$value->product_reference_price,
 						$value->product_sell_price,
 						$value->product_quantity,
-						'',
-						$value->product_status,
-						'',
-						$value->product_sell_format,
-						$categories[$value->product_category]->category_name,
-						$categories[$value->product_sub_category]->category_name,
-						$categories[$value->product_sub_sub_category]->category_name,
-						'',
-						'',
-						'',
+						$value->product_available_period==10000?'Infinite':$value->product_available_period.' days',
+						$value->product_item_condition==1?'New Item':'Used Item',
+						($value->product_production_place_code==1?'Domestic':'Overseas').'-'.($value->product_production_place_detail),
+						$value->product_adult==0?'No':'Yes',
+						$status[$value->product_status],
+						$deliveryType[$value->product_delivery_type],
+						isset($categories[$value->product_category])?$categories[$value->product_category]->category_name:'',
+						isset($categories[$value->product_sub_category])?$categories[$value->product_sub_category]->category_name:'',
+						isset($categories[$value->product_sub_sub_category])?$categories[$value->product_sub_sub_category]->category_name:'',
+						$listingType[$value->product_sell_format],
 						$value->product_time
 					);
 				}

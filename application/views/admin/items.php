@@ -45,6 +45,11 @@
 				<th style="width:200px;">Main Category</th>
 				<th style="width:220px;">1st Sub Category</th>
 				<th style="width:220px;">2nd Sub Category</th>
+				<th style="width:150px;">Listing Type</th>
+				<th style="width:150px;">Available Period</th>
+				<th style="width:150px;">Item Condition</th>
+				<th style="width:150px;">Country of Manufacture</th>
+				<th style="width:150px;">Adult Item</th>
 				<th style="width:150px;">Time</th>
 				<th style="width:80px;">Status</th>
 				<th style="width:280px;">Operation</th>
@@ -61,6 +66,11 @@
 				<td><?php echo $item->product_category;?></td>
 				<td><?php echo $item->product_sub_category;?></td>
 				<td><?php echo $item->product_sub_sub_category;?></td>
+				<td><?php echo $item->product_sell_format;?></td>
+				<td><?php echo $item->product_available_period==10000?'Infinite':$item->product_available_period.' days';?></td>
+				<td><?php echo $item->product_item_condition==1?'New Item':'Used Item';?></td>
+				<td><?php echo ($item->product_production_place_code==1?'Domestic':'Overseas').'-'.($item->product_production_place_detail);?></td>
+				<td><?php echo $item->product_adult==0?'No':'Yes';?></td>
 				<td><?php echo $item->product_time;?></td>
 				<td>
 					<span class="km-label 

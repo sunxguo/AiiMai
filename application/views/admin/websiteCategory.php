@@ -17,6 +17,7 @@
 		<input id="currentFatherCategoryId" type="hidden" value="<?php echo $currentCat->category_id;?>">
 		-->
 		<button onclick="modifyCategory(this,'<?php echo $currentCat->category_id;?>');" categoryName="<?php echo $currentCat->category_name;?>" type="button" class="km-btn km-btn-primary" style="height: 28px; padding: 0px 12px;font-size: 12px;">Edit</button>
+		<button onclick="moveCategory(this,'<?php echo $currentCat->category_id;?>');" categoryName="<?php echo $currentCat->category_name;?>" type="button" class="km-btn km-btn-success" style="height: 28px; padding: 0px 12px;font-size: 12px;">Move</button>
 		<button onclick="deleteCategory(this,'<?php echo $currentCat->category_id;?>');" categoryName="<?php echo $currentCat->category_name;?>" type="button" class="km-btn km-btn-danger" style="height: 28px; padding: 0px 12px;font-size: 12px;">Delete</button>
 		<ul id="sortable" class="km-btn-group-vertical" style="margin-top:10px;width:100%;">
 			<?php $subAmount=sizeof($currentCat->subCats);
@@ -24,7 +25,7 @@
 			<li id="<?php echo $subCats->category_id;?>" type="button" class="km-btn km-btn-default category" style="color: #000;font-size: 12px;font-weight: 600;text-align:left;">
 				<?php echo $subCats->category_name;?>
 				<a onclick="deleteCategory(this,'<?php echo $subCats->category_id;?>');" categoryName="<?php echo $subCats->category_name;?>" class="km-btn km-btn-danger fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;">Delete</a>
-				<a onclick="moveCategory(this,'<?php echo $subCats->category_id;?>');" categoryName="<?php echo $subCats->category_name;?>" class="km-btn km-btn-primary fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;margin-right:10px;">Move</a>
+				<a onclick="moveCategory(this,'<?php echo $subCats->category_id;?>');" categoryName="<?php echo $subCats->category_name;?>" class="km-btn km-btn-success fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;margin-right:10px;">Move</a>
 				<a onclick="modifyCategory(this,'<?php echo $subCats->category_id;?>');" categoryName="<?php echo $subCats->category_name;?>" class="km-btn km-btn-primary fr" style="height: 20px;padding: 0px 8px;line-height: 20px;font-size: 12px;margin-right:10px;">Edit</a>
 				<?php if($key!=$subAmount-1):?>
 				<a onclick="orderCategory('<?php echo $subCats->category_id;?>','down')" class="fr" style="margin-right:10px;"><img src="/assets/images/cms/icon-down.png" width="15"></a>
@@ -115,6 +116,34 @@
 			<div class="km-modal-footer">
 				<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_sider_Close');?></button>
 				<button type="button" class="km-btn km-btn-primary" onclick="addCategory('Successfully saved!');">Add</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+	<div class="km-modal-dialog width40p" id="moveCategoryDiv">
+		<div class="km-modal-content">
+			<div class="km-modal-header">
+				<button type="button" class="km-close"><span>&times;</span></button>
+				<h4 class="km-modal-title">Move Category [<span id="moveCategoryName"></span>]</h4>
+			</div>
+			<input type="hidden" id="moveCategoryId">
+			<div class="km-modal-body">
+				<label for="fid" class="km-control-label">Upper level:</label>
+				<select id="saveFid" style="display:block;">
+					<option value="0">-- Top --</option>
+					<?php foreach($categories as $cat):?>
+					<option value="<?php echo $cat->category_id;?>"><?php echo $cat->category_name;?></option>
+					<?php foreach($cat->subCats as $subCat):?>
+					<option value="<?php echo $subCat->category_id;?>">-- <?php echo $subCat->category_name;?></option>
+					<?php foreach($subCat->subSubCats as $subSubCat):?>
+					<option value="<?php echo $subSubCat->category_id;?>">&nbsp;&nbsp;&nbsp;&nbsp;---- <?php echo $subSubCat->category_name;?></option>
+					<?php endforeach;?>
+					<?php endforeach;?>
+					<?php endforeach;?>
+				</select>
+			</div>
+			<div class="km-modal-footer">
+				<button type="button" class="km-btn km-btn-default km-btn-close"><?php echo lang('cms_sider_Close');?></button>
+				<button type="button" class="km-btn km-btn-primary" onclick="saveMoveCategory('Successfully moved!');">Move</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
