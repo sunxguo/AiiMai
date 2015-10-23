@@ -124,9 +124,41 @@ class Admin extends CI_Controller {
 			$condition['where']['product_status']=$_GET['status'];
 			$baseUrl.='&status='.$_GET['status'];
 		}
-		if(isset($_GET['adult'])&& is_numeric($_GET['adult'])){
-			$condition['where']['product_adult']=$_GET['adult'];
-			$baseUrl.='&adult='.$_GET['adult'];
+		if(isset($_GET['listingtype'])&& is_numeric($_GET['listingtype'])){
+			$condition['where']['product_sell_format']=$_GET['listingtype'];
+			$baseUrl.='&listingtype='.$_GET['listingtype'];
+		}
+		if(isset($_GET['itemcondition'])&& is_numeric($_GET['itemcondition'])){
+			$condition['where']['product_item_condition']=$_GET['itemcondition'];
+			$baseUrl.='&itemcondition='.$_GET['itemcondition'];
+		}
+		if(isset($_GET['country'])&& is_numeric($_GET['country'])){
+			$condition['where']['product_production_place_code']=$_GET['country'];
+			$baseUrl.='&country='.$_GET['country'];
+		}
+		if(isset($_GET['adultitem'])&& is_numeric($_GET['adultitem'])){
+			$condition['where']['product_adult']=$_GET['adultitem'];
+			$baseUrl.='&adultitem='.$_GET['adultitem'];
+		}
+		if(isset($_GET['availableperiod'])&& is_numeric($_GET['availableperiod'])){
+			$condition['where']['product_available_period']=$_GET['availableperiod'];
+			$baseUrl.='&availableperiod='.$_GET['availableperiod'];
+		}
+		if(isset($_GET['beginDate'])){
+			$condition['where']['product_time >=']=$_GET['beginDate'].' 00:00:00';
+			$baseUrl.='&beginDate='.$_GET['beginDate'];
+		}
+		if(isset($_GET['endDate'])){
+			$condition['where']['product_time <=']=$_GET['endDate'].' 23:59:59';
+			$baseUrl.='&endDate='.$_GET['endDate'];
+		}
+		if(isset($_GET['minPrice'])&& is_numeric($_GET['minPrice'])){
+			$condition['where']['product_sell_price >=']=$_GET['minPrice'];
+			$baseUrl.='&minPrice='.$_GET['minPrice'];
+		}
+		if(isset($_GET['maxPrice'])&& is_numeric($_GET['maxPrice'])){
+			$condition['where']['product_sell_price <=']=$_GET['maxPrice'];
+			$baseUrl.='&maxPrice='.$_GET['maxPrice'];
 		}
 		if(isset($_GET['category'])&& is_numeric($_GET['category'])){
 			$condition['where']['product_category']=$_GET['category'];
@@ -139,6 +171,11 @@ class Admin extends CI_Controller {
 		if(isset($_GET['subSubCategory'])&& is_numeric($_GET['subSubCategory'])){
 			$condition['where']['product_sub_sub_category']=$_GET['subSubCategory'];
 			$baseUrl.='&subSubCategory='.$_GET['subSubCategory'];
+		}
+		if(isset($_GET['merchant'])){
+			$merchant=$this->commongetdata->getContentAdvance('user',array('user_username'=>$_GET['merchant']));
+			$condition['where']['product_merchant']=isset($merchant->user_id)?$merchant->user_id:0;
+			$baseUrl.='&merchant='.$_GET['merchant'];
 		}
 		if(isset($_GET['search'])){
 			$condition['like']['product_item_title_english']=$_GET['search'];

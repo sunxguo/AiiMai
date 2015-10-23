@@ -111,7 +111,15 @@ var productSuccessMsg='';
 function productHandler(successMsg,isNew){
 	productSuccessMsg=successMsg;
 	if($("#MainCategory").val()==-1){
+		showAlert('danger','',"Please select main category!");
+		return false;
+	}
+	if($("#stSubCategory").val()==-1){
 		showAlert('danger','',"Please select 1st category!");
+		return false;
+	}
+	if($("#ndSubCategory").val()==-1){
+		showAlert('danger','',"Please select 2nd category!");
 		return false;
 	}
 	if($("#title_english").val()=="" && $("#title_zh_cn").val()=="" && $("#title_tw_cn").val()==""){

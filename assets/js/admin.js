@@ -294,10 +294,51 @@ function saveBasicParameter(successMsg){
 function selectItem(baseUrl){
 	var extUrl="";
 	if($("#category").val()!=-1) extUrl+="&category="+$("#category").val();
+	if($("#subcategory").val()!=-1) extUrl+="&subCategory="+$("#subcategory").val();
+	if($("#subsubcategory").val()!=-1) extUrl+="&subSubCategory="+$("#subsubcategory").val();
 	if($("#status").val()!=-1) extUrl+="&status="+$("#status").val();
+	if($("#listingtype").val()!=-1) extUrl+="&listingtype="+$("#listingtype").val();
+	if($("#itemcondition").val()!=-1) extUrl+="&itemcondition="+$("#itemcondition").val();
+	if($("#adultitem").val()!=-1) extUrl+="&adultitem="+$("#adultitem").val();
+	if($("#availableperiod").val()!=-1) extUrl+="&availableperiod="+$("#availableperiod").val();
+	if($("#beginDate").val()!='') extUrl+="&beginDate="+$("#beginDate").val();
+	if($("#endDate").val()!='') extUrl+="&endDate="+$("#endDate").val();
+	if($("#minPrice").val()!='') extUrl+="&minPrice="+$("#minPrice").val();
+	if($("#maxPrice").val()!='') extUrl+="&maxPrice="+$("#maxPrice").val();
+	if($("#country").val()!=-1) extUrl+="&country="+$("#country").val();
 	if($("#keyword").val()!="") extUrl+="&search="+$("#keyword").val();
+	if($("#merchant").val()!="") extUrl+="&merchant="+$("#merchant").val();
 	location.href=baseUrl+extUrl;
 }
+
+function mainCategoryChange(){
+	var category = new Object(); 
+	category.id = $("#category").val();
+	dataHandler('get','subCat',category,updateSubCategory,null,null,null,false);
+	stSubCategoryChange();
+}
+function stSubCategoryChange(){
+	var category = new Object(); 
+	category.id = $("#subcategory").val();
+	dataHandler('get','subCat',category,updateSubSubCategory,null,null,null,false);
+}
+function updateSubCategory(category){
+	var subCategory=category.subCats;
+	var subCats='<option value="-1">== 1st Sub Category ==</option>';
+	for(var index in subCategory){ 
+        subCats+='<option value="'+subCategory[index].category_id+'">'+subCategory[index].category_name+'</option>';
+    }
+	$("#subcategory").html(subCats);
+}
+function updateSubSubCategory(subCategory){
+	var subSubCategory=subCategory.subCats;
+	var subCats='<option value="-1">== 2nd Sub Category ==</option>';
+	for(var index in subSubCategory){ 
+        subCats+='<option value="'+subSubCategory[index].category_id+'">'+subSubCategory[index].category_name+'</option>';
+    }
+	$("#subsubcategory").html(subCats);
+}
+
 function productQuery(excel){
 	var product = new Object();
 	product.MainCategory = $("#category").val();

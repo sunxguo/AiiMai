@@ -1574,6 +1574,13 @@ class Common extends CI_Controller {
 				
 				$result=$this->commongetdata->getProductsAdvance($parameters);
 			break;
+			case 'merchantList':
+				$parameters=array(
+					'result'=>'data',
+					'like'=>array('user_username'=>$data->likeUsername)
+				);
+				$result=$this->commongetdata->getMerchantsAdvance($parameters);
+			break;
 			case 'groupBuy':
 				$parameters=array(
 					'result'=>'data',

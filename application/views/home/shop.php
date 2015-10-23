@@ -38,10 +38,10 @@
 	</div>
 	<div class="">
 		<?php if($merchant->merchant_shop_mainAdvertisement_on==1):?>
-		<a <?php if($merchant->merchant_shop_mainAdvertisementHyperlink_on==1):?>href="<?php echo $merchant->merchant_shop_mainAdvertisementHyperlink;?>"<?php endif;?>><img src="<?php echo $merchant->merchant_shop_middleimg;?>" style="width: 980px;height:320px;"></a>
+		<a <?php if($merchant->merchant_shop_mainAdvertisementHyperlink_on==1):?>href="<?php echo stristr($merchant->merchant_shop_mainAdvertisementHyperlink,'http')?$merchant->merchant_shop_mainAdvertisementHyperlink:'http://'.$merchant->merchant_shop_mainAdvertisementHyperlink;?>"<?php endif;?>><img src="<?php echo $merchant->merchant_shop_middleimg;?>" style="width: 980px;height:320px;"></a>
 		<?php endif;?>
 		<?php if($merchant->merchant_shop_secondaryAdvertisement_on==1):?>
-		<a <?php if($merchant->merchant_shop_secondaryAdvertisementHyperlink_on==1):?>href="<?php echo $merchant->merchant_shop_secondaryAdvertisementHyperlink;?>"<?php endif;?>><img src="<?php echo $merchant->merchant_shop_bottomimg;?>" style="width: 980px;height:160px;"></a>
+		<a <?php if($merchant->merchant_shop_secondaryAdvertisementHyperlink_on==1):?>href="<?php echo stristr($merchant->merchant_shop_secondaryAdvertisementHyperlink,'http')?$merchant->merchant_shop_secondaryAdvertisementHyperlink:'http://'.$merchant->merchant_shop_secondaryAdvertisementHyperlink;?>"<?php endif;?>><img src="<?php echo $merchant->merchant_shop_bottomimg;?>" style="width: 980px;height:160px;"></a>
 		<?php endif;?>
 	</div>
 	<?php if($merchant->merchant_shop_focus_on):?>
@@ -78,9 +78,9 @@
 				<a href="/home/shop?shopId=<?php echo $_GET['shopId'];?>&category=all#shopCategory">All</a>
 			</li>
 		<?php foreach($category as $cat):?>
-			<li class="<?php echo isset($_GET['category']) && $_GET['category']==$cat->shopcategory_id?'active':'';?>">
-				<a href="/home/shop?shopId=<?php echo $_GET['shopId'];?>&category=<?php echo $cat->shopcategory_id;?>#shopCategory">
-					<?php echo $cat->shopcategory_name;?>
+			<li class="<?php echo isset($_GET['category']) && $_GET['category']==($categoryType==1?$cat->shopcategory_id:$cat->category_id)?'active':'';?>">
+				<a href="/home/shop?shopId=<?php echo $_GET['shopId'];?>&category=<?php echo ($categoryType==1?$cat->shopcategory_id:$cat->category_id);?>#shopCategory">
+					<?php echo ($categoryType==1?$cat->shopcategory_name:$cat->category_name);?>
 				</a>
 			</li>
 		<?php endforeach;?>
@@ -88,9 +88,9 @@
 		<?php endif;?>
 		<ul class="subCategory clearfix">
 			<?php foreach ($subCategory as $key => $value):?>
-			<li <?php echo isset($_GET['subCategory']) && $value->shopcategory_id==$_GET['subCategory']?'class="active"':'';?> style="padding:0 10px;">
-				<a href="/home/shop?shopId=<?php echo $_GET['shopId'];?>&category=<?php echo isset($_GET['category'])?$_GET['category']:'all';?>&subCategory=<?php echo $value->shopcategory_id;?>#shopCategory">
-					<?php echo $value->shopcategory_name;?>(<font color="#3B8CCA" style="font-weight:600;"><?php echo $value->count;?></font>)
+			<li <?php echo isset($_GET['subCategory']) && ($categoryType==1?$value->shopcategory_id:$value->category_id)==$_GET['subCategory']?'class="active"':'';?> style="padding:0 10px;">
+				<a href="/home/shop?shopId=<?php echo $_GET['shopId'];?>&category=<?php echo isset($_GET['category'])?$_GET['category']:'all';?>&subCategory=<?php echo ($categoryType==1?$value->shopcategory_id:$value->category_id);?>#shopCategory">
+					<?php echo ($categoryType==1?$value->shopcategory_name:$value->category_name);?>(<font color="#3B8CCA" style="font-weight:600;"><?php echo $value->count;?></font>)
 				</a>
 			</li>
 			<?php endforeach;?>

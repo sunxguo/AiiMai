@@ -608,35 +608,62 @@ class CommonGetData{
 		$focusItems=$this->getData($condition);
 		return $focusItems;
 	}
-	public function getShopCategory($merchantId){
-		$condition=array(
-			'table'=>'shopcategory',
-			'result'=>'data',
-			'where'=>array(
-				'shopcategory_merchant'=>$merchantId,
-				'shopcategory_fid'=>0
-			)
-		);
-		$category=$this->getData($condition);
+	public function getShopCategory($merchantId,$shopCategory=true){
+		if($shopCategory){
+			$condition=array(
+				'table'=>'shopcategory',
+				'result'=>'data',
+				'where'=>array(
+					'shopcategory_merchant'=>$merchantId,
+					'shopcategory_fid'=>0
+				)
+			);
+			$category=$this->getData($condition);
+		}else{
+			$category=$this->getCategories();
+		}
 		return $category;
 	}
-	public function getShopSubCategory($merchantId,$fcategory){
+	public function getShopSubCategory($merchantId,$fcategory,$shopCategory=true){
+		if($shopCategory){
+			$condition=array(
+				'table'=>'shopcategory',
+				'result'=>'data'
+			);
+			if($fcategory=="all"){
+				$condition['where']=array(
+					'shopcategory_merchant'=>$merchantId,
+					'shopcategory_fid !='=>0
+				);
+			}else{
+				$condition['where']=array(
+					'shopcategory_merchant'=>$merchantId,
+					'shopcategory_fid'=>$fcategory
+				);
+			}
+			$category=$this->getData($condition);
+		}else{
+			$category=$this->getSubCategory2($fcategory);
+		}
+		return $category;
+	}
+	public function getSubCategory2($fcategory){
 		$condition=array(
-			'table'=>'shopcategory',
+			'table'=>'category',
 			'result'=>'data'
 		);
+		$category=array();
 		if($fcategory=="all"){
-			$condition['where']=array(
-				'shopcategory_merchant'=>$merchantId,
-				'shopcategory_fid !='=>0
-			);
+			$condition['where']=array('category_fid'=>0);
+			$categories=$this->getData($condition);
+			foreach ($categories as $value) {
+				$newCat=$this->getSubCategory($value->category_id);
+				$category=array_merge($category,$newCat);
+			}
 		}else{
-			$condition['where']=array(
-				'shopcategory_merchant'=>$merchantId,
-				'shopcategory_fid'=>$fcategory
-			);
+			$condition['where']=array('category_fid'=>$fcategory);
+			$category=$this->getData($condition);
 		}
-		$category=$this->getData($condition);
 		return $category;
 	}
 	public function getSubCategory($fcategory){

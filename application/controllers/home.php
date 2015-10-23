@@ -274,18 +274,29 @@ class Home extends CI_Controller {
 			return false;
 		}
 		$categoryId=isset($_GET['category'])?$_GET['category']:'all';
-		$category=$this->commongetdata->getShopCategory($_GET['shopId']);
-		$subCategory=$this->commongetdata->getShopSubCategory($_GET['shopId'],$categoryId);
+		$categoryType=$merchant->merchant_shop_category_type;//0:AiiMai Category   1: Customized Category
+		$category=$this->commongetdata->getShopCategory($_GET['shopId'],$categoryType==0?false:true);
+		$subCategory=$this->commongetdata->getShopSubCategory($_GET['shopId'],$categoryId,$categoryType==0?false:true);
 		foreach ($subCategory as $key => $value) {
 			$miniParameters=array(
 				"result"=>'count',
 				"merchant"=>$_GET['shopId'],
 //				"shopCategory"=>$categoryId,
-				"shopSubCategory"=>$value->shopcategory_id,
+//				"shopSubCategory"=>$value->shopcategory_id,
 				"status"=>3
 			);
+			if($categoryType==1){
+				$miniParameters['shopSubCategory']=$value->shopcategory_id;
+			}
+			else{
+				$miniParameters['category']=$value->category_id;
+			}
 			if($categoryId!='all'){
-				$miniParameters["shopCategory"]=$categoryId;
+				if($categoryType==1){
+					$miniParameters["shopCategory"]=$categoryId;
+				}else{
+					$miniParameters["category"]=$value->category_id;
+				}
 			}
 			$value->count=$this->commongetdata->getProductsAdvance($miniParameters);
 		}
@@ -294,12 +305,25 @@ class Home extends CI_Controller {
 			"merchant"=>$_GET['shopId'],
 			"status"=>3
 		);
-		if(isset($_GET['category']) && $_GET['category']!='all') $parameters['shopCategory']=$_GET['category'];
-		if(isset($_GET['subCategory'])) $parameters['shopSubCategory']=$_GET['subCategory'];
-
+		if(isset($_GET['category']) && $_GET['category']!='all'){
+			if($categoryType==1){
+				$parameters['shopCategory']=$_GET['category'];
+			}
+			// else{
+			// 	$parameters['category']=$_GET['category'];
+			// }
+		}
+		if(isset($_GET['subCategory'])){
+			if($categoryType==1){
+				$parameters['shopSubCategory']=$_GET['subCategory'];
+			}else{
+				$parameters['category']=$_GET['subCategory'];
+			}
+		}
 		$items=$this->commongetdata->getProductsAdvance($parameters);
 		$data=array(
 			'merchant'=>$merchant,
+			'categoryType'=>$merchant->merchant_shop_category_type,
 			"merchantProductsAmount"=>$this->commongetdata->getProductsAdvance(array(
 				"result"=>'count',
 				"merchant"=>$_GET['shopId'],
@@ -313,6 +337,7 @@ class Home extends CI_Controller {
 //			"allCategories"=>$this->commongetdata->getCategories(false),
 			"subCategory"=>$subCategory
 		);
+		// print_r($subCategory);
 		$this->homeBaseHandler('Shop','shop',$data);
 	}
 	public function allItems(){
