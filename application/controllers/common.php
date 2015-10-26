@@ -728,7 +728,7 @@ class Common extends CI_Controller {
 			case 'merchantInfoStep3':
 				$branchCode=$this->getBanchCode($data->bank,$data->accountNumber);
 				if(!$branchCode){
-					echo json_encode(array("result"=>"failed","message"=>"TThe account number does not match the chosen Bank’s specifications."));
+					echo json_encode(array("result"=>"failed","message"=>"The account number does not match the chosen Bank’s specifications./nPlease review the following;/n•	Choose the correct Bank/n•	Check the account number entered is correct/nIf uncertain if your account belongs to DBS / POSBank, please contact contact DBS for assistance. POSBank accounts have 9 digits, and DBS accounts usually have 10 digits."));
 					return false;
 				}
 				$condition['table']="user";
@@ -783,7 +783,7 @@ class Common extends CI_Controller {
 				if(isset($data->bank)) {
 					$branchCode=$this->getBanchCode($data->bank,$data->accountNumber);
 					if(!$branchCode){
-						echo json_encode(array("result"=>"failed","message"=>"The account number is not in conformity with the specification!"));
+						echo json_encode(array("result"=>"failed","message"=>"The account number does not match the chosen Bank’s specifications./nPlease review the following;/n•	Choose the correct Bank/n•	Check the account number entered is correct/nIf uncertain if your account belongs to DBS / POSBank, please contact contact DBS for assistance. POSBank accounts have 9 digits, and DBS accounts usually have 10 digits."));
 						return false;
 					}
 					$condition['data']["merchant_bank"]=$data->bank;

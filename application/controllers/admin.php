@@ -500,6 +500,39 @@ class Admin extends CI_Controller {
 		$data=array_merge($data,$pageInfo);
 		$this->adminBaseHandler('payment',array('data','payment'),'payment',$data);
 	}
+	public function banklist(){
+		if(isset($_GET['page'])&& is_numeric($_GET['page'])) $page=$_GET['page'];
+		else $page=1;
+		$amountPerPage=20;
+		$condition['table']='bank';
+		$baseUrl=$selectUrl='/admin/bank?placeholder=yes';
+		if(isset($_GET['status'])&& is_numeric($_GET['status'])){
+			$condition['where']=array('bank_status'=>$_GET['status']);
+			$baseUrl.='?status='.$_GET['status'];
+		}else{
+			$baseUrl.='?status=0';
+		}
+		if(isset($_GET['search'])){
+			$condition['like']=array('bank_name'=>$_GET['search']);
+			$baseUrl.='&search='.$_GET['search'];
+		}
+		$condition['result']="count";
+		$amount=$this->commongetdata->getData($condition);
+		$condition['result']="data";
+		$condition['order_by']=array('bank_order'=>'ASC');
+		$pageInfo=$this->commongetdata->getPageLink($baseUrl,$selectUrl,$page,$amountPerPage,$amount);
+		$condition['limit']=$pageInfo['limit'];
+		$data=array(
+			//"columns"=>$this->commongetdata->getColumns(),
+			"banks"=>$this->commongetdata->getData($condition)
+		);
+		$data=array_merge($data,$pageInfo);
+		$this->adminBaseHandler('bank',array('data','bank'),'banklist',$data);
+	}
+	public function bankadd(){
+		$data=array();
+		$this->load->view('admin/bankAdd');
+	}
 	public function reportsTurnover(){
 //		date("Y-m-d",strtotime('-11 day'));
 		$startDate=isset($_POST['startDate'])?$_POST['startDate']:date("Y-m-d",strtotime('-11 day'));

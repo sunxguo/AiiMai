@@ -30,6 +30,7 @@
 	<li><a href="/admin/advertisements" <?php echo isset($advertisements) && $advertisements?'class="current"':'';?>><?php echo lang('admin_sider_Advertisements');?></a></li>
 	<li><a href="/admin/comments" <?php echo isset($comments) && $comments?'class="current"':'';?>><?php echo lang('admin_sider_Comments');?></a></li>
 	<li><a href="/admin/payment" <?php echo isset($payment) && $payment?'class="current"':'';?>><?php echo lang('admin_sider_Payment');?></a></li>
+	<li><a href="/admin/banklist" <?php echo isset($bank) && $bank?'class="current"':'';?>>Banks</a></li>
 </ul>
 <h3 <?php echo isset($reports) && $reports?'class="current"':'';?>>
 	<a href="/admin/reportsTurnover" id="menu_portal">
