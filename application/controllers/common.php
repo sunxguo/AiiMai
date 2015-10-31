@@ -9,15 +9,22 @@ class Common extends CI_Controller {
 		$this->load->library('PHPExcel');
 		$this->load->model("dbHandler");
 	}
-	public function getBanchCode($bankId,$accountNumber){
+	public function getBranch($bankId,$accountNumber){
 		$bank=$this->commongetdata->getContent('bank',$bankId);
 		if($bank->bank_accountNumberLength!=0 && strlen($accountNumber)!=$bank->bank_accountNumberLength){
 			return false;
 		}
-		$bankCode=$bank->bank_branchCodeHead;
-		$bankCode.=substr($accountNumber,0,$bank->bank_branchCodeBodyLength);
-		$bankCode.=$bank->bank_branchCodeFoot;
-		return $bankCode;
+		$branchCode=$bank->bank_branchCodeHead;
+		$branchCode.=substr($accountNumber,0,$bank->bank_branchCodeBodyLength);
+		$branchCode.=$bank->bank_branchCodeFoot;
+		if($bank->bank_accountNumberRetainBranch==0){
+			$accountNumber=substr($accountNumber,$bank->bank_branchCodeBodyLength+1);
+		}
+		$data=array(
+			'branchCode'=>$branchCode,
+			'accountNumber'=>$accountNumber
+		);
+		return $data;
 	}
 	public function addInfo(){
 		$table="";
@@ -60,6 +67,21 @@ class Common extends CI_Controller {
 					"essay_author_type"=>$this->commongetdata->getUserType($_SESSION['usertype']),
 					"essay_author_id"=>$_SESSION['userid'],
 					"essay_lastmodify_time"=>date("Y-m-d H:i:s")
+				);
+			break;
+			case "bank":
+				$table="bank";
+				$info=array(
+					"bank_name"=>$data->bankname,
+					"bank_code"=>$data->bankcode,
+					"bank_accountNumberLength"=>$data->accountNumberLength,
+					"bank_branchCodeHead"=>$data->branchCodeHead,
+					"bank_branchCodeBodyLength"=>$data->branchCodeBodyLength,
+					"bank_accountNumberRetainBranch"=>$data->accountNumberRetainBranch,
+					"bank_branchCodeFoot"=>'',
+					"bank_order"=>$data->ordernumber,
+					"bank_status"=>1,
+					"bank_time"=>date("Y-m-d H:i:s")
 				);
 			break;
 			case "message":
@@ -417,6 +439,10 @@ class Common extends CI_Controller {
 				$condition['table']="column";
 				$condition['where']=array("column_id"=>$data->id);
 			break;
+			case 'bank':
+				$condition['table']="bank";
+				$condition['where']=array("bank_id"=>$data->id);
+			break;
 			case 'item':
 				$condition['table']="product";
 				$condition['where']=array("product_id"=>$data->id);
@@ -623,7 +649,22 @@ class Common extends CI_Controller {
 					"column_type"=>$data->type,
 					"column_ordernum"=>$data->order_num
 				);
-			break;			
+			break;
+			case "bank":
+				$condition['table']="bank";
+				$condition['where']=array("bank_id"=>$data->id);
+				$condition['data']=array(
+					"bank_name"=>$data->bankname,
+					"bank_code"=>$data->bankcode,
+					"bank_accountNumberLength"=>$data->accountNumberLength,
+					"bank_branchCodeHead"=>$data->branchCodeHead,
+					"bank_branchCodeBodyLength"=>$data->branchCodeBodyLength,
+					"bank_accountNumberRetainBranch"=>$data->accountNumberRetainBranch,
+					"bank_order"=>$data->ordernumber,
+					//"bank_status"=>1,
+					"bank_time"=>date("Y-m-d H:i:s")
+				);
+			break;		
 			case "notice":
 				$condition['table']="notice";
 				$condition['where']=array("notice_id"=>$data->id);
@@ -726,17 +767,17 @@ class Common extends CI_Controller {
 				);
 			break;
 			case 'merchantInfoStep3':
-				$branchCode=$this->getBanchCode($data->bank,$data->accountNumber);
-				if(!$branchCode){
-					echo json_encode(array("result"=>"failed","message"=>"The account number does not match the chosen Bank’s specifications./nPlease review the following;/n•	Choose the correct Bank/n•	Check the account number entered is correct/nIf uncertain if your account belongs to DBS / POSBank, please contact contact DBS for assistance. POSBank accounts have 9 digits, and DBS accounts usually have 10 digits."));
+				$branch=$this->getBranch($data->bank,$data->accountNumber);
+				if(!$branch){
+					echo json_encode(array("result"=>"failed","message"=>"The account number does not match the chosen Bank’s specifications.\nPlease review the following;\n•	Choose the correct Bank\n•	Check the account number entered is correct\nIf uncertain if your account belongs to DBS / POSBank, please contact contact DBS for assistance. POSBank accounts have 9 digits, and DBS accounts usually have 10 digits."));
 					return false;
 				}
 				$condition['table']="user";
 				$condition['where']=array("user_username"=>$_SESSION['merchant_username']);
 				$condition['data']=array(
 					"merchant_bank"=>$data->bank,
-					"merchant_bank_branch"=>$branchCode,
-					"merchant_bank_account_number"=>$data->accountNumber,
+					"merchant_bank_branch"=>$branch['branchCode'],
+					"merchant_bank_account_number"=>$branch['accountNumber'],
 					"merchant_gst_name"=>$data->GSTName,
 					"merchant_gst_number"=>$data->GSTRegistrationNo,
 					"merchant_gst_address"=>$data->GSTAddress,
@@ -781,14 +822,14 @@ class Common extends CI_Controller {
 					"merchant_gst_address"=>$data->GSTAddress,
 				);
 				if(isset($data->bank)) {
-					$branchCode=$this->getBanchCode($data->bank,$data->accountNumber);
-					if(!$branchCode){
-						echo json_encode(array("result"=>"failed","message"=>"The account number does not match the chosen Bank’s specifications./nPlease review the following;/n•	Choose the correct Bank/n•	Check the account number entered is correct/nIf uncertain if your account belongs to DBS / POSBank, please contact contact DBS for assistance. POSBank accounts have 9 digits, and DBS accounts usually have 10 digits."));
+					$branch=$this->getBranch($data->bank,$data->accountNumber);
+					if(!$branch){
+						echo json_encode(array("result"=>"failed","message"=>"The account number does not match the chosen Bank’s specifications.\nPlease review the following;\n•	Choose the correct Bank\n•	Check the account number entered is correct\nIf uncertain if your account belongs to DBS / POSBank, please contact contact DBS for assistance. POSBank accounts have 9 digits, and DBS accounts usually have 10 digits."));
 						return false;
 					}
 					$condition['data']["merchant_bank"]=$data->bank;
-					$condition['data']["merchant_bank_branch"]=$branchCode;
-					$condition['data']["merchant_bank_account_number"]=$data->accountNumber;
+					$condition['data']["merchant_bank_branch"]=$branch['branchCode'];
+					$condition['data']["merchant_bank_account_number"]=$branch['accountNumber'];
 				}
 			break;
 			case 'merchantpwd':

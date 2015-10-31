@@ -157,6 +157,48 @@ function essayHandler(draft,successMsg,newEssay){
 	}
 	dataHandler(handlerType,'essay',essay,null,null,null,successMsg,true);
 }
+function bankHandler(isNew,successMsg){
+	if($("#bankname").val()==''){
+		alert("Please enter the Bank Name.");
+		return false;
+	}
+	if($("#bankCode").val()==""){
+		alert("Please enter the Bank Code.");
+		return false;
+	}
+	if($("#accountNumberLength").val()==""){
+		alert("Please enter the Length of Account Number.");
+		return false;
+	}
+	if($("#branchCodeBodyLength").val()==""){
+		alert("Please enter the Length of Branch Code in Account Number.");
+		return false;
+	}
+	if($("#ordernumber").val()==""){
+		alert("Please enter the Order Number.");
+		return false;
+	}
+/*	if($("#imgListDivs .imagelist").length<1){
+		alert("请上传至少一张缩略图！");
+		return false;
+	}*/
+	var bank = new Object();
+	bank.bankname = $("#bankname").val();
+	bank.bankcode = $("#bankcode").val();
+	bank.accountNumberLength = $("#accountNumberLength").val();
+	bank.branchCodeHead = $("#branchCodeHead").val();
+	bank.branchCodeBodyLength = $("#branchCodeBodyLength").val();
+	bank.accountNumberRetainBranch = $("#accountNumberRetainBranch").val();
+	bank.ordernumber = $("#ordernumber").val();
+	var handlerType='';
+	if(isNew){
+		handlerType='add';
+	}else{
+		bank.id = $("#bankId").val();
+		handlerType='modify';
+	}
+	dataHandler(handlerType,'bank',bank,null,null,null,successMsg,true);
+}
 function websiteInfoSave(key,successMsg){
 	showWait();
 	var websiteInfo = new Object();
@@ -609,6 +651,11 @@ function deleteCategory(tag,id){
 	var category = new Object();
 	category.id = id;
 	dataHandler("del","category",category,successDelete,'Sure to delete this category? ['+$(tag).attr('categoryName')+']',null,null,true);
+}
+function delBank(id,sureMsg,successMsg){
+	var bank = new Object();
+	bank.id = id;
+	dataHandler("del","bank",bank,successDelete,sureMsg,null,null,true);
 }
 function addCategory(){
 	var category = new Object();

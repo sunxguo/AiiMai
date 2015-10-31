@@ -256,6 +256,12 @@ class Home extends CI_Controller {
 			"relatedProducts"=>$this->commongetdata->getRelatedProducts($_GET['itemId'],20),
 			"recentlyViewedProducts"=>$recentlyViewedProductsArray
 		);
+		$category=$this->commongetdata->getContent('category',$item->product_category);
+		if(isset($category->category_fid)){
+			$data['fCategoryId']=$category->category_fid;
+		}else{
+			$data['fCategoryId']=0;
+		}
 		$this->homeBaseHandler($item->product_item_title_english,'item',$data);
 	}
 	public function shop(){
@@ -483,6 +489,24 @@ class Home extends CI_Controller {
 			'wishlists'=>$wishlists
 		);
 		$this->homeBaseHandler('Wish List','wishList',$data);
+	}
+	public function enquiries(){
+		if(!$this->checkUserLogin()) return false;
+		$parameters=array(
+			'table'=>'enquiry',
+			'result'=>'data',
+			'where'=>array("enquiry_user"=>$_SESSION['userid'])
+		);
+		$enquiries=$this->commongetdata->getData($parameters);
+		foreach ($enquiries as $value) {
+			$value->product=$this->commongetdata->getContent('product',$value->enquiry_product);
+			$value->merchant=$this->commongetdata->getContent('user',$value->product->product_merchant);
+		}
+		$data=array(
+			'user'=>$this->commongetdata->getContent('user',$_SESSION['userid']),
+			'enquiries'=>$enquiries
+		);
+		$this->homeBaseHandler('My enquiries','enquiries',$data);
 	}
 	public function auction(){
 		if(!$this->checkUserLogin()) return false;

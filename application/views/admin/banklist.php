@@ -11,6 +11,7 @@
 		<div style="float:left;">
 			<a href="/admin/bankadd" target="_blank" class="btn80">Add</a>
 		</div>
+		<!--
 		<div style="float: right;margin-left:10px;">
 			<input type="text" id="keyword" class="inp-txt width200" value="<?php echo isset($_GET["search"])?$_GET["search"]:"";?>">
 			<a href="javascript:selectPayment('<?php echo $selectPage;?>')" class="btn80">Search</a>
@@ -27,6 +28,7 @@
 				</option>
             </select>
 		</div>
+		-->
 		<div class="clear">
 		</div>
 	</div>
@@ -38,12 +40,13 @@
 				<th style="width:150px;">Length of Account Number</th>
 				<th style="width:150px;">Head of Branch Code</th>
 				<th style="width:150px;">Length of Branch Code in Account Number</th>
+				<th style="width:150px;">Account Number retain Branch Code</th>
 				<th style="width:150px;">Status</th>
 				<th style="width:150px;">Order Number</th>
 				<th style="width:280px;">Operation</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody> 
 			<?php foreach($banks as $bank):?>
 			<tr class="list1">
 				<td><?php echo $bank->bank_name;?></td>
@@ -51,10 +54,11 @@
 				<td><?php echo $bank->bank_accountNumberLength==0?'Varied':$bank->bank_accountNumberLength;?></td>
 				<td><?php echo $bank->bank_branchCodeHead;?></td>
 				<td><?php echo $bank->bank_branchCodeBodyLength;?></td>
+				<td><?php echo $bank->bank_accountNumberRetainBranch==1?'Yes':'No';?></td>
 				<td><?php echo $bank->bank_status==1?'Normal':'Unused';?></td>
 				<td><?php echo $bank->bank_order;?></td>
 				<td>
-					<a href="/admin/editBank?id=<?php echo $bank->bank_id;?>">Edit</a>&nbsp;&nbsp;&nbsp;
+					<a href="/admin/bankedit?bankId=<?php echo $bank->bank_id;?>" target="_blank">Edit</a>&nbsp;&nbsp;&nbsp;
 					<a href="javascript:delBank('<?php echo $bank->bank_id;?>','Sure to delete it?<<?php echo $bank->bank_name;?>>？','Success deleted <?php echo $bank->bank_name;?>')">Delete</a>
 				</td>
 			</tr>

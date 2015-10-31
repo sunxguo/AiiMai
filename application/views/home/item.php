@@ -64,25 +64,26 @@
 		<dt class="home">home</dt>
 		
 		<?php if(isset($categoriesIndex[$item->product_category])):?>
-		<dd id="depMenu1" onmouseout="hide('#MainCategory');">
-			<a href="" class="menuName" onmouseover="show('#MainCategory');">
+		<dd id="depMenu1" onmouseover="show('#MainCategory');" onmouseout="hide('#MainCategory');">
+			<a href="" class="menuName">
 				<span><?php echo $categoriesIndex[$item->product_category]->category_name;?></span>
 			</a>
-			<!--
-			<ul class="fs_11 disNone" id="MainCategory">
-				<?php foreach($categoriesIndex as $cat):?>
+			<ul class="fs_11" id="MainCategory" style="display:none;" onmouseout="hide('#MainCategory');">
+				<?php if(isset($categoriesIndex[$fCategoryId])):foreach($categoriesIndex[$fCategoryId]->subCats as $cat):?>
 				<li><a href=""><?php echo $cat->category_name;?></a></li>
-				<?php endforeach;?>
-			</ul>-->
+				<?php endforeach;endif;?>
+			</ul>
 		</dd>
 		<?php endif;?>
 		<?php if(isset($categoriesIndex[$item->product_sub_category])):?>
-		<dd id="depMenu2">
+		<dd id="depMenu2" onmouseover="show('#subCategory');" onmouseout="hide('#subCategory');">
 			<a href="" class="menuName">
 				<span><?php echo $categoriesIndex[$item->product_sub_category]->category_name;?></span>
 			</a>
-			<ul class="fs_11 disNone">
-				<li><a href="">Dresses</a></li>
+			<ul class="fs_11" id="subCategory" style="display:none;" onmouseout="hide('#subCategory');">
+				<?php foreach($categoriesIndex[$item->product_category]->subSubCats as $cat):?>
+				<li><a href=""><?php echo $cat->category_name;?></a></li>
+				<?php endforeach;?>
 			</ul>
 		</dd>
 		<?php endif;?>
@@ -91,10 +92,9 @@
 			<a href="" class="menuName current">
 				<span><?php echo $categoriesIndex[$item->product_sub_sub_category]->category_name;?></span>
 			</a>
-			<ul class="fs_11 disNone">
+			<ul class="fs_11" style="display:none;">
 				<li><a href="">Mini Dress</a></li>
 			</ul>
-			
 		</dd>
 		<?php endif;?>
 	</dl>
@@ -484,7 +484,7 @@
 					</table>
 				</div>
 			</div>
-			<button onclick="setDivCenter('#enquiryDiv',true);" type="button" class="km-btn km-btn-success btn_cart" style="height: 25px;padding: 0px 10px;font-size: 12px;">Enquire</button>
+			<button onclick="setDivCenter('#enquiryDiv',true);" type="button" class="enquire-bt">Enquire</button>
 		</div>
 <!--		<ul class="km-nav km-nav-tabs clearfix" id="ShoppingTalk">
 		  <li><a href="#ItemInfo">Item Info</a></li>

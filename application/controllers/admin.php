@@ -240,7 +240,7 @@ class Admin extends CI_Controller {
 		$bankList=$this->commongetdata->getData(array(
 				'table'=>'bank',
 				'result'=>'data',
-				'where'=>array('bank_valid'=>1),
+				'where'=>array('bank_status'=>1),
 				'order_by'=>array('bank_order'=>'ASC'))
 		);
 		$data=array(
@@ -532,6 +532,13 @@ class Admin extends CI_Controller {
 	public function bankadd(){
 		$data=array();
 		$this->load->view('admin/bankAdd');
+	}
+	public function bankedit(){
+		$bank=$this->commongetdata->getContent('bank',$_GET['bankId']);
+		$data=array(
+			"bank"=>$bank,
+		);
+		$this->load->view('admin/bankEdit',$data);
 	}
 	public function reportsTurnover(){
 //		date("Y-m-d",strtotime('-11 day'));

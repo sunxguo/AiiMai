@@ -845,6 +845,7 @@ class CommonGetData{
 		if($stock>=$futureAmount){
 			$cart[$product_id]["amount"] = $futureAmount;
 			$_SESSION['cart'] =($cart);
+			$result=$this->CI->dbHandler->deleteData(array('table'=>'wishlist','where'=>array('wishlist_userid'=>$_SESSION['userid'],'wishlist_productid'=>$product_id)));//Remove from wishlist
 			return true;
 		}else return false;
 	}
