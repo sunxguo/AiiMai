@@ -1,5 +1,5 @@
 <div class="padding10 contentlist column-list">
-	<div id="appDiv" class="titA tit-bot pb5" style="">
+	<div id="appDiv" class="titA tit-bot pb5" style="height: 90px;">
 		<div style="float: right;margin-left:10px;">
 			<input type="text" id="keyword" class="inp-txt width200" value="<?php echo isset($_GET["search"])?$_GET["search"]:"";?>">
 			<a href="javascript:selectMerchant('<?php echo $selectPage;?>')" class="btn80">Search</a>
@@ -35,26 +35,96 @@
 				</option>
             </select>
 		</div>
+		<div style="float: right;margin-right:10px;">
+			<span class="font12">Grade:</span>
+			<select id="grade" onchange="selectMerchant('<?php echo $selectPage;?>')" class="select w100">
+                <option value="-1">All</option>
+                <option value="0" <?php echo isset($_GET["grade"]) && $_GET["grade"]==0?'selected = "selected"':'';?>>
+					Platinum
+				</option>
+                <option value="1" <?php echo isset($_GET["grade"]) && $_GET["grade"]==1?'selected = "selected"':'';?>>
+					Gold
+				</option>
+                <option value="2" <?php echo isset($_GET["grade"]) && $_GET["grade"]==2?'selected = "selected"':'';?>>
+					Silver
+				</option>
+            </select>
+		</div>
+		<div style="float: right;margin-right:10px;">
+			<span class="font12">Country:</span>
+			<select id="country" onchange="selectMerchant('<?php echo $selectPage;?>')" class="select w100">
+                <option value="-1">All</option>
+				<option value="SG" <?php echo isset($_GET["country"]) && $_GET["country"]=='SG'?'selected = "selected"':'';?>>Singapore</option>
+				<option value="AU" <?php echo isset($_GET["country"]) && $_GET["country"]=='AU'?'selected = "selected"':'';?>>Australia</option>
+				<option value="BR" <?php echo isset($_GET["country"]) && $_GET["country"]=='BR'?'selected = "selected"':'';?>>Brazil</option>
+				<option value="BN" <?php echo isset($_GET["country"]) && $_GET["country"]=='BN'?'selected = "selected"':'';?>>Brunei Darussalam</option>
+				<option value="CA" <?php echo isset($_GET["country"]) && $_GET["country"]=='CA'?'selected = "selected"':'';?>>Canada</option>
+				<option value="CN" <?php echo isset($_GET["country"]) && $_GET["country"]=='CN'?'selected = "selected"':'';?>>China</option>
+				<option value="DK" <?php echo isset($_GET["country"]) && $_GET["country"]=='DK'?'selected = "selected"':'';?>>Denmark</option>
+				<option value="EG" <?php echo isset($_GET["country"]) && $_GET["country"]=='EG'?'selected = "selected"':'';?>>Egypt</option>
+				<option value="FI" <?php echo isset($_GET["country"]) && $_GET["country"]=='FI'?'selected = "selected"':'';?>>Finland</option>
+				<option value="FR" <?php echo isset($_GET["country"]) && $_GET["country"]=='FR'?'selected = "selected"':'';?>>France</option>
+				<option value="DE" <?php echo isset($_GET["country"]) && $_GET["country"]=='DE'?'selected = "selected"':'';?>>Germany</option>
+				<option value="GR" <?php echo isset($_GET["country"]) && $_GET["country"]=='GR'?'selected = "selected"':'';?>>Greece</option>
+				<option value="HK" <?php echo isset($_GET["country"]) && $_GET["country"]=='HK'?'selected = "selected"':'';?>>Hong Kong</option>
+				<option value="HU" <?php echo isset($_GET["country"]) && $_GET["country"]=='HU'?'selected = "selected"':'';?>>Hungary</option>
+				<option value="IN" <?php echo isset($_GET["country"]) && $_GET["country"]=='IN'?'selected = "selected"':'';?>>India</option>
+				<option value="ID" <?php echo isset($_GET["country"]) && $_GET["country"]=='ID'?'selected = "selected"':'';?>>Indonesia</option>
+				<option value="IL" <?php echo isset($_GET["country"]) && $_GET["country"]=='IL'?'selected = "selected"':'';?>>Israel</option>
+				<option value="IT" <?php echo isset($_GET["country"]) && $_GET["country"]=='IT'?'selected = "selected"':'';?>>Italy</option>
+				<option value="JP" <?php echo isset($_GET["country"]) && $_GET["country"]=='JP'?'selected = "selected"':'';?>>Japan</option>
+				<option value="KW" <?php echo isset($_GET["country"]) && $_GET["country"]=='KW'?'selected = "selected"':'';?>>Kuwait</option>
+				<option value="MO" <?php echo isset($_GET["country"]) && $_GET["country"]=='MO'?'selected = "selected"':'';?>>Macau</option>
+				<option value="MY" <?php echo isset($_GET["country"]) && $_GET["country"]=='MY'?'selected = "selected"':'';?>>Malaysia</option>
+				<option value="MX" <?php echo isset($_GET["country"]) && $_GET["country"]=='MX'?'selected = "selected"':'';?>>Mexico</option>
+				<option value="MM" <?php echo isset($_GET["country"]) && $_GET["country"]=='MM'?'selected = "selected"':'';?>>Myanma</option>
+				<option value="NL" <?php echo isset($_GET["country"]) && $_GET["country"]=='NL'?'selected = "selected"':'';?>>Netherlands</option>
+				<option value="NZ" <?php echo isset($_GET["country"]) && $_GET["country"]=='NZ'?'selected = "selected"':'';?>>New Zealand</option>
+				<option value="NO" <?php echo isset($_GET["country"]) && $_GET["country"]=='NO'?'selected = "selected"':'';?>>Norway</option>
+				<option value="PH" <?php echo isset($_GET["country"]) && $_GET["country"]=='PH'?'selected = "selected"':'';?>>Philippines</option>
+				<option value="PL" <?php echo isset($_GET["country"]) && $_GET["country"]=='PL'?'selected = "selected"':'';?>>Poland</option>
+				<option value="PT" <?php echo isset($_GET["country"]) && $_GET["country"]=='PT'?'selected = "selected"':'';?>>Portugal</option>
+				<option value="RU" <?php echo isset($_GET["country"]) && $_GET["country"]=='RU'?'selected = "selected"':'';?>>Russia</option>
+				<option value="SG" <?php echo isset($_GET["country"]) && $_GET["country"]=='SG'?'selected = "selected"':'';?>>Singapore</option>
+				<option value="KR" <?php echo isset($_GET["country"]) && $_GET["country"]=='KR'?'selected = "selected"':'';?>>South Korea</option>
+				<option value="ES" <?php echo isset($_GET["country"]) && $_GET["country"]=='ES'?'selected = "selected"':'';?>>Spain</option>
+				<option value="SE" <?php echo isset($_GET["country"]) && $_GET["country"]=='SE'?'selected = "selected"':'';?>>Sweden</option>
+				<option value="CH" <?php echo isset($_GET["country"]) && $_GET["country"]=='CH'?'selected = "selected"':'';?>>Switzerland</option>
+				<option value="TW" <?php echo isset($_GET["country"]) && $_GET["country"]=='TW'?'selected = "selected"':'';?>>Taiwan</option>
+				<option value="TH" <?php echo isset($_GET["country"]) && $_GET["country"]=='TH'?'selected = "selected"':'';?>>Thailand</option>
+				<option value="TR" <?php echo isset($_GET["country"]) && $_GET["country"]=='TR'?'selected = "selected"':'';?>>Turkey</option>
+				<option value="GB" <?php echo isset($_GET["country"]) && $_GET["country"]=='GB'?'selected = "selected"':'';?>>United Kingdom</option>
+				<option value="US" <?php echo isset($_GET["country"]) && $_GET["country"]=='US'?'selected = "selected"':'';?>>United States</option>
+				<option value="VN" <?php echo isset($_GET["country"]) && $_GET["country"]=='VN'?'selected = "selected"':'';?>>Vietnam</option>
+            </select>
+		</div>
 		<div class="clear">
 		</div>
 	</div>
 	<input id="orderShopTitle" type="hidden" value="<?php echo isset($_GET['orderShopTitle'])?$_GET['orderShopTitle']:'';?>">
 	<input id="orderUser" type="hidden" value="<?php echo isset($_GET['orderUser'])?$_GET['orderUser']:'';?>">
 	<input id="orderEmail" type="hidden" value="<?php echo isset($_GET['orderEmail'])?$_GET['orderEmail']:'';?>">
+	<input id="orderGrade" type="hidden" value="<?php echo isset($_GET['orderGrade'])?$_GET['orderGrade']:'';?>">
 	<table>
 		<thead>
 			<tr class="table-head">
 				<th style="width:30px;"><input type="checkbox" id="checkAll"></th>
 				<th style="width:100px;">Logo</th>
 				<th style="width:200px;" class="field-order" onclick="orderMerchant('<?php echo $selectPage;?>','shop')">Seller Shop Title <?php if(isset($_GET['orderShopTitle'])){if($_GET['orderShopTitle']=='desc') echo '↑';else echo '↓';}?></th>
-				<th style="width:100px;">Avatar</th>
+				<!-- <th style="width:100px;">Avatar</th> -->
 				<th style="width:150px;" class="field-order" onclick="orderMerchant('<?php echo $selectPage;?>','username')">Username <?php if(isset($_GET['orderUser'])){if($_GET['orderUser']=='desc') echo '↑';else echo '↓';}?></th>
 				<th style="width:160px;" class="field-order" onclick="orderMerchant('<?php echo $selectPage;?>','email')">Email <?php if(isset($_GET['orderEmail'])){if($_GET['orderEmail']=='desc') echo '↑';else echo '↓';}?></th>
+				<th style="width:100px;">Country</th>
 				<th style="width:100px;">Gender</th>
-				<th style="width:80px;">Vip</th>
+				<th style="width:80px;" class="field-order" onclick="orderMerchant('<?php echo $selectPage;?>','grade')">Grade <?php if(isset($_GET['orderGrade'])){if($_GET['orderGrade']=='desc') echo '↑';else echo '↓';}?></th>
 				<th style="width:100px;">Status</th>
 				<th style="width:200px;">Registration Time</th>
-				<th style="width:280px;">Operation</th>
+				<th style="width:200px;">Total Sales (Last 14 days)</th>
+				<th style="width:200px;">Total Sales (Last 30 days)</th>
+				<th style="width:200px;">Total Items</th>
+				<th style="width:200px;">Total Available Items</th>
+				<th style="width:280px;">Contact</th>
+				<th style="width:150px;">Operation</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -63,11 +133,12 @@
 				<td><input type="checkbox" name="checkedUserId" value="<?php echo $merchant->user_id;?>"></td>
 				<td><img src="<?php echo $merchant->merchant_shop_icon;?>" width="54" height="43"></td>
 				<td class="column-name"><a href="/home/shop?shopId=<?php echo $merchant->user_id;?>" target="_blank"><?php echo $merchant->merchant_shop_name;?></a></td>
-				<td><img src="<?php echo $merchant->user_avatar;?>" width="54" height="43"></td>
+				<!-- <td><img src="<?php echo $merchant->user_avatar;?>" width="54" height="43"></td> -->
 				<td><?php echo $merchant->user_username;?></td>
 				<td><?php echo $merchant->user_email;?></td>
+				<td><?php echo $merchant->country;?></td>
 				<td><?php echo $merchant->user_gender==0?'Male':'Female';//0:male 1:female 2:unknown?></td>
-				<td><?php echo $merchant->user_vip_grade;?></td>
+				<td><?php echo $merchant->user_grade;?></td>
 				<td>
 					<?php //echo $merchant->merchant_status;状态：0：注册完成但没有完善信息 1：完善信息等待审核 2：审核通过 3：审核不通过 4:冻结?>
 					<span class="km-label 
@@ -80,6 +151,18 @@
 					</span>
 				</td>
 				<td><?php echo $merchant->user_reg_time;?></td>
+				<td><?php echo $merchant->total14;?></td>
+				<td><?php echo $merchant->total30;?></td>
+				<td><?php echo $merchant->allitemsnumber;?></td>
+				<td><?php echo $merchant->availableitemsnumber;?></td>
+				<td>
+					<div class="gsm_phone">
+						Mobile:<?php echo $merchant->merchant_phone1.'-'.$merchant->merchant_phone2.'-'.$merchant->merchant_phone3;?>
+					</div>
+					<div class="gsm_home">
+						Phone:<?php echo $merchant->merchant_homephone1.'-'.$merchant->merchant_homephone2.'-'.$merchant->merchant_homephone3;?>
+					</div>
+				</td>
 				<td>
 					<a href="/home/shop?shopId=<?php echo $merchant->user_id;?>" target="_blank">Go</a> |
 					<a href="javascript:window.open('/admin/modifyMerchant?merchantId=<?php echo $merchant->user_id;?>','Edit Merchant','height=700,width=900,toolbar=no,menubar=no');">Edit</a> |

@@ -33,9 +33,9 @@
                 <option value="2" <?php echo isset($_GET["country"]) && $_GET["country"]==2?'selected = "selected"':'';?>>
 					Overseas
 				</option>
-                <option value="3" <?php echo isset($_GET["country"]) && $_GET["country"]==3?'selected = "selected"':'';?>>
+                <!-- <option value="3" <?php echo isset($_GET["country"]) && $_GET["country"]==3?'selected = "selected"':'';?>>
 					Others
-				</option>
+				</option> -->
             </select>
 		</div>
 		<div style="float: right;margin-right:10px;">
@@ -170,7 +170,7 @@
 				<td><?php echo $item->product_sell_format;?></td>
 				<td><?php echo $item->product_available_period==10000?'Infinite':$item->product_available_period.' days';?></td>
 				<td><?php echo $item->product_item_condition==1?'New Item':'Used Item';?></td>
-				<td><?php echo ($item->product_production_place_code==1?'Domestic':'Overseas').'-'.($item->product_production_place_detail);?></td>
+				<td><?php echo ($item->product_production_place_code==1?'Local-Singapore':'Overseas').'-'.($item->product_production_place_detail);?></td>
 				<td><?php echo $item->product_adult==0?'No':'Yes';?></td>
 				<td><?php echo $item->product_time;?></td>
 				<td>

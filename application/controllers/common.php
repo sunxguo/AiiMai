@@ -571,6 +571,32 @@ class Common extends CI_Controller {
 		}
 		echo json_encode(array("result"=>"success","message"=>"信息删除成功"));
 	}
+			
+	public function modifyBulkDisplayCategoriesInfo(){
+		$condition=array();
+		$data=json_decode($_POST['data']);
+		switch($_POST['info_type']){
+			case 'itemsFocus':
+				$table="product";
+				$where="product_merchant";
+				$this->dbHandler->updateData(array("table"=>$table,"where"=>array("product_merchant"=>$_SESSION['merchant_userid']),"data"=>array("product_focus"=>0)));
+				foreach($data->idArray as $id){
+					$result=$this->dbHandler->updateData(array("table"=>$table,"where"=>array("product_id"=>$id),"data"=>array("product_focus"=>1)));
+				}
+			break;
+			case 'displayCategories':
+				$table="category";
+				$where="category_id";
+				foreach ($data->displayCategoriesArray as $id) {
+					$result=$this->dbHandler->updateData(array("table"=>$table,"where"=>array($where=>$id),"data"=>array("category_featured"=>1)));
+				}
+				foreach ($data->notDisplaycategoriesArray as $id) {
+					$result=$this->dbHandler->updateData(array("table"=>$table,"where"=>array($where=>$id),"data"=>array("category_featured"=>0)));
+				}
+			break;
+		}
+		echo json_encode(array("result"=>"success","message"=>"Success"));
+	}
 	public function modifyBulkInfo(){
 		$condition=array();
 		$data=json_decode($_POST['data']);
@@ -2009,20 +2035,18 @@ class Common extends CI_Controller {
 				$field=array(
 					'Logo',
 					'Seller Shop Title',
-					'Avatar',
 					'Username',
 					'Email',
-					'Contact Mobile Phone',
+					'Country',
 					'Gender',
-					'Vip',
-					'Facebook',
-					'Facebook',
-					'Facebook',
-					'Facebook',
-					'Facebook',
+					'Grade',
 					'Status',
 					'Registeration Time',
-					'Last Login Time'
+					'Total Sales(Last 14 days)',
+					'Total Sales(Last 30 days)',
+					'Total Items',
+					'Total Available Items',
+					'Contact'
 				);
 				$parameters=array(
 					'result'=>'data',
@@ -2039,11 +2063,12 @@ class Common extends CI_Controller {
 					$dataArray[]=array(
 						$websiteUrl.'/'.($value->merchant_shop_icon),
 						$value->merchant_shop_name,
-						$websiteUrl.'/'.($value->user_avatar),
 						$value->user_username,
 						$value->user_email,
+						$value->user_country,
 						$value->user_gender,
-						$value->user_vip_grade,
+						$value->user_grade,
+						$value->merchant_status,
 						$value->user_reg_time,
 						$value->user_lastlogin_time,
 					);

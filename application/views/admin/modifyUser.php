@@ -206,7 +206,7 @@
 							<input type="text" id="phone3" class="inp-txt" style="width: 120px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_phone3;?>" title="Number" placeholder="Number">
 						</div>
 						<div class="gsm_home" style="width: 290px;margin: 5px auto;">
-							<input type="text" id="homephone1" class="inp-txt" style="width: 60px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_phone1;?>" title="Country Code" placeholder="Country Code"> - 
+							<input type="text" id="homephone1" class="inp-txt" style="width: 60px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_homephone1;?>" title="Country Code" placeholder="Country Code"> - 
 							<input type="text" id="homephone2" class="inp-txt" style="width: 60px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_homephone2;?>" title="Area Code" placeholder="Area Code"> - 
 							<input type="text" id="homephone3" class="inp-txt" style="width: 120px; font-size: 11px; color: rgb(153, 153, 153);height: 15px;padding: 2px;" value="<?php echo $user->merchant_homephone3;?>" title="Number" placeholder="Number">
 						</div>

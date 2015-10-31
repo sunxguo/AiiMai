@@ -12,15 +12,16 @@
 	</ul>
 	<div class="clearfix" style="padding:50px 0 0 20px;">
 		<div class="fl" style="width:150px;">
+			<button onclick="showCategories();" class="km-btn km-btn-success" style="width: 80px;height: 30px;line-height: 30px;padding: 0;margin-bottom: 10px;">Save</button>
 			<div class="km-btn-group-vertical">
 				<?php foreach($currentCat->subCats as $subCats):?>
 				<button type="button" class="km-btn km-btn-default" style="color: #000;font-size: 12px;font-weight: 600;">
-					<input onclick="showCat('<?php echo $subCats->category_id;?>','<?php echo $subCats->category_featured==1?0:1;?>')" type="checkbox" style="float:left;" <?php if($subCats->category_featured==1):?>checked<?php endif;?>>
+					<input type="checkbox" name="displaycategory" value="<?php echo $subCats->category_id;?>" style="float:left;" <?php if($subCats->category_featured==1):?>checked<?php endif;?>>
 					<?php echo $subCats->category_name;?>
 				</button>
 					<?php foreach($subCats->subSubCats as $subSubCats):?>
 					<button type="button" class="km-btn km-btn-default" style="color: #434343;font-size: 10px;">
-						<input onclick="showCat('<?php echo $subSubCats->category_id;?>','<?php echo $subSubCats->category_featured==1?0:1;?>')" type="checkbox" style="float:left;" <?php if($subSubCats->category_featured==1):?>checked<?php endif;?>>
+						<input type="checkbox" name="displaycategory" value="<?php echo $subSubCats->category_id;?>" style="float:left;" <?php if($subSubCats->category_featured==1):?>checked<?php endif;?>>
 						<?php echo $subSubCats->category_name;?>
 					</button>
 					<?php endforeach;?>

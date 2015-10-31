@@ -398,6 +398,8 @@ function merchantQuery(excel){
 	var merchant = new Object();
 	merchant.gender = $("#gender").val();
 	merchant.status = $("#status").val();
+	merchant.country = $("#country").val();
+	merchant.grade = $("#grade").val();
 	merchant.username = $("#keyword").val();
 	dataHandler('excel','merchantSimple',merchant,goUrl,null,null,null,false);
 }
@@ -408,6 +410,8 @@ function selectUser(baseUrl){
 	var extUrl="";
 	if($("#gender").val()!=-1) extUrl+="&gender="+$("#gender").val();
 	if($("#status").val()!=-1) extUrl+="&status="+$("#status").val();
+	if($("#grade").val()!=-1) extUrl+="&grade="+$("#grade").val();
+	if($("#country").val()!=-1) extUrl+="&country="+$("#country").val();
 	if($("#keyword").val()!="") extUrl+="&search="+$("#keyword").val();
 	location.href=baseUrl+extUrl;
 }
@@ -458,11 +462,17 @@ function orderMerchant(baseUrl,currentOrder){
 		if($("#orderEmail").val()=="" || $("#orderEmail").val()=="desc") extUrl+="&orderEmail=asc";
 		else  extUrl+="&orderEmail=desc";
 	}
+	if(currentOrder=='grade'){
+		if($("#orderGrade").val()=="" || $("#orderGrade").val()=="desc") extUrl+="&orderGrade=asc";
+		else  extUrl+="&orderGrade=desc";
+	}
 	location.href=baseUrl+extUrl;
 }
 function selectMerchant(baseUrl){
 	var extUrl="";
 	if($("#gender").val()!=-1) extUrl+="&gender="+$("#gender").val();
+	if($("#grade").val()!=-1) extUrl+="&grade="+$("#grade").val();
+	if($("#country").val()!=-1) extUrl+="&country="+$("#country").val();
 	if($("#status").val()!=-1) extUrl+="&status="+$("#status").val();
 	if($("#keyword").val()!="") extUrl+="&search="+$("#keyword").val();
 	location.href=baseUrl+extUrl;
@@ -584,6 +594,24 @@ function showCat(catId,display){
 	displayCat.id = catId;
 	displayCat.display = display;
 	dataHandler("modify","displayCat",displayCat,successShowCat,null,null,null,true);
+}
+function showCategories(){
+	if($("input[name='displaycategory']:checked").length > 20){
+		alert('Only a maximum of 20 categories can be selected');
+		return false;
+	}
+	var displayCategoriesArray = new Array();
+	var notDisplaycategoriesArray = new Array();
+	$("input[name='displaycategory']:checked").each(function(){
+		displayCategoriesArray.push($(this).val());
+	});
+	$("input[name='displaycategory']").not("input:checked").each(function(){
+		notDisplaycategoriesArray.push($(this).val());
+	});
+	var categories = new Object();
+	categories.displayCategoriesArray = displayCategoriesArray;
+	categories.notDisplaycategoriesArray = notDisplaycategoriesArray;
+	dataHandler("modifyBulkDisplayCategories","displayCategories",categories,successShowCat,'Sure to save?',null,null,true);
 }
 function successShowCat(){
 	alert('Successfully saved!');

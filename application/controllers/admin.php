@@ -274,6 +274,10 @@ class Admin extends CI_Controller {
 			$condition['where']['user_gender']=$_GET['gender'];
 			$baseUrl.='&gender='.$_GET['gender'];
 		}
+		if(isset($_GET['country'])){
+			$condition['where']['user_country']=$_GET['country'];
+			$baseUrl.='&country='.$_GET['country'];
+		}
 		if(isset($_GET['search'])){
 			$condition['like']['user_username']=$_GET['search'];
 			$baseUrl.='&search='.$_GET['search'];
@@ -296,6 +300,24 @@ class Admin extends CI_Controller {
 			if($_GET['orderEmail']=='desc')
 				$condition['order_by']['user_email']='DESC';
 		}
+		if(isset($_GET['orderGrade'])){
+			if($_GET['orderGrade']=='asc')
+				$condition['order_by']['user_grade']='ASC';
+			if($_GET['orderGrade']=='desc')
+				$condition['order_by']['user_grade']='DESC';
+		}
+		if(isset($_GET['order14Sales'])){
+			// if($_GET['order14Sales']=='asc'){
+			// 	$condition['sum']='order.order_total';
+			// 	$condition['group_by']='order.order_merchant';
+			// 	$condition['order_by']['order_total']='ASC';
+			// }
+			// if($_GET['order14Sales']=='desc'){
+			// 	$condition['sum']='order.order_total';
+			// 	$condition['group_by']='order.order_merchant';
+			// 	$condition['order_by']['order.order_total']='DESC';
+			// }
+		}
 		if(!isset($condition['order_by'])){
 			$condition['order_by']=array('user_reg_time'=>'DESC');
 		}
@@ -304,10 +326,55 @@ class Admin extends CI_Controller {
 		$condition['result']="data";
 		$pageInfo=$this->commongetdata->getPageLink($baseUrl,$selectUrl,$page,$amountPerPage,$amount);
 		$condition['limit']=$pageInfo['limit'];
+		$merchants=$this->commongetdata->getData($condition);
+		foreach ($merchants as $key => $value) {
+			$orders=$this->commongetdata->getData(
+				array(
+					'table'=>'order',
+					'result'=>'data',
+					'where'=>array(
+						'order_merchant'=>$value->user_id
+					)
+				)
+			);
+			$total14=0;
+			$total30=0;
+			foreach ($orders as $order) {
+				if($order->order_time >=date("Y-m-d",strtotime("-14 day")).'00:00:00'){
+					$total14+=$order->order_total;
+				}
+				if($order->order_time >=date("Y-m-d",strtotime("-30 day")).'00:00:00'){
+					$total30+=$order->order_total;
+				}
+			}
+			$value->total14=$total14;
+			$value->total30=$total30;
+
+			$value->allitemsnumber=$this->commongetdata->getData(
+				array(
+					'table'=>'product',
+					'result'=>'count',
+					'where'=>array(
+						'product_merchant'=>$value->user_id
+					)
+				)
+			);
+			$value->availableitemsnumber=$this->commongetdata->getData(
+				array(
+					'table'=>'product',
+					'result'=>'count',
+					'where'=>array(
+						'product_merchant'=>$value->user_id,
+						'product_status'=>3
+					)
+				)
+			);
+			$value->country=$this->commongetdata->getCountry($value->user_country);
+		}
 		$data=array(
 			"columns"=>$this->commongetdata->getColumns(),
 			"status"=>$this->commongetdata->getMerchantStatus(),
-			"merchants"=>$this->commongetdata->getData($condition)
+			"merchants"=>$merchants
 		);
 		$data=array_merge($data,$pageInfo);
 		$this->adminBaseHandler('merchants',array('data','merchants'),'merchants',$data);
@@ -326,6 +393,10 @@ class Admin extends CI_Controller {
 		if(isset($_GET['gender'])&& is_numeric($_GET['gender'])){
 			$condition['where']['user_gender']=$_GET['gender'];
 			$baseUrl.='&gender='.$_GET['gender'];
+		}
+		if(isset($_GET['country'])){
+			$condition['where']['user_country']=$_GET['country'];
+			$baseUrl.='&country='.$_GET['country'];
 		}
 		if(isset($_GET['search'])){
 			$condition['like']['user_username']=$_GET['search'];
@@ -352,9 +423,33 @@ class Admin extends CI_Controller {
 		
 		$pageInfo=$this->commongetdata->getPageLink($baseUrl,$selectUrl,$page,$amountPerPage,$amount);
 		$condition['limit']=$pageInfo['limit'];
+		$users=$this->commongetdata->getData($condition);
+		foreach ($users as $value) {
+			$orders=$this->commongetdata->getData(
+				array(
+					'table'=>'order',
+					'result'=>'data',
+					'where'=>array(
+						'order_user'=>$value->user_id
+					)
+				)
+			);
+			$total14=0;
+			$total30=0;
+			foreach ($orders as $order) {
+				if($order->order_time >=date("Y-m-d",strtotime("-14 day")).'00:00:00'){
+					$total14+=$order->order_total;
+				}
+				if($order->order_time >=date("Y-m-d",strtotime("-30 day")).'00:00:00'){
+					$total30+=$order->order_total;
+				}
+			}
+			$value->total14=$total14;
+			$value->total30=$total30;
+		}
 		$data=array(
 			"columns"=>$this->commongetdata->getColumns(),
-			"users"=>$this->commongetdata->getData($condition)
+			"users"=>$users
 		);
 		$data=array_merge($data,$pageInfo);
 		$this->adminBaseHandler('users',array('data','users'),'users',$data);

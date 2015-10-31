@@ -1014,6 +1014,141 @@ class CommonGetData{
 		$imagesObject->productImgS4=$imageArray[3];
 		return $imagesObject;
 	}
+	public function getCountry($abbreviation){
+		$country='';
+		switch ($abbreviation) {
+			case 'SG':
+				$country='Singapore';
+			break;
+			case 'AU':
+				$country='Australia';
+			break;
+			case 'BR':
+				$country='Brazil';
+			break;
+			case 'BN':
+				$country='Brunei Darussalam';
+			break;
+			case 'CA':
+				$country='Canada';
+			break;
+			case 'CN':
+				$country='China';
+			break;
+			case 'DK':
+				$country='Denmark';
+			break;
+			case 'EG':
+				$country='Egypt';
+			break;
+			case 'FI':
+				$country='Finland';
+			break;
+			case 'FR':
+				$country='France';
+			break;
+			case 'DE':
+				$country='Germany';
+			break;
+			case 'GR':
+				$country='Greece';
+			break;
+			case 'HK':
+				$country='Hong Kong';
+			break;
+			case 'HU':
+				$country='Hungary';
+			break;
+			case 'IN':
+				$country='India';
+			break;
+			case 'ID':
+				$country='Indonesia';
+			break;
+			case 'IL':
+				$country='Israel';
+			break;
+			case 'IT':
+				$country='Italy';
+			break;
+			case 'JP':
+				$country='Japan';
+			break;
+			case 'KW':
+				$country='Kuwait';
+			break;
+			case 'MO':
+				$country='Macau';
+			break;
+			case 'MY':
+				$country='Malaysia';
+			break;
+			case 'MX':
+				$country='Mexico';
+			break;
+			case 'MM':
+				$country='Myanma';
+			break;
+			case 'NL':
+				$country='Netherlands';
+			break;
+			case 'NZ':
+				$country='New Zealand';
+			break;
+			case 'MM':
+				$country='Myanma';
+			break;
+			case 'NO':
+				$country='Norway';
+			break;
+			case 'PH':
+				$country='Philippines';
+			break;
+			case 'PL':
+				$country='Poland';
+			break;
+			case 'PT':
+				$country='Portugal';
+			break;
+			case 'RU':
+				$country='Russia';
+			break;
+			case 'KR':
+				$country='South Korea';
+			break;
+			case 'ES':
+				$country='Spain';
+			break;
+			case 'SE':
+				$country='Sweden';
+			break;
+			case 'CH':
+				$country='Switzerland';
+			break;
+			case 'TW':
+				$country='Taiwan';
+			break;
+			case 'TH':
+				$country='Thailand';
+			break;
+			case 'TR':
+				$country='Turkey';
+			break;
+			case 'GB':
+				$country='United Kingdom';
+			break;
+			case 'US':
+				$country='United States';
+			break;
+			case 'VN':
+				$country='Vietnam';
+			break;
+			default:
+				$country=$abbreviation;
+				break;
+		}
+		return $country;
+	}
 }
 
 /* End of file Common.php */

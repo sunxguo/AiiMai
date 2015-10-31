@@ -69,9 +69,16 @@ class DbHandler extends CI_Model{
 				$this->db->or_like($key,$value);
 			}
 		}
-		if(isset($condition['limit'])) $this->db->limit($condition['limit']['limit'],$condition['limit']['offset']);
+		if(isset($condition['limit'])){
+			$this->db->limit($condition['limit']['limit'],$condition['limit']['offset']);
+		}
 		//Example: $this->db->group_by("title"); OR $this->db->group_by(array("title", "date")); 
-		if(isset($condition['group_by'])) $this->db->group_by($condition['group_by']);
+		if(isset($condition['group_by'])){
+			$this->db->group_by($condition['group_by']);
+		}
+		if(isset($condition['sum'])){
+			$this->db->select_sum($condition['sum']);
+		}
 		if(isset($condition['order_by'])){
 			foreach($condition['order_by'] as $key=>$value){
 				$this->db->order_by($key,$value);
