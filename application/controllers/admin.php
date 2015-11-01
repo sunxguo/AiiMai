@@ -446,6 +446,7 @@ class Admin extends CI_Controller {
 			}
 			$value->total14=$total14;
 			$value->total30=$total30;
+			$value->country=$this->commongetdata->getCountry($value->user_country);
 		}
 		$data=array(
 			"columns"=>$this->commongetdata->getColumns(),

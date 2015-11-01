@@ -2048,32 +2048,141 @@ class Common extends CI_Controller {
 					'Total Available Items',
 					'Contact'
 				);
-				$parameters=array(
-					'result'=>'data',
-					'orderBy'=>array('user_reg_time'=>'DESC')
+				$parameters=array( 
+					'result'=>'data'
 				);
-				if(isset($data->gender) & $data->gender!='') $parameters['gender']=$data->gender;
-				if(isset($data->status) & $data->status!='') $parameters['status']=$data->status;
-				if(isset($data->keywords) & $data->keywords!='') $parameters['like']=$data->keywords;
-				
+				if(isset($data->gender) && $data->gender!='') $parameters['gender']=$data->gender;
+				if(isset($data->status) && $data->status!='') $parameters['status']=$data->status;
+				if(isset($data->country) && $data->country!='') $parameters['country']=$data->country;
+				if(isset($data->keywords) && $data->keywords!='') $parameters['like']=array('user_username'=>$data->keywords);
+				if(isset($data->orderShopTitle)){
+					if($data->orderShopTitle=='asc')
+						$parameters['order_by']['merchant_shop_name']='ASC';
+					if($data->orderShopTitle=='desc')
+						$parameters['order_by']['merchant_shop_name']='DESC';
+				}
 				$result=$this->commongetdata->getMerchantsAdvance($parameters);
 				$dataArray=array();
 				$websiteUrl=$this->commongetdata->getWebsiteConfig('website_url');
 				foreach($result as $value){
+					$orders=$this->commongetdata->getData(
+						array(
+							'table'=>'order',
+							'result'=>'data',
+							'where'=>array(
+								'order_merchant'=>$value->user_id
+							)
+						)
+					);
+					$total14=0;
+					$total30=0;
+					foreach ($orders as $order) {
+						if($order->order_time >=date("Y-m-d",strtotime("-14 day")).'00:00:00'){
+							$total14+=$order->order_total;
+						}
+						if($order->order_time >=date("Y-m-d",strtotime("-30 day")).'00:00:00'){
+							$total30+=$order->order_total;
+						}
+					}
+					$allitemsnumber=$this->commongetdata->getData(
+						array(
+							'table'=>'product',
+							'result'=>'count',
+							'where'=>array(
+								'product_merchant'=>$value->user_id
+							)
+						)
+					);
+					$availableitemsnumber=$this->commongetdata->getData(
+						array(
+							'table'=>'product',
+							'result'=>'count',
+							'where'=>array(
+								'product_merchant'=>$value->user_id,
+								'product_status'=>3
+							)
+						)
+					);
+					$country=$this->commongetdata->getCountry($value->user_country);
 					$dataArray[]=array(
 						$websiteUrl.'/'.($value->merchant_shop_icon),
 						$value->merchant_shop_name,
 						$value->user_username,
 						$value->user_email,
-						$value->user_country,
+						$country,
 						$value->user_gender,
 						$value->user_grade,
 						$value->merchant_status,
 						$value->user_reg_time,
-						$value->user_lastlogin_time,
+						$total14,
+						$total30,
+						$allitemsnumber,
+						$availableitemsnumber,
+						'Mobile:'.$value->merchant_phone1.'-'.$value->merchant_phone2.'-'.$value->merchant_phone3.'Phone:'.$value->merchant_homephone1.'-'.$value->merchant_homephone2.'-'.$value->merchant_homephone3
 					);
 				}
 				$url=$this->exportExcel('Sellers','subject','description',$field,$dataArray);
+			break;
+			case 'user':
+				$field=array(
+					'Username',
+					'Email',
+					'Phone',
+					'Gender',
+					'Status',
+					'Grade',
+					'Country',
+					'Birthday',
+					'Registeration Time',
+					'Total Purchases(Last 14 days)',
+					'Total Purchases(Last 30 days)'
+				);
+				$parameters=array( 
+					'result'=>'data'
+				);
+				if(isset($data->gender) && $data->gender!='') $parameters['gender']=$data->gender;
+				if(isset($data->status) && $data->status!='') $parameters['status']=$data->status;
+				if(isset($data->country) && $data->country!='') $parameters['country']=$data->country;
+				if(isset($data->keywords) && $data->keywords!='') $parameters['like']=array('user_username'=>$data->keywords);
+				$result=$this->commongetdata->getUsersAdvance($parameters);
+				$dataArray=array();
+				$websiteUrl=$this->commongetdata->getWebsiteConfig('website_url');
+				foreach($result as $value){
+					$orders=$this->commongetdata->getData(
+						array(
+							'table'=>'order',
+							'result'=>'data',
+							'where'=>array(
+								'order_user'=>$value->user_id
+							)
+						)
+					);
+					$total14=0;
+					$total30=0;
+					foreach ($orders as $order) {
+						if($order->order_time >=date("Y-m-d",strtotime("-14 day")).'00:00:00'){
+							$total14+=$order->order_total;
+						}
+						if($order->order_time >=date("Y-m-d",strtotime("-30 day")).'00:00:00'){
+							$total30+=$order->order_total;
+						}
+					}
+					$country=$this->commongetdata->getCountry($value->user_country);
+					$dataArray[]=array(
+						$value->user_username,
+						$value->user_email,
+						$value->merchant_phone1.'-'.$value->merchant_phone2.'-'.$value->merchant_phone3,
+						$value->user_gender==1?'Female':'Male',
+						$value->user_state==0?'Normal':'Frozen',
+						$value->user_grade,
+						$country,
+						$value->user_birthday,
+						$value->user_reg_time,
+						$total14,
+						$total30
+					);
+				}
+				$url=$this->exportExcel('Users','subject','description',$field,$dataArray);
 			break;
 			case 'groupBuy':
 				$field=array(

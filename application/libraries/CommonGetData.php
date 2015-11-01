@@ -564,14 +564,30 @@ class CommonGetData{
 	 **/
 	public function getMerchantsAdvance($parameters){
 		//,$merchantId,$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order
-		$condition=array('table'=>'user');
+		$condition=array('table'=>'user','where'=>array('user_is_merchant'=>1));
 		if(isset($parameters['result'])) $condition['result']=$parameters['result'];
 		if(isset($parameters['gender'])) $condition['where']['user_gender']=$parameters['gender'];
-		if(isset($parameters['status'])) $condition['where']['product_status']=$parameters['status'];
+		if(isset($parameters['status'])) $condition['where']['merchant_status']=$parameters['status'];
+		if(isset($parameters['country'])) $condition['where']['user_country']=$parameters['country'];
 		if(isset($parameters['like'])) $condition['like']=$parameters['like'];
 		if(isset($parameters['orderBy'])) $condition['order_by']=$parameters['orderBy'];
 		$merchants=$this->CI->dbHandler->selectData($condition);
 		return $merchants;
+	}
+	/**
+	 *  
+	 **/
+	public function getUsersAdvance($parameters){
+		//,$merchantId,$cat,$sCat,$ssCat,$status,$listedTime,$modifyTime,$sellFormat,$title,$order
+		$condition=array('table'=>'user','where'=>array('user_is_merchant'=>0));
+		if(isset($parameters['result'])) $condition['result']=$parameters['result'];
+		if(isset($parameters['gender'])) $condition['where']['user_gender']=$parameters['gender'];
+		if(isset($parameters['status'])) $condition['where']['user_state']=$parameters['status'];
+		if(isset($parameters['country'])) $condition['where']['user_country']=$parameters['country'];
+		if(isset($parameters['like'])) $condition['like']=$parameters['like'];
+		if(isset($parameters['orderBy'])) $condition['order_by']=$parameters['orderBy'];
+		$users=$this->CI->dbHandler->selectData($condition);
+		return $users;
 	}
 	/**
 	 *  

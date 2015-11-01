@@ -396,12 +396,21 @@ function productQuery(excel){
 }
 function merchantQuery(excel){
 	var merchant = new Object();
-	merchant.gender = $("#gender").val();
-	merchant.status = $("#status").val();
-	merchant.country = $("#country").val();
-	merchant.grade = $("#grade").val();
-	merchant.username = $("#keyword").val();
-	dataHandler('excel','merchantSimple',merchant,goUrl,null,null,null,false);
+	if($("#gender").val()!=-1) merchant.gender = $("#gender").val();
+	if($("#status").val()!=-1) merchant.status = $("#status").val();
+	if($("#country").val()!=-1) merchant.country = $("#country").val();
+	if($("#grade").val()!=-1) merchant.grade = $("#grade").val();
+	if($("#keyword").val()!="") merchant.keywords = $("#keyword").val();
+	dataHandler('excel','merchant',merchant,goUrl,null,null,null,false);
+}
+function userQuery(excel){
+	var user = new Object();
+	if($("#gender").val()!=-1) user.gender = $("#gender").val();
+	if($("#status").val()!=-1) user.status = $("#status").val();
+	if($("#country").val()!=-1) user.country = $("#country").val();
+	if($("#grade").val()!=-1) user.grade = $("#grade").val();
+	if($("#keyword").val()!="") user.keywords = $("#keyword").val();
+	dataHandler('excel','user',user,goUrl,null,null,null,false);
 }
 function goUrl(url){
 	location.href=url;

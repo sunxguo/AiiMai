@@ -3,6 +3,7 @@
 		<div style="float: right;margin-left:10px;">
 			<input type="text" id="keyword" class="inp-txt width200" value="<?php echo isset($_GET["search"])?$_GET["search"]:"";?>">
 			<a href="javascript:selectUser('<?php echo $selectPage;?>')" class="btn80">Search</a>
+			<button onclick="userQuery(true);" type="button" class="km-btn km-btn-success" style="height: 28px;font-size: 12px;padding:0px 10px;">Excel</button>
 		</div>
 		<div style="float: right;">
 			<span class="font12">Status:</span>
@@ -106,7 +107,7 @@
 				<th style="width:100px;" class="field-order" onclick="orderUser('<?php echo $selectPage;?>','email')">Email <?php if(isset($_GET['orderEmail'])){if($_GET['orderEmail']=='desc') echo '↑';else echo '↓';}?></th>
 				<th style="width:200px;">Phone</th>
 				<th style="width:100px;">Gender</th>
-				<th style="width:100px;">State</th>
+				<th style="width:100px;">Status</th>
 				<th style="width:100px;">Grade</th>
 				<th style="width:100px;">Country</th>
 				<th style="width:150px;">Birthday</th>
@@ -127,7 +128,7 @@
 				<td><?php echo $user->user_gender==0?'Male':'Female';?></td>
 				<td><?php echo $user->user_state==0?'<span class="km-label km-label-success" style="display: inline-block;">Normal</span>':'<span class="km-label km-label-default" style="display: inline-block;">Frozen</span>';?></td>
 				<td><?php echo $user->user_grade;?></td>
-				<td><?php echo $user->user_country;?></td>
+				<td><?php echo $user->country;?></td>
 				<td><?php echo $user->user_birthday;?></td>
 				<td><?php echo $user->total14;?></td>
 				<td><?php echo $user->total30;?></td>
