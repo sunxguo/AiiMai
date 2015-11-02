@@ -227,7 +227,7 @@ class Cms extends CI_Controller {
 		$bankList=$this->commongetdata->getData(array(
 				'table'=>'bank',
 				'result'=>'data',
-				'where'=>array('bank_valid'=>1),
+				'where'=>array('bank_status'=>1),
 				'order_by'=>array('bank_order'=>'ASC'))
 		);
 		$data=array(
