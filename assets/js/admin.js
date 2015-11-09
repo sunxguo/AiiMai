@@ -426,8 +426,13 @@ function selectUser(baseUrl){
 }
 function orderUser(baseUrl,currentOrder){
 	var extUrl="";
+	// if($("#gender").val()!=-1) extUrl+="&gender="+$("#gender").val();
+	// if($("#status").val()!=-1) extUrl+="&status="+$("#status").val();
+	// if($("#keyword").val()!="") extUrl+="&search="+$("#keyword").val();
 	if($("#gender").val()!=-1) extUrl+="&gender="+$("#gender").val();
 	if($("#status").val()!=-1) extUrl+="&status="+$("#status").val();
+	if($("#grade").val()!=-1) extUrl+="&grade="+$("#grade").val();
+	if($("#country").val()!=-1) extUrl+="&country="+$("#country").val();
 	if($("#keyword").val()!="") extUrl+="&search="+$("#keyword").val();
 	if(currentOrder=='username'){
 		if($("#orderUser").val()=="" || $("#orderUser").val()=="desc") extUrl+="&orderUser=asc";
@@ -436,6 +441,10 @@ function orderUser(baseUrl,currentOrder){
 	if(currentOrder=='email'){
 		if($("#orderEmail").val()=="" || $("#orderEmail").val()=="desc") extUrl+="&orderEmail=asc";
 		else  extUrl+="&orderEmail=desc";
+	}
+	if(currentOrder=='time'){
+		if($("#orderTime").val()=="" || $("#orderTime").val()=="desc") extUrl+="&orderTime=asc";
+		else  extUrl+="&orderTime=desc";
 	}
 	location.href=baseUrl+extUrl;
 }
@@ -456,7 +465,12 @@ function orderItem(baseUrl,currentOrder){
 }
 function orderMerchant(baseUrl,currentOrder){
 	var extUrl="";
+	// if($("#gender").val()!=-1) extUrl+="&gender="+$("#gender").val();
+	// if($("#status").val()!=-1) extUrl+="&status="+$("#status").val();
+	// if($("#keyword").val()!="") extUrl+="&search="+$("#keyword").val();
 	if($("#gender").val()!=-1) extUrl+="&gender="+$("#gender").val();
+	if($("#grade").val()!=-1) extUrl+="&grade="+$("#grade").val();
+	if($("#country").val()!=-1) extUrl+="&country="+$("#country").val();
 	if($("#status").val()!=-1) extUrl+="&status="+$("#status").val();
 	if($("#keyword").val()!="") extUrl+="&search="+$("#keyword").val();
 	if(currentOrder=='shop'){
@@ -474,6 +488,10 @@ function orderMerchant(baseUrl,currentOrder){
 	if(currentOrder=='grade'){
 		if($("#orderGrade").val()=="" || $("#orderGrade").val()=="desc") extUrl+="&orderGrade=asc";
 		else  extUrl+="&orderGrade=desc";
+	}
+	if(currentOrder=='time'){
+		if($("#orderTime").val()=="" || $("#orderTime").val()=="desc") extUrl+="&orderTime=asc";
+		else  extUrl+="&orderTime=desc";
 	}
 	location.href=baseUrl+extUrl;
 }

@@ -97,6 +97,7 @@
 	</div>
 	<input id="orderUser" type="hidden" value="<?php echo isset($_GET['orderUser'])?$_GET['orderUser']:'';?>">
 	<input id="orderEmail" type="hidden" value="<?php echo isset($_GET['orderEmail'])?$_GET['orderEmail']:'';?>">
+	<input id="orderTime" type="hidden" value="<?php echo isset($_GET['orderTime'])?$_GET['orderTime']:'';?>">
 	<table>
 		<thead>
 			<tr class="table-head">
@@ -111,6 +112,7 @@
 				<th style="width:100px;">Grade</th>
 				<th style="width:100px;">Country</th>
 				<th style="width:150px;">Birthday</th>
+				<th style="width:150px;" class="field-order" onclick="orderUser('<?php echo $selectPage;?>','time')">Registration Time <?php if(isset($_GET['orderTime'])){if($_GET['orderTime']=='desc') echo '↑';else echo '↓';}?></th>
 				<th style="width:150px;">Total Purchases (Last 14 days)</th>
 				<th style="width:150px;">Total Purchases (Last 30 days)</th>
 				<th style="width:280px;">Operation</th>
@@ -130,6 +132,7 @@
 				<td><?php echo $user->user_grade;?></td>
 				<td><?php echo $user->country;?></td>
 				<td><?php echo $user->user_birthday;?></td>
+				<td><?php echo $user->user_reg_time;?></td>
 				<td><?php echo $user->total14;?></td>
 				<td><?php echo $user->total30;?></td>
 				<td>

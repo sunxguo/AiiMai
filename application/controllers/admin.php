@@ -306,6 +306,12 @@ class Admin extends CI_Controller {
 			if($_GET['orderGrade']=='desc')
 				$condition['order_by']['user_grade']='DESC';
 		}
+		if(isset($_GET['orderTime'])){
+			if($_GET['orderTime']=='asc')
+				$condition['order_by']['user_reg_time']='ASC';
+			if($_GET['orderTime']=='desc')
+				$condition['order_by']['user_reg_time']='DESC';
+		}
 		if(isset($_GET['order14Sales'])){
 			// if($_GET['order14Sales']=='asc'){
 			// 	$condition['sum']='order.order_total';
@@ -413,6 +419,12 @@ class Admin extends CI_Controller {
 				$condition['order_by']['user_email']='ASC';
 			if($_GET['orderEmail']=='desc')
 				$condition['order_by']['user_email']='DESC';
+		}
+		if(isset($_GET['orderTime'])){
+			if($_GET['orderTime']=='asc')
+				$condition['order_by']['user_reg_time']='ASC';
+			if($_GET['orderTime']=='desc')
+				$condition['order_by']['user_reg_time']='DESC';
 		}
 		if(!isset($condition['order_by'])){
 			$condition['order_by']=array('user_reg_time'=>'DESC');

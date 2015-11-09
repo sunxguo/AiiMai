@@ -42,6 +42,9 @@
 								$leftday=$value->product->product_available_period-floor((time()-strtotime($value->product->product_time))/(3600*24));
 								if($leftday<0){
 									echo 'Expired';
+								}elseif($leftday<=1){
+									$second=time()-strtotime($value->product->product_time);
+									echo floor($second/60).' Min';
 								}elseif($leftday>500){
 									echo 'Infinite';
 								}else{

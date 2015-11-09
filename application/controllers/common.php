@@ -2104,15 +2104,16 @@ class Common extends CI_Controller {
 						)
 					);
 					$country=$this->commongetdata->getCountry($value->user_country);
+					$status=$this->commongetdata->getMerchantStatus();
 					$dataArray[]=array(
 						$websiteUrl.'/'.($value->merchant_shop_icon),
 						$value->merchant_shop_name,
 						$value->user_username,
 						$value->user_email,
 						$country,
-						$value->user_gender,
-						$value->user_grade,
-						$value->merchant_status,
+						$value->user_gender==0?'Male':'Female',
+						$value->user_grade==3?'Platinum':$value->user_grade==2?'Gold':'Silver',
+						$status[$value->merchant_status],
 						$value->user_reg_time,
 						$total14,
 						$total30,
@@ -2174,7 +2175,7 @@ class Common extends CI_Controller {
 						$value->merchant_phone1.'-'.$value->merchant_phone2.'-'.$value->merchant_phone3,
 						$value->user_gender==1?'Female':'Male',
 						$value->user_state==0?'Normal':'Frozen',
-						$value->user_grade,
+						$value->user_grade==3?'Platinum':$value->user_grade==2?'Gold':'Silver',
 						$country,
 						$value->user_birthday,
 						$value->user_reg_time,

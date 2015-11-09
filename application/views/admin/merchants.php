@@ -39,13 +39,13 @@
 			<span class="font12">Grade:</span>
 			<select id="grade" onchange="selectMerchant('<?php echo $selectPage;?>')" class="select w100">
                 <option value="-1">All</option>
-                <option value="0" <?php echo isset($_GET["grade"]) && $_GET["grade"]==0?'selected = "selected"':'';?>>
+                <option value="3" <?php echo isset($_GET["grade"]) && $_GET["grade"]==3?'selected = "selected"':'';?>>
 					Platinum
 				</option>
-                <option value="1" <?php echo isset($_GET["grade"]) && $_GET["grade"]==1?'selected = "selected"':'';?>>
+                <option value="2" <?php echo isset($_GET["grade"]) && $_GET["grade"]==2?'selected = "selected"':'';?>>
 					Gold
 				</option>
-                <option value="2" <?php echo isset($_GET["grade"]) && $_GET["grade"]==2?'selected = "selected"':'';?>>
+                <option value="1" <?php echo isset($_GET["grade"]) && $_GET["grade"]==1?'selected = "selected"':'';?>>
 					Silver
 				</option>
             </select>
@@ -105,6 +105,7 @@
 	<input id="orderUser" type="hidden" value="<?php echo isset($_GET['orderUser'])?$_GET['orderUser']:'';?>">
 	<input id="orderEmail" type="hidden" value="<?php echo isset($_GET['orderEmail'])?$_GET['orderEmail']:'';?>">
 	<input id="orderGrade" type="hidden" value="<?php echo isset($_GET['orderGrade'])?$_GET['orderGrade']:'';?>">
+	<input id="orderTime" type="hidden" value="<?php echo isset($_GET['orderTime'])?$_GET['orderTime']:'';?>">
 	<table>
 		<thead>
 			<tr class="table-head">
@@ -118,7 +119,7 @@
 				<th style="width:100px;">Gender</th>
 				<th style="width:80px;" class="field-order" onclick="orderMerchant('<?php echo $selectPage;?>','grade')">Grade <?php if(isset($_GET['orderGrade'])){if($_GET['orderGrade']=='desc') echo '↑';else echo '↓';}?></th>
 				<th style="width:100px;">Status</th>
-				<th style="width:200px;">Registration Time</th>
+				<th style="width:200px;" class="field-order" onclick="orderMerchant('<?php echo $selectPage;?>','time')">Registration Time <?php if(isset($_GET['orderTime'])){if($_GET['orderTime']=='desc') echo '↑';else echo '↓';}?></th>
 				<th style="width:200px;">Total Sales (Last 14 days)</th>
 				<th style="width:200px;">Total Sales (Last 30 days)</th>
 				<th style="width:200px;">Total Items</th>
@@ -138,7 +139,7 @@
 				<td><?php echo $merchant->user_email;?></td>
 				<td><?php echo $merchant->country;?></td>
 				<td><?php echo $merchant->user_gender==0?'Male':'Female';//0:male 1:female 2:unknown?></td>
-				<td><?php echo $merchant->user_grade;?></td>
+				<td><?php echo $merchant->user_grade==3?'Platinum':$merchant->user_grade==2?'Gold':'Silver';?></td>
 				<td>
 					<?php //echo $merchant->merchant_status;状态：0：注册完成但没有完善信息 1：完善信息等待审核 2：审核通过 3：审核不通过 4:冻结?>
 					<span class="km-label 

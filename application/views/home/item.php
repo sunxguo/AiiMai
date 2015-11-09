@@ -351,9 +351,9 @@
 								</a>
                             </span>
                             <?php if($wishlist):?>
-                            <span class="km-btn km-btn-warning" style="height: 25px;padding: 0px 10px;font-size: 12px;margin: 10px 0 5px 10px;line-height: 25px;cursor:default;">Already in WishList</span>
+                            <span class="km-btn km-btn-warning" style="height: 38px;padding: 0px 10px;font-size: 12px;line-height: 38px;cursor:default;">Already in WishList</span>
                             <?php else:?>
-                            <button onclick="addToWishList('<?php echo $item->product_id;?>');" type="button" class="km-btn km-btn-success" style="height: 25px;padding: 0px 10px;font-size: 12px;margin: 10px 0 5px 10px;">Add to WishList</button>
+                            <button onclick="addToWishList('<?php echo $item->product_id;?>');" type="button" class="km-btn km-btn-success" style="height: 40px;line-height: 40px;padding: 0px 10px;font-size: 12px;">Add to WishList</button>
                        		<?php endif;?>
 						</div>
                     </li>
